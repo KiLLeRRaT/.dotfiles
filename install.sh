@@ -33,7 +33,7 @@ echo "/usr/bin/i3" >> /etc/xrdp/startwm.sh
 # Run stow to set up dotfiles
 echo Running stow
 #STOW_FOLDERS=i3,nvim,bashrc
-STOW_FOLDERS=a
+STOW_FOLDERS=i3,nvim
 pushd $DOTFILES
 echo $(echo $STOW_FOLDERS | sed "s/,/ /g")
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
