@@ -1,33 +1,37 @@
 #!/bin/sh
 pushd ~
-sudo apt update
-sudo apt upgrade
+echo Updating Linux
+apt update
+apt upgrade
 
 # Install i3
 # Install curl
 # Install xrdp
 # Install stow
-sudo apt install git xrdp i3 curl stow
+echo Installing git, xrdp, i3, curl, stow
+apt install git xrdp i3 curl stow
 
 # Install Neovim
-sudo add-apt-repository ppa:neovim-ppa/unstable
-sudo apt update
-sudo apt install neovim
+echo Installing Neovim
+add-apt-repository ppa:neovim-ppa/unstable
+apt update
+apt install neovim
 
-# Clone dotfiles
+echo Clone dotfiles
 git clone git@github.com:KiLLeRRaT/.dotfiles.git
 
-# CONFIG xrdp to start with i3
+echo Config xrdp to start with i3
 # EDIT /etc/xrdp/startwm.sh
 # COMMENT OUT THIS LINE
 #exec /bin/sh /etc/X11/Xsession
 # ADD THIS LINE
 #/usr/bin/i3
-sudo sed -Ei.bak 's|test -x /etc/X11/Xsession && exec /etc/X11/Xsession|# test -x /etc/X11/Xsession && exec /etc/X11/Xsession|' /etc/xrdp/startwm.sh
-sudo sed -Ei.bak 's|/bin/sh /etc/X11/Xsession/|# /bin/sh /etc/X11/Xsession|' /etc/xrdp/startwm.sh
+sed -Ei.bak 's|test -x /etc/X11/Xsession && exec /etc/X11/Xsession|# test -x /etc/X11/Xsession && exec /etc/X11/Xsession|' /etc/xrdp/startwm.sh
+sed -Ei.bak 's|/bin/sh /etc/X11/Xsession/|# /bin/sh /etc/X11/Xsession|' /etc/xrdp/startwm.sh
 echo "/usr/bin/i3" >> /etc/xrdp/startwm.sh
 
 # Run stow to set up dotfiles
+echo Running stow
 $STOW_FOLDERS="i3,nvim,bashrc"
 pushd $DOTFILES
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
@@ -35,9 +39,4 @@ do
     stow -D $folder
     stow $folder
 done
-popd
-"stow i3
-"stow nvim
-"stow bashrc
-
 popd
