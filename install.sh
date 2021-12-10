@@ -24,3 +24,4 @@
 # Run stow to set up dotfiles
 # stow i3
 # stow nvim
+# stow bashrc somehow?
