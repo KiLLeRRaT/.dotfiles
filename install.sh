@@ -1,5 +1,5 @@
 #!/bin/sh
-
+pushd ~
 sudo apt update
 sudo apt upgrade
 
@@ -13,6 +13,9 @@ sudo apt install git xrdp i3 curl stow
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt update
 sudo apt install neovim
+
+# Clone dotfiles
+git clone git@github.com:KiLLeRRaT/.dotfiles.git
 
 # CONFIG xrdp to start with i3
 # EDIT /etc/xrdp/startwm.sh
@@ -36,3 +39,5 @@ popd
 "stow i3
 "stow nvim
 "stow bashrc
+
+popd
