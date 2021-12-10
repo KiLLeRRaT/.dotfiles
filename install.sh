@@ -27,6 +27,7 @@ sudo sed -Ei.bak 's|test -x /etc/X11/Xsession \&\& exec /etc/X11/Xsession|# test
 sudo sed -Ei.bak 's|exec /bin/sh /etc/X11/Xsession|# exec /bin/sh /etc/X11/Xsession|' /etc/xrdp/startwm.sh
 if grep -q "/usr/bin/i3" "/etc/xrdp/startwm.sh" ; then
 	# exists
+	echo "/usr/bin/i3 found, not adding it"
 else
 	# not exist
 	#sudo echo "/usr/bin/i3" >> /etc/xrdp/startwm.sh # DOES NOT WORK FOR SUDO.. USE BELOW
