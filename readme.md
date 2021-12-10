@@ -11,5 +11,5 @@ To install, run the following commands:
 
 Linux: 
  ```bash
-  curl -sL https://raw.githubusercontent.com/KiLLeRRaT/.dotfiles/linux/install.sh | sudo bash -
+  curl -sL https://raw.githubusercontent.com/KiLLeRRaT/.dotfiles/linux/install.sh | bash -
  ```
