@@ -20,6 +20,9 @@ sudo apt install neovim
 #exec /bin/sh /etc/X11/Xsession
 # ADD THIS LINE
 #/usr/bin/i3
+sudo sed -Ei.bak 's|test -x /etc/X11/Xsession && exec /etc/X11/Xsession|# test -x /etc/X11/Xsession && exec /etc/X11/Xsession|' /etc/xrdp/startwm.sh
+sudo sed -Ei.bak 's|/bin/sh /etc/X11/Xsession/|# /bin/sh /etc/X11/Xsession|' /etc/xrdp/startwm.sh
+echo "/usr/bin/i3" >> /etc/xrdp/startwm.sh
 
 # Run stow to set up dotfiles
 $STOW_FOLDERS="i3,nvim,bashrc"
