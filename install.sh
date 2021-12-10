@@ -4,14 +4,9 @@ echo Updating Linux
 apt update
 apt upgrade
 
-# Install i3
-# Install curl
-# Install xrdp
-# Install stow
 echo Installing git, xrdp, i3, curl, stow
 apt install git xrdp i3 curl stow
 
-# Install Neovim
 echo Installing Neovim
 add-apt-repository ppa:neovim-ppa/unstable
 apt update
@@ -33,7 +28,7 @@ echo "/usr/bin/i3" >> /etc/xrdp/startwm.sh
 # Run stow to set up dotfiles
 echo Running stow
 #STOW_FOLDERS=i3,nvim,bashrc
-STOW_FOLDERS=i3,nvim
+STOW_FOLDERS=i3
 pushd $DOTFILES
 echo $(echo $STOW_FOLDERS | sed "s/,/ /g")
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
