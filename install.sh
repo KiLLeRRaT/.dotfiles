@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 pushd ~
 echo Updating Linux
 apt update
