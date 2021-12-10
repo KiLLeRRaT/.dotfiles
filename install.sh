@@ -34,8 +34,10 @@ echo "/usr/bin/i3" >> /etc/xrdp/startwm.sh
 echo Running stow
 STOW_FOLDERS=i3,nvim,bashrc
 pushd $DOTFILES
+echo $(echo $STOW_FOLDERS | sed "s/,/ /g")
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
+	echo $folder
     stow -D $folder
     stow $folder
 done
