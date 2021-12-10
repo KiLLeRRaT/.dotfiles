@@ -197,8 +197,9 @@ syntax on
 set background=dark
 "let g:solarized_termtrans = 1
 "colorscheme solarized
+colorscheme gruvbox
 let g:gruvbox_guisp_fallback = "bg" " THIS TURNS ON SPELLBAD PROPERLY FOR SPELLCHECK HIGHLIGHTING IN GRUVBOX
-autocmd VimEnter * ++nested colorscheme gruvbox
+"autocmd VimEnter * ++nested colorscheme gruvbox
 
 set termguicolors
 
