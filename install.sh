@@ -47,6 +47,6 @@ done
 popd
 
 # NOW INSTALL THE VIM PLUGINS
-nvim +PluginInstall +qall
+nvim --headless +PlugInstall +q
 
 popd
