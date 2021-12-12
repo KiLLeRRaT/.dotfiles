@@ -10,7 +10,7 @@ sudo apt -y upgrade
 
 
 echo Installing git, xrdp, i3, curl, stow
-sudo apt install -y git xrdp i3 curl stow neovim
+sudo apt install -y git xrdp i3 curl stow neovim chrome-browser
 
 
 echo Clone dotfiles
@@ -45,4 +45,8 @@ do
     stow $folder
 done
 popd
+
+# NOW INSTALL THE VIM PLUGINS
+nvim +PluginInstall +qall
+
 popd
