@@ -45,18 +45,19 @@ let g:netrw_liststyle = 3
 " INSTALL VIM PLUGGED
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 " WINDOWS
-" if empty(glob('~/AppData/Local/nvim-data/site/autoload/plug.vim'))
-"     silent !curl -fLo ~/AppData/Local/nvim-data/site/autoload/plug.vim --create-dirs
-"         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"     autocmd VimEnter * PlugInstall --sync | source ~/AppData/Local/nvim/init.vim
-" endif
+ if empty(glob('~/AppData/Local/nvim-data/site/autoload/plug.vim'))
+     silent !curl -fLo ~/AppData/Local/nvim-data/site/autoload/plug.vim --create-dirs
+         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+     autocmd VimEnter * PlugInstall --sync | source ~/AppData/Local/nvim/init.vim
+ endif
+
 
 " LINUX
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+" let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+" if empty(glob(data_dir . '/autoload/plug.vim'))
+"   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+"   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+" endif
 
 "" auto-install vim-plug
 "const plug_path = stdpath('data') . '/site/autoload/plug.vim'
@@ -78,7 +79,7 @@ endif
 "endif
 "unlet autoload_plug_path
 
-call plug#begin('~/.config/nvim/plugged') " LINUX
+call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged') " LINUX
 "call plug#begin('~/.vim/plugged') " WINDOWS
 "call plug#begin('~/.config/nvim/plugins') " OSX
 Plug 'nvim-lua/plenary.nvim'
