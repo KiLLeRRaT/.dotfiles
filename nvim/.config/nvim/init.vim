@@ -20,6 +20,28 @@ set noexpandtab
 set tabstop=4
 set shiftwidth=4
 
+" Shady Characters
+set listchars=tab:>\ ,nbsp:_,trail:·
+set list
+
+" Highlight Shady Characters
+
+" :hi GroupA cterm=bold ctermfg=235 ctermbg=167 gui=bold guifg=#282828 guibg=#fb4934
+" :match GroupA / \+$/
+" :2match GroupA /\t/
+
+" :match GroupA / \+$/
+" :syntax match GroupA /\t/
+
+" :hi LineTooLong cterm=bold ctermbg=red guibg=LightYellow
+" :match LineTooLong /\%>80v.\+/
+:match Error / \+$/
+:match Error /\t\+$/
+:match Error /^\t*\zs \+/
+
+
+
+
 " Nice menu when typing `:find *.py`
 set wildmode=longest,list,full
 set wildmenu
@@ -31,13 +53,13 @@ set wildignore+=**/.git/*
 " Bit of NETRW tweaks to make it more like NERDTree
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-"let g:netrw_browse_split = 4
-"let g:netrw_altv = 1
-"let g:netrw_winsize = 10
-" augroup ProjectDrawer
-" 	autocmd!
-" 	autocmd VimEnter * :Vexplore
-" augroup END
+" let g:netrw_browse_split = 4
+" let g:netrw_altv = 1
+" let g:netrw_winsize = 10
+"  augroup ProjectDrawer
+"  	autocmd!
+"  	autocmd VimEnter * :Vexplore
+ " augroup END
 
 
 " PLUGINS
@@ -97,6 +119,9 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-commentary'
 Plug 'ThePrimeagen/vim-be-good'
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-eunuch'
+Plug 'ThePrimeagen/harpoon'
 call plug#end()
 
 "if plug_install
@@ -170,6 +195,11 @@ augroup omnisharp_commands
   autocmd FileType cs nmap <silent> <buffer> <Leader>osre <Plug>(omnisharp_restart_server)
   autocmd FileType cs nmap <silent> <buffer> <Leader>osst <Plug>(omnisharp_start_server)
   autocmd FileType cs nmap <silent> <buffer> <Leader>ossp <Plug>(omnisharp_stop_server)
+" Action name	Default mapping
+" sigNext	<C-j>
+" sigPrev	<C-k>
+" sigParamNext	<C-l>
+" sigParamPrev	<C-h>
 augroup END
 
 " Enable snippet completion, using the ultisnips plugin
@@ -282,20 +312,52 @@ nmap s <Plug>(easymotion-overwin-f)
 let g:EasyMotion_smartcase = 1
 
 " JK motions: Line motions
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward)
+map <Leader>el <Plug>(easymotion-lineforward)
+map <Leader>ej <Plug>(easymotion-j)
+map <Leader>ek <Plug>(easymotion-k)
+map <Leader>eh <Plug>(easymotion-linebackward)
 map <Leader>w <Plug>(easymotion-bd-w)
 " /EASY MOTION
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " Remap code completion to Ctrl+Space {{{2
 inoremap <C-@> <C-x><C-o> 
-
+" REFRESH FILE FROM DISK
 nnoremap <f5> :e %<cr>
 
+" NERDTree
+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap <leader>n :NERDTreeFocus<CR>
+" nnoremap <C-t> :NERDTree<CR>
+" nnoremap <C-t> :NERDTreeToggle<CR>
+" nnoremap <C-f> :NERDTreeFind<CR>
+
+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /NERDTree
+
+" Airline
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /Airline
+
+" HARPOON
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap <silent><leader>a :lua require("harpoon.mark").add_file()<CR>
+nnoremap <silent><leader>H :lua require("harpoon.ui").toggle_quick_menu()<CR>
+" nnoremap <silent><leader>tc :lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>
+
+nnoremap <silent><leader>h :lua require("harpoon.ui").nav_file(1)<CR>
+nnoremap <silent><leader>j :lua require("harpoon.ui").nav_file(2)<CR>
+nnoremap <silent><leader>k :lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap <silent><leader>l :lua require("harpoon.ui").nav_file(4)<CR>
+" nnoremap <silent><leader>tu :lua require("harpoon.term").gotoTerminal(1)<CR>
+" nnoremap <silent><leader>te :lua require("harpoon.term").gotoTerminal(2)<CR>
+" nnoremap <silent><leader>cu :lua require("harpoon.term").sendCommand(1, 1)<CR>
+" nnoremap <silent><leader>ce :lua require("harpoon.term").sendCommand(1, 2)<CR>
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 
- 
+
