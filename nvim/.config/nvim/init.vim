@@ -20,6 +20,8 @@ set noexpandtab
 set tabstop=4
 set shiftwidth=4
 
+set splitright
+
 " Shady Characters
 set listchars=tab:>\ ,nbsp:_,trail:·
 " set listchars=tab:🠞\ ,nbsp:_,trail:·
@@ -349,10 +351,11 @@ let NERDTreeShowLineNumbers=1
 " make sure relative line numbers are used
 autocmd FileType nerdtree setlocal relativenumber
 
-nnoremap <leader>n :NERDTreeFocus<CR>
-" nnoremap <C-t> :NERDTree<CR>
-" nnoremap <C-t> :NERDTreeToggle<CR>
-" nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <leader>nf :NERDTreeFocus<CR>
+" nnoremap <leader>n :NERDTree<CR>
+" nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
 
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /NERDTree
@@ -380,6 +383,11 @@ nnoremap <silent><leader>l :lua require("harpoon.ui").nav_file(4)<CR>
 " nnoremap <silent><leader>ce :lua require("harpoon.term").sendCommand(1, 2)<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
+" FUGITIVE
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap <leader>gs :Git<cr>
+nnoremap <leader>gp :Git push<cr>
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /FUGITIVE
 
 
