@@ -265,12 +265,28 @@ vnoremap <leader>d "_d
 "nnoremap <leader>p "_dP
 nnoremap <leader>p "+p
 
-" nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-"nnoremap <C-p>f <cmd>lua require('telescope.builtin').find_files()<cr>
-"nnoremap <C-p>g <cmd>lua require('telescope.builtin').live_grep()<cr>
-"nnoremap <C-p>b <cmd>lua require('telescope.builtin').buffers()<cr>
-"nnoremap <C-p>t <cmd>lua require('telescope.builtin').help_tags()<cr>
+" Append inside ", ), etc, to get the ^R you have to press ctrl + v, and then
+" ctrl + r to input ^R
+nnoremap <LEADER>ci" ci""<space>
+nnoremap <LEADER>ci' ci'"<space>
+nnoremap <LEADER>ci( ci("<space>
+nnoremap <LEADER>ci) ci)"<space>
+nnoremap <LEADER>ci{ ci{"<space>
+nnoremap <LEADER>ci} ci}"<space>
+nnoremap <LEADER>ci[ ci["<space>
+nnoremap <LEADER>ci] ci]"<space>
+nnoremap <LEADER>ci< ci<"<space>
+nnoremap <LEADER>ci> ci>"<space>
+nnoremap <LEADER>ci` ci`"<space>
 
+
+" nnoremap <leader>sf :lua require('hello hello')
+" nnoremap <leader>sf :lua require('killerrat.telescope' hello)
+" nnoremap <leader>sf :lua require('killerrat.telescope')
+" nnoremap <leader>sf :lua require('killerrat.telescope')
+
+
+" SEARCH MY OWN GBOX SCRIPTS
 lua require("killerrat")
 nnoremap <leader>sf :lua require('killerrat.telescope').search_scripts()<CR>
 nnoremap <leader>sg :lua require('killerrat.telescope').grep_scripts()<CR>
@@ -278,6 +294,7 @@ nnoremap <leader>sg :lua require('killerrat.telescope').grep_scripts()<CR>
 " COPY CURRENT FILENAME OR FULL FILE PATH TO SYSTEM CLIPBOARD
 nnoremap <leader>cf :let @+ = expand("%:t")<cr>
 nnoremap <leader>cF :let @+ = expand("%:p")<cr>
+
 " TELESCOPE
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
