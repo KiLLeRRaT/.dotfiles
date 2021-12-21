@@ -122,6 +122,7 @@ Plug 'ThePrimeagen/vim-be-good'
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-eunuch'
 Plug 'ThePrimeagen/harpoon'
+Plug 'lambdalisue/suda.vim'
 call plug#end()
 
 "if plug_install
