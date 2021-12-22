@@ -1,3 +1,4 @@
+" 260 REMAPS
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 set path+=**
@@ -106,7 +107,7 @@ call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged') " LINUX
 " Plug 'sheerun/vim-polyglot'
 Plug 'altercation/vim-colors-solarized'
 Plug 'dense-analysis/ale' " LINTER
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
 Plug 'morhetz/gruvbox'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -123,6 +124,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'phaazon/hop.nvim'
 call plug#end()
 
 "if plug_install
@@ -299,13 +301,6 @@ nnoremap <LEADER>ci< ci<"<space>
 nnoremap <LEADER>ci> ci>"<space>
 nnoremap <LEADER>ci` ci`"<space>
 
-
-" nnoremap <leader>sf :lua require('hello hello')
-" nnoremap <leader>sf :lua require('killerrat.telescope' hello)
-" nnoremap <leader>sf :lua require('killerrat.telescope')
-" nnoremap <leader>sf :lua require('killerrat.telescope')
-
-
 " SEARCH MY OWN GBOX SCRIPTS
 lua require("killerrat")
 nnoremap <leader>sf :lua require('killerrat.telescope').search_scripts()<CR>
@@ -318,11 +313,12 @@ nnoremap <leader>cF :let @+ = expand("%:p")<cr>
 " REPLACE VISUAL SELECTION
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
-
 " REFRESH FILE FROM DISK
 nnoremap <f5> :e %<cr>
-nnoremap <C-f5> :so %<cr>
-
+" RELOAD CONFIG
+nnoremap <C-f5> :so ~/AppData/Local/nvim/init.vim<cr>
+" EDIT CONFIG
+nnoremap <A-f5> :e ~/AppData/Local/nvim/init.vim<cr>
 
 " DIFF WITH SAVED, FROM: https://stackoverflow.com/a/749320/182888
 function! s:DiffWithSaved()
@@ -333,6 +329,9 @@ function! s:DiffWithSaved()
 	exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
 endfunction
 com! DiffSaved call s:DiffWithSaved()
+
+" GO TO LINE UNDER CURSOR
+nnoremap gn yiw:exec (@" =~ '^\d\+$' ? 'norm @"G' : '')<cr>
 
 " TELESCOPE
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -362,29 +361,36 @@ autocmd FileType cs setlocal commentstring=\/\/\ %s " SET // COMMENTS FOR C# FIL
 nnoremap <c-n> :cn<cr>
 nnoremap <c-p> :cp<cr>
 
-" EASY MOTION
+" EASY MOTION DISABLED IN FAVOR OF HOP
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
+"let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
-" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-" `s{char}{label}`
-" nmap s <Plug>(easymotion-overwin-f)
-" or
-" `s{char}{char}{label}`
-" Need one more keystroke, but on average, it may be more comfortable.
-"nmap s <Plug>(easymotion-overwin-f2)
+"" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+"" `s{char}{label}`
+"" nmap s <Plug>(easymotion-overwin-f)
+"" or
+"" `s{char}{char}{label}`
+"" Need one more keystroke, but on average, it may be more comfortable.
+""nmap s <Plug>(easymotion-overwin-f2)
 
-" Turn on case-insensitive feature
-let g:EasyMotion_smartcase = 1
+"" Turn on case-insensitive feature
+"let g:EasyMotion_smartcase = 1
 
-" JK motions: Line motions
-map <Leader>el <Plug>(easymotion-lineforward)
-map <Leader>ej <Plug>(easymotion-j)
-map <Leader>ek <Plug>(easymotion-k)
-map <Leader>eh <Plug>(easymotion-linebackward)
-map <Leader>w <Plug>(easymotion-bd-w)
+"" JK motions: Line motions
+"map <Leader>el <Plug>(easymotion-lineforward)
+"map <Leader>ej <Plug>(easymotion-j)
+"map <Leader>ek <Plug>(easymotion-k)
+"map <Leader>eh <Plug>(easymotion-linebackward)
+"map <Leader>w <Plug>(easymotion-bd-w)
 " /EASY MOTION
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" HOP, REPLACES EASY MOTION
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lua require'hop'.setup { keys = 'asdfghjkl;qwertyuiopzxcvbnm', jump_on_sole_occurrence = false }
+map <Leader>w :HopWord<cr>
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /HOP
 
 " Remap code completion to Ctrl+Space {{{2
 " inoremap <C-@> <C-x><C-o> 
@@ -441,6 +447,14 @@ nnoremap <silent><leader>l :lua require("harpoon.ui").nav_file(4)<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nnoremap <leader>gs :Git<cr>
 nnoremap <leader>gp :Git push<cr>
+nnoremap <leader>gpf :Git push --force-with-lease<cr>
+nnoremap <leader>gbb :Git branch<cr>
+nnoremap <leader>gba :Git branch --all<cr>
+nnoremap <leader>gbr :Git branch --remote<cr>
+nnoremap <leader>gbd :Git branch -d 
+nnoremap <leader>gbD :Git branch -D 
+nnoremap <leader>gcc :Git commit -m ""<left>
+nnoremap <leader>gco :Git checkout 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /FUGITIVE
 
