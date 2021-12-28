@@ -10,7 +10,7 @@ sudo apt -y upgrade
 
 
 echo Installing git, xrdp, i3, curl, stow
-sudo apt install -y git xrdp i3 curl stow neovim xclip
+sudo apt install -y git xrdp i3 curl stow neovim xclip feh
 
 echo Installing Chrome
 if [ $(dpkg-query -W -f='${Status}' google-chrome-stable 2>/dev/null | grep -c "ok installed") -eq 0 ];

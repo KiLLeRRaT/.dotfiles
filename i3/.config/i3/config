@@ -204,7 +204,7 @@ for_window [title="Desktop — Plasma"] kill; floating enable; border none
 # /PLASMA COMPATIBILITY
 
 # SET BACKGROUND
-exec --no-startup-id feh --bg-scale /usr/share/wallpapers/Next/contents/images/2560x1440.png
+exec --no-startup-id feh --bg-scale /usr/share/wallpapers/Next/contents/images/1366x768.jpg
 
 
 
