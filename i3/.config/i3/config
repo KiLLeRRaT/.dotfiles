@@ -180,3 +180,30 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+
+# DISABLE MOUSE WARPING SO THAT THE MOUSE DOESNT JUMP TO THE MONITOR WITH FOCUS
+mouse_warping none
+focus_follows_mouse no
+
+# Moving workspaces between screens 
+# bindsym $mod+p move workspace to output right
+# bindsym $mod+p move workspace to output right
+# bindsym $mod+o move workspace to output right
+
+# TRIPPLE SCREEN SETUP WORKING!
+fake-outputs 1920x1200+0+0,2560x1440+1920+0,2560x1440+4480+0
+# fake-outputs 1920x1080+0+0,1920x1080-800+0,1920x1080+1920+0
+#
+# WORKS WITH TWO RIGHT HAND MONITORS
+# fake-outputs 2560x1440+0+0,2400x1440+2560+0
+# fake-outputs 2560x1440+0+0,2560x1440+2560+0
+
+# WORKS WITH TRIPPLE MONITORS, BUT WITHOUT NEEDING TO SPECIFY MULTIMONITOR FLAG IN VCXSRV
+# fake-outputs 2560x1440+0+0,2560x1440+2560+0,1920x1080-3000+0
+# fake-outputs 640x480+0+0,640x480+640+0,640x480+1280+0
+# fake-outputs 640x480-1000+0,640x480+640+50,640x480+2560+150
+
+# fake-outputs 640x480+3000+0 # DISPLAYS ON RIGHT HAND SCREEN
+# fake-outputs 640x480-500+0 # DISPLAYS ON 
+# fake-outputs 1920x1200+0+0
+# fake-outputs 1920x1200+1920+0,1920x1200+1920+0,1920x1200+

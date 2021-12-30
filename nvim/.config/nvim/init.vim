@@ -96,6 +96,9 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-commentary'
 Plug 'ThePrimeagen/vim-be-good'
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-eunuch'
+Plug 'ThePrimeagen/harpoon'
 call plug#end()
 
 "if plug_install
@@ -124,12 +127,14 @@ endif
 
 " Tell ALE to use OmniSharp for linting C# files, and no other linters.
 let g:ale_linters = { 'cs': ['OmniSharp'] }
-let g:OmniSharp_server_path = 'C:\Users\Albert\AppData\Local\omnisharp-vim\omnisharp-roslyn\OmniSharp.exe'
+" let g:OmniSharp_server_path = 'C:\Users\Albert\AppData\Local\omnisharp-vim\omnisharp-roslyn\OmniSharp.exe' " WINDOWS
+" WE DONT WANT TO DEFINE THIS IN LINUX
 
 augroup omnisharp_commands
   autocmd!
 
   " THIS DOESNT WORK, ARGH! autocmd FileType cs ++once OmniSharpStartServer
+  "autocmd FileType cs ++once OmniSharpStartServer
   " Show type information automatically when the cursor stops moving.
   " Note that the type is echoed to the Vim command line, and will overwrite
   " any other messages in this space including e.g. ALE linting messages.
@@ -174,24 +179,6 @@ augroup END
 " Enable snippet completion, using the ultisnips plugin
 " let g:OmniSharp_want_snippet=1
 
-
-
-
-" OLD STUFF BELOW.....
-" local pid = vim.fn.getpid()
-" local omnisharp_bin = "C:\GBox\Applications\Tools\Applications\Neovim\omnisharp-win-x64\1.37.17\OmniSharp.exe"
-" require'lspconfig'.omnisharp.setup {
-" 	cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) };
-" 	filetypes = { "cs", "vb" }
-" 	init_options = {}
-" 	on_new_config = function(new_config, new_root_dir)
-" 	if new_root_dir then
-" 		table.insert(new_config.cmd, '-s')
-" 		table.insert(new_config.cmd, new_root_dir)
-" 	end
-" end,
-" root_dir = root_pattern(".sln") or root_pattern(".csproj")
-"    }
 
 syntax on
 set background=dark
@@ -281,10 +268,10 @@ nmap s <Plug>(easymotion-overwin-f)
 let g:EasyMotion_smartcase = 1
 
 " JK motions: Line motions
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward)
+map <Leader>el <Plug>(easymotion-lineforward)
+map <Leader>ej <Plug>(easymotion-j)
+map <Leader>ek <Plug>(easymotion-k)
+map <Leader>eh <Plug>(easymotion-linebackward)
 map <Leader>w <Plug>(easymotion-bd-w)
 " /EASY MOTION
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -294,7 +281,37 @@ inoremap <C-@> <C-x><C-o>
 
 nnoremap <f5> :e %<cr>
 
+" NERDTree
+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap <leader>n :NERDTreeFocus<CR>
+" nnoremap <C-t> :NERDTree<CR>
+" nnoremap <C-t> :NERDTreeToggle<CR>
+" nnoremap <C-f> :NERDTreeFind<CR>
 
+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /NERDTree
 
+" Airline
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /Airline
 
+" HARPOON
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap <silent><leader>a :lua require("harpoon.mark").add_file()<CR>
+nnoremap <silent><leader>H :lua require("harpoon.ui").toggle_quick_menu()<CR>
+" nnoremap <silent><leader>tc :lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>
+
+nnoremap <silent><leader>h :lua require("harpoon.ui").nav_file(1)<CR>
+nnoremap <silent><leader>j :lua require("harpoon.ui").nav_file(2)<CR>
+nnoremap <silent><leader>k :lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap <silent><leader>l :lua require("harpoon.ui").nav_file(4)<CR>
+" nnoremap <silent><leader>tu :lua require("harpoon.term").gotoTerminal(1)<CR>
+" nnoremap <silent><leader>te :lua require("harpoon.term").gotoTerminal(2)<CR>
+" nnoremap <silent><leader>cu :lua require("harpoon.term").sendCommand(1, 1)<CR>
+" nnoremap <silent><leader>ce :lua require("harpoon.term").sendCommand(1, 2)<CR>
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /HARPOON
  
