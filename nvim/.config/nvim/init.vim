@@ -20,27 +20,26 @@ set noexpandtab
 set tabstop=4
 set shiftwidth=4
 
+set splitright
+
 " Shady Characters
 set listchars=tab:>\ ,nbsp:_,trail:·
+" set listchars=tab:🠞\ ,nbsp:_,trail:·
 set list
-set splitright
+
 " Highlight Shady Characters
+match Error / \+$/ " TRAILING SPACE
+match Error /\t\+$/ " TRAILING TAB
+match Error /^\t*\zs \+/ " SPACES INSTEAD OF TABS
 
-" :hi GroupA cterm=bold ctermfg=235 ctermbg=167 gui=bold guifg=#282828 guibg=#fb4934
-" :match GroupA / \+$/
-" :2match GroupA /\t/
+" https://superuser.com/a/356865/69729
+" autocmd Filetype * :match Error /^\t*\zs \+/
+" autocmd Filetype * if &ft!="yaml"|:match Error /^\t*\zs \+/|endif
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab | match none
 
-" :match GroupA / \+$/
-" :syntax match GroupA /\t/
+highlight ColorColumn cterm=reverse ctermfg=142 ctermbg=235 gui=reverse guifg=#b8bb26 guibg=#282828
 
-" :hi LineTooLong cterm=bold ctermbg=red guibg=LightYellow
-" :match LineTooLong /\%>80v.\+/
-:match Error / \+$/
-:match Error /\t\+$/
-:match Error /^\t*\zs \+/
-
-
-
+call matchadd('ColorColumn', '\%81v', 100)
 
 " Nice menu when typing `:find *.py`
 set wildmode=longest,list,full
@@ -104,25 +103,28 @@ endif
 call plug#begin('~/.config/nvim/plugged') " LINUX
 "call plug#begin('~/.vim/plugged') " WINDOWS
 "call plug#begin('~/.config/nvim/plugins') " OSX
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'sheerun/vim-polyglot'
+Plug 'altercation/vim-colors-solarized'
+Plug 'dense-analysis/ale' " LINTER
+Plug 'easymotion/vim-easymotion'
+Plug 'morhetz/gruvbox'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-" Plug 'neovim/nvim-lspconfig'
 Plug 'OmniSharp/omnisharp-vim'
-Plug 'dense-analysis/ale' " LINTER
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-" Plug 'sheerun/vim-polyglot'
-Plug 'morhetz/gruvbox'
-Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
-Plug 'altercation/vim-colors-solarized'
-Plug 'easymotion/vim-easymotion'
-Plug 'tpope/vim-commentary'
-Plug 'ThePrimeagen/vim-be-good'
 Plug 'preservim/nerdtree'
-Plug 'tpope/vim-eunuch'
 Plug 'ThePrimeagen/harpoon'
 Plug 'lambdalisue/suda.vim'
+Plug 'ThePrimeagen/vim-be-good'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-airline/vim-airline'
+Plug 'github/copilot.vim'
 call plug#end()
 
 "if plug_install
@@ -225,6 +227,9 @@ augroup END
 " root_dir = root_pattern(".sln") or root_pattern(".csproj")
 "    }
 
+
+autocmd BufNewFile,BufRead *.cshtml set syntax=html " SYNTAX HIGHLIGHTING FOR CSHTML/RAZOR
+
 syntax on
 set background=dark
 "let g:solarized_termtrans = 1
@@ -263,11 +268,35 @@ vnoremap <leader>d "_d
 "nnoremap <leader>p "_dP
 nnoremap <leader>p "+p
 
-" nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-"nnoremap <C-p>f <cmd>lua require('telescope.builtin').find_files()<cr>
-"nnoremap <C-p>g <cmd>lua require('telescope.builtin').live_grep()<cr>
-"nnoremap <C-p>b <cmd>lua require('telescope.builtin').buffers()<cr>
-"nnoremap <C-p>t <cmd>lua require('telescope.builtin').help_tags()<cr>
+" Append inside ", ), etc, to get the ^R you have to press ctrl + v, and then
+" ctrl + r to input ^R
+nnoremap <LEADER>ci" ci""<space>
+nnoremap <LEADER>ci' ci'"<space>
+nnoremap <LEADER>ci( ci("<space>
+nnoremap <LEADER>ci) ci)"<space>
+nnoremap <LEADER>ci{ ci{"<space>
+nnoremap <LEADER>ci} ci}"<space>
+nnoremap <LEADER>ci[ ci["<space>
+nnoremap <LEADER>ci] ci]"<space>
+nnoremap <LEADER>ci< ci<"<space>
+nnoremap <LEADER>ci> ci>"<space>
+nnoremap <LEADER>ci` ci`"<space>
+
+
+" nnoremap <leader>sf :lua require('hello hello')
+" nnoremap <leader>sf :lua require('killerrat.telescope' hello)
+" nnoremap <leader>sf :lua require('killerrat.telescope')
+" nnoremap <leader>sf :lua require('killerrat.telescope')
+
+
+" SEARCH MY OWN GBOX SCRIPTS
+lua require("killerrat")
+nnoremap <leader>sf :lua require('killerrat.telescope').search_scripts()<CR>
+nnoremap <leader>sg :lua require('killerrat.telescope').grep_scripts()<CR>
+
+" COPY CURRENT FILENAME OR FULL FILE PATH TO SYSTEM CLIPBOARD
+nnoremap <leader>cf :let @+ = expand("%:t")<cr>
+nnoremap <leader>cF :let @+ = expand("%:p")<cr>
 
 " TELESCOPE
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -328,10 +357,25 @@ nnoremap <f5> :e %<cr>
 
 " NERDTree
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-nnoremap <leader>n :NERDTreeFocus<CR>
-" nnoremap <C-t> :NERDTree<CR>
-" nnoremap <C-t> :NERDTreeToggle<CR>
-" nnoremap <C-f> :NERDTreeFind<CR>
+" Start NERDTree when Vim starts with a directory argument.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+"
+" enable line numbers
+let NERDTreeShowLineNumbers=1
+" make sure relative line numbers are used
+autocmd FileType nerdtree setlocal relativenumber
+
+nnoremap <leader>nf :NERDTreeFocus<CR>
+" nnoremap <leader>n :NERDTree<CR>
+" nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
 
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /NERDTree
@@ -359,6 +403,13 @@ nnoremap <silent><leader>l :lua require("harpoon.ui").nav_file(4)<CR>
 " nnoremap <silent><leader>ce :lua require("harpoon.term").sendCommand(1, 2)<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
+" FUGITIVE
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap <leader>gs :Git<cr>
+nnoremap <leader>gp :Git push<cr>
+nnoremap <leader>ga :diffget //2<cr>
+nnoremap <leader>g; :diffget //3<cr>
+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+" /FUGITIVE
 
 
