@@ -34,7 +34,7 @@ set listchars=tab:>\ ,nbsp:_,trail:·
 set list
 
 " NEOVIM CLIENT SERVER STUFF, SEE "C:\GBox\Applications\Tools\Scripts\Aliases\nvim.bat"
-silent execute "!echo " . v:servername . " > C:\\Users\\Albert\\AppData\\Local\\nvim-data\\servername.txt"
+" silent execute "!echo " . v:servername . " > C:\\Users\\Albert\\AppData\\Local\\nvim-data\\servername.txt"
 
 " Highlight Shady Characters
 " match Error / \+$/ " TRAILING SPACE
@@ -133,7 +133,7 @@ set wildignore+=**/.git/*
 " PLUGINS
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " INSTALL VIM PLUGGED
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " WINDOWS
  if empty(glob('~/AppData/Local/nvim-data/site/autoload/plug.vim'))
      silent !curl -fLo ~/AppData/Local/nvim-data/site/autoload/plug.vim --create-dirs
@@ -162,7 +162,7 @@ set wildignore+=**/.git/*
 "let plug_install = 0
 "let autoload_plug_path = stdpath('config') . '/autoload/plug.vim'
 "if !filereadable(autoload_plug_path)
-"    silent exe '!curl -fL --create-dirs -o ' . autoload_plug_path . 
+"    silent exe '!curl -fL --create-dirs -o ' . autoload_plug_path .
 "       \ ' https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 "    execute 'source ' . fnameescape(autoload_plug_path)
 "    let plug_install = 1
@@ -170,8 +170,10 @@ set wildignore+=**/.git/*
 "unlet autoload_plug_path
 
 call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged') " LINUX
+" call plug#begin('~/.config/nvim/plugged') " LINUX
 "call plug#begin('~/.vim/plugged') " WINDOWS
 "call plug#begin('~/.config/nvim/plugins') " OSX
+" Plug 'neovim/nvim-lspconfig'
 " Plug 'sheerun/vim-polyglot'
 Plug 'altercation/vim-colors-solarized'
 Plug 'dense-analysis/ale' " LINTER
@@ -207,7 +209,7 @@ call plug#end()
 "endif
 "unlet plug_install
 "
-" OMNISHARP 
+" OMNISHARP
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Don't autoselect first omnicomplete option, show options even if there is only
 " one (so the preview documentation is accessible). Remove 'preview', 'popup'
@@ -231,6 +233,8 @@ call plug#end()
 
 " Tell ALE to use OmniSharp for linting C# files, and no other linters.
 let g:ale_linters = { 'cs': ['OmniSharp'] }
+" let g:OmniSharp_server_path = 'C:\Users\Albert\AppData\Local\omnisharp-vim\omnisharp-roslyn\OmniSharp.exe' " WINDOWS
+" WE DONT WANT TO DEFINE THIS IN LINUX AND WINDOWS ANYMORE
 
 " REMOVED TEMP TO TEST SOMETHING IF IT WILL INSTALL omnisharp-roslyn
 " AUTOMATICALLY
@@ -317,9 +321,9 @@ let g:ale_linters = { 'cs': ['OmniSharp'] }
 " au FileType cs set foldmethod=marker
 " au FileType cs set foldmarker={,}
 " au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
-" au FileType cs set foldlevelstart=0` 
-" au FileType cs set foldlevel=0 
-" au FileType cs set foldclose=none 
+" au FileType cs set foldlevelstart=0`
+" au FileType cs set foldlevel=0
+" au FileType cs set foldclose=none
 
 
 autocmd BufNewFile,BufRead *.cshtml set syntax=html " SYNTAX HIGHLIGHTING FOR CSHTML/RAZOR
@@ -445,7 +449,7 @@ lua require('telescope').load_extension('fzf')
 autocmd FileType cs setlocal commentstring=\/\/\ %s " SET // COMMENTS FOR C# FILES
 
 " QUICK FIX LIST: https://stackoverflow.com/a/1747286/182888
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ":copen " Open the quickfix window
 ":ccl   " Close it
 ":cw    " Open it if there are "errors", close it otherwise (some people prefer this)
@@ -496,7 +500,7 @@ map <Leader>w :HopWord<cr>
 " /HOP
 
 " Remap code completion to Ctrl+Space {{{2
-" inoremap <C-@> <C-x><C-o> 
+" inoremap <C-@> <C-x><C-o>
 
 " NERDTree
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
