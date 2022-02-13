@@ -1,4 +1,9 @@
-" 260 REMAPS
+" CONTENTS
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" REMAPS / REMAPPINGS / KEYS
+" FUGITIVE
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 set path+=**
@@ -28,19 +33,82 @@ set listchars=tab:>\ ,nbsp:_,trail:·
 " set listchars=tab:🠞\ ,nbsp:_,trail:·
 set list
 
+" NEOVIM CLIENT SERVER STUFF, SEE "C:\GBox\Applications\Tools\Scripts\Aliases\nvim.bat"
+silent execute "!echo " . v:servername . " > C:\\Users\\Albert\\AppData\\Local\\nvim-data\\servername.txt"
+
 " Highlight Shady Characters
-match Error / \+$/ " TRAILING SPACE
-match Error /\t\+$/ " TRAILING TAB
-match Error /^\t*\zs \+/ " SPACES INSTEAD OF TABS
+" match Error / \+$/ " TRAILING SPACE
+" match Error /\t\+$/ " TRAILING TAB
+" match Error /^\t*\zs \+/ " SPACES INSTEAD OF TABS
+
+" MAKE SURE TO KEEP YOUR COLOR SCHEME AFTER LOADING ANOTHER SCHEME LATER DOWN
+" THE CONFIG
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+" call matchadd('ExtraWhitespace', '/\s\+\%#\@<!$/', 100)
+" call matchadd('ExtraWhitespace', '/^\t*\zs \+/', 100) " SHOW SPACES AT THE
+" START OF LINES
+
+
+
+augroup WhitespaceMatch
+  " Remove ALL autocommands for the WhitespaceMatch group.
+  autocmd!
+  autocmd BufWinEnter * let w:whitespace_match_number =
+        \ matchadd('ExtraWhitespace', '\s\+$')
+  autocmd InsertEnter * call s:ToggleWhitespaceMatch('i')
+  autocmd InsertLeave * call s:ToggleWhitespaceMatch('n')
+augroup END
+function! s:ToggleWhitespaceMatch(mode)
+  let pattern = (a:mode == 'i') ? '\s\+\%#\@<!$' : '\s\+$'
+  if exists('w:whitespace_match_number')
+    call matchdelete(w:whitespace_match_number)
+    call matchadd('ExtraWhitespace', pattern, 10, w:whitespace_match_number)
+  else
+    " Something went wrong, try to be graceful.
+    let w:whitespace_match_number =  matchadd('ExtraWhitespace', pattern)
+  endif
+endfunction
+
+
+
+
+
+
+
+
+" highlight ExtraWhitespace ctermbg=red guibg=red 
+" augroup WhitespaceMatch
+"   " Remove ALL autocommands for the WhitespaceMatch group.
+"   autocmd!
+"   autocmd BufWinEnter * let w:whitespace_match_number = matchadd('ExtraWhitespace', '/^\t*\zs \+/')
+"   autocmd BufWinEnter * let w:whitespace_match_number2 = matchadd('ExtraWhitespace', '/^\t*\zs \+/')
+"   autocmd InsertEnter * call s:ToggleWhitespaceMatch('i')
+"   autocmd InsertLeave * call s:ToggleWhitespaceMatch('n')
+" augroup END
+" function! s:ToggleWhitespaceMatch(mode)
+"   let pattern = (a:mode == 'i') ? '/^\t*\zs \+/' : '/^\t*\zs \+/'
+"   let pattern2 = (a:mode == 'i') ? '/^\t*\zs \+/' : '/^\t*\zs \+/'
+"   if exists('w:whitespace_match_number')
+"     call matchdelete(w:whitespace_match_number)
+"     call matchdelete(w:whitespace_match_number2)
+"     call matchadd('ExtraWhitespace', pattern, 10, w:whitespace_match_number)
+"     call matchadd('ExtraWhitespace', pattern2, 10, w:whitespace_match_number2)
+"   else
+"     " Something went wrong, try to be graceful.
+"     let w:whitespace_match_number =  matchadd('ExtraWhitespace', pattern)
+"     let w:whitespace_match_number2 =  matchadd('ExtraWhitespace', pattern2)
+"   endif
+" endfunction 
+
+
+" SHOW LONG LINES
+highlight ColorColumn cterm=reverse ctermfg=142 ctermbg=235 gui=reverse guifg=#b8bb26 guibg=#282828
+call matchadd('ColorColumn', '\%81v', 100)
 
 " https://superuser.com/a/356865/69729
 " autocmd Filetype * :match Error /^\t*\zs \+/
 " autocmd Filetype * if &ft!="yaml"|:match Error /^\t*\zs \+/|endif
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab | match none
-
-highlight ColorColumn cterm=reverse ctermfg=142 ctermbg=235 gui=reverse guifg=#b8bb26 guibg=#282828
-
-call matchadd('ColorColumn', '\%81v', 100)
+" autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab | match none
 
 " Nice menu when typing `:find *.py`
 set wildmode=longest,list,full
@@ -51,8 +119,8 @@ set wildignore+=**/node_modules/*
 set wildignore+=**/.git/*
 
 " Bit of NETRW tweaks to make it more like NERDTree
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
+" let g:netrw_banner = 0
+" let g:netrw_liststyle = 3
 " let g:netrw_browse_split = 4
 " let g:netrw_altv = 1
 " let g:netrw_winsize = 10
@@ -125,6 +193,13 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'phaazon/hop.nvim'
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'nvim-lua/completion-nvim'
+" Plug 'nvim-lua/diagnostic-nvim'
+" Plug 'Leandros/telescope-fzf-native.nvim', {'branch': 'feature/windows_build_support'}
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+" Plug 'github/copilot.vim', { 'branch': 'suggestion-cycling-pr' } " MY OWN TEMP BRANCH
+Plug 'github/copilot.vim'
 call plug#end()
 
 "if plug_install
@@ -139,21 +214,27 @@ call plug#end()
 " and 'popuphidden' if you don't want to see any documentation whatsoever.
 " Note that neovim does not support `popuphidden` or `popup` yet:
 " https://github.com/neovim/neovim/issues/10996
-if has('patch-8.1.1880')
-  set completeopt=longest,menuone,popuphidden
-  " Highlight the completion documentation popup background/foreground the same as
-  " the completion menu itself, for better readability with highlighted
-  " documentation.
-  set completepopup=highlight:Pmenu,border:off
-else
-  set completeopt=longest,menuone,preview
-  " Set desired preview window height for viewing documentation.
-  set previewheight=5
-endif
+
+" COMMENTED OUT ON 28 Jan 2022
+" if has('patch-8.1.1880')
+"   set completeopt=longest,menuone,popuphidden
+"   " Highlight the completion documentation popup background/foreground the same as
+"   " the completion menu itself, for better readability with highlighted
+"   " documentation.
+"   set completepopup=highlight:Pmenu,border:off
+" else
+"   set completeopt=longest,menuone,preview
+"   " Set desired preview window height for viewing documentation.
+"   set previewheight=5
+"endif
+" /COMMENTED OUT ON 28 Jan 2022
 
 " Tell ALE to use OmniSharp for linting C# files, and no other linters.
 let g:ale_linters = { 'cs': ['OmniSharp'] }
-let g:OmniSharp_server_path = 'C:\Users\Albert\AppData\Local\omnisharp-vim\omnisharp-roslyn\OmniSharp.exe'
+
+" REMOVED TEMP TO TEST SOMETHING IF IT WILL INSTALL omnisharp-roslyn
+" AUTOMATICALLY
+" let g:OmniSharp_server_path = 'C:\Users\Albert\AppData\Local\omnisharp-vim\omnisharp-roslyn\OmniSharp.exe'
 
 " augroup omnisharp_commands
 "   autocmd!
@@ -178,7 +259,7 @@ let g:OmniSharp_server_path = 'C:\Users\Albert\AppData\Local\omnisharp-vim\omnis
 " "  autocmd FileType cs imap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
 "   autocmd FileType cs nmap <silent> <buffer> <Leader>\ <Plug>(omnisharp_signature_help)
 "   autocmd FileType cs imap <silent> <buffer> <Leader>\ <Plug>(omnisharp_signature_help)
-  
+
 "   " Navigate up and down by method/property/field
 "   autocmd FileType cs nmap <silent> <buffer> [[ <Plug>(omnisharp_navigate_up)
 "   autocmd FileType cs nmap <silent> <buffer> ]] <Plug>(omnisharp_navigate_down)
@@ -230,8 +311,6 @@ let g:OmniSharp_server_path = 'C:\Users\Albert\AppData\Local\omnisharp-vim\omnis
 " /OMNISHARP
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-
 " FROM: https://codito.in/c-and-vim/
 " Folding : http://vim.wikia.com/wiki/Syntax-based_folding, see comment by Ostrygen
 " au FileType cs set omnifunc=syntaxcomplete#Complete
@@ -239,12 +318,8 @@ let g:OmniSharp_server_path = 'C:\Users\Albert\AppData\Local\omnisharp-vim\omnis
 " au FileType cs set foldmarker={,}
 " au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
 " au FileType cs set foldlevelstart=0` 
-
 " au FileType cs set foldlevel=0 
 " au FileType cs set foldclose=none 
-
-
-
 
 
 autocmd BufNewFile,BufRead *.cshtml set syntax=html " SYNTAX HIGHLIGHTING FOR CSHTML/RAZOR
@@ -284,8 +359,18 @@ nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
 " https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
-"nnoremap <leader>p "_dP
-nnoremap <leader>p "+p
+xnoremap <leader>p "_dP
+" BELOW COMMENTED OUT BECAUSE IT BREAKS THE ABOVE...
+" nnoremap <leader>p "+p
+
+" DISABLE CTRL-Z IN WINDOWS SINCE IT FREEZES VIM!: https://github.com/neovim/neovim/issues/6660
+nnoremap <C-z> <nop>
+inoremap <C-z> <nop>
+vnoremap <C-z> <nop>
+snoremap <C-z> <nop>
+xnoremap <C-z> <nop>
+cnoremap <C-z> <nop>
+onoremap <C-z> <nop>
 
 " Append inside ", ), etc, to get the ^R you have to press ctrl + v, and then
 " ctrl + r to input ^R
@@ -315,10 +400,15 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " REFRESH FILE FROM DISK
 nnoremap <f5> :e %<cr>
+" REFRESH FILE FROM DISK AND GO TO BOTTOM
+nnoremap <S-f5> :e %<cr>G
 " RELOAD CONFIG
 nnoremap <C-f5> :so ~/AppData/Local/nvim/init.vim<cr>
 " EDIT CONFIG
 nnoremap <A-f5> :e ~/AppData/Local/nvim/init.vim<cr>
+
+" EDIT NOTES FOLDER
+nnoremap <A-n> :e C:\GBox\Notes<cr>
 
 " DIFF WITH SAVED, FROM: https://stackoverflow.com/a/749320/182888
 function! s:DiffWithSaved()
@@ -332,14 +422,23 @@ com! DiffSaved call s:DiffWithSaved()
 
 " GO TO LINE UNDER CURSOR
 nnoremap gn yiw:exec (@" =~ '^\d\+$' ? 'norm @"G' : '')<cr>
+" DO A SEARCH USING THE LINE YOU'RE ON, FROM: https://vi.stackexchange.com/a/6210/38923
+nnoremap <leader>* 0y$/\V<c-r>"<cr>
+
+" SPELL CHECKING ]s and [s for next/prev, z= for spelling suggestion, zg to
+" add to dictionary
+map <F6> :setlocal spell!<CR>
+
 
 " TELESCOPE
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
+" nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>ff <cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
+lua require('telescope').load_extension('fzf')
 
 " COMMENTARY
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -358,8 +457,12 @@ autocmd FileType cs setlocal commentstring=\/\/\ %s " SET // COMMENTS FOR C# FIL
 "nnoremap <leader>cp :cprevious<cr>
 "nnoremap <leader>cc :ccl<cr>
 "nnoremap <leader>co :copen<cr>
-nnoremap <c-n> :cn<cr>
-nnoremap <c-p> :cp<cr>
+nnoremap <c-q> :copen<cr>
+nnoremap <c-j> :cn<cr>
+nnoremap <c-k> :cp<cr>
+nnoremap <leader>lq :lopen<cr>
+nnoremap <leader>lj :lnext<cr>
+nnoremap <leader>lk :lprev<cr>
 
 " EASY MOTION DISABLED IN FAVOR OF HOP
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -397,14 +500,14 @@ map <Leader>w :HopWord<cr>
 
 " NERDTree
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" Start NERDTree when Vim starts with a directory argument.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+" " Start NERDTree when Vim starts with a directory argument.
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+"     \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+" " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+" autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+"     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 "
 " enable line numbers
 let NERDTreeShowLineNumbers=1
@@ -436,7 +539,10 @@ nnoremap <silent><leader>H :lua require("harpoon.ui").toggle_quick_menu()<CR>
 nnoremap <silent><leader>h :lua require("harpoon.ui").nav_file(1)<CR>
 nnoremap <silent><leader>j :lua require("harpoon.ui").nav_file(2)<CR>
 nnoremap <silent><leader>k :lua require("harpoon.ui").nav_file(3)<CR>
-nnoremap <silent><leader>l :lua require("harpoon.ui").nav_file(4)<CR>
+" LEADER LL because leader l will pause for a bit since we use leader lj, etc
+" for other things
+nnoremap <silent><leader>ll :lua require("harpoon.ui").nav_file(4)<CR>
+nnoremap <silent><leader>; :lua require("harpoon.ui").nav_file(5)<CR>
 " nnoremap <silent><leader>tu :lua require("harpoon.term").gotoTerminal(1)<CR>
 " nnoremap <silent><leader>te :lua require("harpoon.term").gotoTerminal(2)<CR>
 " nnoremap <silent><leader>cu :lua require("harpoon.term").sendCommand(1, 1)<CR>
@@ -447,14 +553,19 @@ nnoremap <silent><leader>l :lua require("harpoon.ui").nav_file(4)<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nnoremap <leader>gs :Git<cr>
 nnoremap <leader>gp :Git push<cr>
-nnoremap <leader>gpf :Git push --force-with-lease<cr>
+nnoremap <leader>gP :Git push --force-with-lease<cr>
+nnoremap <leader>gf :Git fetch<cr>
+nnoremap <leader>gl :Git pull<cr>
 nnoremap <leader>gbb :Git branch<cr>
 nnoremap <leader>gba :Git branch --all<cr>
 nnoremap <leader>gbr :Git branch --remote<cr>
-nnoremap <leader>gbd :Git branch -d 
-nnoremap <leader>gbD :Git branch -D 
+nnoremap <leader>gbd :Git branch -d
+nnoremap <leader>gbD :Git branch -D
 nnoremap <leader>gcc :Git commit -m ""<left>
-nnoremap <leader>gco :Git checkout 
+nnoremap <leader>gca :Git commit -am ""<left>
+nnoremap <leader>gco :Git checkout<space>
+nnoremap <leader>gT :Git tag<cr>
+nnoremap <leader>gt :Git tag<space>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /FUGITIVE
 
@@ -518,11 +629,21 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 " nmap <silent> [g <Plug>(coc-diagnostic-prev)
 " nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
+" IF THIS GETS OUT OF HAND SEE: https://vi.stackexchange.com/a/10666/38923
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+
+" autocmd FileType cs nmap <silent> gd <Plug>(coc-definition)
+" autocmd FileType cs nmap <silent> gy <Plug>(coc-type-definition)
+" autocmd FileType cs nmap <silent> gi <Plug>(coc-implementation)
+" autocmd FileType cs nmap <silent> gr <Plug>(coc-references)
+autocmd FileType cs nmap gd <Plug>(coc-definition)
+autocmd FileType cs nmap gy <Plug>(coc-type-definition)
+autocmd FileType cs nmap gi <Plug>(coc-implementation)
+autocmd FileType cs nmap gr <Plug>(coc-references)
 
 " " Use K to show documentation in preview window.
 " nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -541,7 +662,7 @@ nmap <silent> gr <Plug>(coc-references)
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-" nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
 " xmap <leader>f  <Plug>(coc-format-selected)
@@ -563,7 +684,7 @@ augroup end
 " Remap keys for applying codeAction to the current buffer.
 " nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-" nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -630,7 +751,8 @@ let g:coc_global_extensions = [
 	\'coc-emoji',
 	\'coc-calc',
 	\'coc-yaml',
-	\'coc-yank'
+	\'coc-yank',
+	\'coc-omnisharp'
 \]
 " https://github.com/weirongxu/coc-calc
 " https://github.com/neoclide/coc-eslint
@@ -650,4 +772,17 @@ nnoremap <silent> <space>cy  :<C-u>CocList -A --normal yank<cr>
 " nmap <Leader>cr <Plug>(coc-calc-result-replace)
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /COC
+" LSP
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" FROM: https://rishabhrd.github.io/jekyll/update/2020/09/19/nvim_lsp_config.html
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /LSP
+
+" GITHUB COPILOT
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" imap <silent><nowait><expr> <c-j> copilot#NextResult(1)
+" imap <silent><nowait><expr> <c-k> copilot#NextResult(-1)
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /GITHUB COPILOT
 
