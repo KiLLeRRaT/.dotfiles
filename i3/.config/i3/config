@@ -191,7 +191,7 @@ focus_follows_mouse no
 # bindsym $mod+o move workspace to output right
 
 # TRIPPLE SCREEN SETUP WORKING!
-fake-outputs 1920x1200+0+0,2560x1440+1920+0,2560x1440+4480+0
+#fake-outputs 1920x1200+0+0,2560x1440+1920+0,2560x1440+4480+0
 # fake-outputs 1920x1080+0+0,1920x1080-800+0,1920x1080+1920+0
 #
 # WORKS WITH TWO RIGHT HAND MONITORS
