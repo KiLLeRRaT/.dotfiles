@@ -344,8 +344,12 @@ let mapleader = " "
 inoremap jk <Esc>
 vnoremap jk <Esc>
 
-nnoremap <Leader>+ :vertical resize +5<CR>
-nnoremap <Leader>- :vertical resize -5<CR>
+" SWITCH TO PREV BUFFER AND CLOSE THE ONE YOU SWITCHED AWAY FROM, CLOSES A
+" BUFFER WITHOUT MESSING UP THE SPLIT
+nnoremap <leader>bd :bp\|bd #<CR>
+
+nnoremap <leader>+ :vertical resize +5<CR>
+nnoremap <leader>- :vertical resize -5<CR>
 
 nnoremap Y yg$ " MAKE Y behave the same as C, A, I, D
 nnoremap n nzzzv " KEEP CURSOR IN THE CENTRE OF THE SCREEN WHEN SEARCHING NEXT
@@ -359,7 +363,7 @@ nnoremap <leader>Y gg"+yG
 " does not work in VSCODE
 
 " DELETE INTO BLACK HOLE REGISTER
-nnoremap <leader>d "_d 
+nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
 " https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
@@ -378,17 +382,17 @@ onoremap <C-z> <nop>
 
 " Append inside ", ), etc, to get the ^R you have to press ctrl + v, and then
 " ctrl + r to input ^R
-nnoremap <LEADER>ci" ci""<space>
-nnoremap <LEADER>ci' ci'"<space>
-nnoremap <LEADER>ci( ci("<space>
-nnoremap <LEADER>ci) ci)"<space>
-nnoremap <LEADER>ci{ ci{"<space>
-nnoremap <LEADER>ci} ci}"<space>
-nnoremap <LEADER>ci[ ci["<space>
-nnoremap <LEADER>ci] ci]"<space>
-nnoremap <LEADER>ci< ci<"<space>
-nnoremap <LEADER>ci> ci>"<space>
-nnoremap <LEADER>ci` ci`"<space>
+nnoremap <leader>ci" ci""
+nnoremap <leader>ci' ci'"
+nnoremap <leader>ci( ci("
+nnoremap <leader>ci) ci)"
+nnoremap <leader>ci{ ci{"
+nnoremap <leader>ci} ci}"
+nnoremap <leader>ci[ ci["
+nnoremap <leader>ci] ci]"
+nnoremap <leader>ci< ci<"
+nnoremap <leader>ci> ci>"
+nnoremap <leader>ci` ci`"
 
 " SEARCH MY OWN GBOX SCRIPTS
 lua require("killerrat")
@@ -414,6 +418,9 @@ nnoremap <A-f5> :e ~/AppData/Local/nvim/init.vim<cr>
 " EDIT NOTES FOLDER
 nnoremap <A-n> :e C:\GBox\Notes<cr>
 
+" BUILD SOLUTION
+nnoremap <C-B> :!dotnet build *.sln
+
 " DIFF WITH SAVED, FROM: https://stackoverflow.com/a/749320/182888
 function! s:DiffWithSaved()
 	let filetype=&ft
@@ -438,7 +445,9 @@ map <F6> :setlocal spell!<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>ff <cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>
+nnoremap <expr> <leader>fF ':Telescope find_files<cr>' . "'" . expand('<cword>')
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <expr> <leader>fG ':Telescope live_grep<cr>' . expand('<cword>')
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
