@@ -24,16 +24,19 @@ set smartcase		" if you do a search with a capital in it, it will
 " Tabs and not spaces!
 set autoindent
 set noexpandtab
-set tabstop=4
-set shiftwidth=4
 
-set splitright
+" set tabstop=4
+" set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
+
+set splitright splitbelow " Open splits in the right and below
 
 " Shady Characters
 set listchars=tab:>\ ,nbsp:_,trail:·
 " set listchars=tab:🠞\ ,nbsp:_,trail:·
 set list
-
+set mouse=a
 " NEOVIM CLIENT SERVER STUFF, SEE "C:\GBox\Applications\Tools\Scripts\Aliases\nvim.bat"
 " silent execute "!echo " . v:servername . " > C:\\Users\\Albert\\AppData\\Local\\nvim-data\\servername.txt"
 
@@ -204,6 +207,9 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 " Plug 'github/copilot.vim', { 'branch': 'suggestion-cycling-pr' } " MY OWN TEMP BRANCH
 Plug 'github/copilot.vim'
 Plug 'dstein64/vim-startuptime'
+Plug 'ap/vim-css-color'
+Plug 'ryanoasis/vim-devicons'
+Plug 'lewis6991/gitsigns.nvim'
 call plug#end()
 
 "if plug_install
@@ -336,10 +342,13 @@ set background=dark
 "colorscheme solarized
 colorscheme gruvbox
 let g:gruvbox_guisp_fallback = "bg" " THIS TURNS ON SPELLBAD PROPERLY FOR SPELLCHECK HIGHLIGHTING IN GRUVBOX
+let g:gruvbox_transparent_bg = 1
+autocmd VimEnter * hi Normal ctermbg=none
 "autocmd VimEnter * ++nested colorscheme gruvbox
 
 set termguicolors
-
+hi! Normal ctermbg=NONE guibg=NONE
+" hi! NonText ctermbg=NONE guibg=NONE
 " REMAPS / REMAPPINGS / KEYS
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let mapleader = " "
@@ -474,8 +483,15 @@ lua require('telescope').load_extension('fzf')
 
 " COMMENTARY
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-autocmd FileType cs setlocal commentstring=\/\/\ %s " SET // COMMENTS FOR C# FILES
-autocmd FileType sql setlocal commentstring=--\ %s " SET -- COMMENTS FOR C# FILES
+" SET // COMMENTS FOR C# FILES
+autocmd FileType cs setlocal commentstring=\/\/\ %s
+
+" SET -- COMMENTS FOR C# FILES
+autocmd FileType sql setlocal commentstring=--\ %s
+
+autocmd FileType typescriptreact nnoremap <leader>gcc I{/*<esc>A*/}<esc><cr>
+autocmd FileType typescriptreact nnoremap <leader>gcu ^3dl<esc>$F*D<cr>
+
 
 " QUICK FIX LIST: https://stackoverflow.com/a/1747286/182888
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -561,6 +577,7 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#formatter = 'short_path' " default | jsformatter | unique_tail | unique_tail_improved | short_path | tabnr, from: https://github.com/vim-airline/vim-airline#default, to create custom ones: https://stackoverflow.com/a/53754280/182888
+let g:airline_powerline_fonts = 1
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /Airline
 
@@ -595,8 +612,8 @@ nnoremap <leader>gba :Git branch --all<cr>
 nnoremap <leader>gbr :Git branch --remote<cr>
 nnoremap <leader>gbd :Git branch -d
 nnoremap <leader>gbD :Git branch -D
-nnoremap <leader>gcc :Git commit -m ""<left>
-nnoremap <leader>gca :Git commit -am ""<left>
+" nnoremap <leader>gcc :Git commit -m ""<left>
+" nnoremap <leader>gca :Git commit -am ""<left>
 nnoremap <leader>gco :Git checkout<space>
 nnoremap <leader>gT :Git tag<cr>
 nnoremap <leader>gt :Git tag<space>
@@ -829,3 +846,28 @@ nnoremap <silent> <space>cy  :<C-u>CocList -A --normal yank<cr>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /GITHUB COPILOT
 
+" GIT SIGNS: https://github.com/lewis6991/gitsigns.nvim
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lua require('gitsigns').setup()
+" Navigation
+nnoremap ]c :Gitsigns next_hunk<cr>
+nnoremap [c :Gitsigns prev_hunk<cr>
+
+    " -- Actions
+nnoremap <leader>hs :Gitsigns stage_hunk<cr>
+nnoremap <leader>hr :Gitsigns reset_hunk<cr>
+    " map('n', '<leader>hS', gs.stage_buffer)
+    " map('n', '<leader>hu', gs.undo_stage_hunk)
+    " map('n', '<leader>hR', gs.reset_buffer)
+nnoremap <leader>hp :Gitsigns preview_hunk<cr>
+" nnoremap <leader>hb :Gitsigns blame_line{full=true}<cr>
+nnoremap <leader>tb :Gitsigns toggle_current_line_blame<cr>
+
+    " map('n', '<leader>hb', function() gs.blame_line{full=true} end)
+    " map('n', '<leader>tb', gs.toggle_current_line_blame)
+    " map('n', '<leader>hd', gs.diffthis)
+    " map('n', '<leader>hD', function() gs.diffthis('~') end)
+    " map('n', '<leader>td', gs.toggle_deleted)
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /GIT SIGNS
