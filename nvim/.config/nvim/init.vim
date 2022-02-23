@@ -478,6 +478,9 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <expr> <leader>fG ':Telescope live_grep<cr>' . expand('<cword>')
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fk <cmd>Telescope keymaps<cr>
+nnoremap <leader>fc <cmd>Telescope git_commits<cr>
+nnoremap <leader>fr <cmd>Telescope git_branches<cr>
 
 lua require('telescope').load_extension('fzf')
 
