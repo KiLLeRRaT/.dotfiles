@@ -212,6 +212,7 @@ Plug 'ap/vim-css-color'
 Plug 'ryanoasis/vim-devicons'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-telescope/telescope-hop.nvim'
+Plug 'nvim-telescope/telescope-rg.nvim'
 call plug#end()
 
 "if plug_install
@@ -473,6 +474,7 @@ nnoremap <leader>ff <cmd>Telescope find_files find_command=rg,--ignore,--hidden,
 nnoremap <expr> <leader>fF ':Telescope find_files<cr>' . "'" . expand('<cword>')
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <expr> <leader>fG ':Telescope live_grep<cr>' . expand('<cword>')
+nnoremap <leader>fR <cmd>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fk <cmd>Telescope help_tags<cr>
 nnoremap <leader>fm <cmd>Telescope keymaps<cr>
