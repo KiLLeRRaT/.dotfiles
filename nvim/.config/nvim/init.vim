@@ -11,6 +11,7 @@ set path+=**
 set number
 set relativenumber
 set hlsearch
+set cursorline
 set incsearch
 set spelllang=en,af
 set showcmd
@@ -80,7 +81,7 @@ endfunction
 
 
 
-" highlight ExtraWhitespace ctermbg=red guibg=red 
+" highlight ExtraWhitespace ctermbg=red guibg=red
 " augroup WhitespaceMatch
 "   " Remove ALL autocommands for the WhitespaceMatch group.
 "   autocmd!
@@ -102,7 +103,7 @@ endfunction
 "     let w:whitespace_match_number =  matchadd('ExtraWhitespace', pattern)
 "     let w:whitespace_match_number2 =  matchadd('ExtraWhitespace', pattern2)
 "   endif
-" endfunction 
+" endfunction
 
 
 " SHOW LONG LINES
@@ -210,6 +211,7 @@ Plug 'dstein64/vim-startuptime'
 Plug 'ap/vim-css-color'
 Plug 'ryanoasis/vim-devicons'
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'nvim-telescope/telescope-hop.nvim'
 call plug#end()
 
 "if plug_install
@@ -422,11 +424,6 @@ nnoremap <leader>ci< ci<"
 nnoremap <leader>ci> ci>"
 nnoremap <leader>ci` ci`"
 
-" SEARCH MY OWN GBOX SCRIPTS
-lua require("killerrat")
-nnoremap <leader>sf :lua require('killerrat.telescope').search_scripts()<CR>
-nnoremap <leader>sg :lua require('killerrat.telescope').grep_scripts()<CR>
-
 " COPY CURRENT FILENAME OR FULL FILE PATH TO SYSTEM CLIPBOARD
 nnoremap <leader>cf :let @+ = expand("%:t")<cr>
 nnoremap <leader>cF :let @+ = expand("%:p")<cr>
@@ -477,12 +474,18 @@ nnoremap <expr> <leader>fF ':Telescope find_files<cr>' . "'" . expand('<cword>')
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <expr> <leader>fG ':Telescope live_grep<cr>' . expand('<cword>')
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fk <cmd>Telescope keymaps<cr>
+nnoremap <leader>fk <cmd>Telescope help_tags<cr>
+nnoremap <leader>fm <cmd>Telescope keymaps<cr>
 nnoremap <leader>fc <cmd>Telescope git_commits<cr>
 nnoremap <leader>fr <cmd>Telescope git_branches<cr>
 
+" SEARCH MY OWN GBOX SCRIPTS
+lua require("killerrat")
+nnoremap <leader>sf :lua require('killerrat.telescope').search_scripts()<CR>
+nnoremap <leader>sg :lua require('killerrat.telescope').grep_scripts()<CR>
+
 lua require('telescope').load_extension('fzf')
+" lua require('telescope').load_extension('hop')
 
 " COMMENTARY
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -857,14 +860,14 @@ nnoremap ]c :Gitsigns next_hunk<cr>
 nnoremap [c :Gitsigns prev_hunk<cr>
 
     " -- Actions
-nnoremap <leader>hs :Gitsigns stage_hunk<cr>
-nnoremap <leader>hr :Gitsigns reset_hunk<cr>
+nnoremap <leader>ds :Gitsigns stage_hunk<cr>
+nnoremap <leader>dr :Gitsigns reset_hunk<cr>
     " map('n', '<leader>hS', gs.stage_buffer)
     " map('n', '<leader>hu', gs.undo_stage_hunk)
     " map('n', '<leader>hR', gs.reset_buffer)
-nnoremap <leader>hp :Gitsigns preview_hunk<cr>
+nnoremap <leader>dp :Gitsigns preview_hunk<cr>
 " nnoremap <leader>hb :Gitsigns blame_line{full=true}<cr>
-nnoremap <leader>tb :Gitsigns toggle_current_line_blame<cr>
+nnoremap <leader>db :Gitsigns toggle_current_line_blame<cr>
 
     " map('n', '<leader>hb', function() gs.blame_line{full=true} end)
     " map('n', '<leader>tb', gs.toggle_current_line_blame)
