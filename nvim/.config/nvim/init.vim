@@ -394,8 +394,12 @@ nnoremap <leader>Y gg"+yG
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
+" [count] yanks, comments out, and pastes a copy below
+nnoremap <expr> <leader>t '<esc>' . v:count1 . 'yy:.,+' . v:count1 . 'Commentary<cr>' . v:count1 . 'jO<esc>p'
+
 " https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
 xnoremap <leader>p "_dP
+
 " BELOW COMMENTED OUT BECAUSE IT BREAKS THE ABOVE...
 " nnoremap <leader>p "+p
 
@@ -407,6 +411,7 @@ snoremap <C-z> <nop>
 xnoremap <C-z> <nop>
 cnoremap <C-z> <nop>
 onoremap <C-z> <nop>
+
 
 " Append inside ", ), etc, to get the ^R you have to press ctrl + v, and then
 " ctrl + r to input ^R
