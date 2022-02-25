@@ -139,20 +139,21 @@ set wildignore+=**/.git/*
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " INSTALL VIM PLUGGED
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" WINDOWS
- if empty(glob('~/AppData/Local/nvim-data/site/autoload/plug.vim'))
-     silent !curl -fLo ~/AppData/Local/nvim-data/site/autoload/plug.vim --create-dirs
-         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-     autocmd VimEnter * PlugInstall --sync | source ~/AppData/Local/nvim/init.vim
- endif
-
-
-" LINUX
-" let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-" if empty(glob(data_dir . '/autoload/plug.vim'))
-"   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-"   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-" endif
+if (has('win32'))
+	" WINDOWS
+	if empty(glob('~/AppData/Local/nvim-data/site/autoload/plug.vim'))
+			silent !curl -fLo ~/AppData/Local/nvim-data/site/autoload/plug.vim --create-dirs
+					\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+			autocmd VimEnter * PlugInstall --sync | source ~/AppData/Local/nvim/init.vim
+	endif
+elseif (has('mac') || has('unix'))
+	" LINUX
+	let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+	if empty(glob(data_dir . '/autoload/plug.vim'))
+		silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	endif
+endif
 
 "" auto-install vim-plug
 "const plug_path = stdpath('data') . '/site/autoload/plug.vim'
