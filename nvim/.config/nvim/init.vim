@@ -2,6 +2,7 @@
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " REMAPS / REMAPPINGS / KEYS
 " FUGITIVE
+" PLUGINS
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -10,6 +11,7 @@ set path+=**
 set number
 set relativenumber
 set hlsearch
+set cursorline
 set incsearch
 set spelllang=en,af
 set showcmd
@@ -23,16 +25,19 @@ set smartcase		" if you do a search with a capital in it, it will
 " Tabs and not spaces!
 set autoindent
 set noexpandtab
-set tabstop=4
-set shiftwidth=4
 
-set splitright
+" set tabstop=4
+" set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
+
+set splitright splitbelow " Open splits in the right and below
 
 " Shady Characters
 set listchars=tab:>\ ,nbsp:_,trail:·
 " set listchars=tab:🠞\ ,nbsp:_,trail:·
 set list
-
+set mouse=a
 " NEOVIM CLIENT SERVER STUFF, SEE "C:\GBox\Applications\Tools\Scripts\Aliases\nvim.bat"
 " silent execute "!echo " . v:servername . " > C:\\Users\\Albert\\AppData\\Local\\nvim-data\\servername.txt"
 
@@ -76,7 +81,7 @@ endfunction
 
 
 
-" highlight ExtraWhitespace ctermbg=red guibg=red 
+" highlight ExtraWhitespace ctermbg=red guibg=red
 " augroup WhitespaceMatch
 "   " Remove ALL autocommands for the WhitespaceMatch group.
 "   autocmd!
@@ -98,7 +103,7 @@ endfunction
 "     let w:whitespace_match_number =  matchadd('ExtraWhitespace', pattern)
 "     let w:whitespace_match_number2 =  matchadd('ExtraWhitespace', pattern2)
 "   endif
-" endfunction 
+" endfunction
 
 
 " SHOW LONG LINES
@@ -175,7 +180,7 @@ call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged') " LINUX
 "call plug#begin('~/.config/nvim/plugins') " OSX
 " Plug 'neovim/nvim-lspconfig'
 " Plug 'sheerun/vim-polyglot'
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 Plug 'dense-analysis/ale' " LINTER
 " Plug 'easymotion/vim-easymotion'
 Plug 'morhetz/gruvbox'
@@ -202,6 +207,12 @@ Plug 'phaazon/hop.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 " Plug 'github/copilot.vim', { 'branch': 'suggestion-cycling-pr' } " MY OWN TEMP BRANCH
 Plug 'github/copilot.vim'
+Plug 'dstein64/vim-startuptime'
+Plug 'ap/vim-css-color'
+Plug 'ryanoasis/vim-devicons'
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'nvim-telescope/telescope-hop.nvim'
+Plug 'nvim-telescope/telescope-rg.nvim'
 call plug#end()
 
 "if plug_install
@@ -334,23 +345,44 @@ set background=dark
 "colorscheme solarized
 colorscheme gruvbox
 let g:gruvbox_guisp_fallback = "bg" " THIS TURNS ON SPELLBAD PROPERLY FOR SPELLCHECK HIGHLIGHTING IN GRUVBOX
+let g:gruvbox_transparent_bg = 1
+autocmd VimEnter * hi Normal ctermbg=none
 "autocmd VimEnter * ++nested colorscheme gruvbox
 
 set termguicolors
-
+hi! Normal ctermbg=NONE guibg=NONE
+" hi! NonText ctermbg=NONE guibg=NONE
 " REMAPS / REMAPPINGS / KEYS
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let mapleader = " "
 inoremap jk <Esc>
 vnoremap jk <Esc>
 
-nnoremap <Leader>+ :vertical resize +5<CR>
-nnoremap <Leader>- :vertical resize -5<CR>
+" SWITCH TO PREV BUFFER AND CLOSE THE ONE YOU SWITCHED AWAY FROM, CLOSES A
+" BUFFER WITHOUT MESSING UP THE SPLIT
+nnoremap <leader>bd :bp\|bd #<cr>
+nnoremap <leader>ba :bufdo bd<cr>
 
-nnoremap Y yg$ " MAKE Y behave the same as C, A, I, D
-nnoremap n nzzzv " KEEP CURSOR IN THE CENTRE OF THE SCREEN WHEN SEARCHING NEXT
+" INSTEAD USE
+" <c-w>+ and <c-w>- AND
+" <c-w>> and <c-w>< AND
+" <c-w>_ and <c-w>|
+" nnoremap <leader>v> :vertical resize +5<CR>
+" nnoremap <leader>v< :vertical resize -5<CR>
+" nnoremap <leader>h> :resize +5<CR>
+" nnoremap <leader>h< :resize -5<CR>
+
+" nnoremap <leader>+ :vertical resize +5<CR>
+" nnoremap <leader>- :vertical resize -5<CR>
+
+" MAKE Y behave the same as C, A, I, D
+nnoremap Y yg$
+" KEEP CURSOR IN THE CENTRE OF THE SCREEN WHEN SEARCHING NEXT
+nnoremap n nzzzv
 nnoremap N Nzzzv
-nnoremap J mzJ`z " KEEP CURSOR IN A SANE PLACE WHEN USING J TO JOIN LINES
+
+" KEEP CURSOR IN A SANE PLACE WHEN USING J TO JOIN LINES
+nnoremap J mzJ`z
 
 " does not work in VSCODE
 nnoremap <leader>y "+y
@@ -359,11 +391,15 @@ nnoremap <leader>Y gg"+yG
 " does not work in VSCODE
 
 " DELETE INTO BLACK HOLE REGISTER
-nnoremap <leader>d "_d 
+nnoremap <leader>d "_d
 vnoremap <leader>d "_d
+
+" [count] yanks, comments out, and pastes a copy below
+nnoremap <expr> <leader>t '<esc>' . v:count1 . 'yy:.,+' . v:count1 . 'Commentary<cr>' . v:count1 . 'jO<esc>p'
 
 " https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
 xnoremap <leader>p "_dP
+
 " BELOW COMMENTED OUT BECAUSE IT BREAKS THE ABOVE...
 " nnoremap <leader>p "+p
 
@@ -376,24 +412,23 @@ xnoremap <C-z> <nop>
 cnoremap <C-z> <nop>
 onoremap <C-z> <nop>
 
+
 " Append inside ", ), etc, to get the ^R you have to press ctrl + v, and then
 " ctrl + r to input ^R
-nnoremap <LEADER>ci" ci""<space>
-nnoremap <LEADER>ci' ci'"<space>
-nnoremap <LEADER>ci( ci("<space>
-nnoremap <LEADER>ci) ci)"<space>
-nnoremap <LEADER>ci{ ci{"<space>
-nnoremap <LEADER>ci} ci}"<space>
-nnoremap <LEADER>ci[ ci["<space>
-nnoremap <LEADER>ci] ci]"<space>
-nnoremap <LEADER>ci< ci<"<space>
-nnoremap <LEADER>ci> ci>"<space>
-nnoremap <LEADER>ci` ci`"<space>
-
-" SEARCH MY OWN GBOX SCRIPTS
-lua require("killerrat")
-nnoremap <leader>sf :lua require('killerrat.telescope').search_scripts()<CR>
-nnoremap <leader>sg :lua require('killerrat.telescope').grep_scripts()<CR>
+nnoremap <leader>ciw ciw"
+nnoremap <leader>ciW ciW"
+nnoremap <leader>cit cit"
+nnoremap <leader>ci" ci""
+nnoremap <leader>ci' ci'"
+nnoremap <leader>ci( ci("
+nnoremap <leader>ci) ci)"
+nnoremap <leader>ci{ ci{"
+nnoremap <leader>ci} ci}"
+nnoremap <leader>ci[ ci["
+nnoremap <leader>ci] ci]"
+nnoremap <leader>ci< ci<"
+nnoremap <leader>ci> ci>"
+nnoremap <leader>ci` ci`"
 
 " COPY CURRENT FILENAME OR FULL FILE PATH TO SYSTEM CLIPBOARD
 nnoremap <leader>cf :let @+ = expand("%:t")<cr>
@@ -413,6 +448,9 @@ nnoremap <A-f5> :e ~/AppData/Local/nvim/init.vim<cr>
 
 " EDIT NOTES FOLDER
 nnoremap <A-n> :e C:\GBox\Notes<cr>
+
+" BUILD SOLUTION
+" nnoremap <C-S-B> :!dotnet build *.sln
 
 " DIFF WITH SAVED, FROM: https://stackoverflow.com/a/749320/182888
 function! s:DiffWithSaved()
@@ -438,15 +476,35 @@ map <F6> :setlocal spell!<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>ff <cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>
+nnoremap <expr> <leader>fF ':Telescope find_files<cr>' . "'" . expand('<cword>')
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <expr> <leader>fG ':Telescope live_grep<cr>' . expand('<cword>')
+nnoremap <leader>fR <cmd>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fk <cmd>Telescope help_tags<cr>
+nnoremap <leader>fm <cmd>Telescope keymaps<cr>
+nnoremap <leader>fc <cmd>Telescope git_commits<cr>
+nnoremap <leader>fr <cmd>Telescope git_branches<cr>
+
+" SEARCH MY OWN GBOX SCRIPTS
+lua require("killerrat")
+nnoremap <leader>sf :lua require('killerrat.telescope').search_scripts()<CR>
+nnoremap <leader>sg :lua require('killerrat.telescope').grep_scripts()<CR>
 
 lua require('telescope').load_extension('fzf')
+" lua require('telescope').load_extension('hop')
 
 " COMMENTARY
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-autocmd FileType cs setlocal commentstring=\/\/\ %s " SET // COMMENTS FOR C# FILES
+" SET // COMMENTS FOR C# FILES
+autocmd FileType cs setlocal commentstring=\/\/\ %s
+
+" SET -- COMMENTS FOR C# FILES
+autocmd FileType sql setlocal commentstring=--\ %s
+
+autocmd FileType typescriptreact nnoremap <leader>gcc I{/*<esc>A*/}<esc><cr>
+autocmd FileType typescriptreact nnoremap <leader>gcu ^3dl<esc>$F*D<cr>
+
 
 " QUICK FIX LIST: https://stackoverflow.com/a/1747286/182888
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -518,10 +576,10 @@ let NERDTreeShowLineNumbers=1
 " make sure relative line numbers are used
 autocmd FileType nerdtree setlocal relativenumber
 
-nnoremap <leader>nf :NERDTreeFocus<CR>
+" nnoremap <leader>nf :NERDTreeFocus<CR>
 " nnoremap <leader>n :NERDTree<CR>
-" nnoremap <leader>nt :NERDTreeToggle<CR>
-nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>nt :NERDTreeToggle<CR>
+" nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -531,6 +589,8 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#formatter = 'short_path' " default | jsformatter | unique_tail | unique_tail_improved | short_path | tabnr, from: https://github.com/vim-airline/vim-airline#default, to create custom ones: https://stackoverflow.com/a/53754280/182888
+let g:airline_powerline_fonts = 1
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /Airline
 
@@ -565,8 +625,8 @@ nnoremap <leader>gba :Git branch --all<cr>
 nnoremap <leader>gbr :Git branch --remote<cr>
 nnoremap <leader>gbd :Git branch -d
 nnoremap <leader>gbD :Git branch -D
-nnoremap <leader>gcc :Git commit -m ""<left>
-nnoremap <leader>gca :Git commit -am ""<left>
+" nnoremap <leader>gcc :Git commit -m ""<left>
+" nnoremap <leader>gca :Git commit -am ""<left>
 nnoremap <leader>gco :Git checkout<space>
 nnoremap <leader>gT :Git tag<cr>
 nnoremap <leader>gt :Git tag<space>
@@ -635,32 +695,37 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 
 " IF THIS GETS OUT OF HAND SEE: https://vi.stackexchange.com/a/10666/38923
 " GoTo code navigation.
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " autocmd FileType cs nmap <silent> gd <Plug>(coc-definition)
 " autocmd FileType cs nmap <silent> gy <Plug>(coc-type-definition)
 " autocmd FileType cs nmap <silent> gi <Plug>(coc-implementation)
 " autocmd FileType cs nmap <silent> gr <Plug>(coc-references)
-autocmd FileType cs nmap gd <Plug>(coc-definition)
-autocmd FileType cs nmap gy <Plug>(coc-type-definition)
-autocmd FileType cs nmap gi <Plug>(coc-implementation)
-autocmd FileType cs nmap gr <Plug>(coc-references)
 
-" " Use K to show documentation in preview window.
-" nnoremap <silent> K :call <SID>show_documentation()<CR>
+" autocmd FileType cs nmap gd <Plug>(coc-definition)
+" autocmd FileType cs nmap gy <Plug>(coc-type-definition)
+" autocmd FileType cs nmap gi <Plug>(coc-implementation)
+" autocmd FileType cs nmap gr <Plug>(coc-references)
 
-" function! s:show_documentation()
-"   if (index(['vim','help'], &filetype) >= 0)
-"     execute 'h '.expand('<cword>')
-"   elseif (coc#rpc#ready())
-"     call CocActionAsync('doHover')
-"   else
-"     execute '!' . &keywordprg . " " . expand('<cword>')
-"   endif
-" endfunction
+" THE BELOW DOESNT QUITE WORK
+" autocmd FileType cs nmap gs <Plug>(coc-showSignatureHelp)
+" autocmd FileType cs nmap gs CocActionAsync('showSignatureHelp')<CR>
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -689,6 +754,9 @@ augroup end
 " nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Run the Code Lens action on the current line.
+nmap <leader>cl  <Plug>(coc-codelens-action)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -756,7 +824,8 @@ let g:coc_global_extensions = [
 	\'coc-calc',
 	\'coc-yaml',
 	\'coc-yank',
-	\'coc-omnisharp'
+	\'coc-omnisharp',
+	\'coc-tsserver'
 \]
 " https://github.com/weirongxu/coc-calc
 " https://github.com/neoclide/coc-eslint
@@ -790,3 +859,28 @@ nnoremap <silent> <space>cy  :<C-u>CocList -A --normal yank<cr>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /GITHUB COPILOT
 
+" GIT SIGNS: https://github.com/lewis6991/gitsigns.nvim
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lua require('gitsigns').setup()
+" Navigation
+nnoremap ]c :Gitsigns next_hunk<cr>
+nnoremap [c :Gitsigns prev_hunk<cr>
+
+    " -- Actions
+nnoremap <leader>ds :Gitsigns stage_hunk<cr>
+nnoremap <leader>dr :Gitsigns reset_hunk<cr>
+    " map('n', '<leader>hS', gs.stage_buffer)
+    " map('n', '<leader>hu', gs.undo_stage_hunk)
+    " map('n', '<leader>hR', gs.reset_buffer)
+nnoremap <leader>dp :Gitsigns preview_hunk<cr>
+" nnoremap <leader>hb :Gitsigns blame_line{full=true}<cr>
+nnoremap <leader>db :Gitsigns toggle_current_line_blame<cr>
+
+    " map('n', '<leader>hb', function() gs.blame_line{full=true} end)
+    " map('n', '<leader>tb', gs.toggle_current_line_blame)
+    " map('n', '<leader>hd', gs.diffthis)
+    " map('n', '<leader>hD', function() gs.diffthis('~') end)
+    " map('n', '<leader>td', gs.toggle_deleted)
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /GIT SIGNS
