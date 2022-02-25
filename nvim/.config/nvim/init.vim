@@ -439,13 +439,13 @@ nnoremap <leader>cF :let @+ = expand("%:p")<cr>
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " REFRESH FILE FROM DISK
-nnoremap <f5> :e %<cr>
+nnoremap <f5> :e %F5
 " REFRESH FILE FROM DISK AND GO TO BOTTOM
-nnoremap <S-f5> :e %<cr>G
+" nnoremap <S-f5> :e %<cr>G
 " RELOAD CONFIG
-nnoremap <C-f5> :so ~/AppData/Local/nvim/init.vim<cr>
-" EDIT CONFIG
-nnoremap <A-f5> :e ~/AppData/Local/nvim/init.vim<cr>
+nnoremap <C-f5> :so ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
+" " EDIT CONFIG
+nnoremap <A-f5> :e ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
 
 " EDIT NOTES FOLDER
 nnoremap <A-n> :e C:\GBox\Notes<cr>
