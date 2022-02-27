@@ -37,7 +37,33 @@ set splitright splitbelow " Open splits in the right and below
 set listchars=tab:>\ ,nbsp:_,trail:·
 " set listchars=tab:🠞\ ,nbsp:_,trail:·
 set list
+
 set mouse=a
+
+" SET SHELL TO POWERSHELL
+let &shell = has('win32') ? 'powershell' : 'pwsh'
+let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+set shellquote= shellxquote=
+
+
+" MAKE ESC GO TO NORMAL MODE IN TERMINAL, FROM: http://vimcasts.org/episodes/neovim-terminal-mappings/
+  " tnoremap <Esc> <C-\><C-n>
+  " tnoremap <M-[> <Esc>
+  " tnoremap <C-v><Esc> <Esc>
+	"
+  tnoremap jk <C-\><C-n>
+  " tnoremap <M-[> <Esc>
+	" VERBATIM ESCAPE, JUST LIKE <C-V> TO ENTER OTHER COMMANDS LIKE TAB ETC.
+  tnoremap <C-v><Esc> <Esc>
+	" tnoremap <C-w>h <C-\><C-n><C-w>h
+	" tnoremap <C-w>j <C-\><C-n><C-w>j
+	" tnoremap <C-w>k <C-\><C-n><C-w>k
+	" tnoremap <C-w>l <C-\><C-n><C-w>l
+" " /SET SHELL TO POWERSHELL
+
+
 " NEOVIM CLIENT SERVER STUFF, SEE "C:\GBox\Applications\Tools\Scripts\Aliases\nvim.bat"
 " silent execute "!echo " . v:servername . " > C:\\Users\\Albert\\AppData\\Local\\nvim-data\\servername.txt"
 
@@ -214,6 +240,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-telescope/telescope-hop.nvim'
 Plug 'nvim-telescope/telescope-rg.nvim'
+Plug 'neoclide/vim-jsx-improve'
 call plug#end()
 
 "if plug_install
@@ -327,6 +354,8 @@ let g:ale_linters = { 'cs': ['OmniSharp'] }
 " /OMNISHARP
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+" FOLDING
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " FROM: https://codito.in/c-and-vim/
 " Folding : http://vim.wikia.com/wiki/Syntax-based_folding, see comment by Ostrygen
 " au FileType cs set omnifunc=syntaxcomplete#Complete
@@ -337,6 +366,17 @@ let g:ale_linters = { 'cs': ['OmniSharp'] }
 " au FileType cs set foldlevel=0
 " au FileType cs set foldclose=none
 
+" FROM: https://alldrops.info/posts/vim-drops/2018-04-25_javascript-folding-on-vim/
+set foldmethod=syntax "syntax highlighting items specify folds
+set foldcolumn=1 "defines 1 col at window left, to indicate folding
+let javaScript_fold=1 "activate folding by JS syntax
+set foldlevelstart=99 "start file with all folds opened
+
+" SAVE FOLDING AND OTHER THINGS WHEN YOU OPEN AND CLOSE FILES/VIM, FROM: https://vim.fandom.com/wiki/Make_views_automatic
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /FOLDING
 
 autocmd BufNewFile,BufRead *.cshtml set syntax=html " SYNTAX HIGHLIGHTING FOR CSHTML/RAZOR
 
@@ -358,6 +398,10 @@ hi! Normal ctermbg=NONE guibg=NONE
 let mapleader = " "
 inoremap jk <Esc>
 vnoremap jk <Esc>
+
+" Use s instead of <C-w> to handle windows
+"nnoremap s <C-w>
+" DOES NOT WORK IN THINGS LIKE THE Git WINDOW AND NERDTree.... :'(
 
 " SWITCH TO PREV BUFFER AND CLOSE THE ONE YOU SWITCHED AWAY FROM, CLOSES A
 " BUFFER WITHOUT MESSING UP THE SPLIT
@@ -422,6 +466,7 @@ nnoremap <leader>cit cit"
 nnoremap <leader>ci" ci""
 nnoremap <leader>ci' ci'"
 nnoremap <leader>ci( ci("
+nnoremap <leader>cib cib"
 nnoremap <leader>ci) ci)"
 nnoremap <leader>ci{ ci{"
 nnoremap <leader>ci} ci}"
@@ -697,6 +742,8 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 " IF THIS GETS OUT OF HAND SEE: https://vi.stackexchange.com/a/10666/38923
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gv :vsp<cr><Plug>(coc-definition)
+nmap <silent> gs :sp<cr><Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
