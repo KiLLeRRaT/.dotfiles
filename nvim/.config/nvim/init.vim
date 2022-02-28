@@ -34,8 +34,9 @@ set shiftwidth=2
 set splitright splitbelow " Open splits in the right and below
 
 " Shady Characters
-set listchars=tab:>\ ,nbsp:_,trail:·
-" set listchars=tab:🠞\ ,nbsp:_,trail:·
+" set listchars=tab:>\ ,nbsp:_,trail:·
+set listchars=tab:\|\ ,nbsp:_,trail:·
+" " set listchars=tab:🠞\ ,nbsp:_,trail:·
 set list
 
 set mouse=a
@@ -331,7 +332,7 @@ nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
 " [count] yanks, comments out, and pastes a copy below
-nnoremap <expr> <leader>t '<esc>' . v:count1 . 'yy:.,+' . v:count1 . 'Commentary<cr>' . v:count1 . 'jO<esc>p'
+nnoremap <expr> <leader>t '<esc>' . v:count1 . 'yy:.,+' . v:count1 . 'Commentary<cr>' . v:count1 . 'j<esc>P'
 
 " https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
 xnoremap <leader>p "_dP
@@ -400,9 +401,9 @@ endfunction
 com! DiffSaved call s:DiffWithSaved()
 
 " GO TO LINE UNDER CURSOR
-nnoremap gn yiw:exec (@" =~ '^\d\+$' ? 'norm @"G' : '')<cr>
+" nnoremap gn yiw:exec (@" =~ '^\d\+$' ? 'norm @"G' : '')<cr>
 " DO A SEARCH USING THE LINE YOU'RE ON, FROM: https://vi.stackexchange.com/a/6210/38923
-nnoremap <leader>* 0y$/\V<c-r>"<cr>
+" nnoremap <leader>* 0y$/\V<c-r>"<cr>
 
 " SPELL CHECKING ]s and [s for next/prev, z= for spelling suggestion, zg to
 " add to dictionary
@@ -462,30 +463,6 @@ nnoremap <c-k> :cp<cr>
 nnoremap <leader>lq :lopen<cr>
 nnoremap <leader>lj :lnext<cr>
 nnoremap <leader>lk :lprev<cr>
-
-" EASY MOTION DISABLED IN FAVOR OF HOP
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-"let g:EasyMotion_do_mapping = 0 " Disable default mappings
-
-"" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-"" `s{char}{label}`
-"" nmap s <Plug>(easymotion-overwin-f)
-"" or
-"" `s{char}{char}{label}`
-"" Need one more keystroke, but on average, it may be more comfortable.
-""nmap s <Plug>(easymotion-overwin-f2)
-
-"" Turn on case-insensitive feature
-"let g:EasyMotion_smartcase = 1
-
-"" JK motions: Line motions
-"map <Leader>el <Plug>(easymotion-lineforward)
-"map <Leader>ej <Plug>(easymotion-j)
-"map <Leader>ek <Plug>(easymotion-k)
-"map <Leader>eh <Plug>(easymotion-linebackward)
-"map <Leader>w <Plug>(easymotion-bd-w)
-" /EASY MOTION
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " HOP, REPLACES EASY MOTION
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
