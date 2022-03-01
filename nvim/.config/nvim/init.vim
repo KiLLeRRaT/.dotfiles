@@ -332,10 +332,13 @@ nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
 " [count] yanks, comments out, and pastes a copy below
-nnoremap <expr> <leader>t '<esc>' . v:count1 . 'yy:.,+' . v:count1 . 'Commentary<cr>' . v:count1 . 'j<esc>P'
+nnoremap <expr> <leader>t '<esc>' . v:count1 . 'yy:.,+' . (v:count1 - 1) . 'Commentary<cr>' . v:count1 . 'j<esc>P'
 
 " https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
 xnoremap <leader>p "_dP
+
+" REPLACE SELECTION WITH YANKED TEXT
+nnoremap <leader>riw ciw<C-R><C-0><esc>
 
 " BELOW COMMENTED OUT BECAUSE IT BREAKS THE ABOVE...
 " nnoremap <leader>p "+p
