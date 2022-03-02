@@ -263,8 +263,11 @@ let javaScript_fold=1 "activate folding by JS syntax
 set foldlevelstart=99 "start file with all folds opened
 
 " SAVE FOLDING AND OTHER THINGS WHEN YOU OPEN AND CLOSE FILES/VIM, FROM: https://vim.fandom.com/wiki/Make_views_automatic
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
+" autocmd BufWinLeave *.* mkview
+" autocmd BufWinEnter *.* silent loadview
+autocmd BufWinLeave ?* mkview | AirlineToggle
+autocmd BufWinEnter ?* silent loadview | AirlineToggle
+
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /FOLDING
 
@@ -298,6 +301,7 @@ vnoremap jk <Esc>
 " SWITCH TO PREV BUFFER AND CLOSE THE ONE YOU SWITCHED AWAY FROM, CLOSES A
 " BUFFER WITHOUT MESSING UP THE SPLIT
 nnoremap <leader>bd :bp\|bd #<cr>
+" nnoremap <leader>ba :AirlineToggle<cr>:bufdo bd<cr>:AirlineToggle<cr>
 nnoremap <leader>ba :bufdo bd<cr>
 
 " INSTEAD USE
@@ -463,9 +467,9 @@ autocmd FileType typescriptreact nnoremap <leader>gcu ^3dl<esc>$F*D<cr>
 nnoremap <c-q> :copen<cr>
 nnoremap <c-j> :cn<cr>
 nnoremap <c-k> :cp<cr>
-nnoremap <leader>lq :lopen<cr>
-nnoremap <leader>lj :lnext<cr>
-nnoremap <leader>lk :lprev<cr>
+nnoremap <leader>eq :lopen<cr>
+nnoremap <leader>ej :lnext<cr>
+nnoremap <leader>ek :lprev<cr>
 
 " HOP, REPLACES EASY MOTION
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -522,7 +526,7 @@ nnoremap <silent><leader>j :lua require("harpoon.ui").nav_file(2)<CR>
 nnoremap <silent><leader>k :lua require("harpoon.ui").nav_file(3)<CR>
 " LEADER LL because leader l will pause for a bit since we use leader lj, etc
 " for other things
-nnoremap <silent><leader>ll :lua require("harpoon.ui").nav_file(4)<CR>
+nnoremap <silent><leader>l :lua require("harpoon.ui").nav_file(4)<CR>
 nnoremap <silent><leader>; :lua require("harpoon.ui").nav_file(5)<CR>
 " nnoremap <silent><leader>tu :lua require("harpoon.term").gotoTerminal(1)<CR>
 " nnoremap <silent><leader>te :lua require("harpoon.term").gotoTerminal(2)<CR>
