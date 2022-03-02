@@ -49,7 +49,7 @@ if (has('win32'))
 	let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 	set shellquote= shellxquote=
 endif
-" " /SET SHELL TO POWERSHELL
+" /SET SHELL TO POWERSHELL
 
 " MAKE ESC GO TO NORMAL MODE IN TERMINAL, FROM: http://vimcasts.org/episodes/neovim-terminal-mappings/
 " tnoremap <Esc> <C-\><C-n>
@@ -416,6 +416,9 @@ com! DiffSaved call s:DiffWithSaved()
 " add to dictionary
 map <F6> :setlocal spell!<CR>
 
+" REPLACE FILE WITH CLIPBOARD, AND SAVE IT
+" nnoremap <leader>=J :CocCommand formatJson<cr>
+" nnoremap <leader>=j :CocCommand formatJson.selected<cr>
 
 " TELESCOPE
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -748,8 +751,9 @@ let g:coc_global_extensions = [
 	\'coc-yaml',
 	\'coc-yank',
 	\'coc-omnisharp',
-	\'coc-tsserver'
+	\'coc-tsserver',
 \]
+	"\'coc-format-json' buggy
 " https://github.com/weirongxu/coc-calc
 " https://github.com/neoclide/coc-eslint
 " https://github.com/neoclide/coc-html
