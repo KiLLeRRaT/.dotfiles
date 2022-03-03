@@ -41,6 +41,9 @@ set list
 
 set mouse=a
 
+" FROM: https://vim.fandom.com/wiki/File_format
+" set ffs=dos,unix
+
 " SET SHELL TO POWERSHELL
 if (has('win32'))
 	let &shell = has('win32') ? 'powershell' : 'pwsh'
@@ -48,6 +51,7 @@ if (has('win32'))
 	let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 	let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 	set shellquote= shellxquote=
+	set noshelltemp " FROM: https://superuser.com/a/1561892/69729, Sorts out the issue with shell returned 1, E485 and temp files
 endif
 " /SET SHELL TO POWERSHELL
 
@@ -416,9 +420,10 @@ com! DiffSaved call s:DiffWithSaved()
 " add to dictionary
 map <F6> :setlocal spell!<CR>
 
-" REPLACE FILE WITH CLIPBOARD, AND SAVE IT
-" nnoremap <leader>=J :CocCommand formatJson<cr>
-" nnoremap <leader>=j :CocCommand formatJson.selected<cr>
+" RUN jq and use tab indents, then remove the  chars because vim is doing stupid things.
+nnoremap <leader>=j :%!jq --tab .<cr>:%s/\r<cr>
+" PASTE JSON FROM CLIPBOARD, AND FORMAT IT
+nnoremap <leader>=J ggdG"+P:%!jq --tab .<cr>:%s/\r<cr>
 
 " TELESCOPE
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
