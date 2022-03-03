@@ -340,13 +340,16 @@ nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
 " [count] yanks, comments out, and pastes a copy below
-nnoremap <expr> <leader>t '<esc>' . v:count1 . 'yy:.,+' . (v:count1 - 1) . 'Commentary<cr>' . v:count1 . 'j<esc>P'
+" nnoremap <expr> <leader>t '<esc>' . v:count1 . 'yy:.,+' . (v:count1 - 1) . 'Commentary<cr>' . v:count1 . 'j<esc>P'
+nnoremap <expr> <leader>t '<esc>' . v:count1 . '"zyy:.,+' . (v:count1 - 1) . 'Commentary<cr>' . v:count1 . 'j<esc>"zP'
 
 " https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
 xnoremap <leader>p "_dP
 
 " REPLACE SELECTION WITH YANKED TEXT
 nnoremap <leader>riw ciw<C-R><C-0><esc>
+nnoremap <leader>ra[ ca[<C-R><C-0><esc>
+nnoremap <leader>ra] ca]<C-R><C-0><esc>
 
 " BELOW COMMENTED OUT BECAUSE IT BREAKS THE ABOVE...
 " nnoremap <leader>p "+p
@@ -420,7 +423,7 @@ com! DiffSaved call s:DiffWithSaved()
 " add to dictionary
 map <F6> :setlocal spell!<CR>
 
-" RUN jq and use tab indents, then remove the  chars because vim is doing stupid things.
+" RUN jq and use tab indents, then remove the ^M chars because vim is doing stupid things.
 nnoremap <leader>=j :%!jq --tab .<cr>:%s/\r<cr>
 " PASTE JSON FROM CLIPBOARD, AND FORMAT IT
 nnoremap <leader>=J ggdG"+P:%!jq --tab .<cr>:%s/\r<cr>
