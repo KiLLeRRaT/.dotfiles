@@ -424,6 +424,7 @@ com! DiffSaved call s:DiffWithSaved()
 map <F6> :setlocal spell!<CR>
 
 " RUN jq and use tab indents, then remove the ^M chars because vim is doing stupid things.
+vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r<cr>
 nnoremap <leader>=j :%!jq --tab .<cr>:%s/\r<cr>
 " PASTE JSON FROM CLIPBOARD, AND FORMAT IT
 nnoremap <leader>=J ggdG"+P:%!jq --tab .<cr>:%s/\r<cr>
@@ -759,7 +760,7 @@ let g:coc_global_extensions = [
 	\'coc-yaml',
 	\'coc-yank',
 	\'coc-omnisharp',
-	\'coc-tsserver',
+	\'coc-tsserver'
 \]
 	"\'coc-format-json' buggy
 " https://github.com/weirongxu/coc-calc
@@ -789,8 +790,8 @@ nnoremap <silent> <space>cy  :<C-u>CocList -A --normal yank<cr>
 
 " GITHUB COPILOT
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" imap <silent><nowait><expr> <c-j> copilot#NextResult(1)
-" imap <silent><nowait><expr> <c-k> copilot#NextResult(-1)
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /GITHUB COPILOT
 
