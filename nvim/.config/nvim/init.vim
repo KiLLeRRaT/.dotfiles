@@ -245,6 +245,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-telescope/telescope-hop.nvim'
 Plug 'nvim-telescope/telescope-rg.nvim'
 Plug 'neoclide/vim-jsx-improve'
+" Plug 'puremourning/vimspector' NEED TO READ ABOUT IT AND CONFIG IT: https://github.com/puremourning/vimspector#quick-start
 call plug#end()
 
 
@@ -342,6 +343,7 @@ vnoremap <leader>d "_d
 " [count] yanks, comments out, and pastes a copy below
 " nnoremap <expr> <leader>t '<esc>' . v:count1 . 'yy:.,+' . (v:count1 - 1) . 'Commentary<cr>' . v:count1 . 'j<esc>P'
 nnoremap <expr> <leader>t '<esc>' . v:count1 . '"zyy:.,+' . (v:count1 - 1) . 'Commentary<cr>' . v:count1 . 'j<esc>"zP'
+nnoremap <expr> <leader>T '<esc>' . v:count1 . '"zyy' . v:count1 . 'j<esc>"zP'
 
 " https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
 xnoremap <leader>p "_dP
@@ -386,8 +388,8 @@ nnoremap <leader>ci` ci`"
 nnoremap <leader>cf :let @+ = expand("%:t")<cr>
 nnoremap <leader>cF :let @+ = expand("%:p")<cr>
 
-" REPLACE VISUAL SELECTION
-vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+" " REPLACE VISUAL SELECTION
+" vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " REFRESH FILE FROM DISK
 nnoremap <f5> :e %<cr>
@@ -402,7 +404,7 @@ nnoremap <A-f5> :e ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
 nnoremap <A-n> :e C:\GBox\Notes<cr>
 
 " BUILD SOLUTION
-" nnoremap <C-S-B> :!dotnet build *.sln
+nnoremap <leader>rb :!dotnet build *.sln
 
 " DIFF WITH SAVED, FROM: https://stackoverflow.com/a/749320/182888
 function! s:DiffWithSaved()
@@ -422,6 +424,9 @@ com! DiffSaved call s:DiffWithSaved()
 " SPELL CHECKING ]s and [s for next/prev, z= for spelling suggestion, zg to
 " add to dictionary
 map <F6> :setlocal spell!<CR>
+
+map <F2> :AirlineToggle<CR>
+map <C-F2> :AirlineRefresh<CR>
 
 " RUN jq and use tab indents, then remove the ^M chars because vim is doing stupid things.
 vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r<cr>
@@ -486,7 +491,8 @@ nnoremap <leader>ek :lprev<cr>
 " HOP, REPLACES EASY MOTION
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 lua require'hop'.setup { keys = 'asdfghjkl;qwertyuiopzxcvbnm', jump_on_sole_occurrence = false }
-map <Leader>w :HopWord<cr>
+" map <Leader>w :HopWord<cr>
+map <Leader>w <cmd>:HopWord<cr>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /HOP
 
@@ -623,8 +629,8 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-" nmap <silent> [g <Plug>(coc-diagnostic-prev)
-" nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " IF THIS GETS OUT OF HAND SEE: https://vi.stackexchange.com/a/10666/38923
 " GoTo code navigation.
@@ -731,7 +737,8 @@ nmap <leader>cl  <Plug>(coc-codelens-action)
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')} REMOVED
+" BECUASE ILLEGAL CHARACTERS IN STATUSLINE
 
 " Mappings for CoCList
 " Show all diagnostics.
@@ -804,9 +811,12 @@ nnoremap [c :Gitsigns prev_hunk<cr>
 
     " -- Actions
 nnoremap <leader>ds :Gitsigns stage_hunk<cr>
-nnoremap <leader>dr :Gitsigns reset_hunk<cr>
+
+" REPLACE ^M AFTER RESET HUNK
+nnoremap <leader>dr :Gitsigns reset_hunk<cr>:%s/\r<cr>
+
     " map('n', '<leader>hS', gs.stage_buffer)
-    " map('n', '<leader>hu', gs.undo_stage_hunk)
+nnoremap <leader>du :Gitsigns undo_stage_hunk<cr>
     " map('n', '<leader>hR', gs.reset_buffer)
 nnoremap <leader>dp :Gitsigns preview_hunk<cr>
 " nnoremap <leader>hb :Gitsigns blame_line{full=true}<cr>
@@ -820,3 +830,13 @@ nnoremap <leader>db :Gitsigns toggle_current_line_blame<cr>
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /GIT SIGNS
+
+
+" VIM DEV ICONS
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" FIX THE ISSUE WITH SQUARE BRACKETS AROUND THE ICONS IN NERD TREE, FROM: https://github.com/ryanoasis/vim-devicons/issues/215#issuecomment-377786230
+if exists("g:loaded_webdevicons")
+	call webdevicons#refresh()
+endif
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /VIM DEV ICONS
