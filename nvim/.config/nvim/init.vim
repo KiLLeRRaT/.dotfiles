@@ -246,6 +246,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-telescope/telescope-hop.nvim'
 Plug 'nvim-telescope/telescope-rg.nvim'
 Plug 'neoclide/vim-jsx-improve'
+Plug 'jdhao/better-escape.vim'
 " Plug 'puremourning/vimspector' NEED TO READ ABOUT IT AND CONFIG IT: https://github.com/puremourning/vimspector#quick-start
 call plug#end()
 
@@ -297,8 +298,8 @@ hi! Normal ctermbg=NONE guibg=NONE
 " REMAPS / REMAPPINGS / KEYS
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let mapleader = " "
-inoremap jk <Esc>
-vnoremap jk <Esc>
+" inoremap jk <Esc>
+" vnoremap jk <Esc>
 
 " Use s instead of <C-w> to handle windows
 "nnoremap s <C-w>
