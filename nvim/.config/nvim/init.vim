@@ -17,7 +17,7 @@ set spelllang=en,af
 set showcmd
 set autoread " READ FILE IF OUTSIDE CHANGES ARE DETECTED
 " set columns=80           " window width in columns
-" set textwidth=80         " command 'gw' formats text to this width
+set textwidth=80         " command 'gw' formats text to this width
 set ignorecase           " case insensitive search...
 set smartcase		" if you do a search with a capital in it, it will
 			" perform a case sensitive search
@@ -46,7 +46,8 @@ set mouse=a
 
 " SET SHELL TO POWERSHELL
 if (has('win32'))
-	let &shell = has('win32') ? 'powershell' : 'pwsh'
+	" let &shell = has('win32') ? 'powershell' : 'pwsh'
+	let &shell = 'pwsh'
 	let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
 	let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 	let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
@@ -342,16 +343,27 @@ vnoremap <leader>d "_d
 
 " [count] yanks, comments out, and pastes a copy below
 " nnoremap <expr> <leader>t '<esc>' . v:count1 . 'yy:.,+' . (v:count1 - 1) . 'Commentary<cr>' . v:count1 . 'j<esc>P'
-nnoremap <expr> <leader>t '<esc>' . v:count1 . '"zyy:.,+' . (v:count1 - 1) . 'Commentary<cr>' . v:count1 . 'j<esc>"zP'
-nnoremap <expr> <leader>T '<esc>' . v:count1 . '"zyy' . v:count1 . 'j<esc>"zP'
+nnoremap <expr> <leader>T '<esc>' . v:count1 . '"zyy:.,+' . (v:count1 - 1) . 'Commentary<cr>' . v:count1 . 'j<esc>"zP'
+nnoremap <expr> <leader>t '<esc>' . v:count1 . '"zyy' . v:count1 . 'j<esc>"zP'
 
 " https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
 xnoremap <leader>p "_dP
 
 " REPLACE SELECTION WITH YANKED TEXT
 nnoremap <leader>riw ciw<C-R><C-0><esc>
-nnoremap <leader>ra[ ca[<C-R><C-0><esc>
-nnoremap <leader>ra] ca]<C-R><C-0><esc>
+nnoremap <leader>rit cit<C-R><C-0><esc>
+nnoremap <leader>ri" ci"<C-R><C-0><esc>
+nnoremap <leader>ri' ci'<C-R><C-0><esc>
+nnoremap <leader>ri( ci)<C-R><C-0><esc>
+nnoremap <leader>ri) ci)<C-R><C-0><esc>
+nnoremap <leader>rib cib<C-R><C-0><esc>
+nnoremap <leader>ri{ ci{<C-R><C-0><esc>
+nnoremap <leader>ri} ci}<C-R><C-0><esc>
+nnoremap <leader>ri[ ci[<C-R><C-0><esc>
+nnoremap <leader>ri] ci]<C-R><C-0><esc>
+nnoremap <leader>ri< ci<<C-R><C-0><esc>
+nnoremap <leader>ri> ci><C-R><C-0><esc>
+nnoremap <leader>ri` ci`<C-R><C-0><esc>
 
 " BELOW COMMENTED OUT BECAUSE IT BREAKS THE ABOVE...
 " nnoremap <leader>p "+p
@@ -425,8 +437,8 @@ com! DiffSaved call s:DiffWithSaved()
 " add to dictionary
 map <F6> :setlocal spell!<CR>
 
-map <F2> :AirlineToggle<CR>
-map <C-F2> :AirlineRefresh<CR>
+map <F2> :AirlineToggle<CR>:AirlineRefresh<CR>
+" map <C-F2> :AirlineRefresh<CR>
 
 " RUN jq and use tab indents, then remove the ^M chars because vim is doing stupid things.
 vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r<cr>
@@ -493,6 +505,7 @@ nnoremap <leader>ek :lprev<cr>
 lua require'hop'.setup { keys = 'asdfghjkl;qwertyuiopzxcvbnm', jump_on_sole_occurrence = false }
 " map <Leader>w :HopWord<cr>
 map <Leader>w <cmd>:HopWord<cr>
+map <Leader>W <cmd>:HopWordMW<cr>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /HOP
 
@@ -512,6 +525,12 @@ map <Leader>w <cmd>:HopWord<cr>
 "
 " enable line numbers
 let NERDTreeShowLineNumbers=1
+
+if (has('win32'))
+	" let g:NERDTreeCopyCmd= 'copy '
+	let g:NERDTreeCopyCmd= 'Copy-Item -Recurse '
+endif
+
 " make sure relative line numbers are used
 autocmd FileType nerdtree setlocal relativenumber
 
