@@ -56,6 +56,11 @@ if (has('win32'))
 endif
 " /SET SHELL TO POWERSHELL
 
+" SET FONT TO NERDFONT IF USING nvim-qt
+if exists(':GuiFont')
+	GuiFont! CaskaydiaCove Nerd Font:h12
+endif
+
 " MAKE ESC GO TO NORMAL MODE IN TERMINAL, FROM: http://vimcasts.org/episodes/neovim-terminal-mappings/
 " tnoremap <Esc> <C-\><C-n>
 " tnoremap <M-[> <Esc>
