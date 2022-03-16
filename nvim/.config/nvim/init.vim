@@ -252,6 +252,7 @@ Plug 'nvim-telescope/telescope-hop.nvim'
 Plug 'nvim-telescope/telescope-rg.nvim'
 Plug 'neoclide/vim-jsx-improve'
 Plug 'jdhao/better-escape.vim'
+Plug 'simeji/winresizer'
 " Plug 'puremourning/vimspector' NEED TO READ ABOUT IT AND CONFIG IT: https://github.com/puremourning/vimspector#quick-start
 call plug#end()
 
@@ -465,6 +466,7 @@ nnoremap <leader>fk <cmd>Telescope help_tags<cr>
 nnoremap <leader>fm <cmd>Telescope keymaps<cr>
 nnoremap <leader>fc <cmd>Telescope git_commits<cr>
 nnoremap <leader>fr <cmd>Telescope git_branches<cr>
+nnoremap <leader>fs <cmd>Telescope git_status<cr>
 
 " SEARCH MY OWN GBOX SCRIPTS
 lua require("killerrat")
@@ -482,8 +484,21 @@ autocmd FileType cs setlocal commentstring=\/\/\ %s
 " SET -- COMMENTS FOR C# FILES
 autocmd FileType sql setlocal commentstring=--\ %s
 
-autocmd FileType typescriptreact nnoremap <leader>gcc I{/*<esc>A*/}<esc><cr>
-autocmd FileType typescriptreact nnoremap <leader>gcu ^3dl<esc>$F*D<cr>
+" COMMENT OUT USING {/* */}, AND SUPPORTS REPEAT FOR THE ENTIRE COMMAND
+" autocmd FileType typescriptreact nnoremap <leader>gcc I{/*<esc>A*/}<esc><cr>
+function! CommentReact()
+		exec "normal! I{/*\<esc>A*/}\<esc>"
+		silent! call repeat#set("\<space>gcc", v:count)
+endfunction
+autocmd FileType typescriptreact nnoremap <leader>gcc :call CommentReact()<cr>
+
+" autocmd FileType typescriptreact nnoremap <leader>gcu ^3dl<esc>$F*D<cr>
+function! UncommentReact()
+		exec "normal! ^3dl\<esc>$F*D"
+		silent! call repeat#set("\<space>gcu", v:count)
+endfunction
+autocmd FileType typescriptreact nnoremap <leader>gcu :call UncommentReact()<cr>
+" /COMMENT OUT USING {/* */}, AND SUPPORTS REPEAT FOR THE ENTIRE COMMAND
 
 
 " QUICK FIX LIST: https://stackoverflow.com/a/1747286/182888
