@@ -481,8 +481,12 @@ lua require('telescope').load_extension('fzf')
 " SET // COMMENTS FOR C# FILES
 autocmd FileType cs setlocal commentstring=\/\/\ %s
 
-" SET -- COMMENTS FOR C# FILES
+" SET -- COMMENTS FOR SQL FILES
 autocmd FileType sql setlocal commentstring=--\ %s
+
+" SET -- COMMENTS FOR YAML FILES
+" autocmd FileType yaml setlocal commentstring=#\ %s
+" autocmd FileType yml setlocal commentstring=#\ %s
 
 " COMMENT OUT USING {/* */}, AND SUPPORTS REPEAT FOR THE ENTIRE COMMAND
 " autocmd FileType typescriptreact nnoremap <leader>gcc I{/*<esc>A*/}<esc><cr>
