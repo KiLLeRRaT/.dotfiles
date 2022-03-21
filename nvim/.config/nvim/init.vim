@@ -254,6 +254,7 @@ Plug 'neoclide/vim-jsx-improve'
 Plug 'jdhao/better-escape.vim'
 Plug 'simeji/winresizer'
 " Plug 'puremourning/vimspector' NEED TO READ ABOUT IT AND CONFIG IT: https://github.com/puremourning/vimspector#quick-start
+Plug 'PhilRunninger/nerdtree-visual-selection'
 call plug#end()
 
 
