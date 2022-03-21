@@ -259,27 +259,86 @@ call plug#end()
 
 " FOLDING
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" FROM: https://codito.in/c-and-vim/
-" Folding : http://vim.wikia.com/wiki/Syntax-based_folding, see comment by Ostrygen
-" au FileType cs set omnifunc=syntaxcomplete#Complete
-" au FileType cs set foldmethod=marker
-" au FileType cs set foldmarker={,}
-" au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
-" au FileType cs set foldlevelstart=0`
-" au FileType cs set foldlevel=0
-" au FileType cs set foldclose=none
-
 " FROM: https://alldrops.info/posts/vim-drops/2018-04-25_javascript-folding-on-vim/
 set foldmethod=syntax "syntax highlighting items specify folds
 set foldcolumn=1 "defines 1 col at window left, to indicate folding
-let javaScript_fold=1 "activate folding by JS syntax
 set foldlevelstart=99 "start file with all folds opened
 
+let javaScript_fold=1 "activate folding by JS syntax
+" let cs_fold=1
+" let xml_syntax_folding=1
+let xml_folding=1
+let yaml_fold=1
+let vb_fold=1
+
+" FROM: https://codito.in/c-and-vim/
+" Folding : http://vim.wikia.com/wiki/Syntax-based_folding, see comment by Ostrygen
+" au FileType cs set omnifunc=syntaxcomplete#Complete
+au FileType cs set foldmethod=marker
+au FileType cs set foldmarker={,}
+au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
+" au FileType cs set foldlevelstart=0
+" au FileType cs set foldlevel=0
+" au FileType cs set foldclose=none
+
 " SAVE FOLDING AND OTHER THINGS WHEN YOU OPEN AND CLOSE FILES/VIM, FROM: https://vim.fandom.com/wiki/Make_views_automatic
-" autocmd BufWinLeave *.* mkview
-" autocmd BufWinEnter *.* silent loadview
-autocmd BufWinLeave ?* mkview | AirlineToggle
-autocmd BufWinEnter ?* silent loadview | AirlineToggle
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
+" autocmd BufWinLeave ?* mkview | AirlineToggle
+" autocmd BufWinEnter ?* silent loadview | AirlineToggle
+
+" set viewoptions-=options
+" augroup vimrc
+"     autocmd BufWritePost *
+"     \   if expand('%') != '' && &buftype !~ 'nofile'
+"     \|      mkview
+"     \|  endif
+"     autocmd BufRead *
+"     \   if expand('%') != '' && &buftype !~ 'nofile'
+"     \|      silent loadview
+"     \|  endif
+" augroup END
+
+" let g:skipview_files = [
+"             \ '[EXAMPLE PLUGIN BUFFER]'
+"             \ ]
+" function! MakeViewCheck()
+"     if has('quickfix') && &buftype =~ 'nofile'
+"         " Buffer is marked as not a file
+"         return 0
+"     endif
+"     if empty(glob(expand('%:p')))
+"         " File does not exist on disk
+"         return 0
+"     endif
+"     if len($TEMP) && expand('%:p:h') == $TEMP
+"         " We're in a temp dir
+"         return 0
+"     endif
+"     if len($TMP) && expand('%:p:h') == $TMP
+"         " Also in temp dir
+"         return 0
+"     endif
+"     if index(g:skipview_files, expand('%')) >= 0
+"         " File is in skip list
+"         return 0
+"     endif
+"     return 1
+" endfunction
+" augroup vimrcAutoView
+"     autocmd!
+"     " Autosave & Load Views.
+"     autocmd BufWritePost,BufLeave,WinLeave ?* if MakeViewCheck() | mkview | endif
+"     autocmd BufWinEnter ?* if MakeViewCheck() | silent loadview | endif
+" augroup end
+" /SAVE FOLDING AND OTHER THINGS WHEN YOU OPEN AND CLOSE FILES/VIM, FROM: https://vim.fandom.com/wiki/Make_views_automatic
+
+
+
+
+
+
+
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /FOLDING
