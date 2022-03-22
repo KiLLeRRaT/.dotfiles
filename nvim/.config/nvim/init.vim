@@ -432,6 +432,22 @@ nnoremap <leader>ri< ci<<C-R><C-0><esc>
 nnoremap <leader>ri> ci><C-R><C-0><esc>
 nnoremap <leader>ri` ci`<C-R><C-0><esc>
 
+nnoremap <leader>raw caw<C-R><C-0><esc>
+nnoremap <leader>rat cat<C-R><C-0><esc>
+nnoremap <leader>ra" ca"<C-R><C-0><esc>
+nnoremap <leader>ra' ca'<C-R><C-0><esc>
+nnoremap <leader>ra( ca)<C-R><C-0><esc>
+nnoremap <leader>ra) ca)<C-R><C-0><esc>
+nnoremap <leader>rab cab<C-R><C-0><esc>
+nnoremap <leader>ra{ ca{<C-R><C-0><esc>
+nnoremap <leader>ra} ca}<C-R><C-0><esc>
+nnoremap <leader>ra[ ca[<C-R><C-0><esc>
+nnoremap <leader>ra] ca]<C-R><C-0><esc>
+nnoremap <leader>ra< ca<<C-R><C-0><esc>
+nnoremap <leader>ra> ca><C-R><C-0><esc>
+nnoremap <leader>ra` ca`<C-R><C-0><esc>
+" /REPLACE SELECTION WITH YANKED TEXT
+
 " BELOW COMMENTED OUT BECAUSE IT BREAKS THE ABOVE...
 " nnoremap <leader>p "+p
 
