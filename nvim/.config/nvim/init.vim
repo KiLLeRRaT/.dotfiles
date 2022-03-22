@@ -390,7 +390,7 @@ nnoremap <leader>ba :bufdo bd<cr>
 " nnoremap <leader>- :vertical resize -5<CR>
 
 " MAKE Y behave the same as C, A, I, D
-nnoremap Y yg$
+" nnoremap Y yg$, now in Neovim 0.6.0!
 " KEEP CURSOR IN THE CENTRE OF THE SCREEN WHEN SEARCHING NEXT
 nnoremap n nzzzv
 nnoremap N Nzzzv
@@ -512,6 +512,10 @@ vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r<cr>
 nnoremap <leader>=j :%!jq --tab .<cr>:%s/\r<cr>
 " PASTE JSON FROM CLIPBOARD, AND FORMAT IT
 nnoremap <leader>=J ggdG"+P:%!jq --tab .<cr>:%s/\r<cr>
+" RETAB FILE
+nnoremap <leader>=t :%retab!<cr>
+" REMOVE TRAILING WHITESPACE FROM ALL LINES
+nnoremap <leader>=w :%s/\s\+$//<cr>
 
 " TELESCOPE
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
