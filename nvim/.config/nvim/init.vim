@@ -3,6 +3,7 @@
 " REMAPS / REMAPPINGS / KEYS
 " FUGITIVE
 " PLUGINS
+" FOLDING
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -255,13 +256,17 @@ Plug 'jdhao/better-escape.vim'
 Plug 'simeji/winresizer'
 " Plug 'puremourning/vimspector' NEED TO READ ABOUT IT AND CONFIG IT: https://github.com/puremourning/vimspector#quick-start
 Plug 'PhilRunninger/nerdtree-visual-selection'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 
 " FOLDING
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+" /USED UP UNTIL I INSTALLED TREESITTER
 " FROM: https://alldrops.info/posts/vim-drops/2018-04-25_javascript-folding-on-vim/
-set foldmethod=syntax "syntax highlighting items specify folds
+" set foldmethod=syntax "syntax highlighting items specify folds
 set foldcolumn=1 "defines 1 col at window left, to indicate folding
 set foldlevelstart=99 "start file with all folds opened
 
@@ -275,9 +280,11 @@ let vb_fold=1
 " FROM: https://codito.in/c-and-vim/
 " Folding : http://vim.wikia.com/wiki/Syntax-based_folding, see comment by Ostrygen
 " au FileType cs set omnifunc=syntaxcomplete#Complete
-au FileType cs set foldmethod=marker
-au FileType cs set foldmarker={,}
-au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
+
+" au FileType cs set foldmethod=marker
+" au FileType cs set foldmarker={,}
+" au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
+
 " au FileType cs set foldlevelstart=0
 " au FileType cs set foldlevel=0
 " au FileType cs set foldclose=none
@@ -285,10 +292,12 @@ au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
 " SAVE FOLDING AND OTHER THINGS WHEN YOU OPEN AND CLOSE FILES/VIM, FROM: https://vim.fandom.com/wiki/Make_views_automatic
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
+" /USED UP UNTIL I INSTALLED TREESITTER
+
 " autocmd BufWinLeave ?* mkview | AirlineToggle
 " autocmd BufWinEnter ?* silent loadview | AirlineToggle
 
-" set viewoptions-=options
+set viewoptions-=options
 " augroup vimrc
 "     autocmd BufWritePost *
 "     \   if expand('%') != '' && &buftype !~ 'nofile'
