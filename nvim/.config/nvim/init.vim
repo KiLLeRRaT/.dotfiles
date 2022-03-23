@@ -257,6 +257,7 @@ Plug 'simeji/winresizer'
 " Plug 'puremourning/vimspector' NEED TO READ ABOUT IT AND CONFIG IT: https://github.com/puremourning/vimspector#quick-start
 Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 call plug#end()
 
 
@@ -360,15 +361,18 @@ syntax on
 set background=dark
 "let g:solarized_termtrans = 1
 "colorscheme solarized
-colorscheme gruvbox
-let g:gruvbox_guisp_fallback = "bg" " THIS TURNS ON SPELLBAD PROPERLY FOR SPELLCHECK HIGHLIGHTING IN GRUVBOX
-let g:gruvbox_transparent_bg = 1
+
+" let g:gruvbox_guisp_fallback = "bg" " THIS TURNS ON SPELLBAD PROPERLY FOR SPELLCHECK HIGHLIGHTING IN GRUVBOX
+" let g:gruvbox_transparent_bg = 1
+" colorscheme gruvbox
+
+let g:tokyonight_transparent = 1
+colorscheme tokyonight
+
 autocmd VimEnter * hi Normal ctermbg=none
-"autocmd VimEnter * ++nested colorscheme gruvbox
 
 set termguicolors
 hi! Normal ctermbg=NONE guibg=NONE
-" hi! NonText ctermbg=NONE guibg=NONE
 
 " REMAPS / REMAPPINGS / KEYS
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
