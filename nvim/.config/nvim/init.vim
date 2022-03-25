@@ -18,7 +18,11 @@ set spelllang=en,af
 set showcmd
 set autoread " READ FILE IF OUTSIDE CHANGES ARE DETECTED
 " set columns=80           " window width in columns
-set textwidth=80         " command 'gw' formats text to this width
+
+" UPDATED TO 100 on 25 Mar 2022
+" set textwidth=80         " command 'gw' formats text to this width
+set textwidth=100         " command 'gw' formats text to this width
+
 set ignorecase           " case insensitive search...
 set smartcase		" if you do a search with a capital in it, it will
 			" perform a case sensitive search
@@ -224,7 +228,7 @@ Plug 'dense-analysis/ale' " LINTER
 Plug 'morhetz/gruvbox'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'OmniSharp/omnisharp-vim'
+" Plug 'OmniSharp/omnisharp-vim' " REMOVED ON 202203241339
 Plug 'preservim/nerdtree'
 Plug 'ThePrimeagen/harpoon'
 Plug 'ThePrimeagen/vim-be-good'
@@ -241,9 +245,7 @@ Plug 'phaazon/hop.nvim'
 " Plug 'neovim/nvim-lspconfig'
 " Plug 'nvim-lua/completion-nvim'
 " Plug 'nvim-lua/diagnostic-nvim'
-" Plug 'Leandros/telescope-fzf-native.nvim', {'branch': 'feature/windows_build_support'}
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-" Plug 'github/copilot.vim', { 'branch': 'suggestion-cycling-pr' } " MY OWN TEMP BRANCH
 Plug 'github/copilot.vim'
 Plug 'dstein64/vim-startuptime'
 Plug 'ap/vim-css-color'
@@ -291,14 +293,15 @@ let vb_fold=1
 " au FileType cs set foldclose=none
 
 " SAVE FOLDING AND OTHER THINGS WHEN YOU OPEN AND CLOSE FILES/VIM, FROM: https://vim.fandom.com/wiki/Make_views_automatic
+set viewoptions-=options
 autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
+autocmd BufWinEnter *.* silent! loadview
 " /USED UP UNTIL I INSTALLED TREESITTER
 
 " autocmd BufWinLeave ?* mkview | AirlineToggle
 " autocmd BufWinEnter ?* silent loadview | AirlineToggle
 
-set viewoptions-=options
+" set viewoptions-=options
 " augroup vimrc
 "     autocmd BufWritePost *
 "     \   if expand('%') != '' && &buftype !~ 'nofile'
@@ -501,12 +504,17 @@ nnoremap <leader>cF :let @+ = expand("%:p")<cr>
 
 " REFRESH FILE FROM DISK
 nnoremap <f5> :e %<cr>
+
 " REFRESH FILE FROM DISK AND GO TO BOTTOM
-nnoremap <S-f5> :e %<cr>G
+nnoremap <silent><S-f5> :e %<cr>G
+
 " RELOAD CONFIG
-nnoremap <C-f5> :so ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
+" nnoremap <C-f5> :so ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
+nnoremap <C-f5> :execute 'source ' . stdpath('config') . '/init.vim'<cr>
+
 " " EDIT CONFIG
-nnoremap <A-f5> :e ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
+" nnoremap <A-f5> :e ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
+nnoremap <A-f5> :execute 'edit ' . stdpath('config') . '/init.vim'<cr>
 
 " EDIT NOTES FOLDER
 nnoremap <A-n> :e C:\GBox\Notes<cr>
@@ -545,6 +553,13 @@ nnoremap <leader>=J ggdG"+P:%!jq --tab .<cr>:%s/\r<cr>
 nnoremap <leader>=t :%retab!<cr>
 " REMOVE TRAILING WHITESPACE FROM ALL LINES
 nnoremap <leader>=w :%s/\s\+$//<cr>
+
+" cm.Parameters.Add, and cm.Parameters.Value lines can be combined into single line using this
+function! MergeParametersAndValue()
+	exec "normal f@yi\"$x/\<c-r>0\<cr>f.y$NNA\<c-r>0\<esc>0"
+	silent! call repeat#set("\<space>=v", v:count)
+endfunction
+autocmd FileType cs nnoremap <leader>=v :call MergeParametersAndValue()<cr>
 
 " TELESCOPE
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -834,7 +849,8 @@ augroup end
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Run the Code Lens action on the current line.
-nmap <leader>cl  <Plug>(coc-codelens-action)
+" nmap <leader>cl  <Plug>(coc-codelens-action)
+nmap <leader>ca  <Plug>(coc-codelens-action)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
