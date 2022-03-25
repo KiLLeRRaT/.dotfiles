@@ -389,7 +389,9 @@ let mapleader = " "
 
 " SWITCH TO PREV BUFFER AND CLOSE THE ONE YOU SWITCHED AWAY FROM, CLOSES A
 " BUFFER WITHOUT MESSING UP THE SPLIT
-nnoremap <leader>bd :bp\|bd #<cr>
+" nnoremap <leader>bd :bp\|bd #<cr>
+nnoremap <leader>bd :bp \| :sp \| :bn \| :bd<cr>
+
 " nnoremap <leader>ba :AirlineToggle<cr>:bufdo bd<cr>:AirlineToggle<cr>
 nnoremap <leader>ba :bufdo bd<cr>
 
@@ -555,8 +557,12 @@ nnoremap <leader>=t :%retab!<cr>
 nnoremap <leader>=w :%s/\s\+$//<cr>
 
 " cm.Parameters.Add, and cm.Parameters.Value lines can be combined into single line using this
+" function! MergeParametersAndValue()
+" 	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$NNA\<c-r>0\<esc>0"
+" 	silent! call repeat#set("\<space>=v", v:count)
+" endfunction
 function! MergeParametersAndValue()
-	exec "normal f@yi\"$x/\<c-r>0\<cr>f.y$NNA\<c-r>0\<esc>0"
+	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$ddNA\<c-r>0\<esc>0"
 	silent! call repeat#set("\<space>=v", v:count)
 endfunction
 autocmd FileType cs nnoremap <leader>=v :call MergeParametersAndValue()<cr>
