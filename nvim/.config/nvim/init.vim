@@ -182,8 +182,10 @@ set wildignore+=**/.git/*
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if (has('win32'))
 	" WINDOWS
-	if empty(glob('~/AppData/Local/nvim-data/site/autoload/plug.vim'))
-			silent !curl -fLo ~/AppData/Local/nvim-data/site/autoload/plug.vim --create-dirs
+	" let plugPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/data/nvim-data/site/autoload/plug.vim'
+	" if empty(glob('~/AppData/Local/nvim-data/site/autoload/plug.vim'))
+	if empty(glob(stdpath('data') . '/site/autoload/plug.vim'))
+			silent !curl -fLo glob(stdpath('data') . '/site/autoload/plug.vim') --create-dirs
 					\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 			autocmd VimEnter * PlugInstall --sync | source ~/AppData/Local/nvim/init.vim
 	endif
@@ -196,35 +198,8 @@ elseif (has('mac') || has('unix'))
 	endif
 endif
 
-"" auto-install vim-plug
-"const plug_path = stdpath('data') . '/site/autoload/plug.vim'
-"if empty(glob(plug_path))
-"  "silent exe '!curl -fLo ' . plug_path . ' --create-dirs
-"  exe '!curl -fLo ' . plug_path . ' --create-dirs
-"        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-"  "autocmd VimEnter * PlugInstall
-"endif
-
-" OSX SPECIFIC
-"let plug_install = 0
-"let autoload_plug_path = stdpath('config') . '/autoload/plug.vim'
-"if !filereadable(autoload_plug_path)
-"    silent exe '!curl -fL --create-dirs -o ' . autoload_plug_path .
-"       \ ' https://raw.github.com/junegunn/vim-plug/master/plug.vim'
-"    execute 'source ' . fnameescape(autoload_plug_path)
-"    let plug_install = 1
-"endif
-"unlet autoload_plug_path
-
-call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged') " LINUX
-" call plug#begin('~/.config/nvim/plugged') " LINUX
-"call plug#begin('~/.vim/plugged') " WINDOWS
-"call plug#begin('~/.config/nvim/plugins') " OSX
-" Plug 'neovim/nvim-lspconfig'
-" Plug 'sheerun/vim-polyglot'
-" Plug 'altercation/vim-colors-solarized'
-Plug 'dense-analysis/ale' " LINTER
-" Plug 'easymotion/vim-easymotion'
+call plug#begin()
+" Plug 'dense-analysis/ale' " LINTER
 Plug 'morhetz/gruvbox'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -242,9 +217,19 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'phaazon/hop.nvim'
-" Plug 'neovim/nvim-lspconfig'
+
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp' " autocompletion framework
+Plug 'hrsh7th/cmp-nvim-lsp' " LSP autocompletion provider
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+" https://github.com/hrsh7th?tab=repositories
+
 " Plug 'nvim-lua/completion-nvim'
 " Plug 'nvim-lua/diagnostic-nvim'
+
+
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'github/copilot.vim'
 Plug 'dstein64/vim-startuptime'
@@ -365,12 +350,12 @@ set background=dark
 "let g:solarized_termtrans = 1
 "colorscheme solarized
 
-" let g:gruvbox_guisp_fallback = "bg" " THIS TURNS ON SPELLBAD PROPERLY FOR SPELLCHECK HIGHLIGHTING IN GRUVBOX
-" let g:gruvbox_transparent_bg = 1
-" colorscheme gruvbox
+let g:gruvbox_guisp_fallback = "bg" " THIS TURNS ON SPELLBAD PROPERLY FOR SPELLCHECK HIGHLIGHTING IN GRUVBOX
+let g:gruvbox_transparent_bg = 1
+colorscheme gruvbox
 
-let g:tokyonight_transparent = 1
-colorscheme tokyonight
+" let g:tokyonight_transparent = 1
+" colorscheme tokyonight
 
 autocmd VimEnter * hi Normal ctermbg=none
 
@@ -949,7 +934,32 @@ nnoremap <silent> <space>cy  :<C-u>CocList -A --normal yank<cr>
 " /COC
 " LSP
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" FROM: https://rishabhrd.github.io/jekyll/update/2020/09/19/nvim_lsp_config.html
+" FROM: https://rudism.com/coding-csharp-in-neovim/
+lua require('plugins')
+
+nnoremap K :lua vim.lsp.buf.hover()<CR>
+nnoremap gd :lua vim.lsp.buf.definition()<CR>
+nnoremap gd :Telescope lsp_definitions<CR>
+nnoremap gD :lua vim.lsp.buf.type_definition()<CR>
+nnoremap gi :lua vim.lsp.buf.implementation()<CR>
+nnoremap gr :Telescope lsp_references<CR>
+nnoremap ]g :lua vim.diagnostic.goto_next()<CR>
+nnoremap [g :lua vim.diagnostic.goto_prev()<CR>
+nnoremap <leader>fd :Telescope diagnostics<CR>
+nnoremap <leader>fa :%Telescope lsp_range_code_actions<CR>
+nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
+
+
+" nnoremap('<leader>fu', 'Telescope lsp_references')
+" nnoremap('<leader>gd', 'Telescope lsp_definitions')
+" nnoremap('<leader>rn', 'lua vim.lsp.buf.rename()')
+" nnoremap('<leader>dn', 'lua vim.lsp.diagnostic.goto_next()')
+" nnoremap('<leader>dN', 'lua vim.lsp.diagnostic.goto_prev()')
+" nnoremap('<leader>dd', 'Telescope lsp_document_diagnostics')
+" nnoremap('<leader>dD', 'Telescope lsp_workspace_diagnostics')
+" nnoremap('<leader>xx', 'Telescope lsp_code_actions')
+" nnoremap('<leader>xd', '%Telescope lsp_range_code_actions')
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /LSP
