@@ -21,8 +21,13 @@ require'lspconfig'.omnisharp.setup {
   on_attach = function(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   end,
-  cmd = { "C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/omnisharp-win-x64-net6.0-1.38.2/OmniSharp.exe", "--languageserver" , "--hostPID", tostring(pid) },
   -- cmd = { "C:\\ProgramData\\chocolatey\\lib\\omnisharp\\tools\\OmniSharp.exe", "--languageserver" , "--hostPID", tostring(pid) },
+
+	-- Windows
+  -- cmd = { "C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/omnisharp-win-x64-net6.0-1.38.2/OmniSharp.exe", "--languageserver" , "--hostPID", tostring(pid) },
+
+	-- MacOS
+  cmd = { "/Users/albert/Applications/omnisharp-osx-x64-net6.0/OmniSharp", "--languageserver" , "--hostPID", tostring(pid) },
 }
 
 -- csharp_ls

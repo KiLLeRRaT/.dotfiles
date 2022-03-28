@@ -185,7 +185,8 @@ if (has('win32'))
 	if empty(glob(stdpath('data') . '/site/autoload/plug.vim'))
 			silent !curl -fLo glob(stdpath('data') . '/site/autoload/plug.vim') --create-dirs
 					\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-			autocmd VimEnter * PlugInstall --sync | source ~/AppData/Local/nvim/init.vim
+			"autocmd VimEnter * PlugInstall --sync | source ~/AppData/Local/nvim/init.vim
+			autocmd VimEnter * PlugInstall --sync | source stdpath('config') . '/init.vim'
 	endif
 elseif (has('mac') || has('unix'))
 	" LINUX
@@ -719,7 +720,7 @@ nnoremap <leader>gt :Git tag<space>
 lua require('plugins')
 
 nnoremap K :lua vim.lsp.buf.hover()<CR>
-nnoremap gd :lua vim.lsp.buf.definition()<CR>
+" nnoremap gd :lua vim.lsp.buf.definition()<CR>
 nnoremap gd :Telescope lsp_definitions<CR>
 nnoremap gD :lua vim.lsp.buf.type_definition()<CR>
 nnoremap gi :lua vim.lsp.buf.implementation()<CR>
