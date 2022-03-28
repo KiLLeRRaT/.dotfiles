@@ -176,8 +176,6 @@ set wildignore+=**/.git/*
  " augroup END
 
 
-" PLUGINS
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " INSTALL VIM PLUGGED
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if (has('win32'))
@@ -216,6 +214,8 @@ endif
 "endif
 "unlet autoload_plug_path
 
+" PLUGINS
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged') " LINUX
 " call plug#begin('~/.config/nvim/plugged') " LINUX
 "call plug#begin('~/.vim/plugged') " WINDOWS
@@ -240,7 +240,10 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'master'} " CHANGED TO MASTER ON 202203281043
+
 Plug 'phaazon/hop.nvim'
 " Plug 'neovim/nvim-lspconfig'
 " Plug 'nvim-lua/completion-nvim'
@@ -260,6 +263,7 @@ Plug 'simeji/winresizer'
 Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'mbbill/undotree'
 call plug#end()
 
 
@@ -587,7 +591,7 @@ lua require("killerrat")
 nnoremap <leader>sf :lua require('killerrat.telescope').search_scripts()<CR>
 nnoremap <leader>sg :lua require('killerrat.telescope').grep_scripts()<CR>
 
-lua require('telescope').load_extension('fzf')
+" lua require('telescope').load_extension('fzf')
 " lua require('telescope').load_extension('hop')
 
 " COMMENTARY
@@ -850,13 +854,14 @@ augroup end
 " nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current buffer.
-" nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Run the Code Lens action on the current line.
 " nmap <leader>cl  <Plug>(coc-codelens-action)
 nmap <leader>ca  <Plug>(coc-codelens-action)
+nmap <leader>cs  <Plug>(coc-actions)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -926,6 +931,7 @@ let g:coc_global_extensions = [
 	\'coc-yaml',
 	\'coc-yank',
 	\'coc-omnisharp',
+	\'coc-highlight',
 	\'coc-tsserver'
 \]
 	"\'coc-format-json' buggy
