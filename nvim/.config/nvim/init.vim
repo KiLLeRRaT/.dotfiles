@@ -540,10 +540,39 @@ function! s:DiffWithSaved()
 endfunction
 com! DiffSaved call s:DiffWithSaved()
 
-" GO TO LINE UNDER CURSOR
-" nnoremap gn yiw:exec (@" =~ '^\d\+$' ? 'norm @"G' : '')<cr>
-" DO A SEARCH USING THE LINE YOU'RE ON, FROM: https://vi.stackexchange.com/a/6210/38923
-" nnoremap <leader>* 0y$/\V<c-r>"<cr>
+" function! s:Opposite()
+" 	let s = expand('<cword>')
+" 	if (s == "true")
+" 		return "false"
+" endfunction
+" com! Opp call s:Opposite()
+function! s:Opposite()
+	let s = expand('<cword>')
+	let l:output = s
+	if s == 'true'
+		let l:output = 'false'
+	elseif s == 'false'
+		let l:output = 'true'
+	elseif s == 'True'
+		let l:output = 'False'
+	elseif s == 'False'
+		let l:output = 'True'
+	elseif s == 'vertical'
+		let l:output = 'horizontal'
+	elseif s == 'horizontal'
+		let l:output = 'vertical'
+	endif
+
+	normal "geb"
+	let l:lastPos = getpos(".")
+	let l:start = getcurpos()[2]
+	normal "ee"
+	let l:end = getcurpos()[2] + 1
+
+	execute "s/\\%" . l:start . "c.*\\%" . l:end . "c/" . l:output . "/"
+	call setpos(".", l:lastPos)
+endfunction
+com! Opp call s:Opposite()
 
 " SPELL CHECKING ]s and [s for next/prev, z= for spelling suggestion, zg to
 " add to dictionary
