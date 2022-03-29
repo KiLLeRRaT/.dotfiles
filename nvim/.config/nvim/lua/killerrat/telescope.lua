@@ -24,6 +24,11 @@ telescope.setup {
     },
   },
 	defaults = {
+		layout_strategy = 'vertical',
+		layout_config = {
+			vertical = { width = 0.99, height = 0.99 },
+			horizontal = { width = 0.99, height = 0.99 }
+		},
     mappings = {
       i = {
         -- IMPORTANT
@@ -42,8 +47,9 @@ telescope.setup {
   },
 }
 
-telescope.load_extension 'hop'
-telescope.load_extension 'fzf'
+telescope.load_extension('hop')
+telescope.load_extension('fzf')
+telescope.load_extension('coc')
 
 local M = {}
 M.search_scripts = function()

@@ -264,6 +264,7 @@ Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'mbbill/undotree'
+Plug 'fannheyward/telescope-coc.nvim'
 call plug#end()
 
 
@@ -502,8 +503,9 @@ nnoremap <leader>ci> ci>"
 nnoremap <leader>ci` ci`"
 
 " COPY CURRENT FILENAME OR FULL FILE PATH TO SYSTEM CLIPBOARD
-nnoremap <leader>cf :let @+ = expand("%:t")<cr>
-nnoremap <leader>cF :let @+ = expand("%:p")<cr>
+" nnoremap <leader>cf :let @+ = expand("%:t")<cr>
+nnoremap <leader>cf :echo expand("%:t") \| :let @+ = expand("%:t")<cr>
+nnoremap <leader>cF :echo expand("%:p") \| :let @+ = expand("%:p")<cr>
 
 " " REPLACE VISUAL SELECTION
 " vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
@@ -796,12 +798,21 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " IF THIS GETS OUT OF HAND SEE: https://vi.stackexchange.com/a/10666/38923
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gv :vsp<cr><Plug>(coc-definition)
-nmap <silent> gs :sp<cr><Plug>(coc-definition)
+" nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gd <cmd>Telescope coc definitions<cr>
+" nmap <silent> gv :vsp<cr><Plug>(coc-definition)
+" nmap <silent> gs :sp<cr><Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gi <cmd>Telescope coc implementations<cr>
+" nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gr <cmd>Telescope coc references<cr>
+nmap <silent> gG <cmd>Telescope coc diagnostics<cr>
+nmap <silent> ga <cmd>Telescope coc code_actions<cr>
+nmap <silent> gl <cmd>Telescope coc line_code_actions<cr>
+nmap <silent> gA <cmd>Telescope coc file_code_actions<cr>
+
+" FOR TELESCOPE COC, SEE: https://github.com/fannheyward/telescope-coc.nvim
 
 " autocmd FileType cs nmap <silent> gd <Plug>(coc-definition)
 " autocmd FileType cs nmap <silent> gy <Plug>(coc-type-definition)
@@ -854,14 +865,14 @@ augroup end
 " nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
+" nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+" nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Run the Code Lens action on the current line.
 " nmap <leader>cl  <Plug>(coc-codelens-action)
-nmap <leader>ca  <Plug>(coc-codelens-action)
-nmap <leader>cs  <Plug>(coc-actions)
+" nmap <leader>ca  <Plug>(coc-codelens-action)
+" nmap <leader>cs  <Plug>(coc-actions)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
