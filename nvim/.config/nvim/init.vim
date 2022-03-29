@@ -481,8 +481,8 @@ nnoremap <leader>ci> ci>"
 nnoremap <leader>ci` ci`"
 
 " COPY CURRENT FILENAME OR FULL FILE PATH TO SYSTEM CLIPBOARD
-nnoremap <leader>cf :let @+ = expand("%:t")<cr>
-nnoremap <leader>cF :let @+ = expand("%:p")<cr>
+nnoremap <leader>cf :echo expand("%:t") \| :let @+ = expand("%:t")<cr>
+nnoremap <leader>cF :echo expand("%:p") \| :let @+ = expand("%:p")<cr>
 
 " " REPLACE VISUAL SELECTION
 " vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
