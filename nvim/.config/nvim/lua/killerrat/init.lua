@@ -1,9 +1,3 @@
-require("killerrat.telescope")
--- require("theprimeagen.git-worktree")
--- require("theprimeagen.debugger")
--- require("theprimeagen.harpoon")
--- require("theprimeagen.lsp")
-
 P = function(v)
 	print(vim.inspect(v))
 	return v
@@ -17,3 +11,5 @@ if pcall(require, 'plenary') then
 		return require(name)
 	end
 end
+
+require("killerrat.telescope")

@@ -19,7 +19,6 @@ local pid = vim.fn.getpid()
 local omniSharpPath
 
 if vim.fn.has('win32') == 1 then
-	-- omniSharpPath = vim.fn.expand('C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/omnisharp-win-x64-net6.0-1.38.2/OmniSharp.exe')
 	-- omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/omnisharp-win-x64-net6.0-1.38.2/OmniSharp.exe'
 	omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/omnisharp-win-x64-1.38.2/OmniSharp.exe'
 elseif vim.fn.has('mac') == 1 then
@@ -36,9 +35,9 @@ require'lspconfig'.omnisharp.setup {
 	on_new_config = function(new_config, new_root_dir)
 		if new_root_dir then
 			table.insert(new_config.cmd, '-s')
-			-- table.insert(new_config.cmd, new_root_dir)
-			table.insert(new_config.cmd, new_root_dir .. '/Sandfield.TIL.Orca.sln')
-			-- table.insert(new_config.cmd, new_root_dir .. '/Sandfield.TIL.Orca.Internet.Web.2.0/Sandfield.TIL.Orca.Internet.Web.2.0.csproj')
+			table.insert(new_config.cmd, new_root_dir)
+			-- table.insert(new_config.cmd, new_root_dir .. '/Sandfield.TIL.Orca.sln')
+			-- table.insert(new_config.cmd, new_root_dir .. '/Sandfield.POR.Portal.sln')
 		end
 	end,
 	cmd = { omniSharpPath, '--languageserver', '--hostPID', tostring(pid), '--loglevel', 'debug' },
@@ -61,3 +60,26 @@ require'lspconfig'.omnisharp.setup {
 -- https://github.com/razzmatazz/csharp-language-server/blob/master/src/CSharpLanguageServer/Options.fs
 -- THIS DOESNT EVEN WORK IN THE POR PROJECT...
 -- require'lspconfig'.csharp_ls.setup{}
+
+-- LUA LINES, https://github.com/nvim-lualine/lualine.nvim#default-configuration
+require('lualine').setup {
+	options = {
+		-- theme = 'gruvbox'
+		theme = 'palenight'
+	}
+}
+require("bufferline").setup {
+	options = {
+		diagnostics = "nvim_lsp",
+		show_close_icon = false,
+		show_buffer_close_icons = false,
+		-- numbers = "buffer_id",
+		-- number_style = "",
+		numbers = function(opts)
+			-- SEE: :h bufferline-numbers
+			return string.format('%s:', opts.id)
+		end,
+		separator_style = "thick",
+		middle_mouse_command = "b %d | bp | sp | bn | bd"
+	}
+}
