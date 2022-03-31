@@ -1,4 +1,32 @@
 -- autocomplete config
+local lsp_symbols = {
+		Text = "   (Text) ",
+		Method = "   (Method)",
+		Function = "   (Function)",
+		Constructor = "   (Constructor)",
+		Field = " ﴲ  (Field)",
+		Variable = "[] (Variable)",
+		Class = "   (Class)",
+		Interface = " ﰮ  (Interface)",
+		Module = "   (Module)",
+		Property = " 襁 (Property)",
+		Unit = "   (Unit)",
+		Value = "   (Value)",
+		Enum = " 練 (Enum)",
+		Keyword = "   (Keyword)",
+		Snippet = "   (Snippet)",
+		Color = "   (Color)",
+		File = "   (File)",
+		Reference = "   (Reference)",
+		Folder = "   (Folder)",
+		EnumMember = "   (EnumMember)",
+		Constant = " ﲀ  (Constant)",
+		Struct = " ﳤ  (Struct)",
+		Event = "   (Event)",
+		Operator = "   (Operator)",
+		TypeParameter = "   (TypeParameter)",
+}
+
 local cmp = require 'cmp'
 cmp.setup {
   mapping = {
@@ -11,7 +39,23 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
-  }
+		{ name = 'path' },
+		{ name = "buffer" },
+  },
+	formatting = {
+		format = function(entry, item)
+			item.kind = lsp_symbols[item.kind]
+			item.menu = ({
+				buffer = "[B]",
+				nvim_lsp = "[L]",
+				path = "[P]",
+				-- luasnip = "[Snippet]",
+				-- neorg = "[Neorg]",
+			})[entry.source.name]
+
+			return item
+		end,
+	},
 }
 
 -- OMNISHARP LSP CONFIG
@@ -41,34 +85,18 @@ require'lspconfig'.omnisharp.setup {
 		end
 	end,
 	cmd = { omniSharpPath, '--languageserver', '--hostPID', tostring(pid), '--loglevel', 'debug' },
-
-  -- cmd = { "C:\\ProgramData\\chocolatey\\lib\\omnisharp\\tools\\OmniSharp.exe", "--languageserver" , "--hostPID", tostring(pid) },
-
-	-- Windows
-  -- cmd = { "C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/omnisharp-win-x64-net6.0-1.38.2/OmniSharp.exe", "--languageserver" , "--hostPID", tostring(pid) },
-
-	-- MacOS
-  -- cmd = { "/Users/albert/Applications/omnisharp-osx-x64-net6.0/OmniSharp", "--languageserver" , "--hostPID", tostring(pid) },
-
-	-- Linux
-  -- cmd = { "/home/albert/.omnisharp/OmniSharp", "--languageserver" , "--hostPID", tostring(pid) },
 }
 -- /OMNISHARP LSP CONFIG
 
--- csharp_ls
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#csharp_ls
--- https://github.com/razzmatazz/csharp-language-server/blob/master/src/CSharpLanguageServer/Options.fs
--- THIS DOESNT EVEN WORK IN THE POR PROJECT...
--- require'lspconfig'.csharp_ls.setup{}
-
 -- LUA LINES, https://github.com/nvim-lualine/lualine.nvim#default-configuration
-require('lualine').setup {
+require'lualine'.setup {
 	options = {
 		-- theme = 'gruvbox'
 		theme = 'palenight'
 	}
 }
-require("bufferline").setup {
+
+require'bufferline'.setup {
 	options = {
 		diagnostics = "nvim_lsp",
 		show_close_icon = false,
@@ -83,3 +111,36 @@ require("bufferline").setup {
 		middle_mouse_command = "b %d | bp | sp | bn | bd"
 	}
 }
+
+-- ESLINT
+--- npm i -g vscode-langservers-extracted
+require'lspconfig'.eslint.setup {}
+
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require'lspconfig'.html.setup {
+  capabilities = capabilities,
+}
+
+require'lspconfig'.cssls.setup {
+	capabilities = capabilities,
+}
+
+require'lspconfig'.jsonls.setup {
+	capabilities = capabilities,
+}
+-- TODO:
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#powershell_es
+
+-- TSSERVER
+-- npm install -g typescript typescript-language-server
+require'lspconfig'.tsserver.setup{}
+
+-- YAMLLS
+-- npm install -g yaml-language-server
+-- ADD MODELINE TO FILES:
+-- # yaml-language-server: $schema=<urlToTheSchema|relativeFilePath|absoluteFilePath}>
+require'lspconfig'.yamlls.setup{}
+
