@@ -252,6 +252,7 @@ Plug 'hrsh7th/nvim-cmp' " autocompletion framework
 Plug 'hrsh7th/cmp-nvim-lsp' " LSP autocompletion provider
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 " https://github.com/hrsh7th?tab=repositories
 
 " Plug 'nvim-lua/completion-nvim'
