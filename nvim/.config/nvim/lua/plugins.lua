@@ -68,7 +68,8 @@ if vim.fn.has('win32') == 1 then
 elseif vim.fn.has('mac') == 1 then
 	omniSharpPath = vim.fn.expand('~/Applications/omnisharp-osx-x64-net6.0/OmniSharp')
 elseif vim.fn.has('linux') == 1 then
-	omniSharpPath = vim.fn.expand('~/.omnisharp/OmniSharp')
+	-- omniSharpPath = vim.fn.expand('~/.omnisharp/OmniSharp')
+	omniSharpPath = vim.fn.expand('~/.omnisharp/run')
 end
 -- print( "Features: " .. vim.fn.has('win32') .. vim.fn.has('mac') .. vim.fn.has('linux'))
 require'lspconfig'.omnisharp.setup {
