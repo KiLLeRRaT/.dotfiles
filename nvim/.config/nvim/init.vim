@@ -255,8 +255,12 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 " https://github.com/hrsh7th?tab=repositories
 
+" https://github.com/nanotee/sqls.nvim
+" Plug 'nanotee/sqls.nvim'
+
 " Plug 'nvim-lua/completion-nvim'
 " Plug 'nvim-lua/diagnostic-nvim'
+" /LSP RELATED PLUGINS
 
 
 call plug#end()

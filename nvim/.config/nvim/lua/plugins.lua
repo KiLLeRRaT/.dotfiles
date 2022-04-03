@@ -146,3 +146,11 @@ require'lspconfig'.tsserver.setup{}
 -- # yaml-language-server: $schema=<urlToTheSchema|relativeFilePath|absoluteFilePath}>
 require'lspconfig'.yamlls.setup{}
 
+-- SQL
+-- require('lspconfig').sqls.setup{
+-- 	on_attach = function(client, bufnr)
+-- 		require('sqls').on_attach(client, bufnr)
+-- 	end,
+-- 	cmd = { vim.fn.expand("~/.sqls/sqls") } -- https://github.com/lighttiger2505/sqls
+-- }
+
