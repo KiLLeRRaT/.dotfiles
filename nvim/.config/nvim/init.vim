@@ -217,18 +217,12 @@ endif
 " PLUGINS
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged') " LINUX
-" call plug#begin('~/.config/nvim/plugged') " LINUX
-"call plug#begin('~/.vim/plugged') " WINDOWS
-"call plug#begin('~/.config/nvim/plugins') " OSX
-" Plug 'neovim/nvim-lspconfig'
-" Plug 'sheerun/vim-polyglot'
-" Plug 'altercation/vim-colors-solarized'
+" call plug#begin()
+Plug 'altercation/vim-colors-solarized'
 Plug 'dense-analysis/ale' " LINTER
-" Plug 'easymotion/vim-easymotion'
 Plug 'morhetz/gruvbox'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-" Plug 'OmniSharp/omnisharp-vim' " REMOVED ON 202203241339
 Plug 'preservim/nerdtree'
 Plug 'ThePrimeagen/harpoon'
 Plug 'ThePrimeagen/vim-be-good'
@@ -240,14 +234,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
-
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc.nvim', {'branch': 'master'} " CHANGED TO MASTER ON 202203281043
-
 Plug 'phaazon/hop.nvim'
-" Plug 'neovim/nvim-lspconfig'
-" Plug 'nvim-lua/completion-nvim'
-" Plug 'nvim-lua/diagnostic-nvim'
+
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'github/copilot.vim'
 Plug 'dstein64/vim-startuptime'
@@ -264,7 +252,22 @@ Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'mbbill/undotree'
+
+" LSP RELATED PLUGINS
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'master'} " CHANGED TO MASTER ON 202203281043
 Plug 'fannheyward/telescope-coc.nvim'
+
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'hrsh7th/nvim-cmp' " autocompletion framework
+" Plug 'hrsh7th/cmp-nvim-lsp' " LSP autocompletion provider
+" Plug 'hrsh7th/cmp-buffer'
+" Plug 'hrsh7th/cmp-path'
+" " https://github.com/hrsh7th?tab=repositories
+
+" " Plug 'nvim-lua/completion-nvim'
+" " Plug 'nvim-lua/diagnostic-nvim'
+
 call plug#end()
 
 
@@ -615,7 +618,12 @@ nnoremap <leader>fk <cmd>Telescope help_tags<cr>
 nnoremap <leader>fm <cmd>Telescope keymaps<cr>
 nnoremap <leader>fc <cmd>Telescope git_commits<cr>
 nnoremap <leader>fr <cmd>Telescope git_branches<cr>
-nnoremap <leader>fs <cmd>Telescope git_status<cr>
+
+" nnoremap <leader>fs <cmd>Telescope git_status<cr>
+nnoremap <leader>fs <cmd>Telescope colorscheme<cr>
+
+" OVERRIDES THE STANDARD z= shortcut!
+nnoremap z= <cmd>Telescope spell_suggest<cr>
 
 " SEARCH MY OWN GBOX SCRIPTS
 lua require("killerrat")
