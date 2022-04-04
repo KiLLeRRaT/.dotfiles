@@ -42,6 +42,7 @@ cmp.setup {
 		{ name = 'path' },
 		{ name = "buffer" },
 		{ name = 'nvim_lsp_signature_help' },
+		{ name = 'vim-dadbod-completion' },
   },
 	formatting = {
 		format = function(entry, item)
@@ -50,6 +51,7 @@ cmp.setup {
 				buffer = "[B]",
 				nvim_lsp = "[L]",
 				path = "[P]",
+				sql = "[DB]",
 				-- luasnip = "[Snippet]",
 				-- neorg = "[Neorg]",
 			})[entry.source.name]
@@ -59,13 +61,14 @@ cmp.setup {
 	},
 }
 
--- OMNISHARP LSP CONFIG
-local pid = vim.fn.getpid()
+-- PATH SETUP BASED ON OS
 local omniSharpPath
+local netcoredbgPath
 
 if vim.fn.has('win32') == 1 then
 	-- omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/omnisharp-win-x64-net6.0-1.38.2/OmniSharp.exe'
 	omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/omnisharp-win-x64-1.38.2/OmniSharp.exe'
+	netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/netcoredbf-win64-2.0.0-895/netcoredbg.exe'
 elseif vim.fn.has('mac') == 1 then
 	omniSharpPath = vim.fn.expand('~/Applications/omnisharp-osx-x64-net6.0/OmniSharp')
 elseif vim.fn.has('linux') == 1 then
@@ -73,6 +76,10 @@ elseif vim.fn.has('linux') == 1 then
 	omniSharpPath = vim.fn.expand('~/.omnisharp/run')
 end
 -- print( "Features: " .. vim.fn.has('win32') .. vim.fn.has('mac') .. vim.fn.has('linux'))
+-- /PATH SETUP BASED ON OS
+
+-- OMNISHARP LSP CONFIG
+local pid = vim.fn.getpid()
 require'lspconfig'.omnisharp.setup {
   capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
   on_attach = function(_, bufnr)
@@ -133,6 +140,8 @@ require'lspconfig'.cssls.setup {
 require'lspconfig'.jsonls.setup {
 	capabilities = capabilities,
 }
+
+-- POWERSHELL
 -- TODO:
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#powershell_es
 
@@ -146,11 +155,24 @@ require'lspconfig'.tsserver.setup{}
 -- # yaml-language-server: $schema=<urlToTheSchema|relativeFilePath|absoluteFilePath}>
 require'lspconfig'.yamlls.setup{}
 
--- SQL
--- require('lspconfig').sqls.setup{
--- 	on_attach = function(client, bufnr)
--- 		require('sqls').on_attach(client, bufnr)
--- 	end,
--- 	cmd = { vim.fn.expand("~/.sqls/sqls") } -- https://github.com/lighttiger2505/sqls
--- }
+
+-- DEBUGGERS
+local dap = require('dap')
+dap.adapters.coreclr = {
+  type = 'executable',
+  command = netcoredbgPath,
+  args = {'--interpreter=vscode'}
+}
+
+dap.configurations.cs = {
+  {
+    type = "coreclr",
+    name = "launch - netcoredbg",
+    request = "launch",
+    program = function()
+        return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+    end,
+  },
+}
+-- /DEBUGGERS
 

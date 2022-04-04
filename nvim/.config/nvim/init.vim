@@ -237,7 +237,6 @@ Plug 'nvim-telescope/telescope-rg.nvim'
 Plug 'neoclide/vim-jsx-improve'
 Plug 'jdhao/better-escape.vim'
 Plug 'simeji/winresizer'
-" Plug 'puremourning/vimspector' NEED TO READ ABOUT IT AND CONFIG IT: https://github.com/puremourning/vimspector#quick-start
 Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
@@ -262,7 +261,14 @@ Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 " Plug 'nvim-lua/diagnostic-nvim'
 " /LSP RELATED PLUGINS
 
+" SQL
+Plug 'https://github.com/tpope/vim-dadbod'
+Plug 'https://github.com/kristijanhusak/vim-dadbod-ui'
+Plug 'https://github.com/kristijanhusak/vim-dadbod-completion'
 
+" DEBUGGERS
+" Plug 'puremourning/vimspector' NEED TO READ ABOUT IT AND CONFIG IT: https://github.com/puremourning/vimspector#quick-start
+Plug 'https://github.com/mfussenegger/nvim-dap'
 call plug#end()
 
 
