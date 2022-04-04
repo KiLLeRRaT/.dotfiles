@@ -9,5 +9,5 @@ New-Item -ItemType Junction -Force -Path "$home\AppData\Local\nvim" -Target "$ho
 New-Item -ItemType Junction -Force -Path "$home\.omp" -Target "$home\.dotfiles\oh-my-posh\.omp"
 
 # - PowerShell
-New-Item -ItemType Junction -Force -Path "$home\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" -Target "$home\.dotfiles\PowerShell\Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
+New-Item -ItemType HardLink -Force -Path "$home\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" -Target "$home\.dotfiles\PowerShell\Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
 
