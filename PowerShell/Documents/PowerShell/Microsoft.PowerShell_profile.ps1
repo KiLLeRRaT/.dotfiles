@@ -20,6 +20,9 @@ if (Test-Path($ChocolateyProfile)) {
 Set-PSReadlineOption -EditMode vi
 # Set-PSReadLineKeyHandler -Key j,k -Function ViCommandMode
 
+# Bash style completion, AWESOME for completion of paths and directories!!!
+Set-PSReadLineKeyHandler -Key Tab -Function Complete
+
 # FROM: https://github.com/PowerShell/PSReadLine/issues/759#issuecomment-518363364
 # Set-PSReadLineKeyHandler -Chord 'j' -ScriptBlock {
 # 	if ([Microsoft.PowerShell.PSConsoleReadLine]::InViInsertMode()) {
