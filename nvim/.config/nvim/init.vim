@@ -156,6 +156,9 @@ call matchadd('ColorColumn', '\%81v', 100)
 " autocmd Filetype * if &ft!="yaml"|:match Error /^\t*\zs \+/|endif
 " autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab | match none
 
+" HIGHLIGHT YANKED TEXT
+autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup=(vim.fn['hlexists']('HighlightedyankRegion') > 0 and 'HighlightedyankRegion' or 'IncSearch'), timeout=500}
+
 " Nice menu when typing `:find *.py`
 set wildmode=longest,list,full
 set wildmenu
@@ -199,12 +202,14 @@ endif
 
 " PLUGINS
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged') " LINUX, REMOVED PATH SO THAT ITS NOT IN
+" MY GIT REPO
 call plug#begin()
+Plug 'altercation/vim-colors-solarized'
 " Plug 'dense-analysis/ale' " LINTER
 Plug 'morhetz/gruvbox'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-" Plug 'OmniSharp/omnisharp-vim' " REMOVED ON 202203241339
 Plug 'preservim/nerdtree'
 Plug 'ThePrimeagen/harpoon'
 Plug 'ThePrimeagen/vim-be-good'
@@ -215,34 +220,55 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'akinsho/bufferline.nvim'
 Plug 'phaazon/hop.nvim'
-
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-cmp' " autocompletion framework
-Plug 'hrsh7th/cmp-nvim-lsp' " LSP autocompletion provider
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-" https://github.com/hrsh7th?tab=repositories
-
-" Plug 'nvim-lua/completion-nvim'
-" Plug 'nvim-lua/diagnostic-nvim'
 
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'github/copilot.vim'
 Plug 'dstein64/vim-startuptime'
 Plug 'ap/vim-css-color'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-telescope/telescope-hop.nvim'
 Plug 'nvim-telescope/telescope-rg.nvim'
 Plug 'neoclide/vim-jsx-improve'
 Plug 'jdhao/better-escape.vim'
 Plug 'simeji/winresizer'
-" Plug 'puremourning/vimspector' NEED TO READ ABOUT IT AND CONFIG IT: https://github.com/puremourning/vimspector#quick-start
 Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+
+" LSP RELATED PLUGINS
+" " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'master'} " CHANGED TO MASTER ON 202203281043
+" Plug 'fannheyward/telescope-coc.nvim'
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp' " autocompletion framework
+Plug 'hrsh7th/cmp-nvim-lsp' " LSP autocompletion provider
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+" https://github.com/hrsh7th?tab=repositories
+
+" https://github.com/nanotee/sqls.nvim
+" Plug 'nanotee/sqls.nvim'
+
+" Plug 'nvim-lua/completion-nvim'
+" Plug 'nvim-lua/diagnostic-nvim'
+" /LSP RELATED PLUGINS
+
+" SQL
+Plug 'https://github.com/tpope/vim-dadbod'
+Plug 'https://github.com/kristijanhusak/vim-dadbod-ui'
+Plug 'https://github.com/kristijanhusak/vim-dadbod-completion'
+
+" DEBUGGERS
+" Plug 'puremourning/vimspector' NEED TO READ ABOUT IT AND CONFIG IT: https://github.com/puremourning/vimspector#quick-start
+Plug 'https://github.com/mfussenegger/nvim-dap'
 call plug#end()
 
 
@@ -345,15 +371,15 @@ autocmd BufNewFile,BufRead *.cshtml set syntax=html
 
 syntax on
 set background=dark
-"let g:solarized_termtrans = 1
+" let g:solarized_termtrans = 1
 "colorscheme solarized
 
 let g:gruvbox_guisp_fallback = "bg" " THIS TURNS ON SPELLBAD PROPERLY FOR SPELLCHECK HIGHLIGHTING IN GRUVBOX
 let g:gruvbox_transparent_bg = 1
-colorscheme gruvbox
+" colorscheme gruvbox
 
-" let g:tokyonight_transparent = 1
-" colorscheme tokyonight
+let g:tokyonight_transparent = 1
+colorscheme tokyonight
 
 autocmd VimEnter * hi Normal ctermbg=none
 
@@ -526,7 +552,7 @@ com! DiffSaved call s:DiffWithSaved()
 " add to dictionary
 map <F6> :setlocal spell!<CR>
 
-map <F2> :AirlineToggle<CR>:AirlineRefresh<CR>
+" map <F2> :AirlineToggle<CR>:AirlineRefresh<CR>
 " map <C-F2> :AirlineRefresh<CR>
 
 " RUN jq and use tab indents, then remove the ^M chars because vim is doing stupid things.
@@ -563,14 +589,18 @@ nnoremap <leader>fk <cmd>Telescope help_tags<cr>
 nnoremap <leader>fm <cmd>Telescope keymaps<cr>
 nnoremap <leader>fc <cmd>Telescope git_commits<cr>
 nnoremap <leader>fr <cmd>Telescope git_branches<cr>
-nnoremap <leader>fs <cmd>Telescope git_status<cr>
+" nnoremap <leader>fs <cmd>Telescope git_status<cr>
+nnoremap <leader>fs <cmd>Telescope colorscheme<cr>
+
+" OVERRIDES THE STANDARD z= shortcut!
+nnoremap z= <cmd>Telescope spell_suggest<cr>
 
 " SEARCH MY OWN GBOX SCRIPTS
 lua require("killerrat")
 nnoremap <leader>sf :lua require('killerrat.telescope').search_scripts()<CR>
 nnoremap <leader>sg :lua require('killerrat.telescope').grep_scripts()<CR>
 
-lua require('telescope').load_extension('fzf')
+" lua require('telescope').load_extension('fzf')
 " lua require('telescope').load_extension('hop')
 
 " COMMENTARY
@@ -665,14 +695,14 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /NERDTree
 
-" Airline
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#tabline#formatter = 'short_path' " default | jsformatter | unique_tail | unique_tail_improved | short_path | tabnr, from: https://github.com/vim-airline/vim-airline#default, to create custom ones: https://stackoverflow.com/a/53754280/182888
-let g:airline_powerline_fonts = 1
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" /Airline
+" " Airline
+" " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#buffer_nr_show = 1
+" let g:airline#extensions#tabline#formatter = 'short_path' " default | jsformatter | unique_tail | unique_tail_improved | short_path | tabnr, from: https://github.com/vim-airline/vim-airline#default, to create custom ones: https://stackoverflow.com/a/53754280/182888
+" let g:airline_powerline_fonts = 1
+" " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" " /Airline
 
 " HARPOON
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

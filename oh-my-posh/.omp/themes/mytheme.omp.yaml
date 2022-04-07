@@ -1,0 +1,82 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+$schema: https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+blocks:
+- alignment: left
+  segments:
+  - background: '#D11C24'
+    foreground: '#ffffff'
+    #powerline_symbol: 
+    properties:
+      prefix: ' '
+    style: powerline
+    type: exit 
+  - foreground: '#A57706'
+    background: 'black'
+    powerline_symbol: 
+    style: powerline
+    type: root
+  # - background: '#ffffff'
+    # foreground: '#100e23'
+    # powerline_symbol: 
+    # style: powerline
+    # type: session
+  - background: '#2176C7'
+    foreground: '#FFFFFF'
+    powerline_symbol: 
+    properties:
+      folder_icon: 
+      #folder_separator_icon: '  '
+      style: full
+      #enable_hyperlink: true
+    style: powerline
+    type: path
+  - background: '#738A05' #'#95ffa4'
+    foreground: '#193549'
+    powerline_symbol: 
+    style: powerline
+    type: git
+    properties:
+      display_status: true
+      display_stash_count: true
+      display_upstream_icon: false
+      status_colors_enabled: true
+      ahead_color: '#C61C6F'
+      behind_color: '#D11C24'
+      ahead_and_behind_color: '#D11C24'
+      local_changes_color: '#A57706'
+  - background: '#906cff'
+    foreground: '#100e23'
+    powerline_symbol: 
+    properties:
+      prefix: '  '
+    style: powerline
+    type: python
+  type: prompt
+
+- alignment: right
+  type: prompt
+  segments:
+  - foreground: '#FFFFFF'
+    style: "plain"
+    properties:
+      #time_format: "15:04:05"
+      prefix: "["
+      postfix: "]"
+    type: time
+
+- alignment: left
+  newline: true
+  segments:  
+  - foreground: '#007ACC'
+    properties:
+      prefix: ""
+      text: ❯
+    style: plain
+    type: text
+  type: prompt
+final_space: false
+console_title: true
+#console_title_template: "{{ .Shell }} in {{ .Folder }}"
+console_title_template: "{{if .Root }}Adm:{{end}}{{ .Path }}"
+console_title_style: template
