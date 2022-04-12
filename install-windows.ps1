@@ -79,3 +79,8 @@ Write-Host Install NerdFont
 Write-Host ----------------------------------------
 # Make sure to install the nerdfont for all users
 # https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip
+
+
+Write-Host Install Windows Terminal, and configure
+Write-Host ----------------------------------------
+
