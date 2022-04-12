@@ -1,83 +1,65 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
-# FOR TOKYO NIGHT COLORS SEE:
-# https://github.com/folke/tokyonight.nvim/blob/main/lua/tokyonight/colors.lua
-$schema: https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
 blocks:
-- alignment: left
-  segments:
-  - background: '#D11C24'
-    foreground: '#ffffff'
-    #powerline_symbol: 
-    properties:
-      prefix: ' '
-    style: powerline
-    type: exit 
-  - foreground: '#A57706'
-    background: 'black'
-    powerline_symbol: 
-    style: powerline
-    type: root
-  # - background: '#ffffff'
-    # foreground: '#100e23'
-    # powerline_symbol: 
-    # style: powerline
-    # type: session
-  - background: '#bb9af7'
-    foreground: '#FFFFFF'
-    powerline_symbol: 
-    properties:
-      folder_icon: 
-      #folder_separator_icon: '  '
-      style: full
-      #enable_hyperlink: true
-    style: powerline
-    type: path
-  - background: '#3b4261' #'#95ffa4'
-    foreground: '#bb9af7'
-    powerline_symbol: 
-    style: powerline
-    type: git
-    properties:
-      display_status: true
-      display_stash_count: true
-      display_upstream_icon: false
-      status_colors_enabled: true
-      ahead_color: '#C61C6F'
-      behind_color: '#D11C24'
-      ahead_and_behind_color: '#D11C24'
-      local_changes_color: '#545c7e'
-  - background: '#906cff'
-    foreground: '#100e23'
-    powerline_symbol: 
-    properties:
-      prefix: '  '
-    style: powerline
-    type: python
-  type: prompt
+    - alignment: left
+      segments:
+        - background: '#D11C24'
+          foreground: '#ffffff'
+          style: powerline
+          template: ' {{ if gt .Code 0 }} {{ .Meaning }}{{ else }}{{ end }} '
+          type: exit
+        - background: black
+          foreground: '#A57706'
+          powerline_symbol: 
+          style: powerline
+          template: '  '
+          type: root
+        - background: '#bb9af7'
+          foreground: '#FFFFFF'
+          powerline_symbol: 
+          properties:
+            folder_icon: 
+            style: full
+          style: powerline
+          template: ' {{ .Path }} '
+          type: path
+        - background: '#3b4261'
+          background_templates:
+            - '{{ if or (.Working.Changed) (.Staging.Changed) }}#545c7e{{ end }}'
+            - '{{ if and (gt .Ahead 0) (gt .Behind 0) }}#D11C24{{ end }}'
+            - '{{ if gt .Ahead 0 }}#D11C24{{ end }}'
+            - '{{ if gt .Behind 0 }}#C61C6F{{ end }}'
+          foreground: '#bb9af7'
+          powerline_symbol: 
+          properties:
+            fetch_stash_count: true
+            fetch_status: true
+            fetch_upstream_icon: false
+          style: powerline
+          template: ' {{ .HEAD }} {{ .BranchStatus }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0}}  {{ .StashCount }}{{ end }}{{ if gt .WorktreeCount 0}}  {{ .WorktreeCount }}{{ end }} '
+          type: git
+        - background: '#906cff'
+          foreground: '#100e23'
+          powerline_symbol: 
+          style: powerline
+          template: '  {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} '
+          type: python
+      type: prompt
+    - alignment: right
+      segments:
+        - foreground: '#FFFFFF'
+          style: plain
+          template: '[{{ .CurrentDate | date .Format }}]'
+          type: time
+      type: prompt
+    - alignment: left
+      newline: true
+      segments:
+        - foreground: '#007ACC'
+          style: plain
+          template: '❯ '
+          type: text
+      type: prompt
+console_title_template: '{{if .Root }}Adm:{{end}}{{ .PWD }}'
+version: 2
 
-- alignment: right
-  type: prompt
-  segments:
-  - foreground: '#FFFFFF'
-    style: "plain"
-    properties:
-      #time_format: "15:04:05"
-      prefix: "["
-      postfix: "]"
-    type: time
-
-- alignment: left
-  newline: true
-  segments:  
-  - foreground: '#007ACC'
-    properties:
-      prefix: ""
-      text: ❯
-    style: plain
-    type: text
-  type: prompt
-final_space: false
-console_title: true
-#console_title_template: "{{ .Shell }} in {{ .Folder }}"
-console_title_template: "{{if .Root }}Adm:{{end}}{{ .Path }}"
-console_title_style: template
