@@ -1,18 +1,21 @@
 #!/bin/bash
 pushd ~
-echo Adding Neovim package repository
-echo ----------------------------------------
+echo -e "\032[31m ----------------------------------------\032[0m"
+echo -e "\032[31m Adding Neovim package repository\032[0m"
+echo -e "\032[31m ----------------------------------------\032[0m"
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
 
 
-echo Updating Linux
-echo ----------------------------------------
+echo -e "\032[31m ----------------------------------------\032[0m"
+echo -e "\032[31m Updating Linux\032[0m"
+echo -e "\032[31m ----------------------------------------\032[0m"
 sudo apt update
 sudo apt -y upgrade
 
 
-echo Installing software
-echo ----------------------------------------
+echo -e "\032[31m ----------------------------------------\032[0m"
+echo -e "\032[31m Installing software\032[0m"
+echo -e "\032[31m ----------------------------------------\032[0m"
 sudo apt install -y git && \
 sudo apt install -y xrdp && \
 sudo apt install -y i3 && \
@@ -44,8 +47,9 @@ sudo apt install -y feh
 # git clone https://github.com/KiLLeRRaT/.dotfiles.git
 
 
-echo Config xrdp to start with i3
-echo ----------------------------------------
+echo -e "\032[31m ----------------------------------------\032[0m"
+echo -e "\032[31m Config xrdp to start with i3\032[0m"
+echo -e "\032[31m ----------------------------------------\032[0m"
 # EDIT /etc/xrdp/startwm.sh
 # COMMENT OUT THIS LINE
 #exec /bin/sh /etc/X11/Xsession
@@ -63,8 +67,9 @@ else
 	echo "/usr/bin/i3" | sudo tee -a /etc/xrdp/startwm.sh
 fi
 
-echo Running stow
-echo ----------------------------------------
+echo -e "\032[31m ----------------------------------------\032[0m"
+echo -e "\032[31m Running stow\032[0m"
+echo -e "\032[31m ----------------------------------------\032[0m"
 STOW_FOLDERS=i3,nvim,bashrc,oh-my-posh,tmux
 pushd ~/.dotfiles
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
@@ -75,12 +80,14 @@ do
 done
 popd
 
-echo Now install the VIM plugins
-echo ----------------------------------------
+echo -e "\032[31m ----------------------------------------\032[0m"
+echo -e "\032[31m Now install the VIM plugins\032[0m"
+echo -e "\032[31m ----------------------------------------\032[0m"
 nvim --headless +PlugInstall +q
 
-echo Install oh-my-posh
-echo ----------------------------------------
+echo -e "\032[31m ----------------------------------------\032[0m"
+echo -e "\032[31m Install oh-my-posh\032[0m"
+echo -e "\032[31m ----------------------------------------\032[0m"
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 sudo chmod +x /usr/local/bin/oh-my-posh
 
