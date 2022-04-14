@@ -12,7 +12,7 @@ sudo apt -y upgrade
 
 echo Installing git, xrdp, i3, curl, stow, neovim, xclip, nodejs, npm, ripgrep, fdfind, feh
 echo ----------------------------------------
-sudo apt install -y git xrdp i3 curl stow neovim xclip, nodejs, npm, ripgrep, fdfind, feh
+sudo apt install -y git xrdp i3 curl stow neovim xclip nodejs npm ripgrep fdfind feh
 
 
 # echo Installing Chrome
