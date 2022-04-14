@@ -80,10 +80,19 @@ do
 done
 popd
 
-# echo -e "\033[32m ----------------------------------------\033[0m"
-# echo -e "\033[32m Now install the VIM plugins\033[0m"
-# echo -e "\033[32m ----------------------------------------\033[0m"
-# nvim --headless +PlugInstall +q
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Now install the VIM plugins\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+nvim --headless +PlugInstall +q
+
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Build fzf for use in Telescope\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+pushd ~/.local/share/nvim/plugged/telescope-fzf-native.nvim
+make
+popd
+
+
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Install oh-my-posh\033[0m"
