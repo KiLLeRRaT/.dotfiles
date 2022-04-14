@@ -5,30 +5,35 @@ sudo add-apt-repository ppa:neovim-ppa/unstable
 
 
 echo Updating Linux
+echo ----------------------------------------
 sudo apt update
 sudo apt -y upgrade
 
 
 echo Installing git, xrdp, i3, curl, stow, neovim, xclip, nodejs, npm, ripgrep, fdfind, feh
+echo ----------------------------------------
 sudo apt install -y git xrdp i3 curl stow neovim xclip, nodejs, npm, ripgrep, fdfind, feh
 
 
-echo Installing Chrome
-if [ $(dpkg-query -W -f='${Status}' google-chrome-stable 2>/dev/null | grep -c "ok installed") -eq 0 ];
-then
-	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
-    sudo dpkg -i google-chrome-stable_current_amd64.deb &&
-    rm -f google-chrome-stable_current_amd64.deb
-else
-	echo "Chrome found, not adding it"
-fi
+# echo Installing Chrome
+# echo ----------------------------------------
+# if [ $(dpkg-query -W -f='${Status}' google-chrome-stable 2>/dev/null | grep -c "ok installed") -eq 0 ];
+# then
+# 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
+#     sudo dpkg -i google-chrome-stable_current_amd64.deb &&
+#     rm -f google-chrome-stable_current_amd64.deb
+# else
+# 	echo "Chrome found, not adding it"
+# fi
 
 
-echo Clone dotfiles
-git clone https://github.com/KiLLeRRaT/.dotfiles.git
+# echo Clone dotfiles
+# echo ----------------------------------------
+# git clone https://github.com/KiLLeRRaT/.dotfiles.git
 
 
 echo Config xrdp to start with i3
+echo ----------------------------------------
 # EDIT /etc/xrdp/startwm.sh
 # COMMENT OUT THIS LINE
 #exec /bin/sh /etc/X11/Xsession
@@ -47,7 +52,8 @@ else
 fi
 
 echo Running stow
-STOW_FOLDERS=i3,nvim,bashrc
+echo ----------------------------------------
+STOW_FOLDERS=i3,nvim,bashrc,oh-my-posh,tmux
 pushd ~/.dotfiles
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
@@ -57,7 +63,13 @@ do
 done
 popd
 
-# NOW INSTALL THE VIM PLUGINS
+echo Now install the VIM plugins
+echo ----------------------------------------
 nvim --headless +PlugInstall +q
+
+echo Install oh-my-posh
+echo ----------------------------------------
+sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+sudo chmod +x /usr/local/bin/oh-my-posh
 
 popd
