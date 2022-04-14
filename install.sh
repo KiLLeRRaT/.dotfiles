@@ -1,7 +1,8 @@
 #!/bin/bash
 pushd ~
 echo Adding Neovim package repository
-sudo add-apt-repository ppa:neovim-ppa/unstable
+echo ----------------------------------------
+sudo add-apt-repository -y ppa:neovim-ppa/unstable
 
 
 echo Updating Linux
@@ -10,9 +11,20 @@ sudo apt update
 sudo apt -y upgrade
 
 
-echo Installing git, xrdp, i3, curl, stow, neovim, xclip, nodejs, npm, ripgrep, fdfind, feh
+echo Installing software
 echo ----------------------------------------
-sudo apt install -y git xrdp i3 curl stow neovim xclip nodejs npm ripgrep fdfind feh
+sudo apt install -y git && \
+sudo apt install -y xrdp && \
+sudo apt install -y i3 && \
+sudo apt install -y curl && \
+sudo apt install -y stow && \
+sudo apt install -y neovim && \
+sudo apt install -y xclip && \
+sudo apt install -y nodejs && \
+sudo apt install -y npm && \
+sudo apt install -y ripgrep && \
+sudo apt install -y fdfind && \
+sudo apt install -y feh
 
 
 # echo Installing Chrome
