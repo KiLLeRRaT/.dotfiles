@@ -117,3 +117,7 @@ if ! shopt -oq posix; then
 fi
 
 set -o vi
+
+# eval "$(oh-my-posh init bash)"
+eval "$(oh-my-posh init bash --config ~/.omp/themes/tokyonight.omp.yaml)"
+

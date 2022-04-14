@@ -30,6 +30,13 @@ sudo apt install -y fd-find && \
 sudo apt install -y feh
 
 
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Configure Git\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+git config --global user.email "albert@gouws.org"
+git config --global user.name "Albert Gouws"
+
+
 # echo Installing Chrome
 # echo ----------------------------------------
 # if [ $(dpkg-query -W -f='${Status}' google-chrome-stable 2>/dev/null | grep -c "ok installed") -eq 0 ];
@@ -67,6 +74,7 @@ else
 	echo "/usr/bin/i3" | sudo tee -a /etc/xrdp/startwm.sh
 fi
 
+
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Running stow\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
@@ -80,10 +88,12 @@ do
 done
 popd
 
+
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Now install the VIM plugins\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 nvim --headless +PlugInstall +qall
+
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Build fzf for use in Telescope\033[0m"
@@ -91,7 +101,6 @@ echo -e "\033[32m ----------------------------------------\033[0m"
 pushd ~/.local/share/nvim/plugged/telescope-fzf-native.nvim
 make
 popd
-
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
