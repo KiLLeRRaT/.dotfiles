@@ -26,7 +26,7 @@ sudo apt install -y xclip && \
 sudo apt install -y nodejs && \
 sudo apt install -y npm && \
 sudo apt install -y ripgrep && \
-sudo apt install -y fdfind && \
+sudo apt install -y fd-find && \
 sudo apt install -y feh
 
 
