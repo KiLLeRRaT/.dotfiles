@@ -49,9 +49,9 @@ git config --global user.name "Albert Gouws"
 # fi
 
 
-# echo Clone dotfiles
-# echo ----------------------------------------
-# git clone https://github.com/KiLLeRRaT/.dotfiles.git
+echo Clone dotfiles
+echo ----------------------------------------
+git clone https://github.com/KiLLeRRaT/.dotfiles.git
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
