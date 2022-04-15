@@ -92,6 +92,10 @@ popd
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Now install the VIM plugins\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
+echo Installing Vim Plug
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+echo Running PlugInstall
 nvim --headless +PlugInstall +qall
 
 
