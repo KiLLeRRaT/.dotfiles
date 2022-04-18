@@ -67,8 +67,10 @@ local netcoredbgPath
 
 if vim.fn.has('win32') == 1 then
 	-- omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/omnisharp-win-x64-net6.0-1.38.2/OmniSharp.exe'
-	omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/omnisharp-win-x64-1.38.2/OmniSharp.exe'
-	netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/netcoredbf-win64-2.0.0-895/netcoredbg.exe'
+	-- omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/omnisharp-win-x64-1.38.2/OmniSharp.exe'
+	-- netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/netcoredbf-win64-2.0.0-895/netcoredbg.exe'
+	omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.38.2/OmniSharp.exe'
+	netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/netcoredbf/netcoredbf-win64-2.0.0-895/netcoredbg.exe'
 elseif vim.fn.has('mac') == 1 then
 	omniSharpPath = vim.fn.expand('~/Applications/omnisharp-osx-x64-net6.0/OmniSharp')
 elseif vim.fn.has('linux') == 1 then
