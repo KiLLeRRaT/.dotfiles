@@ -83,4 +83,6 @@ Write-Host ----------------------------------------
 
 Write-Host Install Windows Terminal, and configure
 Write-Host ----------------------------------------
-
+New-Item -ItemType HardLink -Force `
+	-Path "$home\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" `
+	-Target "$home\.dotfiles\windows-terminal\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
