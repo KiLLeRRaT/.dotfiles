@@ -91,6 +91,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -lkh'
+alias brave='brave-browser-stable &> /dev/null &'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
