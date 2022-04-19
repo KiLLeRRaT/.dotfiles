@@ -23,8 +23,8 @@ sudo apt install -y curl && \
 sudo apt install -y stow && \
 sudo apt install -y neovim && \
 sudo apt install -y xclip && \
-sudo apt install -y nodejs && \
-sudo apt install -y npm && \
+# sudo apt install -y nodejs && \
+# sudo apt install -y npm && \
 sudo apt install -y ripgrep && \
 sudo apt install -y fd-find && \
 sudo apt install -y feh
@@ -112,5 +112,15 @@ echo -e "\033[32m Install oh-my-posh\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 sudo chmod +x /usr/local/bin/oh-my-posh
+
+
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Install nvm to manage NodeJS\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+exec bash
+nvm install --lts
+nvm use --lts
+
 
 popd
