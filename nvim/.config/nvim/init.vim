@@ -514,18 +514,18 @@ nnoremap <leader>cF :echo expand("%:p") \| :let @+ = expand("%:p")<cr>
 " vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " REFRESH FILE FROM DISK
-nnoremap <f5> :e %<cr>
+nnoremap <F5> :e %<cr>
 
 " REFRESH FILE FROM DISK AND GO TO BOTTOM
-nnoremap <silent><S-f5> :e %<cr>G
+nnoremap <silent><S-F5> :e %<cr>G
 
 " RELOAD CONFIG
 " nnoremap <C-f5> :so ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
-nnoremap <C-f5> :execute 'source ' . stdpath('config') . '/init.vim'<cr>
+nnoremap <C-F5> :execute 'source ' . stdpath('config') . '/init.vim'<cr>
 
 " " EDIT CONFIG
 " nnoremap <A-f5> :e ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
-nnoremap <A-f5> :execute 'edit ' . stdpath('config') . '/init.vim'<cr>
+nnoremap <A-F5> :execute 'edit ' . stdpath('config') . '/init.vim'<cr>
 
 " EDIT NOTES FOLDER
 nnoremap <A-n> :e C:\GBox\Notes<cr>
@@ -821,3 +821,16 @@ if exists("g:loaded_webdevicons")
 endif
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /VIM DEV ICONS
+
+
+" DEBUGGERS
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap <F8> :lua require("dap").continue()<CR>
+nnoremap <F9> :lua require("dap").toggle_breakpoint()<CR>
+nnoremap <F10> :lua require("dap").step_over()<CR>
+nnoremap <F11> :lua require("dap").step_into()<CR>
+nnoremap <S-F11> :lua require("dap").step_out()<CR>
+nnoremap <F12> :lua require("dap").repl.open()<CR>
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /DEBUGGERS
+
