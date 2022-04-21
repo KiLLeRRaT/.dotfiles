@@ -93,7 +93,7 @@ alias la='ls -A'
 alias l='ls -lkh'
 alias brave='brave-browser-stable &> /dev/null &'
 
-atail() { tail -f ---disable-inotify "$@" }
+atail() { tail -f ---disable-inotify "$@"; }
 
 
 # Add an "alert" alias for long running commands.  Use like so:
