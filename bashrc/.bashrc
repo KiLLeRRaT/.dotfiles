@@ -93,6 +93,9 @@ alias la='ls -A'
 alias l='ls -lkh'
 alias brave='brave-browser-stable &> /dev/null &'
 
+atail() { tail -f ---disable-inotify "$@" }
+
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -117,8 +120,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-set -o vi
-
 # eval "$(oh-my-posh init bash)"
 eval "$(oh-my-posh init bash --config ~/.omp/themes/tokyonight.omp.yaml)"
 
@@ -126,3 +127,6 @@ eval "$(oh-my-posh init bash --config ~/.omp/themes/tokyonight.omp.yaml)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+set -o vi
+bind '"jk":vi-movement-mode'
