@@ -205,9 +205,11 @@ endif
 " call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged') " LINUX, REMOVED PATH SO THAT ITS NOT IN
 " MY GIT REPO
 call plug#begin()
+" THEMES
 Plug 'altercation/vim-colors-solarized'
-" Plug 'dense-analysis/ale' " LINTER
 Plug 'morhetz/gruvbox'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'preservim/nerdtree'
@@ -222,7 +224,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 " Plug 'vim-airline/vim-airline'
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'akinsho/bufferline.nvim'
+Plug 'https://github.com/akinsho/bufferline.nvim'
 Plug 'phaazon/hop.nvim'
 
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
@@ -239,9 +241,9 @@ Plug 'jdhao/better-escape.vim'
 Plug 'simeji/winresizer'
 Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 " LSP RELATED PLUGINS
+" Plug 'dense-analysis/ale' " LINTER
 " " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'neoclide/coc.nvim', {'branch': 'master'} " CHANGED TO MASTER ON 202203281043
 " Plug 'fannheyward/telescope-coc.nvim'
@@ -525,10 +527,13 @@ nnoremap <C-F5> :execute 'source ' . stdpath('config') . '/init.vim'<cr>
 
 " " EDIT CONFIG
 " nnoremap <A-f5> :e ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
-nnoremap <A-F5> :execute 'edit ' . stdpath('config') . '/init.vim'<cr>
+nnoremap <A-F5> :execute 'edit ' . stdpath('config') . '/init.vim'<cr>:cd %:h<cr>
 
 " EDIT NOTES FOLDER
-nnoremap <A-n> :e C:\GBox\Notes<cr>
+nnoremap <A-n> :e C:\GBox\Notes<cr>:cd C:\GBox\Notes<cr>
+
+" EDIT SCRIPTS FOLDER
+nnoremap <A-s> :e C:\GBox\Applications\Tools\Scripts<cr>:cd C:\GBox\Applications\Tools\Scripts<cr>
 
 " BUILD SOLUTION
 nnoremap <leader>rb :!dotnet build *.sln
@@ -833,4 +838,10 @@ nnoremap <S-F11> :lua require("dap").step_out()<CR>
 nnoremap <F12> :lua require("dap").repl.open()<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /DEBUGGERS
+
+" BUFFERLINE
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap <silent> gb :BufferLinePick<CR>
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /BUFFERLINE
 
