@@ -185,3 +185,17 @@ exec --no-startup-id xsetroot -solid "#333333"
 
 # SWAP CONTROL AND CAPS LOCK KEYS?
 # exec xmodmap swapkeys -display :0
+
+# AUDIO IN UBUNTU
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Pulse Audio controls
+# bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
+# bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% #decrease sound volume
+# bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+
+# bindsym Mod4+comma exec amixer set Master -q 5%-
+# bindsym Mod4+period exec amixer set Master -q 5%+
+bindsym Mod4+comma exec pactl set-sink-volume 0 -5%
+bindsym Mod4+period exec pactl set-sink-volume 0 +5%
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
