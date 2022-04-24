@@ -182,3 +182,6 @@ bar {
 }
 
 exec --no-startup-id xsetroot -solid "#333333"
+
+# SWAP CONTROL AND CAPS LOCK KEYS?
+exec xmodmap swapkeys -display :0
