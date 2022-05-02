@@ -61,24 +61,29 @@ cmp.setup {
 	},
 }
 
+-- SETUP AND RUN LSP INSTALLER
+require("nvim-lsp-installer").setup {
+    ensure_installed = { "omnisharp", "eslint", "html", "cssls", "jsonls", "powershell_es", "tsserver", "yamlls", "pyright", "sumneko_lua", "tflint", "bashls", "dockerls" }
+}
+
 -- PATH SETUP BASED ON OS
 local omniSharpPath
 local netcoredbgPath
 
-if vim.fn.has('win32') == 1 then
-	-- omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/omnisharp-win-x64-net6.0-1.38.2/OmniSharp.exe'
-	-- omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/omnisharp-win-x64-1.38.2/OmniSharp.exe'
-	-- netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/netcoredbf-win64-2.0.0-895/netcoredbg.exe'
-	omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.38.2/OmniSharp.exe'
-	netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/netcoredbf/netcoredbf-win64-2.0.0-895/netcoredbg.exe'
-elseif vim.fn.has('mac') == 1 then
-	omniSharpPath = vim.fn.expand('~/Applications/omnisharp-osx-x64-net6.0/OmniSharp')
-elseif vim.fn.has('linux') == 1 then
-	-- omniSharpPath = vim.fn.expand('~/.omnisharp/OmniSharp')
-	omniSharpPath = vim.fn.expand('~/.omnisharp/run')
-end
--- print( "Features: " .. vim.fn.has('win32') .. vim.fn.has('mac') .. vim.fn.has('linux'))
--- /PATH SETUP BASED ON OS
+-- if vim.fn.has('win32') == 1 then
+-- 	-- omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/omnisharp-win-x64-net6.0-1.38.2/OmniSharp.exe'
+-- 	-- omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/omnisharp-win-x64-1.38.2/OmniSharp.exe'
+-- 	-- netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/netcoredbf-win64-2.0.0-895/netcoredbg.exe'
+-- 	omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.38.2/OmniSharp.exe'
+-- 	netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/netcoredbf/netcoredbf-win64-2.0.0-895/netcoredbg.exe'
+-- elseif vim.fn.has('mac') == 1 then
+-- 	omniSharpPath = vim.fn.expand('~/Applications/omnisharp-osx-x64-net6.0/OmniSharp')
+-- elseif vim.fn.has('linux') == 1 then
+-- 	-- omniSharpPath = vim.fn.expand('~/.omnisharp/OmniSharp')
+-- 	omniSharpPath = vim.fn.expand('~/.omnisharp/run')
+-- end
+-- -- print( "Features: " .. vim.fn.has('win32') .. vim.fn.has('mac') .. vim.fn.has('linux'))
+-- -- /PATH SETUP BASED ON OS
 
 -- OMNISHARP LSP CONFIG
 local pid = vim.fn.getpid()
@@ -95,9 +100,9 @@ require'lspconfig'.omnisharp.setup {
 			-- table.insert(new_config.cmd, new_root_dir .. '/Sandfield.POR.Portal.sln')
 		end
 	end,
-	cmd = { omniSharpPath, '--languageserver', '--hostPID', tostring(pid), '--loglevel', 'debug' },
+	-- cmd = { omniSharpPath, '--languageserver', '--hostPID', tostring(pid), '--loglevel', 'debug' },
 }
--- /OMNISHARP LSP CONFIG
+-- -- /OMNISHARP LSP CONFIG
 
 -- LUA LINES, https://github.com/nvim-lualine/lualine.nvim#default-configuration
 require'lualine'.setup {
@@ -125,7 +130,12 @@ require'bufferline'.setup {
 
 -- ESLINT
 --- npm i -g vscode-langservers-extracted
-require'lspconfig'.eslint.setup {}
+-- require'lspconfig'.eslint.setup {}
+-- npm i -g eslint
+local eslint_config = require("lspconfig.server_configurations.eslint")
+require'lspconfig'.eslint.setup {
+    -- opts.cmd = { "yarn", "exec", unpack(eslint_config.default_config.cmd) }
+}
 
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -146,6 +156,7 @@ require'lspconfig'.jsonls.setup {
 -- POWERSHELL
 -- TODO:
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#powershell_es
+require'lspconfig'.powershell_es.setup{}
 
 -- TSSERVER
 -- npm install -g typescript typescript-language-server
@@ -157,6 +168,21 @@ require'lspconfig'.tsserver.setup{}
 -- # yaml-language-server: $schema=<urlToTheSchema|relativeFilePath|absoluteFilePath}>
 require'lspconfig'.yamlls.setup{}
 
+
+-- PYTHON
+require'lspconfig'.pyright.setup{}
+
+-- LUA
+require'lspconfig'.sumneko_lua.setup{}
+
+-- TERRAFORM
+require'lspconfig'.tflint.setup{}
+
+-- BASH
+require'lspconfig'.bashls.setup{}
+
+-- DOCKER
+require'lspconfig'.dockerls.setup{}
 
 -- DEBUGGERS
 local dap = require('dap')

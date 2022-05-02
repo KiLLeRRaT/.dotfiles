@@ -254,6 +254,7 @@ Plug 'hrsh7th/cmp-nvim-lsp' " LSP autocompletion provider
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'williamboman/nvim-lsp-installer'
 " https://github.com/hrsh7th?tab=repositories
 
 " https://github.com/nanotee/sqls.nvim
@@ -511,6 +512,9 @@ nnoremap <leader>ci` ci`"
 " COPY CURRENT FILENAME OR FULL FILE PATH TO SYSTEM CLIPBOARD
 nnoremap <leader>cf :echo expand("%:t") \| :let @+ = expand("%:t")<cr>
 nnoremap <leader>cF :echo expand("%:p") \| :let @+ = expand("%:p")<cr>
+" OPEN CURRENT FOLDER IN WINDOWS EXPLORER
+" EXPAND COLON PARAMETERS FROM: https://vi.stackexchange.com/a/1885
+nnoremap gF :!start %:p:h<cr>
 
 " " REPLACE VISUAL SELECTION
 " vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
