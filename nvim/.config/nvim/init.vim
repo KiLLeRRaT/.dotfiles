@@ -272,6 +272,9 @@ Plug 'https://github.com/kristijanhusak/vim-dadbod-completion'
 " DEBUGGERS
 " Plug 'puremourning/vimspector' NEED TO READ ABOUT IT AND CONFIG IT: https://github.com/puremourning/vimspector#quick-start
 Plug 'https://github.com/mfussenegger/nvim-dap'
+
+" Modify files right in the quick fix list
+Plug 'https://github.com/stefandtw/quickfix-reflector.vim'
 call plug#end()
 
 
