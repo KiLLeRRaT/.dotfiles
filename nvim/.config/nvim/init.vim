@@ -254,6 +254,7 @@ Plug 'hrsh7th/cmp-nvim-lsp' " LSP autocompletion provider
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'williamboman/nvim-lsp-installer'
 " https://github.com/hrsh7th?tab=repositories
 
 " https://github.com/nanotee/sqls.nvim
@@ -271,6 +272,9 @@ Plug 'https://github.com/kristijanhusak/vim-dadbod-completion'
 " DEBUGGERS
 " Plug 'puremourning/vimspector' NEED TO READ ABOUT IT AND CONFIG IT: https://github.com/puremourning/vimspector#quick-start
 Plug 'https://github.com/mfussenegger/nvim-dap'
+
+" Modify files right in the quick fix list
+Plug 'https://github.com/stefandtw/quickfix-reflector.vim'
 call plug#end()
 
 
@@ -511,6 +515,9 @@ nnoremap <leader>ci` ci`"
 " COPY CURRENT FILENAME OR FULL FILE PATH TO SYSTEM CLIPBOARD
 nnoremap <leader>cf :echo expand("%:t") \| :let @+ = expand("%:t")<cr>
 nnoremap <leader>cF :echo expand("%:p") \| :let @+ = expand("%:p")<cr>
+" OPEN CURRENT FOLDER IN WINDOWS EXPLORER
+" EXPAND COLON PARAMETERS FROM: https://vi.stackexchange.com/a/1885
+nnoremap gF :!start %:p:h<cr>
 
 " " REPLACE VISUAL SELECTION
 " vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
