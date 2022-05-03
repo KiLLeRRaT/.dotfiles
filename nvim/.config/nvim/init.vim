@@ -236,6 +236,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-telescope/telescope-hop.nvim'
 Plug 'nvim-telescope/telescope-rg.nvim'
+Plug 'nvim-telescope/telescope-ui-select.nvim'
 Plug 'neoclide/vim-jsx-improve'
 Plug 'jdhao/better-escape.vim'
 Plug 'simeji/winresizer'
@@ -592,9 +593,12 @@ autocmd FileType cs nnoremap <leader>=v :call MergeParametersAndValue()<cr>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>ff <cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>
-nnoremap <expr> <leader>fF ':Telescope find_files<cr>' . "'" . expand('<cword>')
+" LAST TELESCOPE VERSION WHERE THE BELOW WORKS: git reset --hard 5a58b1f
+" nnoremap <expr> <leader>fF ':Telescope find_files<cr>' . "'" . expand('<cword>')
+nnoremap <leader>fF :execute 'Telescope find_files default_text=' . "'" . expand('<cword>')<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <expr> <leader>fG ':Telescope live_grep<cr>' . expand('<cword>')
+" nnoremap <expr> <leader>fG ':Telescope live_grep<cr>' . expand('<cword>')
+nnoremap <leader>fG :execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>
 nnoremap <leader>fR <cmd>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fk <cmd>Telescope help_tags<cr>
@@ -770,7 +774,8 @@ nnoremap gr :Telescope lsp_references<CR>
 nnoremap ]g :lua vim.diagnostic.goto_next()<CR>
 nnoremap [g :lua vim.diagnostic.goto_prev()<CR>
 nnoremap <leader>fd :Telescope diagnostics<CR>
-nnoremap <leader>fa :%Telescope lsp_range_code_actions<CR>
+" nnoremap <leader>fa :%Telescope lsp_range_code_actions<CR>
+nnoremap <leader>fa :lua vim.lsp.buf.range_code_action()<CR>
 nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
 

@@ -50,6 +50,7 @@ telescope.setup {
 telescope.load_extension('hop')
 telescope.load_extension('fzf')
 -- telescope.load_extension('coc')
+telescope.load_extension("ui-select")
 
 local M = {}
 M.search_scripts = function()
