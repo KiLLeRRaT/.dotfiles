@@ -185,7 +185,9 @@ require'lspconfig'.bashls.setup{}
 -- DOCKER
 require'lspconfig'.dockerls.setup{}
 
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- DEBUGGERS
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 local dap = require('dap')
 dap.adapters.coreclr = {
   type = 'executable',
@@ -203,5 +205,29 @@ dap.configurations.cs = {
     end,
   },
 }
--- /DEBUGGERS
 
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- /DEBUGGERS
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- RANGE FORMATTING WITH A MOTION
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- FROM: https://github.com/neovim/nvim-lspconfig/wiki/User-contributed-tips#range-formatting-with-a-motion
+
+-- function format_range_operator()
+--   local old_func = vim.go.operatorfunc
+--   _G.op_func_formatting = function()
+--     local start = vim.api.nvim_buf_get_mark(0, '[')
+--     local finish = vim.api.nvim_buf_get_mark(0, ']')
+--     vim.lsp.buf.range_formatting({}, start, finish)
+--     vim.go.operatorfunc = old_func
+--     _G.op_func_formatting = nil
+--   end
+--   vim.go.operatorfunc = 'v:lua.op_func_formatting'
+--   vim.api.nvim_feedkeys('g@', 'n', false)
+-- end
+-- vim.api.nvim_set_keymap("n", "gm", "<cmd>lua format_range_operator()<CR>", {noremap = true})
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- /RANGE FORMATTING WITH A MOTION
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

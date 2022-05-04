@@ -594,7 +594,9 @@ function! MergeParametersAndValue()
 	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$ddNA\<c-r>0\<esc>0"
 	silent! call repeat#set("\<space>=v", v:count)
 endfunction
-autocmd FileType cs nnoremap <leader>=v :call MergeParametersAndValue()<cr>
+autocmd FileType cs nnoremap <buffer> <leader>=v :call MergeParametersAndValue()<cr>
+
+
 
 " TELESCOPE
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -644,14 +646,14 @@ function! CommentReact()
 		exec "normal! I{/*\<esc>A*/}\<esc>"
 		silent! call repeat#set("\<space>gcc", v:count)
 endfunction
-autocmd FileType typescriptreact nnoremap <leader>gcc :call CommentReact()<cr>
+autocmd FileType typescriptreact nnoremap <buffer> <leader>gcc :call CommentReact()<cr>
 
 " autocmd FileType typescriptreact nnoremap <leader>gcu ^3dl<esc>$F*D<cr>
 function! UncommentReact()
 		exec "normal! ^3dl\<esc>$F*D"
 		silent! call repeat#set("\<space>gcu", v:count)
 endfunction
-autocmd FileType typescriptreact nnoremap <leader>gcu :call UncommentReact()<cr>
+autocmd FileType typescriptreact nnoremap <buffer> <leader>gcu :call UncommentReact()<cr>
 " /COMMENT OUT USING {/* */}, AND SUPPORTS REPEAT FOR THE ENTIRE COMMAND
 
 
@@ -772,7 +774,8 @@ nnoremap <leader>gt :Git tag<space>
 
 lua require('plugins')
 
-nnoremap K :lua vim.lsp.buf.hover()<CR>
+autocmd FileType cs nnoremap <buffer> K :lua vim.lsp.buf.hover()<CR>
+
 " nnoremap gd :lua vim.lsp.buf.definition()<CR>
 nnoremap gd :Telescope lsp_definitions<CR>
 nnoremap gD :lua vim.lsp.buf.type_definition()<CR>
