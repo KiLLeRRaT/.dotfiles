@@ -30,6 +30,7 @@ local lsp_symbols = {
 local cmp = require 'cmp'
 cmp.setup {
   mapping = {
+    ['<Esc>'] = cmp.mapping.abort(),
     ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     ['<CR>'] = cmp.mapping.confirm({

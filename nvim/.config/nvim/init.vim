@@ -200,6 +200,7 @@ elseif (has('mac') || has('unix'))
 	endif
 endif
 
+
 " PLUGINS
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged') " LINUX, REMOVED PATH SO THAT ITS NOT IN
@@ -277,6 +278,12 @@ Plug 'https://github.com/mfussenegger/nvim-dap'
 " Modify files right in the quick fix list
 Plug 'https://github.com/stefandtw/quickfix-reflector.vim'
 call plug#end()
+
+
+" SNAPSHOT PLUGINS BEFORE UPDATING!!!
+" FROM: https://shyr.io/blog/vim-plugin-lockfile
+command APlugUpdate
+  \ PlugUpdate | exe 'PlugSnapshot! ' . stdpath('config') . '/vim-plug-snapshot.vim'
 
 
 " FOLDING
