@@ -277,6 +277,9 @@ Plug 'https://github.com/mfussenegger/nvim-dap'
 
 " Modify files right in the quick fix list
 Plug 'https://github.com/stefandtw/quickfix-reflector.vim'
+
+" SWITCH TO OPPOSITE WORD, E.G. TRUE -> FALSE, etc.
+Plug 'https://github.com/AndrewRadev/switch.vim'
 call plug#end()
 
 
@@ -866,4 +869,15 @@ nnoremap <F12> :lua require("dap").repl.open()<CR>
 nnoremap <silent> gb :BufferLinePick<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /BUFFERLINE
+" SWITCH.VIM
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" FROM: https://github.com/AndrewRadev/switch.vim
+let g:switch_custom_definitions =
+    \ [
+    \   switch#NormalizedCase(['true', 'false']),
+    \   switch#NormalizedCase(['before', 'after']),
+    \   switch#NormalizedCase(['to', 'from']),
+    \ ]
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /SWITCH.VIM
 
