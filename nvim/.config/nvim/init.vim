@@ -243,7 +243,7 @@ Plug 'jdhao/better-escape.vim'
 Plug 'simeji/winresizer'
 Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
+Plug 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
 " LSP RELATED PLUGINS
 " Plug 'dense-analysis/ale' " LINTER
 " " Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -874,9 +874,11 @@ nnoremap <silent> gb :BufferLinePick<CR>
 " FROM: https://github.com/AndrewRadev/switch.vim
 let g:switch_custom_definitions =
     \ [
+    \   switch#NormalizedCase(['private', 'protected', 'internal', 'public']),
     \   switch#NormalizedCase(['true', 'false']),
     \   switch#NormalizedCase(['before', 'after']),
     \   switch#NormalizedCase(['to', 'from']),
+    \   switch#NormalizedCase(['==', '!=']),
     \ ]
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /SWITCH.VIM

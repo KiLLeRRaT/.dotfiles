@@ -64,7 +64,7 @@ cmp.setup {
 
 -- SETUP AND RUN LSP INSTALLER
 require("nvim-lsp-installer").setup {
-    ensure_installed = { "omnisharp", "eslint", "html", "cssls", "jsonls", "powershell_es", "tsserver", "yamlls", "pyright", "sumneko_lua", "tflint", "bashls", "dockerls" }
+    ensure_installed = { "bashls", "cssls", "dockerls", "eslint", "html", "jsonls", "omnisharp", "powershell_es", "pyright", "sumneko_lua", "tflint", "tsserver", "yamlls" }
 }
 
 -- PATH SETUP BASED ON OS
@@ -230,4 +230,30 @@ dap.configurations.cs = {
 -- vim.api.nvim_set_keymap("n", "gm", "<cmd>lua format_range_operator()<CR>", {noremap = true})
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- /RANGE FORMATTING WITH A MOTION
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- nvim-treesitter-textobjects
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+require'nvim-treesitter.configs'.setup {
+	ensure_installed = { "c_sharp", "bash", "css", "html", "javascript", "json", "lua", "regex", "scss", "tsx", "typescript", "vim", "yaml" },
+  textobjects = {
+    select = {
+      enable = true,
+
+      -- Automatically jump forward to textobj, similar to targets.vim
+      lookahead = true,
+
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+    },
+  },
+}
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- /nvim-treesitter-textobjects
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
