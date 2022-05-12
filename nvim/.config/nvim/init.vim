@@ -788,7 +788,7 @@ nnoremap ]g :lua vim.diagnostic.goto_next()<CR>
 nnoremap [g :lua vim.diagnostic.goto_prev()<CR>
 nnoremap <leader>fd :Telescope diagnostics<CR>
 " nnoremap <leader>fa :%Telescope lsp_range_code_actions<CR>
-nnoremap <leader>fa :lua vim.lsp.buf.range_code_action()<CR>
+" nnoremap <leader>fa :lua vim.lsp.buf.range_code_action()<CR>
 nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
 
