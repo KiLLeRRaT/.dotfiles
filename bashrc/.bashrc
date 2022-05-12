@@ -95,6 +95,11 @@ alias brave='brave-browser-stable &> /dev/null &'
 
 atail() { tail -f ---disable-inotify "$@"; }
 
+# create alias ct, which addes completion of paths to other bash terminals you have running at the
+# moment, makes copying a file to PWD of another terminal easier
+alias ct='cp'
+complete -W "$(ps au | awk '$11 == "-bash" { print $2 }' | xargs pwdx | awk '{print $2}')" ct
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
