@@ -201,3 +201,62 @@ bindsym Mod4+period exec pactl set-sink-volume 0 +5%
 # notify-send "This is a test"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+# DISABLE MOUSE WARPING SO THAT THE MOUSE DOESNT JUMP TO THE MONITOR WITH FOCUS
+# mouse_warping none
+focus_follows_mouse no
+
+# TRIPPLE SCREEN SETUP WORKING!
+#fake-outputs 1920x1200+0+0,2560x1440+1920+0,2560x1440+4480+0
+# fake-outputs 1920x1080+0+0,1920x1080-800+0,1920x1080+1920+0
+#
+# WORKS WITH TWO RIGHT HAND MONITORS
+# fake-outputs 2560x1440+0+0,2400x1440+2560+0
+# fake-outputs 2560x1440+0+0,2560x1440+2560+0
+
+# WORKS WITH TRIPPLE MONITORS, BUT WITHOUT NEEDING TO SPECIFY MULTIMONITOR FLAG IN VCXSRV
+# 2560x1440
+# 3840x2160
+
+# fake-outputs 2560x1440+0+0,2560x1440+2560+0,2560x1440-2560+0
+# fake-outputs 640x480-1000+0,640x480+640+50,640x480+2560+150
+# fake-outputs 640x480+-2560+1405,640x480+640+0,640x480+3840+1405
+# fake-outputs 640x480+-2560+1405,640x480+640+0,640x480+3840+1423
+# fake-outputs 2560x1440+-2560+444,3840x2160+0+0,2560x1440+3840+463
+
+# 202204281302 WORKING WITH TASKBAR, and aLL three screens okay.  LEFT SCREEN IS IFFY AND WIERD, BUT DISPLAYS OKAY
+# fake-outputs 640x480+0+0,640x480+640+0,640x480+1280+0
+
+# Last Used on 202205041021
+# fake-outputs 2560x1440+-2560+444,3840x2160+0+0,2420x1440+3980+463
+
+# fake-outputs 2560x1440+-2560+446,3840x2160+0+0,2420x1440+3980+463
+# fake-outputs 2560x1440+0+0,640x480+2560+0,640x480+3200+0
+# fake-outputs 640x480+0+446,640x480+640+0,640x480+1280+0
+
+# fake-outputs 640x480+3000+0 # DISPLAYS ON RIGHT HAND SCREEN
+# fake-outputs 640x480-500+0 # DISPLAYS ON
+# fake-outputs 1920x1200+0+0
+# fake-outputs 1920x1200+1920+0,1920x1200+1920+0,1920x1200+
+
+
+# PLASMA COMPATIBILITY, FROM: https://github.com/heckelson/i3-and-kde-plasma
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
+for_window [class="yakuake"] floating enable
+for_window [class="systemsettings"] floating enable
+for_window [class="plasmashell"] floating enable;
+for_window [class="Plasma"] floating enable; border none
+for_window [title="plasma-desktop"] floating enable; border none
+for_window [title="win7"] floating enable; border none
+for_window [class="krunner"] floating enable; border none
+for_window [class="Kmix"] floating enable; border none
+for_window [class="Klipper"] floating enable; border none
+for_window [class="Plasmoidviewer"] floating enable; border none
+for_window [class="(?i)*nextcloud*"] floating disable
+for_window [class="plasmashell" window_type="notification"] border none, move right 700px, move down 450px
+no_focus [class="plasmashell" window_type="notification"]
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
+# /PLASMA COMPATIBILITY
