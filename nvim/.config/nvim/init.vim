@@ -872,6 +872,7 @@ nnoremap <silent> gb :BufferLinePick<CR>
 " SWITCH.VIM
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " FROM: https://github.com/AndrewRadev/switch.vim
+" keybinding is gs
 let g:switch_custom_definitions =
     \ [
     \   switch#NormalizedCase(['private', 'protected', 'internal', 'public']),
@@ -879,6 +880,7 @@ let g:switch_custom_definitions =
     \   switch#NormalizedCase(['before', 'after']),
     \   switch#NormalizedCase(['to', 'from']),
     \   switch#NormalizedCase(['==', '!=']),
+    \   switch#NormalizedCase(['min', 'max']),
     \ ]
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /SWITCH.VIM

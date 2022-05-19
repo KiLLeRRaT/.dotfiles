@@ -97,8 +97,9 @@ atail() { tail -f ---disable-inotify "$@"; }
 
 # create alias ct, which addes completion of paths to other bash terminals you have running at the
 # moment, makes copying a file to PWD of another terminal easier
-alias ct='cp'
-complete -W "$(ps au | awk '$11 == "-bash" { print $2 }' | xargs pwdx | awk '{print $2}')" ct
+# alias ct='cp'
+# complete -W "$(ps au | awk '$11 == "-bash" { print $2 }' | xargs pwdx | awk '{print $2}')" ct
+source ~/.dotfiles/scripts/complete-ct.sh
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
