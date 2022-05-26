@@ -280,6 +280,7 @@ Plug 'https://github.com/stefandtw/quickfix-reflector.vim'
 
 " SWITCH TO OPPOSITE WORD, E.G. TRUE -> FALSE, etc.
 Plug 'https://github.com/AndrewRadev/switch.vim'
+Plug 'https://github.com/lambdalisue/suda.vim'
 call plug#end()
 
 
@@ -579,8 +580,8 @@ map <F6> :setlocal spell!<CR>
 " map <C-F2> :AirlineRefresh<CR>
 
 " RUN jq and use tab indents, then remove the ^M chars because vim is doing stupid things.
-vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r<cr>
-nnoremap <leader>=j :%!jq --tab .<cr>:%s/\r<cr>
+vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r/e<cr>
+nnoremap <leader>=j :%!jq --tab .<cr>:%s/\r/e<cr>
 " PASTE JSON FROM CLIPBOARD, AND FORMAT IT
 nnoremap <leader>=J ggdG"+P:%!jq --tab .<cr>:%s/\r<cr>
 " RETAB FILE
