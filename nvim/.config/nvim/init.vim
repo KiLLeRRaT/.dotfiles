@@ -434,8 +434,8 @@ nnoremap <leader>ba :bufdo bd<cr>
 " nnoremap <leader>+ :vertical resize +5<CR>
 " nnoremap <leader>- :vertical resize -5<CR>
 
-" MAKE Y behave the same as C, A, I, D
-" nnoremap Y yg$, now in Neovim 0.6.0!
+nnoremap ' `
+
 " KEEP CURSOR IN THE CENTRE OF THE SCREEN WHEN SEARCHING NEXT
 nnoremap n nzzzv
 nnoremap N Nzzzv
