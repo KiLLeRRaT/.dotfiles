@@ -244,6 +244,8 @@ Plug 'simeji/winresizer'
 Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'https://github.com/vimwiki/vimwiki'
+
 " LSP RELATED PLUGINS
 " Plug 'dense-analysis/ale' " LINTER
 " " Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -885,4 +887,15 @@ let g:switch_custom_definitions =
     \ ]
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /SWITCH.VIM
+
+
+
+" VIM WIKI
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:vimwiki_list = [{'path': '~/GBox/Notes/wiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+" :help g:vimwiki_map_prefix
+let g:vimwiki_map_prefix = '<leader>v'
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /VIM WIKI
 
