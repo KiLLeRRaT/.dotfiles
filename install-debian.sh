@@ -1,9 +1,16 @@
 #!/bin/bash
+
 pushd ~
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Adding Neovim package repository\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
+
+
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Adding Alacritty package repository\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+sudo add-apt-repository ppa:aslatter/ppa
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
