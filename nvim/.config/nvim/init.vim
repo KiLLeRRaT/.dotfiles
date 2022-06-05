@@ -708,6 +708,7 @@ map <Leader>W <cmd>:HopWordMW<cr>
 "
 " enable line numbers
 let NERDTreeShowLineNumbers=1
+let NERDTreeShowHidden=1
 
 if (has('win32'))
 	" let g:NERDTreeCopyCmd= 'copy '
