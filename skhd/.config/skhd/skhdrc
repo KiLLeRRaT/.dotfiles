@@ -1,6 +1,6 @@
-alt - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
+cmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
 
-shift + alt - w : skhd --reload
+cmd + alt - w : skhd --reload
 # close focused window
 #shift + alt - q : chunkc tiling::window --close
 
@@ -22,8 +22,8 @@ cmd + shift - 4 : yabai -m window --space 4
 cmd + shift - 5 : yabai -m window --space 5
 cmd + shift - 6 : yabai -m window --space 6
 
-ctrl + alt - t : yabai -m window --toggle zoom-parent
-ctrl + alt - f : yabai -m window --toggle zoom-fullscreen
+cmd + alt - t : yabai -m window --toggle zoom-parent
+cmd + alt - f : yabai -m window --toggle zoom-fullscreen
 
 #alt - e : yabai -m space --layout bsp
 #alt - s : yabai -m space --layout stack
