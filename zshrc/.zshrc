@@ -120,6 +120,7 @@ export NVM_DIR="$HOME/.nvm"
 
 alias l="ls -lkh"
 alias ll="ls -alkh"
+alias ls="ls -lkh"
 #set -o vi
 # bind '"jk":vi-movement-mode'
 #set bell-style none
