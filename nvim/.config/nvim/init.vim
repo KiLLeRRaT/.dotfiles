@@ -479,6 +479,22 @@ nnoremap <leader>ri< ci<<C-R><C-0><esc>
 nnoremap <leader>ri> ci><C-R><C-0><esc>
 nnoremap <leader>ri` ci`<C-R><C-0><esc>
 
+" REPLACE SELECTION WITH YANKED TEXT FROM CLIPBOARD
+nnoremap <leader>Riw ciw<C-R><C-*><esc>
+nnoremap <leader>Rit cit<C-R><C-*><esc>
+nnoremap <leader>Ri" ci"<C-R><C-*><esc>
+nnoremap <leader>Ri' ci'<C-R><C-*><esc>
+nnoremap <leader>Ri( ci)<C-R><C-*><esc>
+nnoremap <leader>Ri) ci)<C-R><C-*><esc>
+nnoremap <leader>Rib cib<C-R><C-*><esc>
+nnoremap <leader>Ri{ ci{<C-R><C-*><esc>
+nnoremap <leader>Ri} ci}<C-R><C-*><esc>
+nnoremap <leader>Ri[ ci[<C-R><C-*><esc>
+nnoremap <leader>Ri] ci]<C-R><C-*><esc>
+nnoremap <leader>Ri< ci<<C-R><C-*><esc>
+nnoremap <leader>Ri> ci><C-R><C-*><esc>
+nnoremap <leader>Ri` ci`<C-R><C-*><esc>
+
 nnoremap <leader>raw caw<C-R><C-0><esc>
 nnoremap <leader>rat cat<C-R><C-0><esc>
 nnoremap <leader>ra" ca"<C-R><C-0><esc>
@@ -493,6 +509,21 @@ nnoremap <leader>ra] ca]<C-R><C-0><esc>
 nnoremap <leader>ra< ca<<C-R><C-0><esc>
 nnoremap <leader>ra> ca><C-R><C-0><esc>
 nnoremap <leader>ra` ca`<C-R><C-0><esc>
+
+nnoremap <leader>Raw caw<C-R><C-*><esc>
+nnoremap <leader>Rat cat<C-R><C-*><esc>
+nnoremap <leader>Ra" ca"<C-R><C-*><esc>
+nnoremap <leader>Ra' ca'<C-R><C-*><esc>
+nnoremap <leader>Ra( ca)<C-R><C-*><esc>
+nnoremap <leader>Ra) ca)<C-R><C-*><esc>
+nnoremap <leader>Rab cab<C-R><C-*><esc>
+nnoremap <leader>Ra{ ca{<C-R><C-*><esc>
+nnoremap <leader>Ra} ca}<C-R><C-*><esc>
+nnoremap <leader>Ra[ ca[<C-R><C-*><esc>
+nnoremap <leader>Ra] ca]<C-R><C-*><esc>
+nnoremap <leader>Ra< ca<<C-R><C-*><esc>
+nnoremap <leader>Ra> ca><C-R><C-*><esc>
+nnoremap <leader>Ra` ca`<C-R><C-*><esc>
 " /REPLACE SELECTION WITH YANKED TEXT
 
 " BELOW COMMENTED OUT BECAUSE IT BREAKS THE ABOVE...
