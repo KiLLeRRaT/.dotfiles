@@ -91,6 +91,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -lkh'
+alias ls='ls -lkh'
 alias brave='brave-browser-stable &> /dev/null &'
 
 atail() { tail -f ---disable-inotify "$@"; }
