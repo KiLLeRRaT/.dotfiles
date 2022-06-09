@@ -62,9 +62,12 @@ New-Item -ItemType Junction -Force `
 
 Write-Host Configuring Oh My Posh
 Write-Host ----------------------------------------
-Install-Module oh-my-posh -Scope CurrentUser
-Install-Module posh-git -Scope CurrentUser
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:POSH_PATH", "Machine")
+# Install-Module oh-my-posh -Scope CurrentUser
+# Install-Module posh-git -Scope CurrentUser
+# [Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:POSH_PATH", "Machine")
+
+# winget install oh-my-posh
+Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://ohmyposh.dev/install.ps1'))
 New-Item -ItemType Junction -Force -Path "$home\.omp" -Target "$home\.dotfiles\oh-my-posh\.omp"
 
 

@@ -1,7 +1,8 @@
 Import-Module posh-git
 #Set-PoshPrompt -Theme Paradox
 # Set-PoshPrompt -Theme ~/.mytheme.tokyonight.omp.yaml
-Set-PoshPrompt -Theme ~/.omp/themes/tokyonight.omp.yaml
+# Set-PoshPrompt -Theme ~/.omp/themes/tokyonight.omp.yaml
+oh-my-posh init pwsh --config ~/.omp/themes/tokyonight.omp.yaml | Invoke-Expression
 
 # Chocolatey profile
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
@@ -22,6 +23,7 @@ Set-PSReadlineOption -EditMode vi
 
 # Bash style completion, AWESOME for completion of paths and directories!!!
 Set-PSReadLineKeyHandler -Key Tab -Function Complete
+Set-PSReadLineKeyHandler -Key Ctrl+r -Function ReverseSearchHistory
 
 # FROM: https://github.com/PowerShell/PSReadLine/issues/759#issuecomment-518363364
 # Set-PSReadLineKeyHandler -Chord 'j' -ScriptBlock {
