@@ -88,10 +88,13 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -lkh'
-alias ls='ls -lkh'
+alias ls='ls -lkh --color=auto'
+# alias ll='ls -alF'
+# alias la='ls -A'
+# alias l='ls -lkh'
+alias ll='ls -aF'
+# alias la='ls -A'
+alias l='ls'
 alias brave='brave-browser-stable &> /dev/null &'
 
 atail() { tail -f ---disable-inotify "$@"; }
