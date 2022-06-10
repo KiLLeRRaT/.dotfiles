@@ -9,12 +9,33 @@ blocks:
           style: powerline
           template: ' {{ if gt .Code 0 }} {{ .Meaning }}{{ else }}{{ end }} '
           type: exit
-        - background: black
+        # - background: black
+        - background: '#3b4261'
           foreground: '#A57706'
           powerline_symbol: 
           style: powerline
           template: '  '
           type: root
+
+        - background: '#bb9af7'
+          foreground: '#FFFFFF'
+          powerline_symbol: 
+          properties:
+            folder_icon: 
+            style: full
+          style: powerline
+          template: ' {{ if .SSHSession }}{{ .UserName }}@{{ .HostName }} {{ end }}'
+          type: session
+
+        # {
+        #   "background": "#ffffff",
+        #   "foreground": "#100e23",
+        #   "powerline_symbol": "\ue0b0",
+        # },
+
+
+
+
         - background: '#bb9af7'
           foreground: '#FFFFFF'
           powerline_symbol: 
