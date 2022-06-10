@@ -63,12 +63,16 @@ cmp.setup {
 }
 
 -- SETUP AND RUN LSP INSTALLER
+local ensure_installed = { "bashls", "cssls", "dockerls", "eslint", "html", "jsonls", "omnisharp", "pyright", "sumneko_lua", "tflint", "tsserver", "yamlls" }
+if vim.fn.has('win32') == 1 then
+	table.insert(ensure_installed, "powershell_es")
+end
 require("nvim-lsp-installer").setup {
-    ensure_installed = { "bashls", "cssls", "dockerls", "eslint", "html", "jsonls", "omnisharp", "powershell_es", "pyright", "sumneko_lua", "tflint", "tsserver", "yamlls" }
+    ensure_installed = ensure_installed
 }
 
 -- PATH SETUP BASED ON OS
-local omniSharpPath
+-- local omniSharpPath
 local netcoredbgPath
 
 -- if vim.fn.has('win32') == 1 then
@@ -157,7 +161,9 @@ require'lspconfig'.jsonls.setup {
 -- POWERSHELL
 -- TODO:
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#powershell_es
-require'lspconfig'.powershell_es.setup{}
+if vim.fn.has('win32') == 1 then
+	require'lspconfig'.powershell_es.setup{}
+end
 
 -- TSSERVER
 -- npm install -g typescript typescript-language-server
