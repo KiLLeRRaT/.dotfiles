@@ -3,43 +3,49 @@
 blocks:
     - alignment: left
       segments:
-        - background: '#f7768e'
+        - type: exit
+          background: '#f7768e'
           foreground: '#ffffff'
           style: powerline
           template: ' {{ if gt .Code 0 }} {{ .Meaning }}{{ else }}{{ end }} '
-          type: exit
-        - background: '#3b4261'
+
+        - type: root
+          background: '#3b4261'
           foreground: '#A57706'
           powerline_symbol: 
           style: powerline
           template: '  '
-          type: root
 
-        - background: '#bb9af7'
-          foreground: '#FFFFFF'
+        - type: session
+          background: '#c792ea'
+          # foreground: '#FFFFFF'
+          foreground: '#3b4261'
           powerline_symbol: 
           properties:
             folder_icon: 
             style: full
           style: powerline
           template: ' {{ if .SSHSession }}{{ .UserName }}@{{ .HostName }} {{ end }}'
-          type: session
-        - background: '#bb9af7'
-          foreground: '#FFFFFF'
+
+        - type: path
+          background: '#c792ea'
+          foreground: '#3b4261'
+          # foreground: '#FFFFFF'
           powerline_symbol: 
           properties:
             folder_icon: 
             style: full
           style: powerline
           template: ' {{ .Path }} '
-          type: path
-        - background: '#3b4261'
+
+        - type: git
+          background: '#3b4261'
+          foreground: '#c792ea'
           background_templates:
             - '{{ if or (.Working.Changed) (.Staging.Changed) }}#545c7e{{ end }}'
             - '{{ if and (gt .Ahead 0) (gt .Behind 0) }}#f7768e{{ end }}'
             - '{{ if gt .Ahead 0 }}#f7768e{{ end }}'
             - '{{ if gt .Behind 0 }}#C61C6F{{ end }}'
-          foreground: '#ffffff'
           powerline_symbol: 
           properties:
             fetch_stash_count: true
@@ -47,51 +53,49 @@ blocks:
             fetch_upstream_icon: false
           style: powerline
           template: ' {{ .HEAD }} {{ .BranchStatus }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0}}  {{ .StashCount }}{{ end }}{{ if gt .WorktreeCount 0}}  {{ .WorktreeCount }}{{ end }} '
-          type: git
-        - background: '#906cff'
+
+        - type: python
+          background: '#906cff'
           foreground: '#100e23'
           powerline_symbol: 
           style: powerline
           template: '  {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} '
-          type: python
       type: prompt
+
     - alignment: right
       segments:
-        # - foreground: '#FFFFFF'
-        #   style: plain
-        #   template: '[{{ .CurrentDate | date .Format }}]'
-        #   type: time
 
-        - background: '#3b4261'
-          foreground: '#FFFFFF'
+        - type: executiontime
+          background: '#3b4261'
+          foreground: '#c792ea'
           style: diamond
           leading_diamond: 
-          # trailing_diamond: 
           template: '{{ .FormattedMs }} '
-          type: executiontime
+
           properties:
             threshold: 500
             style: "austin"
             always_enabled: true
-        - background: '#bb9af7'
-          foreground: '#FFFFFF'
+        - type: time
+          background: '#c792ea'
+          foreground: '#3b4261'
           style: diamond
-          # leading_diamond: 
           trailing_diamond: 
           template: ' {{ .CurrentDate | date .Format }}'
-          type: time
       type: prompt
 
 
-
-    - alignment: left
+    # Adds a newline character after my statuslines
+    - type: prompt
+      alignment: left
       newline: true
       segments:
         - foreground: '#007ACC'
           style: plain
           template: '❯ '
           type: text
-      type: prompt
+
+
 console_title_template: '{{if .Root }}Adm:{{end}}{{ .PWD }}'
 version: 2
 
