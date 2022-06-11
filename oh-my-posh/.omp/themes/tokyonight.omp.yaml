@@ -3,13 +3,11 @@
 blocks:
     - alignment: left
       segments:
-        # - background: '#D11C24'
         - background: '#f7768e'
           foreground: '#ffffff'
           style: powerline
           template: ' {{ if gt .Code 0 }} {{ .Meaning }}{{ else }}{{ end }} '
           type: exit
-        # - background: black
         - background: '#3b4261'
           foreground: '#A57706'
           powerline_symbol: 
@@ -26,16 +24,6 @@ blocks:
           style: powerline
           template: ' {{ if .SSHSession }}{{ .UserName }}@{{ .HostName }} {{ end }}'
           type: session
-
-        # {
-        #   "background": "#ffffff",
-        #   "foreground": "#100e23",
-        #   "powerline_symbol": "\ue0b0",
-        # },
-
-
-
-
         - background: '#bb9af7'
           foreground: '#FFFFFF'
           powerline_symbol: 
@@ -51,7 +39,6 @@ blocks:
             - '{{ if and (gt .Ahead 0) (gt .Behind 0) }}#f7768e{{ end }}'
             - '{{ if gt .Ahead 0 }}#f7768e{{ end }}'
             - '{{ if gt .Behind 0 }}#C61C6F{{ end }}'
-          # foreground: '#bb9af7'
           foreground: '#ffffff'
           powerline_symbol: 
           properties:
@@ -70,11 +57,33 @@ blocks:
       type: prompt
     - alignment: right
       segments:
-        - foreground: '#FFFFFF'
-          style: plain
-          template: '[{{ .CurrentDate | date .Format }}]'
+        # - foreground: '#FFFFFF'
+        #   style: plain
+        #   template: '[{{ .CurrentDate | date .Format }}]'
+        #   type: time
+
+        - background: '#3b4261'
+          foreground: '#FFFFFF'
+          style: diamond
+          leading_diamond: 
+          # trailing_diamond: 
+          template: '{{ .FormattedMs }} '
+          type: executiontime
+          properties:
+            threshold: 500
+            style: "austin"
+            always_enabled: true
+        - background: '#bb9af7'
+          foreground: '#FFFFFF'
+          style: diamond
+          # leading_diamond: 
+          trailing_diamond: 
+          template: ' {{ .CurrentDate | date .Format }}'
           type: time
       type: prompt
+
+
+
     - alignment: left
       newline: true
       segments:
