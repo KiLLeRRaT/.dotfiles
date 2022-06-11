@@ -101,6 +101,7 @@ require'lspconfig'.omnisharp.setup {
 	-- 	end
 	-- end,
 	-- cmd = { omniSharpPath, '--languageserver', '--hostPID', tostring(pid), '--loglevel', 'debug' },
+	-- cmd = { 'C:/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.38.2/OmniSharp.exe', '--languageserver', '--hostPID', tostring(pid), '--loglevel', 'debug' },
 }
 -- -- /OMNISHARP LSP CONFIG
 
