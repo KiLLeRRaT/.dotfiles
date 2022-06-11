@@ -1,0 +1,159 @@
+gaps:
+  inner_gap: 6
+  outer_gap: 6
+
+bar:
+  height: 30
+  position: "top"
+  opacity: 1.0
+  background: "#101010"
+  foreground: "white"
+  font_family: "Segoe UI"
+  font_size: "13"
+  padding: "1 6 1 6"
+  components_left:
+    - type: "workspaces"
+      focused_workspace_background: "#8192B3"
+      displayed_workspace_background: "#42403e"
+      default_workspace_background: "#101010"
+  components_right:
+    - type: "clock"
+      time_formatting: "HH:mm:ss  ddd MMM d"
+
+workspaces:
+  - name: 1
+    # display_name: "Main"
+  - name: 2
+  - name: 3
+  - name: 4
+  - name: 5
+  - name: 6
+  - name: 7
+  - name: 8
+  - name: 9
+
+window_rules:
+  # Task Manager requires admin privileges to manage and should be ignored unless running the WM as admin.
+  - command: "ignore"
+    match_process_name: "Taskmgr"
+
+  # - command: "ignore"
+  #   match_process_name: "brave"
+    # match_title: "/^chrome.*/"
+
+  # Launches system dialogs as floating by default (eg. File Explorer save/open dialog).
+  - command: "set floating"
+    match_class_name: "#32770"
+
+  # Some applications (eg. Steam) have borders that extend past the normal border size.
+  - command: "resize borders 0px -7px -7px -7px"
+    match_process_name: "steam"
+
+keybindings:
+  - command: "focus left"
+    bindings: ["Alt+H", "Alt+Left"]
+
+  - command: "focus right"
+    bindings: ["Alt+L", "Alt+Right"]
+
+  - command: "focus up"
+    bindings: ["Alt+K", "Alt+Up"]
+
+  - command: "focus down"
+    bindings: ["Alt+J", "Alt+Down"]
+
+  - command: "move left"
+    bindings: ["Alt+Shift+H", "Alt+Shift+Left"]
+
+  - command: "move right"
+    bindings: ["Alt+Shift+L", "Alt+Shift+Right"]
+
+  - command: "move up"
+    bindings: ["Alt+Shift+K", "Alt+Shift+Up"]
+
+  - command: "move down"
+    bindings: ["Alt+Shift+J", "Alt+Shift+Down"]
+
+  - command: "resize width -2%"
+    binding: "Alt+U"
+
+  - command: "resize width +2%"
+    binding: "Alt+P"
+
+  - command: "resize height +2%"
+    binding: "Alt+O"
+
+  - command: "resize height -2%"
+    binding: "Alt+I"
+
+  - command: "layout horizontal"
+    binding: "Alt+Shift+V"
+
+  - command: "layout vertical"
+    binding: "Alt+V"
+
+  - command: "toggle focus mode"
+    binding: "Alt+Space"
+
+  - command: "toggle floating"
+    binding: "Alt+Shift+Space"
+
+  - command: "close"
+    binding: "Alt+Shift+Q"
+
+  - command: "exit wm"
+    binding: "Alt+Shift+E"
+
+  - command: "focus workspace 1"
+    binding: "Alt+1"
+
+  - command: "focus workspace 2"
+    binding: "Alt+2"
+
+  - command: "focus workspace 3"
+    binding: "Alt+3"
+
+  - command: "focus workspace 4"
+    binding: "Alt+4"
+
+  - command: "focus workspace 5"
+    binding: "Alt+5"
+
+  - command: "focus workspace 6"
+    binding: "Alt+6"
+
+  - command: "focus workspace 7"
+    binding: "Alt+7"
+
+  - command: "focus workspace 8"
+    binding: "Alt+8"
+
+  - command: "focus workspace 9"
+    binding: "Alt+9"
+
+  - commands: ["move to workspace 1", "focus workspace 1"]
+    binding: "Alt+Shift+1"
+
+  - commands: ["move to workspace 2", "focus workspace 2"]
+    binding: "Alt+Shift+2"
+
+  - commands: ["move to workspace 3", "focus workspace 3"]
+    binding: "Alt+Shift+3"
+
+  - commands: ["move to workspace 4", "focus workspace 4"]
+    binding: "Alt+Shift+4"
+
+  - commands: ["move to workspace 5", "focus workspace 5"]
+    binding: "Alt+Shift+5"
+
+  - commands: ["move to workspace 6", "focus workspace 6"]
+    binding: "Alt+Shift+6"
+
+  - commands: ["move to workspace 7", "focus workspace 7"]
+    binding: "Alt+Shift+7"
+
+  - commands: ["move to workspace 8", "focus workspace 8"]
+    binding: "Alt+Shift+8"
+
+  - commands: ["move to workspace 9", "focus workspace 9"]
+    bindings: ["Alt+Shift+9"]
