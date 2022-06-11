@@ -89,12 +89,8 @@ fi
 
 # some more ls aliases
 alias ls='ls -lkh --color=auto'
-# alias ll='ls -alF'
-# alias la='ls -A'
-# alias l='ls -lkh'
-alias ll='ls -aF'
-# alias la='ls -A'
-alias l='ls'
+alias ll="ls -alkhF"
+alias l="ls -1"
 alias brave='brave-browser-stable &> /dev/null &'
 
 atail() { tail -f ---disable-inotify "$@"; }
