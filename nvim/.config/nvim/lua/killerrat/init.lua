@@ -13,3 +13,5 @@ if pcall(require, 'plenary') then
 end
 
 require("killerrat.telescope")
+require("killerrat.debugging")
+

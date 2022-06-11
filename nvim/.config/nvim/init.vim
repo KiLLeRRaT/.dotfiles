@@ -247,11 +247,6 @@ Plug 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'https://github.com/vimwiki/vimwiki'
 
 " LSP RELATED PLUGINS
-" Plug 'dense-analysis/ale' " LINTER
-" " Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'neoclide/coc.nvim', {'branch': 'master'} " CHANGED TO MASTER ON 202203281043
-" Plug 'fannheyward/telescope-coc.nvim'
-
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp' " autocompletion framework
 Plug 'hrsh7th/cmp-nvim-lsp' " LSP autocompletion provider
@@ -261,11 +256,6 @@ Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 Plug 'williamboman/nvim-lsp-installer'
 " https://github.com/hrsh7th?tab=repositories
 
-" https://github.com/nanotee/sqls.nvim
-" Plug 'nanotee/sqls.nvim'
-
-" Plug 'nvim-lua/completion-nvim'
-" Plug 'nvim-lua/diagnostic-nvim'
 " /LSP RELATED PLUGINS
 
 " SQL
@@ -274,7 +264,10 @@ Plug 'https://github.com/kristijanhusak/vim-dadbod-ui'
 Plug 'https://github.com/kristijanhusak/vim-dadbod-completion'
 
 " DEBUGGERS
-" Plug 'puremourning/vimspector' NEED TO READ ABOUT IT AND CONFIG IT: https://github.com/puremourning/vimspector#quick-start
+" Plug 'https://github.com/leoluz/nvim-dap-go'
+Plug 'https://github.com/rcarriga/nvim-dap-ui'
+Plug 'https://github.com/theHamsta/nvim-dap-virtual-text'
+Plug 'https://github.com/nvim-telescope/telescope-dap.nvim'
 Plug 'https://github.com/mfussenegger/nvim-dap'
 
 " Modify files right in the quick fix list
@@ -645,7 +638,10 @@ nnoremap <leader>fF :execute 'Telescope find_files default_text=' . "'" . expand
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 " nnoremap <expr> <leader>fG ':Telescope live_grep<cr>' . expand('<cword>')
 nnoremap <leader>fG :execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>
-nnoremap <leader>fR <cmd>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<cr>
+
+" nnoremap <leader>fR <cmd>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<cr>
+nnoremap <leader>fR <cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>
+
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fk <cmd>Telescope help_tags<cr>
 nnoremap <leader>fm <cmd>Telescope keymaps<cr>

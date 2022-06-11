@@ -75,18 +75,13 @@ require("nvim-lsp-installer").setup {
 -- local omniSharpPath
 local netcoredbgPath
 
--- if vim.fn.has('win32') == 1 then
--- 	-- omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/omnisharp-win-x64-net6.0-1.38.2/OmniSharp.exe'
--- 	-- omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/omnisharp-win-x64-1.38.2/OmniSharp.exe'
--- 	-- netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/netcoredbf-win64-2.0.0-895/netcoredbg.exe'
--- 	omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.38.2/OmniSharp.exe'
--- 	netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/netcoredbf/netcoredbf-win64-2.0.0-895/netcoredbg.exe'
--- elseif vim.fn.has('mac') == 1 then
--- 	omniSharpPath = vim.fn.expand('~/Applications/omnisharp-osx-x64-net6.0/OmniSharp')
--- elseif vim.fn.has('linux') == 1 then
--- 	-- omniSharpPath = vim.fn.expand('~/.omnisharp/OmniSharp')
--- 	omniSharpPath = vim.fn.expand('~/.omnisharp/run')
--- end
+if vim.fn.has('win32') == 1 then
+	netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/netcoredbf-win64-2.0.0-895/netcoredbg.exe'
+elseif vim.fn.has('mac') == 1 then
+	netcoredbgPath = '/Users/albert/GBox/Applications/Tools/Applications/Neovim/netcoredbg/netcoredbg-osx-amd64-2.0.0-915/netcoredbg'
+elseif vim.fn.has('linux') == 1 then
+	netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/netcoredbf-win64-2.0.0-895/netcoredbg.exe'
+end
 -- -- print( "Features: " .. vim.fn.has('win32') .. vim.fn.has('mac') .. vim.fn.has('linux'))
 -- -- /PATH SETUP BASED ON OS
 
@@ -97,14 +92,14 @@ require'lspconfig'.omnisharp.setup {
   on_attach = function(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   end,
-	on_new_config = function(new_config, new_root_dir)
-		if new_root_dir then
-			table.insert(new_config.cmd, '-s')
-			table.insert(new_config.cmd, new_root_dir)
-			-- table.insert(new_config.cmd, new_root_dir .. '/Sandfield.TIL.Orca.sln')
-			-- table.insert(new_config.cmd, new_root_dir .. '/Sandfield.POR.Portal.sln')
-		end
-	end,
+	-- on_new_config = function(new_config, new_root_dir)
+	-- 	if new_root_dir then
+	-- 		table.insert(new_config.cmd, '-s')
+	-- 		table.insert(new_config.cmd, new_root_dir)
+	-- 		-- table.insert(new_config.cmd, new_root_dir .. '/Sandfield.TIL.Orca.sln')
+	-- 		-- table.insert(new_config.cmd, new_root_dir .. '/Sandfield.POR.Portal.sln')
+	-- 	end
+	-- end,
 	-- cmd = { omniSharpPath, '--languageserver', '--hostPID', tostring(pid), '--loglevel', 'debug' },
 }
 -- -- /OMNISHARP LSP CONFIG
@@ -207,7 +202,8 @@ dap.configurations.cs = {
     name = "launch - netcoredbg",
     request = "launch",
     program = function()
-        return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+        -- return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+        return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '', 'file')
     end,
   },
 }
