@@ -3,14 +3,14 @@ gaps:
   outer_gap: 6
 
 bar:
-  height: 30
+  height: 40
   position: "top"
   opacity: 1.0
   background: "#101010"
   # foreground: "white"
   foreground: '#3b4261'
   font_family: 'Segoe UI'
-  font_size: '13'
+  font_size: '12'
   # font_style: 'bold'
   padding: '1 6 1 6'
   components_left:
@@ -31,15 +31,20 @@ bar:
 
 workspaces:
   - name: 1
-    # display_name: "Main"
+    display_name: "1:Chat"
   - name: 2
+    display_name: "2:Code"
   - name: 3
+    display_name: "3:VS"
   - name: 4
+    display_name: "4:Test"
   - name: 5
   - name: 6
   - name: 7
   - name: 8
+    display_name: "8:Email"
   - name: 9
+    display_name: "9:Search"
 
 window_rules:
   # Task Manager requires admin privileges to manage and should be ignored unless running the WM as admin.
