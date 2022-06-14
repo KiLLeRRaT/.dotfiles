@@ -137,6 +137,7 @@ echo -e "\033[32m ----------------------------------------\033[0m"
 # sudo vim /etc/default/keyboard
 # XKBOPTIONS="ctrl:swapcaps"
 # sudo dpkg-reconfigure keyboard-configuration
-
+# PROBABLY TRY THIS IN THE FUTURE, SO THAT WE CAN KEEP CONTROL AS CONTROL AND MAKE CAPSLOCK CONTROL
+# TOO, https://askubuntu.com/a/418773
 
 popd
