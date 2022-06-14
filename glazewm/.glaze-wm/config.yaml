@@ -4,14 +4,16 @@ gaps:
 
 bar:
   height: 40
-  position: "top"
+  position: 'top'
   opacity: 1.0
-  background: "#101010"
+  # background: "#101010"
+  background: '#3b4261'
   # foreground: "white"
-  foreground: '#3b4261'
+  # foreground: '#3b4261'
+  foreground: '#bb9af7'
   font_family: 'Segoe UI'
+  font_weight: 'Bold'
   font_size: '12'
-  # font_style: 'bold'
   padding: '1 6 1 6'
   components_left:
     - type: 'workspaces'
@@ -23,7 +25,9 @@ bar:
       focused_workspace_background: '#3b4261'
       focused_workspace_foreground: '#bb9af7'
       displayed_workspace_background: '#bb9af7'
-      default_workspace_background: '#101010'
+      displayed_workspace_foreground: '#3b4261'
+      # default_workspace_background: '#101010'
+      default_workspace_background: '#3b4261'
 
   components_right:
     - type: 'clock'
