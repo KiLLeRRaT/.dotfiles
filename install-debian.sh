@@ -130,4 +130,13 @@ nvm install --lts
 nvm use --lts
 
 
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Swap Control and Capslock keys\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+# FROM: https://askubuntu.com/a/418773
+# sudo vim /etc/default/keyboard
+# XKBOPTIONS="ctrl:swapcaps"
+# sudo dpkg-reconfigure keyboard-configuration
+
+
 popd
