@@ -170,4 +170,4 @@ keybindings:
     binding: "Alt+Shift+8"
 
   - commands: ["move to workspace 9", "focus workspace 9"]
-    bindings: "Alt+Shift+9"
+    bindings: ["Alt+Shift+9"]
