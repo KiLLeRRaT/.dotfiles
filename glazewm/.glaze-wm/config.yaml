@@ -6,11 +6,14 @@ bar:
   height: 40
   position: 'top'
   opacity: 1.0
+
   # background: "#101010"
   background: '#3b4261'
+
   # foreground: "white"
   # foreground: '#3b4261'
   foreground: '#bb9af7'
+
   font_family: 'Segoe UI'
   font_weight: 'Bold'
   font_size: '12'
@@ -22,10 +25,12 @@ bar:
       # default_workspace_background: "#101010"
 
       # TOKYO NIGHT ATTEMPT
-      focused_workspace_background: '#3b4261'
-      focused_workspace_foreground: '#bb9af7'
+      focused_workspace_background: '#bb9af7'
+      focused_workspace_foreground: '#3b4261'
+
       displayed_workspace_background: '#bb9af7'
       displayed_workspace_foreground: '#3b4261'
+
       # default_workspace_background: '#101010'
       default_workspace_background: '#3b4261'
 
@@ -62,6 +67,12 @@ window_rules:
   # Launches system dialogs as floating by default (eg. File Explorer save/open dialog).
   - command: 'set floating'
     match_class_name: '#32770'
+
+  - command: 'set floating'
+    match_title: '/^chrome.*/'
+
+  - command: 'set floating'
+    match_title: '/^New TimeSheetEntry.*/'
 
   # Some applications (eg. Steam) have borders that extend past the normal border size.
   - command: 'resize borders 0px -7px -7px -7px'

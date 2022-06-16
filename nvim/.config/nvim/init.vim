@@ -43,7 +43,7 @@ set splitright splitbelow " Open splits in the right and below
 set listchars=tab:\|\ ,nbsp:_,trail:·
 " " set listchars=tab:🠞\ ,nbsp:_,trail:·
 set list
-
+set nowrap
 set mouse=a
 
 " FROM: https://vim.fandom.com/wiki/File_format
