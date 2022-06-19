@@ -113,7 +113,7 @@ source $ZSH/oh-my-zsh.sh
 # if command -v pyenv 1>/dev/null 2>&1; then
 #   eval "$(pyenv init -)"
 # fi
-if [ $TERM_PROGRAM != "Apple_Terminal" ]; then
+if [[ $TERM_PROGRAM != "Apple_Terminal" ]]; then
 	eval "$(oh-my-posh init zsh --config ~/.omp/themes/tokyonight.omp.yaml)"
 fi
 
