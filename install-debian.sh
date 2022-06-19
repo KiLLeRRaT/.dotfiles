@@ -85,7 +85,8 @@ fi
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Running stow\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
-STOW_FOLDERS=i3,nvim,bashrc,oh-my-posh,tmux
+# STOW_FOLDERS=i3,nvim,bashrc,oh-my-posh,tmux
+STOW_FOLDERS=bashrc,fonts,i3,inputrc,nvim,oh-my-posh,tmux
 pushd ~/.dotfiles
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
