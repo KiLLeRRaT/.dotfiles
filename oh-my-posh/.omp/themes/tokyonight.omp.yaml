@@ -70,7 +70,7 @@ blocks:
           foreground: '#c792ea'
           style: diamond
           leading_diamond: 
-          template: '{{ .FormattedMs }} '
+          template: ' {{ .FormattedMs }} '
 
           properties:
             threshold: 500

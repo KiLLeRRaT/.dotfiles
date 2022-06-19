@@ -135,3 +135,7 @@ export NVM_DIR="$HOME/.nvm"
 
 set -o vi
 bind '"jk":vi-movement-mode'
+
+# BASH CASE SENSITIVE COMPLETION, SEE INPUT RC!
+# AND: https://askubuntu.com/a/87066
+

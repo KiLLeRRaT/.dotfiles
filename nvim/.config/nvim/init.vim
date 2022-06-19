@@ -912,6 +912,7 @@ let g:switch_custom_definitions =
     \   switch#NormalizedCase(['to', 'from']),
     \   switch#NormalizedCase(['==', '!=']),
     \   switch#NormalizedCase(['min', 'max']),
+    \   switch#NormalizedCase(['UAT', 'PROD']),
     \ ]
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /SWITCH.VIM
