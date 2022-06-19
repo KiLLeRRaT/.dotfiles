@@ -124,6 +124,7 @@ export NVM_DIR="$HOME/.nvm"
 alias ls='ls -lkh --color=auto'
 alias ll="ls -alkhF"
 alias l="ls -1"
+alias tmux='tmux -2'
 
 #set -o vi
 # bind '"jk":vi-movement-mode'
