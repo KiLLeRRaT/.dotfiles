@@ -30,11 +30,14 @@ sudo apt install -y curl && \
 sudo apt install -y stow && \
 sudo apt install -y neovim && \
 sudo apt install -y xclip && \
-# sudo apt install -y nodejs && \
-# sudo apt install -y npm && \
 sudo apt install -y ripgrep && \
 sudo apt install -y fd-find && \
-sudo apt install -y feh
+sudo apt install -y feh && \
+sudo apt install -y build-essential
+
+# config fd
+[ -d ~/.local/bin ] || mkdir -p ~/.local/bin
+ln -s $(which fdfind) ~/.local/bin/fd
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
@@ -85,7 +88,7 @@ fi
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Running stow\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
-# STOW_FOLDERS=i3,nvim,bashrc,oh-my-posh,tmux
+[ -f ~/.bashrc ] && mv ~/.bashrc ~/.bashrc.bak
 STOW_FOLDERS=bashrc,fonts,i3,inputrc,nvim,oh-my-posh,tmux
 pushd ~/.dotfiles
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
