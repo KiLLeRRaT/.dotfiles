@@ -46,9 +46,6 @@ set list
 set nowrap
 set mouse=a
 
-" FROM: https://vim.fandom.com/wiki/File_format
-" set ffs=dos,unix
-
 " SET SHELL TO POWERSHELL
 if (has('win32'))
 	" let &shell = has('win32') ? 'powershell' : 'pwsh'
@@ -79,22 +76,9 @@ tnoremap <C-v><Esc> <Esc>
 " tnoremap <C-w>k <C-\><C-n><C-w>k
 " tnoremap <C-w>l <C-\><C-n><C-w>l
 
-" NEOVIM CLIENT SERVER STUFF, SEE "C:\GBox\Applications\Tools\Scripts\Aliases\nvim.bat"
-" silent execute "!echo " . v:servername . " > C:\\Users\\Albert\\AppData\\Local\\nvim-data\\servername.txt"
-
-" Highlight Shady Characters
-" match Error / \+$/ " TRAILING SPACE
-" match Error /\t\+$/ " TRAILING TAB
-" match Error /^\t*\zs \+/ " SPACES INSTEAD OF TABS
-
 " MAKE SURE TO KEEP YOUR COLOR SCHEME AFTER LOADING ANOTHER SCHEME LATER DOWN
 " THE CONFIG
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-" call matchadd('ExtraWhitespace', '/\s\+\%#\@<!$/', 100)
-" call matchadd('ExtraWhitespace', '/^\t*\zs \+/', 100) " SHOW SPACES AT THE
-" START OF LINES
-
-
 
 augroup WhitespaceMatch
   " Remove ALL autocommands for the WhitespaceMatch group.
@@ -117,39 +101,9 @@ endfunction
 
 
 
-
-
-
-
-
-" highlight ExtraWhitespace ctermbg=red guibg=red
-" augroup WhitespaceMatch
-"   " Remove ALL autocommands for the WhitespaceMatch group.
-"   autocmd!
-"   autocmd BufWinEnter * let w:whitespace_match_number = matchadd('ExtraWhitespace', '/^\t*\zs \+/')
-"   autocmd BufWinEnter * let w:whitespace_match_number2 = matchadd('ExtraWhitespace', '/^\t*\zs \+/')
-"   autocmd InsertEnter * call s:ToggleWhitespaceMatch('i')
-"   autocmd InsertLeave * call s:ToggleWhitespaceMatch('n')
-" augroup END
-" function! s:ToggleWhitespaceMatch(mode)
-"   let pattern = (a:mode == 'i') ? '/^\t*\zs \+/' : '/^\t*\zs \+/'
-"   let pattern2 = (a:mode == 'i') ? '/^\t*\zs \+/' : '/^\t*\zs \+/'
-"   if exists('w:whitespace_match_number')
-"     call matchdelete(w:whitespace_match_number)
-"     call matchdelete(w:whitespace_match_number2)
-"     call matchadd('ExtraWhitespace', pattern, 10, w:whitespace_match_number)
-"     call matchadd('ExtraWhitespace', pattern2, 10, w:whitespace_match_number2)
-"   else
-"     " Something went wrong, try to be graceful.
-"     let w:whitespace_match_number =  matchadd('ExtraWhitespace', pattern)
-"     let w:whitespace_match_number2 =  matchadd('ExtraWhitespace', pattern2)
-"   endif
-" endfunction
-
-
 " SHOW LONG LINES
 highlight ColorColumn cterm=reverse ctermfg=142 ctermbg=235 gui=reverse guifg=#b8bb26 guibg=#282828
-call matchadd('ColorColumn', '\%81v', 100)
+call matchadd('ColorColumn', '\%101v', 100)
 
 " https://superuser.com/a/356865/69729
 " autocmd Filetype * :match Error /^\t*\zs \+/
@@ -157,7 +111,7 @@ call matchadd('ColorColumn', '\%81v', 100)
 " autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab | match none
 
 " HIGHLIGHT YANKED TEXT
-autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup=(vim.fn['hlexists']('HighlightedyankRegion') > 0 and 'HighlightedyankRegion' or 'IncSearch'), timeout=500}
+autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup=(vim.fn['hlexists']('HighlightedyankRegion') > 0 and 'HighlightedyankRegion' or 'IncSearch'), timeout=700}
 
 " Nice menu when typing `:find *.py`
 set wildmode=longest,list,full
@@ -181,24 +135,24 @@ set wildignore+=**/.git/*
 
 " INSTALL VIM PLUGGED
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if (has('win32'))
-	" WINDOWS
-	" let plugPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/data/nvim-data/site/autoload/plug.vim'
-	" if empty(glob('~/AppData/Local/nvim-data/site/autoload/plug.vim'))
-	if empty(glob(stdpath('data') . '/site/autoload/plug.vim'))
-			silent !curl -fLo glob(stdpath('data') . '/site/autoload/plug.vim') --create-dirs
-					\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-			"autocmd VimEnter * PlugInstall --sync | source ~/AppData/Local/nvim/init.vim
-			autocmd VimEnter * PlugInstall --sync | source stdpath('config') . '/init.vim'
-	endif
-elseif (has('mac') || has('unix'))
-	" LINUX
-	let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-	if empty(glob(data_dir . '/autoload/plug.vim'))
-		silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-	endif
-endif
+"if (has('win32'))
+"	" WINDOWS
+"	" let plugPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/data/nvim-data/site/autoload/plug.vim'
+"	" if empty(glob('~/AppData/Local/nvim-data/site/autoload/plug.vim'))
+"	if empty(glob(stdpath('data') . '/site/autoload/plug.vim'))
+"			silent !curl -fLo glob(stdpath('data') . '/site/autoload/plug.vim') --create-dirs
+"					\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"			"autocmd VimEnter * PlugInstall --sync | source ~/AppData/Local/nvim/init.vim
+"			autocmd VimEnter * PlugInstall --sync | source stdpath('config') . '/init.vim'
+"	endif
+"elseif (has('mac') || has('unix'))
+"	" LINUX
+"	let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+"	if empty(glob(data_dir . '/autoload/plug.vim'))
+"		silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+"		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"	endif
+"endif
 
 
 " PLUGINS
@@ -207,15 +161,15 @@ endif
 " MY GIT REPO
 call plug#begin()
 " THEMES
-Plug 'altercation/vim-colors-solarized'
-Plug 'morhetz/gruvbox'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'morhetz/gruvbox'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'preservim/nerdtree'
 Plug 'ThePrimeagen/harpoon'
-Plug 'ThePrimeagen/vim-be-good'
+" Plug 'ThePrimeagen/vim-be-good'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -235,13 +189,13 @@ Plug 'ap/vim-css-color'
 " Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'nvim-telescope/telescope-hop.nvim'
-Plug 'nvim-telescope/telescope-rg.nvim'
-Plug 'nvim-telescope/telescope-ui-select.nvim'
+" Plug 'nvim-telescope/telescope-hop.nvim'
+" Plug 'nvim-telescope/telescope-rg.nvim'
+" Plug 'nvim-telescope/telescope-ui-select.nvim'
 Plug 'neoclide/vim-jsx-improve'
 Plug 'jdhao/better-escape.vim'
 Plug 'simeji/winresizer'
-Plug 'PhilRunninger/nerdtree-visual-selection'
+" Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'https://github.com/vimwiki/vimwiki'
@@ -259,9 +213,9 @@ Plug 'williamboman/nvim-lsp-installer'
 " /LSP RELATED PLUGINS
 
 " SQL
-Plug 'https://github.com/tpope/vim-dadbod'
-Plug 'https://github.com/kristijanhusak/vim-dadbod-ui'
-Plug 'https://github.com/kristijanhusak/vim-dadbod-completion'
+" Plug 'https://github.com/tpope/vim-dadbod'
+" Plug 'https://github.com/kristijanhusak/vim-dadbod-ui'
+" Plug 'https://github.com/kristijanhusak/vim-dadbod-completion'
 
 " DEBUGGERS
 " Plug 'https://github.com/leoluz/nvim-dap-go'
@@ -289,9 +243,6 @@ command APlugUpdate
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
-" /USED UP UNTIL I INSTALLED TREESITTER
-" FROM: https://alldrops.info/posts/vim-drops/2018-04-25_javascript-folding-on-vim/
-" set foldmethod=syntax "syntax highlighting items specify folds
 set foldcolumn=1 "defines 1 col at window left, to indicate folding
 set foldlevelstart=99 "start file with all folds opened
 
@@ -302,79 +253,10 @@ let xml_folding=1
 let yaml_fold=1
 let vb_fold=1
 
-" FROM: https://codito.in/c-and-vim/
-" Folding : http://vim.wikia.com/wiki/Syntax-based_folding, see comment by Ostrygen
-" au FileType cs set omnifunc=syntaxcomplete#Complete
-
-" au FileType cs set foldmethod=marker
-" au FileType cs set foldmarker={,}
-" au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
-
-" au FileType cs set foldlevelstart=0
-" au FileType cs set foldlevel=0
-" au FileType cs set foldclose=none
-
 " SAVE FOLDING AND OTHER THINGS WHEN YOU OPEN AND CLOSE FILES/VIM, FROM: https://vim.fandom.com/wiki/Make_views_automatic
 set viewoptions-=options
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent! loadview
-" /USED UP UNTIL I INSTALLED TREESITTER
-
-" autocmd BufWinLeave ?* mkview | AirlineToggle
-" autocmd BufWinEnter ?* silent loadview | AirlineToggle
-
-" set viewoptions-=options
-" augroup vimrc
-"     autocmd BufWritePost *
-"     \   if expand('%') != '' && &buftype !~ 'nofile'
-"     \|      mkview
-"     \|  endif
-"     autocmd BufRead *
-"     \   if expand('%') != '' && &buftype !~ 'nofile'
-"     \|      silent loadview
-"     \|  endif
-" augroup END
-
-" let g:skipview_files = [
-"             \ '[EXAMPLE PLUGIN BUFFER]'
-"             \ ]
-" function! MakeViewCheck()
-"     if has('quickfix') && &buftype =~ 'nofile'
-"         " Buffer is marked as not a file
-"         return 0
-"     endif
-"     if empty(glob(expand('%:p')))
-"         " File does not exist on disk
-"         return 0
-"     endif
-"     if len($TEMP) && expand('%:p:h') == $TEMP
-"         " We're in a temp dir
-"         return 0
-"     endif
-"     if len($TMP) && expand('%:p:h') == $TMP
-"         " Also in temp dir
-"         return 0
-"     endif
-"     if index(g:skipview_files, expand('%')) >= 0
-"         " File is in skip list
-"         return 0
-"     endif
-"     return 1
-" endfunction
-" augroup vimrcAutoView
-"     autocmd!
-"     " Autosave & Load Views.
-"     autocmd BufWritePost,BufLeave,WinLeave ?* if MakeViewCheck() | mkview | endif
-"     autocmd BufWinEnter ?* if MakeViewCheck() | silent loadview | endif
-" augroup end
-" /SAVE FOLDING AND OTHER THINGS WHEN YOU OPEN AND CLOSE FILES/VIM, FROM: https://vim.fandom.com/wiki/Make_views_automatic
-
-
-
-
-
-
-
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /FOLDING
@@ -387,8 +269,8 @@ set background=dark
 " let g:solarized_termtrans = 1
 "colorscheme solarized
 
-let g:gruvbox_guisp_fallback = "bg" " THIS TURNS ON SPELLBAD PROPERLY FOR SPELLCHECK HIGHLIGHTING IN GRUVBOX
-let g:gruvbox_transparent_bg = 1
+" let g:gruvbox_guisp_fallback = "bg" " THIS TURNS ON SPELLBAD PROPERLY FOR SPELLCHECK HIGHLIGHTING IN GRUVBOX
+" let g:gruvbox_transparent_bg = 1
 " colorscheme gruvbox
 
 let g:tokyonight_transparent = 1
@@ -402,32 +284,12 @@ hi! Normal ctermbg=NONE guibg=NONE
 " REMAPS / REMAPPINGS / KEYS
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let mapleader = " "
-" inoremap jk <Esc>
-" vnoremap jk <Esc>
-
-" Use s instead of <C-w> to handle windows
-"nnoremap s <C-w>
-" DOES NOT WORK IN THINGS LIKE THE Git WINDOW AND NERDTree.... :'(
 
 " SWITCH TO PREV BUFFER AND CLOSE THE ONE YOU SWITCHED AWAY FROM, CLOSES A
 " BUFFER WITHOUT MESSING UP THE SPLIT
-" nnoremap <leader>bd :bp\|bd #<cr>
 nnoremap <leader>bd :bp \| :sp \| :bn \| :bd<cr>
 
-" nnoremap <leader>ba :AirlineToggle<cr>:bufdo bd<cr>:AirlineToggle<cr>
 nnoremap <leader>ba :bufdo bd<cr>
-
-" INSTEAD USE
-" <c-w>+ and <c-w>- AND
-" <c-w>> and <c-w>< AND
-" <c-w>_ and <c-w>|
-" nnoremap <leader>v> :vertical resize +5<CR>
-" nnoremap <leader>v< :vertical resize -5<CR>
-" nnoremap <leader>h> :resize +5<CR>
-" nnoremap <leader>h< :resize -5<CR>
-
-" nnoremap <leader>+ :vertical resize +5<CR>
-" nnoremap <leader>- :vertical resize -5<CR>
 
 nnoremap ' `
 
@@ -620,11 +482,12 @@ nnoremap <leader>=w :%s/\s\+$//<cr>
 " 	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$NNA\<c-r>0\<esc>0"
 " 	silent! call repeat#set("\<space>=v", v:count)
 " endfunction
-function! MergeParametersAndValue()
-	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$ddNA\<c-r>0\<esc>0"
-	silent! call repeat#set("\<space>=v", v:count)
-endfunction
-autocmd FileType cs nnoremap <buffer> <leader>=v :call MergeParametersAndValue()<cr>
+
+" function! MergeParametersAndValue()
+" 	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$ddNA\<c-r>0\<esc>0"
+" 	silent! call repeat#set("\<space>=v", v:count)
+" endfunction
+" autocmd FileType cs nnoremap <buffer> <leader>=v :call MergeParametersAndValue()<cr>
 
 
 
@@ -706,9 +569,9 @@ autocmd FileType typescriptreact nnoremap <buffer> <leader>gcu :call UncommentRe
 nnoremap <c-q> :copen<cr>
 nnoremap <c-j> :cn<cr>
 nnoremap <c-k> :cp<cr>
-nnoremap <leader>eq :lopen<cr>
-nnoremap <leader>ej :lnext<cr>
-nnoremap <leader>ek :lprev<cr>
+" nnoremap <leader>eq :lopen<cr>
+" nnoremap <leader>ej :lnext<cr>
+" nnoremap <leader>ek :lprev<cr>
 
 " HOP, REPLACES EASY MOTION
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -718,9 +581,6 @@ map <Leader>w <cmd>:HopWord<cr>
 map <Leader>W <cmd>:HopWordMW<cr>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /HOP
-
-" Remap code completion to Ctrl+Space {{{2
-" inoremap <C-@> <C-x><C-o>
 
 " NERDTree
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -753,15 +613,6 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /NERDTree
-
-" " Airline
-" " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#buffer_nr_show = 1
-" let g:airline#extensions#tabline#formatter = 'short_path' " default | jsformatter | unique_tail | unique_tail_improved | short_path | tabnr, from: https://github.com/vim-airline/vim-airline#default, to create custom ones: https://stackoverflow.com/a/53754280/182888
-" let g:airline_powerline_fonts = 1
-" " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" " /Airline
 
 " HARPOON
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

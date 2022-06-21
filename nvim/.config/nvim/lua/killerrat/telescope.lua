@@ -33,24 +33,24 @@ telescope.setup {
 			i = {
 				-- IMPORTANT
 				-- either hot-reloaded or `function(prompt_bufnr) telescope.extensions.hop.hop end`
-				["<C-h>"] = R("telescope").extensions.hop.hop,  -- hop.hop_toggle_selection
+				-- ["<C-h>"] = R("telescope").extensions.hop.hop,  -- hop.hop_toggle_selection
 				-- custom hop loop to multi selects and sending selected entries to quickfix list
 				["<C-space>"] = function(prompt_bufnr)
 					local opts = {
 						callback = actions.toggle_selection,
 						loop_callback = actions.send_selected_to_qflist,
 					}
-					require("telescope").extensions.hop._hop_loop(prompt_bufnr, opts)
+					-- require("telescope").extensions.hop._hop_loop(prompt_bufnr, opts)
 				end,
 			},
 		},
 	},
 }
 
-telescope.load_extension('hop')
+-- telescope.load_extension('hop')
 telescope.load_extension('fzf')
 -- telescope.load_extension('coc')
-telescope.load_extension("ui-select")
+-- telescope.load_extension("ui-select")
 
 local M = {}
 M.search_scripts = function()
