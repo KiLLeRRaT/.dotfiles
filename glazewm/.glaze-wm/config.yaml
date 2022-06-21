@@ -72,10 +72,10 @@ window_rules:
     match_title: '/^chrome.*/'
 
   - command: 'set floating'
-    match_title: '/^New TimeSheetEntry.*/'
+    match_title: '/^New TimeSheetEntry .*/'
 
   - command: 'set floating'
-    match_process_name: 'pushbullet_client.txt'
+    match_process_name: 'pushbullet_client.exe'
 
   # Some applications (eg. Steam) have borders that extend past the normal border size.
   - command: 'resize borders 0px -7px -7px -7px'
@@ -133,8 +133,8 @@ keybindings:
   - command: "close"
     binding: "Control+Alt+Shift+Q"
 
-  - command: "exit wm"
-    binding: "Control+Alt+Shift+E"
+  # - command: "exit wm"
+  #   binding: "Control+Alt+Shift+E"
 
   - command: "focus workspace 1"
     binding: "Alt+1"
@@ -163,29 +163,29 @@ keybindings:
   - command: "focus workspace 9"
     binding: "Alt+9"
 
-  - commands: ["move to workspace 1", "focus workspace 1"]
+  - commands: ["move to workspace 1"] #, "focus workspace 1"]
     binding: "Alt+Shift+1"
 
-  - commands: ["move to workspace 2", "focus workspace 2"]
+  - commands: ["move to workspace 2"] #, "focus workspace 2"]
     binding: "Alt+Shift+2"
 
-  - commands: ["move to workspace 3", "focus workspace 3"]
+  - commands: ["move to workspace 3"] #, "focus workspace 3"]
     binding: "Alt+Shift+3"
 
-  - commands: ["move to workspace 4", "focus workspace 4"]
+  - commands: ["move to workspace 4"] #, "focus workspace 4"]
     binding: "Alt+Shift+4"
 
-  - commands: ["move to workspace 5", "focus workspace 5"]
+  - commands: ["move to workspace 5"] #, "focus workspace 5"]
     binding: "Alt+Shift+5"
 
-  - commands: ["move to workspace 6", "focus workspace 6"]
+  - commands: ["move to workspace 6"] #, "focus workspace 6"]
     binding: "Alt+Shift+6"
 
-  - commands: ["move to workspace 7", "focus workspace 7"]
+  - commands: ["move to workspace 7"] #, "focus workspace 7"]
     binding: "Alt+Shift+7"
 
-  - commands: ["move to workspace 8", "focus workspace 8"]
+  - commands: ["move to workspace 8"] #, "focus workspace 8"]
     binding: "Alt+Shift+8"
 
-  - commands: ["move to workspace 9", "focus workspace 9"]
+  - commands: ["move to workspace 9"] #, "focus workspace 9"]
     bindings: ["Alt+Shift+9"]
