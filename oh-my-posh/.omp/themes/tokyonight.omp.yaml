@@ -16,6 +16,13 @@ blocks:
           style: powerline
           template: '  '
 
+        - type: os
+          background: "transparent"
+          template: " {{ if .WSL }}WSL at {{ end }}{{.Icon}} "
+          powerline_symbol: 
+          style: powerline
+          foreground: "#ffffff"
+
         - type: session
           background: '#c792ea'
           # foreground: '#FFFFFF'
