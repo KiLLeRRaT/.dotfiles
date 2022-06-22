@@ -139,7 +139,7 @@
 						"colorScheme": "Gruvbox Dark",
 						"font":
 						{
-								"face": "Cascadia Code PL"
+								"face": "CaskaydiaCove NF"
 						},
 						"historySize": 9001,
 						"opacity": 100,
@@ -184,6 +184,10 @@
 								"name": "PowerShell 5"
 						},
 						{
+								"font":
+								{
+										"face": "CaskaydiaCove NF"
+								},
 								"guid": "{46ca431a-3a87-5fb3-83cd-11ececc031d2}",
 								"hidden": false,
 								"name": "Kali Linux",
