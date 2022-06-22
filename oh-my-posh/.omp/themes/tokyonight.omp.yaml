@@ -18,7 +18,7 @@ blocks:
 
         - type: os
           background: "transparent"
-          template: " {{ if .WSL }}WSL at {{ end }}{{.Icon}} "
+          template: " {{ if .WSL }}WSL {{ end }}{{.Icon}} "
           powerline_symbol: 
           style: powerline
           foreground: "#ffffff"
