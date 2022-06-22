@@ -1,8 +1,9 @@
 #!/bin/zsh
+
 pushd ~
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Adding Neovim package repository\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+# echo -e "\033[32m ----------------------------------------\033[0m"
+# echo -e "\033[32m Adding Neovim package repository\033[0m"
+# echo -e "\033[32m ----------------------------------------\033[0m"
 #sudo add-apt-repository -y ppa:neovim-ppa/unstable
 
 
@@ -27,7 +28,8 @@ sudo pacman -S nodejs && \
 sudo pacman -S npm && \
 sudo pacman -S ripgrep && \
 sudo pacman -S fd-find && \
-sudo pacman -S feh
+sudo pacman -S alacritty
+
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
@@ -49,9 +51,9 @@ git config --global user.name "Albert Gouws"
 # fi
 
 
-echo Clone dotfiles
-echo ----------------------------------------
-git clone https://github.com/KiLLeRRaT/.dotfiles.git
+# echo Clone dotfiles
+# echo ----------------------------------------
+# git clone https://github.com/KiLLeRRaT/.dotfiles.git
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
