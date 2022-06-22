@@ -64,6 +64,25 @@ if exists(':GuiFont')
 endif
 
 " SET WSL CLIPBOARD INTEGRATION, just install choco install win32yank
+" clipboard with win32yank.exe
+" in ~/bin/win32yank.exe
+" https://github.com/equalsraf/win32yank/releases {{{
+let g:clipboard = {
+                        \   'name': 'win32yank-wsl',
+                        \   'copy': {
+                        \      '+': 'win32yank.exe -i --crlf',
+                        \      '*': 'win32yank.exe -i --crlf',
+                        \    },
+                        \   'paste': {
+                        \      '+': 'win32yank.exe -o --lf',
+                        \      '*': 'win32yank.exe -o --lf',
+                        \   },
+                        \   'cache_enabled': 0,
+                        \ }
+" }}}
+
+
+
 
 " MAKE ESC GO TO NORMAL MODE IN TERMINAL, FROM: http://vimcasts.org/episodes/neovim-terminal-mappings/
 " tnoremap <Esc> <C-\><C-n>
