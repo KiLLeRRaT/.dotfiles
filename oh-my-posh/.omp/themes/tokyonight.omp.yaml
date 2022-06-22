@@ -4,7 +4,8 @@ blocks:
     - alignment: left
       segments:
         - type: exit
-          background: '#f7768e'
+          # background: '#f7768e'
+          background: '#C61C6F'
           foreground: '#ffffff'
           style: powerline
           template: ' {{ if gt .Code 0 }} {{ .Meaning }}{{ else }}{{ end }} '
@@ -48,7 +49,7 @@ blocks:
         - type: git
           foreground: '#c792ea'
           foreground_templates:
-            # - '{{ if or (.Working.Changed) (.Staging.Changed) }}#545c7e{{ end }}'
+            - '{{ if or (.Working.Changed) (.Staging.Changed) }}#c792ea{{ end }}'
             - '{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ffffff{{ end }}'
             - '{{ if gt .Ahead 0 }}#ffffff{{ end }}'
             - '{{ if gt .Behind 0 }}#ffffff{{ end }}'
@@ -56,8 +57,8 @@ blocks:
           background: '#3b4261'
           background_templates:
             - '{{ if or (.Working.Changed) (.Staging.Changed) }}#545c7e{{ end }}'
-            - '{{ if and (gt .Ahead 0) (gt .Behind 0) }}#f7768e{{ end }}'
-            - '{{ if gt .Ahead 0 }}#f7768e{{ end }}'
+            - '{{ if and (gt .Ahead 0) (gt .Behind 0) }}#C61C6F{{ end }}'
+            - '{{ if gt .Ahead 0 }}#C61C6F{{ end }}'
             - '{{ if gt .Behind 0 }}#C61C6F{{ end }}'
           powerline_symbol: 
           properties:
