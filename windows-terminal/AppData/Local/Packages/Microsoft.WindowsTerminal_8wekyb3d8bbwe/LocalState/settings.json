@@ -194,7 +194,7 @@
 								"source": "Windows.Terminal.Wsl"
 						},
 						{
-								"backgroundImage": "C:\\Users\\Albert\\Pictures\\Vaporwave II\\photo-1533484306792-cf313c2b8ab0 (2).jpg",
+								"backgroundImage": "C:\\Users\\Albert\\.dotfiles\\images\\photo-1533484306792-cf313c2b8ab0 (2).jpg",
 								"backgroundImageOpacity": 0.19,
 								"bellStyle": "taskbar",
 								"colorScheme": "Tokyo Night",
@@ -235,7 +235,7 @@
 								"useAcrylic": false
 						},
 						{
-								"backgroundImage": "C:\\Users\\Albert\\Pictures\\Vaporwave II\\download3.jpg",
+								"backgroundImage": "C:\\Users\\Albert\\.dotfiles\\images\\download3.jpg",
 								"backgroundImageOpacity": 0.089999999999999997,
 								"colorScheme": "Tokyo Night",
 								"commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
@@ -278,6 +278,32 @@
 								"hidden": true,
 								"name": "Developer PowerShell for VS 2022",
 								"source": "Windows.Terminal.VisualStudio"
+						},
+						{
+								"guid": "{17bf3de4-5353-5709-bcf9-835bd952a95e}",
+								"hidden": true,
+								"backgroundImage": "C:\\Users\\Albert\\.dotfiles\\images\\photo-1533484306792-cf313c2b8ab0 (2).jpg",
+								"backgroundImageOpacity": 0.19,
+								"name": "Ubuntu-22.04",
+								"source": "Windows.Terminal.Wsl",
+								"colorScheme": "Tokyo Night",
+								"font":
+								{
+										"face": "CaskaydiaCove NF"
+								}
+						},
+						{
+								"guid": "{60c3e313-8e1a-58f6-8175-3650c2bd2b26}",
+								"backgroundImage": "C:\\Users\\Albert\\.dotfiles\\images\\photo-1533484306792-cf313c2b8ab0 (2).jpg",
+								"backgroundImageOpacity": 0.19,
+								"hidden": false,
+								"name": "Ubuntu 22.04 LTS",
+								"source": "CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc",
+								"colorScheme": "Tokyo Night",
+								"font":
+								{
+										"face": "CaskaydiaCove NF"
+								}
 						}
 				]
 		},
