@@ -52,6 +52,10 @@ Write-Host ----------------------------------------
 choco install ripgrep
 choco install fd
 
+Write-Host Install win32yank for Neovim clipboard support in WSL
+Write-Host ----------------------------------------
+# https://stackoverflow.com/a/67229362/182888
+choco install win32yank
 
 Write-Host Configuring Neovim
 Write-Host ----------------------------------------

@@ -63,15 +63,7 @@ if exists(':GuiFont')
 	GuiFont! CaskaydiaCove Nerd Font:h12
 endif
 
-
-" SET WSL CLIPBOARD INTEGRATION
-if (has('wsl') == 1)
-	echo "WE ARE IN WSL!"
-else
-	echo "WE ARE NOT IN WSL!"
-endif
-" /SET WSL CLIPBOARD INTEGRATION
-
+" SET WSL CLIPBOARD INTEGRATION, just install choco install win32yank
 
 " MAKE ESC GO TO NORMAL MODE IN TERMINAL, FROM: http://vimcasts.org/episodes/neovim-terminal-mappings/
 " tnoremap <Esc> <C-\><C-n>
