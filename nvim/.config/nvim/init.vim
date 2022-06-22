@@ -641,6 +641,7 @@ nnoremap <silent><leader>; :lua require("harpoon.ui").nav_file(5)<CR>
 " FUGITIVE
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nnoremap <leader>gs :Git<cr>
+nnoremap <leader>gS :Git pull<cr>:Git push<cr>
 nnoremap <leader>gp :Git push<cr>
 nnoremap <leader>gP :Git push --force-with-lease<cr>
 nnoremap <leader>gf :Git fetch<cr>
