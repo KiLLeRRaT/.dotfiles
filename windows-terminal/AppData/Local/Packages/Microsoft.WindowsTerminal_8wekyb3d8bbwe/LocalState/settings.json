@@ -145,7 +145,8 @@
 						"opacity": 100,
 						"padding": "0",
 						"snapOnInput": false,
-						"useAcrylic": false
+						"useAcrylic": false,
+						"closeOnExit":"graceful"
 				},
 				"list":
 				[
@@ -161,7 +162,8 @@
 								"padding": "0",
 								"source": "Windows.Terminal.PowershellCore",
 								"suppressApplicationTitle": false,
-								"useAcrylic": false
+								"useAcrylic": false,
+								"closeOnExit":"graceful"
 						},
 						{
 								"font":
@@ -171,7 +173,8 @@
 								"guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
 								"hidden": false,
 								"historySize": 99999,
-								"name": "Command Prompt"
+								"name": "Command Prompt",
+								"closeOnExit":"graceful"
 						},
 						{
 								"font":
@@ -181,7 +184,8 @@
 								"guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
 								"hidden": false,
 								"historySize": 99999,
-								"name": "PowerShell 5"
+								"name": "PowerShell 5",
+								"closeOnExit":"graceful"
 						},
 						{
 								"font":
@@ -191,7 +195,8 @@
 								"guid": "{46ca431a-3a87-5fb3-83cd-11ececc031d2}",
 								"hidden": false,
 								"name": "Kali Linux",
-								"source": "Windows.Terminal.Wsl"
+								"source": "Windows.Terminal.Wsl",
+								"closeOnExit":"graceful"
 						},
 						{
 								"backgroundImage": "C:\\Users\\Albert\\.dotfiles\\images\\photo-1533484306792-cf313c2b8ab0 (2).jpg",
@@ -206,7 +211,8 @@
 								"hidden": false,
 								"historySize": 99999,
 								"name": "Ubuntu-20.04",
-								"source": "Windows.Terminal.Wsl"
+								"source": "Windows.Terminal.Wsl",
+								"closeOnExit":"graceful"
 						},
 						{
 								"font":
@@ -217,7 +223,8 @@
 								"hidden": false,
 								"historySize": 99999,
 								"name": "Azure Cloud Shell",
-								"source": "Windows.Terminal.Azure"
+								"source": "Windows.Terminal.Azure",
+								"closeOnExit":"graceful"
 						},
 						{
 								"backgroundImage": null,
@@ -232,7 +239,8 @@
 								"historySize": 99999,
 								"name": "Neovim",
 								"padding": "0",
-								"useAcrylic": false
+								"useAcrylic": false,
+								"closeOnExit":"graceful"
 						},
 						{
 								"backgroundImage": "C:\\Users\\Albert\\.dotfiles\\images\\download3.jpg",
@@ -253,31 +261,36 @@
 								"scrollbarState": "visible",
 								"startingDirectory": "%USERPROFILE%",
 								"suppressApplicationTitle": false,
-								"useAcrylic": false
+								"useAcrylic": false,
+								"closeOnExit":"graceful"
 						},
 						{
 								"guid": "{d701ea23-d39a-51a9-9966-855f1c8051f1}",
 								"hidden": false,
 								"name": "Developer Command Prompt for VS 2022 [Preview]",
-								"source": "Windows.Terminal.VisualStudio"
+								"source": "Windows.Terminal.VisualStudio",
+								"closeOnExit":"graceful"
 						},
 						{
 								"guid": "{960e8c7a-d53d-5f77-ad6f-daf9dfeb597d}",
 								"hidden": false,
 								"name": "Developer PowerShell for VS 2022 [Preview]",
-								"source": "Windows.Terminal.VisualStudio"
+								"source": "Windows.Terminal.VisualStudio",
+								"closeOnExit":"graceful"
 						},
 						{
 								"guid": "{fddd4872-371a-5869-85aa-657716af07fa}",
 								"hidden": true,
 								"name": "Developer Command Prompt for VS 2022",
-								"source": "Windows.Terminal.VisualStudio"
+								"source": "Windows.Terminal.VisualStudio",
+								"closeOnExit":"graceful"
 						},
 						{
 								"guid": "{e1c4148c-0ee2-5cd8-802c-8a170e188519}",
 								"hidden": true,
 								"name": "Developer PowerShell for VS 2022",
-								"source": "Windows.Terminal.VisualStudio"
+								"source": "Windows.Terminal.VisualStudio",
+								"closeOnExit":"graceful"
 						},
 						{
 								"guid": "{17bf3de4-5353-5709-bcf9-835bd952a95e}",
@@ -290,7 +303,8 @@
 								"font":
 								{
 										"face": "CaskaydiaCove NF"
-								}
+								},
+								"closeOnExit":"graceful"
 						},
 						{
 								"guid": "{60c3e313-8e1a-58f6-8175-3650c2bd2b26}",
@@ -303,7 +317,8 @@
 								"font":
 								{
 										"face": "CaskaydiaCove NF"
-								}
+								},
+								"closeOnExit":"graceful"
 						}
 				]
 		},
