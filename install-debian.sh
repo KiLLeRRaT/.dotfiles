@@ -33,7 +33,8 @@ sudo apt install -y xclip && \
 sudo apt install -y ripgrep && \
 sudo apt install -y fd-find && \
 sudo apt install -y feh && \
-sudo apt install -y build-essential
+sudo apt install -y build-essential && \
+sudo apt install -y tmux
 
 # config fd
 [ -d ~/.local/bin ] || mkdir -p ~/.local/bin
