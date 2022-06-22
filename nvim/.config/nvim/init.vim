@@ -65,7 +65,7 @@ endif
 
 
 " SET WSL CLIPBOARD INTEGRATION
-if (exists("$WSLENV"))
+if (has('wsl') == 1)
 	echo "WE ARE IN WSL!"
 else
 	echo "WE ARE NOT IN WSL!"
