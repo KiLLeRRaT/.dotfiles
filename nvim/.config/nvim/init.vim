@@ -230,6 +230,9 @@ Plug 'https://github.com/stefandtw/quickfix-reflector.vim'
 " SWITCH TO OPPOSITE WORD, E.G. TRUE -> FALSE, etc.
 Plug 'https://github.com/AndrewRadev/switch.vim'
 Plug 'https://github.com/lambdalisue/suda.vim'
+
+" Open LSP goto defn in floating windows
+Plug 'https://github.com/rmagatti/goto-preview'
 call plug#end()
 
 
