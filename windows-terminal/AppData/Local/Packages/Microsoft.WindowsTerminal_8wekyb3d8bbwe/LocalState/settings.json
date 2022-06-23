@@ -151,6 +151,72 @@
 				"list":
 				[
 						{
+								"backgroundImage": "C:\\Users\\Albert\\.dotfiles\\images\\download3.jpg",
+								"backgroundImageOpacity": 0.089999999999999997,
+								"colorScheme": "Tokyo Night",
+								"commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+								"experimental.retroTerminalEffect": false,
+								"font":
+								{
+										"face": "CaskaydiaCove NF"
+								},
+								"guid": "{f19ccc1d-fe9a-4e79-ad18-49276786d144}",
+								"historySize": 99999,
+								"icon": "ms-appx:///ProfileIcons/pwsh.png",
+								"name": "PowerShell 7 - BG",
+								"opacity": 100,
+								"padding": "0",
+								"scrollbarState": "visible",
+								"startingDirectory": "%USERPROFILE%",
+								"suppressApplicationTitle": false,
+								"useAcrylic": false,
+								"closeOnExit":"graceful"
+						},
+						{
+								"backgroundImage": "C:\\Users\\Albert\\.dotfiles\\images\\photo-1533484306792-cf313c2b8ab0 (2).jpg",
+								"backgroundImageOpacity": 0.19,
+								"bellStyle": "taskbar",
+								"colorScheme": "Tokyo Night",
+								"font":
+								{
+										"face": "CaskaydiaCove NF"
+								},
+								"guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
+								"hidden": false,
+								"historySize": 99999,
+								"name": "Ubuntu-20.04",
+								"source": "Windows.Terminal.Wsl",
+								"closeOnExit":"graceful"
+						},
+						{
+								"guid": "{17bf3de4-5353-5709-bcf9-835bd952a95e}",
+								"hidden": true,
+								"backgroundImage": "C:\\Users\\Albert\\.dotfiles\\images\\photo-1533484306792-cf313c2b8ab0 (2).jpg",
+								"backgroundImageOpacity": 0.19,
+								"name": "Ubuntu-22.04",
+								"source": "Windows.Terminal.Wsl",
+								"colorScheme": "Tokyo Night",
+								"font":
+								{
+										"face": "CaskaydiaCove NF"
+								},
+								"closeOnExit":"graceful"
+						},
+						{
+								"guid": "{60c3e313-8e1a-58f6-8175-3650c2bd2b26}",
+								"backgroundImage": "C:\\Users\\Albert\\.dotfiles\\images\\photo-1533484306792-cf313c2b8ab0 (2).jpg",
+								"backgroundImageOpacity": 0.19,
+								"hidden": false,
+								"name": "Ubuntu 22.04 LTS",
+								"source": "CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc",
+								"colorScheme": "Tokyo Night",
+								"font":
+								{
+										"face": "CaskaydiaCove NF"
+								},
+								"closeOnExit":"graceful"
+						},
+						{
 								"font":
 								{
 										"face": "CaskaydiaCove NF"
@@ -199,22 +265,6 @@
 								"closeOnExit":"graceful"
 						},
 						{
-								"backgroundImage": "C:\\Users\\Albert\\.dotfiles\\images\\photo-1533484306792-cf313c2b8ab0 (2).jpg",
-								"backgroundImageOpacity": 0.19,
-								"bellStyle": "taskbar",
-								"colorScheme": "Tokyo Night",
-								"font":
-								{
-										"face": "CaskaydiaCove NF"
-								},
-								"guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
-								"hidden": false,
-								"historySize": 99999,
-								"name": "Ubuntu-20.04",
-								"source": "Windows.Terminal.Wsl",
-								"closeOnExit":"graceful"
-						},
-						{
 								"font":
 								{
 										"face": "CaskaydiaCove NF"
@@ -239,28 +289,6 @@
 								"historySize": 99999,
 								"name": "Neovim",
 								"padding": "0",
-								"useAcrylic": false,
-								"closeOnExit":"graceful"
-						},
-						{
-								"backgroundImage": "C:\\Users\\Albert\\.dotfiles\\images\\download3.jpg",
-								"backgroundImageOpacity": 0.089999999999999997,
-								"colorScheme": "Tokyo Night",
-								"commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
-								"experimental.retroTerminalEffect": false,
-								"font":
-								{
-										"face": "CaskaydiaCove NF"
-								},
-								"guid": "{f19ccc1d-fe9a-4e79-ad18-49276786d144}",
-								"historySize": 99999,
-								"icon": "ms-appx:///ProfileIcons/pwsh.png",
-								"name": "PowerShell 7 - BG",
-								"opacity": 100,
-								"padding": "0",
-								"scrollbarState": "visible",
-								"startingDirectory": "%USERPROFILE%",
-								"suppressApplicationTitle": false,
 								"useAcrylic": false,
 								"closeOnExit":"graceful"
 						},
@@ -290,34 +318,6 @@
 								"hidden": true,
 								"name": "Developer PowerShell for VS 2022",
 								"source": "Windows.Terminal.VisualStudio",
-								"closeOnExit":"graceful"
-						},
-						{
-								"guid": "{17bf3de4-5353-5709-bcf9-835bd952a95e}",
-								"hidden": true,
-								"backgroundImage": "C:\\Users\\Albert\\.dotfiles\\images\\photo-1533484306792-cf313c2b8ab0 (2).jpg",
-								"backgroundImageOpacity": 0.19,
-								"name": "Ubuntu-22.04",
-								"source": "Windows.Terminal.Wsl",
-								"colorScheme": "Tokyo Night",
-								"font":
-								{
-										"face": "CaskaydiaCove NF"
-								},
-								"closeOnExit":"graceful"
-						},
-						{
-								"guid": "{60c3e313-8e1a-58f6-8175-3650c2bd2b26}",
-								"backgroundImage": "C:\\Users\\Albert\\.dotfiles\\images\\photo-1533484306792-cf313c2b8ab0 (2).jpg",
-								"backgroundImageOpacity": 0.19,
-								"hidden": false,
-								"name": "Ubuntu 22.04 LTS",
-								"source": "CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc",
-								"colorScheme": "Tokyo Night",
-								"font":
-								{
-										"face": "CaskaydiaCove NF"
-								},
 								"closeOnExit":"graceful"
 						}
 				]
