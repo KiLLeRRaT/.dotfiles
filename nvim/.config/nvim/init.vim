@@ -630,7 +630,7 @@ endif
 " make sure relative line numbers are used
 autocmd FileType nerdtree setlocal relativenumber
 
-" nnoremap <leader>nf :NERDTreeFocus<CR>
+nnoremap <leader>nf :NERDTreeFocus<CR>
 " nnoremap <leader>n :NERDTree<CR>
 nnoremap <leader>nt :NERDTreeToggle<CR>
 " nnoremap <leader>n :NERDTreeToggle<CR>
