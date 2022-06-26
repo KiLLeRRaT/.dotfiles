@@ -15,6 +15,7 @@ set hlsearch
 set cursorline
 set incsearch
 set spelllang=en,af
+set dictionary=/usr/share/dict/words
 set showcmd
 set autoread " READ FILE IF OUTSIDE CHANGES ARE DETECTED
 " set columns=80           " window width in columns
