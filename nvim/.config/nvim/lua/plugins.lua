@@ -63,7 +63,8 @@ cmp.setup {
 }
 
 -- SETUP AND RUN LSP INSTALLER
-local ensure_installed = { "bashls", "cssls", "dockerls", "eslint", "html", "jsonls", "omnisharp", "pyright", "sumneko_lua", "tflint", "tsserver", "yamlls" }
+-- local ensure_installed = { "bashls", "cssls", "dockerls", "eslint", "html", "jsonls", "omnisharp", "pyright", "sumneko_lua", "tflint", "tsserver", "yamlls" }
+local ensure_installed = { "bashls", "cssls", "dockerls", "eslint", "html", "jsonls", "pyright", "sumneko_lua", "tflint", "tsserver", "yamlls" }
 if vim.fn.has('win32') == 1 then
 	table.insert(ensure_installed, "powershell_es")
 end
@@ -102,6 +103,9 @@ require'lspconfig'.omnisharp.setup {
 	-- end,
 	-- cmd = { omniSharpPath, '--languageserver', '--hostPID', tostring(pid), '--loglevel', 'debug' },
 	-- cmd = { 'C:/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.38.2/OmniSharp.exe', '--languageserver', '--hostPID', tostring(pid), '--loglevel', 'debug' },
+	cmd = { 'C:/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.39.0/OmniSharp.exe', '--languageserver', '--hostPID', tostring(pid), '--loglevel', 'debug' },
+
+		-- cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) };
 }
 -- -- /OMNISHARP LSP CONFIG
 

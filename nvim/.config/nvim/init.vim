@@ -64,25 +64,26 @@ if exists(':GuiFont')
 	GuiFont! CaskaydiaCove Nerd Font:h12
 endif
 
-if (has('wsl'))
-	" SET WSL CLIPBOARD INTEGRATION, just install choco install win32yank
-	" clipboard with win32yank.exe
-	" in ~/bin/win32yank.exe
-	" https://github.com/equalsraf/win32yank/releases {{{
-	let g:clipboard = {
-													\   'name': 'win32yank-wsl',
-													\   'copy': {
-													\      '+': 'win32yank.exe -i --crlf',
-													\      '*': 'win32yank.exe -i --crlf',
-													\    },
-													\   'paste': {
-													\      '+': 'win32yank.exe -o --lf',
-													\      '*': 'win32yank.exe -o --lf',
-													\   },
-													\   'cache_enabled': 0,
-													\ }
-	" }}}
-endif
+
+" if (has('wsl'))
+" 	" SET WSL CLIPBOARD INTEGRATION, just install choco install win32yank
+" 	" clipboard with win32yank.exe
+" 	" in ~/bin/win32yank.exe
+" 	" https://github.com/equalsraf/win32yank/releases {{{
+" 	let g:clipboard = {
+" 													\   'name': 'win32yank-wsl',
+" 													\   'copy': {
+" 													\      '+': 'win32yank.exe -i --crlf',
+" 													\      '*': 'win32yank.exe -i --crlf',
+" 													\    },
+" 													\   'paste': {
+" 													\      '+': 'win32yank.exe -o --lf',
+" 													\      '*': 'win32yank.exe -o --lf',
+" 													\   },
+" 													\   'cache_enabled': 0,
+" 													\ }
+" 	" }}}
+" endif
 
 
 
@@ -186,51 +187,52 @@ call plug#begin()
 " THEMES
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'morhetz/gruvbox'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'https://github.com/folke/tokyonight.nvim', { 'branch': 'main' }
 
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'preservim/nerdtree'
-Plug 'ThePrimeagen/harpoon'
+Plug 'https://github.com/nvim-lua/plenary.nvim'
+Plug 'https://github.com/nvim-telescope/telescope.nvim'
+Plug 'https://github.com/preservim/nerdtree'
+Plug 'https://github.com/ThePrimeagen/harpoon'
 " Plug 'ThePrimeagen/vim-be-good'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
+Plug 'https://github.com/tpope/vim-abolish'
+Plug 'https://github.com/tpope/vim-commentary'
+Plug 'https://github.com/tpope/vim-eunuch'
+Plug 'https://github.com/tpope/vim-fugitive'
+Plug 'https://github.com/tpope/vim-repeat'
+Plug 'https://github.com/tpope/vim-surround'
+Plug 'https://github.com/tpope/vim-unimpaired'
 " Plug 'vim-airline/vim-airline'
-Plug 'nvim-lualine/lualine.nvim'
+Plug 'https://github.com/nvim-lualine/lualine.nvim'
 Plug 'https://github.com/akinsho/bufferline.nvim'
-Plug 'phaazon/hop.nvim'
+Plug 'https://github.com/phaazon/hop.nvim'
 
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'github/copilot.vim'
-Plug 'dstein64/vim-startuptime'
-Plug 'ap/vim-css-color'
+Plug 'https://github.com/nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'https://github.com/nvim-telescope/telescope-live-grep-args.nvim'
+Plug 'https://github.com/github/copilot.vim'
+Plug 'https://github.com/dstein64/vim-startuptime'
+Plug 'https://github.com/ap/vim-css-color'
 " Plug 'ryanoasis/vim-devicons'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'lewis6991/gitsigns.nvim'
+Plug 'https://github.com/kyazdani42/nvim-web-devicons'
+Plug 'https://github.com/lewis6991/gitsigns.nvim'
 " Plug 'nvim-telescope/telescope-hop.nvim'
 " Plug 'nvim-telescope/telescope-rg.nvim'
 " Plug 'nvim-telescope/telescope-ui-select.nvim'
-Plug 'neoclide/vim-jsx-improve'
-Plug 'jdhao/better-escape.vim'
-Plug 'simeji/winresizer'
+Plug 'https://github.com/neoclide/vim-jsx-improve'
+Plug 'https://github.com/jdhao/better-escape.vim'
+Plug 'https://github.com/simeji/winresizer'
 " Plug 'PhilRunninger/nerdtree-visual-selection'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'https://github.com/vimwiki/vimwiki'
 
 " LSP RELATED PLUGINS
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-cmp' " autocompletion framework
-Plug 'hrsh7th/cmp-nvim-lsp' " LSP autocompletion provider
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
-Plug 'williamboman/nvim-lsp-installer'
+Plug 'https://github.com/neovim/nvim-lspconfig'
+Plug 'https://github.com/hrsh7th/nvim-cmp' " autocompletion framework
+Plug 'https://github.com/hrsh7th/cmp-nvim-lsp' " LSP autocompletion provider
+Plug 'https://github.com/hrsh7th/cmp-buffer'
+Plug 'https://github.com/hrsh7th/cmp-path'
+Plug 'https://github.com/hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'https://github.com/williamboman/nvim-lsp-installer'
 " https://github.com/hrsh7th?tab=repositories
 
 " /LSP RELATED PLUGINS
