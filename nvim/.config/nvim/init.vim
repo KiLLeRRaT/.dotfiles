@@ -44,7 +44,7 @@ set splitright splitbelow " Open splits in the right and below
 set listchars=tab:\|\ ,nbsp:_,trail:·
 " " set listchars=tab:🠞\ ,nbsp:_,trail:·
 set list
-
+set nowrap
 set mouse=a
 
 " FROM: https://vim.fandom.com/wiki/File_format
@@ -80,14 +80,6 @@ set mouse=a
 " tnoremap <C-w>k <C-\><C-n><C-w>k
 " tnoremap <C-w>l <C-\><C-n><C-w>l
 
-" NEOVIM CLIENT SERVER STUFF, SEE "C:\GBox\Applications\Tools\Scripts\Aliases\nvim.bat"
-" silent execute "!echo " . v:servername . " > C:\\Users\\Albert\\AppData\\Local\\nvim-data\\servername.txt"
-
-" Highlight Shady Characters
-" match Error / \+$/ " TRAILING SPACE
-" match Error /\t\+$/ " TRAILING TAB
-" match Error /^\t*\zs \+/ " SPACES INSTEAD OF TABS
-
 " MAKE SURE TO KEEP YOUR COLOR SCHEME AFTER LOADING ANOTHER SCHEME LATER DOWN
 " THE CONFIG
 " autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
@@ -116,36 +108,6 @@ set mouse=a
 "   endif
 " endfunction
 
-
-
-
-
-
-
-
-" highlight ExtraWhitespace ctermbg=red guibg=red
-" augroup WhitespaceMatch
-"   " Remove ALL autocommands for the WhitespaceMatch group.
-"   autocmd!
-"   autocmd BufWinEnter * let w:whitespace_match_number = matchadd('ExtraWhitespace', '/^\t*\zs \+/')
-"   autocmd BufWinEnter * let w:whitespace_match_number2 = matchadd('ExtraWhitespace', '/^\t*\zs \+/')
-"   autocmd InsertEnter * call s:ToggleWhitespaceMatch('i')
-"   autocmd InsertLeave * call s:ToggleWhitespaceMatch('n')
-" augroup END
-" function! s:ToggleWhitespaceMatch(mode)
-"   let pattern = (a:mode == 'i') ? '/^\t*\zs \+/' : '/^\t*\zs \+/'
-"   let pattern2 = (a:mode == 'i') ? '/^\t*\zs \+/' : '/^\t*\zs \+/'
-"   if exists('w:whitespace_match_number')
-"     call matchdelete(w:whitespace_match_number)
-"     call matchdelete(w:whitespace_match_number2)
-"     call matchadd('ExtraWhitespace', pattern, 10, w:whitespace_match_number)
-"     call matchadd('ExtraWhitespace', pattern2, 10, w:whitespace_match_number2)
-"   else
-"     " Something went wrong, try to be graceful.
-"     let w:whitespace_match_number =  matchadd('ExtraWhitespace', pattern)
-"     let w:whitespace_match_number2 =  matchadd('ExtraWhitespace', pattern2)
-"   endif
-" endfunction
 
 
 " SHOW LONG LINES
@@ -206,68 +168,82 @@ set wildignore+=**/.git/*
 " call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged') " LINUX, REMOVED PATH SO THAT ITS NOT IN
 " MY GIT REPO
 call plug#begin()
-" Plug 'altercation/vim-colors-solarized'
-" Plug 'dense-analysis/ale' " LINTER
-" Plug 'morhetz/gruvbox'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'preservim/nerdtree'
-Plug 'ThePrimeagen/harpoon'
+Plug 'https://github.com/folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'https://github.com/nvim-lua/plenary.nvim'
+Plug 'https://github.com/nvim-telescope/telescope.nvim'
+Plug 'https://github.com/preservim/nerdtree'
+Plug 'https://github.com/ThePrimeagen/harpoon'
 " Plug 'ThePrimeagen/vim-be-good'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-" Plug 'vim-airline/vim-airline'
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'akinsho/bufferline.nvim'
-Plug 'phaazon/hop.nvim'
+Plug 'https://github.com/tpope/vim-abolish'
+Plug 'https://github.com/tpope/vim-commentary'
+Plug 'https://github.com/tpope/vim-eunuch'
+Plug 'https://github.com/tpope/vim-fugitive'
+Plug 'https://github.com/tpope/vim-repeat'
+Plug 'https://github.com/tpope/vim-surround'
+Plug 'https://github.com/tpope/vim-unimpaired'
+Plug 'https://github.com/nvim-lualine/lualine.nvim'
+Plug 'https://github.com/akinsho/bufferline.nvim'
+Plug 'https://github.com/phaazon/hop.nvim'
 
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'dstein64/vim-startuptime'
-Plug 'ap/vim-css-color'
-" Plug 'ryanoasis/vim-devicons'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'lewis6991/gitsigns.nvim'
-Plug 'nvim-telescope/telescope-hop.nvim'
-Plug 'nvim-telescope/telescope-rg.nvim'
-Plug 'neoclide/vim-jsx-improve'
-Plug 'jdhao/better-escape.vim'
-Plug 'simeji/winresizer'
-" Plug 'puremourning/vimspector' NEED TO READ ABOUT IT AND CONFIG IT: https://github.com/puremourning/vimspector#quick-start
-" Plug 'PhilRunninger/nerdtree-visual-selection'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'https://github.com/nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'https://github.com/nvim-telescope/telescope-live-grep-args.nvim'
+" Plug 'https://github.com/github/copilot.vim'
+Plug 'https://github.com/dstein64/vim-startuptime'
+Plug 'https://github.com/ap/vim-css-color'
+Plug 'https://github.com/kyazdani42/nvim-web-devicons'
+" Plug 'https://github.com/neoclide/vim-jsx-improve'
+Plug 'https://github.com/jdhao/better-escape.vim'
+Plug 'https://github.com/simeji/winresizer'
+Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'https://github.com/vimwiki/vimwiki'
 
 " LSP RELATED PLUGINS
-" " Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'neoclide/coc.nvim', {'branch': 'master'} " CHANGED TO MASTER ON 202203281043
-" Plug 'fannheyward/telescope-coc.nvim'
-
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-cmp' " autocompletion framework
-Plug 'hrsh7th/cmp-nvim-lsp' " LSP autocompletion provider
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
+Plug 'https://github.com/neovim/nvim-lspconfig'
+Plug 'https://github.com/hrsh7th/nvim-cmp' " autocompletion framework
+Plug 'https://github.com/hrsh7th/cmp-nvim-lsp' " LSP autocompletion provider
+Plug 'https://github.com/hrsh7th/cmp-buffer'
+Plug 'https://github.com/hrsh7th/cmp-path'
+Plug 'https://github.com/hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'https://github.com/williamboman/nvim-lsp-installer'
 " https://github.com/hrsh7th?tab=repositories
 
-" Plug 'nvim-lua/completion-nvim'
-" Plug 'nvim-lua/diagnostic-nvim'
+" /LSP RELATED PLUGINS
 
+" SQL
+" Plug 'https://github.com/tpope/vim-dadbod'
+" Plug 'https://github.com/kristijanhusak/vim-dadbod-ui'
+" Plug 'https://github.com/kristijanhusak/vim-dadbod-completion'
 
+" DEBUGGERS
+" Plug 'https://github.com/leoluz/nvim-dap-go'
+" Plug 'https://github.com/rcarriga/nvim-dap-ui'
+" Plug 'https://github.com/theHamsta/nvim-dap-virtual-text'
+" Plug 'https://github.com/nvim-telescope/telescope-dap.nvim'
+" Plug 'https://github.com/mfussenegger/nvim-dap'
+
+" Modify files right in the quick fix list
+" Plug 'https://github.com/stefandtw/quickfix-reflector.vim'
+
+" " SWITCH TO OPPOSITE WORD, E.G. TRUE -> FALSE, etc.
+" Plug 'https://github.com/AndrewRadev/switch.vim'
+" Plug 'https://github.com/lambdalisue/suda.vim'
+
+" " Open LSP goto defn in floating windows
+" Plug 'https://github.com/rmagatti/goto-preview'
 call plug#end()
+
+
+" SNAPSHOT PLUGINS BEFORE UPDATING!!!
+" FROM: https://shyr.io/blog/vim-plugin-lockfile
+command APlugUpdate
+  \ PlugUpdate | exe 'PlugSnapshot! ' . stdpath('config') . '/vim-plug-snapshot.vim'
 
 
 " FOLDING
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
-" /USED UP UNTIL I INSTALLED TREESITTER
-" FROM: https://alldrops.info/posts/vim-drops/2018-04-25_javascript-folding-on-vim/
-" set foldmethod=syntax "syntax highlighting items specify folds
 set foldcolumn=1 "defines 1 col at window left, to indicate folding
 set foldlevelstart=99 "start file with all folds opened
 
@@ -278,79 +254,10 @@ let xml_folding=1
 let yaml_fold=1
 let vb_fold=1
 
-" FROM: https://codito.in/c-and-vim/
-" Folding : http://vim.wikia.com/wiki/Syntax-based_folding, see comment by Ostrygen
-" au FileType cs set omnifunc=syntaxcomplete#Complete
-
-" au FileType cs set foldmethod=marker
-" au FileType cs set foldmarker={,}
-" au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
-
-" au FileType cs set foldlevelstart=0
-" au FileType cs set foldlevel=0
-" au FileType cs set foldclose=none
-
 " SAVE FOLDING AND OTHER THINGS WHEN YOU OPEN AND CLOSE FILES/VIM, FROM: https://vim.fandom.com/wiki/Make_views_automatic
 set viewoptions-=options
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent! loadview
-" /USED UP UNTIL I INSTALLED TREESITTER
-
-" autocmd BufWinLeave ?* mkview | AirlineToggle
-" autocmd BufWinEnter ?* silent loadview | AirlineToggle
-
-" set viewoptions-=options
-" augroup vimrc
-"     autocmd BufWritePost *
-"     \   if expand('%') != '' && &buftype !~ 'nofile'
-"     \|      mkview
-"     \|  endif
-"     autocmd BufRead *
-"     \   if expand('%') != '' && &buftype !~ 'nofile'
-"     \|      silent loadview
-"     \|  endif
-" augroup END
-
-" let g:skipview_files = [
-"             \ '[EXAMPLE PLUGIN BUFFER]'
-"             \ ]
-" function! MakeViewCheck()
-"     if has('quickfix') && &buftype =~ 'nofile'
-"         " Buffer is marked as not a file
-"         return 0
-"     endif
-"     if empty(glob(expand('%:p')))
-"         " File does not exist on disk
-"         return 0
-"     endif
-"     if len($TEMP) && expand('%:p:h') == $TEMP
-"         " We're in a temp dir
-"         return 0
-"     endif
-"     if len($TMP) && expand('%:p:h') == $TMP
-"         " Also in temp dir
-"         return 0
-"     endif
-"     if index(g:skipview_files, expand('%')) >= 0
-"         " File is in skip list
-"         return 0
-"     endif
-"     return 1
-" endfunction
-" augroup vimrcAutoView
-"     autocmd!
-"     " Autosave & Load Views.
-"     autocmd BufWritePost,BufLeave,WinLeave ?* if MakeViewCheck() | mkview | endif
-"     autocmd BufWinEnter ?* if MakeViewCheck() | silent loadview | endif
-" augroup end
-" /SAVE FOLDING AND OTHER THINGS WHEN YOU OPEN AND CLOSE FILES/VIM, FROM: https://vim.fandom.com/wiki/Make_views_automatic
-
-
-
-
-
-
-
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /FOLDING
@@ -363,8 +270,8 @@ set background=dark
 " let g:solarized_termtrans = 1
 "colorscheme solarized
 
-let g:gruvbox_guisp_fallback = "bg" " THIS TURNS ON SPELLBAD PROPERLY FOR SPELLCHECK HIGHLIGHTING IN GRUVBOX
-let g:gruvbox_transparent_bg = 1
+" let g:gruvbox_guisp_fallback = "bg" " THIS TURNS ON SPELLBAD PROPERLY FOR SPELLCHECK HIGHLIGHTING IN GRUVBOX
+" let g:gruvbox_transparent_bg = 1
 " colorscheme gruvbox
 
 let g:tokyonight_transparent = 1
@@ -378,35 +285,15 @@ hi! Normal ctermbg=NONE guibg=NONE
 " REMAPS / REMAPPINGS / KEYS
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let mapleader = " "
-" inoremap jk <Esc>
-" vnoremap jk <Esc>
-
-" Use s instead of <C-w> to handle windows
-"nnoremap s <C-w>
-" DOES NOT WORK IN THINGS LIKE THE Git WINDOW AND NERDTree.... :'(
 
 " SWITCH TO PREV BUFFER AND CLOSE THE ONE YOU SWITCHED AWAY FROM, CLOSES A
 " BUFFER WITHOUT MESSING UP THE SPLIT
-" nnoremap <leader>bd :bp\|bd #<cr>
 nnoremap <leader>bd :bp \| :sp \| :bn \| :bd<cr>
 
-" nnoremap <leader>ba :AirlineToggle<cr>:bufdo bd<cr>:AirlineToggle<cr>
 nnoremap <leader>ba :bufdo bd<cr>
 
-" INSTEAD USE
-" <c-w>+ and <c-w>- AND
-" <c-w>> and <c-w>< AND
-" <c-w>_ and <c-w>|
-" nnoremap <leader>v> :vertical resize +5<CR>
-" nnoremap <leader>v< :vertical resize -5<CR>
-" nnoremap <leader>h> :resize +5<CR>
-" nnoremap <leader>h< :resize -5<CR>
+nnoremap ' `
 
-" nnoremap <leader>+ :vertical resize +5<CR>
-" nnoremap <leader>- :vertical resize -5<CR>
-
-" MAKE Y behave the same as C, A, I, D
-" nnoremap Y yg$, now in Neovim 0.6.0!
 " KEEP CURSOR IN THE CENTRE OF THE SCREEN WHEN SEARCHING NEXT
 nnoremap n nzzzv
 nnoremap N Nzzzv
@@ -448,6 +335,22 @@ nnoremap <leader>ri< ci<<C-R><C-0><esc>
 nnoremap <leader>ri> ci><C-R><C-0><esc>
 nnoremap <leader>ri` ci`<C-R><C-0><esc>
 
+" REPLACE SELECTION WITH YANKED TEXT FROM CLIPBOARD
+nnoremap <leader>Riw ciw<C-R><C-*><esc>
+nnoremap <leader>Rit cit<C-R><C-*><esc>
+nnoremap <leader>Ri" ci"<C-R><C-*><esc>
+nnoremap <leader>Ri' ci'<C-R><C-*><esc>
+nnoremap <leader>Ri( ci)<C-R><C-*><esc>
+nnoremap <leader>Ri) ci)<C-R><C-*><esc>
+nnoremap <leader>Rib cib<C-R><C-*><esc>
+nnoremap <leader>Ri{ ci{<C-R><C-*><esc>
+nnoremap <leader>Ri} ci}<C-R><C-*><esc>
+nnoremap <leader>Ri[ ci[<C-R><C-*><esc>
+nnoremap <leader>Ri] ci]<C-R><C-*><esc>
+nnoremap <leader>Ri< ci<<C-R><C-*><esc>
+nnoremap <leader>Ri> ci><C-R><C-*><esc>
+nnoremap <leader>Ri` ci`<C-R><C-*><esc>
+
 nnoremap <leader>raw caw<C-R><C-0><esc>
 nnoremap <leader>rat cat<C-R><C-0><esc>
 nnoremap <leader>ra" ca"<C-R><C-0><esc>
@@ -462,6 +365,21 @@ nnoremap <leader>ra] ca]<C-R><C-0><esc>
 nnoremap <leader>ra< ca<<C-R><C-0><esc>
 nnoremap <leader>ra> ca><C-R><C-0><esc>
 nnoremap <leader>ra` ca`<C-R><C-0><esc>
+
+nnoremap <leader>Raw caw<C-R><C-*><esc>
+nnoremap <leader>Rat cat<C-R><C-*><esc>
+nnoremap <leader>Ra" ca"<C-R><C-*><esc>
+nnoremap <leader>Ra' ca'<C-R><C-*><esc>
+nnoremap <leader>Ra( ca)<C-R><C-*><esc>
+nnoremap <leader>Ra) ca)<C-R><C-*><esc>
+nnoremap <leader>Rab cab<C-R><C-*><esc>
+nnoremap <leader>Ra{ ca{<C-R><C-*><esc>
+nnoremap <leader>Ra} ca}<C-R><C-*><esc>
+nnoremap <leader>Ra[ ca[<C-R><C-*><esc>
+nnoremap <leader>Ra] ca]<C-R><C-*><esc>
+nnoremap <leader>Ra< ca<<C-R><C-*><esc>
+nnoremap <leader>Ra> ca><C-R><C-*><esc>
+nnoremap <leader>Ra` ca`<C-R><C-*><esc>
 " /REPLACE SELECTION WITH YANKED TEXT
 
 " BELOW COMMENTED OUT BECAUSE IT BREAKS THE ABOVE...
@@ -498,26 +416,32 @@ nnoremap <leader>ci` ci`"
 " COPY CURRENT FILENAME OR FULL FILE PATH TO SYSTEM CLIPBOARD
 nnoremap <leader>cf :echo expand("%:t") \| :let @+ = expand("%:t")<cr>
 nnoremap <leader>cF :echo expand("%:p") \| :let @+ = expand("%:p")<cr>
+" OPEN CURRENT FOLDER IN WINDOWS EXPLORER
+" EXPAND COLON PARAMETERS FROM: https://vi.stackexchange.com/a/1885
+nnoremap gF :!start %:p:h<cr>
 
 " " REPLACE VISUAL SELECTION
 " vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " REFRESH FILE FROM DISK
-nnoremap <f5> :e %<cr>
+nnoremap <F5> :e %<cr>
 
 " REFRESH FILE FROM DISK AND GO TO BOTTOM
-nnoremap <silent><S-f5> :e %<cr>G
+nnoremap <silent><S-F5> :e %<cr>G
 
 " RELOAD CONFIG
 " nnoremap <C-f5> :so ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
-nnoremap <C-f5> :execute 'source ' . stdpath('config') . '/init.vim'<cr>
+nnoremap <C-F5> :execute 'source ' . stdpath('config') . '/init.vim'<cr>
 
 " " EDIT CONFIG
 " nnoremap <A-f5> :e ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
-nnoremap <A-f5> :execute 'edit ' . stdpath('config') . '/init.vim'<cr>
+nnoremap <A-F5> :execute 'edit ' . stdpath('config') . '/init.vim'<cr>:cd %:h<cr>
 
 " EDIT NOTES FOLDER
-nnoremap <A-n> :e C:\GBox\Notes<cr>
+nnoremap <A-n> :e C:\GBox\Notes<cr>:cd C:\GBox\Notes<cr>
+
+" EDIT SCRIPTS FOLDER
+nnoremap <A-s> :e C:\GBox\Applications\Tools\Scripts<cr>:cd C:\GBox\Applications\Tools\Scripts<cr>
 
 " BUILD SOLUTION
 nnoremap <leader>rb :!dotnet build *.sln
@@ -545,8 +469,8 @@ map <F6> :setlocal spell!<CR>
 " map <C-F2> :AirlineRefresh<CR>
 
 " RUN jq and use tab indents, then remove the ^M chars because vim is doing stupid things.
-vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r<cr>
-nnoremap <leader>=j :%!jq --tab .<cr>:%s/\r<cr>
+vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r/e<cr>
+nnoremap <leader>=j :%!jq --tab .<cr>:%s/\r/e<cr>
 " PASTE JSON FROM CLIPBOARD, AND FORMAT IT
 nnoremap <leader>=J ggdG"+P:%!jq --tab .<cr>:%s/\r<cr>
 " RETAB FILE
@@ -559,20 +483,29 @@ nnoremap <leader>=w :%s/\s\+$//<cr>
 " 	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$NNA\<c-r>0\<esc>0"
 " 	silent! call repeat#set("\<space>=v", v:count)
 " endfunction
-function! MergeParametersAndValue()
-	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$ddNA\<c-r>0\<esc>0"
-	silent! call repeat#set("\<space>=v", v:count)
-endfunction
-autocmd FileType cs nnoremap <leader>=v :call MergeParametersAndValue()<cr>
+
+" function! MergeParametersAndValue()
+" 	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$ddNA\<c-r>0\<esc>0"
+" 	silent! call repeat#set("\<space>=v", v:count)
+" endfunction
+" autocmd FileType cs nnoremap <buffer> <leader>=v :call MergeParametersAndValue()<cr>
+
+
 
 " TELESCOPE
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>ff <cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>
-nnoremap <expr> <leader>fF ':Telescope find_files<cr>' . "'" . expand('<cword>')
+" LAST TELESCOPE VERSION WHERE THE BELOW WORKS: git reset --hard 5a58b1f
+" nnoremap <expr> <leader>fF ':Telescope find_files<cr>' . "'" . expand('<cword>')
+nnoremap <leader>fF :execute 'Telescope find_files default_text=' . "'" . expand('<cword>')<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <expr> <leader>fG ':Telescope live_grep<cr>' . expand('<cword>')
-nnoremap <leader>fR <cmd>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<cr>
+" nnoremap <expr> <leader>fG ':Telescope live_grep<cr>' . expand('<cword>')
+nnoremap <leader>fG :execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>
+
+" nnoremap <leader>fR <cmd>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<cr>
+nnoremap <leader>fR <cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>
+
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fk <cmd>Telescope help_tags<cr>
 nnoremap <leader>fm <cmd>Telescope keymaps<cr>
@@ -610,14 +543,14 @@ function! CommentReact()
 		exec "normal! I{/*\<esc>A*/}\<esc>"
 		silent! call repeat#set("\<space>gcc", v:count)
 endfunction
-autocmd FileType typescriptreact nnoremap <leader>gcc :call CommentReact()<cr>
+autocmd FileType typescriptreact nnoremap <buffer> <leader>gcc :call CommentReact()<cr>
 
 " autocmd FileType typescriptreact nnoremap <leader>gcu ^3dl<esc>$F*D<cr>
 function! UncommentReact()
 		exec "normal! ^3dl\<esc>$F*D"
 		silent! call repeat#set("\<space>gcu", v:count)
 endfunction
-autocmd FileType typescriptreact nnoremap <leader>gcu :call UncommentReact()<cr>
+autocmd FileType typescriptreact nnoremap <buffer> <leader>gcu :call UncommentReact()<cr>
 " /COMMENT OUT USING {/* */}, AND SUPPORTS REPEAT FOR THE ENTIRE COMMAND
 
 
@@ -637,9 +570,9 @@ autocmd FileType typescriptreact nnoremap <leader>gcu :call UncommentReact()<cr>
 nnoremap <c-q> :copen<cr>
 nnoremap <c-j> :cn<cr>
 nnoremap <c-k> :cp<cr>
-nnoremap <leader>eq :lopen<cr>
-nnoremap <leader>ej :lnext<cr>
-nnoremap <leader>ek :lprev<cr>
+" nnoremap <leader>eq :lopen<cr>
+" nnoremap <leader>ej :lnext<cr>
+" nnoremap <leader>ek :lprev<cr>
 
 " HOP, REPLACES EASY MOTION
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -649,9 +582,6 @@ map <Leader>w <cmd>:HopWord<cr>
 map <Leader>W <cmd>:HopWordMW<cr>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /HOP
-
-" Remap code completion to Ctrl+Space {{{2
-" inoremap <C-@> <C-x><C-o>
 
 " NERDTree
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -666,6 +596,7 @@ map <Leader>W <cmd>:HopWordMW<cr>
 "
 " enable line numbers
 let NERDTreeShowLineNumbers=1
+let NERDTreeShowHidden=1
 
 " if (has('win32'))
 " 	" let g:NERDTreeCopyCmd= 'copy '
@@ -675,7 +606,7 @@ let NERDTreeShowLineNumbers=1
 " make sure relative line numbers are used
 autocmd FileType nerdtree setlocal relativenumber
 
-" nnoremap <leader>nf :NERDTreeFocus<CR>
+nnoremap <leader>nf :NERDTreeFocus<CR>
 " nnoremap <leader>n :NERDTree<CR>
 nnoremap <leader>nt :NERDTreeToggle<CR>
 " nnoremap <leader>n :NERDTreeToggle<CR>
@@ -683,15 +614,6 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /NERDTree
-
-" " Airline
-" " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#buffer_nr_show = 1
-" let g:airline#extensions#tabline#formatter = 'short_path' " default | jsformatter | unique_tail | unique_tail_improved | short_path | tabnr, from: https://github.com/vim-airline/vim-airline#default, to create custom ones: https://stackoverflow.com/a/53754280/182888
-" let g:airline_powerline_fonts = 1
-" " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" " /Airline
 
 " HARPOON
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -715,6 +637,7 @@ nnoremap <silent><leader>; :lua require("harpoon.ui").nav_file(5)<CR>
 " FUGITIVE
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nnoremap <leader>gs :Git<cr>
+nnoremap <leader>gS :Git pull<cr>:Git push<cr>
 nnoremap <leader>gp :Git push<cr>
 nnoremap <leader>gP :Git push --force-with-lease<cr>
 nnoremap <leader>gf :Git fetch<cr>
@@ -738,7 +661,8 @@ nnoremap <leader>gt :Git tag<space>
 
 lua require('plugins')
 
-nnoremap K :lua vim.lsp.buf.hover()<CR>
+autocmd FileType cs nnoremap <buffer> K :lua vim.lsp.buf.hover()<CR>
+
 " nnoremap gd :lua vim.lsp.buf.definition()<CR>
 nnoremap gd :Telescope lsp_definitions<CR>
 nnoremap gD :lua vim.lsp.buf.type_definition()<CR>
@@ -747,7 +671,8 @@ nnoremap gr :Telescope lsp_references<CR>
 nnoremap ]g :lua vim.diagnostic.goto_next()<CR>
 nnoremap [g :lua vim.diagnostic.goto_prev()<CR>
 nnoremap <leader>fd :Telescope diagnostics<CR>
-nnoremap <leader>fa :%Telescope lsp_range_code_actions<CR>
+" nnoremap <leader>fa :%Telescope lsp_range_code_actions<CR>
+" nnoremap <leader>fa :lua vim.lsp.buf.range_code_action()<CR>
 nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
 
@@ -765,35 +690,41 @@ nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /LSP
 
+" " GITHUB COPILOT
+" " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+" let g:copilot_no_tab_map = v:true
+" " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" " /GITHUB COPILOT
 
-" GIT SIGNS: https://github.com/lewis6991/gitsigns.nvim
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-lua require('gitsigns').setup()
-" Navigation
-nnoremap ]c :Gitsigns next_hunk<cr>
-nnoremap [c :Gitsigns prev_hunk<cr>
+" " GIT SIGNS: https://github.com/lewis6991/gitsigns.nvim
+" " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" lua require('gitsigns').setup()
+" " Navigation
+" nnoremap ]c :Gitsigns next_hunk<cr>
+" nnoremap [c :Gitsigns prev_hunk<cr>
 
-    " -- Actions
-nnoremap <leader>ds :Gitsigns stage_hunk<cr>
+"     " -- Actions
+" nnoremap <leader>ds :Gitsigns stage_hunk<cr>
 
-" REPLACE ^M AFTER RESET HUNK
-nnoremap <leader>dr :Gitsigns reset_hunk<cr>:%s/\r<cr>
+" " REPLACE ^M AFTER RESET HUNK
+" nnoremap <leader>dr :Gitsigns reset_hunk<cr>:%s/\r<cr>
 
-    " map('n', '<leader>hS', gs.stage_buffer)
-nnoremap <leader>du :Gitsigns undo_stage_hunk<cr>
-    " map('n', '<leader>hR', gs.reset_buffer)
-nnoremap <leader>dp :Gitsigns preview_hunk<cr>
-" nnoremap <leader>hb :Gitsigns blame_line{full=true}<cr>
-nnoremap <leader>db :Gitsigns toggle_current_line_blame<cr>
+"     " map('n', '<leader>hS', gs.stage_buffer)
+" nnoremap <leader>du :Gitsigns undo_stage_hunk<cr>
+"     " map('n', '<leader>hR', gs.reset_buffer)
+" nnoremap <leader>dp :Gitsigns preview_hunk<cr>
+" " nnoremap <leader>hb :Gitsigns blame_line{full=true}<cr>
+" nnoremap <leader>db :Gitsigns toggle_current_line_blame<cr>
 
-    " map('n', '<leader>hb', function() gs.blame_line{full=true} end)
-    " map('n', '<leader>tb', gs.toggle_current_line_blame)
-    " map('n', '<leader>hd', gs.diffthis)
-    " map('n', '<leader>hD', function() gs.diffthis('~') end)
-    " map('n', '<leader>td', gs.toggle_deleted)
+"     " map('n', '<leader>hb', function() gs.blame_line{full=true} end)
+"     " map('n', '<leader>tb', gs.toggle_current_line_blame)
+"     " map('n', '<leader>hd', gs.diffthis)
+"     " map('n', '<leader>hD', function() gs.diffthis('~') end)
+"     " map('n', '<leader>td', gs.toggle_deleted)
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" /GIT SIGNS
+" " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" " /GIT SIGNS
 
 
 " VIM DEV ICONS
@@ -804,3 +735,49 @@ if exists("g:loaded_webdevicons")
 endif
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /VIM DEV ICONS
+
+
+" " DEBUGGERS
+" " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" nnoremap <F8> :lua require("dap").continue()<CR>
+" nnoremap <F9> :lua require("dap").toggle_breakpoint()<CR>
+" nnoremap <F10> :lua require("dap").step_over()<CR>
+" nnoremap <F11> :lua require("dap").step_into()<CR>
+" nnoremap <S-F11> :lua require("dap").step_out()<CR>
+" nnoremap <F12> :lua require("dap").repl.open()<CR>
+" " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" " /DEBUGGERS
+
+" BUFFERLINE
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap <silent> gb :BufferLinePick<CR>
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /BUFFERLINE
+" SWITCH.VIM
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" FROM: https://github.com/AndrewRadev/switch.vim
+" keybinding is gs
+let g:switch_custom_definitions =
+    \ [
+    \   switch#NormalizedCase(['private', 'protected', 'internal', 'public']),
+    \   switch#NormalizedCase(['true', 'false']),
+    \   switch#NormalizedCase(['before', 'after']),
+    \   switch#NormalizedCase(['to', 'from']),
+    \   switch#NormalizedCase(['==', '!=']),
+    \   switch#NormalizedCase(['min', 'max']),
+    \   switch#NormalizedCase(['UAT', 'PROD']),
+    \ ]
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /SWITCH.VIM
+
+
+
+" VIM WIKI
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:vimwiki_list = [{'path': '~/GBox/Notes/wiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+" :help g:vimwiki_map_prefix
+let g:vimwiki_map_prefix = '<leader>v'
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" /VIM WIKI
+
