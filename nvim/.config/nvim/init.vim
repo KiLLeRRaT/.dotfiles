@@ -15,6 +15,7 @@ set hlsearch
 set cursorline
 set incsearch
 set spelllang=en,af
+set dictionary+=/usr/share/dict/words
 set showcmd
 set autoread " READ FILE IF OUTSIDE CHANGES ARE DETECTED
 " set columns=80           " window width in columns
@@ -49,31 +50,31 @@ set mouse=a
 " FROM: https://vim.fandom.com/wiki/File_format
 " set ffs=dos,unix
 
-" SET SHELL TO POWERSHELL
-if (has('win32'))
-	" let &shell = has('win32') ? 'powershell' : 'pwsh'
-	let &shell = 'pwsh'
-	let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-	let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-	let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-	set shellquote= shellxquote=
-	set noshelltemp " FROM: https://superuser.com/a/1561892/69729, Sorts out the issue with shell returned 1, E485 and temp files
-endif
-" /SET SHELL TO POWERSHELL
+" " SET SHELL TO POWERSHELL
+" if (has('win32'))
+" 	" let &shell = has('win32') ? 'powershell' : 'pwsh'
+" 	let &shell = 'pwsh'
+" 	let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+" 	let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+" 	let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+" 	set shellquote= shellxquote=
+" 	set noshelltemp " FROM: https://superuser.com/a/1561892/69729, Sorts out the issue with shell returned 1, E485 and temp files
+" endif
+" " /SET SHELL TO POWERSHELL
 
 " SET FONT TO NERDFONT IF USING nvim-qt
-if exists(':GuiFont')
-	GuiFont! CaskaydiaCove Nerd Font:h12
-endif
+" if exists(':GuiFont')
+" 	GuiFont! CaskaydiaCove Nerd Font:h12
+" endif
 
 " MAKE ESC GO TO NORMAL MODE IN TERMINAL, FROM: http://vimcasts.org/episodes/neovim-terminal-mappings/
 " tnoremap <Esc> <C-\><C-n>
 " tnoremap <M-[> <Esc>
 " tnoremap <C-v><Esc> <Esc>
-tnoremap jk <C-\><C-n>
+" tnoremap jk <C-\><C-n>
 " tnoremap <M-[> <Esc>
 " VERBATIM ESCAPE, JUST LIKE <C-V> TO ENTER OTHER COMMANDS LIKE TAB ETC.
-tnoremap <C-v><Esc> <Esc>
+" tnoremap <C-v><Esc> <Esc>
 " tnoremap <C-w>h <C-\><C-n><C-w>h
 " tnoremap <C-w>j <C-\><C-n><C-w>j
 " tnoremap <C-w>k <C-\><C-n><C-w>k
@@ -89,31 +90,31 @@ tnoremap <C-v><Esc> <Esc>
 
 " MAKE SURE TO KEEP YOUR COLOR SCHEME AFTER LOADING ANOTHER SCHEME LATER DOWN
 " THE CONFIG
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+" autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 " call matchadd('ExtraWhitespace', '/\s\+\%#\@<!$/', 100)
 " call matchadd('ExtraWhitespace', '/^\t*\zs \+/', 100) " SHOW SPACES AT THE
 " START OF LINES
 
 
 
-augroup WhitespaceMatch
-  " Remove ALL autocommands for the WhitespaceMatch group.
-  autocmd!
-  autocmd BufWinEnter * let w:whitespace_match_number =
-        \ matchadd('ExtraWhitespace', '\s\+$')
-  autocmd InsertEnter * call s:ToggleWhitespaceMatch('i')
-  autocmd InsertLeave * call s:ToggleWhitespaceMatch('n')
-augroup END
-function! s:ToggleWhitespaceMatch(mode)
-  let pattern = (a:mode == 'i') ? '\s\+\%#\@<!$' : '\s\+$'
-  if exists('w:whitespace_match_number')
-    call matchdelete(w:whitespace_match_number)
-    call matchadd('ExtraWhitespace', pattern, 10, w:whitespace_match_number)
-  else
-    " Something went wrong, try to be graceful.
-    let w:whitespace_match_number =  matchadd('ExtraWhitespace', pattern)
-  endif
-endfunction
+" augroup WhitespaceMatch
+"   " Remove ALL autocommands for the WhitespaceMatch group.
+"   autocmd!
+"   autocmd BufWinEnter * let w:whitespace_match_number =
+"         \ matchadd('ExtraWhitespace', '\s\+$')
+"   autocmd InsertEnter * call s:ToggleWhitespaceMatch('i')
+"   autocmd InsertLeave * call s:ToggleWhitespaceMatch('n')
+" augroup END
+" function! s:ToggleWhitespaceMatch(mode)
+"   let pattern = (a:mode == 'i') ? '\s\+\%#\@<!$' : '\s\+$'
+"   if exists('w:whitespace_match_number')
+"     call matchdelete(w:whitespace_match_number)
+"     call matchadd('ExtraWhitespace', pattern, 10, w:whitespace_match_number)
+"   else
+"     " Something went wrong, try to be graceful.
+"     let w:whitespace_match_number =  matchadd('ExtraWhitespace', pattern)
+"   endif
+" endfunction
 
 
 
@@ -148,8 +149,8 @@ endfunction
 
 
 " SHOW LONG LINES
-highlight ColorColumn cterm=reverse ctermfg=142 ctermbg=235 gui=reverse guifg=#b8bb26 guibg=#282828
-call matchadd('ColorColumn', '\%81v', 100)
+" highlight ColorColumn cterm=reverse ctermfg=142 ctermbg=235 gui=reverse guifg=#b8bb26 guibg=#282828
+" call matchadd('ColorColumn', '\%81v', 100)
 
 " https://superuser.com/a/356865/69729
 " autocmd Filetype * :match Error /^\t*\zs \+/
@@ -181,38 +182,38 @@ set wildignore+=**/.git/*
 
 " INSTALL VIM PLUGGED
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if (has('win32'))
-	" WINDOWS
-	" let plugPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/data/nvim-data/site/autoload/plug.vim'
-	" if empty(glob('~/AppData/Local/nvim-data/site/autoload/plug.vim'))
-	if empty(glob(stdpath('data') . '/site/autoload/plug.vim'))
-			silent !curl -fLo glob(stdpath('data') . '/site/autoload/plug.vim') --create-dirs
-					\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-			"autocmd VimEnter * PlugInstall --sync | source ~/AppData/Local/nvim/init.vim
-			autocmd VimEnter * PlugInstall --sync | source stdpath('config') . '/init.vim'
-	endif
-elseif (has('mac') || has('unix'))
-	" LINUX
-	let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-	if empty(glob(data_dir . '/autoload/plug.vim'))
-		silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-	endif
-endif
+"if (has('win32'))
+"	" WINDOWS
+"	" let plugPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/data/nvim-data/site/autoload/plug.vim'
+"	" if empty(glob('~/AppData/Local/nvim-data/site/autoload/plug.vim'))
+"	if empty(glob(stdpath('data') . '/site/autoload/plug.vim'))
+"			silent !curl -fLo glob(stdpath('data') . '/site/autoload/plug.vim') --create-dirs
+"					\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"			"autocmd VimEnter * PlugInstall --sync | source ~/AppData/Local/nvim/init.vim
+"			autocmd VimEnter * PlugInstall --sync | source stdpath('config') . '/init.vim'
+"	endif
+"elseif (has('mac') || has('unix'))
+"	" LINUX
+"	let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+"	if empty(glob(data_dir . '/autoload/plug.vim'))
+"		silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+"		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"	endif
+"endif
 
 " PLUGINS
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged') " LINUX, REMOVED PATH SO THAT ITS NOT IN
 " MY GIT REPO
 call plug#begin()
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 " Plug 'dense-analysis/ale' " LINTER
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'preservim/nerdtree'
 Plug 'ThePrimeagen/harpoon'
-Plug 'ThePrimeagen/vim-be-good'
+" Plug 'ThePrimeagen/vim-be-good'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -226,7 +227,6 @@ Plug 'akinsho/bufferline.nvim'
 Plug 'phaazon/hop.nvim'
 
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'github/copilot.vim'
 Plug 'dstein64/vim-startuptime'
 Plug 'ap/vim-css-color'
 " Plug 'ryanoasis/vim-devicons'
@@ -238,7 +238,7 @@ Plug 'neoclide/vim-jsx-improve'
 Plug 'jdhao/better-escape.vim'
 Plug 'simeji/winresizer'
 " Plug 'puremourning/vimspector' NEED TO READ ABOUT IT AND CONFIG IT: https://github.com/puremourning/vimspector#quick-start
-Plug 'PhilRunninger/nerdtree-visual-selection'
+" Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
@@ -585,9 +585,9 @@ nnoremap <leader>fs <cmd>Telescope colorscheme<cr>
 nnoremap z= <cmd>Telescope spell_suggest<cr>
 
 " SEARCH MY OWN GBOX SCRIPTS
-lua require("killerrat")
-nnoremap <leader>sf :lua require('killerrat.telescope').search_scripts()<CR>
-nnoremap <leader>sg :lua require('killerrat.telescope').grep_scripts()<CR>
+" lua require("killerrat")
+" nnoremap <leader>sf :lua require('killerrat.telescope').search_scripts()<CR>
+" nnoremap <leader>sg :lua require('killerrat.telescope').grep_scripts()<CR>
 
 " lua require('telescope').load_extension('fzf')
 " lua require('telescope').load_extension('hop')
@@ -667,10 +667,10 @@ map <Leader>W <cmd>:HopWordMW<cr>
 " enable line numbers
 let NERDTreeShowLineNumbers=1
 
-if (has('win32'))
-	" let g:NERDTreeCopyCmd= 'copy '
-	let g:NERDTreeCopyCmd= 'Copy-Item -Recurse '
-endif
+" if (has('win32'))
+" 	" let g:NERDTreeCopyCmd= 'copy '
+" 	let g:NERDTreeCopyCmd= 'Copy-Item -Recurse '
+" endif
 
 " make sure relative line numbers are used
 autocmd FileType nerdtree setlocal relativenumber
@@ -765,12 +765,6 @@ nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /LSP
 
-" GITHUB COPILOT
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
-let g:copilot_no_tab_map = v:true
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" /GITHUB COPILOT
 
 " GIT SIGNS: https://github.com/lewis6991/gitsigns.nvim
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
