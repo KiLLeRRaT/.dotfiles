@@ -753,22 +753,23 @@ endif
 nnoremap <silent> gb :BufferLinePick<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /BUFFERLINE
-" SWITCH.VIM
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" FROM: https://github.com/AndrewRadev/switch.vim
-" keybinding is gs
-let g:switch_custom_definitions =
-    \ [
-    \   switch#NormalizedCase(['private', 'protected', 'internal', 'public']),
-    \   switch#NormalizedCase(['true', 'false']),
-    \   switch#NormalizedCase(['before', 'after']),
-    \   switch#NormalizedCase(['to', 'from']),
-    \   switch#NormalizedCase(['==', '!=']),
-    \   switch#NormalizedCase(['min', 'max']),
-    \   switch#NormalizedCase(['UAT', 'PROD']),
-    \ ]
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" /SWITCH.VIM
+
+" " SWITCH.VIM
+" " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" " FROM: https://github.com/AndrewRadev/switch.vim
+" " keybinding is gs
+" let g:switch_custom_definitions =
+"     \ [
+"     \   switch#NormalizedCase(['private', 'protected', 'internal', 'public']),
+"     \   switch#NormalizedCase(['true', 'false']),
+"     \   switch#NormalizedCase(['before', 'after']),
+"     \   switch#NormalizedCase(['to', 'from']),
+"     \   switch#NormalizedCase(['==', '!=']),
+"     \   switch#NormalizedCase(['min', 'max']),
+"     \   switch#NormalizedCase(['UAT', 'PROD']),
+"     \ ]
+" " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" " /SWITCH.VIM
 
 
 
