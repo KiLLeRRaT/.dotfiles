@@ -143,3 +143,4 @@ alias tmux='tmux -2'
 bindkey -v
 bindkey 'jk' vi-cmd-mode
 bindkey '^R' history-incremental-search-backward
+setopt GLOB_COMPLETE
