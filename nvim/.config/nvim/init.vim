@@ -41,7 +41,7 @@ set splitright splitbelow " Open splits in the right and below
 
 " Shady Characters
 " set listchars=tab:>\ ,nbsp:_,trail:·
-set listchars=tab:\|\ ,nbsp:_,trail:·
+set listchars=tab:\|\ ,nbsp:_,trail:·,space:·
 " " set listchars=tab:🠞\ ,nbsp:_,trail:·
 set list
 set nowrap
