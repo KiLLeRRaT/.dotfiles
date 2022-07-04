@@ -111,5 +111,6 @@ blocks:
 
 
 console_title_template: '{{if .Root }}Adm:{{end}}{{ .PWD }}'
+osc99: true
 version: 2
 

@@ -1,4 +1,4 @@
-Import-Module posh-git
+# Import-Module posh-git
 #Set-PoshPrompt -Theme Paradox
 # Set-PoshPrompt -Theme ~/.mytheme.tokyonight.omp.yaml
 # Set-PoshPrompt -Theme ~/.omp/themes/tokyonight.omp.yaml
@@ -13,6 +13,13 @@ if (Test-Path($ChocolateyProfile)) {
 # function prompt {
 #   $p = Split-Path -leaf -path (Get-Location)
 #   "$p> "
+# }
+# Attempt to allow duplicating a tab with the same directory as original tab
+# function prompt {
+#   $loc = $($executionContext.SessionState.Path.CurrentLocation);
+#   $out = "PS $loc$('>' * ($nestedPromptLevel + 1)) ";
+#   $out += "$([char]27)]9;9;`"$loc`"$([char]27)\"
+#   return $out
 # }
 
 # $Host.UI.RawUI.WindowTitle = "$pwd"
