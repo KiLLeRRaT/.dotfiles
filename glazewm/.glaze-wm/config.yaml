@@ -106,6 +106,18 @@ keybindings:
   - command: "move down"
     bindings: ["Control+Alt+Shift+J", "Alt+Shift+Down"]
 
+  - command: "swap_monitors left"
+    bindings: ["Control+Alt+Shift+Left"]
+
+  - command: "swap_monitors right"
+    bindings: ["Control+Alt+Shift+Right"]
+
+  - command: "swap_monitors up"
+    bindings: ["Control+Alt+Shift+Up"]
+
+  - command: "swap_monitors down"
+    bindings: ["Control+Alt+Shift+Down"]
+
   - command: "resize width -2%"
     binding: "Control+Alt+U"
 
