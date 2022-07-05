@@ -146,7 +146,8 @@
 						"padding": "0",
 						"snapOnInput": false,
 						"useAcrylic": false,
-						"closeOnExit":"graceful"
+						"closeOnExit":"graceful",
+						"intenseTextStyle": "all"
 				},
 				"list":
 				[
@@ -170,7 +171,8 @@
 								"startingDirectory": "%USERPROFILE%",
 								"suppressApplicationTitle": false,
 								"useAcrylic": false,
-								"closeOnExit":"graceful"
+								"closeOnExit":"graceful",
+								"intenseTextStyle": "all"
 						},
 						{
 								"backgroundImage": "C:\\Users\\Albert\\.dotfiles\\images\\photo-1533484306792-cf313c2b8ab0 (2).jpg",
@@ -186,7 +188,8 @@
 								"historySize": 99999,
 								"name": "Ubuntu-20.04",
 								"source": "Windows.Terminal.Wsl",
-								"closeOnExit":"graceful"
+								"closeOnExit":"graceful",
+								"intenseTextStyle": "all"
 						},
 						{
 								"guid": "{17bf3de4-5353-5709-bcf9-835bd952a95e}",
@@ -200,7 +203,8 @@
 								{
 										"face": "CaskaydiaCove NF"
 								},
-								"closeOnExit":"graceful"
+								"closeOnExit":"graceful",
+								"intenseTextStyle": "all"
 						},
 						{
 								"guid": "{60c3e313-8e1a-58f6-8175-3650c2bd2b26}",
@@ -214,7 +218,8 @@
 								{
 										"face": "CaskaydiaCove NF"
 								},
-								"closeOnExit":"graceful"
+								"closeOnExit":"graceful",
+								"intenseTextStyle": "all"
 						},
 						{
 								"font":
@@ -229,7 +234,8 @@
 								"source": "Windows.Terminal.PowershellCore",
 								"suppressApplicationTitle": false,
 								"useAcrylic": false,
-								"closeOnExit":"graceful"
+								"closeOnExit":"graceful",
+								"intenseTextStyle": "all"
 						},
 						{
 								"font":
@@ -240,7 +246,8 @@
 								"hidden": false,
 								"historySize": 99999,
 								"name": "Command Prompt",
-								"closeOnExit":"graceful"
+								"closeOnExit":"graceful",
+								"intenseTextStyle": "all"
 						},
 						{
 								"font":
@@ -251,7 +258,8 @@
 								"hidden": false,
 								"historySize": 99999,
 								"name": "PowerShell 5",
-								"closeOnExit":"graceful"
+								"closeOnExit":"graceful",
+								"intenseTextStyle": "all"
 						},
 						{
 								"font":
@@ -262,7 +270,8 @@
 								"hidden": false,
 								"name": "Kali Linux",
 								"source": "Windows.Terminal.Wsl",
-								"closeOnExit":"graceful"
+								"closeOnExit":"graceful",
+								"intenseTextStyle": "all"
 						},
 						{
 								"font":
@@ -274,7 +283,8 @@
 								"historySize": 99999,
 								"name": "Azure Cloud Shell",
 								"source": "Windows.Terminal.Azure",
-								"closeOnExit":"graceful"
+								"closeOnExit":"graceful",
+								"intenseTextStyle": "all"
 						},
 						{
 								"backgroundImage": null,
@@ -290,35 +300,40 @@
 								"name": "Neovim",
 								"padding": "0",
 								"useAcrylic": false,
-								"closeOnExit":"graceful"
+								"closeOnExit":"graceful",
+								"intenseTextStyle": "all"
 						},
 						{
 								"guid": "{d701ea23-d39a-51a9-9966-855f1c8051f1}",
 								"hidden": false,
 								"name": "Developer Command Prompt for VS 2022 [Preview]",
 								"source": "Windows.Terminal.VisualStudio",
-								"closeOnExit":"graceful"
+								"closeOnExit":"graceful",
+								"intenseTextStyle": "all"
 						},
 						{
 								"guid": "{960e8c7a-d53d-5f77-ad6f-daf9dfeb597d}",
 								"hidden": false,
 								"name": "Developer PowerShell for VS 2022 [Preview]",
 								"source": "Windows.Terminal.VisualStudio",
-								"closeOnExit":"graceful"
+								"closeOnExit":"graceful",
+								"intenseTextStyle": "all"
 						},
 						{
 								"guid": "{fddd4872-371a-5869-85aa-657716af07fa}",
 								"hidden": true,
 								"name": "Developer Command Prompt for VS 2022",
 								"source": "Windows.Terminal.VisualStudio",
-								"closeOnExit":"graceful"
+								"closeOnExit":"graceful",
+								"intenseTextStyle": "all"
 						},
 						{
 								"guid": "{e1c4148c-0ee2-5cd8-802c-8a170e188519}",
 								"hidden": true,
 								"name": "Developer PowerShell for VS 2022",
 								"source": "Windows.Terminal.VisualStudio",
-								"closeOnExit":"graceful"
+								"closeOnExit":"graceful",
+								"intenseTextStyle": "all"
 						}
 				]
 		},
