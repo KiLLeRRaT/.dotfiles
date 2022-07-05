@@ -70,7 +70,8 @@ local omniSharpPath
 local netcoredbgPath
 if vim.fn.has('win32') == 1 then
 	netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/netcoredbf-win64-2.0.0-895/netcoredbg.exe'
-	omniSharpPath = '~/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.39.0/OmniSharp.exe'
+	-- omniSharpPath = '~/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.39.0/OmniSharp.exe' -- THIS USED TO WORK, AND JUST SUDDENLY STOPPED WORKING, GRRR
+	omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.39.0/OmniSharp.exe'
 	table.insert(ensure_installed, "powershell_es")
 elseif vim.fn.has('mac') == 1 then
 	netcoredbgPath = '/Users/albert/GBox/Applications/Tools/Applications/Neovim/netcoredbg/netcoredbg-osx-amd64-2.0.0-915/netcoredbg'
