@@ -633,11 +633,20 @@ endif
 " make sure relative line numbers are used
 autocmd FileType nerdtree setlocal relativenumber
 
-nnoremap <leader>nf :NERDTreeFocus<CR>
+nnoremap <leader>nn :NERDTreeFocus<CR>
 " nnoremap <leader>n :NERDTree<CR>
 nnoremap <leader>nt :NERDTreeToggle<CR>
 " nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
+
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+" Start NERDTree when Vim starts with a directory argument.
+" autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+		\ execute 'NERDTree' argv()[0] | wincmd p | enew | wincmd p | execute 'cd '.argv()[0] | endif
 
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /NERDTree
