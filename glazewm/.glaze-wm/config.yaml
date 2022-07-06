@@ -41,19 +41,28 @@ bar:
 workspaces:
   - name: 1
     display_name: "1:Chat"
+    keep_alive: true
   - name: 2
     display_name: "2:Code"
+    keep_alive: true
   - name: 3
     display_name: "3:VS"
+    keep_alive: true
   - name: 4
     display_name: "4:Test"
+    keep_alive: true
   - name: 5
+    keep_alive: true
   - name: 6
+    keep_alive: true
   - name: 7
+    keep_alive: true
   - name: 8
     display_name: "8:Email"
+    keep_alive: true
   - name: 9
     display_name: "9:Search"
+    keep_alive: true
 
 window_rules:
   # Task Manager requires admin privileges to manage and should be ignored unless running the WM as admin.
