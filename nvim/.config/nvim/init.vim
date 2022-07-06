@@ -52,7 +52,8 @@ if (has('win32'))
 	" let &shell = has('win32') ? 'powershell' : 'pwsh'
 	let &shell = 'pwsh'
 	let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-	let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+	" let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode' " OLD METHOD, SEE: :help shell-powershell
+	let &shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
 	let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 	set shellquote= shellxquote=
 	set noshelltemp " FROM: https://superuser.com/a/1561892/69729, Sorts out the issue with shell returned 1, E485 and temp files
@@ -496,8 +497,10 @@ map <F6> :setlocal spell!<CR>
 " map <C-F2> :AirlineRefresh<CR>
 
 " RUN jq and use tab indents, then remove the ^M chars because vim is doing stupid things.
-vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r/e<cr>
-nnoremap <leader>=j :%!jq --tab .<cr>:%s/\r/e<cr>
+" vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r/e<cr>
+" nnoremap <leader>=j :%!jq --tab .<cr>:%s/\r/e<cr>
+vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r<cr>
+nnoremap <leader>=j :%!jq.exe --tab .<cr>:%s/\r<cr>
 " PASTE JSON FROM CLIPBOARD, AND FORMAT IT
 nnoremap <leader>=J ggdG"+P:%!jq --tab .<cr>:%s/\r<cr>
 " RETAB FILE
