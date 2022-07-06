@@ -247,6 +247,9 @@ dap.configurations.cs = {
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 require'nvim-treesitter.configs'.setup {
 	ensure_installed = { "c_sharp", "bash", "css", "html", "javascript", "json", "lua", "python", "regex", "scss", "tsx", "typescript", "vim", "yaml" },
+	highlight = {
+		enable = true,
+	},
   textobjects = {
     select = {
       enable = true,
