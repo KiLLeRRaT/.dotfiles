@@ -511,11 +511,11 @@ nnoremap <leader>=w :%s/\s\+$//<cr>
 " 	silent! call repeat#set("\<space>=v", v:count)
 " endfunction
 
-" function! MergeParametersAndValue()
-" 	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$ddNA\<c-r>0\<esc>0"
-" 	silent! call repeat#set("\<space>=v", v:count)
-" endfunction
-" autocmd FileType cs nnoremap <buffer> <leader>=v :call MergeParametersAndValue()<cr>
+function! MergeParametersAndValue()
+	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$ddNA\<c-r>0\<esc>0"
+	silent! call repeat#set("\<space>=v", v:count)
+endfunction
+autocmd FileType cs nnoremap <buffer> <leader>=v :call MergeParametersAndValue()<cr>
 
 
 
