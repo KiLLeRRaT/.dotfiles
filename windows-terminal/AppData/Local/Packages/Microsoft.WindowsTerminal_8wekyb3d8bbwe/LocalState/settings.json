@@ -3,133 +3,40 @@
 		"$schema": "https://aka.ms/terminal-profiles-schema",
 		"actions":
 		[
-				{
-						"command": "scrollDownPage",
-						"keys": "ctrl+shift+pgdn"
-				},
-				{
-						"command": "unbound",
-						"keys": "ctrl+v"
-				},
-				{
-						"command": "unbound",
-						"keys": "ctrl+c"
-				},
-				{
-						"command":
-						{
-								"action": "copy",
-								"singleLine": false
-						}
-				},
-				{
-						"command":
-						{
-								"action": "scrollUp"
-						},
-						"keys": "ctrl+shift+up"
-				},
-				{
-						"command": "find",
-						"keys": "ctrl+shift+f"
-				},
-				{
-						"command": "paste"
-				},
+				{ "command": "scrollDownPage", "keys": "ctrl+shift+pgdn" },
+				{ "command": "unbound", "keys": "ctrl+v" },
+				{ "command": "unbound", "keys": "ctrl+c" },
+				{ "command": { "action": "copy", "singleLine": false } },
+				{ "command": { "action": "scrollUp" }, "keys": "ctrl+shift+up" },
+				{ "command": "find", "keys": "ctrl+shift+f" },
+				{ "command": "paste" },
+
 				{ "command": { "action": "splitPane", "split": "vertical", "splitMode": "duplicate" }, "keys": "alt+shift+plus" },
 				{ "command": { "action": "splitPane", "split": "horizontal", "splitMode": "duplicate" }, "keys": "alt+shift+-" },
-				{
-						"command": "openTabRenamer",
-						"keys": "ctrl+shift+r"
-				},
-				{
-						"command":
-						{
-								"action": "splitPane",
-								"split": "auto",
-								"splitMode": "duplicate"
-						},
-						"keys": "alt+shift+d"
-				},
-				{
-						"command":
-						{
-								"action": "scrollDown"
-						},
-						"keys": "ctrl+shift+down"
-				},
-				{
-						"command": "scrollUpPage",
-						"keys": "ctrl+shift+pgup"
-				},
-				{
-						"command":
-						{
-								"action": "moveFocus",
-								"direction": "down"
-						},
-						"keys": "alt+j"
-				},
-				{
-						"command":
-						{
-								"action": "moveFocus",
-								"direction": "right"
-						},
-						"keys": "alt+l"
-				},
-				{
-						"command":
-						{
-								"action": "moveFocus",
-								"direction": "left"
-						},
-						"keys": "alt+h"
-				},
-				{
-						"command":
-						{
-								"action": "moveFocus",
-								"direction": "up"
-						},
-						"keys": "alt+k"
-				},
-				{
-						"command":
-						{
-								"action": "resizePane",
-								"direction": "left"
-						},
-						"keys": "alt+shift+h"
-				},
-				{
-						"command":
-						{
-								"action": "resizePane",
-								"direction": "down"
-						},
-						"keys": "alt+shift+j"
-				},
-				{
-						"command":
-						{
-								"action": "resizePane",
-								"direction": "right"
-						},
-						"keys": "alt+shift+l"
-				},
-				{
-						"command":
-						{
-								"action": "resizePane",
-								"direction": "up"
-						},
-						"keys": "alt+shift+k"
-				},
-				{
-						"command": "togglePaneZoom",
-						"keys": "alt+f"
-				}
+
+				{ "command": "openTabRenamer", "keys": "ctrl+shift+r" },
+
+				{ "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" },
+				{ "command": { "action": "scrollDown" }, "keys": "ctrl+shift+down" },
+
+				{ "command": "scrollUpPage", "keys": "ctrl+shift+pgup" },
+
+				{ "command": { "action": "moveFocus", "direction": "left" }, "keys": "alt+h" },
+				{ "command": { "action": "moveFocus", "direction": "down" }, "keys": "alt+j" },
+				{ "command": { "action": "moveFocus", "direction": "up" }, "keys": "alt+k" },
+				{ "command": { "action": "moveFocus", "direction": "right" }, "keys": "alt+l" },
+
+				{ "command": { "action": "resizePane", "direction": "left" }, "keys": "alt+shift+y" },
+				{ "command": { "action": "resizePane", "direction": "down" }, "keys": "alt+shift+u" },
+				{ "command": { "action": "resizePane", "direction": "up" }, "keys": "alt+shift+i" },
+				{ "command": { "action": "resizePane", "direction": "right" }, "keys": "alt+shift+o" },
+
+				{ "command": { "action": "swapPane", "direction": "left" }, "keys": "alt+shift+h" },
+				{ "command": { "action": "swapPane", "direction": "down" }, "keys": "alt+shift+j" },
+				{ "command": { "action": "swapPane", "direction": "up" }, "keys": "alt+shift+k" },
+				{ "command": { "action": "swapPane", "direction": "right" }, "keys": "alt+shift+l" },
+
+				{ "command": "togglePaneZoom", "keys": "alt+f" }
 		],
 		"copyFormatting": "none",
 		"copyOnSelect": false,
