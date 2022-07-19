@@ -44,6 +44,7 @@ cmp.setup {
 		{ name = "buffer" },
 		{ name = 'nvim_lsp_signature_help' },
 		{ name = 'vim-dadbod-completion' },
+		{ name = 'calc' },
   },
 	formatting = {
 		format = function(entry, item)

@@ -233,6 +233,7 @@ Plug 'https://github.com/hrsh7th/cmp-nvim-lsp' " LSP autocompletion provider
 Plug 'https://github.com/hrsh7th/cmp-buffer'
 Plug 'https://github.com/hrsh7th/cmp-path'
 Plug 'https://github.com/hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'https://github.com/hrsh7th/cmp-calc'
 Plug 'https://github.com/williamboman/nvim-lsp-installer'
 " https://github.com/hrsh7th?tab=repositories
 
@@ -543,6 +544,7 @@ nnoremap <leader>fc <cmd>Telescope git_commits<cr>
 nnoremap <leader>fr <cmd>Telescope git_branches<cr>
 " nnoremap <leader>fs <cmd>Telescope git_status<cr>
 nnoremap <leader>fs <cmd>Telescope colorscheme<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " OVERRIDES THE STANDARD z= shortcut!
 nnoremap z= <cmd>Telescope spell_suggest<cr>
