@@ -69,7 +69,8 @@ local ensure_installed = { "bashls", "cssls", "dockerls", "eslint", "html", "jso
 local omniSharpPath
 local netcoredbgPath
 if vim.fn.has('win32') == 1 then
-	netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/netcoredbf-win64-2.0.0-895/netcoredbg.exe'
+	-- netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/netcoredbg/netcoredbg-win64-2.0.0-895/netcoredbg.exe'
+	netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/netcoredbg/netcoredbg-win64-2.0.0-895/netcoredbg.exe'
 	-- omniSharpPath = '~/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.39.0/OmniSharp.exe' -- THIS USED TO WORK, AND JUST SUDDENLY STOPPED WORKING, GRRR
 	omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.39.0/OmniSharp.exe'
 	table.insert(ensure_installed, "powershell_es")

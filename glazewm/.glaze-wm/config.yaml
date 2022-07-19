@@ -42,27 +42,36 @@ workspaces:
   - name: 1
     display_name: "1:Chat"
     keep_alive: true
+    bind_to_monitor: '\\.\DISPLAY1'
   - name: 2
     display_name: "2:Code"
     keep_alive: true
+    bind_to_monitor: '\\.\DISPLAY2'
   - name: 3
     display_name: "3:VS"
     keep_alive: true
+    bind_to_monitor: '\\.\DISPLAY3'
   - name: 4
     display_name: "4:Test"
     keep_alive: true
+    bind_to_monitor: '\\.\DISPLAY1'
   - name: 5
     keep_alive: true
+    bind_to_monitor: '\\.\DISPLAY2'
   - name: 6
     keep_alive: true
+    bind_to_monitor: '\\.\DISPLAY3'
   - name: 7
     keep_alive: true
+    bind_to_monitor: '\\.\DISPLAY1'
   - name: 8
     display_name: "8:Email"
     keep_alive: true
+    bind_to_monitor: '\\.\DISPLAY2'
   - name: 9
     display_name: "9:Search"
     keep_alive: true
+    bind_to_monitor: '\\.\DISPLAY3'
 
 window_rules:
   # Task Manager requires admin privileges to manage and should be ignored unless running the WM as admin.
@@ -128,22 +137,22 @@ keybindings:
   #   bindings: ["Control+Alt+Shift+Down"]
 
   - command: "resize width -2%"
-    binding: "Control+Alt+U"
+    binding: "Control+Alt+Y"
 
   - command: "resize width +2%"
-    binding: "Control+Alt+P"
+    binding: "Control+Alt+O"
 
   - command: "resize height +2%"
-    binding: "Control+Alt+O"
+    binding: "Control+Alt+U"
 
   - command: "resize height -2%"
     binding: "Control+Alt+I"
 
   - command: "layout horizontal"
-    binding: "Control+Alt+Shift+V"
+    binding: "Control+Alt+Shift+5" # % like tmux
 
   - command: "layout vertical"
-    binding: "Control+Alt+V"
+    binding: "Control+Alt+OemQuotes" # " like tmux
 
   - command: "toggle focus mode"
     binding: "Control+Alt+Space"

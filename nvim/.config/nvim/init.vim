@@ -221,7 +221,7 @@ Plug 'https://github.com/lewis6991/gitsigns.nvim'
 Plug 'https://github.com/neoclide/vim-jsx-improve'
 Plug 'https://github.com/jdhao/better-escape.vim'
 Plug 'https://github.com/simeji/winresizer'
-" Plug 'PhilRunninger/nerdtree-visual-selection'
+Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'https://github.com/vimwiki/vimwiki'
@@ -499,10 +499,10 @@ map <F6> :setlocal spell!<CR>
 " RUN jq and use tab indents, then remove the ^M chars because vim is doing stupid things.
 " vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r/e<cr>
 " nnoremap <leader>=j :%!jq --tab .<cr>:%s/\r/e<cr>
-vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r<cr>
-nnoremap <leader>=j :%!jq.exe --tab .<cr>:%s/\r<cr>
+vnoremap <leader>=j :'<,'>!jq "--tab ."<cr>:%s/\r<cr>
+nnoremap <leader>=j :%!jq "--tab ."<cr>:%s/\r<cr>
 " PASTE JSON FROM CLIPBOARD, AND FORMAT IT
-nnoremap <leader>=J ggdG"+P:%!jq --tab .<cr>:%s/\r<cr>
+nnoremap <leader>=J ggdG"+P:%!jq "--tab ."<cr>:%s/\r<cr>
 " RETAB FILE
 nnoremap <leader>=t :%retab!<cr>
 " REMOVE TRAILING WHITESPACE FROM ALL LINES
@@ -652,8 +652,8 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in
 		\ execute 'NERDTree' argv()[0] | wincmd p | enew | wincmd p | execute 'cd '.argv()[0] | endif
 
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-		\ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+" autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+" 		\ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /NERDTree
 
