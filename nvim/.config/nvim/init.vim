@@ -234,6 +234,7 @@ Plug 'https://github.com/hrsh7th/cmp-buffer'
 Plug 'https://github.com/hrsh7th/cmp-path'
 Plug 'https://github.com/hrsh7th/cmp-nvim-lsp-signature-help'
 Plug 'https://github.com/hrsh7th/cmp-calc'
+Plug 'https://github.com/hrsh7th/cmp-emoji'
 Plug 'https://github.com/williamboman/nvim-lsp-installer'
 " https://github.com/hrsh7th?tab=repositories
 
@@ -265,6 +266,9 @@ call plug#end()
 
 " SNAPSHOT PLUGINS BEFORE UPDATING!!!
 " FROM: https://shyr.io/blog/vim-plugin-lockfile
+" command APlugUpdate
+"   \ PlugUpdate | exe 'PlugSnapshot! ' . stdpath('config') . '/vim-plug-snapshot.vim'
+
 command APlugUpdate
   \ PlugUpdate | exe 'PlugSnapshot! ' . stdpath('config') . '/vim-plug-snapshot.vim'
 
@@ -662,20 +666,19 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in
 " HARPOON
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nnoremap <silent><leader>a :lua require("harpoon.mark").add_file()<CR>
-nnoremap <silent><leader>H :lua require("harpoon.ui").toggle_quick_menu()<CR>
-" nnoremap <silent><leader>tc :lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>
+nnoremap <silent><leader>A :lua require("harpoon.ui").toggle_quick_menu()<CR>
+" nnoremap <silent><leader>H :lua require("harpoon.ui").toggle_quick_menu()<CR>
 
 nnoremap <silent><leader>h :lua require("harpoon.ui").nav_file(1)<CR>
 nnoremap <silent><leader>j :lua require("harpoon.ui").nav_file(2)<CR>
 nnoremap <silent><leader>k :lua require("harpoon.ui").nav_file(3)<CR>
-" LEADER LL because leader l will pause for a bit since we use leader lj, etc
-" for other things
 nnoremap <silent><leader>l :lua require("harpoon.ui").nav_file(4)<CR>
 nnoremap <silent><leader>; :lua require("harpoon.ui").nav_file(5)<CR>
-" nnoremap <silent><leader>tu :lua require("harpoon.term").gotoTerminal(1)<CR>
-" nnoremap <silent><leader>te :lua require("harpoon.term").gotoTerminal(2)<CR>
-" nnoremap <silent><leader>cu :lua require("harpoon.term").sendCommand(1, 1)<CR>
-" nnoremap <silent><leader>ce :lua require("harpoon.term").sendCommand(1, 2)<CR>
+
+nnoremap <silent><leader>H :vsp<CR>:lua require("harpoon.ui").nav_file(1)<CR>
+nnoremap <silent><leader>J :vsp<CR>:lua require("harpoon.ui").nav_file(2)<CR>
+nnoremap <silent><leader>K :vsp<CR>:lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap <silent><leader>L :vsp<CR>:lua require("harpoon.ui").nav_file(4)<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " FUGITIVE

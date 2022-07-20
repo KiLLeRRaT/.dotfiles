@@ -45,6 +45,7 @@ cmp.setup {
 		{ name = 'nvim_lsp_signature_help' },
 		{ name = 'vim-dadbod-completion' },
 		{ name = 'calc' },
+		{ name = 'emoji' },
   },
 	formatting = {
 		format = function(entry, item)
