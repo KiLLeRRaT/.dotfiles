@@ -45,17 +45,12 @@ Set-ExecutionPolicy Bypass -Scope Process -Force;
 iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
 
-Write-Host Install ripgrep and fd
+Write-Host Install Applications
 Write-Host ----------------------------------------
-# https://github.com/sharkdp/fd
-# https://github.com/BurntSushi/ripgrep
-choco install ripgrep
-choco install fd
-
-Write-Host Install win32yank for Neovim clipboard support in WSL
-Write-Host ----------------------------------------
-# https://stackoverflow.com/a/67229362/182888
-choco install win32yank
+choco install ripgrep # https://github.com/BurntSushi/ripgrep
+choco install fd # https://github.com/sharkdp/fd
+choco install sudo # ALLOWS USING sudo IN POWERSHELL!
+choco install win32yank # Neovim clipboard support in WSL, FROM: https://stackoverflow.com/a/67229362/182888
 
 Write-Host Configuring Neovim
 Write-Host ----------------------------------------
