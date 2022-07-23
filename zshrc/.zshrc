@@ -126,6 +126,24 @@ alias ll="ls -alkhF"
 alias l="ls -1"
 alias tmux='tmux -2'
 
+alias gs='git status'
+alias gf='git fetch'
+alias gl='git pull'
+alias gp='git push'
+alias gP='git push --force-with-lease'
+alias ga='git add'
+alias gcam='git commit -am'
+alias gcm='git commit -m'
+alias glog='git logo'
+alias gb='git branch'
+alias gba='git branch --all'
+alias gco='git checkout'
+
+
+
+
+
+
 #set -o vi
 # bind '"jk":vi-movement-mode'
 #set bell-style none

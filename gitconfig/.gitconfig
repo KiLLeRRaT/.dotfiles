@@ -1,0 +1,14 @@
+[user]
+	name = Albert Gouws
+	email = albert@gouws.org
+
+[alias]
+	logo = log --pretty=tformat:'%C(auto,yellow)%h%C(auto,magenta)% G? %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(15,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D' --date=short
+
+[merge]
+	tool = nvim
+	conflictstyle = diff3
+
+[mergetool "nvim"]
+	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+	; trustExitCode = true
