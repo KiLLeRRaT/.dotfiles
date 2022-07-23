@@ -532,10 +532,8 @@ autocmd FileType cs nnoremap <buffer> <leader>=v :call MergeParametersAndValue()
 " nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>ff <cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>
 " LAST TELESCOPE VERSION WHERE THE BELOW WORKS: git reset --hard 5a58b1f
-" nnoremap <expr> <leader>fF ':Telescope find_files<cr>' . "'" . expand('<cword>')
 nnoremap <leader>fF :execute 'Telescope find_files default_text=' . "'" . expand('<cword>')<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-" nnoremap <expr> <leader>fG ':Telescope live_grep<cr>' . expand('<cword>')
 nnoremap <leader>fG :execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>
 
 " nnoremap <leader>fR <cmd>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<cr>
