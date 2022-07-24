@@ -14,10 +14,10 @@ set relativenumber
 set hlsearch
 set cursorline
 set incsearch
-set spelllang=en,af
-set dictionary+=/usr/share/dict/words
+" set spelllang=en,af
+" set dictionary+=/usr/share/dict/words
 set showcmd
-set autoread " READ FILE IF OUTSIDE CHANGES ARE DETECTED
+" set autoread " READ FILE IF OUTSIDE CHANGES ARE DETECTED
 " set columns=80           " window width in columns
 
 " UPDATED TO 100 on 25 Mar 2022
@@ -45,7 +45,7 @@ set listchars=tab:\|\ ,nbsp:_,trail:·
 " " set listchars=tab:🠞\ ,nbsp:_,trail:·
 set list
 set nowrap
-set mouse=a
+" set mouse=a
 
 " FROM: https://vim.fandom.com/wiki/File_format
 " set ffs=dos,unix
@@ -123,12 +123,12 @@ set mouse=a
 autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup=(vim.fn['hlexists']('HighlightedyankRegion') > 0 and 'HighlightedyankRegion' or 'IncSearch'), timeout=500}
 
 " Nice menu when typing `:find *.py`
-set wildmode=longest,list,full
-set wildmenu
-" Ignore files
-set wildignore+=*_build/*
-set wildignore+=**/node_modules/*
-set wildignore+=**/.git/*
+" set wildmode=longest,list,full
+" set wildmenu
+" " Ignore files
+" set wildignore+=*_build/*
+" set wildignore+=**/node_modules/*
+" set wildignore+=**/.git/*
 
 " Bit of NETRW tweaks to make it more like NERDTree
 " let g:netrw_banner = 0
@@ -185,27 +185,27 @@ Plug 'https://github.com/nvim-lualine/lualine.nvim'
 Plug 'https://github.com/akinsho/bufferline.nvim'
 Plug 'https://github.com/phaazon/hop.nvim'
 
-Plug 'https://github.com/nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'https://github.com/nvim-telescope/telescope-live-grep-args.nvim'
+" Plug 'https://github.com/nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+" Plug 'https://github.com/nvim-telescope/telescope-live-grep-args.nvim'
 " Plug 'https://github.com/github/copilot.vim'
 Plug 'https://github.com/dstein64/vim-startuptime'
-Plug 'https://github.com/ap/vim-css-color'
-Plug 'https://github.com/kyazdani42/nvim-web-devicons'
+" Plug 'https://github.com/ap/vim-css-color'
+" Plug 'https://github.com/kyazdani42/nvim-web-devicons'
 " Plug 'https://github.com/neoclide/vim-jsx-improve'
 Plug 'https://github.com/jdhao/better-escape.vim'
 Plug 'https://github.com/simeji/winresizer'
-Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
+" Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'https://github.com/vimwiki/vimwiki'
 
 " LSP RELATED PLUGINS
-Plug 'https://github.com/neovim/nvim-lspconfig'
-Plug 'https://github.com/hrsh7th/nvim-cmp' " autocompletion framework
-Plug 'https://github.com/hrsh7th/cmp-nvim-lsp' " LSP autocompletion provider
-Plug 'https://github.com/hrsh7th/cmp-buffer'
-Plug 'https://github.com/hrsh7th/cmp-path'
-Plug 'https://github.com/hrsh7th/cmp-nvim-lsp-signature-help'
-Plug 'https://github.com/williamboman/nvim-lsp-installer'
+" Plug 'https://github.com/neovim/nvim-lspconfig'
+" Plug 'https://github.com/hrsh7th/nvim-cmp' " autocompletion framework
+" Plug 'https://github.com/hrsh7th/cmp-nvim-lsp' " LSP autocompletion provider
+" Plug 'https://github.com/hrsh7th/cmp-buffer'
+" Plug 'https://github.com/hrsh7th/cmp-path'
+" Plug 'https://github.com/hrsh7th/cmp-nvim-lsp-signature-help'
+" Plug 'https://github.com/williamboman/nvim-lsp-installer'
 " https://github.com/hrsh7th?tab=repositories
 
 " /LSP RELATED PLUGINS
@@ -236,28 +236,28 @@ call plug#end()
 
 " SNAPSHOT PLUGINS BEFORE UPDATING!!!
 " FROM: https://shyr.io/blog/vim-plugin-lockfile
-command APlugUpdate
-  \ PlugUpdate | exe 'PlugSnapshot! ' . stdpath('config') . '/vim-plug-snapshot.vim'
+" command APlugUpdate
+"   \ PlugUpdate | exe 'PlugSnapshot! ' . stdpath('config') . '/vim-plug-snapshot.vim'
 
 
 " FOLDING
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-set foldcolumn=1 "defines 1 col at window left, to indicate folding
-set foldlevelstart=99 "start file with all folds opened
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#foldexpr()
+" set foldcolumn=1 "defines 1 col at window left, to indicate folding
+" set foldlevelstart=99 "start file with all folds opened
 
-let javaScript_fold=1 "activate folding by JS syntax
-" let cs_fold=1
-" let xml_syntax_folding=1
-let xml_folding=1
-let yaml_fold=1
-let vb_fold=1
+" let javaScript_fold=1 "activate folding by JS syntax
+" " let cs_fold=1
+" " let xml_syntax_folding=1
+" let xml_folding=1
+" let yaml_fold=1
+" let vb_fold=1
 
 " SAVE FOLDING AND OTHER THINGS WHEN YOU OPEN AND CLOSE FILES/VIM, FROM: https://vim.fandom.com/wiki/Make_views_automatic
-set viewoptions-=options
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent! loadview
+" set viewoptions-=options
+" autocmd BufWinLeave *.* mkview
+" autocmd BufWinEnter *.* silent! loadview
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /FOLDING
@@ -292,7 +292,7 @@ nnoremap <leader>bd :bp \| :sp \| :bn \| :bd<cr>
 
 nnoremap <leader>ba :bufdo bd<cr>
 
-nnoremap ' `
+" nnoremap ' `
 
 " KEEP CURSOR IN THE CENTRE OF THE SCREEN WHEN SEARCHING NEXT
 nnoremap n nzzzv
@@ -308,8 +308,8 @@ nnoremap <leader>Y gg"+yG
 " does not work in VSCODE
 
 " DELETE INTO BLACK HOLE REGISTER
-nnoremap <leader>d "_d
-vnoremap <leader>d "_d
+" nnoremap <leader>d "_d
+" vnoremap <leader>d "_d
 
 " [count] yanks, comments out, and pastes a copy below
 " nnoremap <expr> <leader>t '<esc>' . v:count1 . 'yy:.,+' . (v:count1 - 1) . 'Commentary<cr>' . v:count1 . 'j<esc>P'
@@ -418,43 +418,43 @@ nnoremap <leader>cf :echo expand("%:t") \| :let @+ = expand("%:t")<cr>
 nnoremap <leader>cF :echo expand("%:p") \| :let @+ = expand("%:p")<cr>
 " OPEN CURRENT FOLDER IN WINDOWS EXPLORER
 " EXPAND COLON PARAMETERS FROM: https://vi.stackexchange.com/a/1885
-nnoremap gF :!start %:p:h<cr>
+" nnoremap gF :!start %:p:h<cr>
 
 " " REPLACE VISUAL SELECTION
 " vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " REFRESH FILE FROM DISK
-nnoremap <F5> :e %<cr>
+" nnoremap <F5> :e %<cr>
 
 " REFRESH FILE FROM DISK AND GO TO BOTTOM
-nnoremap <silent><S-F5> :e %<cr>G
+" nnoremap <silent><S-F5> :e %<cr>G
 
 " RELOAD CONFIG
 " nnoremap <C-f5> :so ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
-nnoremap <C-F5> :execute 'source ' . stdpath('config') . '/init.vim'<cr>
+" nnoremap <C-F5> :execute 'source ' . stdpath('config') . '/init.vim'<cr>
 
 " " EDIT CONFIG
 " nnoremap <A-f5> :e ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
-nnoremap <A-F5> :execute 'edit ' . stdpath('config') . '/init.vim'<cr>:cd %:h<cr>
+" nnoremap <A-F5> :execute 'edit ' . stdpath('config') . '/init.vim'<cr>:cd %:h<cr>
 
 " EDIT NOTES FOLDER
-nnoremap <A-n> :e C:\GBox\Notes<cr>:cd C:\GBox\Notes<cr>
+" nnoremap <A-n> :e C:\GBox\Notes<cr>:cd C:\GBox\Notes<cr>
 
 " EDIT SCRIPTS FOLDER
-nnoremap <A-s> :e C:\GBox\Applications\Tools\Scripts<cr>:cd C:\GBox\Applications\Tools\Scripts<cr>
+" nnoremap <A-s> :e C:\GBox\Applications\Tools\Scripts<cr>:cd C:\GBox\Applications\Tools\Scripts<cr>
 
 " BUILD SOLUTION
-nnoremap <leader>rb :!dotnet build *.sln
+" nnoremap <leader>rb :!dotnet build *.sln
 
 " DIFF WITH SAVED, FROM: https://stackoverflow.com/a/749320/182888
-function! s:DiffWithSaved()
-	let filetype=&ft
-	diffthis
-	vnew | r # | normal! 1Gdd
-	diffthis
-	exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
-endfunction
-com! DiffSaved call s:DiffWithSaved()
+" function! s:DiffWithSaved()
+" 	let filetype=&ft
+" 	diffthis
+" 	vnew | r # | normal! 1Gdd
+" 	diffthis
+" 	exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+" endfunction
+" com! DiffSaved call s:DiffWithSaved()
 
 " GO TO LINE UNDER CURSOR
 " nnoremap gn yiw:exec (@" =~ '^\d\+$' ? 'norm @"G' : '')<cr>
@@ -463,18 +463,18 @@ com! DiffSaved call s:DiffWithSaved()
 
 " SPELL CHECKING ]s and [s for next/prev, z= for spelling suggestion, zg to
 " add to dictionary
-map <F6> :setlocal spell!<CR>
+" map <F6> :setlocal spell!<CR>
 
 " map <F2> :AirlineToggle<CR>:AirlineRefresh<CR>
 " map <C-F2> :AirlineRefresh<CR>
 
 " RUN jq and use tab indents, then remove the ^M chars because vim is doing stupid things.
-vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r/e<cr>
-nnoremap <leader>=j :%!jq --tab .<cr>:%s/\r/e<cr>
+" vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r/e<cr>
+" nnoremap <leader>=j :%!jq --tab .<cr>:%s/\r/e<cr>
 " PASTE JSON FROM CLIPBOARD, AND FORMAT IT
-nnoremap <leader>=J ggdG"+P:%!jq --tab .<cr>:%s/\r<cr>
+" nnoremap <leader>=J ggdG"+P:%!jq --tab .<cr>:%s/\r<cr>
 " RETAB FILE
-nnoremap <leader>=t :%retab!<cr>
+" nnoremap <leader>=t :%retab!<cr>
 " REMOVE TRAILING WHITESPACE FROM ALL LINES
 nnoremap <leader>=w :%s/\s\+$//<cr>
 
@@ -507,15 +507,15 @@ nnoremap <leader>fG :execute 'Telescope live_grep default_text=' . expand('<cwor
 nnoremap <leader>fR <cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>
 
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fk <cmd>Telescope help_tags<cr>
-nnoremap <leader>fm <cmd>Telescope keymaps<cr>
+" nnoremap <leader>fk <cmd>Telescope help_tags<cr>
+" nnoremap <leader>fm <cmd>Telescope keymaps<cr>
 nnoremap <leader>fc <cmd>Telescope git_commits<cr>
 nnoremap <leader>fr <cmd>Telescope git_branches<cr>
 " nnoremap <leader>fs <cmd>Telescope git_status<cr>
-nnoremap <leader>fs <cmd>Telescope colorscheme<cr>
+" nnoremap <leader>fs <cmd>Telescope colorscheme<cr>
 
 " OVERRIDES THE STANDARD z= shortcut!
-nnoremap z= <cmd>Telescope spell_suggest<cr>
+" nnoremap z= <cmd>Telescope spell_suggest<cr>
 
 " SEARCH MY OWN GBOX SCRIPTS
 " lua require("killerrat")
@@ -539,18 +539,18 @@ autocmd FileType sql setlocal commentstring=--\ %s
 
 " COMMENT OUT USING {/* */}, AND SUPPORTS REPEAT FOR THE ENTIRE COMMAND
 " autocmd FileType typescriptreact nnoremap <leader>gcc I{/*<esc>A*/}<esc><cr>
-function! CommentReact()
-		exec "normal! I{/*\<esc>A*/}\<esc>"
-		silent! call repeat#set("\<space>gcc", v:count)
-endfunction
-autocmd FileType typescriptreact nnoremap <buffer> <leader>gcc :call CommentReact()<cr>
+" function! CommentReact()
+" 		exec "normal! I{/*\<esc>A*/}\<esc>"
+" 		silent! call repeat#set("\<space>gcc", v:count)
+" endfunction
+" autocmd FileType typescriptreact nnoremap <buffer> <leader>gcc :call CommentReact()<cr>
 
 " autocmd FileType typescriptreact nnoremap <leader>gcu ^3dl<esc>$F*D<cr>
-function! UncommentReact()
-		exec "normal! ^3dl\<esc>$F*D"
-		silent! call repeat#set("\<space>gcu", v:count)
-endfunction
-autocmd FileType typescriptreact nnoremap <buffer> <leader>gcu :call UncommentReact()<cr>
+" function! UncommentReact()
+" 		exec "normal! ^3dl\<esc>$F*D"
+" 		silent! call repeat#set("\<space>gcu", v:count)
+" endfunction
+" autocmd FileType typescriptreact nnoremap <buffer> <leader>gcu :call UncommentReact()<cr>
 " /COMMENT OUT USING {/* */}, AND SUPPORTS REPEAT FOR THE ENTIRE COMMAND
 
 
@@ -661,20 +661,20 @@ nnoremap <leader>gt :Git tag<space>
 
 lua require('plugins')
 
-autocmd FileType cs nnoremap <buffer> K :lua vim.lsp.buf.hover()<CR>
+" autocmd FileType cs nnoremap <buffer> K :lua vim.lsp.buf.hover()<CR>
 
 " nnoremap gd :lua vim.lsp.buf.definition()<CR>
-nnoremap gd :Telescope lsp_definitions<CR>
-nnoremap gD :lua vim.lsp.buf.type_definition()<CR>
-nnoremap gi :lua vim.lsp.buf.implementation()<CR>
-nnoremap gr :Telescope lsp_references<CR>
-nnoremap ]g :lua vim.diagnostic.goto_next()<CR>
-nnoremap [g :lua vim.diagnostic.goto_prev()<CR>
-nnoremap <leader>fd :Telescope diagnostics<CR>
-" nnoremap <leader>fa :%Telescope lsp_range_code_actions<CR>
-" nnoremap <leader>fa :lua vim.lsp.buf.range_code_action()<CR>
-nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
-nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
+" nnoremap gd :Telescope lsp_definitions<CR>
+" nnoremap gD :lua vim.lsp.buf.type_definition()<CR>
+" nnoremap <leader>gi :lua vim.lsp.buf.implementation()<CR>
+" nnoremap gr :Telescope lsp_references<CR>
+" nnoremap ]g :lua vim.diagnostic.goto_next()<CR>
+" nnoremap [g :lua vim.diagnostic.goto_prev()<CR>
+" nnoremap <leader>fd :Telescope diagnostics<CR>
+" " nnoremap <leader>fa :%Telescope lsp_range_code_actions<CR>
+" " nnoremap <leader>fa :lua vim.lsp.buf.range_code_action()<CR>
+" nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
+" nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
 
 
 " nnoremap('<leader>fu', 'Telescope lsp_references')
@@ -730,9 +730,9 @@ nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
 " VIM DEV ICONS
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " FIX THE ISSUE WITH SQUARE BRACKETS AROUND THE ICONS IN NERD TREE, FROM: https://github.com/ryanoasis/vim-devicons/issues/215#issuecomment-377786230
-if exists("g:loaded_webdevicons")
-	call webdevicons#refresh()
-endif
+" if exists("g:loaded_webdevicons")
+" 	call webdevicons#refresh()
+" endif
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /VIM DEV ICONS
 
