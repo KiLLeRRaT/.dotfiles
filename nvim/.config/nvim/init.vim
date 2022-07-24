@@ -451,7 +451,7 @@ nnoremap <leader>cf :echo expand("%:t") \| :let @+ = expand("%:t")<cr>
 nnoremap <leader>cF :echo expand("%:p") \| :let @+ = expand("%:p")<cr>
 " OPEN CURRENT FOLDER IN WINDOWS EXPLORER
 " EXPAND COLON PARAMETERS FROM: https://vi.stackexchange.com/a/1885
-nnoremap gF :!start %:p:h<cr>
+" nnoremap gF :!start %:p:h<cr>
 
 " " REPLACE VISUAL SELECTION
 " vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
@@ -750,8 +750,10 @@ let g:copilot_no_tab_map = v:true
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 lua require('gitsigns').setup()
 " Navigation
-nnoremap ]c :Gitsigns next_hunk<cr>
-nnoremap [c :Gitsigns prev_hunk<cr>
+" nnoremap ]c :Gitsigns next_hunk<cr>
+" nnoremap [c :Gitsigns prev_hunk<cr>
+nnoremap ]h :Gitsigns next_hunk<cr>
+nnoremap [h :Gitsigns prev_hunk<cr>
 
     " -- Actions
 nnoremap <leader>ds :Gitsigns stage_hunk<cr>
