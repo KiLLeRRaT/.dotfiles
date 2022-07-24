@@ -711,7 +711,8 @@ autocmd FileType cs nnoremap <buffer> K :lua vim.lsp.buf.hover()<CR>
 " nnoremap gd :lua vim.lsp.buf.definition()<CR>
 nnoremap gd :Telescope lsp_definitions<CR>
 nnoremap gD :lua vim.lsp.buf.type_definition()<CR>
-nnoremap gi :lua vim.lsp.buf.implementation()<CR>
+" <leader>gi because gi takes you to last edit and puts you in insert mode
+nnoremap <leader>gi :lua vim.lsp.buf.implementation()<CR>
 nnoremap gr :Telescope lsp_references<CR>
 nnoremap ]g :lua vim.diagnostic.goto_next()<CR>
 nnoremap [g :lua vim.diagnostic.goto_prev()<CR>
