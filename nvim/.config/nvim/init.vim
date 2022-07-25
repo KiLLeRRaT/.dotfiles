@@ -235,6 +235,8 @@ Plug 'https://github.com/hrsh7th/cmp-path'
 Plug 'https://github.com/hrsh7th/cmp-nvim-lsp-signature-help'
 Plug 'https://github.com/hrsh7th/cmp-calc'
 Plug 'https://github.com/hrsh7th/cmp-emoji'
+" Plug 'https://github.com/uga-rosa/cmp-dictionary'
+" Plug 'https://github.com/f3fora/cmp-spell'
 Plug 'https://github.com/williamboman/nvim-lsp-installer'
 " https://github.com/hrsh7th?tab=repositories
 
