@@ -93,6 +93,19 @@ alias ll="ls -alkhF"
 alias l="ls -1"
 alias brave='brave-browser-stable &> /dev/null &'
 
+alias gs='git status'
+alias gf='git fetch'
+alias gl='git pull'
+alias gp='git push'
+alias gP='git push --force-with-lease'
+alias ga='git add'
+alias gcam='git commit -am'
+alias gcm='git commit -m'
+alias glog='git logo'
+alias gb='git branch'
+alias gba='git branch --all'
+alias gco='git checkout'
+
 atail() { tail -f ---disable-inotify "$@"; }
 
 # create alias ct, which addes completion of paths to other bash terminals you have running at the
