@@ -48,3 +48,5 @@ Set-PSReadLineKeyHandler -Key Ctrl+r -Function ReverseSearchHistory
 
 # REMOVE gl, so that we can use gl.bat for git pull instead of Get-Location
 Remove-Alias -Force -Name gl
+Remove-Alias -Force -Name gp
+
