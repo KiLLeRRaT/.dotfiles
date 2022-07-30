@@ -171,17 +171,6 @@ end, group = highlight_yank })
 -- "endif
 
 
-
-
--- " SNAPSHOT PLUGINS BEFORE UPDATING!!!
--- " FROM: https://shyr.io/blog/vim-plugin-lockfile
--- " command APlugUpdate
--- "   \ PlugUpdate | exe 'PlugSnapshot! ' . stdpath('config') . '/vim-plug-snapshot.vim'
-
--- command APlugUpdate
---   \ PlugUpdate | exe 'PlugSnapshot! ' . stdpath('config') . '/vim-plug-snapshot.vim'
-
-
 -- " FOLDING
 -- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- set foldmethod=expr
@@ -198,14 +187,37 @@ end, group = highlight_yank })
 
 -- " SAVE FOLDING AND OTHER THINGS WHEN YOU OPEN AND CLOSE FILES/VIM, FROM: https://vim.fandom.com/wiki/Make_views_automatic
 -- set viewoptions-=options
+vim.opt.viewoptions = vim.opt.viewoptions - { "options" }
+
 -- autocmd BufWinLeave *.* mkview
+local folding = vim.api.nvim_create_augroup("folding", { clear = true })
+vim.api.nvim_create_autocmd("BufWinLeave", {
+	pattern = {"*"},
+	command = vim.cmd[[mkview]],
+	group = folding
+})
+
 -- autocmd BufWinEnter *.* silent! loadview
+vim.api.nvim_create_autocmd("BufWinEnter", {
+	pattern = {"*"},
+	command = vim.cmd[[silent! loadview]],
+	group = folding
+})
 
 -- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- " /FOLDING
 
 -- " SYNTAX HIGHLIGHTING FOR CSHTML/RAZOR
 -- autocmd BufNewFile,BufRead *.cshtml set syntax=html
+local syntax_cshtml = vim.api.nvim_create_augroup("syntax_cshtml", { clear = true })
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+	pattern = {"*.cshtml"},
+	callback = function()
+		vim.opt.syntax = "html"
+		print("syntax=htmlAlbert")
+	end,
+	group = syntax_cshtml
+})
 
 -- syntax on
 -- set background=dark
@@ -227,217 +239,29 @@ vim.cmd("colorscheme tokyonight")
 -- autocmd VimEnter * hi Normal ctermbg=none
 
 -- set termguicolors
+vim.opt.termguicolors = true
+
 -- hi! Normal ctermbg=NONE guibg=NONE
 
--- " REMAPS / REMAPPINGS / KEYS
--- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- let mapleader = " "
-
--- " SWITCH TO PREV BUFFER AND CLOSE THE ONE YOU SWITCHED AWAY FROM, CLOSES A
--- " BUFFER WITHOUT MESSING UP THE SPLIT
--- nnoremap <leader>bd :bp \| :sp \| :bn \| :bd<cr>
-
--- nnoremap <leader>ba :bufdo bd<cr>
-
--- nnoremap ' `
-
--- " KEEP CURSOR IN THE CENTRE OF THE SCREEN WHEN SEARCHING NEXT
--- nnoremap n nzzzv
--- nnoremap N Nzzzv
-
--- " KEEP CURSOR IN A SANE PLACE WHEN USING J TO JOIN LINES
--- nnoremap J mzJ`z
-
--- " does not work in VSCODE
--- nnoremap <leader>y "+y
--- vnoremap <leader>y "+y
--- nnoremap <leader>Y gg"+yG
--- " does not work in VSCODE
-
--- " DELETE INTO BLACK HOLE REGISTER
--- nnoremap <leader>d "_d
--- vnoremap <leader>d "_d
-
--- " [count] yanks, comments out, and pastes a copy below
--- " nnoremap <expr> <leader>t '<esc>' . v:count1 . 'yy:.,+' . (v:count1 - 1) . 'Commentary<cr>' . v:count1 . 'j<esc>P'
--- nnoremap <expr> <leader>T '<esc>' . v:count1 . '"zyy:.,+' . (v:count1 - 1) . 'Commentary<cr>' . v:count1 . 'j<esc>"zP'
--- nnoremap <expr> <leader>t '<esc>' . v:count1 . '"zyy' . v:count1 . 'j<esc>"zP'
-
--- " https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
--- xnoremap <leader>p "_dP
-
--- " REPLACE SELECTION WITH YANKED TEXT
--- nnoremap <leader>riw ciw<C-R><C-0><esc>
--- nnoremap <leader>rit cit<C-R><C-0><esc>
--- nnoremap <leader>ri" ci"<C-R><C-0><esc>
--- nnoremap <leader>ri' ci'<C-R><C-0><esc>
--- nnoremap <leader>ri( ci)<C-R><C-0><esc>
--- nnoremap <leader>ri) ci)<C-R><C-0><esc>
--- nnoremap <leader>rib cib<C-R><C-0><esc>
--- nnoremap <leader>ri{ ci{<C-R><C-0><esc>
--- nnoremap <leader>ri} ci}<C-R><C-0><esc>
--- nnoremap <leader>ri[ ci[<C-R><C-0><esc>
--- nnoremap <leader>ri] ci]<C-R><C-0><esc>
--- nnoremap <leader>ri< ci<<C-R><C-0><esc>
--- nnoremap <leader>ri> ci><C-R><C-0><esc>
--- nnoremap <leader>ri` ci`<C-R><C-0><esc>
-
--- " REPLACE SELECTION WITH YANKED TEXT FROM CLIPBOARD
--- nnoremap <leader>Riw ciw<C-R><C-*><esc>
--- nnoremap <leader>Rit cit<C-R><C-*><esc>
--- nnoremap <leader>Ri" ci"<C-R><C-*><esc>
--- nnoremap <leader>Ri' ci'<C-R><C-*><esc>
--- nnoremap <leader>Ri( ci)<C-R><C-*><esc>
--- nnoremap <leader>Ri) ci)<C-R><C-*><esc>
--- nnoremap <leader>Rib cib<C-R><C-*><esc>
--- nnoremap <leader>Ri{ ci{<C-R><C-*><esc>
--- nnoremap <leader>Ri} ci}<C-R><C-*><esc>
--- nnoremap <leader>Ri[ ci[<C-R><C-*><esc>
--- nnoremap <leader>Ri] ci]<C-R><C-*><esc>
--- nnoremap <leader>Ri< ci<<C-R><C-*><esc>
--- nnoremap <leader>Ri> ci><C-R><C-*><esc>
--- nnoremap <leader>Ri` ci`<C-R><C-*><esc>
-
--- nnoremap <leader>raw caw<C-R><C-0><esc>
--- nnoremap <leader>rat cat<C-R><C-0><esc>
--- nnoremap <leader>ra" ca"<C-R><C-0><esc>
--- nnoremap <leader>ra' ca'<C-R><C-0><esc>
--- nnoremap <leader>ra( ca)<C-R><C-0><esc>
--- nnoremap <leader>ra) ca)<C-R><C-0><esc>
--- nnoremap <leader>rab cab<C-R><C-0><esc>
--- nnoremap <leader>ra{ ca{<C-R><C-0><esc>
--- nnoremap <leader>ra} ca}<C-R><C-0><esc>
--- nnoremap <leader>ra[ ca[<C-R><C-0><esc>
--- nnoremap <leader>ra] ca]<C-R><C-0><esc>
--- nnoremap <leader>ra< ca<<C-R><C-0><esc>
--- nnoremap <leader>ra> ca><C-R><C-0><esc>
--- nnoremap <leader>ra` ca`<C-R><C-0><esc>
-
--- nnoremap <leader>Raw caw<C-R><C-*><esc>
--- nnoremap <leader>Rat cat<C-R><C-*><esc>
--- nnoremap <leader>Ra" ca"<C-R><C-*><esc>
--- nnoremap <leader>Ra' ca'<C-R><C-*><esc>
--- nnoremap <leader>Ra( ca)<C-R><C-*><esc>
--- nnoremap <leader>Ra) ca)<C-R><C-*><esc>
--- nnoremap <leader>Rab cab<C-R><C-*><esc>
--- nnoremap <leader>Ra{ ca{<C-R><C-*><esc>
--- nnoremap <leader>Ra} ca}<C-R><C-*><esc>
--- nnoremap <leader>Ra[ ca[<C-R><C-*><esc>
--- nnoremap <leader>Ra] ca]<C-R><C-*><esc>
--- nnoremap <leader>Ra< ca<<C-R><C-*><esc>
--- nnoremap <leader>Ra> ca><C-R><C-*><esc>
--- nnoremap <leader>Ra` ca`<C-R><C-*><esc>
--- " /REPLACE SELECTION WITH YANKED TEXT
-
--- " BELOW COMMENTED OUT BECAUSE IT BREAKS THE ABOVE...
--- " nnoremap <leader>p "+p
-
--- " DISABLE CTRL-Z IN WINDOWS SINCE IT FREEZES VIM!: https://github.com/neovim/neovim/issues/6660
--- nnoremap <C-z> <nop>
--- inoremap <C-z> <nop>
--- vnoremap <C-z> <nop>
--- snoremap <C-z> <nop>
--- xnoremap <C-z> <nop>
--- cnoremap <C-z> <nop>
--- onoremap <C-z> <nop>
+vim.g.mapleader = " "
 
 
--- " Append inside ", ), etc, to get the ^R you have to press ctrl + v, and then
--- " ctrl + r to input ^R
--- nnoremap <leader>ciw ciw"
--- nnoremap <leader>ciW ciW"
--- nnoremap <leader>cit cit"
--- nnoremap <leader>ci" ci""
--- nnoremap <leader>ci' ci'"
--- nnoremap <leader>ci( ci("
--- nnoremap <leader>cib cib"
--- nnoremap <leader>ci) ci)"
--- nnoremap <leader>ci{ ci{"
--- nnoremap <leader>ci} ci}"
--- nnoremap <leader>ci[ ci["
--- nnoremap <leader>ci] ci]"
--- nnoremap <leader>ci< ci<"
--- nnoremap <leader>ci> ci>"
--- nnoremap <leader>ci` ci`"
 
--- " COPY CURRENT FILENAME OR FULL FILE PATH TO SYSTEM CLIPBOARD
--- nnoremap <leader>cf :echo expand("%:t") \| :let @+ = expand("%:t")<cr>
--- nnoremap <leader>cF :echo expand("%:p") \| :let @+ = expand("%:p")<cr>
--- " OPEN CURRENT FOLDER IN WINDOWS EXPLORER
--- " EXPAND COLON PARAMETERS FROM: https://vi.stackexchange.com/a/1885
--- " nnoremap gF :!start %:p:h<cr>
 
--- " " REPLACE VISUAL SELECTION
--- " vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
--- " REFRESH FILE FROM DISK
--- nnoremap <F5> :e %<cr>
 
--- " REFRESH FILE FROM DISK AND GO TO BOTTOM
--- nnoremap <silent><S-F5> :e %<cr>G
 
--- " RELOAD CONFIG
--- " nnoremap <C-f5> :so ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
--- nnoremap <C-F5> :execute 'source ' . stdpath('config') . '/init.vim'<cr>
 
--- " " EDIT CONFIG
--- " nnoremap <A-f5> :e ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
--- nnoremap <A-F5> :execute 'edit ' . stdpath('config') . '/init.vim'<cr>:cd %:h<cr>
 
--- " EDIT NOTES FOLDER
--- nnoremap <A-n> :e C:\GBox\Notes<cr>:cd C:\GBox\Notes<cr>
 
--- " EDIT SCRIPTS FOLDER
--- nnoremap <A-s> :e C:\GBox\Applications\Tools\Scripts<cr>:cd C:\GBox\Applications\Tools\Scripts<cr>
 
--- " BUILD SOLUTION
--- nnoremap <leader>rb :!dotnet build *.sln
 
--- " DIFF WITH SAVED, FROM: https://stackoverflow.com/a/749320/182888
--- function! s:DiffWithSaved()
--- 	let filetype=&ft
--- 	diffthis
--- 	vnew | r # | normal! 1Gdd
--- 	diffthis
--- 	exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
--- endfunction
--- com! DiffSaved call s:DiffWithSaved()
 
--- " GO TO LINE UNDER CURSOR
--- " nnoremap gn yiw:exec (@" =~ '^\d\+$' ? 'norm @"G' : '')<cr>
--- " DO A SEARCH USING THE LINE YOU'RE ON, FROM: https://vi.stackexchange.com/a/6210/38923
--- " nnoremap <leader>* 0y$/\V<c-r>"<cr>
 
--- " SPELL CHECKING ]s and [s for next/prev, z= for spelling suggestion, zg to
--- " add to dictionary
--- map <F6> :setlocal spell!<CR>
 
--- " map <F2> :AirlineToggle<CR>:AirlineRefresh<CR>
--- " map <C-F2> :AirlineRefresh<CR>
 
--- " RUN jq and use tab indents, then remove the ^M chars because vim is doing stupid things.
--- " vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r/e<cr>
--- " nnoremap <leader>=j :%!jq --tab .<cr>:%s/\r/e<cr>
--- vnoremap <leader>=j :'<,'>!jq "--tab ."<cr>:%s/\r<cr>
--- nnoremap <leader>=j :%!jq "--tab ."<cr>:%s/\r<cr>
--- " PASTE JSON FROM CLIPBOARD, AND FORMAT IT
--- nnoremap <leader>=J ggdG"+P:%!jq "--tab ."<cr>:%s/\r<cr>
--- " RETAB FILE
--- nnoremap <leader>=t :%retab!<cr>
--- " REMOVE TRAILING WHITESPACE FROM ALL LINES
--- nnoremap <leader>=w :%s/\s\+$//<cr>
 
--- " cm.Parameters.Add, and cm.Parameters.Value lines can be combined into single line using this
--- " function! MergeParametersAndValue()
--- " 	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$NNA\<c-r>0\<esc>0"
--- " 	silent! call repeat#set("\<space>=v", v:count)
--- " endfunction
 
--- function! MergeParametersAndValue()
--- 	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$ddNA\<c-r>0\<esc>0"
--- 	silent! call repeat#set("\<space>=v", v:count)
--- endfunction
--- autocmd FileType cs nnoremap <buffer> <leader>=v :call MergeParametersAndValue()<cr>
 
 
 
