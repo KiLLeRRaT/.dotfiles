@@ -1,5 +1,5 @@
-require("KiLLeRRaT.plugins");
-require("KiLLeRRaT.set");
-require("KiLLeRRaT.remap");
+require("killerrat.plugins");
+require("killerrat.set");
+require("killerrat.remap");
 
 

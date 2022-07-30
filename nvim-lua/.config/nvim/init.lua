@@ -1,1 +1,1 @@
-require("KiLLeRRaT")
+require("killerrat")
