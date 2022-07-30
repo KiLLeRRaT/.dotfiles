@@ -83,13 +83,17 @@ vim.cmd[[nnoremap <leader>cF :echo expand("%:p") \| :let @+ = expand("%:p")<cr>]
 
 -- " REFRESH FILE FROM DISK
 -- nnoremap <F5> :e %<cr>
+vim.api.nvim_set_keymap("n", "<F5>", ":e %<cr>", { noremap = true })
 
 -- " REFRESH FILE FROM DISK AND GO TO BOTTOM
 -- nnoremap <silent><S-F5> :e %<cr>G
+vim.api.nvim_set_keymap("n", "<S-F5>", ":e %<cr>G", { noremap = true })
 
 -- " RELOAD CONFIG
 -- " nnoremap <C-f5> :so ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
 -- nnoremap <C-F5> :execute 'source ' . stdpath('config') . '/init.vim'<cr>
+-- vim.api.nvim_set_keymap("n", "<C-F5>", ":execute 'source ' . stdpath('config') . '/init.vim'<cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-F5>", ":execute 'source ' . stdpath('config') . '/init.lua'<cr>", { noremap = true })
 
 -- " " EDIT CONFIG
 -- " nnoremap <A-f5> :e ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
@@ -100,6 +104,9 @@ vim.cmd[[nnoremap <leader>cF :echo expand("%:p") \| :let @+ = expand("%:p")<cr>]
 
 -- " EDIT SCRIPTS FOLDER
 -- nnoremap <A-s> :e C:\GBox\Applications\Tools\Scripts<cr>:cd C:\GBox\Applications\Tools\Scripts<cr>
+-- vim.api.nvim_set_keymap("n", "<A-s>", ":e C:\\GBox\\Applications\\Tools\\Scripts<cr>:cd C:\\GBox\\Applications\\Tools\\Scripts<cr>", { noremap = true })
+local scripts_path = "C:\\GBox\\Applications\\Tools\\Scripts"
+vim.api.nvim_set_keymap("n", "<A-s>", ":e " .. scripts_path .. "<cr>:cd " .. scripts_path .. "<cr>", { noremap = true })
 
 -- " BUILD SOLUTION
 -- nnoremap <leader>rb :!dotnet build *.sln
@@ -114,17 +121,13 @@ vim.cmd[[nnoremap <leader>cF :echo expand("%:p") \| :let @+ = expand("%:p")<cr>]
 -- endfunction
 -- com! DiffSaved call s:DiffWithSaved()
 
--- " GO TO LINE UNDER CURSOR
--- " nnoremap gn yiw:exec (@" =~ '^\d\+$' ? 'norm @"G' : '')<cr>
--- " DO A SEARCH USING THE LINE YOU'RE ON, FROM: https://vi.stackexchange.com/a/6210/38923
--- " nnoremap <leader>* 0y$/\V<c-r>"<cr>
+
 
 -- " SPELL CHECKING ]s and [s for next/prev, z= for spelling suggestion, zg to
 -- " add to dictionary
 -- map <F6> :setlocal spell!<CR>
+vim.api.nvim_set_keymap("n", "<F6>", ":setlocal spell!<CR>:setlocal spell?<CR>", { noremap = true })
 
--- " map <F2> :AirlineToggle<CR>:AirlineRefresh<CR>
--- " map <C-F2> :AirlineRefresh<CR>
 
 -- " RUN jq and use tab indents, then remove the ^M chars because vim is doing stupid things.
 -- " vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r/e<cr>
@@ -134,9 +137,12 @@ vim.cmd[[nnoremap <leader>cF :echo expand("%:p") \| :let @+ = expand("%:p")<cr>]
 -- " PASTE JSON FROM CLIPBOARD, AND FORMAT IT
 -- nnoremap <leader>=J ggdG"+P:%!jq "--tab ."<cr>:%s/\r<cr>
 -- " RETAB FILE
+
 -- nnoremap <leader>=t :%retab!<cr>
+vim.api.nvim_set_keymap("n", "<leader>=t", ":%retab!<cr>", { noremap = true })
 -- " REMOVE TRAILING WHITESPACE FROM ALL LINES
 -- nnoremap <leader>=w :%s/\s\+$//<cr>
+vim.api.nvim_set_keymap("n", "<leader>=w", ":%s/\\s\\+$//<cr>", { noremap = true })
 
 -- " cm.Parameters.Add, and cm.Parameters.Value lines can be combined into single line using this
 -- " function! MergeParametersAndValue()
