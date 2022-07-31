@@ -17,6 +17,5 @@ require('whitespace-nvim').setup({
 })
 
 -- remove trailing whitespace with a keybinding
-vim.api.nvim_set_keymap("n", "<leader>b", [[<cmd>lua print('hellob')]], { noremap = true })
-vim.cmd[[nnoremap <expr> <leader>B <cmd>lua print('helloB')<cr>]]
+vim.keymap.set("n", "<leader>b", [[<cmd>lua print('hellob')]])
 
