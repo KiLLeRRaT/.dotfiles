@@ -214,7 +214,6 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
 	pattern = {"*.cshtml"},
 	callback = function()
 		vim.opt.syntax = "html"
-		print("syntax=htmlAlbert")
 	end,
 	group = syntax_cshtml
 })
