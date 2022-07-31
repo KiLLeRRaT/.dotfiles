@@ -242,6 +242,8 @@ vim.opt.termguicolors = true
 
 -- hi! Normal ctermbg=NONE guibg=NONE
 
+-- THIS HAS TO BE BEFORE ANY MAPPING FILES OTHERWISE THE MAPPINGS ARE BOUND TO WHAT THE LEADER WAS
+-- BEFORE THIS CHANGE!!!
 vim.g.mapleader = " "
 
 

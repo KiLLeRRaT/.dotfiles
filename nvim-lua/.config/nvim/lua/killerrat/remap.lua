@@ -25,7 +25,7 @@ vim.keymap.set("n", "<leader>y", "\"+y")
 -- vnoremap <leader>y "+y
 vim.keymap.set("v", "<leader>y", "\"+y")
 -- nnoremap <leader>Y gg"+yG
-vim.keymap.set("n", "<leader>Y", "gg\"+yG")
+-- vim.keymap.set("n", "<leader>Y", "gg\"+yG")
 
 -- " DELETE INTO BLACK HOLE REGISTER
 -- nnoremap <leader>d "_d
@@ -142,7 +142,8 @@ vim.keymap.set("n", "<F6>", ":setlocal spell!<CR>:setlocal spell?<CR>")
 vim.keymap.set("n", "<leader>=t", ":%retab!<cr>")
 -- " REMOVE TRAILING WHITESPACE FROM ALL LINES
 -- nnoremap <leader>=w :%s/\s\+$//<cr>
-vim.keymap.set("n", "<leader>=w", ":%s/\\s\\+$//<cr>")
+-- MOVED TO _whitespace-nvim.lua FOR NOW
+-- vim.keymap.set("n", "<leader>=w", ":%s/\\s\\+$//<cr>")
 
 -- " cm.Parameters.Add, and cm.Parameters.Value lines can be combined into single line using this
 -- " function! MergeParametersAndValue()
