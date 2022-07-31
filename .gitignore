@@ -2,3 +2,4 @@
 nvim/.config/nvim/plugged/
 glazewm/.glaze-wm/errors.log
 **/packer_compiled.lua
+**/generated/*

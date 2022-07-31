@@ -1,3 +1,12 @@
+vim.cmd [[packadd packer.nvim]]
+vim.cmd [[autocmd BufWritePost **/nvim/lua/killerrat/plugins/init.lua PackerCompile]]
+
+local packer = require("packer")
+local util = require("packer.util")
+
+-- CONFIG IDEA FROM: https://www.reddit.com/r/neovim/comments/txwpj8/comment/i3phc3h/?utm_source=share&utm_medium=web2x&context=3
+
+-- INSTALL PACKER IF ITS NOT INSTALLED
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -5,16 +14,11 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	vim.cmd [[packadd packer.nvim]]
 end
 
-function _G.plugin_loaded(plugin_name)
-	local p = _G.packer_plugins
-	return p ~= nil and p[plugin_name] ~= nil and p[plugin_name].loaded
-end
 
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
+local function packer_spec()
+	local use = use;
 
-require('packer').startup(function(use)
-	-- Packer can manage itself
+-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 
 	-- Lazy loading:
@@ -119,5 +123,23 @@ require('packer').startup(function(use)
 	if packer_bootstrap then
 		require('packer').sync()
 	end
-end)
+end
 
+local compile_path = util.join_paths(
+	vim.fn.stdpath("config"), "generated", "packer_compiled.vim"
+)
+
+packer.startup {
+	packer_spec,
+	config = {
+		compile_path = compile_path
+	}
+}
+
+-- vim.cmd("source " .. compile_path)
+
+-- TO CHECK IF A PLUGIN IS INSTALLED
+function _G.plugin_loaded(plugin_name)
+	local p = _G.packer_plugins
+	return p ~= nil and p[plugin_name] ~= nil and p[plugin_name].loaded
+end
