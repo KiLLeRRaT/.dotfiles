@@ -8,30 +8,30 @@
 -- nnoremap <leader>ba :bufdo bd<cr>
 
 -- nnoremap ' `
-vim.api.nvim_set_keymap("n", "'", "`", { noremap = true })
+vim.keymap.set('n', "'", "`")
 
 -- " KEEP CURSOR IN THE CENTRE OF THE SCREEN WHEN SEARCHING NEXT
 -- nnoremap n nzzzv
-vim.api.nvim_set_keymap("n", "n", "nzzzv", { noremap = true })
+vim.keymap.set('n', "n", "nzzzv")
 -- nnoremap N Nzzzv
-vim.api.nvim_set_keymap("n", "N", "Nzzzv", { noremap = true })
+vim.keymap.set('n', "N", "Nzzzv")
 
 -- " KEEP CURSOR IN A SANE PLACE WHEN USING J TO JOIN LINES
 -- nnoremap J mzJ`z
-vim.api.nvim_set_keymap("n", "J", "mzJ`z", { noremap = true })
+vim.keymap.set('n', "J", "mzJ`z")
 
 -- nnoremap <leader>y "+y
-vim.api.nvim_set_keymap("n", "<leader>y", "\"+y", { noremap = true })
+vim.keymap.set("n", "<leader>y", "\"+y")
 -- vnoremap <leader>y "+y
-vim.api.nvim_set_keymap("v", "<leader>y", "\"+y", { noremap = true })
+vim.keymap.set("v", "<leader>y", "\"+y")
 -- nnoremap <leader>Y gg"+yG
-vim.api.nvim_set_keymap("n", "<leader>Y", "gg\"+yG", { noremap = true })
+vim.keymap.set("n", "<leader>Y", "gg\"+yG")
 
 -- " DELETE INTO BLACK HOLE REGISTER
 -- nnoremap <leader>d "_d
-vim.api.nvim_set_keymap("n", "<leader>d", "\"_d", { noremap = true })
+vim.keymap.set("n", "<leader>d", "\"_d")
 -- vnoremap <leader>d "_d
-vim.api.nvim_set_keymap("v", "<leader>d", "\"_d", { noremap = true })
+vim.keymap.set("v", "<leader>d", "\"_d")
 
 -- " [count] yanks, comments out, and pastes a copy below
 -- nnoremap <expr> <leader>T '<esc>' . v:count1 . '"zyy:.,+' . (v:count1 - 1) . 'Commentary<cr>' . v:count1 . 'j<esc>"zP'
@@ -42,21 +42,21 @@ vim.cmd[[nnoremap <expr> <leader>t '<esc>' . v:count1 . '"zyy' . v:count1 . 'j<e
 
 -- " https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
 -- xnoremap <leader>p "_dP
-vim.api.nvim_set_keymap("x", "<leader>p", "\"_dP", { noremap = true })
+vim.keymap.set("x", "<leader>p", "\"_dP")
 
 -- REPLACE SELECTION WITH YANKED TEXT
 local text_objects = {"w", "t", "\"", "'", "(", ")", "b", "{", "}", "[", "]", "<", ">", "`"}
 for i, v in ipairs(text_objects) do
 	-- REPLACE INNER SELECTION WITH YANKED TEXT
-	vim.api.nvim_set_keymap("n", "<leader>ri" .. v, "ci" .. v .. "<C-R><C-0><esc>", { noremap = true })
+	vim.keymap.set("n", "<leader>ri" .. v, "ci" .. v .. "<C-R><C-0><esc>")
 	-- REPLACE INNER SELECTION WITH YANKED TEXT FROM CLIPBOARD
-	vim.api.nvim_set_keymap("n", "<leader>Ri" .. v, "ci" .. v .. "<C-R><C-*><esc>", { noremap = true })
+	vim.keymap.set("n", "<leader>Ri" .. v, "ci" .. v .. "<C-R><C-*><esc>")
 	-- REPLACE AROUND SELECTION WITH YANKED TEXT
-	vim.api.nvim_set_keymap("n", "<leader>ra" .. v, "ca" .. v .. "<C-R><C-0><esc>", { noremap = true })
+	vim.keymap.set("n", "<leader>ra" .. v, "ca" .. v .. "<C-R><C-0><esc>")
 	-- REPLACE AROUND SELECTION WITH YANKED TEXT FROM CLIPBOARD
-	vim.api.nvim_set_keymap("n", "<leader>Ra" .. v, "ca" .. v .. "<C-R><C-*><esc>", { noremap = true })
+	vim.keymap.set("n", "<leader>Ra" .. v, "ca" .. v .. "<C-R><C-*><esc>")
 	-- APPEND INSIDE
-	vim.api.nvim_set_keymap("n", "<leader>ci" .. v, "ci" .. v .. "<C-R>\"", { noremap = true })
+	vim.keymap.set("n", "<leader>ci" .. v, "ci" .. v .. "<C-R>\"")
 
 end
 -- /REPLACE SELECTION WITH YANKED TEXT
@@ -64,7 +64,7 @@ end
 -- " DISABLE CTRL-Z IN WINDOWS SINCE IT FREEZES VIM!: https://github.com/neovim/neovim/issues/6660
 local all_modes = {"n", "i", "v", "s", "x", "c", "o"}
 for i, v in ipairs(all_modes) do
-	vim.api.nvim_set_keymap(v, "<C-z>", "<nop>", { noremap = true })
+	vim.keymap.set(v, "<C-z>", "<nop>")
 end
 
 
@@ -83,17 +83,17 @@ vim.cmd[[nnoremap <leader>cF :echo expand("%:p") \| :let @+ = expand("%:p")<cr>]
 
 -- " REFRESH FILE FROM DISK
 -- nnoremap <F5> :e %<cr>
-vim.api.nvim_set_keymap("n", "<F5>", ":e %<cr>", { noremap = true })
+vim.keymap.set("n", "<F5>", ":e %<cr>")
 
 -- " REFRESH FILE FROM DISK AND GO TO BOTTOM
 -- nnoremap <silent><S-F5> :e %<cr>G
-vim.api.nvim_set_keymap("n", "<S-F5>", ":e %<cr>G", { noremap = true })
+vim.keymap.set("n", "<S-F5>", ":e %<cr>G")
 
 -- " RELOAD CONFIG
 -- " nnoremap <C-f5> :so ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
 -- nnoremap <C-F5> :execute 'source ' . stdpath('config') . '/init.vim'<cr>
 -- vim.api.nvim_set_keymap("n", "<C-F5>", ":execute 'source ' . stdpath('config') . '/init.vim'<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-F5>", ":execute 'source ' . stdpath('config') . '/init.lua'<cr>", { noremap = true })
+vim.keymap.set("n", "<C-F5>", ":execute 'source ' . stdpath('config') . '/init.lua'<cr>")
 
 -- " " EDIT CONFIG
 -- " nnoremap <A-f5> :e ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
@@ -106,7 +106,7 @@ vim.api.nvim_set_keymap("n", "<C-F5>", ":execute 'source ' . stdpath('config') .
 -- nnoremap <A-s> :e C:\GBox\Applications\Tools\Scripts<cr>:cd C:\GBox\Applications\Tools\Scripts<cr>
 -- vim.api.nvim_set_keymap("n", "<A-s>", ":e C:\\GBox\\Applications\\Tools\\Scripts<cr>:cd C:\\GBox\\Applications\\Tools\\Scripts<cr>", { noremap = true })
 local scripts_path = "C:\\GBox\\Applications\\Tools\\Scripts"
-vim.api.nvim_set_keymap("n", "<A-s>", ":e " .. scripts_path .. "<cr>:cd " .. scripts_path .. "<cr>", { noremap = true })
+vim.keymap.set("n", "<A-s>", ":e " .. scripts_path .. "<cr>:cd " .. scripts_path .. "<cr>")
 
 -- " BUILD SOLUTION
 -- nnoremap <leader>rb :!dotnet build *.sln
@@ -126,7 +126,7 @@ vim.api.nvim_set_keymap("n", "<A-s>", ":e " .. scripts_path .. "<cr>:cd " .. scr
 -- " SPELL CHECKING ]s and [s for next/prev, z= for spelling suggestion, zg to
 -- " add to dictionary
 -- map <F6> :setlocal spell!<CR>
-vim.api.nvim_set_keymap("n", "<F6>", ":setlocal spell!<CR>:setlocal spell?<CR>", { noremap = true })
+vim.keymap.set("n", "<F6>", ":setlocal spell!<CR>:setlocal spell?<CR>")
 
 
 -- " RUN jq and use tab indents, then remove the ^M chars because vim is doing stupid things.
@@ -139,10 +139,10 @@ vim.api.nvim_set_keymap("n", "<F6>", ":setlocal spell!<CR>:setlocal spell?<CR>",
 -- " RETAB FILE
 
 -- nnoremap <leader>=t :%retab!<cr>
-vim.api.nvim_set_keymap("n", "<leader>=t", ":%retab!<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>=t", ":%retab!<cr>")
 -- " REMOVE TRAILING WHITESPACE FROM ALL LINES
 -- nnoremap <leader>=w :%s/\s\+$//<cr>
-vim.api.nvim_set_keymap("n", "<leader>=w", ":%s/\\s\\+$//<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>=w", ":%s/\\s\\+$//<cr>")
 
 -- " cm.Parameters.Add, and cm.Parameters.Value lines can be combined into single line using this
 -- " function! MergeParametersAndValue()

@@ -136,7 +136,7 @@ packer.startup {
 	}
 }
 
--- vim.cmd("source " .. compile_path)
+vim.cmd("source " .. compile_path)
 
 -- TO CHECK IF A PLUGIN IS INSTALLED
 function _G.plugin_loaded(plugin_name)

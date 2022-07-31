@@ -1,7 +1,6 @@
 -- If plugin is not loaded (e.g. disabled), skip this file!
 -- print ("Plugin: " .. _G.packer_plugins)
 if not _G.plugin_loaded("whitespace.nvim") then
-	print("Whitespace not loaded")
 	do return end
 end
 
@@ -18,10 +17,6 @@ require('whitespace-nvim').setup({
 })
 
 -- remove trailing whitespace with a keybinding
-vim.api.nvim_set_keymap(
-	'n',
-	'<Leader>z',
-	[[<cmd>lua require('whitespace-nvim').trim()<CR>]],
-	{ noremap = true }
-)
+vim.api.nvim_set_keymap("n", "<leader>b", [[<cmd>lua print('hellob')]], { noremap = true })
+vim.cmd[[nnoremap <expr> <leader>B <cmd>lua print('helloB')<cr>]]
 
