@@ -19,7 +19,7 @@ local function packer_spec()
 	local use = use;
 
 -- Packer can manage itself
-	use 'wbthomason/packer.nvim'
+	use { 'wbthomason/packer.nvim' }
 
 	-- Lazy loading:
 	-- Load on specific commands
@@ -35,15 +35,38 @@ local function packer_spec()
 	-- }
 
 
+----------------------------------------
+	-- LIBRARIES
+----------------------------------------
+	-- Plug 'https://github.com/nvim-lua/plenary.nvim'
+	use { 'nvim-lua/plenary.nvim' }
 
-
+----------------------------------------
+	-- THEMES
+----------------------------------------
 	-- Plug 'https://github.com/folke/tokyonight.nvim', { 'branch': 'main' }
 	use { 'folke/tokyonight.nvim', branch = 'main' }
 
-	-- Plug 'https://github.com/nvim-lua/plenary.nvim'
+----------------------------------------
+	-- TOOLS
+----------------------------------------
+	use { 'johnfrankmorgan/whitespace.nvim'	}
+
 	-- Plug 'https://github.com/nvim-telescope/telescope.nvim'
+	use { 'nvim-telescope/telescope.nvim' }
+	-- Plug 'https://github.com/nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+	-- Plug 'https://github.com/nvim-telescope/telescope-live-grep-args.nvim'
+	use { 'nvim-telescope/telescope-live-grep-args.nvim' }
+
 	-- Plug 'https://github.com/preservim/nerdtree'
+	-- use { 'preservim/nerdtree' }
 	-- Plug 'https://github.com/ThePrimeagen/harpoon'
+	-- use { 'ThePrimeagen/harpoon' }
+
+
+
+
 	-- " Plug 'ThePrimeagen/vim-be-good'
 	-- Plug 'https://github.com/tpope/vim-abolish'
 	-- Plug 'https://github.com/tpope/vim-commentary'
@@ -57,8 +80,6 @@ local function packer_spec()
 	-- Plug 'https://github.com/akinsho/bufferline.nvim'
 	-- Plug 'https://github.com/phaazon/hop.nvim'
 
-	-- Plug 'https://github.com/nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-	-- Plug 'https://github.com/nvim-telescope/telescope-live-grep-args.nvim'
 	-- Plug 'https://github.com/github/copilot.vim'
 	-- Plug 'https://github.com/dstein64/vim-startuptime'
 	-- Plug 'https://github.com/ap/vim-css-color'
@@ -115,7 +136,6 @@ local function packer_spec()
 	-- Plug 'https://github.com/rmagatti/goto-preview'
 	-- call plug#end()
 
-	use { 'johnfrankmorgan/whitespace.nvim'	}
 
 
 	-- Automatically set up your configuration after cloning packer.nvim
