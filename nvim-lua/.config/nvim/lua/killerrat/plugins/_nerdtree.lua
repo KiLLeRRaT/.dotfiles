@@ -15,27 +15,30 @@ end
 -- " autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
 -- "     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 -- "
--- " enable line numbers
--- let NERDTreeShowLineNumbers=1
+
 vim.g.NERDTreeShowLineNumbers = 1
+vim.g.NERDTreeShowHidden = 1
 
--- let NERDTreeShowHidden=1
 -- " FROM: https://stackoverflow.com/a/47287079/182888
--- let g:NERDTreeChDirMode = 2
+vim.g.NERDTreeChDirMode = 2
 
--- if (has('win32'))
--- 	" let g:NERDTreeCopyCmd= 'copy '
--- 	let g:NERDTreeCopyCmd= 'Copy-Item -Recurse '
--- endif
+if vim.fn.has('win32') then
+	vim.g.NERDTreeCopyCmd = 'Copy-Item -Recurse '
+end
 
 -- " make sure relative line numbers are used
 -- autocmd FileType nerdtree setlocal relativenumber
+local nerdtree_relativenumber = vim.api.nvim_create_augroup("syntax_cshtml", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = {"nerdtree"},
+	callback = function()
+		vim.opt_local.relativenumber = true
+	end,
+	group = nerdtree_relativenumber
+})
 
--- nnoremap <leader>nn :NERDTreeFocus<CR>
 vim.keymap.set("n", "<leader>nn", ":NERDTreeFocus<CR>")
--- nnoremap <leader>nt :NERDTreeToggle<CR>
 vim.keymap.set("n", "<leader>nt", ":NERDTreeToggle<CR>")
--- nnoremap <leader>nf :NERDTreeFind<CR>
 vim.keymap.set("n", "<leader>nf", ":NERDTreeFind<CR>")
 
 -- " Start NERDTree when Vim is started without file arguments.

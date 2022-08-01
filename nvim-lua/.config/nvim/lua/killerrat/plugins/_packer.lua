@@ -64,7 +64,7 @@ local function packer_spec()
 	-- Plug 'https://github.com/preservim/nerdtree'
 	use { 'preservim/nerdtree' }
 	-- Plug 'https://github.com/ThePrimeagen/harpoon'
-	-- use { 'ThePrimeagen/harpoon' }
+	use { 'ThePrimeagen/harpoon' }
 
 
 
