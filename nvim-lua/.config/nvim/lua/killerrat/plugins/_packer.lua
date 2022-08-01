@@ -6,6 +6,7 @@ local util = require("packer.util")
 
 -- CONFIG IDEA FROM: https://www.reddit.com/r/neovim/comments/txwpj8/comment/i3phc3h/?utm_source=share&utm_medium=web2x&context=3
 
+print("lets check if packer is there")
 -- INSTALL PACKER IF ITS NOT INSTALLED
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -60,7 +61,7 @@ local function packer_spec()
 	use { 'nvim-telescope/telescope-live-grep-args.nvim' }
 
 	-- Plug 'https://github.com/preservim/nerdtree'
-	-- use { 'preservim/nerdtree' }
+	use { 'preservim/nerdtree' }
 	-- Plug 'https://github.com/ThePrimeagen/harpoon'
 	-- use { 'ThePrimeagen/harpoon' }
 
