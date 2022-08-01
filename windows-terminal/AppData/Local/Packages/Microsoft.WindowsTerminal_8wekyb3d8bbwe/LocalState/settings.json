@@ -14,6 +14,7 @@
 				{ "command": { "action": "splitPane", "split": "vertical", "splitMode": "duplicate" }, "keys": "alt+shift+plus" },
 				{ "command": { "action": "splitPane", "split": "horizontal", "splitMode": "duplicate" }, "keys": "alt+shift+-" },
 
+				{ "command": { "action": "nextTab", "tabSwitcherMode": "mru" }, "keys": "ctrl+tab" },
 				{ "command": "openTabRenamer", "keys": "ctrl+shift+r" },
 
 				{ "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" },
