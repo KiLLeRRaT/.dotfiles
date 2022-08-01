@@ -46,20 +46,16 @@ local function packer_spec()
 ----------------------------------------
 	-- THEMES
 ----------------------------------------
-	-- Plug 'https://github.com/folke/tokyonight.nvim', { 'branch': 'main' }
-	use { 'folke/tokyonight.nvim', branch = 'main' }
+	use { 'folke/tokyonight.nvim', branch = 'main' }																	-- https://github.com/folke/tokyonight.nvim
 
 ----------------------------------------
 	-- TOOLS
 ----------------------------------------
 	use { 'johnfrankmorgan/whitespace.nvim'	}
 
-	-- Plug 'https://github.com/nvim-telescope/telescope.nvim'
-	use { 'nvim-telescope/telescope.nvim' }
-	-- Plug 'https://github.com/nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-	-- Plug 'https://github.com/nvim-telescope/telescope-live-grep-args.nvim'
-	use { 'nvim-telescope/telescope-live-grep-args.nvim' }
+	use { 'nvim-telescope/telescope.nvim' }																						-- https://github.com/nvim-telescope/telescope.nvim
+	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }									-- https://github.com/nvim-telescope/telescope-fzf-native.nvim
+	use { 'nvim-telescope/telescope-live-grep-args.nvim' }														-- https://github.com/nvim-telescope/telescope-live-grep-args.nvim
 
 	-- Plug 'https://github.com/preservim/nerdtree'
 	use { 'preservim/nerdtree' }
