@@ -58,16 +58,9 @@ local function packer_spec()
 
 	use { 'preservim/nerdtree' }																			-- https://github.com/preservim/nerdtree
 	use { 'ThePrimeagen/harpoon' }																		-- https://github.com/ThePrimeagen/harpoon
+	use { 'max397574/better-escape.nvim' }														-- https://github.com/max397574/better-escape.nvim
+	use { 'phaazon/hop.nvim' }																				-- https://github.com/phaazon/hop.nvim
 
-	-- Plug 'https://github.com/jdhao/better-escape.vim'
-	use { 'max397574/better-escape.nvim' }
-
--- use {
---   "max397574/better-escape.nvim",
---   config = function()
---     require("better_escape").setup()
---   end,
--- }
 
 
 	-- " Plug 'ThePrimeagen/vim-be-good'
@@ -81,7 +74,6 @@ local function packer_spec()
 	-- " Plug 'vim-airline/vim-airline'
 	-- Plug 'https://github.com/nvim-lualine/lualine.nvim'
 	-- Plug 'https://github.com/akinsho/bufferline.nvim'
-	-- Plug 'https://github.com/phaazon/hop.nvim'
 
 	-- Plug 'https://github.com/github/copilot.vim'
 	-- Plug 'https://github.com/dstein64/vim-startuptime'
@@ -166,16 +158,20 @@ function _G.plugin_loaded(plugin_name)
 	return p ~= nil and p[plugin_name] ~= nil and p[plugin_name].loaded
 end
 
--- function dump(o)
--- 	 if type(o) == 'table' then
--- 			local s = '{ '
--- 			for k,v in pairs(o) do
--- 				 if type(k) ~= 'number' then k = '"'..k..'"' end
--- 				 s = s .. '['..k..'] = ' .. dump(v) .. ','
--- 			end
--- 			return s .. '} '
--- 	 else
--- 			return tostring(o)
--- 	 end
--- end
+function dump(o)
+	 if type(o) == 'table' then
+			local s = '{ '
+			for k,v in pairs(o) do
+				 if type(k) ~= 'number' then k = '"'..k..'"' end
+				 s = s .. '['..k..'] = ' .. dump(v) .. ','
+			end
+			return s .. '} '
+	 else
+			return tostring(o)
+	 end
+end
 -- print("Plugins:", dump(_G.packer_plugins))
+-- vim.api.nvim_buf_set_lines(0, -1, -1, false, {
+-- 	"Plugins:",
+-- 	dump(_G.packer_plugins)
+-- })

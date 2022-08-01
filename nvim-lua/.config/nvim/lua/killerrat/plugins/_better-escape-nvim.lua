@@ -1,22 +1,6 @@
 if not _G.plugin_loaded("better-escape.nvim") then
-	print("plugin not loaded, bail1")
 	do return end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 require("better_escape").setup {
 		mapping = {"jk"}, -- a table with mappings to use

@@ -2,9 +2,9 @@ if not _G.plugin_loaded("telescope.nvim") then
 	do return end
 end
 
-local telescope = require("telescope")
+local p = require("telescope")
 
-telescope.setup {
+p.setup {
 	extensions = {
 	},
 	defaults = {
@@ -26,7 +26,7 @@ telescope.setup {
 	},
 }
 
-telescope.load_extension('fzf')
+p.load_extension('fzf')
 
 -- " TELESCOPE
 -- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -5,4 +5,4 @@ require("killerrat.plugins._telescope-nvim")
 require("killerrat.plugins._nerdtree")
 require("killerrat.plugins._harpoon")
 require("killerrat.plugins._better-escape-nvim")
-
+require("killerrat.plugins._hop")
