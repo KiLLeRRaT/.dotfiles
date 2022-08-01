@@ -193,7 +193,7 @@ vim.opt.viewoptions = vim.opt.viewoptions - { "options" }
 local folding = vim.api.nvim_create_augroup("folding", { clear = true })
 vim.api.nvim_create_autocmd("BufWinLeave", {
 	pattern = {"*"},
-	command = vim.cmd[[mkview]],
+	command = vim.cmd[[silent! mkview]],
 	group = folding
 })
 
@@ -219,26 +219,6 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
 })
 
 -- syntax on
--- set background=dark
-vim.opt.background = "dark"
-
--- " let g:solarized_termtrans = 1
--- "colorscheme solarized
-
--- " let g:gruvbox_guisp_fallback = "bg" " THIS TURNS ON SPELLBAD PROPERLY FOR SPELLCHECK HIGHLIGHTING IN GRUVBOX
--- " let g:gruvbox_transparent_bg = 1
--- " colorscheme gruvbox
-
--- let g:tokyonight_transparent = 1
-vim.g.tokyonight_transparent = true
-vim.g.tokyonight_transparent_sidebar = true
--- colorscheme tokyonight
-vim.cmd("colorscheme tokyonight")
-
--- autocmd VimEnter * hi Normal ctermbg=none
-
--- set termguicolors
-vim.opt.termguicolors = true
 
 -- hi! Normal ctermbg=NONE guibg=NONE
 

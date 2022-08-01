@@ -1,12 +1,3 @@
-vim.cmd [[packadd packer.nvim]]
-vim.cmd [[autocmd BufWritePost **/nvim/lua/killerrat/plugins/init.lua PackerCompile]]
-
-local packer = require("packer")
-local util = require("packer.util")
-
--- CONFIG IDEA FROM: https://www.reddit.com/r/neovim/comments/txwpj8/comment/i3phc3h/?utm_source=share&utm_medium=web2x&context=3
-
-print("lets check if packer is there")
 -- INSTALL PACKER IF ITS NOT INSTALLED
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -14,6 +5,16 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 	vim.cmd [[packadd packer.nvim]]
 end
+
+
+-- vim.cmd [[packadd packer.nvim]]
+vim.cmd [[autocmd BufWritePost **/nvim/lua/killerrat/plugins/init.lua PackerCompile]]
+
+local packer = require("packer")
+local util = require("packer.util")
+
+-- CONFIG IDEA FROM: https://www.reddit.com/r/neovim/comments/txwpj8/comment/i3phc3h/?utm_source=share&utm_medium=web2x&context=3
+
 
 
 local function packer_spec()

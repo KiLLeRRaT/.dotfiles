@@ -139,6 +139,9 @@ alias gb='git branch'
 alias gba='git branch --all'
 alias gco='git checkout'
 
+alias nvim-lua='export XDG_CONFIG_HOME=${HOME}/.dotfiles/nvim-lua/.config; \
+	export XDG_DATA_HOME=${HOME}/.local-lua/share; \
+	nvim'
 
 
 
