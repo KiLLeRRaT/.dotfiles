@@ -61,7 +61,7 @@ local function packer_spec()
 	use { 'max397574/better-escape.nvim' }														-- https://github.com/max397574/better-escape.nvim
 	use { 'phaazon/hop.nvim' }																				-- https://github.com/phaazon/hop.nvim
 
-
+	use { 'dstein64/vim-startuptime' }																-- https://github.com/dstein64/vim-startuptime
 
 	-- " Plug 'ThePrimeagen/vim-be-good'
 	-- Plug 'https://github.com/tpope/vim-abolish'
@@ -71,19 +71,13 @@ local function packer_spec()
 	-- Plug 'https://github.com/tpope/vim-repeat'
 	-- Plug 'https://github.com/tpope/vim-surround'
 	-- Plug 'https://github.com/tpope/vim-unimpaired'
-	-- " Plug 'vim-airline/vim-airline'
 	-- Plug 'https://github.com/nvim-lualine/lualine.nvim'
 	-- Plug 'https://github.com/akinsho/bufferline.nvim'
 
 	-- Plug 'https://github.com/github/copilot.vim'
-	-- Plug 'https://github.com/dstein64/vim-startuptime'
 	-- Plug 'https://github.com/ap/vim-css-color'
-	-- " Plug 'ryanoasis/vim-devicons'
 	-- Plug 'https://github.com/kyazdani42/nvim-web-devicons'
 	-- Plug 'https://github.com/lewis6991/gitsigns.nvim'
-	-- " Plug 'nvim-telescope/telescope-hop.nvim'
-	-- " Plug 'nvim-telescope/telescope-rg.nvim'
-	-- " Plug 'nvim-telescope/telescope-ui-select.nvim'
 	-- Plug 'https://github.com/neoclide/vim-jsx-improve'
 	-- Plug 'https://github.com/simeji/winresizer'
 	-- Plug 'PhilRunninger/nerdtree-visual-selection'
@@ -100,10 +94,7 @@ local function packer_spec()
 	-- Plug 'https://github.com/hrsh7th/cmp-nvim-lsp-signature-help'
 	-- Plug 'https://github.com/hrsh7th/cmp-calc'
 	-- Plug 'https://github.com/hrsh7th/cmp-emoji'
-	-- " Plug 'https://github.com/uga-rosa/cmp-dictionary'
-	-- " Plug 'https://github.com/f3fora/cmp-spell'
 	-- Plug 'https://github.com/williamboman/nvim-lsp-installer'
-	-- " https://github.com/hrsh7th?tab=repositories
 
 	-- " /LSP RELATED PLUGINS
 
