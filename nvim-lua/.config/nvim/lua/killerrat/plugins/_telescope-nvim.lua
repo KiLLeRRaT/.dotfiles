@@ -1,5 +1,3 @@
--- If plugin is not loaded (e.g. disabled), skip this file!
--- print ("Plugin: " .. _G.packer_plugins)
 if not _G.plugin_loaded("telescope.nvim") then
 	do return end
 end

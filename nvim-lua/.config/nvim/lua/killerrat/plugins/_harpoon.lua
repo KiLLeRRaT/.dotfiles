@@ -1,6 +1,4 @@
-	print("harpoon let's go")
 if not _G.plugin_loaded("harpoon") then
-	print("harpoon not loaded, bail")
 	do return end
 end
 

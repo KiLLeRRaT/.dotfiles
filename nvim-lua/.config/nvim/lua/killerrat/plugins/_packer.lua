@@ -59,7 +59,15 @@ local function packer_spec()
 	use { 'preservim/nerdtree' }																			-- https://github.com/preservim/nerdtree
 	use { 'ThePrimeagen/harpoon' }																		-- https://github.com/ThePrimeagen/harpoon
 
+	-- Plug 'https://github.com/jdhao/better-escape.vim'
+	use { 'max397574/better-escape.nvim' }
 
+-- use {
+--   "max397574/better-escape.nvim",
+--   config = function()
+--     require("better_escape").setup()
+--   end,
+-- }
 
 
 	-- " Plug 'ThePrimeagen/vim-be-good'
@@ -85,7 +93,6 @@ local function packer_spec()
 	-- " Plug 'nvim-telescope/telescope-rg.nvim'
 	-- " Plug 'nvim-telescope/telescope-ui-select.nvim'
 	-- Plug 'https://github.com/neoclide/vim-jsx-improve'
-	-- Plug 'https://github.com/jdhao/better-escape.vim'
 	-- Plug 'https://github.com/simeji/winresizer'
 	-- Plug 'PhilRunninger/nerdtree-visual-selection'
 	-- Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -158,3 +165,17 @@ function _G.plugin_loaded(plugin_name)
 	local p = _G.packer_plugins
 	return p ~= nil and p[plugin_name] ~= nil and p[plugin_name].loaded
 end
+
+-- function dump(o)
+-- 	 if type(o) == 'table' then
+-- 			local s = '{ '
+-- 			for k,v in pairs(o) do
+-- 				 if type(k) ~= 'number' then k = '"'..k..'"' end
+-- 				 s = s .. '['..k..'] = ' .. dump(v) .. ','
+-- 			end
+-- 			return s .. '} '
+-- 	 else
+-- 			return tostring(o)
+-- 	 end
+-- end
+-- print("Plugins:", dump(_G.packer_plugins))
