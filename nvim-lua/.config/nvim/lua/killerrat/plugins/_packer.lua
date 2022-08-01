@@ -40,27 +40,24 @@ local function packer_spec()
 ----------------------------------------
 	-- LIBRARIES
 ----------------------------------------
-	-- Plug 'https://github.com/nvim-lua/plenary.nvim'
-	use { 'nvim-lua/plenary.nvim' }
+	use { 'nvim-lua/plenary.nvim' }																	-- https://github.com/nvim-lua/plenary.nvim
 
 ----------------------------------------
 	-- THEMES
 ----------------------------------------
-	use { 'folke/tokyonight.nvim', branch = 'main' }																	-- https://github.com/folke/tokyonight.nvim
+	use { 'folke/tokyonight.nvim', branch = 'main' }									-- https://github.com/folke/tokyonight.nvim
 
 ----------------------------------------
 	-- TOOLS
 ----------------------------------------
 	use { 'johnfrankmorgan/whitespace.nvim'	}
 
-	use { 'nvim-telescope/telescope.nvim' }																						-- https://github.com/nvim-telescope/telescope.nvim
-	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }									-- https://github.com/nvim-telescope/telescope-fzf-native.nvim
-	use { 'nvim-telescope/telescope-live-grep-args.nvim' }														-- https://github.com/nvim-telescope/telescope-live-grep-args.nvim
+	use { 'nvim-telescope/telescope.nvim' }														-- https://github.com/nvim-telescope/telescope.nvim
+	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }	-- https://github.com/nvim-telescope/telescope-fzf-native.nvim
+	use { 'nvim-telescope/telescope-live-grep-args.nvim' }						-- https://github.com/nvim-telescope/telescope-live-grep-args.nvim
 
-	-- Plug 'https://github.com/preservim/nerdtree'
-	use { 'preservim/nerdtree' }
-	-- Plug 'https://github.com/ThePrimeagen/harpoon'
-	use { 'ThePrimeagen/harpoon' }
+	use { 'preservim/nerdtree' }																			-- https://github.com/preservim/nerdtree
+	use { 'ThePrimeagen/harpoon' }																		-- https://github.com/ThePrimeagen/harpoon
 
 
 
