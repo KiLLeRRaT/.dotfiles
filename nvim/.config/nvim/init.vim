@@ -263,6 +263,9 @@ Plug 'https://github.com/lambdalisue/suda.vim'
 
 " Open LSP goto defn in floating windows
 Plug 'https://github.com/rmagatti/goto-preview'
+
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
+
 call plug#end()
 
 
