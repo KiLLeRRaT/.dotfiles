@@ -67,7 +67,7 @@ cmp.setup {
 }
 
 -- SETUP AND RUN LSP INSTALLER
-local ensure_installed = { "bashls", "cssls", "dockerls", "eslint", "html", "jsonls", "pyright", "sumneko_lua", "tflint", "tsserver", "yamlls" }
+local lsp_installer_ensure_installed = { "bashls", "cssls", "dockerls", "eslint", "html", "jsonls", "pyright", "sumneko_lua", "tflint", "tsserver", "yamlls" }
 
 -- PATH SETUP BASED ON OS
 local omniSharpPath
@@ -76,44 +76,52 @@ if vim.fn.has('win32') == 1 then
 	-- netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/netcoredbg/netcoredbg-win64-2.0.0-895/netcoredbg.exe'
 	netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/netcoredbg/netcoredbg-win64-2.0.0-895/netcoredbg.exe'
 	-- omniSharpPath = '~/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.39.0/OmniSharp.exe' -- THIS USED TO WORK, AND JUST SUDDENLY STOPPED WORKING, GRRR
-	omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.39.0/OmniSharp.exe'
-	table.insert(ensure_installed, "powershell_es")
+	table.insert(lsp_installer_ensure_installed, "omnisharp")
+	omniSharpPath = 'C:/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.39.1/OmniSharp.exe'
+	table.insert(lsp_installer_ensure_installed, "powershell_es")
 elseif vim.fn.has('mac') == 1 then
 	netcoredbgPath = '/Users/albert/GBox/Applications/Tools/Applications/Neovim/netcoredbg/netcoredbg-osx-amd64-2.0.0-915/netcoredbg'
-	table.insert(ensure_installed, "omnisharp")
+	table.insert(lsp_installer_ensure_installed, "omnisharp")
 elseif vim.fn.has('linux') == 1 then
 	netcoredbgPath = 'C:/GBox/Applications/Tools/Applications/Neovim/nvim-win64/lsp-instance/netcoredbf-win64-2.0.0-895/netcoredbg.exe'
-	table.insert(ensure_installed, "omnisharp")
+	table.insert(lsp_installer_ensure_installed, "omnisharp")
 end
 
 -- -- print( "Features: " .. vim.fn.has('win32') .. vim.fn.has('mac') .. vim.fn.has('linux'))
 -- -- /PATH SETUP BASED ON OS
 
 require("nvim-lsp-installer").setup {
-    ensure_installed = ensure_installed
+    ensure_installed = lsp_installer_ensure_installed
 }
 
 -- OMNISHARP LSP CONFIG
-local pid = vim.fn.getpid()
-require'lspconfig'.omnisharp.setup {
-  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-  on_attach = function(_, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-  end,
-	-- on_new_config = function(new_config, new_root_dir)
-	-- 	if new_root_dir then
-	-- 		table.insert(new_config.cmd, '-s')
-	-- 		table.insert(new_config.cmd, new_root_dir)
-	-- 		-- table.insert(new_config.cmd, new_root_dir .. '/Sandfield.TIL.Orca.sln')
-	-- 		-- table.insert(new_config.cmd, new_root_dir .. '/Sandfield.POR.Portal.sln')
-	-- 	end
-	-- end,
-	-- cmd = { omniSharpPath, '--languageserver', '--hostPID', tostring(pid), '--loglevel', 'debug' },
-	-- cmd = { 'C:/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.38.2/OmniSharp.exe', '--languageserver', '--hostPID', tostring(pid), '--loglevel', 'debug' },
-	-- cmd = { 'C:/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.39.0/OmniSharp.exe', '--languageserver', '--hostPID', tostring(pid), '--loglevel', 'debug' },
-	cmd = { omniSharpPath, '--languageserver', '--hostPID', tostring(pid), '--loglevel', 'debug' },
+-- local pid = vim.fn.getpid()
+-- require'lspconfig'.omnisharp.setup {
+--   capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+--   on_attach = function(_, bufnr)
+--     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+--   end,
+-- 	-- on_new_config = function(new_config, new_root_dir)
+-- 	-- 	if new_root_dir then
+-- 	-- 		table.insert(new_config.cmd, '-s')
+-- 	-- 		table.insert(new_config.cmd, new_root_dir)
+-- 	-- 		-- table.insert(new_config.cmd, new_root_dir .. '/Sandfield.TIL.Orca.sln')
+-- 	-- 		-- table.insert(new_config.cmd, new_root_dir .. '/Sandfield.POR.Portal.sln')
+-- 	-- 	end
+-- 	-- end,
+-- 	-- cmd = { omniSharpPath, '--languageserver', '--hostPID', tostring(pid), '--loglevel', 'debug' },
+-- 	-- cmd = { 'C:/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.38.2/OmniSharp.exe', '--languageserver', '--hostPID', tostring(pid), '--loglevel', 'debug' },
+-- 	-- cmd = { 'C:/GBox/Applications/Tools/Applications/Neovim/omnisharp/omnisharp-win-x64-1.39.0/OmniSharp.exe', '--languageserver', '--hostPID', tostring(pid), '--loglevel', 'debug' },
+-- 		-- cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) };
 
-		-- cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) };
+-- 	cmd = { omniSharpPath, '--languageserver', '--hostPID', tostring(pid), '--loglevel', 'debug' },
+
+-- }
+-- require'lspconfig'.omnisharp.setup {}
+require'lspconfig'.omnisharp.setup {
+	-- use_mono = true
+	-- environment = "netframework"
+	environment = "dotnet"
 }
 -- -- /OMNISHARP LSP CONFIG
 
