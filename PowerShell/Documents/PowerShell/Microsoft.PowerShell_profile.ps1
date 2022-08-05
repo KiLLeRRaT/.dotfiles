@@ -1,4 +1,6 @@
-# Import-Module posh-git
+# THIS IS NEEDED FOR GIT TAB COMPLETION
+Import-Module posh-git
+
 #Set-PoshPrompt -Theme Paradox
 # Set-PoshPrompt -Theme ~/.mytheme.tokyonight.omp.yaml
 # Set-PoshPrompt -Theme ~/.omp/themes/tokyonight.omp.yaml
