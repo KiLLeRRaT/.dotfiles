@@ -26,6 +26,20 @@ if (Test-Path($ChocolateyProfile)) {
 
 # $Host.UI.RawUI.WindowTitle = "$pwd"
 
+
+# IDEA FROM: https://devblogs.microsoft.com/scripting/weekend-scripter-customize-powershell-title-and-prompt/
+# Function Prompt
+# {
+# 	$PromptData="$($executionContext.SessionState.Path.CurrentLocation)"
+# 	if ($strVal -like 'C:\Projects.Git\*')
+# 	{
+# 		$PromptData = $string.replace($PromptData, 'C:\Projects.Git\', '')
+# 		$host.ui.RawUI.WindowTitle = $PromptData
+# 	}
+# }
+
+
+
 # PSReadLine extension to provide VI keybindings
 Set-PSReadlineOption -EditMode vi
 # Set-PSReadLineKeyHandler -Key j,k -Function ViCommandMode
