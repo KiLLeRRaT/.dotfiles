@@ -12,48 +12,41 @@ echo -e "\033[32m Updating Linux\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 # sudo apt update
 # sudo apt -y upgrade
-sudo pacman -Syu
+#sudo pacman -Syu
+sudo pamac update && \
+sudo pamac upgrade
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Installing software\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
-sudo pacman -S git && \
-sudo pacman -S xrdp && \
-sudo pacman -S i3 && \
-sudo pacman -S curl && \
-sudo pacman -S stow && \
-sudo pacman -S neovim && \
-sudo pacman -S xclip && \
-sudo pacman -S nodejs && \
-sudo pacman -S npm && \
-sudo pacman -S ripgrep && \
-sudo pacman -S fd-find && \
-sudo pacman -S alacritty
+# WE HAVE TO BUILD XRDP...
+sudo pamac build xrdp --no-confirm && \
+sudo pamac install git --no-confirm && \
+sudo pamac install i3 i3status dmenu i3lock --no-confirm && \
+sudo pamac install curl --no-confirm && \
+sudo pamac install stow --no-confirm && \
+sudo pamac install neovim --no-confirm && \
+sudo pamac install xclip --no-confirm && \
+sudo pamac install ripgrep --no-confirm && \
+sudo pamac install fd --no-confirm && \
+sudo pamac install alacritty --no-confirm
+
+sudo pamac install snapd --no-confirm
+sudo systemctl enable --now snapd.socket
+sudo ln -s /var/lib/snapd/snap /snap
+# sudo snap install brave
 
 
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Configure SSH Keys\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+[ ! -d "~/.ssh" ] && ssh-keygen
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Configure Git\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 git config --global user.email "albert@gouws.org"
 git config --global user.name "Albert Gouws"
-
-
-# echo Installing Chrome
-# echo ----------------------------------------
-# if [ $(dpkg-query -W -f='${Status}' google-chrome-stable 2>/dev/null | grep -c "ok installed") -eq 0 ];
-# then
-# 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
-#     sudo dpkg -i google-chrome-stable_current_amd64.deb &&
-#     rm -f google-chrome-stable_current_amd64.deb
-# else
-# 	echo "Chrome found, not adding it"
-# fi
-
-
-# echo Clone dotfiles
-# echo ----------------------------------------
-# git clone https://github.com/KiLLeRRaT/.dotfiles.git
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
@@ -116,4 +109,13 @@ echo -e "\033[32m ----------------------------------------\033[0m"
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 sudo chmod +x /usr/local/bin/oh-my-posh
 
+
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Install nvm to manage NodeJS\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+exec bash
+nvm install --lts
+nvm use --lts
+exit
 popd
