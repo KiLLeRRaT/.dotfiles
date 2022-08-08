@@ -41,7 +41,7 @@ local function packer_spec()
 	-- LIBRARIES
 ----------------------------------------
 	use { 'nvim-lua/plenary.nvim' }																		-- https://github.com/nvim-lua/plenary.nvim
-
+	use { 'tpope/vim-repeat' }																				-- https://github.com/tpope/vim-repeat
 ----------------------------------------
 	-- THEMES
 ----------------------------------------
@@ -63,15 +63,12 @@ local function packer_spec()
 	use { 'dstein64/vim-startuptime' }																-- https://github.com/dstein64/vim-startuptime
 	use { 'kylechui/nvim-surround' }																	-- https://github.com/kylechui/nvim-surround
 	use { 'tpope/vim-fugitive' }																			-- https://github.com/tpope/vim-fugitive
-	use { 'simeji/winresizer' }										-- https://github.com/simeji/winresizer
-
-	-- Plug 'https://github.com/simeji/winresizer'
+	use { 'tpope/vim-abolish' }																				-- https://github.com/tpope/vim-abolish
+	use { 'simeji/winresizer' }																				-- https://github.com/simeji/winresizer
 
 	-- " Plug 'ThePrimeagen/vim-be-good'
-	-- Plug 'https://github.com/tpope/vim-abolish'
 	-- Plug 'https://github.com/tpope/vim-commentary'
 	-- Plug 'https://github.com/tpope/vim-eunuch'
-	-- Plug 'https://github.com/tpope/vim-repeat'
 	-- Plug 'https://github.com/tpope/vim-unimpaired'
 	-- Plug 'https://github.com/nvim-lualine/lualine.nvim'
 	-- Plug 'https://github.com/akinsho/bufferline.nvim'
