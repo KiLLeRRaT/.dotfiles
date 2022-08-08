@@ -64,12 +64,12 @@ local function packer_spec()
 	use { 'kylechui/nvim-surround' }																	-- https://github.com/kylechui/nvim-surround
 	use { 'tpope/vim-fugitive' }																			-- https://github.com/tpope/vim-fugitive
 	use { 'tpope/vim-abolish' }																				-- https://github.com/tpope/vim-abolish
+	use { 'tpope/vim-unimpaired' }																		-- https://github.com/tpope/vim-unimpaired
 	use { 'simeji/winresizer' }																				-- https://github.com/simeji/winresizer
+	use { 'b3nj5m1n/kommentary' }																			-- https://github.com/b3nj5m1n/kommentary
 
 	-- " Plug 'ThePrimeagen/vim-be-good'
-	-- Plug 'https://github.com/tpope/vim-commentary'
 	-- Plug 'https://github.com/tpope/vim-eunuch'
-	-- Plug 'https://github.com/tpope/vim-unimpaired'
 	-- Plug 'https://github.com/nvim-lualine/lualine.nvim'
 	-- Plug 'https://github.com/akinsho/bufferline.nvim'
 
