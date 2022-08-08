@@ -40,7 +40,7 @@ local function packer_spec()
 ----------------------------------------
 	-- LIBRARIES
 ----------------------------------------
-	use { 'nvim-lua/plenary.nvim' }																	-- https://github.com/nvim-lua/plenary.nvim
+	use { 'nvim-lua/plenary.nvim' }																		-- https://github.com/nvim-lua/plenary.nvim
 
 ----------------------------------------
 	-- THEMES
@@ -60,17 +60,14 @@ local function packer_spec()
 	use { 'ThePrimeagen/harpoon' }																		-- https://github.com/ThePrimeagen/harpoon
 	use { 'max397574/better-escape.nvim' }														-- https://github.com/max397574/better-escape.nvim
 	use { 'phaazon/hop.nvim' }																				-- https://github.com/phaazon/hop.nvim
-
 	use { 'dstein64/vim-startuptime' }																-- https://github.com/dstein64/vim-startuptime
-
-	-- Plug 'https://github.com/tpope/vim-surround'
-	use { 'kylechui/nvim-surround' }																-- https://github.com/kylechui/nvim-surround
+	use { 'kylechui/nvim-surround' }																	-- https://github.com/kylechui/nvim-surround
+	use { 'tpope/vim-fugitive' }																			-- https://github.com/tpope/vim-fugitive
 
 	-- " Plug 'ThePrimeagen/vim-be-good'
 	-- Plug 'https://github.com/tpope/vim-abolish'
 	-- Plug 'https://github.com/tpope/vim-commentary'
 	-- Plug 'https://github.com/tpope/vim-eunuch'
-	-- Plug 'https://github.com/tpope/vim-fugitive'
 	-- Plug 'https://github.com/tpope/vim-repeat'
 	-- Plug 'https://github.com/tpope/vim-unimpaired'
 	-- Plug 'https://github.com/nvim-lualine/lualine.nvim'
