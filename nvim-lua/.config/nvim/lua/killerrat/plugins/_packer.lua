@@ -63,6 +63,9 @@ local function packer_spec()
 	use { 'dstein64/vim-startuptime' }																-- https://github.com/dstein64/vim-startuptime
 	use { 'kylechui/nvim-surround' }																	-- https://github.com/kylechui/nvim-surround
 	use { 'tpope/vim-fugitive' }																			-- https://github.com/tpope/vim-fugitive
+	use { 'simeji/winresizer' }										-- https://github.com/simeji/winresizer
+
+	-- Plug 'https://github.com/simeji/winresizer'
 
 	-- " Plug 'ThePrimeagen/vim-be-good'
 	-- Plug 'https://github.com/tpope/vim-abolish'
@@ -78,7 +81,6 @@ local function packer_spec()
 	-- Plug 'https://github.com/kyazdani42/nvim-web-devicons'
 	-- Plug 'https://github.com/lewis6991/gitsigns.nvim'
 	-- Plug 'https://github.com/neoclide/vim-jsx-improve'
-	-- Plug 'https://github.com/simeji/winresizer'
 	-- Plug 'PhilRunninger/nerdtree-visual-selection'
 	-- Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	-- Plug 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
