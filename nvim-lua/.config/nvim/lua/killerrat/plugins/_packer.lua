@@ -63,13 +63,15 @@ local function packer_spec()
 
 	use { 'dstein64/vim-startuptime' }																-- https://github.com/dstein64/vim-startuptime
 
+	-- Plug 'https://github.com/tpope/vim-surround'
+	use { 'kylechui/nvim-surround' }																-- https://github.com/kylechui/nvim-surround
+
 	-- " Plug 'ThePrimeagen/vim-be-good'
 	-- Plug 'https://github.com/tpope/vim-abolish'
 	-- Plug 'https://github.com/tpope/vim-commentary'
 	-- Plug 'https://github.com/tpope/vim-eunuch'
 	-- Plug 'https://github.com/tpope/vim-fugitive'
 	-- Plug 'https://github.com/tpope/vim-repeat'
-	-- Plug 'https://github.com/tpope/vim-surround'
 	-- Plug 'https://github.com/tpope/vim-unimpaired'
 	-- Plug 'https://github.com/nvim-lualine/lualine.nvim'
 	-- Plug 'https://github.com/akinsho/bufferline.nvim'
