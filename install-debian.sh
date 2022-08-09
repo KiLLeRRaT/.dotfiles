@@ -146,4 +146,23 @@ echo -e "\033[32m ----------------------------------------\033[0m"
 # PROBABLY TRY THIS IN THE FUTURE, SO THAT WE CAN KEEP CONTROL AS CONTROL AND MAKE CAPSLOCK CONTROL
 # TOO, https://askubuntu.com/a/418773
 
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Configure Touchpad\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+# FROM: https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
+sudo mkdir -p /etc/X11/xorg.conf.d && sudo tee <<'EOF' /etc/X11/xorg.conf.d/90-touchpad.conf 1> /dev/null
+Section "InputClass"
+				Identifier "touchpad"
+				MatchIsTouchpad "on"
+				Driver "libinput"
+				Option "Tapping" "on"
+				Option "TappingButtonMap" "lrm"
+				Option "NaturalScrolling" "on"
+				Option "ScrollMethod" "twofinger"
+EndSection
+
+
+EOF
+
+
 popd
