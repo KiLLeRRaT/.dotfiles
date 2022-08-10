@@ -67,6 +67,18 @@ local function packer_spec()
 	use { 'tpope/vim-unimpaired' }																		-- https://github.com/tpope/vim-unimpaired
 	use { 'simeji/winresizer' }																				-- https://github.com/simeji/winresizer
 	use { 'b3nj5m1n/kommentary' }																			-- https://github.com/b3nj5m1n/kommentary
+	use { 'gbprod/substitute.nvim' }																	-- https://github.com/gbprod/substitute.nvim
+	-- use({
+	-- 	"gbprod/substitute.nvim",
+	-- 	config = function()
+	-- 		require("substitute").setup({
+	-- 			-- your configuration comes here
+	-- 			-- or leave it empty to use the default settings
+	-- 			-- refer to the configuration section below
+	-- 		})
+	-- 	end
+	-- })
+	
 
 	-- " Plug 'ThePrimeagen/vim-be-good'
 	-- Plug 'https://github.com/tpope/vim-eunuch'
@@ -160,7 +172,9 @@ function dump(o)
 	 end
 end
 -- print("Plugins:", dump(_G.packer_plugins))
+
 -- vim.api.nvim_buf_set_lines(0, -1, -1, false, {
 -- 	"Plugins:",
 -- 	dump(_G.packer_plugins)
 -- })
+-- /TO CHECK IF A PLUGIN IS INSTALLED
