@@ -34,7 +34,17 @@ sudo apt install -y ripgrep && \
 sudo apt install -y fd-find && \
 sudo apt install -y feh && \
 sudo apt install -y build-essential && \
+sudo apt install -y alacritty && \
 sudo apt install -y tmux
+
+read -p 'Install apt-btrfs-snapshot? (y/n) ' -n 1 -r install_apt_btrfs_snapshot
+if [[ $install_apt_btrfs_snapshot =~ ^[Yy]$ ]]
+then
+		echo -e "\033[32m ----------------------------------------\033[0m"
+		echo -e "\033[32m Installing apt-btrfs-snapshot\033[0m"
+		echo -e "\033[32m ----------------------------------------\033[0m"
+		sudo apt install -y apt-btrfs-snapshot
+fi
 
 # config fd
 [ -d ~/.local/bin ] || mkdir -p ~/.local/bin
