@@ -112,6 +112,7 @@ alias nvim-lua='export XDG_CONFIG_HOME=${HOME}/.dotfiles/nvim-lua/.config; \
 	nvim'
 
 atail() { tail -f ---disable-inotify "$@"; }
+alias atail-t='tail -f -n +1 ---disable-inotify $(ls -t | head -1)'
 
 # create alias ct, which addes completion of paths to other bash terminals you have running at the
 # moment, makes copying a file to PWD of another terminal easier
