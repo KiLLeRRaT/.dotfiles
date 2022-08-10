@@ -88,7 +88,8 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ls='ls -lkh --color=auto'
+# alias ls='ls -lkh --color=auto' # THIS WAS PREVENTING ME FROM GETTING A LISTING WITH JUST THE FILENAMES!
+alias ls='ls --color=auto'
 alias ll="ls -alkhF"
 alias l="ls -1"
 alias brave='brave-browser-stable &> /dev/null &'
