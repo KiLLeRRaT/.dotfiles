@@ -211,9 +211,12 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 -- autocmd BufNewFile,BufRead *.cshtml set syntax=html
 local syntax_cshtml = vim.api.nvim_create_augroup("syntax_cshtml", { clear = true })
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
-	pattern = {"*.cshtml"},
+	pattern = "*.cshtml",
 	callback = function()
-		vim.opt.syntax = "html"
+		vim.schedule(function()
+			print("im here man")
+			vim.opt.syntax = "html"
+		end)
 	end,
 	group = syntax_cshtml
 })

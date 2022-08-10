@@ -8,5 +8,6 @@ require("killerrat.plugins._better-escape-nvim")
 require("killerrat.plugins._hop")
 require("killerrat.plugins._nvim-surround")
 require("killerrat.plugins._vim-fugitive")
+require("killerrat.plugins._vim-commentary")
 require("killerrat.plugins._substitute-nvim")
 

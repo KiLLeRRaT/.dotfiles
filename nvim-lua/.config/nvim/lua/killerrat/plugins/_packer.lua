@@ -66,8 +66,11 @@ local function packer_spec()
 	use { 'tpope/vim-abolish' }																				-- https://github.com/tpope/vim-abolish
 	use { 'tpope/vim-unimpaired' }																		-- https://github.com/tpope/vim-unimpaired
 	use { 'simeji/winresizer' }																				-- https://github.com/simeji/winresizer
-	use { 'b3nj5m1n/kommentary' }																			-- https://github.com/b3nj5m1n/kommentary
+	-- DOES NOT SUPPORT A COUNT YET! ARGH
+	-- use { 'b3nj5m1n/kommentary' }																	-- https://github.com/b3nj5m1n/kommentary
+	use { 'tpope/vim-commentary' }																		-- https://github.com/tpope/vim-commentary
 	use { 'gbprod/substitute.nvim' }																	-- https://github.com/gbprod/substitute.nvim
+
 	-- use({
 	-- 	"gbprod/substitute.nvim",
 	-- 	config = function()

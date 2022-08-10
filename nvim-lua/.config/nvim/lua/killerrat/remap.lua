@@ -25,7 +25,7 @@ vim.keymap.set("n", "<leader>y", "\"+y")
 -- vnoremap <leader>y "+y
 vim.keymap.set("v", "<leader>y", "\"+y")
 -- nnoremap <leader>Y gg"+yG
--- vim.keymap.set("n", "<leader>Y", "gg\"+yG")
+vim.keymap.set("n", "<leader>Y", "gg\"+yG")
 
 -- " DELETE INTO BLACK HOLE REGISTER
 -- nnoremap <leader>d "_d
@@ -48,16 +48,15 @@ vim.keymap.set("x", "<leader>p", "\"_dP")
 local text_objects = {"w", "t", "\"", "'", "(", ")", "b", "{", "}", "[", "]", "<", ">", "`"}
 for i, v in ipairs(text_objects) do
 	-- REPLACE INNER SELECTION WITH YANKED TEXT
-	vim.keymap.set("n", "<leader>ri" .. v, "ci" .. v .. "<C-R><C-0><esc>")
+	-- vim.keymap.set("n", "<leader>ri" .. v, "ci" .. v .. "<C-R><C-0><esc>")
 	-- REPLACE INNER SELECTION WITH YANKED TEXT FROM CLIPBOARD
-	vim.keymap.set("n", "<leader>Ri" .. v, "ci" .. v .. "<C-R><C-*><esc>")
+	-- vim.keymap.set("n", "<leader>Ri" .. v, "ci" .. v .. "<C-R><C-*><esc>")
 	-- REPLACE AROUND SELECTION WITH YANKED TEXT
-	vim.keymap.set("n", "<leader>ra" .. v, "ca" .. v .. "<C-R><C-0><esc>")
+	-- vim.keymap.set("n", "<leader>ra" .. v, "ca" .. v .. "<C-R><C-0><esc>")
 	-- REPLACE AROUND SELECTION WITH YANKED TEXT FROM CLIPBOARD
-	vim.keymap.set("n", "<leader>Ra" .. v, "ca" .. v .. "<C-R><C-*><esc>")
+	-- vim.keymap.set("n", "<leader>Ra" .. v, "ca" .. v .. "<C-R><C-*><esc>")
 	-- APPEND INSIDE
 	vim.keymap.set("n", "<leader>ci" .. v, "ci" .. v .. "<C-R>\"")
-
 end
 -- /REPLACE SELECTION WITH YANKED TEXT
 

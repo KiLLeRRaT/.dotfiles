@@ -28,7 +28,7 @@ end
 
 -- " make sure relative line numbers are used
 -- autocmd FileType nerdtree setlocal relativenumber
-local nerdtree_relativenumber = vim.api.nvim_create_augroup("syntax_cshtml", { clear = true })
+local nerdtree_relativenumber = vim.api.nvim_create_augroup("nerdtree_relativenumber", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = {"nerdtree"},
 	callback = function()
