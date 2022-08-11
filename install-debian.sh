@@ -43,7 +43,7 @@ then
 		echo -e "\033[32m ----------------------------------------\033[0m"
 		echo -e "\033[32m Installing apt-btrfs-snapshot\033[0m"
 		echo -e "\033[32m ----------------------------------------\033[0m"
-		sudo apt install -y apt-btrfs-snapshot
+		sudo apt install -y apt-btrfs-snapshot python3-distutils
 fi
 
 # config fd
