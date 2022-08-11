@@ -28,6 +28,7 @@ p.setup {
 
 p.load_extension('fzf')
 
+
 -- " TELESCOPE
 -- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- nnoremap <leader>ff <cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>
@@ -64,4 +65,31 @@ vim.keymap.set("n", "z=", "<cmd>Telescope spell_suggest<cr>")
 -- " SEARCH MY OWN GBOX SCRIPTS
 -- lua require("killerrat")
 -- nnoremap <leader>sf :lua require('killerrat.telescope').search_scripts()<CR>
+vim.keymap.set("n", "<leader>sf", ":lua require('killerrat.plugins._telescope-nvim').search_scripts()<CR>")
 -- nnoremap <leader>sg :lua require('killerrat.telescope').grep_scripts()<CR>
+vim.keymap.set("n", "<leader>sg", ":lua require('killerrat.plugins._telescope-nvim').grep_scripts()<CR>")
+
+-- CUSTOM TELESCOPE SEARCHES
+local M = {}
+M.search_scripts = function()
+	require("telescope.builtin").find_files({
+		prompt_title = "< Search Scripts >",
+		cwd = "C:/GBox/Applications/Tools/Scripts",
+		hidden = false,
+	})
+end
+
+M.grep_scripts = function()
+	require("telescope.builtin").live_grep({
+		prompt_title = "< Grep Scripts >",
+		cwd = "C:/GBox/Applications/Tools/Scripts",
+		hidden = false,
+	})
+end
+
+return M
+-- /CUSTOM TELESCOPE SEARCHES
+
+
+
+
