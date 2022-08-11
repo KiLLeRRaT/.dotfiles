@@ -10,4 +10,5 @@ require("killerrat.plugins._nvim-surround")
 require("killerrat.plugins._vim-fugitive")
 require("killerrat.plugins._vim-commentary")
 require("killerrat.plugins._substitute-nvim")
+require("killerrat.plugins._copilot")
 

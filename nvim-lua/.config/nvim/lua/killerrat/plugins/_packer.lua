@@ -70,25 +70,17 @@ local function packer_spec()
 	-- use { 'b3nj5m1n/kommentary' }																	-- https://github.com/b3nj5m1n/kommentary
 	use { 'tpope/vim-commentary' }																		-- https://github.com/tpope/vim-commentary
 	use { 'gbprod/substitute.nvim' }																	-- https://github.com/gbprod/substitute.nvim
+	use { 'github/copilot.vim' }																			-- https://github.com/github/copilot.vim
 
-	-- use({
-	-- 	"gbprod/substitute.nvim",
-	-- 	config = function()
-	-- 		require("substitute").setup({
-	-- 			-- your configuration comes here
-	-- 			-- or leave it empty to use the default settings
-	-- 			-- refer to the configuration section below
-	-- 		})
-	-- 	end
-	-- })
-	
+
+
 
 	-- " Plug 'ThePrimeagen/vim-be-good'
-	-- Plug 'https://github.com/tpope/vim-eunuch'
+	-- " Plug 'https://github.com/tpope/vim-eunuch' " Vim sugar for the UNIX shell commands
+
 	-- Plug 'https://github.com/nvim-lualine/lualine.nvim'
 	-- Plug 'https://github.com/akinsho/bufferline.nvim'
 
-	-- Plug 'https://github.com/github/copilot.vim'
 	-- Plug 'https://github.com/ap/vim-css-color'
 	-- Plug 'https://github.com/kyazdani42/nvim-web-devicons'
 	-- Plug 'https://github.com/lewis6991/gitsigns.nvim'
