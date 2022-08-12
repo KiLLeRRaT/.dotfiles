@@ -72,6 +72,8 @@ local function packer_spec()
 	use { 'gbprod/substitute.nvim' }																	-- https://github.com/gbprod/substitute.nvim
 	use { 'github/copilot.vim' }																			-- https://github.com/github/copilot.vim
 
+	-- " SWITCH TO OPPOSITE WORD, E.G. TRUE -> FALSE, etc.
+	use { 'AndrewRadev/switch.vim' }																	-- https://github.com/AndrewRadev/switch.vim
 
 
 
@@ -118,8 +120,6 @@ local function packer_spec()
 	-- " Modify files right in the quick fix list
 	-- Plug 'https://github.com/stefandtw/quickfix-reflector.vim'
 
-	-- " SWITCH TO OPPOSITE WORD, E.G. TRUE -> FALSE, etc.
-	-- Plug 'https://github.com/AndrewRadev/switch.vim'
 	-- Plug 'https://github.com/lambdalisue/suda.vim'
 
 	-- " Open LSP goto defn in floating windows
