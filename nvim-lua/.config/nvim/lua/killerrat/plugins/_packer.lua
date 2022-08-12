@@ -8,13 +8,23 @@ end
 
 
 -- vim.cmd [[packadd packer.nvim]]
-vim.cmd [[autocmd BufWritePost **/nvim/lua/killerrat/plugins/init.lua PackerCompile]]
+
+local pluginfiles_BufWritePost = vim.api.nvim_create_augroup("pluginfiles_BufWritePost", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = {
+		"**/nvim/lua/killerrat/**/init.lua",
+		"**/nvim/lua/killerrat/plugins/*"
+	},
+	callback = function()
+		vim.cmd [[PackerCompile]]
+	end,
+	group = pluginfiles_BufWritePost
+})
 
 local packer = require("packer")
 local util = require("packer.util")
 
 -- CONFIG IDEA FROM: https://www.reddit.com/r/neovim/comments/txwpj8/comment/i3phc3h/?utm_source=share&utm_medium=web2x&context=3
-
 
 
 local function packer_spec()
@@ -71,17 +81,15 @@ local function packer_spec()
 	use { 'tpope/vim-commentary' }																		-- https://github.com/tpope/vim-commentary
 	use { 'gbprod/substitute.nvim' }																	-- https://github.com/gbprod/substitute.nvim
 	use { 'github/copilot.vim' }																			-- https://github.com/github/copilot.vim
-
 	-- " SWITCH TO OPPOSITE WORD, E.G. TRUE -> FALSE, etc.
 	use { 'AndrewRadev/switch.vim' }																	-- https://github.com/AndrewRadev/switch.vim
-
+	use { 'nvim-lualine/lualine.nvim' }																-- https://github.com/nvim-lualine/lualine.nvim
+	use { 'akinsho/bufferline.nvim' }																	-- https://github.com/akinsho/bufferline.nvim
 
 
 	-- " Plug 'ThePrimeagen/vim-be-good'
 	-- " Plug 'https://github.com/tpope/vim-eunuch' " Vim sugar for the UNIX shell commands
 
-	-- Plug 'https://github.com/nvim-lualine/lualine.nvim'
-	-- Plug 'https://github.com/akinsho/bufferline.nvim'
 
 	-- Plug 'https://github.com/ap/vim-css-color'
 	-- Plug 'https://github.com/kyazdani42/nvim-web-devicons'
