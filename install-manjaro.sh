@@ -1,52 +1,72 @@
 #!/bin/zsh
 
-pushd ~
-# echo -e "\033[32m ----------------------------------------\033[0m"
-# echo -e "\033[32m Adding Neovim package repository\033[0m"
-# echo -e "\033[32m ----------------------------------------\033[0m"
-#sudo add-apt-repository -y ppa:neovim-ppa/unstable
+# Exit when any command fails
+set -e
 
+# USER_HOME=$(getent passwd $SUDO_USER | cut -d: -f6)
+USER_RECORD="$(getent passwd $SUDO_USER)"
+USER_GECOS_FIELD="$(echo "$USER_RECORD" | cut -d ':' -f 5)"
+USER_HOME="$(echo "$USER_RECORD" | cut -d ':' -f 6)"
+USER_FULL_NAME="$(echo "$USER_GECOS_FIELD" | cut -d ',' -f 1)"
+
+
+pushd $USER_HOME
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Updating Linux\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
-# sudo apt update
-# sudo apt -y upgrade
-#sudo pacman -Syu
-sudo pamac update && \
-sudo pamac upgrade
+pamac update && \
+pamac upgrade --no-confirm
+echo -e "Done"
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Installing software\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 # WE HAVE TO BUILD XRDP...
-sudo pamac build xrdp --no-confirm && \
-sudo pamac install git --no-confirm && \
-sudo pamac install i3 i3status dmenu i3lock --no-confirm && \
-sudo pamac install curl --no-confirm && \
-sudo pamac install stow --no-confirm && \
-sudo pamac install neovim --no-confirm && \
-sudo pamac install xclip --no-confirm && \
-sudo pamac install ripgrep --no-confirm && \
-sudo pamac install fd --no-confirm && \
-sudo pamac install alacritty --no-confirm
+pamac build xrdp --no-confirm
+pamac install git --no-confirm
+pamac install curl --no-confirm
+pamac install stow --no-confirm
+pamac install neovim --no-confirm
+pamac install xclip --no-confirm
+pamac install ripgrep --no-confirm
+pamac install fd --no-confirm
+pamac install alacritty --no-confirm
+pamac install timeshift --no-confirm
 
-sudo pamac install snapd --no-confirm
-sudo systemctl enable --now snapd.socket
-sudo ln -s /var/lib/snapd/snap /snap
-# sudo snap install brave
+#pamac install snapd --no-confirm
+#systemctl enable --now snapd.socket
+#ln -s /var/lib/snapd/snap /snap
+#echo -e "Done"
+
+
+read -k 1 -r "install_brave?Install brave browser? (y/n) "
+if [[ $install_brave =~ ^[Yy]$ ]]
+then
+	echo -e "\033[32m ----------------------------------------\033[0m"
+	echo -e "\033[32m Installing brave browser\033[0m"
+	echo -e "\033[32m ----------------------------------------\033[0m"
+	pamac install brave-browser --no-confirm
+	#snap install brave
+	echo -e "Done"
+fi
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Configure SSH Keys\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
-[ ! -d "~/.ssh" ] && ssh-keygen
+[ ! -d "$USER_HOME/.ssh" ] && mkdir $USER_HOME/.ssh && ssh-keygen -q -N "" -f $USER_HOME/.ssh/id_rsa
+chown -R $SUDO_USER $USER_HOME/.ssh
+echo -e "Done"
+
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Configure Git\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
-git config --global user.email "albert@gouws.org"
-git config --global user.name "Albert Gouws"
+read  -r "git_email?Enter Git email address: "
+git config --global user.email $git_email
+git config --global user.name $USER_FULL_NAME
+echo -e "Done"
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
@@ -63,59 +83,77 @@ if grep -q "/usr/bin/i3" "/etc/xrdp/startwm.sh" ; then
 else
 	# not exist
 
-	sudo sed -Ei.bak 's|test -x /etc/X11/Xsession \&\& exec /etc/X11/Xsession|# test -x /etc/X11/Xsession \&\& exec /etc/X11/Xsession|' /etc/xrdp/startwm.sh
-	sudo sed -Ei.bak 's|exec /bin/sh /etc/X11/Xsession|# exec /bin/sh /etc/X11/Xsession|' /etc/xrdp/startwm.sh
-	#sudo echo "/usr/bin/i3" >> /etc/xrdp/startwm.sh # DOES NOT WORK FOR SUDO.. USE BELOW
-	echo "/usr/bin/i3" | sudo tee -a /etc/xrdp/startwm.sh
+	sed -Ei.bak 's|test -x /etc/X11/Xsession \&\& exec /etc/X11/Xsession|# test -x /etc/X11/Xsession \&\& exec /etc/X11/Xsession|' /etc/xrdp/startwm.sh
+	sed -Ei.bak 's|exec /bin/sh /etc/X11/Xsession|# exec /bin/sh /etc/X11/Xsession|' /etc/xrdp/startwm.sh
+	#echo "/usr/bin/i3" >> /etc/xrdp/startwm.sh # DOES NOT WORK FOR SUDO.. USE BELOW
+	echo "/usr/bin/i3" | tee -a /etc/xrdp/startwm.sh
 fi
+echo -e "Done"
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Running stow\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
-# STOW_FOLDERS=i3,nvim,bashrc,oh-my-posh,tmux
-STOW_FOLDERS=bashrc,fonts,i3,inputrc,nvim,oh-my-posh,tmux
-pushd ~/.dotfiles
+STOW_FOLDERS=bashrc,fonts,i3,inputrc,nvim,oh-my-posh,tmux,dosbox,gitconfig,zshrc,alacritty
+pushd $USER_HOME/.dotfiles
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
-    echo Running stow $folder in $PWD
-    stow -D $folder
-    stow $folder
+	read -k 1 -r "stow_current_folder?Stow $folder? (y/n) "
+	echo ""
+	if [[ $stow_current_folder =~ ^[Yy]$ ]]
+	then
+		[[ -a $USER_HOME/.$folder ]] && echo "Move existing file to $USER_HOME/.$folder.stowbak" && mv $USER_HOME/.$folder $USER_HOME/.$folder.stowbak
+		echo Running stow $folder
+		stow -D $folder
+		stow $folder
+	fi
 done
 popd
+echo -e "Done"
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Now install the VIM plugins\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo Installing Vim Plug
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+curl -fLo $USER_HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+chown -R $SUDO_USER $USER_HOME/.local/share/nvim
 echo Running PlugInstall
-nvim --headless +PlugInstall +qall
+source $USER_HOME/.zshrc
+export XDG_CONFIG_HOME=$USER_HOME/.config
+export XDG_DATA_HOME=$USER_HOME/.local/share
+nvim -u $USER_HOME/.config/nvim/init.vim --headless +PlugInstall +qall
+chown -R $SUDO_USER $XDG_CONFIG_HOME
+chown -R $SUDO_USER $XDG_DATA_HOME
+echo -e "Done"
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Build fzf for use in Telescope\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
-pushd ~/.local/share/nvim/plugged/telescope-fzf-native.nvim
+pushd $USER_HOME/.local/share/nvim/plugged/telescope-fzf-native.nvim
 make
 popd
+echo -e "Done"
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Install oh-my-posh\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
-sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-sudo chmod +x /usr/local/bin/oh-my-posh
+wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+chmod +x /usr/local/bin/oh-my-posh
+echo -e "Done"
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Install nvm to manage NodeJS\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-exec bash
+source $USER_HOME/.zshrc
 nvm install --lts
 nvm use --lts
-exit
+echo -e "Done"
+
+
 popd

@@ -207,7 +207,8 @@ Plug 'https://github.com/nvim-lualine/lualine.nvim'
 Plug 'https://github.com/akinsho/bufferline.nvim'
 Plug 'https://github.com/phaazon/hop.nvim'
 
-Plug 'https://github.com/nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'https://github.com/nvim-telescope/telescope-fzf-native.nvim'
+" , { 'do': 'make' }
 Plug 'https://github.com/nvim-telescope/telescope-live-grep-args.nvim'
 Plug 'https://github.com/github/copilot.vim'
 Plug 'https://github.com/dstein64/vim-startuptime'

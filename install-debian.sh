@@ -35,6 +35,7 @@ sudo apt install -y fd-find && \
 sudo apt install -y feh && \
 sudo apt install -y build-essential && \
 sudo apt install -y alacritty && \
+sudo apt install -y timeshift && \
 sudo apt install -y tmux
 
 read -p 'Install apt-btrfs-snapshot? (y/n) ' -n 1 -r install_apt_btrfs_snapshot
@@ -74,9 +75,9 @@ git config --global user.name "Albert Gouws"
 # fi
 
 
-echo Clone dotfiles
-echo ----------------------------------------
-git clone https://github.com/KiLLeRRaT/.dotfiles.git
+# echo Clone dotfiles
+# echo ----------------------------------------
+# git clone https://github.com/KiLLeRRaT/.dotfiles.git
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
