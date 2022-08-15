@@ -152,7 +152,8 @@ keybindings:
     binding: "Control+Alt+I"
 
   - command: "layout horizontal"
-    binding: "Control+Alt+Shift+5" # % like tmux
+    # binding: "Control+Alt+Shift+5" # % like tmux
+    binding: "Control+Alt+5" # % like tmux
 
   - command: "layout vertical"
     binding: "Control+Alt+OemQuotes" # " like tmux
