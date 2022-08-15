@@ -104,26 +104,11 @@
 								"intenseTextStyle": "all"
 						},
 						{
-								"guid": "{17bf3de4-5353-5709-bcf9-835bd952a95e}",
-								"hidden": true,
-								"backgroundImage": "C:\\Users\\Albert\\.dotfiles\\images\\photo-1533484306792-cf313c2b8ab0 (2).jpg",
-								"backgroundImageOpacity": 0.19,
-								"name": "Ubuntu-22.04",
-								"source": "Windows.Terminal.Wsl",
-								"colorScheme": "Tokyo Night",
-								"font":
-								{
-										"face": "CaskaydiaCove NF"
-								},
-								"closeOnExit":"graceful",
-								"intenseTextStyle": "all"
-						},
-						{
-								"guid": "{60c3e313-8e1a-58f6-8175-3650c2bd2b26}",
-								"backgroundImage": "C:\\Users\\Albert\\.dotfiles\\images\\photo-1533484306792-cf313c2b8ab0 (2).jpg",
-								"backgroundImageOpacity": 0.19,
+								"guid": "{f9ceaf27-504c-58d7-927c-d1d6a7ac7d3c}",
 								"hidden": false,
-								"name": "Ubuntu 22.04 LTS",
+								"backgroundImage": "C:\\Users\\Albert\\.dotfiles\\images\\photo-1533484306792-cf313c2b8ab0 (2).jpg",
+								"backgroundImageOpacity": 0.19,
+								"name": "Ubuntu 22.04.1 LTS",
 								"source": "CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc",
 								"colorScheme": "Tokyo Night",
 								"font":
@@ -598,7 +583,7 @@
 				}
 		],
 		"showTabsInTitlebar": true,
-		"showTerminalTitleInTitlebar": false,
+		"showTerminalTitleInTitlebar": true,
 		"tabWidthMode": "titleLength",
 		"trimBlockSelection": true,
 		"useAcrylicInTabRow": false
