@@ -36,7 +36,9 @@ sudo apt install -y feh && \
 sudo apt install -y build-essential && \
 sudo apt install -y alacritty && \
 sudo apt install -y timeshift && \
-sudo apt install -y tmux
+sudo apt install -y tmux && \
+sudo apt install -y btop
+# sudo apt install -y ncdu # NOT SURE IF THIS COMES WITH DEBIAN BASED SYSTEMS?
 
 read -p 'Install apt-btrfs-snapshot? (y/n) ' -n 1 -r install_apt_btrfs_snapshot
 if [[ $install_apt_btrfs_snapshot =~ ^[Yy]$ ]]
