@@ -33,6 +33,7 @@ pamac install ripgrep --no-confirm
 pamac install fd --no-confirm
 pamac install alacritty --no-confirm
 pamac install timeshift --no-confirm
+pamac install tmux --no-confirm
 
 #pamac install snapd --no-confirm
 #systemctl enable --now snapd.socket
@@ -155,5 +156,12 @@ nvm install --lts
 nvm use --lts
 echo -e "Done"
 
+
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Change default shell to zsh\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+chsh -s /bin/zsh root
+chsh -s /bin/zsh albert
+echo -e "Done"
 
 popd
