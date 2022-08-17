@@ -96,6 +96,9 @@ export ZSH="/Users/albert/.oh-my-zsh"
 #   export EDITOR='mvim'
 # fi
 
+export EDITOR="/usr/bin/nvim"
+export VISUAL=$EDITOR
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
