@@ -4,6 +4,8 @@
 -- " SWITCH TO PREV BUFFER AND CLOSE THE ONE YOU SWITCHED AWAY FROM, CLOSES A
 -- " BUFFER WITHOUT MESSING UP THE SPLIT
 -- nnoremap <leader>bd :bp \| :sp \| :bn \| :bd<cr>
+vim.cmd[[nnoremap <leader>bd :bp \| :sp \| :bn \| :bd<cr>]]
+-- vim.keymap.set('n', { ['<leader>bd'] = { {'bp', 'sp', 'bn', 'bd'}, {'<cr>'} } })
 
 -- nnoremap <leader>ba :bufdo bd<cr>
 

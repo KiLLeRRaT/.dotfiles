@@ -1,6 +1,4 @@
-print("lets hop around!")
 if not _G.plugin_loaded("hop.nvim") then
-	print("plugin not loaded, bail1")
 	do return end
 end
 
