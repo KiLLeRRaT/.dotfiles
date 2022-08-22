@@ -43,6 +43,7 @@ pamac install btop --no-confirm
 
 
 read -k 1 -r "install_brave?Install brave browser? (y/n) "
+echo -e ""
 if [[ $install_brave =~ ^[Yy]$ ]]
 then
 	echo -e "\033[32m ----------------------------------------\033[0m"
