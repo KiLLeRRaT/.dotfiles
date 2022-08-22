@@ -210,7 +210,7 @@ Plug 'https://github.com/phaazon/hop.nvim'
 Plug 'https://github.com/nvim-telescope/telescope-fzf-native.nvim'
 " , { 'do': 'make' }
 Plug 'https://github.com/nvim-telescope/telescope-live-grep-args.nvim'
-Plug 'https://github.com/github/copilot.vim'
+" Plug 'https://github.com/github/copilot.vim'
 Plug 'https://github.com/dstein64/vim-startuptime'
 Plug 'https://github.com/ap/vim-css-color'
 " Plug 'ryanoasis/vim-devicons'
@@ -746,11 +746,11 @@ nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
 
 " GITHUB COPILOT
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
-let g:copilot_no_tab_map = v:true
-" let g:copilot_filetypes = {
-" 	\ 'TelescopePrompt': v:false,
-" 	\ }
+" imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+" let g:copilot_no_tab_map = v:true
+" " let g:copilot_filetypes = {
+" " 	\ 'TelescopePrompt': v:false,
+" " 	\ }
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " /GITHUB COPILOT
 
