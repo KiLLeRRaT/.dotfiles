@@ -1,8 +1,7 @@
--- If plugin is not loaded (e.g. disabled), skip this file!
--- print ("Plugin: " .. _G.packer_plugins)
-if not _G.plugin_loaded("nerdtree") then
-	do return end
-end
+-- WE ARE NOT CHECKING HERE, BECAUSE WE WANT TO RUN THIS ALWAYS, SINCE WE LAZYLOAD NERDTree!
+-- if not _G.plugin_loaded("nerdtree") then
+-- 	do return end
+-- end
 
 -- " NERDTree
 -- "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

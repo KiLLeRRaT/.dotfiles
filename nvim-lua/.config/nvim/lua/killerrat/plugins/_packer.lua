@@ -66,7 +66,10 @@ local function packer_spec()
 	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }	-- https://github.com/nvim-telescope/telescope-fzf-native.nvim
 	use { 'nvim-telescope/telescope-live-grep-args.nvim' }						-- https://github.com/nvim-telescope/telescope-live-grep-args.nvim
 
-	use { 'preservim/nerdtree' }																			-- https://github.com/preservim/nerdtree
+	-- use { 'preservim/nerdtree' }																			-- https://github.com/preservim/nerdtree
+	use { 'preservim/nerdtree',
+		opt = true, cmd = { 'NERDTree',  'NERDTreeFocus', 'NERDTreeToggle'}
+	}																			-- https://github.com/preservim/nerdtree
 	use { 'ThePrimeagen/harpoon' }																		-- https://github.com/ThePrimeagen/harpoon
 	use { 'max397574/better-escape.nvim' }														-- https://github.com/max397574/better-escape.nvim
 	use { 'phaazon/hop.nvim' }																				-- https://github.com/phaazon/hop.nvim
