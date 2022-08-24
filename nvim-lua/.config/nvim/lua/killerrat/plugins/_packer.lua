@@ -92,6 +92,8 @@ local function packer_spec()
 	use { 'akinsho/bufferline.nvim' }																	-- https://github.com/akinsho/bufferline.nvim
 	use { 'lewis6991/gitsigns.nvim' }																	-- https://github.com/lewis6991/gitsigns.nvim
 
+	use { 'vimwiki/vimwiki' }																					-- https://github.com/vimwiki/vimwiki
+
 
 	-- " Plug 'ThePrimeagen/vim-be-good'
 	-- " Plug 'https://github.com/tpope/vim-eunuch' " Vim sugar for the UNIX shell commands
@@ -103,7 +105,6 @@ local function packer_spec()
 	-- Plug 'PhilRunninger/nerdtree-visual-selection'
 	-- Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	-- Plug 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
-	-- Plug 'https://github.com/vimwiki/vimwiki'
 
 	-- " LSP RELATED PLUGINS
 	-- Plug 'https://github.com/neovim/nvim-lspconfig'
@@ -185,4 +186,5 @@ end
 -- 	"Plugins:",
 -- 	dump(_G.packer_plugins)
 -- })
+
 -- /TO CHECK IF A PLUGIN IS INSTALLED

@@ -14,4 +14,5 @@ require("killerrat.plugins._copilot")
 require("killerrat.plugins._switch-vim")
 require("killerrat.plugins._lualine-nvim")
 require("killerrat.plugins._bufferline-nvim")
+require("killerrat.plugins._vimwiki")
 
