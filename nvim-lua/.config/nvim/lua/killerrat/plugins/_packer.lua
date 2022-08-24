@@ -66,10 +66,12 @@ local function packer_spec()
 	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }	-- https://github.com/nvim-telescope/telescope-fzf-native.nvim
 	use { 'nvim-telescope/telescope-live-grep-args.nvim' }						-- https://github.com/nvim-telescope/telescope-live-grep-args.nvim
 
-	-- use { 'preservim/nerdtree' }																			-- https://github.com/preservim/nerdtree
-	use { 'preservim/nerdtree',
-		opt = true, cmd = { 'NERDTree',  'NERDTreeFocus', 'NERDTreeToggle', 'NERDTreeFind'}
-	}																			-- https://github.com/preservim/nerdtree
+	use { 'preservim/nerdtree' }																			-- https://github.com/preservim/nerdtree
+	-- THIS DOESNT SEEM TO WORK, SIMILAR ERROR AS:
+	-- https://github.com/wbthomason/packer.nvim/issues/316 BUT NOT SURE HOW TO SORT IT OUT!
+	-- use { 'preservim/nerdtree',
+	-- 	opt = true, cmd = { 'NERDTree',  'NERDTreeFocus', 'NERDTreeToggle', 'NERDTreeFind'}
+	-- }																			-- https://github.com/preservim/nerdtree
 	use { 'ThePrimeagen/harpoon' }																		-- https://github.com/ThePrimeagen/harpoon
 	use { 'max397574/better-escape.nvim' }														-- https://github.com/max397574/better-escape.nvim
 	use { 'phaazon/hop.nvim' }																				-- https://github.com/phaazon/hop.nvim
@@ -157,7 +159,7 @@ packer.startup {
 	}
 }
 
--- vim.cmd("source " .. compile_path)
+vim.cmd("source " .. compile_path)
 
 -- TO CHECK IF A PLUGIN IS INSTALLED
 function _G.plugin_loaded(plugin_name)
