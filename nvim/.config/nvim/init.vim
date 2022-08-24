@@ -192,7 +192,7 @@ Plug 'https://github.com/folke/tokyonight.nvim', { 'branch': 'main' }
 
 Plug 'https://github.com/nvim-lua/plenary.nvim'
 Plug 'https://github.com/nvim-telescope/telescope.nvim'
-Plug 'https://github.com/preservim/nerdtree'
+Plug 'https://github.com/preservim/nerdtree', { 'on': [ 'NERDTreeToggle', 'NERDTree', 'NERDTreeFocus', 'NERDTreeFind' ] }
 Plug 'https://github.com/ThePrimeagen/harpoon'
 " Plug 'ThePrimeagen/vim-be-good'
 Plug 'https://github.com/tpope/vim-abolish'
