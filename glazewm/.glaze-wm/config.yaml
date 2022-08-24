@@ -93,6 +93,9 @@ window_rules:
     match_title: 'MessageForm'
 
   - command: 'set floating'
+    match_title: '1PasswordShortcuts'
+
+  - command: 'set floating'
     match_title: '/^New TimeSheetEntry .*/'
 
   - command: 'set floating'
