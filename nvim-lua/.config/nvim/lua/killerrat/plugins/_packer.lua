@@ -88,6 +88,7 @@ local function packer_spec()
 	use { 'AndrewRadev/switch.vim' }																	-- https://github.com/AndrewRadev/switch.vim
 	use { 'nvim-lualine/lualine.nvim' }																-- https://github.com/nvim-lualine/lualine.nvim
 	use { 'akinsho/bufferline.nvim' }																	-- https://github.com/akinsho/bufferline.nvim
+	use { 'lewis6991/gitsigns.nvim' }																	-- https://github.com/lewis6991/gitsigns.nvim
 
 
 	-- " Plug 'ThePrimeagen/vim-be-good'
@@ -96,7 +97,6 @@ local function packer_spec()
 
 	-- Plug 'https://github.com/ap/vim-css-color'
 	-- Plug 'https://github.com/kyazdani42/nvim-web-devicons'
-	-- Plug 'https://github.com/lewis6991/gitsigns.nvim'
 	-- Plug 'https://github.com/neoclide/vim-jsx-improve'
 	-- Plug 'PhilRunninger/nerdtree-visual-selection'
 	-- Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
