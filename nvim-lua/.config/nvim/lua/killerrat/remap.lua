@@ -150,7 +150,8 @@ vim.keymap.set("n", "<leader>=t", ":%retab!<cr>")
 if vim.fn.has('unix') == 1 then
 	vim.keymap.set("n", "<leader>=s", ":%!awk '{print; total+=$1}END{print total}'<cr>")
 else
-	print("Summing not supported in Windows, it uses awk")
+	-- vim.keymap.set("n", "<leader>=s", ":%!wsl awk '{print; total+=\\$1}END{print total}'<cr>")
+	vim.keymap.set("n", "<leader>=s", ":lua vim.notify('Summing not supported in Windows, it uses awk', vim.log.levels.ERROR)<cr>")
 end
 
 -- " cm.Parameters.Add, and cm.Parameters.Value lines can be combined into single line using this
