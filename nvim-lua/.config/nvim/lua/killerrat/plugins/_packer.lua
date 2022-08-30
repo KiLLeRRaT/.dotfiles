@@ -107,7 +107,11 @@ local function packer_spec()
 	-- Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	-- Plug 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
 
-	-- " LSP RELATED PLUGINS
+----------------------------------------
+	-- LSP RELATED PLUGINS
+----------------------------------------
+	-- use { "williamboman/mason.nvim" }
+
 	-- Plug 'https://github.com/neovim/nvim-lspconfig'
 	-- Plug 'https://github.com/hrsh7th/nvim-cmp' " autocompletion framework
 	-- Plug 'https://github.com/hrsh7th/cmp-nvim-lsp' " LSP autocompletion provider
