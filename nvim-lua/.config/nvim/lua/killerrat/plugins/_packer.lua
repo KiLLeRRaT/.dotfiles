@@ -72,6 +72,7 @@ local function packer_spec()
 	-- use { 'preservim/nerdtree',
 	-- 	opt = true, cmd = { 'NERDTree',  'NERDTreeFocus', 'NERDTreeToggle', 'NERDTreeFind'}
 	-- }																			-- https://github.com/preservim/nerdtree
+
 	use { 'ThePrimeagen/harpoon' }																		-- https://github.com/ThePrimeagen/harpoon
 	use { 'max397574/better-escape.nvim' }														-- https://github.com/max397574/better-escape.nvim
 	use { 'phaazon/hop.nvim' }																				-- https://github.com/phaazon/hop.nvim
