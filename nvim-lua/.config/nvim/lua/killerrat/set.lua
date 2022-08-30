@@ -28,7 +28,10 @@ vim.opt.wrap = false
 vim.opt.mouse = "a"
 
 -- " SET SHELL TO POWERSHELL
-if vim.fn.has('win32') then
+-- print("has win32: ", vim.fn.has('win32'))
+-- print("has wsl: ", vim.fn.has('wsl'))
+-- print("has unix: ", vim.fn.has('unix'))
+if vim.fn.has('win32') == 1 then
 	-- let &shell = 'pwsh'
 	vim.o.shell = 'pwsh'
 	-- let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
