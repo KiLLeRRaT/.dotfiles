@@ -146,6 +146,13 @@ vim.keymap.set("n", "<leader>=t", ":%retab!<cr>")
 -- MOVED TO _whitespace-nvim.lua FOR NOW
 -- vim.keymap.set("n", "<leader>=w", ":%s/\\s\\+$//<cr>")
 
+
+if vim.fn.has('unix') == 1 then
+	vim.keymap.set("n", "<leader>=s", ":%!awk '{print; total+=$1}END{print total}'<cr>")
+else
+	print("Summing not supported in Windows, it uses awk")
+end
+
 -- " cm.Parameters.Add, and cm.Parameters.Value lines can be combined into single line using this
 -- " function! MergeParametersAndValue()
 -- " 	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$NNA\<c-r>0\<esc>0"
