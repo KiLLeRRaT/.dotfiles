@@ -64,10 +64,15 @@ vim.keymap.set("n", "z=", "<cmd>Telescope spell_suggest<cr>")
 
 -- " SEARCH MY OWN GBOX SCRIPTS
 -- lua require("killerrat")
--- nnoremap <leader>sf :lua require('killerrat.telescope').search_scripts()<CR>
 vim.keymap.set("n", "<leader>sf", ":lua require('killerrat.plugins._telescope-nvim').search_scripts()<CR>")
--- nnoremap <leader>sg :lua require('killerrat.telescope').grep_scripts()<CR>
 vim.keymap.set("n", "<leader>sg", ":lua require('killerrat.plugins._telescope-nvim').grep_scripts()<CR>")
+
+
+vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>")
+vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>")
+vim.keymap.set("n", "<leader>fd", ":Telescope diagnostics<CR>")
+
+
 
 -- CUSTOM TELESCOPE SEARCHES
 local M = {}

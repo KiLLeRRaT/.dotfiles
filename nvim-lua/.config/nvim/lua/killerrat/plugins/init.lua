@@ -18,4 +18,5 @@ require("killerrat.plugins._vimwiki")
 require("killerrat.plugins._mason-nvim")
 require("killerrat.plugins._mason-lspconfig-nvim")
 require("killerrat.plugins._nvim-lspconfig")
+require("killerrat.plugins._nvim-cmp")
 
