@@ -1,8 +1,6 @@
 if not _G.plugin_loaded("nvim-cmp") then
-	print("cmp not loaded");
 	do return end
 end
-	print("cmp loaded");
 
 local lsp_symbols = {
 	Text = " 	(Text) ",

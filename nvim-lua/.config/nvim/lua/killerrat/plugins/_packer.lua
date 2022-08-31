@@ -105,8 +105,6 @@ local function packer_spec()
 	-- Plug 'https://github.com/kyazdani42/nvim-web-devicons'
 	-- Plug 'https://github.com/neoclide/vim-jsx-improve'
 	-- Plug 'PhilRunninger/nerdtree-visual-selection'
-	-- Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-	-- Plug 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
 
 ----------------------------------------
 	-- COMPLETION AND SNIPPETS
@@ -126,6 +124,16 @@ local function packer_spec()
 	use { "williamboman/mason.nvim" }
 	use { "williamboman/mason-lspconfig.nvim" }
 	use { "neovim/nvim-lspconfig" }
+
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+	}																																	-- https://github.com/nvim-treesitter/nvim-treesitter
+
+	use { "nvim-treesitter/nvim-treesitter-textobjects" }							-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+
+
+
 
 	-- Plug 'https://github.com/neovim/nvim-lspconfig'
 	-- Plug 'https://github.com/williamboman/nvim-lsp-installer'
