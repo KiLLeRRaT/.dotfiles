@@ -110,11 +110,9 @@ local function packer_spec()
 ----------------------------------------
 	-- LSP RELATED PLUGINS
 ----------------------------------------
-	use {
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-		"neovim/nvim-lspconfig",
-	}
+	use { "williamboman/mason.nvim" }
+	use { "williamboman/mason-lspconfig.nvim" }
+	use { "neovim/nvim-lspconfig" }
 
 	-- Plug 'https://github.com/neovim/nvim-lspconfig'
 	-- Plug 'https://github.com/hrsh7th/nvim-cmp' " autocompletion framework
