@@ -71,20 +71,6 @@ vim.api.nvim_create_autocmd("TextYankPost", { callback = function()
 end, group = highlight_yank })
 
 
--- " FOLDING
--- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- set foldmethod=expr
--- set foldexpr=nvim_treesitter#foldexpr()
--- set foldcolumn=1 "defines 1 col at window left, to indicate folding
--- set foldlevelstart=99 "start file with all folds opened
-
--- let javaScript_fold=1 "activate folding by JS syntax
--- " let cs_fold=1
--- " let xml_syntax_folding=1
--- let xml_folding=1
--- let yaml_fold=1
--- let vb_fold=1
-
 -- " SAVE FOLDING AND OTHER THINGS WHEN YOU OPEN AND CLOSE FILES/VIM, FROM: https://vim.fandom.com/wiki/Make_views_automatic
 vim.opt.viewoptions = vim.opt.viewoptions - { "options" }
 
@@ -102,9 +88,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	command = vim.cmd[[silent! loadview]],
 	group = folding
 })
-
--- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- " /FOLDING
 
 -- " SYNTAX HIGHLIGHTING FOR CSHTML/RAZOR
 -- autocmd BufNewFile,BufRead *.cshtml set syntax=html
