@@ -52,6 +52,7 @@ local function packer_spec()
 ----------------------------------------
 	use { 'nvim-lua/plenary.nvim' }																		-- https://github.com/nvim-lua/plenary.nvim
 	use { 'tpope/vim-repeat' }																				-- https://github.com/tpope/vim-repeat
+
 ----------------------------------------
 	-- THEMES
 ----------------------------------------
@@ -108,11 +109,28 @@ local function packer_spec()
 	-- Plug 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
 
 ----------------------------------------
+	-- COMPLETION AND SNIPPETS
+----------------------------------------
+	use { "hrsh7th/nvim-cmp" }																				-- https://github.com/hrsh7th/nvim-cmp
+	use { "hrsh7th/cmp-nvim-lsp" }																		-- https://github.com/hrsh7th/cmp-nvim-lsp
+	use { "hrsh7th/cmp-buffer" }																			-- https://github.com/hrsh7th/cmp-buffer
+	use { "hrsh7th/cmp-path" }																				-- https://github.com/hrsh7th/cmp-path
+	use { "hrsh7th/cmp-nvim-lsp-signature-help" }											-- https://github.com/hrsh7th/cmp-nvim-lsp-signature-help
+	use { "hrsh7th/cmp-calc" }																				-- https://github.com/hrsh7th/cmp-calc
+	use { "hrsh7th/cmp-emoji" }																				-- https://github.com/hrsh7th/cmp-emoji
+
+
+----------------------------------------
 	-- LSP RELATED PLUGINS
 ----------------------------------------
-	-- use { "williamboman/mason.nvim" }
+	use { "williamboman/mason.nvim" }
+	use { "williamboman/mason-lspconfig.nvim" }
+	use { "neovim/nvim-lspconfig" }
 
 	-- Plug 'https://github.com/neovim/nvim-lspconfig'
+	-- Plug 'https://github.com/williamboman/nvim-lsp-installer'
+
+
 	-- Plug 'https://github.com/hrsh7th/nvim-cmp' " autocompletion framework
 	-- Plug 'https://github.com/hrsh7th/cmp-nvim-lsp' " LSP autocompletion provider
 	-- Plug 'https://github.com/hrsh7th/cmp-buffer'
@@ -120,7 +138,7 @@ local function packer_spec()
 	-- Plug 'https://github.com/hrsh7th/cmp-nvim-lsp-signature-help'
 	-- Plug 'https://github.com/hrsh7th/cmp-calc'
 	-- Plug 'https://github.com/hrsh7th/cmp-emoji'
-	-- Plug 'https://github.com/williamboman/nvim-lsp-installer'
+
 
 	-- " /LSP RELATED PLUGINS
 

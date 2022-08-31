@@ -166,3 +166,18 @@ end
 -- endfunction
 -- autocmd FileType cs nnoremap <buffer> <leader>=v :call MergeParametersAndValue()<cr>
 
+
+
+vim.keymap.set("n", "gD", ":lua vim.lsp.buf.type_definition()<cr>")
+
+-- <leader>gi because gi takes you to last edit and puts you in insert mode
+vim.keymap.set("n", "<leader>gi", ":lua vim.lsp.buf.implementation()<cr>")
+
+vim.keymap.set("n", "]g", ":lua vim.diagnostic.goto_next()<cr>")
+vim.keymap.set("n", "[g", ":lua vim.diagnostic.goto_prev()<cr>")
+vim.keymap.set("n", "<leader>rn", ":lua vim.lsp.buf.rename()<cr>")
+vim.keymap.set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<cr>")
+-- for gd, gr, see _telescope-nvim.lua
+
+
+
