@@ -22,4 +22,5 @@ require("killerrat.plugins._nvim-cmp")
 require("killerrat.plugins._nvim-treesitter")
 require("killerrat.plugins._gitsigns-nvim")
 require("killerrat.plugins._vim-devicons")
+require("killerrat.plugins._goto-preview")
 

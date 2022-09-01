@@ -132,24 +132,9 @@ local function packer_spec()
 	}																																	-- https://github.com/nvim-treesitter/nvim-treesitter
 
 	use { "nvim-treesitter/nvim-treesitter-textobjects" }							-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+	use { 'rmagatti/goto-preview' }																		-- https://github.com/rmagatti/goto-preview
 
 
-
-
-	-- Plug 'https://github.com/neovim/nvim-lspconfig'
-	-- Plug 'https://github.com/williamboman/nvim-lsp-installer'
-
-
-	-- Plug 'https://github.com/hrsh7th/nvim-cmp' " autocompletion framework
-	-- Plug 'https://github.com/hrsh7th/cmp-nvim-lsp' " LSP autocompletion provider
-	-- Plug 'https://github.com/hrsh7th/cmp-buffer'
-	-- Plug 'https://github.com/hrsh7th/cmp-path'
-	-- Plug 'https://github.com/hrsh7th/cmp-nvim-lsp-signature-help'
-	-- Plug 'https://github.com/hrsh7th/cmp-calc'
-	-- Plug 'https://github.com/hrsh7th/cmp-emoji'
-
-
-	-- " /LSP RELATED PLUGINS
 
 	-- " SQL
 	-- " Plug 'https://github.com/tpope/vim-dadbod'
@@ -169,7 +154,6 @@ local function packer_spec()
 	-- Plug 'https://github.com/lambdalisue/suda.vim'
 
 	-- " Open LSP goto defn in floating windows
-	-- Plug 'https://github.com/rmagatti/goto-preview'
 	-- call plug#end()
 
 
