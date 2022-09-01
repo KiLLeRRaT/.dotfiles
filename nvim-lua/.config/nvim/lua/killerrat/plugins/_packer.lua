@@ -96,6 +96,7 @@ local function packer_spec()
 
 	use { 'vimwiki/vimwiki' }																					-- https://github.com/vimwiki/vimwiki
 
+	use { 'ryanoasis/vim-devicons' }														-- https://github.com/ryanoasis/vim-devicons
 
 	-- " Plug 'ThePrimeagen/vim-be-good'
 	-- " Plug 'https://github.com/tpope/vim-eunuch' " Vim sugar for the UNIX shell commands
