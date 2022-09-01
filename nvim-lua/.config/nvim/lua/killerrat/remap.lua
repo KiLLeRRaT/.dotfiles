@@ -180,4 +180,10 @@ vim.keymap.set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<cr>")
 -- for gd, gr, see _telescope-nvim.lua
 
 
+vim.keymap.set("n", "<c-q>", ":copen<cr>")
+vim.keymap.set("n", "<c-j>", ":cn<cr>")
+vim.keymap.set("n", "<c-k>", ":cp<cr>")
+-- " nnoremap <leader>eq :lopen<cr>
+-- " nnoremap <leader>ej :lnext<cr>
+-- " nnoremap <leader>ek :lprev<cr>
 
