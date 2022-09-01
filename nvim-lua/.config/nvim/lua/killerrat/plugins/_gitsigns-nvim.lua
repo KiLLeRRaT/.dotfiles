@@ -3,7 +3,6 @@ if not _G.plugin_loaded("gitsigns.nvim") then
 end
 
 -- " GIT SIGNS: https://github.com/lewis6991/gitsigns.nvim
--- hello world
 require('gitsigns').setup{
 	on_attach = function(bufnr)
 		local gs = package.loaded.gitsigns
