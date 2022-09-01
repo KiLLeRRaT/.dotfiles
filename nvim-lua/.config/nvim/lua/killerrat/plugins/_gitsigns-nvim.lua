@@ -3,7 +3,7 @@ if not _G.plugin_loaded("gitsigns.nvim") then
 end
 
 -- " GIT SIGNS: https://github.com/lewis6991/gitsigns.nvim
-
+-- hello world
 require('gitsigns').setup{
 	on_attach = function(bufnr)
 		local gs = package.loaded.gitsigns
@@ -23,7 +23,8 @@ require('gitsigns').setup{
 
 		-- Actions
 		vim.keymap.set({'n', 'v'}, '<leader>ds', ':Gitsigns stage_hunk<CR>')
-		vim.keymap.set({'n', 'v'}, '<leader>dr', ':Gitsigns reset_hunk<CR>:%s/\r<cr>')
+		-- vim.keymap.set({'n', 'v'}, '<leader>dr', ':Gitsigns reset_hunk<CR>:%s/\r<cr>')
+		vim.keymap.set({'n', 'v'}, '<leader>dr', ':Gitsigns reset_hunk<CR>')
 		vim.keymap.set('n', '<leader>dS', gs.stage_buffer)
 		vim.keymap.set('n', '<leader>du', gs.undo_stage_hunk)
 		vim.keymap.set('n', '<leader>dR', gs.reset_buffer)
