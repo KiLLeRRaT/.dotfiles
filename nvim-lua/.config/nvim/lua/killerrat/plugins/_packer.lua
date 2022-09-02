@@ -132,6 +132,8 @@ local function packer_spec()
 	use { "nvim-treesitter/nvim-treesitter-textobjects" }							-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 	use { 'rmagatti/goto-preview' }																		-- https://github.com/rmagatti/goto-preview
 
+	-- STICKY HEADERS/FUNCTIONS AT THE TOP OF THE WINDOW WHEN SCROLLING
+	use { 'nvim-treesitter/nvim-treesitter-context' }
 
 
 	-- " SQL
