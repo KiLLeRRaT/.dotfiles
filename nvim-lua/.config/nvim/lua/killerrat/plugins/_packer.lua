@@ -115,7 +115,8 @@ local function packer_spec()
 	use { "hrsh7th/cmp-nvim-lsp-signature-help" }											-- https://github.com/hrsh7th/cmp-nvim-lsp-signature-help
 	use { "hrsh7th/cmp-calc" }																				-- https://github.com/hrsh7th/cmp-calc
 	use { "hrsh7th/cmp-emoji" }																				-- https://github.com/hrsh7th/cmp-emoji
-
+	use { 'L3MON4D3/LuaSnip' }																				-- https://github.com/L3MON4D3/LuaSnip
+	use { 'saadparwaiz1/cmp_luasnip' }																-- https://github.com/saadparwaiz1/cmp_luasnip
 
 ----------------------------------------
 	-- LSP RELATED PLUGINS

@@ -52,6 +52,11 @@ cmp.setup {
 		-- { name = 'spell' },
 		-- { name = 'dictionary', keyword_length = 2 },
 	},
+	snippet = {
+		expand = function(args)
+			require'luasnip'.lsp_expand(args.body)
+		end
+	},
 	formatting = {
 		format = function(entry, item)
 			item.kind = lsp_symbols[item.kind]
@@ -60,7 +65,7 @@ cmp.setup {
 				nvim_lsp = "[L]",
 				path = "[P]",
 				sql = "[DB]",
-				-- luasnip = "[Snippet]",
+				luasnip = "[Snippet]",
 				-- neorg = "[Neorg]",
 			})[entry.source.name]
 
