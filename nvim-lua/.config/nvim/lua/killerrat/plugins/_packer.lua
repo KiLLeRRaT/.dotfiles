@@ -6,7 +6,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	vim.cmd [[packadd packer.nvim]]
 end
 
-
 -- vim.cmd [[packadd packer.nvim]]
 
 local pluginfiles_BufWritePost = vim.api.nvim_create_augroup("pluginfiles_BufWritePost", { clear = true })
@@ -25,7 +24,6 @@ local packer = require("packer")
 local util = require("packer.util")
 
 -- CONFIG IDEA FROM: https://www.reddit.com/r/neovim/comments/txwpj8/comment/i3phc3h/?utm_source=share&utm_medium=web2x&context=3
-
 
 local function packer_spec()
 	local use = use;
