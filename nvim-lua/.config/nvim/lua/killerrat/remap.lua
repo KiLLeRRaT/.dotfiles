@@ -7,43 +7,36 @@
 vim.cmd[[nnoremap <leader>bd :bp \| :sp \| :bn \| :bd<cr>]]
 -- vim.keymap.set('n', { ['<leader>bd'] = { {'bp', 'sp', 'bn', 'bd'}, {'<cr>'} } })
 
--- nnoremap <leader>ba :bufdo bd<cr>
+vim.keymap.set('n', "<leader>ba", ":bufdo bd<cr>")
 
--- nnoremap ' `
+-- SET ' TO ALSO BE POSITIONAL JUMP TO MARK
 vim.keymap.set('n', "'", "`")
 
 -- " KEEP CURSOR IN THE CENTRE OF THE SCREEN WHEN SEARCHING NEXT
--- nnoremap n nzzzv
+-- (zv at the end opens folds if there are any)
 vim.keymap.set('n', "n", "nzzzv")
--- nnoremap N Nzzzv
 vim.keymap.set('n', "N", "Nzzzv")
 
+-- " KEEP CURSOR IN THE CENTRE OF THE SCREEN WHEN CTRL-D, CTRL-U
+vim.keymap.set('n', "<c-d>", "<c-d>zzzv")
+vim.keymap.set('n', "<c-u>", "<c-u>zzzv")
+
 -- " KEEP CURSOR IN A SANE PLACE WHEN USING J TO JOIN LINES
--- nnoremap J mzJ`z
 vim.keymap.set('n', "J", "mzJ`z")
 
--- nnoremap <leader>y "+y
 vim.keymap.set("n", "<leader>y", "\"+y")
--- vnoremap <leader>y "+y
 vim.keymap.set("v", "<leader>y", "\"+y")
--- nnoremap <leader>Y gg"+yG
 vim.keymap.set("n", "<leader>Y", "gg\"+yG")
 
+
 -- " DELETE INTO BLACK HOLE REGISTER
--- nnoremap <leader>d "_d
 vim.keymap.set("n", "<leader>d", "\"_d")
--- vnoremap <leader>d "_d
 vim.keymap.set("v", "<leader>d", "\"_d")
 
 -- " [count] yanks, comments out, and pastes a copy below
--- nnoremap <expr> <leader>T '<esc>' . v:count1 . '"zyy:.,+' . (v:count1 - 1) . 'Commentary<cr>' . v:count1 . 'j<esc>"zP'
 vim.cmd[[nnoremap <expr> <leader>T '<esc>' . v:count1 . '"zyy:.,+' . (v:count1 - 1) . 'Commentary<cr>' . v:count1 . 'j<esc>"zP']]
--- nnoremap <expr> <leader>t '<esc>' . v:count1 . '"zyy' . v:count1 . 'j<esc>"zP'
--- vim.api.nvim_set_keymap("n", "<leader>t", "'<esc>' . v:count1 . '\"zyy' . v:count1 . 'j<esc>\"zP", { noremap = true })
 vim.cmd[[nnoremap <expr> <leader>t '<esc>' . v:count1 . '"zyy' . v:count1 . 'j<esc>"zP']]
 
--- " https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text
--- xnoremap <leader>p "_dP
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
 -- REPLACE SELECTION WITH YANKED TEXT
@@ -68,44 +61,27 @@ for i, v in ipairs(all_modes) do
 	vim.keymap.set(v, "<C-z>", "<nop>")
 end
 
-
 -- " COPY CURRENT FILENAME OR FULL FILE PATH TO SYSTEM CLIPBOARD
--- nnoremap <leader>cf :echo expand("%:t") \| :let @+ = expand("%:t")<cr>
 vim.cmd[[nnoremap <leader>cf :echo expand("%:t") \| :let @+ = expand("%:t")<cr>]]
--- nnoremap <leader>cF :echo expand("%:p") \| :let @+ = expand("%:p")<cr>
 vim.cmd[[nnoremap <leader>cF :echo expand("%:p") \| :let @+ = expand("%:p")<cr>]]
 
--- " OPEN CURRENT FOLDER IN WINDOWS EXPLORER
--- " EXPAND COLON PARAMETERS FROM: https://vi.stackexchange.com/a/1885
--- " nnoremap gF :!start %:p:h<cr>
-
--- " " REPLACE VISUAL SELECTION
--- " vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
-
 -- " REFRESH FILE FROM DISK
--- nnoremap <F5> :e %<cr>
 vim.keymap.set("n", "<F5>", ":e %<cr>")
 
 -- " REFRESH FILE FROM DISK AND GO TO BOTTOM
--- nnoremap <silent><S-F5> :e %<cr>G
 vim.keymap.set("n", "<S-F5>", ":e %<cr>G")
 
 -- " RELOAD CONFIG
--- " nnoremap <C-f5> :so ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
--- nnoremap <C-F5> :execute 'source ' . stdpath('config') . '/init.vim'<cr>
--- vim.api.nvim_set_keymap("n", "<C-F5>", ":execute 'source ' . stdpath('config') . '/init.vim'<cr>", { noremap = true })
 vim.keymap.set("n", "<C-F5>", ":execute 'source ' . stdpath('config') . '/init.lua'<cr>")
 
 -- " " EDIT CONFIG
 -- " nnoremap <A-f5> :e ~/.dotfiles/nvim/.config/nvim/init.vim<cr>
 -- nnoremap <A-F5> :execute 'edit ' . stdpath('config') . '/init.vim'<cr>:cd %:h<cr>
 
--- " EDIT NOTES FOLDER
+-- " EDIT NOTES FOLDER - REPLACED BY VIMWIKI!
 -- nnoremap <A-n> :e C:\GBox\Notes<cr>:cd C:\GBox\Notes<cr>
 
 -- " EDIT SCRIPTS FOLDER
--- nnoremap <A-s> :e C:\GBox\Applications\Tools\Scripts<cr>:cd C:\GBox\Applications\Tools\Scripts<cr>
--- vim.api.nvim_set_keymap("n", "<A-s>", ":e C:\\GBox\\Applications\\Tools\\Scripts<cr>:cd C:\\GBox\\Applications\\Tools\\Scripts<cr>", { noremap = true })
 local scripts_path = "C:\\GBox\\Applications\\Tools\\Scripts"
 vim.keymap.set("n", "<A-s>", ":e " .. scripts_path .. "<cr>:cd " .. scripts_path .. "<cr>")
 
@@ -123,10 +99,8 @@ vim.keymap.set("n", "<A-s>", ":e " .. scripts_path .. "<cr>:cd " .. scripts_path
 -- com! DiffSaved call s:DiffWithSaved()
 
 
-
 -- " SPELL CHECKING ]s and [s for next/prev, z= for spelling suggestion, zg to
 -- " add to dictionary
--- map <F6> :setlocal spell!<CR>
 vim.keymap.set("n", "<F6>", ":setlocal spell!<CR>:setlocal spell?<CR>")
 
 
@@ -137,16 +111,16 @@ vim.keymap.set("n", "<F6>", ":setlocal spell!<CR>:setlocal spell?<CR>")
 -- nnoremap <leader>=j :%!jq "--tab ."<cr>:%s/\r<cr>
 -- " PASTE JSON FROM CLIPBOARD, AND FORMAT IT
 -- nnoremap <leader>=J ggdG"+P:%!jq "--tab ."<cr>:%s/\r<cr>
--- " RETAB FILE
 
--- nnoremap <leader>=t :%retab!<cr>
+-- " RETAB FILE
 vim.keymap.set("n", "<leader>=t", ":%retab!<cr>")
--- " REMOVE TRAILING WHITESPACE FROM ALL LINES
+
+-- " REMOVE TRAILING WHITESPACE FROM ALL LINES, MOVED TO _whitespace-nvim.lua FOR NOW
 -- nnoremap <leader>=w :%s/\s\+$//<cr>
--- MOVED TO _whitespace-nvim.lua FOR NOW
 -- vim.keymap.set("n", "<leader>=w", ":%s/\\s\\+$//<cr>")
 
 
+-- SUM LINES
 if vim.fn.has('unix') == 1 then
 	vim.keymap.set("n", "<leader>=s", ":%!awk '{print; total+=$1}END{print total}'<cr>")
 else
@@ -167,22 +141,23 @@ end
 -- autocmd FileType cs nnoremap <buffer> <leader>=v :call MergeParametersAndValue()<cr>
 
 
-
+-- LSP MAPPINGS
+-- for gd, gr, see _telescope-nvim.lua
 vim.keymap.set("n", "gD", ":lua vim.lsp.buf.type_definition()<cr>")
-
--- <leader>gi because gi takes you to last edit and puts you in insert mode
+-- <leader>gi instead of jsut gi, because gi takes you to last edit and puts you in insert mode
 vim.keymap.set("n", "<leader>gi", ":lua vim.lsp.buf.implementation()<cr>")
-
 vim.keymap.set("n", "]g", ":lua vim.diagnostic.goto_next()<cr>")
 vim.keymap.set("n", "[g", ":lua vim.diagnostic.goto_prev()<cr>")
 vim.keymap.set("n", "<leader>rn", ":lua vim.lsp.buf.rename()<cr>")
 vim.keymap.set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<cr>")
 -- for gd, gr, see _telescope-nvim.lua
 
-
+-- QUICK FIX LIST
 vim.keymap.set("n", "<c-q>", ":copen<cr>")
 vim.keymap.set("n", "<c-j>", ":cn<cr>")
 vim.keymap.set("n", "<c-k>", ":cp<cr>")
+
+-- LOCATION LIST
 -- " nnoremap <leader>eq :lopen<cr>
 -- " nnoremap <leader>ej :lnext<cr>
 -- " nnoremap <leader>ek :lprev<cr>
