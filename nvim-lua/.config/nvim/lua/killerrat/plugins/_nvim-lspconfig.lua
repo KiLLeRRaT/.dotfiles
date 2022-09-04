@@ -5,10 +5,17 @@ end
 
 require'lspconfig'.bashls.setup{}
 
+
+-- EXAMPLE OF TAKING INPUT
+-- local fname = vim.fn.input("File: ", "", "file")
+-- confirm(text[,choices[,default[,type]]])
+
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#omnisharp
 require'lspconfig'.omnisharp.setup {
 	-- use_mono = true
 	-- environment = "netframework"
 	-- environment = "dotnet"
+	organize_imports_on_format = true,
 }
 
 require'lspconfig'.cssls.setup {
