@@ -1,14 +1,45 @@
 if not _G.plugin_loaded("nvim-lspconfig") then
+	print("nvim-lspconfig not loaded")
 	do return end
 end
 
-
 require'lspconfig'.bashls.setup{}
 
-
--- EXAMPLE OF TAKING INPUT
+-- EXAMPLE OF TAKING INPUT,
+-- FROM: https://github.com/neovim/nvim-lspconfig/issues/2108#issuecomment-1236248592
 -- local fname = vim.fn.input("File: ", "", "file")
 -- confirm(text[,choices[,default[,type]]])
+
+-- BEGGININGS OF LOADING .NET FRAMEWORK OR .NET 6 OMNISHARP CONDITIONALLY
+-- lspconfig.csharp_ls.autostart({
+--   autostart = false
+-- }
+
+-- lspconfig.omnisharp.autostart({
+--   autostart = false
+-- }
+-- then
+
+-- vim.api.nvim_create_autocmd("FileType",{
+--   pattern = 'csharp',
+--   callback = function()
+--     -- check the cspj or something else to confirm it's .net framework or .net core project
+--    if is_netcore then
+--        vim.cmd('LspStart  omnisharp')
+--         return
+--    end
+--    vim.cmd('LspStart csharp_ls')
+--   end
+-- }
+
+-- EXAMPLE OF HOW YOU CAN TRAVERSE A DIRECTORY USING A GLOB, FROM:
+-- https://www.reddit.com/r/neovim/comments/rsrmux/source_all_files_in_a_directory_using_lua_script/
+-- local paths = vim.split(vim.fn.glob('~/.config/nvim/lua/*/*lua'), '\n'),
+-- for i, file in pairs(paths) do
+--   vim.cmd('source ' .. file)
+-- end
+
+-- /BEGGININGS OF LOADING .NET FRAMEWORK OR .NET 6 OMNISHARP CONDITIONALLY
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#omnisharp
 require'lspconfig'.omnisharp.setup {
