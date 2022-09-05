@@ -14,7 +14,6 @@ local lsp_installer_ensure_installed = {
 	"pyright",
 	"tsserver",
 	"sumneko_lua",
-	"marksman",
 	--"sqls", -- https://github.com/lighttiger2505/sqls
 	"lemminx",
 	"yamlls",
