@@ -8,13 +8,15 @@ end
 
 vim.cmd[[let g:switch_custom_definitions =
     \ [
-    \   switch#NormalizedCase(['private', 'protected', 'internal', 'public']),
-    \   switch#NormalizedCase(['true', 'false']),
-    \   switch#NormalizedCase(['before', 'after']),
-    \   switch#NormalizedCase(['to', 'from']),
-    \   switch#NormalizedCase(['==', '!=']),
-    \   switch#NormalizedCase(['min', 'max']),
-    \   switch#NormalizedCase(['UAT', 'PROD']),
+    \   switch#NormalizedCaseWords(['private', 'protected', 'internal', 'public']),
+    \   switch#NormalizedCaseWords(['true', 'false']),
+    \   switch#NormalizedCaseWords(['before', 'after']),
+    \   switch#NormalizedCaseWords(['to', 'from']),
+    \   switch#NormalizedCaseWords(['==', '!=']),
+    \   switch#NormalizedCaseWords(['min', 'max']),
+    \   switch#NormalizedCaseWords(['UAT', 'PROD']),
+		\   switch#NormalizedCaseWords(['starting', 'stopping']),
+    \   switch#NormalizedCaseWords(['start', 'stop']),
     \ ]
 ]]
 
