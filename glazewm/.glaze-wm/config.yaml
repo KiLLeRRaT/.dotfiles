@@ -89,8 +89,13 @@ window_rules:
   - command: 'set floating'
     match_title: '/^chrome.*/'
 
-  - command: 'set floating'
+  - command: 'ignore'
+  # - command: 'set floating'
     match_title: 'MessageForm'
+
+  # - command: 'set floating'
+  - command: 'ignore'
+    match_title: 'Form1'
 
   - command: 'set floating'
     match_title: '1PasswordShortcuts'
