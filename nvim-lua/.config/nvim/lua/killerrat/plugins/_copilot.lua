@@ -1,4 +1,5 @@
 if not _G.plugin_loaded("copilot.vim") then
+	print("copilot.vim not loaded")
 	do return end
 end
 

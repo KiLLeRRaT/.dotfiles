@@ -85,7 +85,7 @@ local function packer_spec()
 	-- use { 'b3nj5m1n/kommentary' }																	-- https://github.com/b3nj5m1n/kommentary
 	use { 'tpope/vim-commentary' }																		-- https://github.com/tpope/vim-commentary
 	use { 'gbprod/substitute.nvim' }																	-- https://github.com/gbprod/substitute.nvim
-	-- use { 'github/copilot.vim' }																			-- https://github.com/github/copilot.vim
+	use { 'github/copilot.vim' }																			-- https://github.com/github/copilot.vim
 	-- " SWITCH TO OPPOSITE WORD, E.G. TRUE -> FALSE, etc.
 	use { 'AndrewRadev/switch.vim' }																	-- https://github.com/AndrewRadev/switch.vim
 	use { 'nvim-lualine/lualine.nvim' }																-- https://github.com/nvim-lualine/lualine.nvim
