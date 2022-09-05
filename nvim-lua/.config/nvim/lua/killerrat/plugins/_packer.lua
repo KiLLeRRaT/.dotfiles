@@ -105,6 +105,9 @@ local function packer_spec()
 	-- Plug 'https://github.com/neoclide/vim-jsx-improve'
 	-- Plug 'PhilRunninger/nerdtree-visual-selection'
 
+	-- Modify files right in the quick fix list
+	use { 'stefandtw/quickfix-reflector.vim' }											-- https://github.com/stefandtw/quickfix-reflector.vim
+
 ----------------------------------------
 	-- COMPLETION AND SNIPPETS
 ----------------------------------------
@@ -148,9 +151,6 @@ local function packer_spec()
 	-- Plug 'https://github.com/theHamsta/nvim-dap-virtual-text'
 	-- Plug 'https://github.com/nvim-telescope/telescope-dap.nvim'
 	-- Plug 'https://github.com/mfussenegger/nvim-dap'
-
-	-- " Modify files right in the quick fix list
-	-- Plug 'https://github.com/stefandtw/quickfix-reflector.vim'
 
 	-- Plug 'https://github.com/lambdalisue/suda.vim'
 
