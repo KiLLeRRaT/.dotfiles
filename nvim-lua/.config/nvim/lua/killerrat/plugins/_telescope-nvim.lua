@@ -41,7 +41,7 @@ vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
 vim.keymap.set("n", "<leader>fG", ":execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>")
 
 -- nnoremap <leader>fR <cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>
-vim.keymap.set("n", "<leader>fR", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>")
+vim.keymap.set("n", "<leader>fr", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>")
 
 -- nnoremap <leader>fb <cmd>Telescope buffers<cr>
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
@@ -50,9 +50,9 @@ vim.keymap.set("n", "<leader>fk", "<cmd>Telescope help_tags<cr>")
 -- nnoremap <leader>fm <cmd>Telescope keymaps<cr>
 vim.keymap.set("n", "<leader>fm", "<cmd>Telescope keymaps<cr>")
 -- nnoremap <leader>fc <cmd>Telescope git_commits<cr>
-vim.keymap.set("n", "<leader>fc", "<cmd>Telescope git_commits<cr>")
+vim.keymap.set("n", "<leader>fgc", "<cmd>Telescope git_commits<cr>")
 -- nnoremap <leader>fr <cmd>Telescope git_branches<cr>
-vim.keymap.set("n", "<leader>fr", "<cmd>Telescope git_branches<cr>")
+vim.keymap.set("n", "<leader>fgb", "<cmd>Telescope git_branches<cr>")
 -- nnoremap <leader>fs <cmd>Telescope colorscheme<cr>
 vim.keymap.set("n", "<leader>fs", "<cmd>Telescope colorscheme<cr>")
 -- nnoremap <leader>fh <cmd>Telescope help_tags<cr>
