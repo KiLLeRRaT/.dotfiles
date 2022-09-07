@@ -35,6 +35,7 @@ pamac install alacritty --no-confirm
 pamac install timeshift --no-confirm
 pamac install tmux --no-confirm
 pamac install btop --no-confirm
+pamac install unzip --no-confirm
 
 #pamac install snapd --no-confirm
 #systemctl enable --now snapd.socket
