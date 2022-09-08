@@ -37,6 +37,20 @@ pamac install tmux --no-confirm
 pamac install btop --no-confirm
 pamac install unzip --no-confirm
 
+read -k 1 -r "install_app?Install Signal? (y/n) "
+echo -e ""
+if [[ $install_app =~ ^[Yy]$ ]]
+then
+	pamac install signal-desktop --no-confirm
+fi
+
+read -k 1 -r "install_app?Install Redshift (Night light)? (y/n) "
+echo -e ""
+if [[ $install_app =~ ^[Yy]$ ]]
+then
+	pamac install redshift --no-confirm
+fi
+
 #pamac install snapd --no-confirm
 #systemctl enable --now snapd.socket
 #ln -s /var/lib/snapd/snap /snap
