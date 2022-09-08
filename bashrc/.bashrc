@@ -147,6 +147,8 @@ fi
 # eval "$(oh-my-posh init bash)"
 eval "$(oh-my-posh init bash --config ~/.omp/themes/tokyonight.omp.yaml)"
 
+export EDITOR="/usr/bin/nvim"
+export VISUAL=$EDITOR
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
