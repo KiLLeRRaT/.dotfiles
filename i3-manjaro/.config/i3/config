@@ -211,22 +211,20 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 assign [class="Brave"] $ws8
 assign [class="Alacritty"] $ws2
 
-workspace 1 output DP-0
-workspace 4 output DP-0
-workspace 7 output DP-0
-
-workspace 3 output HDMI-1
-workspace 6 output HDMI-1
-workspace 9 output HDMI-1
-
-# CORRECT
-workspace 2 output HDMI-0
-workspace 5 output HDMI-0
-workspace 8 output HDMI-0
 
 # HDMI-0 is middle screen
 # HDMI-1 is right screen
 # DP-0 is left screen
+workspace 1 output DP-0
+workspace 4 output DP-0
+workspace 7 output DP-0
+workspace 3 output HDMI-1
+workspace 6 output HDMI-1
+workspace 9 output HDMI-1
+workspace 2 output HDMI-0
+workspace 5 output HDMI-0
+workspace 8 output HDMI-0
+
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
