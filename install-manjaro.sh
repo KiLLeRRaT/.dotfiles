@@ -35,6 +35,21 @@ pamac install alacritty --no-confirm
 pamac install timeshift --no-confirm
 pamac install tmux --no-confirm
 pamac install btop --no-confirm
+pamac install unzip --no-confirm
+
+read -k 1 -r "install_app?Install Signal? (y/n) "
+echo -e ""
+if [[ $install_app =~ ^[Yy]$ ]]
+then
+	pamac install signal-desktop --no-confirm
+fi
+
+read -k 1 -r "install_app?Install Redshift (Night light)? (y/n) "
+echo -e ""
+if [[ $install_app =~ ^[Yy]$ ]]
+then
+	pamac install redshift --no-confirm
+fi
 
 #pamac install snapd --no-confirm
 #systemctl enable --now snapd.socket
@@ -167,3 +182,43 @@ chsh -s /bin/zsh albert
 echo -e "Done"
 
 popd
+
+# NOTES
+# ----------------------------------------
+# DISPLAY LAYOUT
+# ----------------------------------------
+## Display layout
+# https://stackoverflow.com/questions/56618874/how-can-i-permanently-setting-the-screen-layout-arandr-in-manjaro-i3
+# 1. Open arandr
+# 2. Set your desired layout
+# 3. Export it
+# 4. sudo vim /etc/lightdm/Xsession
+# 5. Add the exported code *before* the last line
+# 6. Reboot
+
+
+# ----------------------------------------
+# NVIDIA DRIVERS
+# ----------------------------------------
+# https://linuxconfig.org/how-to-install-the-nvidia-drivers-on-manjaro-linux
+# sudo mhwd -a pci nonfree 0300
+# sudo reboot
+# nvidia-settings
+
+
+# ----------------------------------------
+# KILL X USING CTRL+ALT+BACKSPACE
+# ----------------------------------------
+# https://unix.stackexchange.com/a/445
+# Modify /etc/X11/xorg.conf or a .conf file in /etc/X11/xorg.conf.d/ with the following.
+# Section "ServerFlags"
+    # Option "DontZap" "false"
+# EndSection
+
+# Section "InputClass"
+    # Identifier      "Keyboard Defaults"
+    # MatchIsKeyboard "yes"
+    # Option          "XkbOptions" "terminate:ctrl_alt_bksp"
+# EndSection
+# ----------------------------------------
+

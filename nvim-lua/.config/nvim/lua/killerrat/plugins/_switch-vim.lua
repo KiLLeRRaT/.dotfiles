@@ -17,6 +17,7 @@ vim.cmd[[let g:switch_custom_definitions =
     \   switch#NormalizedCaseWords(['UAT', 'PROD']),
 		\   switch#NormalizedCaseWords(['starting', 'stopping']),
     \   switch#NormalizedCaseWords(['start', 'stop']),
+    \   switch#NormalizedCase(['left', 'right']),
     \ ]
 ]]
 
