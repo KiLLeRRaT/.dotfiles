@@ -22,53 +22,42 @@ echo -e "Done"
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Installing software\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
+
+function installApp() {
+	read -k 1 -r "install?Install $1? (y/n) "
+	echo -e ""
+	if [[ $install =~ ^[Yy]$ ]]
+	then
+		echo Installing $1
+		sudo pamac install --no-confirm $1
+	fi
+}
+
 # WE HAVE TO BUILD XRDP...
-pamac build xrdp --no-confirm
-pamac install git --no-confirm
-pamac install curl --no-confirm
-pamac install stow --no-confirm
-pamac install neovim --no-confirm
-pamac install xclip --no-confirm
-pamac install ripgrep --no-confirm
-pamac install fd --no-confirm
-pamac install alacritty --no-confirm
-pamac install timeshift --no-confirm
-pamac install tmux --no-confirm
-pamac install btop --no-confirm
-pamac install unzip --no-confirm
+pamac build --no-confirm xrdp
+pamac install --no-confirm git
+pamac install --no-confirm curl
+pamac install --no-confirm stow
+pamac install --no-confirm neovim
+pamac install --no-confirm xclip
+pamac install --no-confirm ripgrep
+pamac install --no-confirm fd
+pamac install --no-confirm alacritty
+pamac install --no-confirm timeshift
+pamac install --no-confirm tmux
+pamac install --no-confirm btop
+pamac install --no-confirm unzip
 
-read -k 1 -r "install_app?Install Signal? (y/n) "
-echo -e ""
-if [[ $install_app =~ ^[Yy]$ ]]
-then
-	pamac install signal-desktop --no-confirm
-fi
-
-read -k 1 -r "install_app?Install Redshift (Night light)? (y/n) "
-echo -e ""
-if [[ $install_app =~ ^[Yy]$ ]]
-then
-	pamac install redshift --no-confirm
-fi
+installApp redshift
+installApp signal-desktop
+installApp timeshift-autosnap-manjaro
 
 #pamac install snapd --no-confirm
 #systemctl enable --now snapd.socket
 #ln -s /var/lib/snapd/snap /snap
 #echo -e "Done"
 
-
-read -k 1 -r "install_brave?Install brave browser? (y/n) "
-echo -e ""
-if [[ $install_brave =~ ^[Yy]$ ]]
-then
-	echo -e "\033[32m ----------------------------------------\033[0m"
-	echo -e "\033[32m Installing brave browser\033[0m"
-	echo -e "\033[32m ----------------------------------------\033[0m"
-	pamac install brave-browser --no-confirm
-	#snap install brave
-	echo -e "Done"
-fi
-
+installApp brave-browser
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Configure SSH Keys\033[0m"
@@ -222,3 +211,9 @@ popd
 # EndSection
 # ----------------------------------------
 
+# ----------------------------------------
+# redshift
+# ----------------------------------------
+# -37.793342:175.134606 10 harihari lat, long
+# redshift -l -37.793342:175.134606 -t 6500:4000 -g 0.8 -m randr -v
+# PLACE IN sudo nvim /etc/lightdm/Xsession
