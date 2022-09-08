@@ -15,6 +15,7 @@ vim.cmd[[let g:switch_custom_definitions =
     \   switch#NormalizedCase(['==', '!=']),
     \   switch#NormalizedCase(['min', 'max']),
     \   switch#NormalizedCase(['UAT', 'PROD']),
+    \   switch#NormalizedCase(['left', 'right']),
     \ ]
 ]]
 
