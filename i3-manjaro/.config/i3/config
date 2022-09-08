@@ -210,6 +210,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 # assign [class="Pale moon"] $ws8
 assign [class="Brave"] $ws8
 assign [class="Alacritty"] $ws2
+assign [class="google-chat-electron"] $ws1
 
 
 # HDMI-0 is middle screen

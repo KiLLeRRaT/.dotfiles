@@ -56,8 +56,10 @@ installApp timeshift-autosnap-manjaro
 #systemctl enable --now snapd.socket
 #ln -s /var/lib/snapd/snap /snap
 #echo -e "Done"
+# snap install google-chat-electron
 
 installApp brave-browser
+
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Configure SSH Keys\033[0m"
