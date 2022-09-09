@@ -187,7 +187,6 @@ popd
 # 5. Add the exported code *before* the last line
 # 6. Reboot
 
-
 # ----------------------------------------
 # NVIDIA DRIVERS
 # ----------------------------------------
@@ -219,3 +218,19 @@ popd
 # -37.793342:175.134606 10 harihari lat, long
 # redshift -l -37.793342:175.134606 -t 6500:4000 -g 0.8 -m randr -v
 # PLACE IN sudo nvim /etc/lightdm/Xsession
+
+# ----------------------------------------
+# RESILIO SYNC
+# ----------------------------------------
+# sudo pamac install rslsync # YOU MAY HAVE TO DO THIS FROM THE AUR
+# sudo systemctl enable resilio-sync
+# sudo systemctl start resilio-sync
+# LOGIN in http://localhost:8888 and set up username and password
+# sudo usermod -aG albert rslsync && \
+# sudo usermod -aG rslsync albert && \
+# sudo chmod g+rx ~
+# sudo chmod g+rw ~/GBox
+# sudo chmod g+rw ~/resilio-sync
+
+
+
