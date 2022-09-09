@@ -55,7 +55,7 @@ local function packer_spec()
 	-- THEMES
 ----------------------------------------
 	use { 'folke/tokyonight.nvim', branch = 'main' }									-- https://github.com/folke/tokyonight.nvim
-	use { 'ellisonleao/gruvbox.nvim' }
+	-- use { 'ellisonleao/gruvbox.nvim' }
 ----------------------------------------
 	-- TOOLS
 ----------------------------------------

@@ -6,6 +6,7 @@ end
 require'lualine'.setup {
 	options = {
 		-- theme = 'gruvbox'
-		theme = 'palenight'
+		-- theme = 'palenight'
+		theme = 'tokyonight'
 	}
 }
