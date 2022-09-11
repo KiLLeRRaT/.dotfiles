@@ -173,7 +173,8 @@ local compile_path = util.join_paths(
 packer.startup {
 	packer_spec,
 	config = {
-		compile_path = compile_path
+		compile_path = compile_path,
+		preview_updates = true, -- If true, always preview updates before choosing which plugins to update, same as `PackerUpdate --preview`.
 	}
 }
 
