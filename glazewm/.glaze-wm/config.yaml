@@ -40,19 +40,19 @@ bar:
 
 workspaces:
   - name: 1
-    display_name: "1:Chat"
+    # display_name: "1:Chat"
     # keep_alive: true
     bind_to_monitor: '\\.\DISPLAY1'
   - name: 2
-    display_name: "2:Code"
+    # display_name: "2:Code"
     # keep_alive: true
     bind_to_monitor: '\\.\DISPLAY2'
   - name: 3
-    display_name: "3:VS"
+    # display_name: "3:VS"
     # keep_alive: true
     bind_to_monitor: '\\.\DISPLAY3'
   - name: 4
-    display_name: "4:Test"
+    # display_name: "4:Test"
     # keep_alive: true
     bind_to_monitor: '\\.\DISPLAY1'
   - name: 5
@@ -65,11 +65,11 @@ workspaces:
     # keep_alive: true
     bind_to_monitor: '\\.\DISPLAY1'
   - name: 8
-    display_name: "8:Email"
+    # display_name: "8:Email"
     # keep_alive: true
     bind_to_monitor: '\\.\DISPLAY2'
   - name: 9
-    display_name: "9:Search"
+    # display_name: "9:Search"
     # keep_alive: true
     bind_to_monitor: '\\.\DISPLAY3'
 
@@ -111,30 +111,6 @@ window_rules:
     match_process_name: 'steam'
 
 keybindings:
-  - command: "focus left"
-    bindings: ["Control+Alt+H", "Alt+Left"]
-
-  - command: "focus right"
-    bindings: ["Control+Alt+L", "Alt+Right"]
-
-  - command: "focus up"
-    bindings: ["Control+Alt+K", "Alt+Up"]
-
-  - command: "focus down"
-    bindings: ["Control+Alt+J", "Alt+Down"]
-
-  - command: "move left"
-    bindings: ["Control+Alt+Shift+H", "Alt+Shift+Left"]
-
-  - command: "move right"
-    bindings: ["Control+Alt+Shift+L", "Alt+Shift+Right"]
-
-  - command: "move up"
-    bindings: ["Control+Alt+Shift+K", "Alt+Shift+Up"]
-
-  - command: "move down"
-    bindings: ["Control+Alt+Shift+J", "Alt+Shift+Down"]
-
   # - command: "swap_monitors left"
   #   bindings: ["Control+Alt+Shift+Left"]
 
@@ -175,10 +151,28 @@ keybindings:
   - command: "close"
     binding: "Control+Alt+Shift+Q"
 
+  - command: "reload config"
+    binding: "Control+Alt+Shift+R"
+
+  - command: "exec wt"
+    binding: "Control+Alt+Enter"
+
   # - command: "exit wm"
   #   binding: "Control+Alt+Shift+E"
 
 # FOCUS
+  - command: "focus left"
+    bindings: ["Control+Alt+H", "Alt+Left"]
+
+  - command: "focus right"
+    bindings: ["Control+Alt+L", "Alt+Right"]
+
+  - command: "focus up"
+    bindings: ["Control+Alt+K", "Alt+Up"]
+
+  - command: "focus down"
+    bindings: ["Control+Alt+J", "Alt+Down"]
+
   - command: "focus workspace 1"
     binding: "Alt+1"
 
@@ -207,6 +201,18 @@ keybindings:
     binding: "Alt+9"
 
 # MOVE
+  - command: "move left"
+    bindings: ["Control+Alt+Shift+H", "Alt+Shift+Left"]
+
+  - command: "move right"
+    bindings: ["Control+Alt+Shift+L", "Alt+Shift+Right"]
+
+  - command: "move up"
+    bindings: ["Control+Alt+Shift+K", "Alt+Shift+Up"]
+
+  - command: "move down"
+    bindings: ["Control+Alt+Shift+J", "Alt+Shift+Down"]
+
   - commands: ["move to workspace 1"]
     binding: "Control+Alt+Shift+1"
 
