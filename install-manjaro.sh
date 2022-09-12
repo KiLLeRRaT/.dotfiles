@@ -175,6 +175,20 @@ echo -e "Done"
 popd
 
 # NOTES
+
+# TO DO
+ # - [x] Install timeshift
+ # - [x] Create snapshot
+ # - [x] Set up timeshift to create snapshots automatically when running updates
+ # - [x] Run install-manjaro.sh
+ # - [x] Setup ssh server
+ # - [x] Install btop
+ # - [x] Install NVidia drivers
+ # - [x] Install .NET 6
+ # - [x] Install Resilio sync
+ # - [ ] Set up xrdp
+
+
 # ----------------------------------------
 # DISPLAY LAYOUT
 # ----------------------------------------
@@ -186,6 +200,14 @@ popd
 # 4. sudo vim /etc/lightdm/Xsession
 # 5. Add the exported code *before* the last line
 # 6. Reboot
+
+# ----------------------------------------
+# Mouse sensitivity
+# ----------------------------------------
+# https://www.reddit.com/r/linux4noobs/comments/98kicg/set_mouse_speed_sensitivity_in_manjaro_i3/
+# https://wiki.archlinux.org/title/Libinput#Via_xinput
+# https://www.reddit.com/r/linux4noobs/comments/hnhehw/change_pointer_speed_in_manjaro/
+
 
 # ----------------------------------------
 # NVIDIA DRIVERS
@@ -222,7 +244,12 @@ popd
 # ----------------------------------------
 # RESILIO SYNC
 # ----------------------------------------
-# sudo pamac install rslsync # YOU MAY HAVE TO DO THIS FROM THE AUR
+# https://wiki.archlinux.org/title/Resilio_Sync
+# mkdir ~/build
+# git clone https://aur.archlinux.org/rslsync.git
+# cd rslsync
+# less PKBUILD # TO MAKE SURE YOURE HAPPY
+# mkpkg -sirc
 # sudo systemctl enable resilio-sync
 # sudo systemctl start resilio-sync
 # LOGIN in http://localhost:8888 and set up username and password
