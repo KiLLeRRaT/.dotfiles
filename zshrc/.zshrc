@@ -147,8 +147,10 @@ alias nvim-lua='export XDG_CONFIG_HOME=${HOME}/.dotfiles/nvim-lua/.config; \
 	export XDG_DATA_HOME=${HOME}/.local-lua/share; \
 	nvim'
 
-
-
+# find files matching the glob, then sort them by last modified
+fd-t() {
+fd -t f -g $1 --exec stat --printf='%Y\t%n\n' | sort -nr
+}
 
 
 #set -o vi
