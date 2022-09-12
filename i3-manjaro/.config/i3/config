@@ -202,6 +202,9 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 
 # Open applications on specific workspaces
+# YOU CAN FIND THE APPLICATION CLASS NAME USING xprop
+# FROM: https://www.tuxtips.info/linux/how-to-find-applications-window-class-in-i3-window-manager
+
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws8
 # assign [class="Pcmanfm"] $ws3
@@ -211,6 +214,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 # assign [class="Brave"] $ws8
 # assign [class="Alacritty"] $ws2
 assign [class="google-chat-electron"] $ws1
+assign [class="Spotify"] $ws1
 
 
 # HDMI-0 is middle screen
