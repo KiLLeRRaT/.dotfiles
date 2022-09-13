@@ -108,6 +108,8 @@ local function packer_spec()
 	-- Modify files right in the quick fix list
 	use { 'stefandtw/quickfix-reflector.vim' }											-- https://github.com/stefandtw/quickfix-reflector.vim
 
+	use { 'mechatroner/rainbow_csv' }																-- https://github.com/mechatroner/rainbow_csv
+
 ----------------------------------------
 	-- COMPLETION AND SNIPPETS
 ----------------------------------------
