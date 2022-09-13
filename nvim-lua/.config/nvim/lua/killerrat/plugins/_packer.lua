@@ -109,6 +109,7 @@ local function packer_spec()
 	use { 'stefandtw/quickfix-reflector.vim' }											-- https://github.com/stefandtw/quickfix-reflector.vim
 
 	use { 'mechatroner/rainbow_csv' }																-- https://github.com/mechatroner/rainbow_csv
+	use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
 ----------------------------------------
 	-- COMPLETION AND SNIPPETS
