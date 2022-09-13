@@ -61,6 +61,7 @@ pamac install --no-confirm unzip
 installApp redshift
 installApp signal-desktop
 installApp timeshift-autosnap-manjaro
+installApp flameshot
 
 buildApp rslsync
 buildApp azuredatastudio-bin
