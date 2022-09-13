@@ -21,7 +21,7 @@ vim.g.NERDTreeShowHidden = 1
 -- " FROM: https://stackoverflow.com/a/47287079/182888
 vim.g.NERDTreeChDirMode = 2
 
-if vim.fn.has('win32') then
+if vim.fn.has('win32') == 1 then
 	vim.g.NERDTreeCopyCmd = 'Copy-Item -Recurse '
 end
 
