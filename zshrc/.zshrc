@@ -177,4 +177,13 @@ fd -t f -g $1 --exec stat --printf='%Y\t%n\n' | sort -nr
 bindkey -v
 bindkey 'jk' vi-cmd-mode
 bindkey '^R' history-incremental-search-backward
+
+# ATTEMPT TO SORT OUT ISSUE WITH HOME AND END KEYS, FROM: https://stackoverflow.com/a/58842892/182888
+# bindkey "\E[1~" beginning-of-line
+# bindkey "\E[4~" end-of-line
+bindkey "\E[H" beginning-of-line
+bindkey "\E[F" end-of-line
+# bindkey "\E[3~" delete-char
+
+
 setopt GLOB_COMPLETE
