@@ -64,6 +64,7 @@ installApp timeshift-autosnap-manjaro
 
 buildApp rslsync
 buildApp azuredatastudio-bin
+buildApp forticlient-vpn
 
 #pamac install snapd --no-confirm
 #systemctl enable --now snapd.socket
