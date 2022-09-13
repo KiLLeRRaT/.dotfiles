@@ -33,6 +33,16 @@ function installApp() {
 	fi
 }
 
+function buildApp() {
+	read -k 1 -r "build?Install $1? (y/n) "
+	echo -e ""
+	if [[ $build =~ ^[Yy]$ ]]
+	then
+		echo Installing $1
+		sudo pamac build --no-confirm $1
+	fi
+}
+
 # WE HAVE TO BUILD XRDP...
 pamac build --no-confirm xrdp
 pamac install --no-confirm git
@@ -51,6 +61,9 @@ pamac install --no-confirm unzip
 installApp redshift
 installApp signal-desktop
 installApp timeshift-autosnap-manjaro
+
+buildApp rslsync
+buildApp azuredatastudio-bin
 
 #pamac install snapd --no-confirm
 #systemctl enable --now snapd.socket
