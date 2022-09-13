@@ -41,6 +41,18 @@ require'lspconfig'.bashls.setup{}
 
 -- /BEGGININGS OF LOADING .NET FRAMEWORK OR .NET 6 OMNISHARP CONDITIONALLY
 
+
+-- Omnisharp command on the mac
+-- omnisharp -z -s /Users/albert/Projects.Git/POR/src --hostPID 13372
+-- DotNet:enablePackageRestore=false --encoding utf-8 --languageserver
+-- FormattingOptions:EnableEditorConfigSupport=true FormattingOptions:OrganizeImports=true
+-- Sdk:IncludePrereleases=true
+
+
+-- Let's use the env variable dotnetprojecttype to determine if we are using .net framework or .net
+-- core
+
+
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#omnisharp
 require'lspconfig'.omnisharp.setup {
 	-- use_mono = true
