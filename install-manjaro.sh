@@ -61,10 +61,16 @@ installApp signal-desktop
 installApp timeshift-autosnap-manjaro
 installApp flameshot
 
+# REMOTE DESKTOP APP
+installApp remmina
+
 buildApp xrdp
 buildApp rslsync
 buildApp azuredatastudio-bin
-buildApp forticlient-vpn
+
+# FORTIGATE VPN CLINET, FORTICLIENT
+# buildApp forticlient-vpn
+buildApp openfortivpn
 
 # CITRIX WORKSPACE APP/CITRIX RECEIVER
 buildApp icaclient
