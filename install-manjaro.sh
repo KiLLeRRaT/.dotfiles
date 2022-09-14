@@ -43,8 +43,6 @@ function buildApp() {
 	fi
 }
 
-# WE HAVE TO BUILD XRDP...
-pamac build --no-confirm xrdp
 pamac install --no-confirm git
 pamac install --no-confirm curl
 pamac install --no-confirm stow
@@ -63,9 +61,13 @@ installApp signal-desktop
 installApp timeshift-autosnap-manjaro
 installApp flameshot
 
+buildApp xrdp
 buildApp rslsync
 buildApp azuredatastudio-bin
 buildApp forticlient-vpn
+
+# CITRIX WORKSPACE APP/CITRIX RECEIVER
+buildApp icaclient
 
 #pamac install snapd --no-confirm
 #systemctl enable --now snapd.socket
