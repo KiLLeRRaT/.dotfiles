@@ -102,6 +102,9 @@ autoload -Uz compinit && compinit
 # else
 #   export EDITOR='mvim'
 # fi
+export HISTFILE=~/.zsh_history
+export HISTSIZE=100000
+export SAVEHIST=100000
 
 export EDITOR="/usr/bin/nvim"
 export VISUAL=$EDITOR
