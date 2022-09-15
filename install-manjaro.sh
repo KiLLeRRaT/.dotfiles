@@ -56,6 +56,7 @@ pamac install --no-confirm tmux
 pamac install --no-confirm btop
 pamac install --no-confirm unzip
 
+installApp brave-browser
 installApp redshift
 installApp signal-desktop
 installApp timeshift-autosnap-manjaro
@@ -75,13 +76,21 @@ buildApp openfortivpn
 # CITRIX WORKSPACE APP/CITRIX RECEIVER
 buildApp icaclient
 
+# --------------------------------------------------
+# SNAP PACKAGES
+# --------------------------------------------------
 #pamac install snapd --no-confirm
 #systemctl enable --now snapd.socket
 #ln -s /var/lib/snapd/snap /snap
 #echo -e "Done"
 # snap install google-chat-electron
 
-installApp brave-browser
+# THIS DOESNT WORK
+# buildApp powershell
+# sudo snap install powershell --classic
+# --------------------------------------------------
+
+
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
