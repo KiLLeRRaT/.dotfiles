@@ -6,23 +6,23 @@ end
 -- vim.opt.foldmethod			= 'expr'
 -- vim.opt.foldexpr				= 'nvim_treesitter#foldexpr()'
 ---WORKAROUND
-vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
-	group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
-	callback = function()
-		vim.opt.foldmethod = 'expr'
-		vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-		vim.opt.foldcolumn = "1" -- DEFINES 1 COL AT WINDW LEFT TO INDICATE FOLDING
-		vim.opt.foldlevelstart = 99 -- START FILE WITH ALL FOLDS OPENED
+-- vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
+-- 	group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
+-- 	callback = function()
+-- 		vim.opt.foldmethod = 'expr'
+-- 		vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+-- 		vim.opt.foldcolumn = "1" -- DEFINES 1 COL AT WINDW LEFT TO INDICATE FOLDING
+-- 		vim.opt.foldlevelstart = 99 -- START FILE WITH ALL FOLDS OPENED
 
--- let javaScript_fold=1 "activate folding by JS syntax
--- " let cs_fold=1
--- " let xml_syntax_folding=1
--- let xml_folding=1
--- let yaml_fold=1
--- let vb_fold=1
-	end
+-- -- let javaScript_fold=1 "activate folding by JS syntax
+-- -- " let cs_fold=1
+-- -- " let xml_syntax_folding=1
+-- -- let xml_folding=1
+-- -- let yaml_fold=1
+-- -- let vb_fold=1
+-- 	end
 
-})
+-- })
 --ENDWORKAROUND
 
 require'nvim-treesitter.configs'.setup {
