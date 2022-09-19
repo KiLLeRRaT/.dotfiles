@@ -176,3 +176,13 @@ require("diffview").setup({
 	-- 	},
 	-- },
 })
+
+-- " KEEP CURSOR IN THE CENTRE OF THE SCREEN WHEN NAVIGATING TO NEXT CONFLICT MARKER IN
+-- DIFFVIEW.NVIM
+-- vim.keymap.set('n', "[x", "[xzz", { noremap = false })
+-- vim.keymap.set('n', "]x", "]xzz", { noremap = false })
+-- print("here")
+-- vim.keymap.set("n", "<leader>L", ":vsp<cr>:lua require('harpoon.ui').nav_file(4)<cr>", { silent = true })
+-- vim.keymap.set('n', "]x", "<cmd>lua require('diffview.config').actions.next_conflict()<cr><cmd>lua print('here')<cr>")
+-- print("there")
+-- require("diffview.config").actions.next_conflict()
