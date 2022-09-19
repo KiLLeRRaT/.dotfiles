@@ -2,17 +2,25 @@ cmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
 
 cmd + alt - w : skhd --reload
 # close focused window
-#shift + alt - q : chunkc tiling::window --close
+cmd + shift - q : chunkc tiling::window --close
 
 # focus window in bsp mode
-# ctrl + alt - h: yabai -m window --focus west
-# ctrl + alt - j: yabai -m window --focus south
-# ctrl + alt - k: yabai -m window --focus north
-# ctrl + alt - l: yabai -m window --focus east
-cmd - h: yabai -m window --focus west
-cmd - j: yabai -m window --focus south
-cmd - k: yabai -m window --focus north
-cmd - l: yabai -m window --focus east
+cmd + alt - h: yabai -m window --focus west
+cmd + alt - j: yabai -m window --focus south
+cmd + alt - k: yabai -m window --focus north
+cmd + alt - l: yabai -m window --focus east
+
+# THESE CONFLICTS WITH OTHER KEYBOARD SHORTCUTS
+# cmd - h: yabai -m window --focus west
+# cmd - j: yabai -m window --focus south
+# cmd - k: yabai -m window --focus north
+# cmd - l: yabai -m window --focus east
+
+# resize windows
+cmd + alt - y : yabai -m window --resize left:-20:0 ; yabai -m window --resize right:-20:0
+cmd + alt - u : yabai -m window --resize bottom:0:20 ; yabai -m window --resize top:0:20
+cmd + alt - i : yabai -m window --resize top:0:-20 ; yabai -m window --resize bottom:0:-20
+cmd + alt - o : yabai -m window --resize right:20:0 ; yabai -m window --resize left:20:0
 
 # move windows around
 cmd + shift - y: yabai -m window --swap west
@@ -34,8 +42,8 @@ cmd + shift - 9: yabai -m window --space 9
 cmd + alt - t : yabai -m window --toggle zoom-parent
 cmd + alt - f : yabai -m window --toggle zoom-fullscreen
 
-#alt - e : yabai -m space --layout bsp
-#alt - s : yabai -m space --layout stack
+cmd + shift - e : yabai -m space --layout bsp
+cmd + shift - s : yabai -m space --layout stack
 cmd + shift - f : yabai -m window --toggle float
 
 #ctrl - down : yabai -m window --focus stack.next || yabai -m window --focus south
