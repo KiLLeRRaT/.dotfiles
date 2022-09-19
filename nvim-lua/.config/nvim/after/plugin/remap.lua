@@ -1,0 +1,3 @@
+-- print("after file")
+-- vim.keymap.set('n', "[x", "[xzz", { noremap = false })
+-- vim.keymap.set('n', "]x", "]xzz", { noremap = false })

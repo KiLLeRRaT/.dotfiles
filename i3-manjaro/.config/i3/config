@@ -6,6 +6,7 @@ set $mod Mod1
 
 # MAKE CAPSLOCK A CTRL KEY
 exec setxkbmap -option ctrl:nocaps
+exec xinput set-prop 12 "libinput Scroll Method Enabled" 0, 0, 1
 
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
@@ -129,7 +130,7 @@ bindsym $mod+v split h;exec notify-send 'tile horizontally'
 bindsym $mod+Shift+v split v;exec notify-send 'tile vertically'
 #bindsym $mod+h split h;exec notify-send 'tile horizontally'
 #bindsym $mod+v split v;exec notify-send 'tile vertically'
-bindsym $mod+q split toggle
+bindsym $mod+Ctrl+q split toggle;exec notify-send 'tile toggle'
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
