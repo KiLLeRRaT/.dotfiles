@@ -80,6 +80,7 @@ local function packer_spec()
 	use { 'tpope/vim-fugitive' }																			-- https://github.com/tpope/vim-fugitive
 	use { 'tpope/vim-abolish' }																				-- https://github.com/tpope/vim-abolish
 	use { 'tpope/vim-unimpaired' }																		-- https://github.com/tpope/vim-unimpaired
+	use { 'tpope/vim-obsession' }																		-- https://github.com/tpope/vim-obsession
 	use { 'simeji/winresizer' }																				-- https://github.com/simeji/winresizer
 	-- DOES NOT SUPPORT A COUNT YET! ARGH
 	-- use { 'b3nj5m1n/kommentary' }																	-- https://github.com/b3nj5m1n/kommentary
