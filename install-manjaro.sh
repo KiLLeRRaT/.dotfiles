@@ -61,6 +61,9 @@ installApp redshift
 installApp signal-desktop
 installApp timeshift-autosnap-manjaro
 installApp flameshot
+installApp docker
+installApp docker-compose
+installApp docker-scan
 
 # REMOTE DESKTOP APP
 installApp remmina
