@@ -484,3 +484,20 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
+
+
+
+
+
+# RESTORE LAYOUTS
+exec --no-startup-id "i3-msg 'workspace 1; append_layout /home/gunther/.i3/ws-1.json'"
+exec --no-startup-id "i3-msg 'workspace 2; append_layout /home/gunther/.i3/ws-2.json'"
+exec --no-startup-id "i3-msg 'workspace 3; append_layout /home/gunther/.i3/ws-3.json'"
+exec --no-startup-id "i3-msg 'workspace 4; append_layout /home/gunther/.i3/ws-4.json'"
+exec --no-startup-id "i3-msg 'workspace 5; append_layout /home/gunther/.i3/ws-5.json'"
+exec --no-startup-id "i3-msg 'workspace 6; append_layout /home/gunther/.i3/ws-6.json'"
+exec --no-startup-id "i3-msg 'workspace 7; append_layout /home/gunther/.i3/ws-7.json'"
+exec --no-startup-id "i3-msg 'workspace 8; append_layout /home/gunther/.i3/ws-8.json'"
+exec --no-startup-id "i3-msg 'workspace 9; append_layout /home/gunther/.i3/ws-9.json'"
+

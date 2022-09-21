@@ -69,6 +69,7 @@ installApp docker-compose
 installApp docker-scan
 installApp playerctl "Control audio player using commandline/keyboard"
 installApp remmina "Remote desktop client"
+installApp perl-anyevent-i3 "Dependency for i3-save-tree utility"
 
 buildApp xrdp
 buildApp rslsync
