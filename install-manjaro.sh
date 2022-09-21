@@ -24,7 +24,8 @@ echo -e "\033[32m Installing software\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 
 function installApp() {
-	read -k 1 -r "install?Install $1? (y/n) "
+	[ -n "$2" ] && desc=" ($2)" || desc=""
+	read -k 1 -r "install?Install $1$desc? (y/n) "
 	echo -e ""
 	if [[ $install =~ ^[Yy]$ ]]
 	then
@@ -34,7 +35,8 @@ function installApp() {
 }
 
 function buildApp() {
-	read -k 1 -r "build?Install $1? (y/n) "
+	[ -n "$2" ] && desc=" ($2)" || desc=""
+	read -k 1 -r "build?Install $1 $1$desc? (y/n) "
 	echo -e ""
 	if [[ $build =~ ^[Yy]$ ]]
 	then
@@ -56,28 +58,25 @@ pamac install --no-confirm tmux
 pamac install --no-confirm btop
 pamac install --no-confirm unzip
 
+
 installApp brave-browser
-installApp redshift
+installApp redshift "Nightlight, Fluxx alternative"
 installApp signal-desktop
 installApp timeshift-autosnap-manjaro
-installApp flameshot
+installApp flameshot "Screenshot utility"
 installApp docker
 installApp docker-compose
 installApp docker-scan
-
-# REMOTE DESKTOP APP
-installApp remmina
+installApp playerctl "Control audio player using commandline/keyboard"
+installApp remmina "Remote desktop client"
 
 buildApp xrdp
 buildApp rslsync
-buildApp azuredatastudio-bin
+buildApp azuredatastudio-bin "SQL Server client"
 
-# FORTIGATE VPN CLINET, FORTICLIENT
 # buildApp forticlient-vpn
-buildApp openfortivpn
-
-# CITRIX WORKSPACE APP/CITRIX RECEIVER
-buildApp icaclient
+buildApp openfortivpn "Fortigate VPN client"
+buildApp icaclient "Citrix workspace app/Citrix receiver"
 
 # --------------------------------------------------
 # SNAP PACKAGES
