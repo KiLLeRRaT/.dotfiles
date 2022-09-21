@@ -18,3 +18,4 @@
 	directory = ~/GBox/Notes
 [core]
 	excludesfile = /home/gunther/.gitignore
+	autocrlf = input
