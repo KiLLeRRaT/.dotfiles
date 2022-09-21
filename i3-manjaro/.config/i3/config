@@ -59,6 +59,9 @@ bindsym $mod+Ctrl+m exec pavucontrol
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
+# FROM: https://forum.manjaro.org/t/help-with-i3-fn-media-keys-not-working/36050/3
+bindsym XF86AudioPlay exec "playerctl play-pause; notify-send 'play/pause'"
+
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 # bindsym $mod+F2 exec palemoon
