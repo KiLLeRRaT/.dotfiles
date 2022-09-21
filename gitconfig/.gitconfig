@@ -12,3 +12,9 @@
 [mergetool "nvim"]
 	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 	; trustExitCode = true
+[safe]
+	directory = ~/GBox/Applications/Tools/Scripts/Git
+	directory = ~/GBox/Applications/Tools/Scripts/Bash
+	directory = ~/GBox/Notes
+[core]
+	excludesfile = /home/gunther/.gitignore
