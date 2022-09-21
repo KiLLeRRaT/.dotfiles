@@ -61,6 +61,7 @@ bindsym $mod+Ctrl+m exec pavucontrol
 
 # FROM: https://forum.manjaro.org/t/help-with-i3-fn-media-keys-not-working/36050/3
 bindsym XF86AudioPlay exec "playerctl play-pause; notify-send 'play/pause'"
+bindsym XF86Calculator exec alacritty -e dc
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
