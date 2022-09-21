@@ -170,7 +170,7 @@ bindsym $mod+Ctrl+Left workspace prev
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
-#                 set $ws2 2:
+#									set $ws2 2:
 set $ws1 1
 set $ws2 2
 set $ws3 3
@@ -289,17 +289,17 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+0 mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+		bindsym l exec --no-startup-id i3exit lock, mode "default"
+		bindsym s exec --no-startup-id i3exit suspend, mode "default"
+		# bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+		bindsym e exec --no-startup-id i3exit logout, mode "default"
+		# bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+		bindsym r exec --no-startup-id i3exit reboot, mode "default"
+		bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
-    # exit system mode: "Enter" or "Escape"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+		# exit system mode: "Enter" or "Escape"
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
 }
 
 # setup redshift
@@ -310,30 +310,30 @@ exec --no-startup-id redshift -l -37.793342:175.134606 -t 6500:4000 -g 0.8 -m ra
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        #bindsym j resize shrink width 5 px or 5 ppt
-        #bindsym k resize grow height 5 px or 5 ppt
-        #bindsym l resize shrink height 5 px or 5 ppt
-        #bindsym semicolon resize grow width 5 px or 5 ppt
+				# These bindings trigger as soon as you enter the resize mode
+				# Pressing left will shrink the window’s width.
+				# Pressing right will grow the window’s width.
+				# Pressing up will shrink the window’s height.
+				# Pressing down will grow the window’s height.
+				#bindsym j resize shrink width 5 px or 5 ppt
+				#bindsym k resize grow height 5 px or 5 ppt
+				#bindsym l resize shrink height 5 px or 5 ppt
+				#bindsym semicolon resize grow width 5 px or 5 ppt
 
-        bindsym h resize shrink width 5 px or 5 ppt
-        bindsym j resize grow height 5 px or 5 ppt
-        bindsym k resize shrink height 5 px or 5 ppt
-        bindsym l resize grow width 5 px or 5 ppt
+				bindsym h resize shrink width 5 px or 5 ppt
+				bindsym j resize grow height 5 px or 5 ppt
+				bindsym k resize shrink height 5 px or 5 ppt
+				bindsym l resize grow width 5 px or 5 ppt
 
-        # same bindings, but for the arrow keys
-        #bindsym Left resize shrink width 10 px or 10 ppt
-        #bindsym Down resize grow height 10 px or 10 ppt
-        #bindsym Up resize shrink height 10 px or 10 ppt
-        #bindsym Right resize grow width 10 px or 10 ppt
+				# same bindings, but for the arrow keys
+				#bindsym Left resize shrink width 10 px or 10 ppt
+				#bindsym Down resize grow height 10 px or 10 ppt
+				#bindsym Up resize shrink height 10 px or 10 ppt
+				#bindsym Right resize grow width 10 px or 10 ppt
 
-        # exit resize mode: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+				# exit resize mode: Enter or Escape
+				bindsym Return mode "default"
+				bindsym Escape mode "default"
 }
 
 # Lock screen
@@ -369,22 +369,22 @@ exec_always --no-startup-id fix_xcursor
 # Same logic applied to everything else.
 set_from_resource $term_background background
 set_from_resource $term_foreground foreground
-set_from_resource $term_color0     color0
-set_from_resource $term_color1     color1
-set_from_resource $term_color2     color2
-set_from_resource $term_color3     color3
-set_from_resource $term_color4     color4
-set_from_resource $term_color5     color5
-set_from_resource $term_color6     color6
-set_from_resource $term_color7     color7
-set_from_resource $term_color8     color8
-set_from_resource $term_color9     color9
-set_from_resource $term_color10    color10
-set_from_resource $term_color11    color11
-set_from_resource $term_color12    color12
-set_from_resource $term_color13    color13
-set_from_resource $term_color14    color14
-set_from_resource $term_color15    color15
+set_from_resource $term_color0		 color0
+set_from_resource $term_color1		 color1
+set_from_resource $term_color2		 color2
+set_from_resource $term_color3		 color3
+set_from_resource $term_color4		 color4
+set_from_resource $term_color5		 color5
+set_from_resource $term_color6		 color6
+set_from_resource $term_color7		 color7
+set_from_resource $term_color8		 color8
+set_from_resource $term_color9		 color9
+set_from_resource $term_color10		 color10
+set_from_resource $term_color11		 color11
+set_from_resource $term_color12		 color12
+set_from_resource $term_color13		 color13
+set_from_resource $term_color14		 color14
+set_from_resource $term_color15		 color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
@@ -398,35 +398,35 @@ bar {
 
 	bindsym button4 nop
 	bindsym button5 nop
-#   font xft:URWGothic-Book 11
+#		font xft:URWGothic-Book 11
 	strip_workspace_numbers yes
 
-    colors {
-        background #222D31
-        statusline #F9FAF9
-        separator  #454947
+		colors {
+				background #222D31
+				statusline #F9FAF9
+				separator  #454947
 
-#                      border  backgr. text
-        focused_workspace  #F9FAF9 #16a085 #292F34
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #222D31 #EEE8D5
-        binding_mode       #16a085 #2C2C2C #F9FAF9
-        urgent_workspace   #16a085 #FDF6E3 #E5201D
-    }
+#											 border  backgr. text
+				focused_workspace  #F9FAF9 #16a085 #292F34
+				active_workspace	 #595B5B #353836 #FDF6E3
+				inactive_workspace #595B5B #222D31 #EEE8D5
+				binding_mode			 #16a085 #2C2C2C #F9FAF9
+				urgent_workspace	 #16a085 #FDF6E3 #E5201D
+		}
 }
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
 
 # Theme colors
-# class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #556064 #80FFF9 #FDF6E3
-  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-  client.placeholder      #000000 #0c0c0c #ffffff #000000 
+# class										border	backgr. text		indic.	 child_border
+	client.focused					#556064 #556064 #80FFF9 #FDF6E3
+	client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
+	client.unfocused				#2F3D44 #2F3D44 #1ABC9C #454948
+	client.urgent						#CB4B16 #FDF6E3 #1ABC9C #268BD2
+	client.placeholder			#000000 #0c0c0c #ffffff #000000 
 
-  client.background       #2B2C2B
+	client.background				#2B2C2B
 
 #############################
 ### settings for i3-gaps: ###
@@ -455,49 +455,45 @@ set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
 bindsym $mod+Shift+g mode "$mode_gaps"
 
 mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+				bindsym o			 mode "$mode_gaps_outer"
+				bindsym i			 mode "$mode_gaps_inner"
+				bindsym Return mode "default"
+				bindsym Escape mode "default"
 }
 mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
+				bindsym plus	gaps inner current plus 5
+				bindsym minus gaps inner current minus 5
+				bindsym 0			gaps inner current set 0
 
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
+				bindsym Shift+plus	gaps inner all plus 5
+				bindsym Shift+minus gaps inner all minus 5
+				bindsym Shift+0			gaps inner all set 0
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym Escape mode "default"
 }
 mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
+				bindsym plus	gaps outer current plus 5
+				bindsym minus gaps outer current minus 5
+				bindsym 0			gaps outer current set 0
 
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
+				bindsym Shift+plus	gaps outer all plus 5
+				bindsym Shift+minus gaps outer all minus 5
+				bindsym Shift+0			gaps outer all set 0
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+				bindsym Return mode "default"
+				bindsym Escape mode "default"
 }
-
-
-
-
 
 
 # RESTORE LAYOUTS
-exec --no-startup-id "i3-msg 'workspace 1; append_layout /home/gunther/.i3/ws-1.json'"
-exec --no-startup-id "i3-msg 'workspace 2; append_layout /home/gunther/.i3/ws-2.json'"
-exec --no-startup-id "i3-msg 'workspace 3; append_layout /home/gunther/.i3/ws-3.json'"
-exec --no-startup-id "i3-msg 'workspace 4; append_layout /home/gunther/.i3/ws-4.json'"
-exec --no-startup-id "i3-msg 'workspace 5; append_layout /home/gunther/.i3/ws-5.json'"
-exec --no-startup-id "i3-msg 'workspace 6; append_layout /home/gunther/.i3/ws-6.json'"
-exec --no-startup-id "i3-msg 'workspace 7; append_layout /home/gunther/.i3/ws-7.json'"
-exec --no-startup-id "i3-msg 'workspace 8; append_layout /home/gunther/.i3/ws-8.json'"
-exec --no-startup-id "i3-msg 'workspace 9; append_layout /home/gunther/.i3/ws-9.json'"
+exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.config/i3/workspaces/ws-1.json'"
+exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/workspaces/ws-2.json'"
+exec --no-startup-id "i3-msg 'workspace 3; append_layout ~/.config/i3/workspaces/ws-3.json'"
+exec --no-startup-id "i3-msg 'workspace 4; append_layout ~/.config/i3/workspaces/ws-4.json'"
+exec --no-startup-id "i3-msg 'workspace 5; append_layout ~/.config/i3/workspaces/ws-5.json'"
+exec --no-startup-id "i3-msg 'workspace 6; append_layout ~/.config/i3/workspaces/ws-6.json'"
+exec --no-startup-id "i3-msg 'workspace 7; append_layout ~/.config/i3/workspaces/ws-7.json'"
+exec --no-startup-id "i3-msg 'workspace 8; append_layout ~/.config/i3/workspaces/ws-8.json'"
+exec --no-startup-id "i3-msg 'workspace 9; append_layout ~/.config/i3/workspaces/ws-9.json'"
 
