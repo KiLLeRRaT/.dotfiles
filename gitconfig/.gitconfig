@@ -17,5 +17,5 @@
 	directory = ~/GBox/Applications/Tools/Scripts/Bash
 	directory = ~/GBox/Notes
 [core]
-	excludesfile = /home/gunther/.gitignore
 	autocrlf = input
+	excludesFile = ~/.gitignore
