@@ -3,7 +3,8 @@
     // stacked split container with 2 children
     "border": "pixel",
     "floating": "auto_off",
-    "layout": "stacked",
+    //"layout": "stacked",
+    "layout": "tabbed",
     "marks": [],
     "percent": null,
     "type": "con",
