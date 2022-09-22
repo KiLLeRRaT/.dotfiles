@@ -70,6 +70,8 @@ installApp docker-scan
 installApp playerctl "Control audio player using commandline/keyboard"
 installApp remmina "Remote desktop client"
 installApp perl-anyevent-i3 "Dependency for i3-save-tree utility"
+installApp python-pip
+installApp aws-cli
 
 buildApp xrdp
 buildApp rslsync
