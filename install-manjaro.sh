@@ -72,6 +72,7 @@ installApp remmina "Remote desktop client"
 installApp perl-anyevent-i3 "Dependency for i3-save-tree utility"
 installApp python-pip
 installApp aws-cli
+installApp dnsutils "nsllookup"
 
 buildApp xrdp
 buildApp rslsync
