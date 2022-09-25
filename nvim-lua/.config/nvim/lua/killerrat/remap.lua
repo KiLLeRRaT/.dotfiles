@@ -82,8 +82,9 @@ vim.keymap.set("n", "<C-F5>", ":execute 'source ' . stdpath('config') . '/init.l
 -- nnoremap <A-n> :e C:\GBox\Notes<cr>:cd C:\GBox\Notes<cr>
 
 -- " EDIT SCRIPTS FOLDER
-local scripts_path = "C:\\GBox\\Applications\\Tools\\Scripts"
-vim.keymap.set("n", "<A-s>", ":e " .. scripts_path .. "<cr>:cd " .. scripts_path .. "<cr>")
+-- local scripts_path = "C:\\GBox\\Applications\\Tools\\Scripts"
+local scripts_path = "~/GBox/Applications/Tools/Scripts"
+vim.keymap.set("n", "<leader><leader>s", ":e " .. scripts_path .. "<cr>:cd " .. scripts_path .. "<cr>")
 
 -- " BUILD SOLUTION
 -- nnoremap <leader>rb :!dotnet build *.sln
