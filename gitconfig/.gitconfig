@@ -16,6 +16,7 @@
 	directory = ~/GBox/Applications/Tools/Scripts/Git
 	directory = ~/GBox/Applications/Tools/Scripts/Bash
 	directory = ~/GBox/Notes
+	directory = /mnt/hotelalpha/config
 [core]
 	autocrlf = input
 	excludesFile = ~/.gitignore
