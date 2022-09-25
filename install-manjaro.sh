@@ -73,6 +73,9 @@ installApp perl-anyevent-i3 "Dependency for i3-save-tree utility"
 installApp python-pip
 installApp aws-cli
 installApp dnsutils "nsllookup"
+installApp bluez "Bluetooth protocol stack"
+installApp bluez-utils "Bluetooth utilities like bluetoothctl"
+installApp sshfs "Mount a remote disk over ssh"
 
 buildApp xrdp
 buildApp rslsync
@@ -254,6 +257,7 @@ popd
 # sudo mhwd -a pci nonfree 0300
 # sudo reboot
 # nvidia-settings
+# then enable composition pipeline, this helps with tearing (Not tried "Enable full composition pipeline" yet)
 
 
 # ----------------------------------------
@@ -297,5 +301,21 @@ popd
 # sudo chmod g+rw ~/GBox
 # sudo chmod g+rw ~/resilio-sync
 
+# ----------------------------------------
+# Bluetooth Setup
+# ----------------------------------------
+# https://wiki.archlinux.org/title/bluetoothctl
+# sudo systemctl enable bluetooth
+# sudo systemctl start bluetooth
+# sudo bluetoothctl
+# power on
+# default-agent
+# scan on
+# pair 00:F3:9F:79:68:4B
+# trust 00:F3:9F:79:68:4B
+# connect 00:F3:9F:79:68:4B
 
+# Add to /etc/pulse/default.pa
+### Automatically switch to newly-connected devices
+#load-module module-switch-on-connect
 
