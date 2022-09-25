@@ -60,6 +60,7 @@ bindsym $mod+Ctrl+m exec pavucontrol
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 # FROM: https://forum.manjaro.org/t/help-with-i3-fn-media-keys-not-working/36050/3
+# use a program called xev to find the keycodes for your keys
 bindsym XF86AudioPlay exec "playerctl play-pause; notify-send 'play/pause'"
 bindsym XF86Calculator exec alacritty -e dc
 
