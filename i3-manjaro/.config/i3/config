@@ -498,3 +498,10 @@ exec --no-startup-id "i3-msg 'workspace 7; append_layout ~/.config/i3/workspaces
 exec --no-startup-id "i3-msg 'workspace 8; append_layout ~/.config/i3/workspaces/ws-8.json'"
 exec --no-startup-id "i3-msg 'workspace 9; append_layout ~/.config/i3/workspaces/ws-9.json'"
 
+# AUTOSTART Applications
+exec --no-startup-id "brave --profile-directory=Default"
+exec --no-startup-id "brave --profile-directory=Profile\ 1"
+exec --no-startup-id "1password"
+exec --no-startup-id "spotify"
+exec --no-startup-id "google-chat-electron"
+exec --no-startup-id "alacritty"
