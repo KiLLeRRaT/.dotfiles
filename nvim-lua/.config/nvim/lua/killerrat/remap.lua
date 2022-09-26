@@ -61,6 +61,9 @@ for i, v in ipairs(all_modes) do
 	vim.keymap.set(v, "<C-z>", "<nop>")
 end
 
+-- SET + REGISTER TO JUST YANKED ITEM, THIS HELPS WHEN FORGETTING TO YANK TO SYSTEM CLIPBOARD
+vim.keymap.set("n", "\"++", ":let @+ = @0<cr>")
+
 -- " COPY CURRENT FILENAME OR FULL FILE PATH TO SYSTEM CLIPBOARD
 vim.cmd[[nnoremap <leader>cf :echo expand("%:t") \| :let @+ = expand("%:t")<cr>]]
 vim.cmd[[nnoremap <leader>cF :echo expand("%:p") \| :let @+ = expand("%:p")<cr>]]
