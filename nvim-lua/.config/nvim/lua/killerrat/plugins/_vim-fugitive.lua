@@ -6,6 +6,7 @@ end
 vim.keymap.set("n", "<leader>gs", ":Git<cr>")
 vim.keymap.set("n", "<leader>gS", ":Git pull<cr>:Git push<cr>")
 vim.keymap.set("n", "<leader>gp", ":Git push<cr>")
+vim.keymap.set("n", "<leader>gpp", ":Git push<cr>")
 vim.keymap.set("n", "<leader>gpt", ":Git push --tags<cr>")
 vim.keymap.set("n", "<leader>gP", ":Git push --force-with-lease<cr>")
 vim.keymap.set("n", "<leader>gf", ":Git fetch<cr>")
