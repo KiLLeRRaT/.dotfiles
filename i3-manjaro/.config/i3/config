@@ -63,7 +63,8 @@ bindsym $mod+Ctrl+m exec pavucontrol
 # use a program called xev to find the keycodes for your keys
 bindsym XF86AudioPlay exec "playerctl play-pause; notify-send 'play/pause'"
 
-bindsym XF86Calculator exec "alacritty --title 'calculator' --command dc"
+# LAUNCH DC WITH PRECISION OF 10 DP
+bindsym XF86Calculator exec alacritty --title 'calculator' --command /bin/zsh -c "dc -e '10 k' -"
 for_window [instance="Alacritty" title="calculator"] floating enable, resize set 400 600
 
 # Start Applications
