@@ -76,6 +76,7 @@ installApp dnsutils "nsllookup"
 installApp bluez "Bluetooth protocol stack"
 installApp bluez-utils "Bluetooth utilities like bluetoothctl"
 installApp sshfs "Mount a remote disk over ssh"
+installApp vifm
 
 buildApp xrdp
 buildApp rslsync
