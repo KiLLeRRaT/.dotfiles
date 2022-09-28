@@ -68,9 +68,11 @@ vim.keymap.set("n", "<leader>sf", ":lua require('killerrat.plugins._telescope-nv
 vim.keymap.set("n", "<leader>sg", ":lua require('killerrat.plugins._telescope-nvim').grep_scripts()<CR>")
 
 
+-- FOR NON TELESCOPE LSP MAPPINGS, SEE: nvim-lua/.config/nvim/lua/killerrat/remap.lua
 vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>")
 vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>")
 vim.keymap.set("n", "<leader>fd", ":Telescope diagnostics<CR>")
+-- FOR NON TELESCOPE LSP MAPPINGS, SEE: nvim-lua/.config/nvim/lua/killerrat/remap.lua
 
 
 
