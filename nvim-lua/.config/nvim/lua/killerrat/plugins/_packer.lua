@@ -80,7 +80,7 @@ local function packer_spec()
 	use { 'tpope/vim-fugitive' }																			-- https://github.com/tpope/vim-fugitive
 	use { 'tpope/vim-abolish' }																				-- https://github.com/tpope/vim-abolish
 	use { 'tpope/vim-unimpaired' }																		-- https://github.com/tpope/vim-unimpaired
-	use { 'tpope/vim-obsession' }																		-- https://github.com/tpope/vim-obsession
+	use { 'tpope/vim-obsession' }																			-- https://github.com/tpope/vim-obsession
 	use { 'simeji/winresizer' }																				-- https://github.com/simeji/winresizer
 	-- DOES NOT SUPPORT A COUNT YET! ARGH
 	-- use { 'b3nj5m1n/kommentary' }																	-- https://github.com/b3nj5m1n/kommentary
@@ -92,25 +92,23 @@ local function packer_spec()
 	use { 'nvim-lualine/lualine.nvim' }																-- https://github.com/nvim-lualine/lualine.nvim
 	use { 'akinsho/bufferline.nvim' }																	-- https://github.com/akinsho/bufferline.nvim
 	use { 'lewis6991/gitsigns.nvim' }																	-- https://github.com/lewis6991/gitsigns.nvim
-
 	use { 'vimwiki/vimwiki' }																					-- https://github.com/vimwiki/vimwiki
+	use { 'ryanoasis/vim-devicons' }																	-- https://github.com/ryanoasis/vim-devicons
+	-- Modify files right in the quick fix list
+	use { 'stefandtw/quickfix-reflector.vim' }												-- https://github.com/stefandtw/quickfix-reflector.vim
+	use { 'mechatroner/rainbow_csv' }																	-- https://github.com/mechatroner/rainbow_csv
+	use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+	use { 'uga-rosa/ccc.nvim' }																	-- https://github.com/uga-rosa/ccc.nvim
 
-	use { 'ryanoasis/vim-devicons' }														-- https://github.com/ryanoasis/vim-devicons
+
 
 	-- " Plug 'ThePrimeagen/vim-be-good'
 	-- " Plug 'https://github.com/tpope/vim-eunuch' " Vim sugar for the UNIX shell commands
-
-
 	-- Plug 'https://github.com/ap/vim-css-color'
 	-- Plug 'https://github.com/kyazdani42/nvim-web-devicons'
 	-- Plug 'https://github.com/neoclide/vim-jsx-improve'
 	-- Plug 'PhilRunninger/nerdtree-visual-selection'
 
-	-- Modify files right in the quick fix list
-	use { 'stefandtw/quickfix-reflector.vim' }											-- https://github.com/stefandtw/quickfix-reflector.vim
-
-	use { 'mechatroner/rainbow_csv' }																-- https://github.com/mechatroner/rainbow_csv
-	use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
 ----------------------------------------
 	-- COMPLETION AND SNIPPETS
