@@ -55,6 +55,35 @@ bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
+# bluez_card.00_F3_9F_79_68_4B
+# pacmd set-card-profile 3 off && sleep 0.5 && pacmd set-card-profile 3 a2dp_sink
+# pactl set-card-profile $(pactl list cards short | grep "bluez_card.00_F3_9F_79_68_4B" | cut -f 1) handsfree_head_unit
+# pactl set-card-profile $(pactl list cards short | grep "bluez_card.00_F3_9F_79_68_4B" | cut -f 1) off
+# pactl set-card-profile $(pactl list cards short | grep "bluez_card.00_F3_9F_79_68_4B" | cut -f 1) a2dp_sink
+
+# Set shut down, restart and locking features
+bindsym $mod+F11 mode "$mode_audioprofile"
+set $mode_audioprofile (a)2dp_sink, (o)off, (h)andsfree_head_unit
+mode "$mode_audioprofile" {
+		# bindsym a exec --no-startup-id pactl set-card-profile $(pactl list cards short | grep "bluez_card.00_F3_9F_79_68_4B" | cut -f 1) off; sleep 5; pactl set-card-profile $(pactl list cards short | grep "bluez_card.00_F3_9F_79_68_4B" | cut -f 1) a2dp_sink, mode "default"
+		# bindsym a exec --no-startup-id "zsh -c 'echo hi; sleep 2; echo bye'", mode "default"
+		bindsym a exec --no-startup-id "zsh -c 'pactl set-card-profile $(pactl list cards short | grep bluez_card.00_F3_9F_79_68_4B | cut -f 1) off; sleep 3; pactl set-card-profile $(pactl list cards short | grep bluez_card.00_F3_9F_79_68_4B | cut -f 1) a2dp_sink'", mode "default"
+		bindsym o exec --no-startup-id pactl set-card-profile $(pactl list cards short | grep "bluez_card.00_F3_9F_79_68_4B" | cut -f 1) off, mode "default"
+		bindsym h exec --no-startup-id pactl set-card-profile $(pactl list cards short | grep "bluez_card.00_F3_9F_79_68_4B" | cut -f 1) handsfree_head_unit, mode "default"
+
+		# exit system mode: "Enter" or "Escape"
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
+}
+
+
+
+
+
+
+
+
+
 # Screen brightness controls
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
@@ -223,7 +252,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 
 # Open applications on specific workspaces
-# YOU CAN FIND THE APPLICATION CLASS NAME USING xprop
+# YOU CAN FIND THE APPLICATION NAME CLASS NAME USING xprop
 # FROM: https://www.tuxtips.info/linux/how-to-find-applications-window-class-in-i3-window-manager
 
 # assign [class="Thunderbird"] $ws1
@@ -408,6 +437,63 @@ bar {
 	bindsym button5 nop
 #		font xft:URWGothic-Book 11
 	strip_workspace_numbers yes
+
+
+
+
+# FROM: https://github.com/folke/tokyonight.nvim/blob/main/lua/tokyonight/colors.lua
+# M.default = {
+#   none = "NONE",
+#   bg_dark = "#1f2335",
+#   bg = "#24283b",
+#   bg_highlight = "#292e42",
+#   terminal_black = "#414868",
+#   fg = "#c0caf5",
+#   fg_dark = "#a9b1d6",
+#   fg_gutter = "#3b4261",
+#   dark3 = "#545c7e",
+#   comment = "#565f89",
+#   dark5 = "#737aa2",
+#   blue0 = "#3d59a1",
+#   blue = "#7aa2f7",
+#   cyan = "#7dcfff",
+#   blue1 = "#2ac3de",
+#   blue2 = "#0db9d7",
+#   blue5 = "#89ddff",
+#   blue6 = "#b4f9f8",
+#   blue7 = "#394b70",
+#   magenta = "#bb9af7",
+#   magenta2 = "#ff007c",
+#   purple = "#9d7cd8",
+#   orange = "#ff9e64",
+#   yellow = "#e0af68",
+#   green = "#9ece6a",
+#   green1 = "#73daca",
+#   green2 = "#41a6b5",
+#   teal = "#1abc9c",
+#   red = "#f7768e",
+#   red1 = "#db4b4b",
+#   git = { change = "#6183bb", add = "#449dab", delete = "#914c54" },
+#   gitSigns = {
+#     add = "#266d6a",
+#     change = "#536c9e",
+#     delete = "#b2555b",
+#   },
+# }
+
+# M.night = {
+#   bg = "#1a1b26",
+#   bg_dark = "#16161e",
+# }
+
+
+
+
+
+
+
+
+
 
 		colors {
 				background #222D31
