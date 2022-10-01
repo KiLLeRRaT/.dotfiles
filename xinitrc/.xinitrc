@@ -63,4 +63,10 @@ get_session(){
 	echo "dbus-launch ${dbus_args[*]}"
 }
 
+
+# RUN SED SCRIPT TO STRIP HOST SPECIFIC PARTS FROM i3 CONFIG FILE
+pushd ~/.config/i3-manjaro
+./stripHostSpecificConfig.sed config.allHosts > config
+popd
+
 exec $(get_session "$1")
