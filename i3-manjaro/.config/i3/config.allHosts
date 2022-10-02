@@ -6,6 +6,7 @@ set $mod Mod1
 
 # MAKE CAPSLOCK A CTRL KEY
 exec setxkbmap -option ctrl:nocaps
+exec setxkbmap -option "terminate:ctrl_alt_bksp"
 exec xinput set-prop 12 "libinput Scroll Method Enabled" 0, 0, 1
 
 # set default desktop layout (default is tiling)
@@ -605,9 +606,10 @@ exec --no-startup-id "i3-msg 'workspace 8; append_layout ~/.config/i3/workspaces
 exec --no-startup-id "i3-msg 'workspace 9; append_layout ~/.config/i3/workspaces/ws-9.json'"
 
 # DELETE RANGE USING SED, FROM: https://stackoverflow.com/a/29530617/182888
-# /# <hostSpecificConfig>/,/# <\/hostSpecificConfig>/{/# <config hostname="ganderson">/,/# <\/config>/!d}
-
 # <hostSpecificConfig>
+# <config hostname="agouws">
+# hello world
+# </config>
 # <config hostname="ganderson">
 exec --no-startup-id "brave --profile-directory=Default"
 exec --no-startup-id "brave --profile-directory=Profile\ 1"

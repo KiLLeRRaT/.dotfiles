@@ -3,3 +3,4 @@ nvim/.config/nvim/plugged/
 glazewm/.glaze-wm/errors.log
 **/packer_compiled.lua
 **/generated/*
+i3-manjaro/.config/i3/config
