@@ -4,9 +4,8 @@
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod1
 
-# MAKE CAPSLOCK A CTRL KEY
-exec setxkbmap -option ctrl:nocaps
-exec setxkbmap -option "terminate:ctrl_alt_bksp"
+# MAKE CAPSLOCK A CTRL KEY, AND TERMINATE X WITH CTRL+ALT+BACKSPACE
+exec setxkbmap -option ctrl:nocaps -option "terminate:ctrl_alt_bksp"
 exec xinput set-prop 12 "libinput Scroll Method Enabled" 0, 0, 1
 
 # set default desktop layout (default is tiling)
@@ -600,6 +599,24 @@ mode "$mode_gaps_outer" {
 }
 
 
+# # RESTORE LAYOUTS
+# exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.config/i3/workspaces/ws-1.json'"
+# exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/workspaces/ws-2.json'"
+# exec --no-startup-id "i3-msg 'workspace 3; append_layout ~/.config/i3/workspaces/ws-3.json'"
+# exec --no-startup-id "i3-msg 'workspace 4; append_layout ~/.config/i3/workspaces/ws-4.json'"
+# exec --no-startup-id "i3-msg 'workspace 5; append_layout ~/.config/i3/workspaces/ws-5.json'"
+# exec --no-startup-id "i3-msg 'workspace 6; append_layout ~/.config/i3/workspaces/ws-6.json'"
+# exec --no-startup-id "i3-msg 'workspace 7; append_layout ~/.config/i3/workspaces/ws-7.json'"
+# exec --no-startup-id "i3-msg 'workspace 8; append_layout ~/.config/i3/workspaces/ws-8.json'"
+# exec --no-startup-id "i3-msg 'workspace 9; append_layout ~/.config/i3/workspaces/ws-9.json'"
+
+# DELETE RANGE USING SED, FROM: https://stackoverflow.com/a/29530617/182888
+# <hostSpecificConfig>
+# <config hostname="agouws">
+# hello world
+# </config>
+# <config hostname="ganderson">
+# GANDERSON CONFIG
 # RESTORE LAYOUTS
 exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.config/i3/workspaces/ws-1.json'"
 exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/workspaces/ws-2.json'"
@@ -611,12 +628,6 @@ exec --no-startup-id "i3-msg 'workspace 7; append_layout ~/.config/i3/workspaces
 exec --no-startup-id "i3-msg 'workspace 8; append_layout ~/.config/i3/workspaces/ws-8.json'"
 exec --no-startup-id "i3-msg 'workspace 9; append_layout ~/.config/i3/workspaces/ws-9.json'"
 
-# DELETE RANGE USING SED, FROM: https://stackoverflow.com/a/29530617/182888
-# <hostSpecificConfig>
-# <config hostname="agouws">
-# hello world
-# </config>
-# <config hostname="ganderson">
 exec --no-startup-id "brave --profile-directory=Default"
 exec --no-startup-id "brave --profile-directory=Profile\ 1"
 exec --no-startup-id "1password"
@@ -625,7 +636,9 @@ exec --no-startup-id "google-chat-electron"
 exec --no-startup-id "alacritty"
 # </config>
 # <config hostname="sierra"><!-- SONY VAIO LAPTOP -->
-# TEST SIERRA CONFIG ITEM
+# SIERRA CONFIG
+exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/workspaces/ws-2.json'"
+exec --no-startup-id "alacritty"
 # </config>
 # </hostSpecificConfig>
 
