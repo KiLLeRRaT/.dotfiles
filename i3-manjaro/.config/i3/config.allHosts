@@ -633,12 +633,12 @@ exec --no-startup-id "brave --profile-directory=Profile\ 1"
 exec --no-startup-id "1password"
 exec --no-startup-id "spotify"
 exec --no-startup-id "google-chat-electron"
-exec --no-startup-id "alacritty"
+exec --no-startup-id "alacritty -e tmux"
 # </config>
 # <config hostname="sierra"><!-- SONY VAIO LAPTOP -->
 # SIERRA CONFIG
 exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/workspaces/ws-2.json'"
-exec --no-startup-id "alacritty"
+exec --no-startup-id "alacritty -e tmux"
 # </config>
 # </hostSpecificConfig>
 
