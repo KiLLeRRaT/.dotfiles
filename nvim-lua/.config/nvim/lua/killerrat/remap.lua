@@ -167,6 +167,21 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 -- for gd, gr, see _telescope-nvim.lua
 
+
+vim.g.diagnostics_visible = true
+function _G.toggle_diagnostics()
+  if vim.g.diagnostics_visible then
+    vim.g.diagnostics_visible = false
+    vim.diagnostic.disable()
+  else
+    vim.g.diagnostics_visible = true
+    vim.diagnostic.enable()
+  end
+end
+vim.keymap.set("n", "<leader>G", ":call v:lua.toggle_diagnostics()<CR>")
+
+
+
 -- QUICK FIX LIST
 vim.keymap.set("n", "<c-q>", ":copen<cr>")
 vim.keymap.set("n", "<c-j>", ":cn<cr>")
