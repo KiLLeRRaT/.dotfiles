@@ -57,6 +57,7 @@ pamac install --no-confirm timeshift
 pamac install --no-confirm tmux
 pamac install --no-confirm btop
 pamac install --no-confirm unzip
+pamac install --no-confirm feh
 
 
 installApp brave-browser
