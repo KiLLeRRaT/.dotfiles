@@ -72,7 +72,7 @@ mode "$mode_audioprofile" {
 		bindsym h exec --no-startup-id pactl set-card-profile $(pactl list cards short | grep "bluez_card.00_F3_9F_79_68_4B" | cut -f 1) handsfree_head_unit, mode "default"
 		bindsym c exec --no-startup-id "notify-send 'Connecting AirPods'; bluetoothctl connect 00:F3:9F:79:68:4B && notify-send 'Connected AirPods'", mode "default"
 		bindsym d exec --no-startup-id "notify-send 'Disconnecting AirPods'; bluetoothctl disconnect 00:F3:9F:79:68:4B && notify-send 'Disconnected AirPods'", mode "default"
-		bindsym b exec --no-startup-id blueman-manager
+		bindsym b exec --no-startup-id blueman-manager, mode "default"
 
 		# exit system mode: "Enter" or "Escape"
 		bindsym Return mode "default"
