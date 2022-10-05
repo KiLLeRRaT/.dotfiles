@@ -61,44 +61,47 @@ local function packer_spec()
 ----------------------------------------
 	use { 'johnfrankmorgan/whitespace.nvim'	}
 
-	use { 'nvim-telescope/telescope.nvim' }														-- https://github.com/nvim-telescope/telescope.nvim
-	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }	-- https://github.com/nvim-telescope/telescope-fzf-native.nvim
-	use { 'nvim-telescope/telescope-live-grep-args.nvim' }						-- https://github.com/nvim-telescope/telescope-live-grep-args.nvim
+	use { 'nvim-telescope/telescope.nvim' }									-- https://github.com/nvim-telescope/telescope.nvim
+	use { 'nvim-telescope/telescope-fzf-native.nvim',
+		run = 'make' }																				-- https://github.com/nvim-telescope/telescope-fzf-native.nvim
+	use { 'nvim-telescope/telescope-live-grep-args.nvim' }	-- https://github.com/nvim-telescope/telescope-live-grep-args.nvim
 
-	use { 'preservim/nerdtree' }																			-- https://github.com/preservim/nerdtree
+	use { 'preservim/nerdtree' }														-- https://github.com/preservim/nerdtree
 	-- THIS DOESNT SEEM TO WORK, SIMILAR ERROR AS:
 	-- https://github.com/wbthomason/packer.nvim/issues/316 BUT NOT SURE HOW TO SORT IT OUT!
 	-- use { 'preservim/nerdtree',
 	-- 	opt = true, cmd = { 'NERDTree',  'NERDTreeFocus', 'NERDTreeToggle', 'NERDTreeFind'}
 	-- }																			-- https://github.com/preservim/nerdtree
 
-	use { 'ThePrimeagen/harpoon' }																		-- https://github.com/ThePrimeagen/harpoon
-	use { 'max397574/better-escape.nvim' }														-- https://github.com/max397574/better-escape.nvim
-	use { 'phaazon/hop.nvim' }																				-- https://github.com/phaazon/hop.nvim
-	use { 'dstein64/vim-startuptime' }																-- https://github.com/dstein64/vim-startuptime
-	use { 'kylechui/nvim-surround' }																	-- https://github.com/kylechui/nvim-surround
-	use { 'tpope/vim-fugitive' }																			-- https://github.com/tpope/vim-fugitive
-	use { 'tpope/vim-abolish' }																				-- https://github.com/tpope/vim-abolish
-	use { 'tpope/vim-unimpaired' }																		-- https://github.com/tpope/vim-unimpaired
-	use { 'tpope/vim-obsession' }																			-- https://github.com/tpope/vim-obsession
-	use { 'simeji/winresizer' }																				-- https://github.com/simeji/winresizer
+	use { 'ThePrimeagen/harpoon' }													-- https://github.com/ThePrimeagen/harpoon
+	use { 'max397574/better-escape.nvim' }									-- https://github.com/max397574/better-escape.nvim
+	use { 'phaazon/hop.nvim' }															-- https://github.com/phaazon/hop.nvim
+	use { 'dstein64/vim-startuptime' }											-- https://github.com/dstein64/vim-startuptime
+	use { 'kylechui/nvim-surround' }												-- https://github.com/kylechui/nvim-surround
+	use { 'tpope/vim-fugitive' }														-- https://github.com/tpope/vim-fugitive
+	use { 'tpope/vim-abolish' }															-- https://github.com/tpope/vim-abolish
+	use { 'tpope/vim-unimpaired' }													-- https://github.com/tpope/vim-unimpaired
+	use { 'tpope/vim-obsession' }														-- https://github.com/tpope/vim-obsession
+	use { 'simeji/winresizer' }															-- https://github.com/simeji/winresizer
 	-- DOES NOT SUPPORT A COUNT YET! ARGH
-	-- use { 'b3nj5m1n/kommentary' }																	-- https://github.com/b3nj5m1n/kommentary
-	use { 'tpope/vim-commentary' }																		-- https://github.com/tpope/vim-commentary
-	use { 'gbprod/substitute.nvim' }																	-- https://github.com/gbprod/substitute.nvim
-	use { 'github/copilot.vim' }																			-- https://github.com/github/copilot.vim
+	-- use { 'b3nj5m1n/kommentary' }												-- https://github.com/b3nj5m1n/kommentary
+	use { 'tpope/vim-commentary' }													-- https://github.com/tpope/vim-commentary
+	use { 'gbprod/substitute.nvim' }												-- https://github.com/gbprod/substitute.nvim
+	use { 'github/copilot.vim' }														-- https://github.com/github/copilot.vim
 	-- " SWITCH TO OPPOSITE WORD, E.G. TRUE -> FALSE, etc.
-	use { 'AndrewRadev/switch.vim' }																	-- https://github.com/AndrewRadev/switch.vim
-	use { 'nvim-lualine/lualine.nvim' }																-- https://github.com/nvim-lualine/lualine.nvim
-	use { 'akinsho/bufferline.nvim' }																	-- https://github.com/akinsho/bufferline.nvim
-	use { 'lewis6991/gitsigns.nvim' }																	-- https://github.com/lewis6991/gitsigns.nvim
-	use { 'vimwiki/vimwiki' }																					-- https://github.com/vimwiki/vimwiki
-	use { 'ryanoasis/vim-devicons' }																	-- https://github.com/ryanoasis/vim-devicons
+	use { 'AndrewRadev/switch.vim' }												-- https://github.com/AndrewRadev/switch.vim
+	use { 'nvim-lualine/lualine.nvim' }											-- https://github.com/nvim-lualine/lualine.nvim
+	use { 'akinsho/bufferline.nvim' }												-- https://github.com/akinsho/bufferline.nvim
+	use { 'lewis6991/gitsigns.nvim' }												-- https://github.com/lewis6991/gitsigns.nvim
+	use { 'vimwiki/vimwiki' }																-- https://github.com/vimwiki/vimwiki
+	use { 'nvim-neorg/neorg' }															-- https://github.com/nvim-neorg/neorg
+	use { 'ryanoasis/vim-devicons' }												-- https://github.com/ryanoasis/vim-devicons
 	-- Modify files right in the quick fix list
-	use { 'stefandtw/quickfix-reflector.vim' }												-- https://github.com/stefandtw/quickfix-reflector.vim
-	use { 'mechatroner/rainbow_csv' }																	-- https://github.com/mechatroner/rainbow_csv
-	use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
-	use { 'uga-rosa/ccc.nvim' }																	-- https://github.com/uga-rosa/ccc.nvim
+	use { 'stefandtw/quickfix-reflector.vim' }							-- https://github.com/stefandtw/quickfix-reflector.vim
+	use { 'mechatroner/rainbow_csv' }												-- https://github.com/mechatroner/rainbow_csv
+	use { 'sindrets/diffview.nvim',
+		requires = 'nvim-lua/plenary.nvim' }									-- https://github.com/sindrets/diffview.nvim
+	use { 'uga-rosa/ccc.nvim' }															-- https://github.com/uga-rosa/ccc.nvim
 
 
 

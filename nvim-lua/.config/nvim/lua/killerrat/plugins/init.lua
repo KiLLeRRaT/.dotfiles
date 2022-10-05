@@ -26,4 +26,5 @@ require("killerrat.plugins._goto-preview")
 require("killerrat.plugins._nvim-treesitter-context")
 require("killerrat.plugins._tokyonight-nvim")
 require("killerrat.plugins._diffview-nvim")
+require("killerrat.plugins._neorg")
 

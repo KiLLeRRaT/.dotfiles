@@ -69,6 +69,7 @@ cmp.setup {
 		-- { name = 'vim-dadbod-completion' },
 		{ name = 'calc' },
 		{ name = 'emoji' },
+		{ name = 'neorg' },
 		-- { name = 'spell' },
 		-- { name = 'dictionary', keyword_length = 2 },
 	},
