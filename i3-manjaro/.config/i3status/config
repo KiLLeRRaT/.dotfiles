@@ -12,11 +12,11 @@
 # If the above line is not correctly displayed, fix your editor first!
 
 general {
-        colors = true
-        interval = 5
-        color_good = "#9d7cd8"
-        color_bad = "#9ece6a"
-        color_degraded = "#ff007c"
+				colors = true
+				interval = 5
+				color_good = "#9d7cd8"
+				color_bad = "#9ece6a"
+				color_degraded = "#ff007c"
 }
 
 # order += "ipv6"
@@ -31,51 +31,52 @@ order += "memory"
 order += "tztime local"
 
 cpu_usage {
-        format = "  %usage "
+				format = "  %usage "
 }
 
 # load {
-#         format = " load %1min "
-#         # max_threshold = 0.3
+#					format = " load %1min "
+#					# max_threshold = 0.3
 # }
 
 disk "/" {
-        # format = " hdd %avail "
-        format = " ⛁ %avail "
+				# format = " hdd %avail "
+				format = " ⛁ %avail "
 }
 
 ethernet _first_ {
 # if you use %speed, i3status requires root privileges
-        format_up = "  %ip %speed "
-        format_down = " no  "
+				format_up = "  %ip %speed "
+				format_down = " no  "
 }
 
 battery all {
-        # format = "%status %percentage %remaining %emptytime"
-        format = " %status %percentage"
-        format_down = "no "
-        last_full_capacity = true
-        integer_battery_capacity = true
-        # status_chr = ""
-        status_chr = "⚡"
-        # status_bat = "bat"
-        # status_bat = "☉"
-        status_bat = ""
-        # status_unk = "?"
-        status_unk = ""
-        # status_full = ""
-        status_full = "☻"
-        low_threshold = 15
-        threshold_type = time
+				# format = "%status %percentage %remaining %emptytime"
+				format = " %status %percentage"
+				format_down = "no "
+				last_full_capacity = true
+				integer_battery_capacity = true
+				# status_chr = ""
+				status_chr = "⚡"
+				# status_bat = "bat"
+				# status_bat = "☉"
+				status_bat = ""
+				# status_unk = "?"
+				status_unk = ""
+				# status_full = ""
+				status_full = "☻"
+				low_threshold = 15
+				threshold_type = time
 }
 
 memory {
-        format = " %used / %available"
-        threshold_degraded = "1G"
-        format_degraded = "MEMORY < %available"
+				format = " %used / %available"
+				threshold_degraded = "1G"
+				format_degraded = "MEMORY < %available"
 }
 
 tztime local {
-        # format = "%Y-%m-%d %H:%M:%S"
-        format = " %d %b %H:%M "
+				# https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/
+				# format = "%Y-%m-%d %H:%M:%S"
+				format = " %a %d %b %H:%M "
 }
