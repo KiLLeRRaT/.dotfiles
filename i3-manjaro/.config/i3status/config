@@ -78,5 +78,5 @@ memory {
 tztime local {
 				# https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/
 				# format = "%Y-%m-%d %H:%M:%S"
-				format = " %a %d %b %H:%M "
+				format = " %a %-d %b %H:%M "
 }
