@@ -109,7 +109,7 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=100000
 
-export EDITOR="/usr/bin/nvim"
+export EDITOR="/usr/local/bin/nvim"
 export VISUAL=$EDITOR
 
 # Compilation flags
@@ -156,6 +156,7 @@ alias glog='git logo'
 alias gb='git branch'
 alias gba='git branch --all'
 alias gco='git checkout'
+alias gm='git merge'
 
 alias nvim-lua='export XDG_CONFIG_HOME=${HOME}/.dotfiles/nvim-lua/.config; \
 	export XDG_DATA_HOME=${HOME}/.local-lua/share; \
@@ -165,6 +166,8 @@ alias nvim-lua='export XDG_CONFIG_HOME=${HOME}/.dotfiles/nvim-lua/.config; \
 fd-t() {
 fd -t f -g $1 --exec stat --printf='%Y\t%n\n' | sort -nr
 }
+
+alias nvim-t="fd-t | cut -f 2 | head -1 | xargs -d '\n' nvim"
 
 
 #set -o vi
