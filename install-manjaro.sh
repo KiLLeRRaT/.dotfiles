@@ -90,6 +90,7 @@ buildApp azuredatastudio-bin "SQL Server client"
 buildApp openfortivpn "Fortigate VPN client"
 buildApp icaclient "Citrix workspace app/Citrix receiver"
 buildApp powershell-bin
+buildApp winbox-xdg "Winbox, xdg compliant version"
 
 # --------------------------------------------------
 # SNAP PACKAGES
