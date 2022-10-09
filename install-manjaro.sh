@@ -78,8 +78,11 @@ installApp bluez "Bluetooth protocol stack"
 installApp bluez-utils "Bluetooth utilities like bluetoothctl"
 installApp sshfs "Mount a remote disk over ssh"
 installApp vifm
+installApp zathura "PDF Viewer (Application)"
+installApp zathura-pdf-poppler "PDF Support for zathura"
 
 buildApp xrdp
+buildApp xorgxrdp
 buildApp rslsync
 buildApp azuredatastudio-bin "SQL Server client"
 
