@@ -151,7 +151,7 @@ echo -e "Done"
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Running stow\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
-STOW_FOLDERS=bashrc,fonts,i3,inputrc,nvim,oh-my-posh,tmux,dosbox,gitconfig,zshrc,alacritty
+STOW_FOLDERS=alacritty,bashrc,dmenu,dosbox,fonts,gitconfig,i3-manjaro,inputrc,nvim-lua,oh-my-posh,tmux,zshrc
 pushd $USER_HOME/.dotfiles
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
@@ -169,30 +169,30 @@ popd
 echo -e "Done"
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Now install the VIM plugins\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo Installing Vim Plug
-curl -fLo $USER_HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-chown -R $SUDO_USER $USER_HOME/.local/share/nvim
-echo Running PlugInstall
-source $USER_HOME/.zshrc
-export XDG_CONFIG_HOME=$USER_HOME/.config
-export XDG_DATA_HOME=$USER_HOME/.local/share
-nvim -u $USER_HOME/.config/nvim/init.vim --headless +PlugInstall +qall
-chown -R $SUDO_USER $XDG_CONFIG_HOME
-chown -R $SUDO_USER $XDG_DATA_HOME
-echo -e "Done"
+# echo -e "\033[32m ----------------------------------------\033[0m"
+# echo -e "\033[32m Now install the VIM plugins\033[0m"
+# echo -e "\033[32m ----------------------------------------\033[0m"
+# echo Installing Vim Plug
+# curl -fLo $USER_HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+#       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# chown -R $SUDO_USER $USER_HOME/.local/share/nvim
+# echo Running PlugInstall
+# source $USER_HOME/.zshrc
+# export XDG_CONFIG_HOME=$USER_HOME/.config
+# export XDG_DATA_HOME=$USER_HOME/.local/share
+# nvim -u $USER_HOME/.config/nvim/init.vim --headless +PlugInstall +qall
+# chown -R $SUDO_USER $XDG_CONFIG_HOME
+# chown -R $SUDO_USER $XDG_DATA_HOME
+# echo -e "Done"
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Build fzf for use in Telescope\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
-pushd $USER_HOME/.local/share/nvim/plugged/telescope-fzf-native.nvim
-make
-popd
-echo -e "Done"
+# echo -e "\033[32m ----------------------------------------\033[0m"
+# echo -e "\033[32m Build fzf for use in Telescope\033[0m"
+# echo -e "\033[32m ----------------------------------------\033[0m"
+# pushd $USER_HOME/.local/share/nvim/plugged/telescope-fzf-native.nvim
+# make
+# popd
+# echo -e "Done"
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
