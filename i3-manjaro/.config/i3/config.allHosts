@@ -118,9 +118,32 @@ bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart du
 # bindsym Print exec --no-startup-id i3-scrot
 # bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 # bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-bindsym Print exec --no-startup-id "flameshot screen -p /mnt/c/Users/Albert/Desktop/Temp/ -c"
-bindsym Ctrl+Print exec --no-startup-id "flameshot gui"
+# bindsym Print exec --no-startup-id "flameshot screen -p /mnt/c/Users/Albert/Desktop/Temp/ -c"
 
+# -------------------------
+# FROM: https://github.com/flameshot-org/flameshot/issues/273#issuecomment-1165360717
+##!/bin/sh
+
+#if [ "$1" = "activewindow" ]; then
+#	# Get active window geometry
+#	eval $(xdotool getactivewindow getwindowgeometry --shell)
+#	REGION="${WIDTH}x${HEIGHT}+${X}+${Y}"
+#elif [ "$1" = "selectwindow" ]; then
+#	# Let the user select a window and get its geometry
+#	eval $(xdotool selectwindow getwindowgeometry --shell)
+#	REGION="${WIDTH}x${HEIGHT}+${X}+${Y}"
+#else
+#	# Get current screen
+#	SCREEN=$(xdotool get_desktop)
+#	REGION="screen${SCREEN}"
+#fi
+
+## Launch the screenshot gui
+# flameshot gui --region "$REGION"
+# -------------------------
+
+bindsym Print exec --no-startup-id "eval $(xdotool getactivewindow getwindowgeometry --shell);REGION=${WIDTH}x${HEIGHT}+${X}+${Y}; flameshot full --region $REGION -p /mnt/c/Users/Albert/Desktop/Temp/ -c"
+bindsym Ctrl+Print exec --no-startup-id "flameshot gui"
 
 #bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
