@@ -39,7 +39,8 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 get_session(){
-	local dbus_args=(--sh-syntax --exit-with-session)
+	# local dbus_args=(--sh-syntax --exit-with-session)
+	local dbus_args=(--sh-syntax)
 	case $1 in
 		awesome) dbus_args+=(awesome) ;;
 		bspwm) dbus_args+=(bspwm-session) ;;
@@ -70,4 +71,6 @@ rm config
 sed '/# <hostSpecificConfig>/,/# <\/hostSpecificConfig>/ {/# <config hostname="'$HOST'">/,/# <\/config>/!d}' config.allHosts > config
 popd
 
-exec $(get_session "$1")
+# exec $(get_session "$1")
+exec $(get_session "$DEFAULT_SESSION")
+
