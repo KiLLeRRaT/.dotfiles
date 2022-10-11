@@ -110,6 +110,7 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
 -- THIS HAS TO BE BEFORE ANY MAPPING FILES OTHERWISE THE MAPPINGS ARE BOUND TO WHAT THE LEADER WAS
 -- BEFORE THIS CHANGE!!!
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 
 

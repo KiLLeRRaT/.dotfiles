@@ -6,6 +6,7 @@ end
 require('neorg').setup {
 		load = {
 				["core.defaults"] = {},
+				["core.integrations.telescope"] = {},
 				["core.norg.dirman"] = {
 						config = {
 								workspaces = {
@@ -15,26 +16,20 @@ require('neorg').setup {
 						}
 				},
 				["core.norg.concealer"] = {
-					 config = { -- Note that this table is optional and doesn't need to be provided
-							 -- Configuration here
-					 }
+					 config = {}
 				},
 				["core.gtd.base"] = { -- https://github.com/nvim-neorg/neorg/wiki/Getting-Things-Done
-					 config = { -- Note that this table is optional and doesn't need to be provided
-					 	workspace = "work"
-							 -- Configuration here
+					 config = {
+						workspace = "work"
 					 }
 				},
 				["core.norg.completion"] = { -- https://github.com/nvim-neorg/neorg/wiki/Completion
-					config = { -- Note that this table is optional and doesn't need to be provided
+					config = {
 						engine = "nvim-cmp"
-					-- Configuration here
 				},
 				-- NOT SURE IF I NEED THE BELOW WITH THE ABOVE CONFIGURED?
 				["core.integrations.nvim-cmp"] = { -- https://github.com/nvim-neorg/neorg/wiki/Nvim-Cmp
-					 config = { -- Note that this table is optional and doesn't need to be provided
-							 -- Configuration here
-					 }
+					 config = {}
 				},
 				["core.norg.dirman"] = { -- https://github.com/nvim-neorg/neorg/wiki/Dirman
 					config = {
@@ -45,7 +40,52 @@ require('neorg').setup {
 						autochdir = true, -- Automatically change the directory to the current workspace's root every time
 						index = "index.norg", -- The name of the main (root) .norg file
 					}
-				}
+				},
+				-- ["core.keybinds"] = { -- https://github.com/nvim-neorg/neorg/wiki/User-Keybinds
+				-- 		config = {
+				-- 				default_keybinds = false,
+				-- 		}
+				-- }
 			}
 		}
 }
+
+
+-- FROM : https://github.com/nvim-neorg/neorg-telescope
+local neorg_callbacks = require("neorg.callbacks")
+neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, keybinds)
+		-- Map all the below keybinds only when the "norg" mode is active
+		keybinds.map_event_to_mode("norg", {
+				n = {
+					-- { "<C-s>", "core.integrations.telescope.find_linkable" },
+					{ "<localleader>ff", "core.integrations.telescope.find_linkable" },
+				},
+
+				i = {
+					{ "<C-l>", "core.integrations.telescope.insert_link" },
+				},
+		}, {
+				silent = true,
+				noremap = true,
+		})
+end)
+
+
+-- FIND DEFAULT KEY BINDS HERE:
+-- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/keybinds.lua
+
+vim.keymap.set("n", "<leader>nw", "<cmd>Neorg workspace work<cr>")
+vim.keymap.set("n", "<localleader>nc", "<cmd>Neorg toggle-concealer<cr>")
+
+
+-- vim.api.nvim_create_autocmd("FileType", {
+--	pattern = "norg",
+--	callback = function()
+--		vim.schedule(function()
+--			vim.keymap.set("n", "<localleader>ff", ":lua vim.lsp.buf.hover()<cr>")
+--		end)
+--	end,
+--	group = vim.api.nvim_create_augroup("neorg.lua.telescope_find_linkable", { clear = true })
+-- })
+
+

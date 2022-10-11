@@ -94,7 +94,12 @@ local function packer_spec()
 	use { 'akinsho/bufferline.nvim' }												-- https://github.com/akinsho/bufferline.nvim
 	use { 'lewis6991/gitsigns.nvim' }												-- https://github.com/lewis6991/gitsigns.nvim
 	use { 'vimwiki/vimwiki' }																-- https://github.com/vimwiki/vimwiki
-	use { 'nvim-neorg/neorg' }															-- https://github.com/nvim-neorg/neorg
+
+	-- neorg related
+	use { 'nvim-neorg/neorg',
+		requires = 'nvim-neorg/neorg-telescope'  }						-- https://github.com/nvim-neorg/neorg
+	use { 'nvim-neorg/neorg-telescope'}											-- https://github.com/nvim-neorg/neorg-telescope
+
 	use { 'ryanoasis/vim-devicons' }												-- https://github.com/ryanoasis/vim-devicons
 	-- Modify files right in the quick fix list
 	use { 'stefandtw/quickfix-reflector.vim' }							-- https://github.com/stefandtw/quickfix-reflector.vim
