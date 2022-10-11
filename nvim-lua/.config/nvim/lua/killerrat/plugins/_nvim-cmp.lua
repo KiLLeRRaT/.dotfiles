@@ -72,6 +72,7 @@ cmp.setup {
 		{ name = 'neorg' },
 		-- { name = 'spell' },
 		-- { name = 'dictionary', keyword_length = 2 },
+		{ name = 'luasnip' },
 	},
 	snippet = {
 		expand = function(args)
