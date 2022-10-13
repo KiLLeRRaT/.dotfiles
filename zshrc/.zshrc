@@ -164,10 +164,28 @@ alias nvim-lua='export XDG_CONFIG_HOME=${HOME}/.dotfiles/nvim-lua/.config; \
 
 # find files matching the glob, then sort them by last modified
 fd-t() {
-fd -t f -g $1 --exec stat --printf='%Y\t%n\n' | sort -nr
+	fd -t f -g $1 --exec stat --printf='%Y\t%n\n' | sort -nr
 }
 
 alias nvim-t="fd-t | cut -f 2 | head -1 | xargs -d '\n' nvim"
+
+# LIST PATHS OF OTHER ZSH SHELLS I HAVE OPEN
+lssh() {
+	ps au \
+		| awk '$11 == "-zsh" || $11 == "/bin/zsh" { print $2 }' \
+		| xargs pwdx \
+		| awk '{ print $2 }' \
+		| sed -n "\|^${2}.*|p" \
+		| sort -u \
+		| nl
+}
+
+# CD TO SHELL NUMBER RETURNED BY LSSH
+cdsh() {
+	cd $(lssh \
+		| sed "$1!d" \
+		| cut -f 2)
+}
 
 
 #set -o vi
