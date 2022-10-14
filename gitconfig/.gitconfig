@@ -25,3 +25,7 @@
 	gpgsign = true
 [init]
 	defaultBranch = master
+[diff]
+	submodule = log
+[submodule]
+	recurse = true
