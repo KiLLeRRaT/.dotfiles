@@ -59,6 +59,7 @@ pamac install --no-confirm btop
 pamac install --no-confirm unzip
 pamac install --no-confirm feh
 pamac install --no-confirm neofetch
+pamac install --no-confirm zoxide
 
 
 installApp brave-browser

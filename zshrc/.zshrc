@@ -215,5 +215,6 @@ bindkey "\E[H" beginning-of-line
 bindkey "\E[F" end-of-line
 bindkey "\E[3~" delete-char
 
+eval "$(zoxide init zsh)"
 
 setopt GLOB_COMPLETE
