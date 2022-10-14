@@ -151,7 +151,11 @@ alias gpt='git push --tags'
 alias gP='git push --force-with-lease'
 alias ga='git add'
 alias gcam='git commit -am'
-alias gcm='git commit -m'
+
+setopt interactive_comments
+preexec(){ _lc=$1; }
+alias gcm='git commit -m "${_lc#gcm }" #'
+
 alias glog='git logo'
 alias gb='git branch'
 alias gba='git branch --all'
