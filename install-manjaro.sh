@@ -216,10 +216,16 @@ echo -e "Done"
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Change default shell to zsh\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 chsh -s /bin/zsh root
 chsh -s /bin/zsh albert
+echo -e "Done"
+
+echo -e "\033[32m Generate a host specific config file for i3\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+~/.dotfiles/i3-manjaro/.config/i3/generateHostConfig.sh
 echo -e "Done"
 
 popd
