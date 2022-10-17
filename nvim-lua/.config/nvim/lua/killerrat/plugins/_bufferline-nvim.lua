@@ -17,3 +17,7 @@ require'bufferline'.setup {
 		middle_mouse_command = "b %d | bp | sp | bn | bd"
 	}
 }
+
+vim.keymap.set("n", "gb", "<cmd>BufferLinePick<cr>")
+vim.keymap.set("n", "gB", "<cmd>BufferLinePickClose<cr>")
+
