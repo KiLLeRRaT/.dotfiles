@@ -166,6 +166,9 @@ alias nvim-lua='export XDG_CONFIG_HOME=${HOME}/.dotfiles/nvim-lua/.config; \
 	export XDG_DATA_HOME=${HOME}/.local-lua/share; \
 	nvim'
 
+atail() { tail -f ---disable-inotify "$@"; }
+alias atail-t='tail -f -n +1 ---disable-inotify $(ls -t | head -1)'
+
 # find files matching the glob, then sort them by last modified
 fd-t() {
 	fd -t f -g $1 --exec stat --printf='%Y\t%n\n' | sort -nr
