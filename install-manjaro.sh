@@ -30,18 +30,18 @@ function installApp() {
 	if [[ $install =~ ^[Yy]$ ]]
 	then
 		echo Installing $1
-		sudo pamac install --no-confirm $1
+		pamac install --no-confirm $1
 	fi
 }
 
 function buildApp() {
 	[ -n "$2" ] && desc=" ($2)" || desc=""
-	read -k 1 -r "build?Install $1 $1$desc? (y/n) "
+	read -k 1 -r "build?Install $1$desc? (y/n) "
 	echo -e ""
 	if [[ $build =~ ^[Yy]$ ]]
 	then
 		echo Installing $1
-		sudo pamac build --no-confirm $1
+		pamac build --no-confirm $1
 	fi
 }
 
@@ -82,6 +82,11 @@ installApp sshfs "Mount a remote disk over ssh"
 installApp vifm
 installApp zathura "PDF Viewer (Application)"
 installApp zathura-pdf-poppler "PDF Support for zathura"
+installApp libvirt "Virtualization framework"
+installApp qemu "QEMU emulator"
+installApp virt-manager "Virtualization manager"
+installApp virt-viewer "Virtualization viewer"
+
 
 buildApp xrdp
 buildApp xorgxrdp
@@ -93,6 +98,8 @@ buildApp openfortivpn "Fortigate VPN client"
 buildApp icaclient "Citrix workspace app/Citrix receiver"
 buildApp powershell-bin
 buildApp winbox-xdg "Winbox, xdg compliant version"
+buildApp virt-v2v "Convert virtual machines (vhd) to run on KVM"
+buildApp nbdkit "Network Block Device (NBD) server, needed by virt-v2v"
 
 # --------------------------------------------------
 # SNAP PACKAGES
