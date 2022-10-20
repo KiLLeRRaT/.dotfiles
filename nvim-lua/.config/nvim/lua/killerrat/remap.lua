@@ -58,9 +58,11 @@ end
 -- /REPLACE SELECTION WITH YANKED TEXT
 
 -- " DISABLE CTRL-Z IN WINDOWS SINCE IT FREEZES VIM!: https://github.com/neovim/neovim/issues/6660
-local all_modes = {"n", "i", "v", "s", "x", "c", "o"}
-for i, v in ipairs(all_modes) do
-	vim.keymap.set(v, "<C-z>", "<nop>")
+if vim.fn.has('win32') == 1 then
+	local all_modes = {"n", "i", "v", "s", "x", "c", "o"}
+	for i, v in ipairs(all_modes) do
+		vim.keymap.set(v, "<C-z>", "<nop>")
+	end
 end
 
 -- SET + REGISTER TO JUST YANKED ITEM, THIS HELPS WHEN FORGETTING TO YANK TO SYSTEM CLIPBOARD
