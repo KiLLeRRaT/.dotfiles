@@ -642,6 +642,7 @@ mode "$mode_gaps_outer" {
 # </config>
 # <config hostname="ganderson">
 # GANDERSON CONFIG
+exec --no-startup-id "nmcli con down enp42s0"
 # RESTORE LAYOUTS
 exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.config/i3/workspaces/ws-1.json'"
 exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/workspaces/ws-2.json'"
