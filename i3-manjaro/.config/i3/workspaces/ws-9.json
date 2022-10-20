@@ -56,30 +56,6 @@
 				}
 			],
 			"type": "con"
-		},
-		{
-			"border": "pixel",
-			"current_border_width": 1,
-			"floating": "auto_off",
-			"geometry": {
-				"height": 1413,
-				"width": 2560,
-				"x": 6410,
-				"y": 477
-			},
-			"marks": [],
-			"name": "KR",
-			"percent": 0.333333333333333,
-			"swallows": [
-				{
-					"class": "^Brave\\-browser$",
-					// "instance": "^brave\\-browser$",
-					// "machine": "^ganderson$",
-					"title": "^KR$"
-					// "window_role": "^browser$"
-				}
-			],
-			"type": "con"
 		}
 	]
 }
