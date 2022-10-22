@@ -34,12 +34,33 @@ disk "/" {
 				format = " ⛁ %avail "
 }
 
-# <config hostname="ganderson">
-order += "ethernet br0"
-ethernet br0 {
+# <config hostname="sierra"><!-- SONY VAIO LAPTOP -->
+# order += "ethernet _first_"
+order += "ethernet wlp2s0"
+order += "battery all"
+# ethernet _first_ {
+ethernet wlp2s0 {
 # if you use %speed, i3status requires root privileges
-				format_up = "  %ip %speed "
+				format_up = "  %ip "
 				format_down = " no  "
+}
+battery all {
+				# format = "%status %percentage %remaining %emptytime"
+				format = " %status %percentage"
+				format_down = "no "
+				last_full_capacity = true
+				integer_battery_capacity = true
+				# status_chr = ""
+				status_chr = "⚡"
+				# status_bat = "bat"
+				# status_bat = "☉"
+				status_bat = ""
+				# status_unk = "?"
+				status_unk = ""
+				# status_full = ""
+				status_full = "☻"
+				low_threshold = 15
+				threshold_type = time
 }
 # </config>
 
