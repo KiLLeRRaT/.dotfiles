@@ -60,6 +60,7 @@ pamac install --no-confirm unzip
 pamac install --no-confirm feh
 pamac install --no-confirm neofetch
 pamac install --no-confirm zoxide
+pamac install --no-confirm partitionmanager
 
 
 installApp brave-browser
@@ -86,6 +87,23 @@ installApp libvirt "Virtualization framework"
 installApp qemu "QEMU emulator"
 installApp virt-manager "Virtualization manager"
 installApp virt-viewer "Virtualization viewer"
+
+
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Install 1Password\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+read -k 1 -r "build?Install 1Password? (y/n) "
+echo -e ""
+if [[ $build =~ ^[Yy]$ ]]
+then
+	echo Installing 1Password
+	curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import && \
+	git clone https://aur.archlinux.org/1password.git && \
+	cd 1password && \
+	makepkg -si
+fi
+
+
 
 
 buildApp xrdp
