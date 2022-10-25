@@ -173,10 +173,10 @@ bindsym $mod+Ctrl+l focus right
 #bindsym $mod+Shift+l move up
 #bindsym $mod+Shift+semicolon move right
 
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Ctrl+Shift+h move left
+bindsym $mod+Ctrl+Shift+j move down
+bindsym $mod+Ctrl+Shift+k move up
+bindsym $mod+Ctrl+Shift+l move right
 
 # move entire workspace to another monitor
 bindsym $mod+Shift+Left move workspace to output left
