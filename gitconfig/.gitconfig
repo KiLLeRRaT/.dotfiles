@@ -18,6 +18,7 @@
 	directory = ~/GBox/Applications/Tools/Scripts/Bash
 	directory = ~/GBox/Notes
 	directory = /mnt/hotelalpha/config
+	directory = /home/gunther/GBox/Notes/Sandfield ISMS Policies
 [core]
 	autocrlf = input
 	excludesFile = ~/.gitignore
