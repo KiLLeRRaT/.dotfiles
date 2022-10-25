@@ -72,7 +72,10 @@ installApp docker
 installApp docker-compose
 installApp docker-scan
 installApp playerctl "Control audio player using commandline/keyboard"
+
 installApp remmina "Remote desktop client"
+# buildApp remmina-plugin-rdesktop "Remmina plugin for RDP" DO NOT INSTALL THIS!!!!!!
+
 installApp perl-anyevent-i3 "Dependency for i3-save-tree utility"
 installApp python-pip
 installApp aws-cli
@@ -107,7 +110,10 @@ fi
 
 
 buildApp xrdp
+
+gpg --keyserver keys.gnupg.net --recv-keys 61ECEABBF2BB40E3A35DF30A9F72CDBC01BF10EB
 buildApp xorgxrdp
+
 buildApp rslsync
 buildApp azuredatastudio-bin "SQL Server client"
 
@@ -127,6 +133,7 @@ buildApp nbdkit "Network Block Device (NBD) server, needed by virt-v2v"
 #ln -s /var/lib/snapd/snap /snap
 #echo -e "Done"
 # snap install google-chat-electron
+# snap install remmina
 
 # THIS DOESNT WORK
 # buildApp powershell
@@ -323,6 +330,18 @@ popd
 # redshift -l -37.793342:175.134606 -t 6500:4000 -g 0.8 -m randr -v
 # PLACE IN sudo nvim /etc/lightdm/Xsession
 
+
+# ----------------------------------------
+# DEFAULT BROWSER
+# ----------------------------------------
+# FROM: https://archived.forum.manjaro.org/t/how-can-i-change-the-default-browser-in-i3/60715
+# try edit the browser entry in
+# /home/$USER/.profile
+#
+# then find and replace all Pale Moon entries in
+# /home/$USER/.config/mimeapps.list
+
+
 # ----------------------------------------
 # RESILIO SYNC
 # ----------------------------------------
@@ -341,6 +360,17 @@ popd
 # sudo chmod g+rw ~/GBox
 # sudo chmod g+rw ~/resilio-sync
 
+# REVISED 26 Oct 2022
+# https://wiki.archlinux.org/title/Resilio_Sync
+# AFTER: buildApp rslsync
+# sudo systemctl enable rslsync
+# sudo systemctl start rslsync
+# sudo usermod -aG albert rslsync && \
+# sudo usermod -aG rslsync albert && \
+# sudo chmod g+rx ~
+# sudo chmod g+rw ~/GBox
+# sudo chmod g+rw ~/resilio-sync
+# LOGIN in http://localhost:8888 and set up username and password
 # ----------------------------------------
 # Bluetooth Setup
 # ----------------------------------------
