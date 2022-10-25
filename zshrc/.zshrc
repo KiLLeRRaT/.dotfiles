@@ -151,6 +151,8 @@ alias gpt='git push --tags'
 alias gP='git push --force-with-lease'
 alias ga='git add'
 alias gcam='git commit -am'
+alias gd='git diff'
+alias gw='git diff --word-diff'
 
 setopt interactive_comments
 preexec(){ _lc=$1; }
