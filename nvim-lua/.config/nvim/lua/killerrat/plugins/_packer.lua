@@ -162,7 +162,7 @@ local function packer_spec()
 	-- Plug 'https://github.com/nvim-telescope/telescope-dap.nvim'
 	-- Plug 'https://github.com/mfussenegger/nvim-dap'
 
-	-- Plug 'https://github.com/lambdalisue/suda.vim'
+	use { 'lambdalisue/suda.vim' }																		-- https://github.com/lambdalisue/suda.vim
 
 	-- " Open LSP goto defn in floating windows
 	-- call plug#end()

@@ -73,7 +73,9 @@ installApp docker-compose
 installApp docker-scan
 installApp playerctl "Control audio player using commandline/keyboard"
 
+installApp freerdp "RDP support for Remmina"
 installApp remmina "Remote desktop client"
+# https://wiki.archlinux.org/title/Remmina
 # buildApp remmina-plugin-rdesktop "Remmina plugin for RDP" DO NOT INSTALL THIS!!!!!!
 
 installApp perl-anyevent-i3 "Dependency for i3-save-tree utility"
@@ -133,7 +135,6 @@ buildApp nbdkit "Network Block Device (NBD) server, needed by virt-v2v"
 #ln -s /var/lib/snapd/snap /snap
 #echo -e "Done"
 # snap install google-chat-electron
-# snap install remmina
 
 # THIS DOESNT WORK
 # buildApp powershell
