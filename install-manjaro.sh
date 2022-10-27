@@ -84,6 +84,8 @@ installApp aws-cli
 installApp dnsutils "nsllookup"
 installApp bluez "Bluetooth protocol stack"
 installApp bluez-utils "Bluetooth utilities like bluetoothctl"
+installApp blueman "Bluetooth Manager"
+installApp pavucontrol "Pulseaudio mixer/volume control"
 installApp sshfs "Mount a remote disk over ssh"
 installApp vifm
 installApp zathura "PDF Viewer (Application)"
@@ -107,8 +109,6 @@ then
 	cd 1password && \
 	makepkg -si
 fi
-
-
 
 
 buildApp xrdp
@@ -135,6 +135,9 @@ buildApp nbdkit "Network Block Device (NBD) server, needed by virt-v2v"
 #ln -s /var/lib/snapd/snap /snap
 #echo -e "Done"
 # snap install google-chat-electron
+# snap install remmina
+# snap install spotify
+# snap install teams
 
 # THIS DOESNT WORK
 # buildApp powershell
@@ -249,58 +252,87 @@ echo -e "Done"
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Change default shell to zsh\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 chsh -s /bin/zsh root
 chsh -s /bin/zsh albert
 echo -e "Done"
 
+echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Generate a host specific config file for i3\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
-~/.dotfiles/i3-manjaro/.config/i3/generateHostConfig.sh
+pushd ~/.dotfiles/i3-manjaro/.config/i3/
+./generateHostConfig.sh
+popd
 echo -e "Done"
+
+
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Configure Mouse\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+# https://www.reddit.com/r/linux4noobs/comments/98kicg/set_mouse_speed_sensitivity_in_manjaro_i3/
+# https://wiki.archlinux.org/title/Libinput#Via_xinput
+# https://www.reddit.com/r/linux4noobs/comments/hnhehw/change_pointer_speed_in_manjaro/
+sudo mkdir -p /etc/X11/xorg.conf.d && sudo tee <<'EOF' /etc/X11/xorg.conf.d/35-mouse.conf 1> /dev/null
+Section "InputClass"
+	Identifier "My Mouse"
+	MatchIsPointer "yes"
+	Option "AccelerationProfile" "-1"
+	Option "AccelerationScheme" "none"
+	Option "AccelSpeed" "1"
+	Option "ScollMethodEnabled" "0, 0, 1"
+	Option "ScrollingPixelDistance" "30"
+EndSection
+EOF
+
+
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m KILL X USING CTRL+ALT+BACKSPACE\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+# https://unix.stackexchange.com/a/445
+# Modify /etc/X11/xorg.conf or a .conf file in /etc/X11/xorg.conf.d/ with the following.
+sudo mkdir -p /etc/X11/xorg.conf.d && sudo tee <<'EOF' /etc/X11/xorg.conf.d/10-terminate-using-ctrl-alt-bs.conf 1> /dev/null
+Section "ServerFlags"
+    Option "DontZap" "false"
+EndSection
+
+Section "InputClass"
+    Identifier      "Keyboard Defaults"
+    MatchIsKeyboard "yes"
+    Option          "XkbOptions" "terminate:ctrl_alt_bksp"
+EndSection
+EOF
+
+
+
 
 popd
 
+
+
+
+
 # NOTES
-
-# TO DO
- # - [x] Install timeshift
- # - [x] Create snapshot
- # - [x] Set up timeshift to create snapshots automatically when running updates
- # - [x] Run install-manjaro.sh
- # - [x] Setup ssh server
- # - [x] Install btop
- # - [x] Install NVidia drivers
- # - [x] Install .NET 6
- # - [x] Install Resilio sync
- # - [ ] Set up xrdp
-
 
 # ----------------------------------------
 # DISPLAY LAYOUT
 # ----------------------------------------
 ## Display layout
 # https://stackoverflow.com/questions/56618874/how-can-i-permanently-setting-the-screen-layout-arandr-in-manjaro-i3
-# 1. Open arandr
-# 2. Set your desired layout
-# 3. Export it
-# 4. sudo vim /etc/lightdm/Xsession
-# 5. Add the exported code *before* the last line
-# 6. Reboot
-
-# ----------------------------------------
-# Mouse sensitivity
-# ----------------------------------------
-# https://www.reddit.com/r/linux4noobs/comments/98kicg/set_mouse_speed_sensitivity_in_manjaro_i3/
-# https://wiki.archlinux.org/title/Libinput#Via_xinput
-# https://www.reddit.com/r/linux4noobs/comments/hnhehw/change_pointer_speed_in_manjaro/
+# 1. Use: xrandr --output DVI-D-0 --off --output HDMI-0 --mode 3840x2160 --pos 2560x0 --rotate normal --output DP-0 --mode 2560x1440 --pos 0x467 --rotate normal --output DP-1 --off --output HDMI-1 --mode 2560x1440 --pos 6400x467 --rotate normal
+# OR re-generate
+# 2. Open arandr
+# 3. Set your desired layout
+# 4. Export it (See: ~/.dotfiles/hosts/ganderson/arandr-layout.sh)
+# 5. sudo vim /etc/lightdm/Xsession
+# 6. Add the exported code *before* the last line
+# 7. Reboot
 
 
 # ----------------------------------------
 # NVIDIA DRIVERS
 # ----------------------------------------
+# LOOKS LIKE THIS COMES WITH THE PROPRIETY INSTALL OF MANJARO i3
 # https://linuxconfig.org/how-to-install-the-nvidia-drivers-on-manjaro-linux
 # sudo mhwd -a pci nonfree 0300
 # sudo reboot
@@ -309,27 +341,11 @@ popd
 
 
 # ----------------------------------------
-# KILL X USING CTRL+ALT+BACKSPACE
-# ----------------------------------------
-# https://unix.stackexchange.com/a/445
-# Modify /etc/X11/xorg.conf or a .conf file in /etc/X11/xorg.conf.d/ with the following.
-# Section "ServerFlags"
-    # Option "DontZap" "false"
-# EndSection
-
-# Section "InputClass"
-    # Identifier      "Keyboard Defaults"
-    # MatchIsKeyboard "yes"
-    # Option          "XkbOptions" "terminate:ctrl_alt_bksp"
-# EndSection
-# ----------------------------------------
-
-# ----------------------------------------
 # redshift
 # ----------------------------------------
 # -37.793342:175.134606 10 harihari lat, long
 # redshift -l -37.793342:175.134606 -t 6500:4000 -g 0.8 -m randr -v
-# PLACE IN sudo nvim /etc/lightdm/Xsession
+# PLACE IN ~/.dotfiles/i3-manjaro/.config/i3/config.allHosts
 
 
 # ----------------------------------------
@@ -338,7 +354,6 @@ popd
 # FROM: https://archived.forum.manjaro.org/t/how-can-i-change-the-default-browser-in-i3/60715
 # try edit the browser entry in
 # /home/$USER/.profile
-#
 # then find and replace all Pale Moon entries in
 # /home/$USER/.config/mimeapps.list
 
@@ -346,6 +361,18 @@ popd
 # ----------------------------------------
 # RESILIO SYNC
 # ----------------------------------------
+# REVISED 26 Oct 2022
+# https://wiki.archlinux.org/title/Resilio_Sync
+# AFTER: buildApp rslsync (sudo pamac build rslsync)
+# sudo systemctl enable rslsync
+# sudo systemctl start rslsync
+# sudo usermod -aG albert rslsync && \
+# sudo usermod -aG rslsync albert && \
+# sudo chmod g+rx ~
+# sudo chmod g+rw ~/GBox
+# sudo chmod g+rw ~/resilio-sync
+# LOGIN in http://localhost:8888 and set up username and password
+# --
 # https://wiki.archlinux.org/title/Resilio_Sync
 # mkdir ~/build
 # git clone https://aur.archlinux.org/rslsync.git
@@ -361,17 +388,7 @@ popd
 # sudo chmod g+rw ~/GBox
 # sudo chmod g+rw ~/resilio-sync
 
-# REVISED 26 Oct 2022
-# https://wiki.archlinux.org/title/Resilio_Sync
-# AFTER: buildApp rslsync
-# sudo systemctl enable rslsync
-# sudo systemctl start rslsync
-# sudo usermod -aG albert rslsync && \
-# sudo usermod -aG rslsync albert && \
-# sudo chmod g+rx ~
-# sudo chmod g+rw ~/GBox
-# sudo chmod g+rw ~/resilio-sync
-# LOGIN in http://localhost:8888 and set up username and password
+
 # ----------------------------------------
 # Bluetooth Setup
 # ----------------------------------------
@@ -389,4 +406,14 @@ popd
 # Add to /etc/pulse/default.pa
 ### Automatically switch to newly-connected devices
 #load-module module-switch-on-connect
+
+# ----------------------------------------
+# AUDIO Setup
+# ----------------------------------------
+# https://wiki.archlinux.org/title/PipeWire
+# Pipewire may support switching bluebooth profiles for us!
+
+# install_pulse # in manjaro as per help file
+# pamac install pipewire-pulse
+# 
 
