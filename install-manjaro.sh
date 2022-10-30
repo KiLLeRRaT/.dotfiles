@@ -417,3 +417,25 @@ popd
 # pamac install pipewire-pulse
 # 
 
+
+# ----------------------------------------
+# RDP
+# ----------------------------------------
+# FROM: https://rajasekaranp.medium.com/how-to-setup-xrdp-in-manjaro-linux-e176b22bd347
+#sudo systemctl enable xrdp.service
+#sudo systemctl enable xrdp-sesman.service
+
+
+# ----------------------------------------
+# Wake On Lan, WOL
+# ----------------------------------------
+# FROM: https://wiki.archlinux.org/title/Wake-on-LAN#Enable_WoL_on_the_network_adapter
+# pamac install ethtool
+# sudo ethtool enp42s0
+# look for Wake-on:.  If it's d, then it's disabled, we're looking for `g`
+# ethtool -s interface wol g
+# This may not make it persistent!
+
+# sudo nmcli con show
+# nmcli c show "Wired connection 1" | grep 802-3-ethernet.wake-on-lan
+# sudo nmcli c modify "Wired connection 1" 802-3-ethernet.wake-on-lan magic
