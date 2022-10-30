@@ -11,11 +11,13 @@ end
 local pluginfiles_BufWritePost = vim.api.nvim_create_augroup("pluginfiles_BufWritePost", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = {
-		"**/nvim/lua/killerrat/**/init.lua",
-		"**/nvim/lua/killerrat/plugins/*"
+		-- "**/nvim/lua/killerrat/**/init.lua",
+		-- "**/nvim/lua/killerrat/plugins/*"
+		"**/nvim/lua/killerrat/*"
 	},
 	callback = function()
 		vim.cmd [[PackerCompile]]
+		print("PackerCompile called!")
 	end,
 	group = pluginfiles_BufWritePost
 })
