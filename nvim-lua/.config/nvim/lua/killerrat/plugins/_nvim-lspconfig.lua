@@ -52,14 +52,51 @@ require'lspconfig'.bashls.setup{}
 -- Let's use the env variable dotnetprojecttype to determine if we are using .net framework or .net
 -- core
 
-
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#omnisharp
-require'lspconfig'.omnisharp.setup {
-	-- use_mono = true
-	-- environment = "netframework"
-	-- environment = "dotnet"
-	organize_imports_on_format = true,
+print("Current working directory" .. vim.fn.getcwd())
+current_working_directory = vim.fn.getcwd()
+use_mono = false
+mono_projects = {
+	'/mnt/c/Projects.Git/AA'
 }
+
+-- SORT THE TABLE in REVERSE TO GET LONGEST ONES FIRST?
+
+for index, value in ipairs(mono_projects) do
+    -- print(index, ". ", value)
+		if string.find(current_working_directory, value) then
+			-- https://github.com/williamboman/mason-lspconfig.nvim/blob/main/lua/mason-lspconfig/server_configurations/omnisharp/README.md
+			require'lspconfig'.omnisharp_mono.setup {
+				organize_imports_on_format = true,
+			}
+			use_mono = true
+			print("Found a mono project, starting .NET Framework OmniSharp")
+			break
+		end
+end
+
+if use_mono == false then
+	print("Not a mono project, starting .NET Core OmniSharp")
+	-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#omnisharp
+	require'lspconfig'.omnisharp.setup {
+		organize_imports_on_format = true,
+	}
+end
+
+-- -- https://github.com/williamboman/mason-lspconfig.nvim/blob/main/lua/mason-lspconfig/server_configurations/omnisharp/README.md
+-- require'lspconfig'.omnisharp_mono.setup {
+-- 	-- use_mono = true,
+-- 	-- environment = "netframework"
+-- 	-- environment = "dotnet"
+-- 	organize_imports_on_format = true,
+-- }
+
+-- -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#omnisharp
+-- require'lspconfig'.omnisharp.setup {
+-- 	-- use_mono = true,
+-- 	-- environment = "netframework"
+-- 	-- environment = "dotnet"
+-- 	organize_imports_on_format = true,
+-- }
 
 require'lspconfig'.cssls.setup {
 	capabilities = capabilities,
