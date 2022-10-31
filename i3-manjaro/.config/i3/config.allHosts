@@ -205,7 +205,7 @@ bindsym $mod+Shift+v split v;exec notify-send 'tile vertically'
 bindsym $mod+Ctrl+q split toggle;exec notify-send 'tile toggle'
 
 # toggle fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
