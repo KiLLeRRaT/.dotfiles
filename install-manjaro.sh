@@ -94,6 +94,11 @@ installApp libvirt "Virtualization framework"
 installApp qemu "QEMU emulator"
 installApp virt-manager "Virtualization manager"
 installApp virt-viewer "Virtualization viewer"
+installApp nuget
+installApp mono
+installApp mono-msbuild
+installApp kdiff3
+installApp dotnet-sdk
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
@@ -392,6 +397,17 @@ popd
 # ----------------------------------------
 # Bluetooth Setup
 # ----------------------------------------
+# UPDATE 1 Nov 2022
+# Reboot, 
+# Ran: `bluetoothctl`, WITHOUT SUDO,
+# https://cri.dev/posts/2021-01-04-Pair-AirPods-with-Linux-Ubuntu/#:~:text=Now%20either%20through%20the%20Bluetooth,bluetooth%20devices%20to%20the%20AirPods.
+# entered `scan on`,
+# found the device straight away,
+# `pair 00:F3:9F:79:68:4B`
+
+# AUTOMATIC PROFILE SELECTION
+# https://wiki.archlinux.org/title/PipeWire#Automatic_profile_selection
+
 # https://wiki.archlinux.org/title/bluetoothctl
 # sudo systemctl enable bluetooth
 # sudo systemctl start bluetooth
@@ -416,6 +432,9 @@ popd
 # install_pulse # in manjaro as per help file
 # pamac install pipewire-pulse
 # 
+# Install wireplumber
+# pamac install wireplumber
+
 
 
 # ----------------------------------------
