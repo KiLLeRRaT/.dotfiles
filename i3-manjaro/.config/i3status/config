@@ -35,6 +35,12 @@ disk "/" {
 }
 
 # <config hostname="agouws">
+order += "ethernet br0"
+ethernet br0 {
+# if you use %speed, i3status requires root privileges
+				format_up = "  %ip %speed "
+				format_down = " no  "
+}
 # </config>
 
 order += "memory"
