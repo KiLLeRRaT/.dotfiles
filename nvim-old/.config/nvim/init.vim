@@ -716,6 +716,7 @@ nnoremap <leader>gt :Git tag<space>
 lua require('plugins')
 
 autocmd FileType cs nnoremap <buffer> K :lua vim.lsp.buf.hover()<CR>
+autocmd FileType vb nnoremap <buffer> K :lua vim.lsp.buf.hover()<CR>
 
 " nnoremap gd :lua vim.lsp.buf.definition()<CR>
 nnoremap gd :Telescope lsp_definitions<CR>

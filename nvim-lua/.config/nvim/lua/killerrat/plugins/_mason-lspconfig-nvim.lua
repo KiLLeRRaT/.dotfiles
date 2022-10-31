@@ -5,7 +5,7 @@ end
 local lsp_installer_ensure_installed = {
 	-- LSP
 	"bashls",
-	-- "omnisharp",
+	"omnisharp",
 	-- "omnisharp-mono",
 	"cssls",
 	"dockerls",

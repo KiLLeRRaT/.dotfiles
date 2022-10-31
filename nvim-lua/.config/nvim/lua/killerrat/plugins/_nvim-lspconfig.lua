@@ -52,10 +52,10 @@ require'lspconfig'.bashls.setup{}
 -- Let's use the env variable dotnetprojecttype to determine if we are using .net framework or .net
 -- core
 
-print("Current working directory" .. vim.fn.getcwd())
-current_working_directory = vim.fn.getcwd()
-use_mono = false
-mono_projects = {
+-- print("Current working directory: " .. vim.fn.getcwd())
+local current_working_directory = vim.fn.getcwd()
+local use_mono = false
+local mono_projects = {
 	'/mnt/c/Projects.Git/AA'
 }
 
@@ -98,10 +98,6 @@ end
 -- 	organize_imports_on_format = true,
 -- }
 
-require'lspconfig'.cssls.setup {
-	capabilities = capabilities,
-}
-
 require'lspconfig'.dockerls.setup{}
 
 -- ESLINT
@@ -116,6 +112,10 @@ require'lspconfig'.eslint.setup {
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require'lspconfig'.cssls.setup {
+	capabilities = capabilities,
+}
 
 require'lspconfig'.html.setup {
   capabilities = capabilities,
