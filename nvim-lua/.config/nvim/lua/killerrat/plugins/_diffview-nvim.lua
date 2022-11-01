@@ -82,7 +82,7 @@ require("diffview").setup({
 	-- 	DiffviewFileHistory = {},
 	-- },
 	-- hooks = {},         -- See ':h diffview-config-hooks'
-	-- keymaps = {
+	keymaps = {
 	-- 	disable_defaults = false, -- Disable the default keymaps
 	-- 	view = {
 	-- 		-- The `view` bindings are active in the diff buffers, only when the current
@@ -110,12 +110,38 @@ require("diffview").setup({
 	-- 		{ { "n", "x" }, "2do", actions.diffget("ours") },   -- Obtain the diff hunk from the OURS version of the file
 	-- 		{ { "n", "x" }, "3do", actions.diffget("theirs") }, -- Obtain the diff hunk from the THEIRS version of the file
 	-- 	},
-	-- 	diff4 = {
-	-- 		-- Mappings in 4-way diff layouts
-	-- 		{ { "n", "x" }, "1do", actions.diffget("base") },   -- Obtain the diff hunk from the BASE version of the file
-	-- 		{ { "n", "x" }, "2do", actions.diffget("ours") },   -- Obtain the diff hunk from the OURS version of the file
-	-- 		{ { "n", "x" }, "3do", actions.diffget("theirs") }, -- Obtain the diff hunk from the THEIRS version of the file
-	-- 	},
+
+
+
+
+
+
+-- FROM :h diffview
+--	In the merge_tool:
+--		• A: OURS (current branch)
+--		• B: LOCAL (the file as it currently exists on disk)
+--		• C: THEIRS (incoming branch)
+--		• D: BASE (common ancestor)
+--	┌────┬────┬────┐
+--	│ A  │ D  │ C  │
+--	│ 1  │ 2  │ 3  │
+--	├────┴────┴────┤
+--	│			 B			 │
+--	│							 │
+--	└──────────────┘
+		diff4 = {
+			-- Mappings in 4-way diff layouts
+			{ { "n", "x" }, "2do", actions.diffget("base") },   -- Obtain the diff hunk from the BASE version of the file
+			{ { "n", "x" }, "1do", actions.diffget("ours") },   -- Obtain the diff hunk from the OURS version of the file
+			{ { "n", "x" }, "3do", actions.diffget("theirs") }, -- Obtain the diff hunk from the THEIRS version of the file
+		},
+
+
+
+
+
+
+
 	-- 	file_panel = {
 	-- 		["j"]             = actions.next_entry,         -- Bring the cursor to the next file entry
 	-- 		["<down>"]        = actions.next_entry,
@@ -174,7 +200,7 @@ require("diffview").setup({
 	-- 		["<tab>"] = actions.select_entry,
 	-- 		["q"]     = actions.close,
 	-- 	},
-	-- },
+	},
 })
 
 -- " KEEP CURSOR IN THE CENTRE OF THE SCREEN WHEN NAVIGATING TO NEXT CONFLICT MARKER IN

@@ -94,11 +94,14 @@ installApp libvirt "Virtualization framework"
 installApp qemu "QEMU emulator"
 installApp virt-manager "Virtualization manager"
 installApp virt-viewer "Virtualization viewer"
+
+# DEV TOOLS
 installApp nuget
 installApp mono
 installApp mono-msbuild
 installApp kdiff3
 installApp dotnet-sdk
+installApp postgresql
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
