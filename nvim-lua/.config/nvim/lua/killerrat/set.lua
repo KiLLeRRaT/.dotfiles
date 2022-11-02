@@ -1,7 +1,31 @@
 -- set path+=**
 
 vim.opt.number = true
+
 vim.opt.relativenumber = true
+-- autocmd InsertEnter * :set norelativenumber
+-- autocmd InsertLeave * :set relativenumber 
+
+-- SET THE LINE NUMBERS TO ABSOLUTE NUMBERS WHEN ENDTERING COMMAND MODE
+local set_cmdline = vim.api.nvim_create_augroup("set_cmdline", { clear = true })
+vim.api.nvim_create_autocmd("CmdlineEnter", {
+	pattern = {"*"},
+	callback = function()
+		print("cmdline enter")
+		vim.opt.relativenumber = false
+		vim.cmd('redraw')
+	end,
+	group = set_cmdline
+})
+vim.api.nvim_create_autocmd("CmdlineLeave", {
+	pattern = {"*"},
+	callback = function()
+		print("cmdline leave")
+		vim.opt.relativenumber = true
+		vim.cmd('redraw')
+	end,
+	group = set_cmdline
+})
 
 vim.opt.hlsearch = true
 vim.opt.cursorline = true
