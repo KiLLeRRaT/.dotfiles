@@ -11,7 +11,7 @@ local set_cmdline = vim.api.nvim_create_augroup("set_cmdline", { clear = true })
 vim.api.nvim_create_autocmd("CmdlineEnter", {
 	pattern = {"*"},
 	callback = function()
-		print("cmdline enter")
+		-- print("cmdline enter")
 		vim.opt.relativenumber = false
 		vim.cmd('redraw')
 	end,
@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("CmdlineEnter", {
 vim.api.nvim_create_autocmd("CmdlineLeave", {
 	pattern = {"*"},
 	callback = function()
-		print("cmdline leave")
+		-- print("cmdline leave")
 		vim.opt.relativenumber = true
 		vim.cmd('redraw')
 	end,
@@ -137,111 +137,17 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--- " GIT SIGNS: https://github.com/lewis6991/gitsigns.nvim
--- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- lua require('gitsigns').setup()
--- " Navigation
--- " nnoremap ]c :Gitsigns next_hunk<cr>
--- " nnoremap [c :Gitsigns prev_hunk<cr>
--- nnoremap ]h :Gitsigns next_hunk<cr>
--- nnoremap [h :Gitsigns prev_hunk<cr>
-
---     " -- Actions
--- nnoremap <leader>ds :Gitsigns stage_hunk<cr>
-
--- " REPLACE ^M AFTER RESET HUNK
--- nnoremap <leader>dr :Gitsigns reset_hunk<cr>:%s/\r<cr>
-
---     " map('n', '<leader>hS', gs.stage_buffer)
--- nnoremap <leader>du :Gitsigns undo_stage_hunk<cr>
---     " map('n', '<leader>hR', gs.reset_buffer)
--- nnoremap <leader>dp :Gitsigns preview_hunk<cr>
--- " nnoremap <leader>hb :Gitsigns blame_line{full=true}<cr>
--- nnoremap <leader>db :Gitsigns toggle_current_line_blame<cr>
-
---     " map('n', '<leader>hb', function() gs.blame_line{full=true} end)
---     " map('n', '<leader>tb', gs.toggle_current_line_blame)
---     " map('n', '<leader>hd', gs.diffthis)
---     " map('n', '<leader>hD', function() gs.diffthis('~') end)
---     " map('n', '<leader>td', gs.toggle_deleted)
-
--- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- " /GIT SIGNS
-
-
--- " VIM DEV ICONS
--- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- " FIX THE ISSUE WITH SQUARE BRACKETS AROUND THE ICONS IN NERD TREE, FROM: https://github.com/ryanoasis/vim-devicons/issues/215#issuecomment-377786230
--- if exists("g:loaded_webdevicons")
--- 	call webdevicons#refresh()
--- endif
--- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- " /VIM DEV ICONS
-
-
--- " DEBUGGERS
--- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- nnoremap <F8> :lua require("dap").continue()<CR>
--- nnoremap <F9> :lua require("dap").toggle_breakpoint()<CR>
--- nnoremap <F10> :lua require("dap").step_over()<CR>
--- nnoremap <F11> :lua require("dap").step_into()<CR>
--- nnoremap <S-F11> :lua require("dap").step_out()<CR>
--- nnoremap <F12> :lua require("dap").repl.open()<CR>
--- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- " /DEBUGGERS
-
--- " BUFFERLINE
--- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- nnoremap <silent> gb :BufferLinePick<CR>
--- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- " /BUFFERLINE
--- " SWITCH.VIM
--- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- " FROM: https://github.com/AndrewRadev/switch.vim
--- " keybinding is gs
--- let g:switch_custom_definitions =
---     \ [
---     \   switch#NormalizedCase(['private', 'protected', 'internal', 'public']),
---     \   switch#NormalizedCase(['true', 'false']),
---     \   switch#NormalizedCase(['before', 'after']),
---     \   switch#NormalizedCase(['to', 'from']),
---     \   switch#NormalizedCase(['==', '!=']),
---     \   switch#NormalizedCase(['min', 'max']),
---     \   switch#NormalizedCase(['UAT', 'PROD']),
---     \ ]
--- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- " /SWITCH.VIM
-
-
-
--- " VIM WIKI
--- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- let g:vimwiki_list = [{'path': '~/GBox/Notes/wiki/',
---                       \ 'syntax': 'markdown', 'ext': '.md'}]
--- " :help g:vimwiki_map_prefix
--- let g:vimwiki_map_prefix = '<leader>v'
--- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- " /VIM WIKI
-
+-- GENERATE HOST SPECIFIC CONFIG WHEN SAVING i3 OR i3status CONFIG FILES
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = {
+		-- "**/i3*/.config/i3(status)?/config"
+		"**/i3*/.config/i3*/config.allHosts"
+		-- "**/config"
+	},
+	callback = function()
+		vim.cmd [[!~/.config/i3/generateHostConfig.sh]]
+		print("generateHostConfig.sh called!")
+	end,
+	group = vim.api.nvim_create_augroup("set_i3config_BufWritePost", { clear = true })
+})
 
