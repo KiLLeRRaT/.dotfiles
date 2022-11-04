@@ -261,8 +261,8 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 
 # move to workspace back_and_forth
-bindsym $mod+Control+Tab workspace back_and_forth
-bindsym $mod+Control+Shift+Tab move container to workspace back_and_forth; workspace back_and_forth
+bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Shift+Tab move container to workspace back_and_forth; workspace back_and_forth
 
 # Move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1
