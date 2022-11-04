@@ -102,6 +102,7 @@ installApp mono-msbuild
 installApp kdiff3
 installApp dotnet-sdk
 installApp postgresql
+installApp jq
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
