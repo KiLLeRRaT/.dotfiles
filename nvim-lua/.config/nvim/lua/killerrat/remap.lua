@@ -120,6 +120,14 @@ vim.keymap.set("n", "<F6>", ":setlocal spell!<CR>:setlocal spell?<CR>")
 -- " PASTE JSON FROM CLIPBOARD, AND FORMAT IT
 -- nnoremap <leader>=J ggdG"+P:%!jq "--tab ."<cr>:%s/\r<cr>
 
+if vim.fn.has('unix') == 1 then
+	vim.keymap.set("n", "<leader>=j", ":%!jq --tab<cr>")
+	vim.keymap.set("v", "<leader>=j", ":'<,'>!jq --tab<cr>")
+-- " PASTE JSON FROM CLIPBOARD, AND FORMAT IT
+	vim.keymap.set("n", "<leader>=J", "ggdG\"+P:%!jq --tab<cr>:set ft=json<cr>")
+end
+
+
 -- " RETAB FILE
 vim.keymap.set("n", "<leader>=t", ":%retab!<cr>")
 
