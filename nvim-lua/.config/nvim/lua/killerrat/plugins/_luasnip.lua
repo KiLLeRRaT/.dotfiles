@@ -4,12 +4,13 @@ if not _G.plugin_loaded("LuaSnip") then
 end
 
 local ls = require("luasnip")
-local s = ls.snippet
+local extras = require("luasnip.extras")
+-- local s = ls.snippet
 -- local sn = ls.snippet_node
-local t = ls.text_node
-local i = ls.insert_node
+-- local t = ls.text_node
+-- local i = ls.insert_node
 -- local f = ls.function_node
-local c = ls.choice_node
+-- local c = ls.choice_node
 -- local d = ls.dynamic_node
 -- local r = ls.restore_node
 -- local l = require("luasnip.extras").lambda
@@ -26,30 +27,27 @@ local c = ls.choice_node
 
 ls.setup{}
 
+
 ls.add_snippets("all", {
-	s("2dt", {
-		t(os.date("%Y%m%d%H%M")),
-	}),
+	-- today time friendly
+	ls.snippet("2dtf", { extras.partial(os.date, "%a %-d %b %Y %H:%M") }),
+	-- today timestamp
+	ls.snippet("2dt", { extras.partial(os.date, "%Y%m%d%H%M") }),
+	-- today
+	ls.snippet("2d", { extras.partial(os.date, "%-d %b %Y") }),
 
-	s("2d", {
-		t(os.date("%-d %b %Y")),
-	}),
-
-	s("meta-meet", {
-		t("** Meeting with "),
-		i(1, "John Doe"),
-		t(" on " .. os.date("%a %-d %b %Y")),
-		t({
+	ls.snippet("meta-meet", {
+		ls.text_node("* Meeting with "),
+		ls.insert_node(1, "PERSON"),
+		ls.text_node(" on "), extras.partial(os.date, "%a %-d %b %Y"),
+		ls.text_node({"", "\t@meeting.meta"}),
+		ls.text_node({"", "\tstarted: "}), extras.partial(os.date, "%a %-d %b %Y %H:%M"),
+		ls.text_node({"", "\t\tend: END"}),
+		-- ls.text_node({"", "\t\tattendees: "}), ls.insert_node(2, "ATTENDEES"),
+		ls.text_node({"", "\t\tattendees: "}), extras.rep(1), ls.insert_node(2, ", "),
+		ls.text_node({
 			"",
-			"\t@meeting.meta",
-			"\tstart: " .. os.date("%a %-d %b %Y %H:%M"),
-			"\tend: " .. os.date("%a %-d %b %Y "),
-			"\tattendees: ",
-		}),
-		i(2, "John Doe"),
-		t({
-			"",
-			"\tsalnet task: ",
+			"\t\tsalnet task: ",
 			"\t@end",
 			"",
 			"\tAction Items:",
