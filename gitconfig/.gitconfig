@@ -32,3 +32,5 @@
 	submodule = log
 [submodule]
 	recurse = true
+[pull]
+	rebase = true
