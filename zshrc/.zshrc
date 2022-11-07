@@ -201,6 +201,9 @@ cdsh() {
 		| cut -f 2)
 }
 
+cs() {
+	cd $(lssh | fzf --height=~50 | cut -f 2)
+}
 
 #set -o vi
 # bind '"jk":vi-movement-mode'
