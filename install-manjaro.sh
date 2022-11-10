@@ -66,6 +66,7 @@ pamac install --no-confirm partitionmanager
 installApp brave-browser
 installApp redshift "Nightlight, Fluxx alternative"
 installApp signal-desktop
+installApp discord
 installApp timeshift-autosnap-manjaro
 installApp flameshot "Screenshot utility"
 installApp docker
