@@ -72,6 +72,11 @@ get_session(){
 # sed '/# <hostSpecificConfig>/,/# <\/hostSpecificConfig>/ {/# <config hostname="'$HOST'">/,/# <\/config>/!d}' config.allHosts > config
 # popd
 
+
+# TURN ON NUMLOCK USING numlockx LIBRARY
+numlockx &
+
+
 # exec $(get_session "$1")
 exec $(get_session "$DEFAULT_SESSION")
 

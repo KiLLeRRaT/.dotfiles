@@ -62,6 +62,10 @@ pamac install --no-confirm neofetch
 pamac install --no-confirm zoxide
 pamac install --no-confirm partitionmanager
 
+# FROM: https://wiki.archlinux.org/title/Activating_numlock_on_bootup
+# Turns on numlock in X11, need to add entry into .xinitrc
+pamac install --no-confirm numlockx
+
 
 installApp brave-browser
 installApp redshift "Nightlight, Fluxx alternative"
