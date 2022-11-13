@@ -132,6 +132,8 @@ buildApp xorgxrdp
 
 buildApp rslsync
 buildApp azuredatastudio-bin "SQL Server client"
+# WHEN TRYING TO INSTALL THE postgresql EXTENSION AND YOU RUN INTO TROUBLE, YOU MAY NEED TO RUN
+# THIS: sudo pamac build libffi6
 
 # buildApp forticlient-vpn
 buildApp openfortivpn "Fortigate VPN client"
