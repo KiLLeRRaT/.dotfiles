@@ -45,6 +45,11 @@ function buildApp() {
 	fi
 }
 
+pamac install --no-confirm timeshift
+timeshift-gtk # NEED TO CONFIGURE TIMESHIFT BEFORE WE CAN CREATE SNAPSHOTS AND THINGS DOWN IN THIS CONFIG!
+
+timeshift --create --comments "install-manjaro: Before installing software"
+
 pamac install --no-confirm git
 pamac install --no-confirm curl
 pamac install --no-confirm stow
@@ -53,7 +58,6 @@ pamac install --no-confirm xclip
 pamac install --no-confirm ripgrep
 pamac install --no-confirm fd
 pamac install --no-confirm alacritty
-pamac install --no-confirm timeshift
 pamac install --no-confirm tmux
 pamac install --no-confirm btop
 pamac install --no-confirm unzip
@@ -67,11 +71,12 @@ pamac install --no-confirm partitionmanager
 pamac install --no-confirm numlockx
 
 
+timeshift --create --comments "install-manjaro: Before installing optional software"
+installApp timeshift-autosnap-manjaro
 installApp brave-browser
 installApp redshift "Nightlight, Fluxx alternative"
 installApp signal-desktop
 installApp discord
-installApp timeshift-autosnap-manjaro
 installApp flameshot "Screenshot utility"
 installApp docker
 installApp docker-compose
@@ -109,6 +114,7 @@ installApp dotnet-sdk
 installApp postgresql
 installApp jq
 
+timeshift --create --comments "install-manjaro: Before installing 1Password"
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Install 1Password\033[0m"
@@ -125,6 +131,7 @@ then
 fi
 
 
+timeshift --create --comments "install-manjaro: Before building software"
 buildApp xrdp
 
 gpg --keyserver keys.gnupg.net --recv-keys 61ECEABBF2BB40E3A35DF30A9F72CDBC01BF10EB
@@ -325,6 +332,7 @@ EOF
 popd
 
 
+timeshift --create --comments "install-manjaro: After installing and config"
 
 
 
