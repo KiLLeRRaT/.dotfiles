@@ -346,9 +346,9 @@ for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
 
-for_window [title="TimeSheetEntry - Brave$"] floating enable border normal, move position center
+for_window [title="TimeSheetEntry - Brave$"] floating enable border normal, move position center, resize set 700 650
 for_window [title="^Spaces$"] floating enable border normal, move position center, resize set 760 800
-for_window [class="Blueman-manager"] floating enable border normal, move position center, resize set 760 300
+for_window [class="Blueman-manager"] floating enable border normal, resize set 760 300, move position center
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
