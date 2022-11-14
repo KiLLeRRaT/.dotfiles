@@ -19,6 +19,8 @@
 	directory = ~/GBox/Applications/Tools/Scripts/Bash
 	directory = ~/GBox/Notes
 	directory = /mnt/hotelalpha/config
+	directory = /mnt/whiskey.agouws.gouws.org/c/Projects.Git/AA
+	directory = /mnt/whiskey.agouws.gouws.org/c/Projects.Git/TIL.Orca
 	directory = /home/gunther/GBox/Notes/Sandfield ISMS Policies
 	directory = /home/albert/GBox/Applications/Tools/Scripts/Docker
 [core]
