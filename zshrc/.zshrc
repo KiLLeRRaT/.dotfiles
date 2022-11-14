@@ -109,7 +109,8 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=100000
 
-export EDITOR="/usr/local/bin/nvim"
+# export EDITOR="/usr/local/bin/nvim"
+export EDITOR="/usr/bin/nvim"
 export VISUAL=$EDITOR
 
 # Compilation flags
@@ -167,6 +168,8 @@ alias gm='git merge'
 alias nvim-lua='export XDG_CONFIG_HOME=${HOME}/.dotfiles/nvim-lua/.config; \
 	export XDG_DATA_HOME=${HOME}/.local-lua/share; \
 	nvim'
+
+alias hf='history 0 | fzf -e'
 
 atail() { tail -f ---disable-inotify "$@"; }
 alias atail-t='tail -f -n +1 ---disable-inotify $(ls -t | head -1)'
