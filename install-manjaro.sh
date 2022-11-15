@@ -61,6 +61,7 @@ pamac install --no-confirm alacritty
 pamac install --no-confirm tmux
 pamac install --no-confirm btop
 pamac install --no-confirm unzip
+pamac install --no-confirm zip
 pamac install --no-confirm feh
 pamac install --no-confirm neofetch
 pamac install --no-confirm zoxide
@@ -114,28 +115,27 @@ installApp dotnet-sdk
 installApp postgresql
 installApp jq
 
-timeshift --create --comments "install-manjaro: Before installing 1Password"
-
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Install 1Password\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
-read -k 1 -r "build?Install 1Password? (y/n) "
-echo -e ""
-if [[ $build =~ ^[Yy]$ ]]
-then
-	echo Installing 1Password
-	curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import && \
-	git clone https://aur.archlinux.org/1password.git && \
-	cd 1password && \
-	makepkg -si
-fi
+# timeshift --create --comments "install-manjaro: Before installing 1Password"
+# echo -e "\033[32m ----------------------------------------\033[0m"
+# echo -e "\033[32m Install 1Password\033[0m"
+# echo -e "\033[32m ----------------------------------------\033[0m"
+# read -k 1 -r "build?Install 1Password? (y/n) "
+# echo -e ""
+# if [[ $build =~ ^[Yy]$ ]]
+# then
+# 	echo Installing 1Password
+# 	curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import && \
+# 	git clone https://aur.archlinux.org/1password.git && \
+# 	cd 1password && \
+# 	makepkg -si
+# fi
 
 
 timeshift --create --comments "install-manjaro: Before building software"
 buildApp xrdp
 
-gpg --keyserver keys.gnupg.net --recv-keys 61ECEABBF2BB40E3A35DF30A9F72CDBC01BF10EB
-buildApp xorgxrdp
+# gpg --keyserver keys.gnupg.net --recv-keys 61ECEABBF2BB40E3A35DF30A9F72CDBC01BF10EB
+# buildApp xorgxrdp
 
 buildApp rslsync
 buildApp azuredatastudio-bin "SQL Server client"
@@ -143,7 +143,7 @@ buildApp azuredatastudio-bin "SQL Server client"
 # THIS: sudo pamac build libffi6
 
 # buildApp forticlient-vpn
-buildApp openfortivpn "Fortigate VPN client"
+# buildApp openfortivpn "Fortigate VPN client"
 buildApp icaclient "Citrix workspace app/Citrix receiver"
 buildApp powershell-bin
 buildApp winbox-xdg "Winbox, xdg compliant version"
