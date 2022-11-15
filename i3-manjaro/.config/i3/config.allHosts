@@ -652,6 +652,9 @@ mode "$mode_gaps_outer" {
 # ----------------------------------------
 # exec --no-startup-id "nmcli con down enp42s0"
 
+# # TURN ON NUMLOCK USING numlockx LIBRARY
+exec --no-startup-id numlockx
+
 exec --no-startup-id pipewire-pulse
 exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 # exec --no-startup-id pa-applet
