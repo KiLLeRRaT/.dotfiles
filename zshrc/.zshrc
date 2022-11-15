@@ -203,10 +203,12 @@ cdsh() {
 		| cut -f 2)
 }
 
+# CD TO PATH OF ANOTHER SHELL, USING FZF AS SELECTOR
 cs() {
 	cd $(lssh | fzf --height=~50 | cut -f 2)
 }
 
+# RUN THE COMMAND FROM HISTORY, USING FZF AS SELECTOR
 hf() {
 	$(history 0 | cut -c 8- | fzf -e)
 }
