@@ -73,8 +73,8 @@ get_session(){
 # popd
 
 
-# TURN ON NUMLOCK USING numlockx LIBRARY
-numlockx &
+# # TURN ON NUMLOCK USING numlockx LIBRARY
+# numlockx &
 
 
 # exec $(get_session "$1")
