@@ -69,8 +69,8 @@ end
 vim.keymap.set("n", "\"++", ":let @+ = @0<cr>")
 
 -- " COPY CURRENT FILENAME OR FULL FILE PATH TO SYSTEM CLIPBOARD
-vim.cmd[[nnoremap <leader>cf :echo expand("%:t") \| :let @+ = expand("%:t")<cr>]]
-vim.cmd[[nnoremap <leader>cF :echo expand("%:p") \| :let @+ = expand("%:p")<cr>]]
+vim.cmd[[nnoremap <leader>cf :echo fnameescape(expand("%:p:h")) \| :let @+ = fnameescape(expand("%:p:h"))<cr>]]
+vim.cmd[[nnoremap <leader>cF :echo fnameescape(expand("%:p")) \| :let @+ = fnameescape(expand("%:p"))<cr>]]
 
 -- " REFRESH FILE FROM DISK
 vim.keymap.set("n", "<F5>", ":e %<cr>")
