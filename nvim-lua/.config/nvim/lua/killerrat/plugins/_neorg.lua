@@ -75,7 +75,7 @@ end)
 -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/keybinds.lua
 
 vim.keymap.set("n", "<leader>nw", "<cmd>Neorg workspace work<cr>")
-vim.keymap.set("n", "<localleader>nc", "<cmd>Neorg toggle-concealer<cr>")
+-- vim.keymap.set("n", "<localleader>nc", "<cmd>Neorg toggle-concealer<cr>")
 
 
 -- vim.api.nvim_create_autocmd("FileType", {
