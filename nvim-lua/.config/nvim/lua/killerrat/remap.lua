@@ -33,6 +33,11 @@ vim.keymap.set("n", "<leader>Y", "gg\"+yG")
 vim.keymap.set("n", "<leader>d", "\"_d")
 vim.keymap.set("v", "<leader>d", "\"_d")
 
+-- SELECT TEXT YOU JUST PASTED
+-- FROM: https://vim.fandom.com/wiki/Selecting_your_pasted_text#:~:text=For%20example%2C%20you%20may%20press,the%20pasted%20text%20character%2Dwise.
+vim.keymap.set("n", "gp", "`[v`]")
+
+
 -- " [count] yanks, comments out, and pastes a copy below, and restores the default register with
 -- what we yanked previously
 vim.cmd[[nnoremap <expr> <leader>T '<esc>' . v:count1 . '"zyy:.,+' . (v:count1 - 1) . 'Commentary<cr>' . v:count1 . 'j<esc>"zP' . '\| :let @"=@0<cr>' ]]
