@@ -24,6 +24,7 @@
 	directory = /home/gunther/GBox/Notes/Sandfield ISMS Policies
 	directory = /home/albert/GBox/Applications/Tools/Scripts/Docker
 	directory = /home/albert/GBox/Applications/Tools/Scripts/hosts
+	directory = /home/albert/GBox/Applications/Tools/Scripts/Powershell
 [core]
 	autocrlf = input
 	excludesFile = ~/.gitignore
