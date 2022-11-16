@@ -139,10 +139,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # alias ls='ls -lkh --color=auto' # THIS WAS PREVENTING ME FROM GETTING A LISTING WITH JUST THE FILENAMES!
-alias ls='ls --color=auto'
+
+# color always so that if we pipe to grep, it will be colored
+# alias ls='ls --color=auto'
+alias ls='ls --color=always'
 alias ll="ls -alkhF"
 alias l="ls -1"
 alias tmux='tmux -2'
+alias grep='grep --color=always'
 
 alias gs='git status'
 alias gf='git fetch'
