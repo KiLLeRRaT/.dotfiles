@@ -442,6 +442,7 @@ timeshift --create --comments "install-manjaro: After installing and config"
 ### Automatically switch to newly-connected devices
 #load-module module-switch-on-connect
 
+
 # ----------------------------------------
 # AUDIO Setup
 # ----------------------------------------
@@ -465,15 +466,19 @@ timeshift --create --comments "install-manjaro: After installing and config"
 
 
 # ----------------------------------------
-# Wake On Lan, WOL
+# Wake On Lan, WOL, SET THIS UP **AFTER** THE BRIDGE SETUP
 # ----------------------------------------
 # FROM: https://wiki.archlinux.org/title/Wake-on-LAN#Enable_WoL_on_the_network_adapter
 # pamac install ethtool
-# sudo ethtool enp42s0
+# sudo ethtool enp42s0 | grep Wake
 # look for Wake-on:.  If it's d, then it's disabled, we're looking for `g`
-# ethtool -s interface wol g
-# This may not make it persistent!
+# ethtool -s enp42s0 wol g
+# sudo ethtool enp42s0 | grep Wake
 
+# THIS MAY NOT MAKE IT PERSISTENT!
+
+
+# TRYING TO MAKE IT PERSISTENT:
 # sudo nmcli con show
-# nmcli c show "Wired connection 1" | grep 802-3-ethernet.wake-on-lan
-# sudo nmcli c modify "Wired connection 1" 802-3-ethernet.wake-on-lan magic
+# nmcli c show "bridge-slave-enp42s0" | grep 802-3-ethernet.wake-on-lan
+# sudo nmcli c modify "bridge-slave-enp42s0" 802-3-ethernet.wake-on-lan magic
