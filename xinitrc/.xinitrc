@@ -39,8 +39,11 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 get_session(){
-	# local dbus_args=(--sh-syntax --exit-with-session)
-	local dbus_args=(--sh-syntax)
+	# PUT THIS BACK AFTER READING:
+	# https://wiki.archlinux.org/title/xrdp#Black_screen_with_a_desktop_environment
+	local dbus_args=(--sh-syntax --exit-with-session)
+	# local dbus_args=(--sh-syntax)
+
 	case $1 in
 		awesome) dbus_args+=(awesome) ;;
 		bspwm) dbus_args+=(bspwm-session) ;;
