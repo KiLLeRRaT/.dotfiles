@@ -88,6 +88,8 @@ complete -C '/usr/bin/aws_completer' aws
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
+# Enabled on 18 Nov 2022 again on Linux to see if I get more out of zsh completion....)
 # plugins=(git zsh-autosuggestions)
 
 # source $ZSH/oh-my-zsh.sh
@@ -245,3 +247,10 @@ bindkey "\E[3~" delete-char
 eval "$(zoxide init zsh)"
 
 setopt GLOB_COMPLETE
+
+
+# Zsh vi mode
+# FROM: https://github.com/jeffreytse/zsh-vi-mode
+# first install from AUR using: pamac build zsh-vi-mode
+ZVM_VI_ESCAPE_BINDKEY="jk"
+source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
