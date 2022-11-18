@@ -251,6 +251,6 @@ setopt GLOB_COMPLETE
 
 # Zsh vi mode
 # FROM: https://github.com/jeffreytse/zsh-vi-mode
-# first install from AUR using: pamac build zsh-vi-mode
+# first clone: sudo git clone https://github.com/jeffreytse/zsh-vi-mode.git /usr/share/zsh/plugins/zsh-vi-mode
 ZVM_VI_ESCAPE_BINDKEY="jk"
 source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
