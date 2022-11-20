@@ -133,20 +133,25 @@ if vim.fn.has('unix') == 1 then
 end
 
 
--- " RETAB FILE
+-- " RETAB FILE, mnemonic: tab
 vim.keymap.set("n", "<leader>=t", ":%retab!<cr>")
 
 -- " REMOVE TRAILING WHITESPACE FROM ALL LINES, MOVED TO _whitespace-nvim.lua FOR NOW
 -- nnoremap <leader>=w :%s/\s\+$//<cr>
 -- vim.keymap.set("n", "<leader>=w", ":%s/\\s\\+$//<cr>")
 
+-- FORMAT STACK TRACE, mnemonic: stack trace
+	vim.keymap.set("n", "<leader>=s", ":%s/\\s\\+at\\s\\+/\\r\\tat /g<cr>")
+	-- THE BELOW DOESNT WORK, JUST LEAVE IT FOR NOW
+	-- vim.keymap.set("v", "<leader>=s", ":'<,'>s/\\s\\+at\\s\\+/\\r\\tat /g<cr>")
 
--- SUM LINES
+
+-- SUM LINES, mnemonic: Add
 if vim.fn.has('unix') == 1 then
-	vim.keymap.set("n", "<leader>=s", ":%!awk '{print; total+=$1}END{print total}'<cr>")
+	vim.keymap.set("n", "<leader>=a", ":%!awk '{print; total+=$1}END{print total}'<cr>")
 else
 	-- vim.keymap.set("n", "<leader>=s", ":%!wsl awk '{print; total+=\\$1}END{print total}'<cr>")
-	vim.keymap.set("n", "<leader>=s", ":lua vim.notify('Summing not supported in Windows, it uses awk', vim.log.levels.ERROR)<cr>")
+	vim.keymap.set("n", "<leader>=a", ":lua vim.notify('Summing not supported in Windows, it uses awk', vim.log.levels.ERROR)<cr>")
 end
 
 -- " cm.Parameters.Add, and cm.Parameters.Value lines can be combined into single line using this
