@@ -42,61 +42,152 @@ require'lspconfig'.bashls.setup{}
 -- /BEGGININGS OF LOADING .NET FRAMEWORK OR .NET 6 OMNISHARP CONDITIONALLY
 
 
--- Omnisharp command on the mac
--- omnisharp -z -s /Users/albert/Projects.Git/POR/src --hostPID 13372
--- DotNet:enablePackageRestore=false --encoding utf-8 --languageserver
--- FormattingOptions:EnableEditorConfigSupport=true FormattingOptions:OrganizeImports=true
--- Sdk:IncludePrereleases=true
+-- LOOK IN CURRENT DIRECTORY FOR csproj FILE using glob
+-- IF NO FILE IN CURRENT DIRECTORY, LOOK IN PARENT DIRECTORY recursively
+local function find_closest_csproj(directory)
+	print("currentFileDirectory: " .. directory)
+	local csproj = vim.fn.glob(directory .. "/*.csproj", true, false)
+	if csproj == "" then
+		-- IF NO FILE IN CURRENT DIRECTORY, LOOK IN PARENT DIRECTORY recursively
+		local parent_directory = vim.fn.fnamemodify(directory, ":h")
+		if parent_directory == directory then
+			return nil
+		end
+		return find_closest_csproj(parent_directory)
+	else
+		return csproj
+	end
+end
 
 
--- Let's use the env variable dotnetprojecttype to determine if we are using .net framework or .net
--- core
+-- CHECK CSPROJ FILE TO SEE IF ITS .NET CORE OR .NET FRAMEWORK
+local function getFrameworkType()
+	local currentFileDirectory = vim.fn.expand("%:p:h")
+	local csproj = find_closest_csproj(currentFileDirectory)
+	if csproj == nil then
+		return false
+	end
+	local f = io.open(csproj, "rb")
+	local content = f:read("*all")
+	f:close()
+	-- return string.find(content, "<TargetFramework>netcoreapp") ~= nil
+	local frameworkType = ""
+	-- IF FILE CONTAINS <TargetFrameworkVersion> THEN IT'S .NET FRAMEWORK
+	if string.find(content, "<TargetFrameworkVersion>") ~= nil then
+		frameworkType = "netframework"
+	-- IF FILE CONTAINS <TargetFramework>net48 THEN IT'S .NET FRAMEWORK
+	elseif string.find(content, "<TargetFramework>net48") ~= nil then
+		frameworkType = "netframework"
+	-- ELSE IT'S .NET CORE
+	else
+		frameworkType = "netcore"
+	end
+	return frameworkType
+end
 
--- print("Current working directory: " .. vim.fn.getcwd())
-local current_working_directory = vim.fn.getcwd()
-local use_mono = false
-local mono_projects = {
-	'/mnt/c/Projects.Git/AA'
-}
+-- local frameworkType = getFrameworkType()
+-- if frameworkType == "netframework" then
+-- 	print("Found a .NET Framework project, starting .NET Framework OmniSharp")
+-- 	require'lspconfig'.omnisharp_mono.setup {
+-- 		organize_imports_on_format = true,
+-- 	}
+-- elseif frameworkType == "netcore" then
+-- 	print("Found a .NET Core project, starting .NET Core OmniSharp")
+-- 	require'lspconfig'.omnisharp.setup {
+-- 		organize_imports_on_format = true,
+-- 	}
+-- else
+-- 	print("No .csproj file found")
+-- end
 
--- SORT THE TABLE in REVERSE TO GET LONGEST ONES FIRST?
 
-for index, value in ipairs(mono_projects) do
-    -- print(index, ". ", value)
-		if string.find(current_working_directory, value) then
-			-- https://github.com/williamboman/mason-lspconfig.nvim/blob/main/lua/mason-lspconfig/server_configurations/omnisharp/README.md
+-- CREATE AUTOCMD FOR CSHARP FILES
+vim.api.nvim_create_autocmd("FileType",{
+	pattern = 'cs',
+	callback = function()
+		if vim.g.dotnetlsp then
+			print("dotnetlsp is already set: " .. vim.g.dotnetlsp)
+			return
+		end
+		-- CHECK THE CSPROJ OR SOMETHING ELSE TO CONFIRM IT'S .NET FRAMEWORK OR .NET CORE PROJECT
+		local frameworkType = getFrameworkType()
+		if frameworkType == "netframework" then
+			print("Found a .NET Framework project, starting .NET Framework OmniSharp")
 			require'lspconfig'.omnisharp_mono.setup {
 				organize_imports_on_format = true,
 			}
-			use_mono = true
-			print("Found a mono project, starting .NET Framework OmniSharp")
-			break
+			vim.g.dotnetlsp = "omnisharp_mono"
+		elseif frameworkType == "netcore" then
+			print("Found a .NET Core project, starting .NET Core OmniSharp")
+			require'lspconfig'.omnisharp.setup {
+				organize_imports_on_format = true,
+			}
+			vim.g.dotnetlsp = "omnisharp"
+		else
+			print("No .csproj file found")
 		end
-end
+	end,
+	group = vim.api.nvim_create_augroup("_nvim-lspconfig.lua.filetype.csharp", { clear = true })
+})
 
-if use_mono == false then
-	print("Not a mono project, starting .NET Core OmniSharp")
-	-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#omnisharp
-	require'lspconfig'.omnisharp.setup {
-		organize_imports_on_format = true,
-	}
-end
-
--- -- https://github.com/williamboman/mason-lspconfig.nvim/blob/main/lua/mason-lspconfig/server_configurations/omnisharp/README.md
--- require'lspconfig'.omnisharp_mono.setup {
--- 	-- use_mono = true,
--- 	-- environment = "netframework"
--- 	-- environment = "dotnet"
--- 	organize_imports_on_format = true,
+-- vim.api.nvim_create_autocmd("FileType",{
+--   pattern = 'csharp',
+--   callback = function()
+--     -- check the cspj or something else to confirm it's .net framework or .net core project
+--    if is_netcore then
+--        vim.cmd('LspStart  omnisharp')
+--         return
+--    end
+--    vim.cmd('LspStart csharp_ls')
+--   end
 -- }
 
--- -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#omnisharp
--- require'lspconfig'.omnisharp.setup {
--- 	-- use_mono = true,
--- 	-- environment = "netframework"
--- 	-- environment = "dotnet"
--- 	organize_imports_on_format = true,
+
+
+
+
+
+
+
+
+
+-- -- print("Current working directory: " .. vim.fn.getcwd())
+-- local current_working_directory = vim.fn.getcwd()
+-- local use_mono = false
+-- local mono_projects = {
+-- 	'/mnt/c/Projects.Git/AA',
+-- 	'/mnt/c/Projects.Git/SW.API',
+-- 	'/mnt/whiskey.agouws.gouws.org/c/Projects.Git/SW.API'
 -- }
+
+-- -- SORT THE TABLE in REVERSE TO GET LONGEST ONES FIRST?
+
+-- for index, value in ipairs(mono_projects) do
+--     -- print(index, ". ", value)
+-- 		-- print("Current working directory: " .. current_working_directory .. " value: " .. value)
+-- 		if string.find(current_working_directory, value) then
+-- 			-- https://github.com/williamboman/mason-lspconfig.nvim/blob/main/lua/mason-lspconfig/server_configurations/omnisharp/README.md
+-- 			require'lspconfig'.omnisharp_mono.setup {
+-- 				organize_imports_on_format = true,
+-- 			}
+-- 			use_mono = true
+-- 			print("Found a mono project, starting .NET Framework OmniSharp")
+-- 			break
+-- 		end
+-- end
+
+-- if use_mono == false then
+-- 	print("Not a mono project, starting .NET Core OmniSharp")
+-- 	-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#omnisharp
+-- 	require'lspconfig'.omnisharp.setup {
+-- 		organize_imports_on_format = true,
+-- 	}
+-- end
+
+
+
+
+
 
 require'lspconfig'.dockerls.setup{}
 
