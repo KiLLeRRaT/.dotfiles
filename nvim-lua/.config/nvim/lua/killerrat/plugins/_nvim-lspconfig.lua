@@ -5,43 +5,6 @@ end
 
 require'lspconfig'.bashls.setup{}
 
--- EXAMPLE OF TAKING INPUT,
--- FROM: https://github.com/neovim/nvim-lspconfig/issues/2108#issuecomment-1236248592
--- local fname = vim.fn.input("File: ", "", "file")
--- confirm(text[,choices[,default[,type]]])
-
--- BEGGININGS OF LOADING .NET FRAMEWORK OR .NET 6 OMNISHARP CONDITIONALLY
--- lspconfig.csharp_ls.autostart({
---   autostart = false
--- }
-
--- lspconfig.omnisharp.autostart({
---   autostart = false
--- }
--- then
-
--- vim.api.nvim_create_autocmd("FileType",{
---   pattern = 'csharp',
---   callback = function()
---     -- check the cspj or something else to confirm it's .net framework or .net core project
---    if is_netcore then
---        vim.cmd('LspStart  omnisharp')
---         return
---    end
---    vim.cmd('LspStart csharp_ls')
---   end
--- }
-
--- EXAMPLE OF HOW YOU CAN TRAVERSE A DIRECTORY USING A GLOB, FROM:
--- https://www.reddit.com/r/neovim/comments/rsrmux/source_all_files_in_a_directory_using_lua_script/
--- local paths = vim.split(vim.fn.glob('~/.config/nvim/lua/*/*lua'), '\n'),
--- for i, file in pairs(paths) do
---   vim.cmd('source ' .. file)
--- end
-
--- /BEGGININGS OF LOADING .NET FRAMEWORK OR .NET 6 OMNISHARP CONDITIONALLY
-
-
 -- LOOK IN CURRENT DIRECTORY FOR csproj FILE using glob
 -- IF NO FILE IN CURRENT DIRECTORY, LOOK IN PARENT DIRECTORY recursively
 local function find_closest_csproj(directory)
@@ -85,22 +48,6 @@ local function getFrameworkType()
 	return frameworkType
 end
 
--- local frameworkType = getFrameworkType()
--- if frameworkType == "netframework" then
--- 	print("Found a .NET Framework project, starting .NET Framework OmniSharp")
--- 	require'lspconfig'.omnisharp_mono.setup {
--- 		organize_imports_on_format = true,
--- 	}
--- elseif frameworkType == "netcore" then
--- 	print("Found a .NET Core project, starting .NET Core OmniSharp")
--- 	require'lspconfig'.omnisharp.setup {
--- 		organize_imports_on_format = true,
--- 	}
--- else
--- 	print("No .csproj file found")
--- end
-
-
 -- CREATE AUTOCMD FOR CSHARP FILES
 vim.api.nvim_create_autocmd("FileType",{
 	pattern = 'cs',
@@ -117,40 +64,23 @@ vim.api.nvim_create_autocmd("FileType",{
 				organize_imports_on_format = true,
 			}
 			vim.g.dotnetlsp = "omnisharp_mono"
+			vim.cmd('LspStart omnisharp_mono')
 		elseif frameworkType == "netcore" then
 			print("Found a .NET Core project, starting .NET Core OmniSharp")
 			require'lspconfig'.omnisharp.setup {
 				organize_imports_on_format = true,
 			}
 			vim.g.dotnetlsp = "omnisharp"
+			vim.cmd('LspStart omnisharp')
 		else
-			print("No .csproj file found")
+			-- print("No .csproj file found")
+			return
 		end
 	end,
 	group = vim.api.nvim_create_augroup("_nvim-lspconfig.lua.filetype.csharp", { clear = true })
 })
 
--- vim.api.nvim_create_autocmd("FileType",{
---   pattern = 'csharp',
---   callback = function()
---     -- check the cspj or something else to confirm it's .net framework or .net core project
---    if is_netcore then
---        vim.cmd('LspStart  omnisharp')
---         return
---    end
---    vim.cmd('LspStart csharp_ls')
---   end
--- }
-
-
-
-
-
-
-
-
-
-
+-- OLD MANUAL WAY TO DETECT FRAMEWORK TYPE
 -- -- print("Current working directory: " .. vim.fn.getcwd())
 -- local current_working_directory = vim.fn.getcwd()
 -- local use_mono = false
@@ -159,8 +89,6 @@ vim.api.nvim_create_autocmd("FileType",{
 -- 	'/mnt/c/Projects.Git/SW.API',
 -- 	'/mnt/whiskey.agouws.gouws.org/c/Projects.Git/SW.API'
 -- }
-
--- -- SORT THE TABLE in REVERSE TO GET LONGEST ONES FIRST?
 
 -- for index, value in ipairs(mono_projects) do
 --     -- print(index, ". ", value)
@@ -183,10 +111,7 @@ vim.api.nvim_create_autocmd("FileType",{
 -- 		organize_imports_on_format = true,
 -- 	}
 -- end
-
-
-
-
+-- /OLD MANUAL WAY TO DETECT FRAMEWORK TYPE
 
 
 require'lspconfig'.dockerls.setup{}
