@@ -253,4 +253,5 @@ setopt GLOB_COMPLETE
 # FROM: https://github.com/jeffreytse/zsh-vi-mode
 # first clone: sudo git clone https://github.com/jeffreytse/zsh-vi-mode.git /usr/share/zsh/plugins/zsh-vi-mode
 ZVM_VI_ESCAPE_BINDKEY="jk"
-source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+# source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+source $HOME/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
