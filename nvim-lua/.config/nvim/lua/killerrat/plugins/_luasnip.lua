@@ -43,8 +43,10 @@ ls.add_snippets("all", {
 		ls.text_node({"", "\t@meeting.meta"}),
 		ls.text_node({"", "\tstarted: "}), extras.partial(os.date, "%a %-d %b %Y %H:%M"),
 		ls.text_node({"", "\tend: END"}),
-		-- ls.text_node({"", "\t\tattendees: "}), ls.insert_node(2, "ATTENDEES"),
-		ls.text_node({"", "\tattendees: "}), extras.rep(1), ls.insert_node(2, ", "),
+		ls.text_node({"", "\t\tattendees: "}), ls.insert_node(2, "ATTENDEES"),
+		-- ls.text_node({"", "\tattendees: "}), extras.rep(1), ls.insert_node(2, ", "),
+		-- ls.text_node({"", "\tattendees: "}), extras.rep(1), ls.insert_node(2, ", "),
+		-- ls.insert_node(1, "PERSON"),
 		ls.text_node({
 			"",
 			"\tsalnet task: ",
