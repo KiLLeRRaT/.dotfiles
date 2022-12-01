@@ -6,10 +6,11 @@ end
 -- " FROM: https://github.com/AndrewRadev/switch.vim
 -- " keybinding is gs
 
+    -- \   switch#NormalizedCaseWords(['true', 'false']),
+
 vim.cmd[[let g:switch_custom_definitions =
     \ [
     \   switch#NormalizedCaseWords(['private', 'protected', 'internal', 'public']),
-    \   switch#NormalizedCaseWords(['true', 'false']),
     \   switch#NormalizedCaseWords(['before', 'after']),
     \   switch#NormalizedCaseWords(['to', 'from']),
     \   switch#NormalizedCaseWords(['==', '!=']),
