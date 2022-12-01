@@ -381,7 +381,8 @@ mode "$mode_system" {
 
 # setup redshift
 # lat and long for 10 harihari
-exec --no-startup-id redshift -l -37.793342:175.134606 -t 6500:4000 -g 0.8 -m randr -v
+# exec --no-startup-id redshift -l -37.793342:175.134606 -t 6500:4000 -g 0.8 -m randr -v
+exec --no-startup-id redshift -l -37.793342:175.134606 -t 6500:4000 -m randr
 
 
 # Resize window (you can also use the mouse for that)
