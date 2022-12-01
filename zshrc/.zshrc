@@ -160,17 +160,16 @@ alias ga='git add'
 alias gcam='git commit -am'
 alias gd='git diff'
 alias gw='git diff --word-diff'
-
 setopt interactive_comments
 preexec(){ _lc=$1; }
 alias gcm='git commit -m "${_lc#gcm }" #'
-
 alias glog='git logo'
 alias gb='git branch'
 alias gba='git branch --all'
 alias gco='git checkout'
 alias gm='git merge'
 
+alias rl='source ~/.zshrc'
 alias nvim-lua='export XDG_CONFIG_HOME=${HOME}/.dotfiles/nvim-lua/.config; \
 	export XDG_DATA_HOME=${HOME}/.local-lua/share; \
 	nvim'
@@ -217,6 +216,13 @@ cs() {
 # RUN THE COMMAND FROM HISTORY, USING FZF AS SELECTOR
 hf() {
 	$(history 0 | cut -c 8- | fzf -e)
+}
+
+# REMMINA USING THE CONNECTION FILE SELECTED USING FZF
+rf() {
+	pushd ~/.local/share/remmina
+	remmina -c $(ls $PWD/* | fzf -e)
+	popd
 }
 
 # alias hf='history 0 | cut -c 8- | fzf -e'
