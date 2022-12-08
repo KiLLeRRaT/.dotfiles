@@ -9,3 +9,5 @@ vim.keymap.set("n", "<localleader>sc", "O@code<esc>jo@end<esc>")
 
 -- SURROUND VISUAL SELECTION IN CODE TAGS
 vim.keymap.set("v", "<localleader>sc", "<esc>'<O@code<esc>'>o@end<esc>")
+
+vim.opt_local.spell = true
