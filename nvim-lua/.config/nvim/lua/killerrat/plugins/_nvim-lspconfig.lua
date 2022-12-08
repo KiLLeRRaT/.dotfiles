@@ -120,7 +120,7 @@ require'lspconfig'.dockerls.setup{}
 --- npm i -g vscode-langservers-extracted
 -- require'lspconfig'.eslint.setup {}
 -- npm i -g eslint
-local eslint_config = require("lspconfig.server_configurations.eslint")
+-- local eslint_config = require("lspconfig.server_configurations.eslint")
 require'lspconfig'.eslint.setup {
     -- opts.cmd = { "yarn", "exec", unpack(eslint_config.default_config.cmd) }
 }
@@ -145,7 +145,15 @@ require'lspconfig'.pyright.setup{}
 
 require'lspconfig'.tsserver.setup{}
 
-require'lspconfig'.sumneko_lua.setup{}
+require'lspconfig'.sumneko_lua.setup{
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { 'vim' }
+			}
+		}
+	}
+}
 
 -- require'lspconfig'.marksman.setup{}
 
