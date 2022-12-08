@@ -284,9 +284,7 @@ echo -e "Done"
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Generate a host specific config file for i3\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
-pushd ~/.dotfiles/i3-manjaro/.config/i3/
-./generateHostConfig.sh
-popd
+~/.dotfiles/i3-manjaro/.config/i3/generateHostConfig.sh
 echo -e "Done"
 
 
@@ -326,6 +324,11 @@ Section "InputClass"
 EndSection
 EOF
 
+
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Clone zsh-vi-mode\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+git clone https://github.com/jeffreytse/zsh-vi-mode.git $HOME/.zsh-vi-mode
 
 
 
