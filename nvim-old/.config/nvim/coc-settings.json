@@ -1,4 +1,0 @@
-{
-	"coc-omnisharp.trace.server": "verbose",
-	"omnisharp.trace.server": "verbose"
-}
