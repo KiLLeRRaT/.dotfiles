@@ -648,9 +648,6 @@ mode "$mode_gaps_outer" {
 # DELETE RANGE USING SED, FROM: https://stackoverflow.com/a/29530617/182888
 # <hostSpecificConfig>
 # <config hostname="surface3">
-# ----------------------------------------
-# AGOUWS CONFIG
-# ----------------------------------------
 # exec --no-startup-id "nmcli con down enp42s0"
 
 # # TURN ON NUMLOCK USING numlockx LIBRARY
@@ -661,9 +658,9 @@ exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 
 exec --no-startup-id "alacritty -e tmux"
 # </config>
+
 # <config hostname="agouws">
 # exec --no-startup-id "nmcli con down enp42s0"
-
 # # TURN ON NUMLOCK USING numlockx LIBRARY
 exec --no-startup-id numlockx
 exec --no-startup-id pipewire-pulse
@@ -688,8 +685,8 @@ exec --no-startup-id "spotify"
 exec --no-startup-id "google-chat-electron"
 exec --no-startup-id "alacritty -e tmux"
 # </config>
-# <config hostname="albert-satellitepro">
 
+# <config hostname="albert-satellitepro">
 # # TURN ON NUMLOCK USING numlockx LIBRARY
 exec --no-startup-id numlockx
 
@@ -704,6 +701,7 @@ exec --no-startup-id "i3-msg 'workspace 8; append_layout ~/.config/i3/workspaces
 exec --no-startup-id "brave --profile-directory=Default"
 exec --no-startup-id "alacritty -e tmux"
 # </config>
+
 # <config hostname="sierra"><!-- SONY VAIO LAPTOP -->
 exec --no-startup-id pulseaudio
 exec --no-startup-id pa-applet
