@@ -648,14 +648,10 @@ mode "$mode_gaps_outer" {
 # DELETE RANGE USING SED, FROM: https://stackoverflow.com/a/29530617/182888
 # <hostSpecificConfig>
 # <config hostname="agouws">
-# ----------------------------------------
-# AGOUWS CONFIG
-# ----------------------------------------
 # exec --no-startup-id "nmcli con down enp42s0"
 
 # # TURN ON NUMLOCK USING numlockx LIBRARY
 exec --no-startup-id numlockx
-
 exec --no-startup-id pipewire-pulse
 exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 # exec --no-startup-id pa-applet
@@ -678,33 +674,23 @@ exec --no-startup-id "spotify"
 exec --no-startup-id "google-chat-electron"
 exec --no-startup-id "alacritty -e tmux"
 # </config>
-# <config hostname="ganderson">
-# ----------------------------------------
-# GANDERSON CONFIG
-# ----------------------------------------
-exec --no-startup-id "nmcli con down enp42s0"
+# <config hostname="albert-satellitepro">
+
+# # TURN ON NUMLOCK USING numlockx LIBRARY
+exec --no-startup-id numlockx
+
+exec --no-startup-id pipewire-pulse
+exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
+# exec --no-startup-id pa-applet
+
 # RESTORE LAYOUTS
-exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.config/i3/workspaces/ws-1.json'"
-exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/workspaces/ws-2.json'"
-exec --no-startup-id "i3-msg 'workspace 3; append_layout ~/.config/i3/workspaces/ws-3.json'"
-exec --no-startup-id "i3-msg 'workspace 4; append_layout ~/.config/i3/workspaces/ws-4.json'"
-exec --no-startup-id "i3-msg 'workspace 5; append_layout ~/.config/i3/workspaces/ws-5.json'"
-exec --no-startup-id "i3-msg 'workspace 6; append_layout ~/.config/i3/workspaces/ws-6.json'"
-exec --no-startup-id "i3-msg 'workspace 7; append_layout ~/.config/i3/workspaces/ws-7.json'"
-exec --no-startup-id "i3-msg 'workspace 8; append_layout ~/.config/i3/workspaces/ws-8.json'"
-exec --no-startup-id "i3-msg 'workspace 9; append_layout ~/.config/i3/workspaces/ws-9.json'"
+exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-2.json'"
+exec --no-startup-id "i3-msg 'workspace 8; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-8.json'"
 
 exec --no-startup-id "brave --profile-directory=Default"
-exec --no-startup-id "brave --profile-directory=Profile\ 1"
-exec --no-startup-id "1password"
-exec --no-startup-id "spotify"
-exec --no-startup-id "google-chat-electron"
 exec --no-startup-id "alacritty -e tmux"
 # </config>
 # <config hostname="sierra"><!-- SONY VAIO LAPTOP -->
-# ----------------------------------------
-# SIERRA CONFIG
-# ----------------------------------------
 exec --no-startup-id pulseaudio
 exec --no-startup-id pa-applet
 
