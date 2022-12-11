@@ -130,6 +130,16 @@ echo -e "\033[32m ----------------------------------------\033[0m"
 read  -r "git_email?Enter Git email address: "
 git config --global user.email $git_email
 git config --global user.name $USER_FULL_NAME
+git config --global alias.logo "log --pretty=tformat:'%C(auto,yellow)%h%C(auto,magenta)% G? %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(15,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D' --date=short"
+git config --global pull.rebase true
+git config --global submodule.recurse true
+git config --global core.editor "nvim"
+git config --global core.excludesfile ~/.gitignore
+git config --global init.defaultBranch master
+
+# GENERATE GPG KEY
+# gpg --fingerprint "Albert Gouws" | sed -n -e '2s/[[:space:]]//g;' -e '2p'
+
 echo -e "Done"
 
 
