@@ -3,12 +3,21 @@ services:
   neovim:
     build: .
     container_name: neovim
-    image: killerrat/nvim-docker:${BUILD_DATE}
+    image: killerrat/nvim-docker
     restart: unless-stopped
     volumes:
       - /mnt/c/Projects.Git:/mnt/c/Projects.Git
+  version_latest:
+    extends: neovim
+    image: killerrat/nvim-docker:latest
+  version_date:
+    extends: neovim
+    image: killerrat/nvim-docker:${BUILD_DATE}
 
 # RUN WITH:
 # sudo docker stop neovim && sudo docker rm neovim
 # sudo docker compose build && sudo docker compose up -d
 # sudo docker exec -it neovim /bin/zsh
+#
+# RUN FROM DOCKERHUB:
+# sudo docker run -d --name nvim-docker -v /mnt/c/Projects.Git:/mnt/c/Projects.Git killerrat/nvim-docker:latest
