@@ -8,7 +8,7 @@ require'lspconfig'.bashls.setup{}
 -- LOOK IN CURRENT DIRECTORY FOR csproj FILE using glob
 -- IF NO FILE IN CURRENT DIRECTORY, LOOK IN PARENT DIRECTORY recursively
 local function find_closest_csproj(directory)
-	print("currentFileDirectory: " .. directory)
+	-- print("currentFileDirectory: " .. directory)
 	local csproj = vim.fn.glob(directory .. "/*.csproj", true, false)
 	if csproj == "" then
 		-- IF NO FILE IN CURRENT DIRECTORY, LOOK IN PARENT DIRECTORY recursively
