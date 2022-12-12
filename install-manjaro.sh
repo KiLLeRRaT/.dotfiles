@@ -13,18 +13,44 @@ USER_FULL_NAME="$(echo "$USER_GECOS_FIELD" | cut -d ',' -f 1)"
 pushd $USER_HOME
 
 echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Updating Linux\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+pamac update && \
+pamac upgrade --no-confirm
+echo -e "Done"
+
+echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Installing software\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 
 function installApp() {
+	[ -n "$2" ] && desc=" ($2)" || desc=""
+	read -k 1 -r "install?Install $1$desc? (y/n) "
+	echo -e ""
+	if [[ $install =~ ^[Yy]$ ]]
+	then
 		echo Installing $1
 		pamac install --no-confirm $1
+	fi
 }
 
 function buildApp() {
+	[ -n "$2" ] && desc=" ($2)" || desc=""
+	read -k 1 -r "build?Install $1$desc? (y/n) "
+	echo -e ""
+	if [[ $build =~ ^[Yy]$ ]]
+	then
 		echo Installing $1
 		pamac build --no-confirm $1
+	fi
 }
+
+pamac install --no-confirm timeshift
+installApp timeshift-autosnap-manjaro
+
+timeshift-gtk # NEED TO CONFIGURE TIMESHIFT BEFORE WE CAN CREATE SNAPSHOTS AND THINGS DOWN IN THIS CONFIG!
+
+timeshift --create --comments "install-manjaro: Before installing software"
 
 pamac install --no-confirm git
 pamac install --no-confirm curl
@@ -39,9 +65,16 @@ pamac install --no-confirm btop
 pamac install --no-confirm unzip
 pamac install --no-confirm zip
 pamac install --no-confirm feh
+pamac install --no-confirm neofetch
 pamac install --no-confirm zoxide
+pamac install --no-confirm partitionmanager
 
-installApp timeshift-autosnap-manjaro
+# FROM: https://wiki.archlinux.org/title/Activating_numlock_on_bootup
+# Turns on numlock in X11, need to add entry into .xinitrc
+pamac install --no-confirm numlockx
+
+
+timeshift --create --comments "install-manjaro: Before installing optional software"
 installApp brave-browser
 installApp redshift "Nightlight, Fluxx alternative"
 installApp signal-desktop
@@ -69,8 +102,18 @@ installApp sshfs "Mount a remote disk over ssh"
 installApp vifm
 installApp zathura "PDF Viewer (Application)"
 installApp zathura-pdf-poppler "PDF Support for zathura"
+installApp libvirt "Virtualization framework"
+installApp qemu "QEMU emulator"
+installApp virt-manager "Virtualization manager"
+installApp virt-viewer "Virtualization viewer"
 
 # DEV TOOLS
+installApp nuget
+installApp mono
+installApp mono-msbuild
+installApp kdiff3
+installApp dotnet-sdk
+installApp postgresql
 installApp jq
 
 # timeshift --create --comments "install-manjaro: Before installing 1Password"
@@ -90,6 +133,7 @@ installApp jq
 
 
 timeshift --create --comments "install-manjaro: Before building software"
+buildApp xrdp
 
 # gpg --keyserver keys.gnupg.net --recv-keys 61ECEABBF2BB40E3A35DF30A9F72CDBC01BF10EB
 # buildApp xorgxrdp
@@ -102,7 +146,10 @@ buildApp azuredatastudio-bin "SQL Server client"
 # buildApp forticlient-vpn
 # buildApp openfortivpn "Fortigate VPN client"
 buildApp icaclient "Citrix workspace app/Citrix receiver"
+buildApp powershell-bin
 buildApp winbox-xdg "Winbox, xdg compliant version"
+buildApp virt-v2v "Convert virtual machines (vhd) to run on KVM"
+buildApp nbdkit "Network Block Device (NBD) server, needed by virt-v2v"
 
 # --------------------------------------------------
 # SNAP PACKAGES
@@ -124,23 +171,42 @@ pamac install snapd --no-confirm
 
 
 
+# echo -e "\033[32m ----------------------------------------\033[0m"
+# echo -e "\033[32m Configure SSH Keys\033[0m"
+# echo -e "\033[32m ----------------------------------------\033[0m"
+# [ ! -d "$USER_HOME/.ssh" ] && mkdir $USER_HOME/.ssh && ssh-keygen -q -N "" -f $USER_HOME/.ssh/id_rsa
+# chown -R $SUDO_USER $USER_HOME/.ssh
+# echo -e "Done"
+
+
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Configure Git\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 read  -r "git_email?Enter Git email address: "
 git config --global user.email $git_email
 git config --global user.name $USER_FULL_NAME
-git config --global alias.logo "log --pretty=tformat:'%C(auto,yellow)%h%C(auto,magenta)% G? %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(15,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D' --date=short"
-git config --global pull.rebase true
-git config --global submodule.recurse true
-git config --global core.editor "nvim"
-git config --global core.excludesfile ~/.gitignore
-git config --global init.defaultBranch master
-
-# GENERATE GPG KEY
-# gpg --fingerprint "Albert Gouws" | sed -n -e '2s/[[:space:]]//g;' -e '2p'
-
 echo -e "Done"
+
+
+#echo -e "\033[32m ----------------------------------------\033[0m"
+#echo -e "\033[32m Config xrdp to start with i3\033[0m"
+#echo -e "\033[32m ----------------------------------------\033[0m"
+## EDIT /etc/xrdp/startwm.sh
+## COMMENT OUT THIS LINE
+##exec /bin/sh /etc/X11/Xsession
+## ADD THIS LINE
+##/usr/bin/i3
+#if grep -q "/usr/bin/i3" "/etc/xrdp/startwm.sh" ; then
+#	# exists
+#	echo "/usr/bin/i3 found, not adding it"
+#else
+#	# not exist
+#	sed -Ei.bak 's|test -x /etc/X11/Xsession \&\& exec /etc/X11/Xsession|# test -x /etc/X11/Xsession \&\& exec /etc/X11/Xsession|' /etc/xrdp/startwm.sh
+#	sed -Ei.bak 's|exec /bin/sh /etc/X11/Xsession|# exec /bin/sh /etc/X11/Xsession|' /etc/xrdp/startwm.sh
+#	#echo "/usr/bin/i3" >> /etc/xrdp/startwm.sh # DOES NOT WORK FOR SUDO.. USE BELOW
+#	echo "/usr/bin/i3" | tee -a /etc/xrdp/startwm.sh
+#fi
+#echo -e "Done"
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
@@ -198,14 +264,14 @@ chmod +x /usr/local/bin/oh-my-posh
 echo -e "Done"
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Install nvm to manage NodeJS\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
-#curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-#source $USER_HOME/.zshrc
-#nvm install --lts
-#nvm use --lts
-echo -e "Done"
+# echo -e "\033[32m ----------------------------------------\033[0m"
+# echo -e "\033[32m Install nvm to manage NodeJS\033[0m"
+# echo -e "\033[32m ----------------------------------------\033[0m"
+# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+# source $USER_HOME/.zshrc
+# nvm install --lts
+# nvm use --lts
+# echo -e "Done"
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
@@ -215,11 +281,47 @@ chsh -s /bin/zsh root
 chsh -s /bin/zsh albert
 echo -e "Done"
 
+# echo -e "\033[32m ----------------------------------------\033[0m"
+# echo -e "\033[32m Generate a host specific config file for i3\033[0m"
+# echo -e "\033[32m ----------------------------------------\033[0m"
+# ~/.dotfiles/i3-manjaro/.config/i3/generateHostConfig.sh
+# echo -e "Done"
+
+
 echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Generate a host specific config file for i3\033[0m"
+echo -e "\033[32m Configure Mouse\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
-#~/.dotfiles/i3-manjaro/.config/i3/generateHostConfig.sh
-echo -e "Done"
+# https://www.reddit.com/r/linux4noobs/comments/98kicg/set_mouse_speed_sensitivity_in_manjaro_i3/
+# https://wiki.archlinux.org/title/Libinput#Via_xinput
+# https://www.reddit.com/r/linux4noobs/comments/hnhehw/change_pointer_speed_in_manjaro/
+sudo mkdir -p /etc/X11/xorg.conf.d && sudo tee <<'EOF' /etc/X11/xorg.conf.d/35-mouse.conf 1> /dev/null
+Section "InputClass"
+	Identifier "My Mouse"
+	MatchIsPointer "yes"
+	Option "AccelerationProfile" "-1"
+	Option "AccelerationScheme" "none"
+	Option "AccelSpeed" "1"
+	Option "ScollMethodEnabled" "0, 0, 1"
+	Option "ScrollingPixelDistance" "30"
+EndSection
+EOF
+
+
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m KILL X USING CTRL+ALT+BACKSPACE\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+# https://unix.stackexchange.com/a/445
+# Modify /etc/X11/xorg.conf or a .conf file in /etc/X11/xorg.conf.d/ with the following.
+sudo mkdir -p /etc/X11/xorg.conf.d && sudo tee <<'EOF' /etc/X11/xorg.conf.d/10-terminate-using-ctrl-alt-bs.conf 1> /dev/null
+Section "ServerFlags"
+    Option "DontZap" "false"
+EndSection
+Section "InputClass"
+    Identifier      "Keyboard Defaults"
+    MatchIsKeyboard "yes"
+    Option          "XkbOptions" "terminate:ctrl_alt_bksp"
+EndSection
+EOF
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
@@ -228,9 +330,7 @@ echo -e "\033[32m ----------------------------------------\033[0m"
 git clone https://github.com/jeffreytse/zsh-vi-mode.git $HOME/.zsh-vi-mode
 
 
-
 timeshift --create --comments "install-manjaro: After installing and config"
-
 
 
 # NOTES
@@ -379,3 +479,4 @@ timeshift --create --comments "install-manjaro: After installing and config"
 # sudo nmcli con show
 # nmcli c show "bridge-slave-enp42s0" | grep 802-3-ethernet.wake-on-lan
 # sudo nmcli c modify "bridge-slave-enp42s0" 802-3-ethernet.wake-on-lan magic
+
