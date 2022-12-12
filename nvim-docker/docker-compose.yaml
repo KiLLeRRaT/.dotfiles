@@ -3,6 +3,7 @@ services:
   neovim:
     build: .
     container_name: neovim
+    image: killerrat/nvim-docker:${BUILD_DATE}
     restart: unless-stopped
     volumes:
       - /mnt/c/Projects.Git:/mnt/c/Projects.Git
