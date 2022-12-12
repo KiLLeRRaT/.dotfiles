@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  neovim:
+    build: .
+    container_name: neovim
+    restart: unless-stopped
+    volumes:
+      - /mnt/c/Projects.Git:/mnt/c/Projects.Git
+
+# RUN WITH:
+# sudo docker stop neovim && sudo docker rm neovim
+# sudo docker compose build && sudo docker compose up -d
+# sudo docker exec -it neovim /bin/zsh
