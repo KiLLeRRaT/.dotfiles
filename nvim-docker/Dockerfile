@@ -67,6 +67,11 @@ WORKDIR /root/.dotfiles
 # RUN ls -lkha
 
 
+# SET UNICODE LOCALE
+RUN locale-gen en_US.UTF-8
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
+
+
 #SET PASSWORD FOR ROOT
 # RUN echo 'root:Docker!' | chpasswd
 

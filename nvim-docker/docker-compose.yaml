@@ -21,3 +21,5 @@ services:
 #
 # RUN FROM DOCKERHUB:
 # sudo docker run -d --name nvim-docker -v /mnt/c/Projects.Git:/mnt/c/Projects.Git killerrat/nvim-docker:latest
+#
+# Dockerhub: https://hub.docker.com/r/killerrat/nvim-docker
