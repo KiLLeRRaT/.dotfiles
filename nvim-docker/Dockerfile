@@ -13,7 +13,6 @@ RUN pacman -S --noconfirm git \
 	xclip \
 	ripgrep \
 	fd \
-	alacritty \
 	tmux \
 	btop \
 	unzip \
@@ -34,7 +33,8 @@ RUN pacman -S --noconfirm git \
 	gcc \
 	make \
 	openssh \
-	upterm
+	upterm \
+	fzf
 
 
 WORKDIR /root
