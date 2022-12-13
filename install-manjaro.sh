@@ -150,6 +150,7 @@ buildApp powershell-bin
 buildApp winbox-xdg "Winbox, xdg compliant version"
 buildApp virt-v2v "Convert virtual machines (vhd) to run on KVM"
 buildApp nbdkit "Network Block Device (NBD) server, needed by virt-v2v"
+buildApp zsh-vi-mode
 
 # --------------------------------------------------
 # SNAP PACKAGES
@@ -324,10 +325,11 @@ EndSection
 EOF
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Clone zsh-vi-mode\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
-git clone https://github.com/jeffreytse/zsh-vi-mode.git $HOME/.zsh-vi-mode
+# REPLACED BY PACKAGE FROM AUR
+# echo -e "\033[32m ----------------------------------------\033[0m"
+# echo -e "\033[32m Clone zsh-vi-mode\033[0m"
+# echo -e "\033[32m ----------------------------------------\033[0m"
+# git clone https://github.com/jeffreytse/zsh-vi-mode.git $HOME/.zsh-vi-mode
 
 
 timeshift --create --comments "install-manjaro: After installing and config"
