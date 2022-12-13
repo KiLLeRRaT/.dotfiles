@@ -331,6 +331,12 @@ EOF
 # echo -e "\033[32m ----------------------------------------\033[0m"
 # git clone https://github.com/jeffreytse/zsh-vi-mode.git $HOME/.zsh-vi-mode
 
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Install TMUX Plugin Manager, and install plugins\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+~/.tmux/plugins/tpm/bin/install_plugins
+
 
 timeshift --create --comments "install-manjaro: After installing and config"
 
