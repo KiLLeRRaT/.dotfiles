@@ -15,9 +15,9 @@ services:
     image: killerrat/nvim-docker:${BUILD_DATE}
 
 # RUN WITH:
-# sudo docker stop neovim && sudo docker rm neovim
+# sudo docker stop nvim-docker && sudo docker rm nvim-docker
 # sudo docker compose build && sudo docker compose up -d
-# sudo docker exec -it neovim /bin/zsh
+# sudo docker exec -it nvim-docker /bin/zsh
 #
 # RUN FROM DOCKERHUB:
 # sudo docker run -d --name nvim-docker -v /mnt/c/Projects.Git:/mnt/c/Projects.Git killerrat/nvim-docker:latest
