@@ -214,3 +214,7 @@ vim.keymap.set("n", "<c-k>", ":cp<cr>")
 -- " nnoremap <leader>ej :lnext<cr>
 -- " nnoremap <leader>ek :lprev<cr>
 
+-- LEAP LIKE, BUT SEARCH CURRENT SCREEN ONLY
+-- FROM: https://www.reddit.com/r/vim/comments/91g97i/search_in_the_current_screen_only/
+-- nnoremap <silent> \ :set scrolloff=0<CR>VHoL<Esc>:set scrolloff=1<CR>``<C-y>/\%V
+vim.keymap.set("n", "<leader>/", ":set scrolloff=0<cr>VHoL<esc>:set scrolloff=1<cr>``<c-y>/\\%V")
