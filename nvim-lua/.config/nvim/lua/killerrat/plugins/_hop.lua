@@ -10,6 +10,6 @@ p.setup {
 
 vim.keymap.set("n", "<leader>w", "<cmd>HopWord<cr>")
 vim.keymap.set("n", "<leader>W", "<cmd>HopWordMW<cr>")
-vim.keymap.set("n", "<leader>/", "<cmd>HopPattern<cr>")
-vim.keymap.set("n", "<leader>e", "<cmd>HopChar2<cr>")
+-- vim.keymap.set("n", "<leader>/", "<cmd>HopPattern<cr>")
+-- vim.keymap.set("n", "<leader>e", "<cmd>HopChar2<cr>")
 

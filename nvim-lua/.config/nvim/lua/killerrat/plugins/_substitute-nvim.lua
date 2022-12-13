@@ -25,7 +25,8 @@ vim.keymap.set("n", "ss", "<cmd>lua require('substitute').line()<cr>", { noremap
 vim.keymap.set("n", "S", "<cmd>lua require('substitute').eol()<cr>", { noremap = true })
 vim.keymap.set("x", "s", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
 
-vim.keymap.set("n", "<leader>s", "<cmd>lua require('substitute.range').operator()<cr>", { noremap = true })
-vim.keymap.set("x", "<leader>s", "<cmd>lua require('substitute.range').visual()<cr>", { noremap = true })
-vim.keymap.set("n", "<leader>ss", "<cmd>lua require('substitute.range').word()<cr>", { noremap = true })
+
+-- vim.keymap.set("n", "<leader>s", "<cmd>lua require('substitute.range').operator()<cr>", { noremap = true })
+-- vim.keymap.set("x", "<leader>s", "<cmd>lua require('substitute.range').visual()<cr>", { noremap = true })
+-- vim.keymap.set("n", "<leader>ss", "<cmd>lua require('substitute.range').word()<cr>", { noremap = true })
 

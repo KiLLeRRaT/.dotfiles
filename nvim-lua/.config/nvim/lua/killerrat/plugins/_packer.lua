@@ -78,6 +78,7 @@ local function packer_spec()
 	use { 'ThePrimeagen/harpoon' }													-- https://github.com/ThePrimeagen/harpoon
 	use { 'max397574/better-escape.nvim' }									-- https://github.com/max397574/better-escape.nvim
 	use { 'phaazon/hop.nvim' }															-- https://github.com/phaazon/hop.nvim
+	use { 'ggandor/leap.nvim' }															-- https://github.com/ggandor/leap.nvim
 	use { 'dstein64/vim-startuptime' }											-- https://github.com/dstein64/vim-startuptime
 	use { 'kylechui/nvim-surround' }												-- https://github.com/kylechui/nvim-surround
 	use { 'tpope/vim-fugitive' }														-- https://github.com/tpope/vim-fugitive
