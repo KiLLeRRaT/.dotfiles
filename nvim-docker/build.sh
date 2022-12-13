@@ -5,4 +5,4 @@ export BUILD_DATE=$(date +%Y%m%d%H%M%S)
 
 docker-compose build
 
-docker-compose push
+# docker-compose push
