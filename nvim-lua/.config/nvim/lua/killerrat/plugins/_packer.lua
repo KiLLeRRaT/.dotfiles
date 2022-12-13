@@ -68,6 +68,7 @@ local function packer_spec()
 		run = 'make' }																				-- https://github.com/nvim-telescope/telescope-fzf-native.nvim
 	use { 'nvim-telescope/telescope-live-grep-args.nvim' }	-- https://github.com/nvim-telescope/telescope-live-grep-args.nvim
 
+	-- use { 'nvim-tree/nvim-tree.lua' }														-- https://github.com/nvim-tree/nvim-tree.lua
 	use { 'preservim/nerdtree' }														-- https://github.com/preservim/nerdtree
 	-- THIS DOESNT SEEM TO WORK, SIMILAR ERROR AS:
 	-- https://github.com/wbthomason/packer.nvim/issues/316 BUT NOT SURE HOW TO SORT IT OUT!
@@ -213,9 +214,9 @@ function dump(o)
 end
 -- print("Plugins:", dump(_G.packer_plugins))
 
--- vim.api.nvim_buf_set_lines(0, -1, -1, false, {
--- 	"Plugins:",
--- 	dump(_G.packer_plugins)
--- })
+vim.api.nvim_buf_set_lines(0, -1, -1, false, {
+	"Plugins:",
+	dump(_G.packer_plugins)
+})
 
 -- /TO CHECK IF A PLUGIN IS INSTALLED
