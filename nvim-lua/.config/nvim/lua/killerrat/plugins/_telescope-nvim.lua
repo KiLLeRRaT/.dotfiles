@@ -31,6 +31,8 @@ p.load_extension('fzf')
 
 -- " TELESCOPE
 -- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+vim.keymap.set("n", "<leader>f.", "<cmd>Telescope resume<cr>")
+
 -- nnoremap <leader>ff <cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>
 vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>")
 -- nnoremap <leader>fF :execute 'Telescope find_files default_text=' . "'" . expand('<cword>')<cr>
