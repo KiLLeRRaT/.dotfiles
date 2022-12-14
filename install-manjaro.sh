@@ -303,7 +303,8 @@ Section "InputClass"
 	Option "AccelerationScheme" "none"
 	Option "AccelSpeed" "1"
 	Option "ScollMethodEnabled" "0, 0, 1"
-	Option "ScrollingPixelDistance" "30"
+  # THIS MESSES EVEN MORE WITH THE WHEEL SPEED!
+  #Option "ScrollingPixelDistance" "30"
 EndSection
 EOF
 
