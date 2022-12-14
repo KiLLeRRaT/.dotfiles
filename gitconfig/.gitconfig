@@ -30,7 +30,7 @@
 [core]
 	autocrlf = input
 	excludesFile = ~/.gitignore
-	attributeFile = ~/.gitattributes
+	attributesFile = ~/.gitattributes
 [commit]
 	gpgsign = true
 [init]
