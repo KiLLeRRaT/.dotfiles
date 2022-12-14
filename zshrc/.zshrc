@@ -9,7 +9,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/albert/.oh-my-zsh"
+# export ZSH="/Users/albert/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -259,7 +259,5 @@ setopt GLOB_COMPLETE
 
 # Zsh vi mode
 # FROM: https://github.com/jeffreytse/zsh-vi-mode
-# first clone: sudo git clone https://github.com/jeffreytse/zsh-vi-mode.git /usr/share/zsh/plugins/zsh-vi-mode
 ZVM_VI_ESCAPE_BINDKEY="jk"
-# source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $HOME/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
