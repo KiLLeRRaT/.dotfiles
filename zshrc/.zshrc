@@ -150,6 +150,8 @@ alias l="ls -1"
 alias tmux='tmux -2'
 alias grep='grep --color=always'
 
+alias db='dotnet build'
+
 alias gs='git status'
 alias gf='git fetch'
 alias gl='git pull'
@@ -210,7 +212,7 @@ cdsh() {
 
 # CD TO PATH OF ANOTHER SHELL, USING FZF AS SELECTOR
 cs() {
-	cd $(lssh | fzf --height=~50 | cut -f 2)
+	cd $(lssh | fzf --query "$1" --height=~50 | cut -f 2)
 }
 
 # RUN THE COMMAND FROM HISTORY, USING FZF AS SELECTOR
