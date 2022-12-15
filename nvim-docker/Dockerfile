@@ -91,6 +91,7 @@ RUN echo -e "\033[32m Run Stow\033[0m" && \
 	stow fonts && \
 	stow nvim-lua && \
 	stow oh-my-posh && \
+	stow ranger && \
 	stow tmux && \
 	stow zshrc
 

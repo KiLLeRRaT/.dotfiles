@@ -213,7 +213,7 @@ echo -e "Done"
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Running stow\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
-STOW_FOLDERS=alacritty,bashrc,dmenurc,dosbox,fonts,gitconfig,i3-manjaro,inputrc,nvim-lua,oh-my-posh,tmux,zshrc
+STOW_FOLDERS=alacritty,bashrc,dmenurc,dosbox,fonts,gitconfig,i3-manjaro,inputrc,nvim-lua,oh-my-posh,ranger,tmux,zshrc
 pushd $USER_HOME/.dotfiles
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
