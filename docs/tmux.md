@@ -1,5 +1,8 @@
 # Tmux
 
+## Config Location
+`/tmux`
+
 ## Key Bindings
 
 Typically, Tmux keys are `Alt` + ...

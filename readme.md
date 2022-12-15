@@ -12,4 +12,7 @@ dotfiles for Linux, MacOS, and Windows in here.
 
 # Key Bindings
 
+The notation for `Ctrl` is `<c-x>` and `Alt` is `<m-x>` (Alt means meta, hence the m).  The notation for `Shift` is just a capital
+letter. e.g <m-H> is `alt + shift + h`.
+
  - [i3](docs/i3.md)
