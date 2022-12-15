@@ -112,8 +112,10 @@ RUN echo -e "\033[32m PackerSync, to install the plugins\033[0m" && \
 # RUN cd /root/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim && make
 
 
-RUN echo -e "\033[32m Nuget credential provider for Azure DevOps\033[0m" && \
+RUN echo -e "\033[32m Nuget credential provider for .NET Core Azure DevOps\033[0m" && \
 	wget -qO- https://aka.ms/install-artifacts-credprovider.sh | bash
+RUN echo -e "\033[32m Nuget credential provider for .NET Framework Azure DevOps\033[0m" && \
+	if ! curl -H "Accept: application/octet-stream" -s -S -L "https://github.com/microsoft/artifacts-credprovider/releases/download/v1.0.0/Microsoft.NuGet.CredentialProvider.tar.gz" | tar xz -C "$HOME/.nuget/" "plugins/netfx"; then exit 1 ; fi
 
 
 RUN echo -e "\033[32m Make norg dummy directories\033[0m" && \
