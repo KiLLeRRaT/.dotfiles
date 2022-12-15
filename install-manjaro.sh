@@ -136,7 +136,7 @@ timeshift --create --comments "install-manjaro: Before building software"
 buildApp xrdp
 
 # gpg --keyserver keys.gnupg.net --recv-keys 61ECEABBF2BB40E3A35DF30A9F72CDBC01BF10EB
-# buildApp xorgxrdp
+buildApp xorgxrdp
 
 buildApp rslsync
 buildApp azuredatastudio-bin "SQL Server client"
@@ -469,6 +469,30 @@ timeshift --create --comments "install-manjaro: After installing and config"
 # FROM: https://rajasekaranp.medium.com/how-to-setup-xrdp-in-manjaro-linux-e176b22bd347
 #sudo systemctl enable xrdp.service
 #sudo systemctl enable xrdp-sesman.service
+
+# ---------------
+# Arno RDP Tip for same session RDP
+# ---------------
+# add to new ~/.xsession file:
+
+# sudo nano ~/.xsession file
+
+# //////////////////////
+# unset DBUS_SESSION_BUS_ADDRESS
+# unset SESSION_MANAGER
+# mate-session
+# //////////////////////
+# TIP
+# replace mate-session met you Desktop session launch command
+# dit sal den session resume support en local console login
+
+# FOLLOWING THIS ARTICLE, XFCE MANJARO:
+# https://www.adamlabay.net/2021/08/28/xrdp-on-manjaro-fixing-the-blank-screen-issue/
+# ---------------
+# Check ~/.xorgxrdp.10.log for errors
+
+# FOUND THAT ITS WHEN TRYING TO LOAD THE NVIDIA DRIVERS, REMOVED THE NVIDIA FILE FROM xorg.conf.d
+# and VOILA. FROM: https://github.com/neutrinolabs/xrdp/issues/1550
 
 
 # ----------------------------------------

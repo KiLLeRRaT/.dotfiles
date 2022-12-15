@@ -67,19 +67,6 @@ get_session(){
 	echo "dbus-launch ${dbus_args[*]}"
 }
 
-
-# NOW RUN WHEN SAVING THESE FILES VIA NVIM!
-# # RUN SED SCRIPT TO STRIP HOST SPECIFIC PARTS FROM i3 CONFIG FILE
-# pushd ~/.config/i3
-# rm config
-# sed '/# <hostSpecificConfig>/,/# <\/hostSpecificConfig>/ {/# <config hostname="'$HOST'">/,/# <\/config>/!d}' config.allHosts > config
-# popd
-
-
-# # TURN ON NUMLOCK USING numlockx LIBRARY
-# numlockx &
-
-
-# exec $(get_session "$1")
-exec $(get_session "$DEFAULT_SESSION")
+exec $(get_session "$1")
+# exec $(get_session "$DEFAULT_SESSION")
 
