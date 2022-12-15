@@ -1,7 +1,11 @@
 #!/bin/zsh
 
+# GET THE CURRENT COMMIT SHA
+export BUILD_DATE=$(git rev-parse HEAD)
+
+
 # GET DATE IN yyyymmddHHmmss FORMAT
-export BUILD_DATE=$(date +%Y%m%d%H%M%S)
+# export BUILD_DATE=$(date +%Y%m%d%H%M%S)
 
 docker-compose build
 
