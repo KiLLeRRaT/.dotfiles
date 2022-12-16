@@ -75,7 +75,12 @@ local function packer_spec()
 	-- 	opt = true, cmd = { 'NERDTree',  'NERDTreeFocus', 'NERDTreeToggle', 'NERDTreeFind'}
 	-- }																			-- https://github.com/preservim/nerdtree
 
-	use { 'ThePrimeagen/harpoon' }													-- https://github.com/ThePrimeagen/harpoon
+	-- use { 'ThePrimeagen/harpoon' }													-- https://github.com/ThePrimeagen/harpoon
+	use {
+		"cbochs/grapple.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+	}																												-- https://github.com/cbochs/grapple.nvim
+
 	use { 'max397574/better-escape.nvim' }									-- https://github.com/max397574/better-escape.nvim
 	use { 'phaazon/hop.nvim' }															-- https://github.com/phaazon/hop.nvim
 	use { 'ggandor/leap.nvim' }															-- https://github.com/ggandor/leap.nvim
@@ -213,9 +218,11 @@ function dump(o)
 end
 -- print("Plugins:", dump(_G.packer_plugins))
 
--- vim.api.nvim_buf_set_lines(0, -1, -1, false, {
--- 	"Plugins:",
--- 	dump(_G.packer_plugins)
--- })
+vim.keymap.set('n', "<F1>", function()
+	vim.api.nvim_buf_set_lines(0, -1, -1, false, {
+		"Plugins:",
+		dump(_G.packer_plugins)
+	})
+end)
 
 -- /TO CHECK IF A PLUGIN IS INSTALLED
