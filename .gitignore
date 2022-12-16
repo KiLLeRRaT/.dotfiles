@@ -5,4 +5,5 @@ glazewm/.glaze-wm/errors.log
 **/generated/*
 i3-manjaro/.config/i3/config
 i3-manjaro/.config/i3status/config
+*.pyc
 
