@@ -67,6 +67,8 @@ get_session(){
 	echo "dbus-launch ${dbus_args[*]}"
 }
 
+echo $(date) >> ~/xrdp.log-albert2
+
 exec $(get_session "$1")
 # exec $(get_session "$DEFAULT_SESSION")
 
