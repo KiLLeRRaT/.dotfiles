@@ -212,18 +212,24 @@ cdsh() {
 
 # CD TO PATH OF ANOTHER SHELL, USING FZF AS SELECTOR
 cs() {
-	cd $(lssh | fzf --select-1 --query "$1" --height=~50 | cut -f 2)
+	cmd=$(cd $(lssh | fzf --select-1 --query "$1" --height=~50 | cut -f 2))
+	print -S $cmd # push the command into the history
+	eval $cmd
 }
 
 # RUN THE COMMAND FROM HISTORY, USING FZF AS SELECTOR
 hf() {
-	$(history 0 | cut -c 8- | fzf -e)
+	cmd=$(history 0 | cut -c 8- | fzf -e --select-1 --query "$1" )
+	print -S $cmd # push the command into the history
+	eval $cmd
 }
 
 # REMMINA USING THE CONNECTION FILE SELECTED USING FZF
 rf() {
 	pushd ~/.local/share/remmina
-	remmina -c $(ls $PWD/* | fzf -e)
+	cmd=$(remmina -c $(ls $PWD/* | fzf -e --select-1 --query "$1"))
+	print -S $cmd # push the command into the history
+	eval $cmd
 	popd
 }
 
