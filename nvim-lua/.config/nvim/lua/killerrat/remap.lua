@@ -170,6 +170,7 @@ end
 
 -- LSP MAPPINGS
 -- for gd, gr, see _telescope-nvim.lua
+vim.keymap.set("n", "<F2>", ":LspInfo<cr>")
 vim.keymap.set("n", "gD", ":lua vim.lsp.buf.type_definition()<cr>")
 -- <leader>gi instead of jsut gi, because gi takes you to last edit and puts you in insert mode
 vim.keymap.set("n", "<leader>gi", ":lua vim.lsp.buf.implementation()<cr>")
