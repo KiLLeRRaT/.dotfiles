@@ -115,6 +115,7 @@ installApp kdiff3
 installApp dotnet-sdk
 installApp postgresql
 installApp jq
+installApp d2 "Diagram drawing tool"
 
 # timeshift --create --comments "install-manjaro: Before installing 1Password"
 # echo -e "\033[32m ----------------------------------------\033[0m"
