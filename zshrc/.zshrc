@@ -212,15 +212,19 @@ cdsh() {
 
 # CD TO PATH OF ANOTHER SHELL, USING FZF AS SELECTOR
 cs() {
-	cmd=$(cd $(lssh | fzf --select-1 --query "$1" --height=~50 | cut -f 2))
-	print -S $cmd # push the command into the history
+	# I swear this worked before, but not anymore, it just returns a blank cmd
+	# cmd=$(cd $(lssh | fzf --select-1 --query "$1" --height=~50 | cut -f 2))
+	cmd1=$(lssh | fzf --select-1 --query "$1" --height=~50 | cut -f 2)
+	cmd="cd $cmd1"
+	print -S $cmd
 	eval $cmd
 }
 
 # RUN THE COMMAND FROM HISTORY, USING FZF AS SELECTOR
 hf() {
 	cmd=$(history 0 | cut -c 8- | fzf -e --select-1 --query "$1" )
-	print -S $cmd # push the command into the history
+	# push the command into the history
+	print -S $cmd
 	eval $cmd
 }
 
@@ -228,7 +232,8 @@ hf() {
 rf() {
 	pushd ~/.local/share/remmina
 	cmd=$(remmina -c $(ls $PWD/* | fzf -e --select-1 --query "$1"))
-	print -S $cmd # push the command into the history
+	# push the command into the history
+	print -S $cmd
 	eval $cmd
 	popd
 }
