@@ -113,7 +113,29 @@ bindsym $mod+Shift+F3 exec pcmanfm_pkexec
 # bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id picom -b
+
+
+# DESKTOP NOTIFICATIONS BY DUNST
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+# bindsym Mod4+space --release exec dunstctl close
+# bindsym Mod4+space --release exec dunstctl history
+bindsym Mod4+space mode "$mode_notifications"
+set $mode_notifications (c)lose, (C)lose all, (h)istory, conte(x)t
+mode "$mode_notifications" {
+		bindsym c --release exec dunstctl close, mode "default"
+		bindsym Shift+c --release exec dunstctl close-all, mode "default"
+		bindsym h --release exec dunstctl history-pop, mode "default"
+		bindsym x --release exec dunstctl context, mode "default"
+
+		# exit system mode: "Enter" or "Escape"
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
+}
+
+
+
+
+
 
 
 # --------------------------------------------------
