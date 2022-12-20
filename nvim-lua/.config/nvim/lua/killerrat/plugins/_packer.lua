@@ -115,6 +115,9 @@ local function packer_spec()
 	use { 'sindrets/diffview.nvim',
 		requires = 'nvim-lua/plenary.nvim' }									-- https://github.com/sindrets/diffview.nvim
 	use { 'uga-rosa/ccc.nvim' }															-- https://github.com/uga-rosa/ccc.nvim
+	use { 'lambdalisue/suda.vim' }																		-- https://github.com/lambdalisue/suda.vim
+	use { 'terrastruct/d2-vim' }																			-- https://github.com/terrastruct/d2-vim
+
 
 
 
@@ -169,8 +172,6 @@ local function packer_spec()
 	-- Plug 'https://github.com/theHamsta/nvim-dap-virtual-text'
 	-- Plug 'https://github.com/nvim-telescope/telescope-dap.nvim'
 	-- Plug 'https://github.com/mfussenegger/nvim-dap'
-
-	use { 'lambdalisue/suda.vim' }																		-- https://github.com/lambdalisue/suda.vim
 
 	-- " Open LSP goto defn in floating windows
 	-- call plug#end()
