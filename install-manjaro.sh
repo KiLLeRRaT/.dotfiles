@@ -384,9 +384,12 @@ timeshift --create --comments "install-manjaro: After installing and config"
 # ----------------------------------------
 # FROM: https://archived.forum.manjaro.org/t/how-can-i-change-the-default-browser-in-i3/60715
 # try edit the browser entry in
-# /home/$USER/.profile
+# cp ~/.profile ~/.profile.bak
+# sed -i 's/palemoon/brave/g' ~/.profile
+
 # then find and replace all Pale Moon entries in
-# /home/$USER/.config/mimeapps.list
+# cp ~/.config/mimeapps.list ~/.config/mimeapps.list.bak
+# sed -i 's/Pale Moon/Brave/g' ~/.config/mimeapps.list
 
 
 # ----------------------------------------
