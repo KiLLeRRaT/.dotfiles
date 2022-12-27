@@ -18,11 +18,11 @@ require('neorg').setup {
 				["core.norg.concealer"] = {
 					 config = {}
 				},
-				["core.gtd.base"] = { -- https://github.com/nvim-neorg/neorg/wiki/Getting-Things-Done
-					 config = {
-						workspace = "work"
-					 }
-				},
+				-- ["core.gtd.base"] = { -- https://github.com/nvim-neorg/neorg/wiki/Getting-Things-Done
+				-- 	 config = {
+				-- 		workspace = "work"
+				-- 	 }
+				-- },
 				["core.norg.completion"] = { -- https://github.com/nvim-neorg/neorg/wiki/Completion
 					config = {
 						engine = "nvim-cmp"
@@ -68,6 +68,8 @@ neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, key
 				silent = true,
 				noremap = true,
 		})
+		keybinds.remap_event("norg", "n", "]d", "core.norg.qol.todo_items.todo.task_cycle")
+		keybinds.remap_event("norg", "n", "[d", "core.norg.qol.todo_items.todo.task_cycle_reverse")
 end)
 
 
@@ -76,6 +78,9 @@ end)
 
 vim.keymap.set("n", "<leader>nw", "<cmd>Neorg workspace work<cr>")
 -- vim.keymap.set("n", "<localleader>nc", "<cmd>Neorg toggle-concealer<cr>")
+
+-- TEMP MAPPING FOR GTD BEFORE THEY RELEASE IT AGAIN
+-- vim.keymap.set("n", "gtd", "0f[lrx")
 
 
 -- vim.api.nvim_create_autocmd("FileType", {
