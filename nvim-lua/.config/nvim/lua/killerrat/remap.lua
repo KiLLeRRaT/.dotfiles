@@ -207,9 +207,10 @@ vim.keymap.set("n", "<leader>G", ":call v:lua.toggle_diagnostics()<CR>")
 
 
 -- QUICK FIX LIST
-vim.keymap.set("n", "<c-q>", ":copen<cr>")
-vim.keymap.set("n", "<c-j>", ":cn<cr>")
-vim.keymap.set("n", "<c-k>", ":cp<cr>")
+-- RATHER USE unimpaired's shortcuts, ]q and [q
+-- vim.keymap.set("n", "<c-q>", ":copen<cr>")
+-- vim.keymap.set("n", "<c-j>", ":cn<cr>")
+-- vim.keymap.set("n", "<c-k>", ":cp<cr>")
 
 -- LOCATION LIST
 -- " nnoremap <leader>eq :lopen<cr>
