@@ -117,6 +117,7 @@ local function packer_spec()
 	use { 'uga-rosa/ccc.nvim' }															-- https://github.com/uga-rosa/ccc.nvim
 	use { 'lambdalisue/suda.vim' }																		-- https://github.com/lambdalisue/suda.vim
 	use { 'terrastruct/d2-vim' }																			-- https://github.com/terrastruct/d2-vim
+	use { 'mbbill/undotree' }																			-- https://github.com/mbbill/undotree
 
 
 

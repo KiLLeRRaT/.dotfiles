@@ -39,6 +39,7 @@ vim.opt.colorcolumn = "100"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.autoindent = true
+vim.opt.smartindent = true
 vim.opt.expandtab = false
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
@@ -48,6 +49,8 @@ vim.opt.listchars = "tab:| ,nbsp:_,trail:·,space:·"
 vim.opt.list = true
 vim.opt.wrap = false
 vim.opt.mouse = "a"
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
+vim.opt.undofile = true
 
 -- always show this many lines from the edge of the window top and bottom
 vim.opt.scrolloff = 5
