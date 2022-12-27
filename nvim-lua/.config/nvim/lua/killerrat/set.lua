@@ -1,10 +1,7 @@
 -- set path+=**
 
 vim.opt.number = true
-
 vim.opt.relativenumber = true
--- autocmd InsertEnter * :set norelativenumber
--- autocmd InsertLeave * :set relativenumber 
 
 -- SET THE LINE NUMBERS TO ABSOLUTE NUMBERS WHEN ENDTERING COMMAND MODE
 local set_cmdline = vim.api.nvim_create_augroup("set_cmdline", { clear = true })
@@ -38,6 +35,7 @@ vim.opt.showcmd = true
 -- set autoread " READ FILE IF OUTSIDE CHANGES ARE DETECTED
 
 vim.opt.textwidth = 100 -- command 'gw' formats text to this width
+vim.opt.colorcolumn = "100"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.autoindent = true
@@ -50,6 +48,12 @@ vim.opt.listchars = "tab:| ,nbsp:_,trail:·,space:·"
 vim.opt.list = true
 vim.opt.wrap = false
 vim.opt.mouse = "a"
+
+-- always show this many lines from the edge of the window top and bottom
+vim.opt.scrolloff = 5
+
+-- IF after so many ms no changes made, write the swapfile to disk
+vim.opt.updatetime = 100
 
 -- " SET SHELL TO POWERSHELL
 -- print("has win32: ", vim.fn.has('win32'))
