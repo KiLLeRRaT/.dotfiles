@@ -76,6 +76,7 @@ pamac install --no-confirm numlockx
 
 timeshift --create --comments "install-manjaro: Before installing optional software"
 installApp brave-browser
+installApp noto-fonts-emoji "Emoji support (Google OpenSource)"
 installApp redshift "Nightlight, Fluxx alternative"
 installApp signal-desktop
 installApp discord
