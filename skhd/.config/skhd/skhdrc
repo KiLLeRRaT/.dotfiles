@@ -319,3 +319,10 @@ cmd + shift - f : yabai -m window --toggle float
 
 #ctrl + alt - w : chunkc tiling::desktop --deserialize ~/.chunkwm_layouts/dev_1
 
+
+# FROM: https://apple.stackexchange.com/a/442108
+cmd - h [
+  "alacritty" : skhd -k ""
+  "safari" : skhd -k ""
+]
+
