@@ -28,6 +28,7 @@
 	directory = /home/albert/GBox/Applications/Tools/Scripts/Powershell
 	directory = /usr/share/zsh/plugins/zsh-vi-mode
 	directory = /home/albert/GBox/Applications/Tools/Scripts/Linux
+	directory = /mnt/hotelalphaactual.gouws.org/config
 [core]
 	autocrlf = input
 	excludesFile = ~/.gitignore
