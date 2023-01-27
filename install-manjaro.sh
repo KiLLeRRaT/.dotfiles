@@ -68,6 +68,7 @@ pamac install --no-confirm feh
 pamac install --no-confirm neofetch
 pamac install --no-confirm zoxide
 pamac install --no-confirm partitionmanager
+pamac install --no-confirm nginx
 
 # FROM: https://wiki.archlinux.org/title/Activating_numlock_on_bootup
 # Turns on numlock in X11, need to add entry into .xinitrc
@@ -117,6 +118,7 @@ installApp dotnet-sdk
 installApp postgresql
 installApp jq
 installApp d2 "Diagram drawing tool"
+installApp xsp "Lightweight ASP.NET Server used for hosting mono on nginx, includes fastcgi-mono-server4"
 
 # timeshift --create --comments "install-manjaro: Before installing 1Password"
 # echo -e "\033[32m ----------------------------------------\033[0m"
