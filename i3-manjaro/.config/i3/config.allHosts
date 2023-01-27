@@ -711,6 +711,22 @@ exec --no-startup-id "google-chat-electron"
 exec --no-startup-id "alacritty -e tmux"
 # </config>
 
+# <config hostname="albert-aspire">
+# # TURN ON NUMLOCK USING numlockx LIBRARY
+exec --no-startup-id numlockx
+
+exec --no-startup-id pipewire-pulse
+exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
+# exec --no-startup-id pa-applet
+
+# RESTORE LAYOUTS
+exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-2.json'"
+exec --no-startup-id "i3-msg 'workspace 8; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-8.json'"
+
+exec --no-startup-id "brave --profile-directory=Default"
+exec --no-startup-id "alacritty -e tmux"
+# </config>
+
 # <config hostname="albert-satellitepro">
 # # TURN ON NUMLOCK USING numlockx LIBRARY
 exec --no-startup-id numlockx
