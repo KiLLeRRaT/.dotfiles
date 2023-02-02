@@ -222,8 +222,7 @@ cs() {
 
 # RUN THE COMMAND FROM HISTORY, USING FZF AS SELECTOR
 hf() {
-	# cmd=$(history 0 | sort -nr | cut -c 8- | fzf -e --select-1 --no-sort --query "$1" )
-	cmd=$(history 0 | sort -nr | fzf -e --select-1 --no-sort --query "$1" )
+	cmd=$(history 0 | sort -nr | cut -c 8- | fzf -e --select-1 --no-sort --query "$1" )
 	# push the command into the history
 	print -S $cmd
 	eval $cmd
@@ -267,6 +266,7 @@ bindkey "\E[3~" delete-char
 eval "$(zoxide init zsh)"
 
 setopt GLOB_COMPLETE
+setopt HIST_IGNORE_ALL_DUPS
 
 
 # Zsh vi mode
