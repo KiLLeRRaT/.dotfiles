@@ -222,7 +222,8 @@ cs() {
 
 # RUN THE COMMAND FROM HISTORY, USING FZF AS SELECTOR
 hf() {
-	cmd=$(history 0 | cut -c 8- | fzf -e --select-1 --query "$1" )
+	# cmd=$(history 0 | sort -nr | cut -c 8- | fzf -e --select-1 --no-sort --query "$1" )
+	cmd=$(history 0 | sort -nr | fzf -e --select-1 --no-sort --query "$1" )
 	# push the command into the history
 	print -S $cmd
 	eval $cmd
@@ -231,7 +232,7 @@ hf() {
 # REMMINA USING THE CONNECTION FILE SELECTED USING FZF
 rf() {
 	pushd ~/.local/share/remmina
-	cmd=$(remmina -c $(ls $PWD/* | fzf -e --select-1 --query "$1"))
+	cmd=$(remmina -c $(ls $PWD/* | fzf -e --select-1 --no-sort --query "$1"))
 	# push the command into the history
 	print -S $cmd
 	eval $cmd
