@@ -3,7 +3,7 @@ FROM manjarolinux/base AS base
 # YOU SERIOUSLY CAN USE PACMAN INSTEAD OF PAMAC DUDE!
 # RUN pacman -Syu pamac-cli --noconfirm
 
-RUN pacman -Syu
+RUN pacman -Syu --noconfirm
 
 RUN pacman -S --noconfirm git \
 	wget \
@@ -34,7 +34,11 @@ RUN pacman -S --noconfirm git \
 	make \
 	openssh \
 	upterm \
-	fzf
+	fzf \
+	ncdu \
+	nginx
+
+# RUN pamac build xsp mono-basic --no-confirm
 
 
 WORKDIR /root
