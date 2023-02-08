@@ -156,6 +156,8 @@ buildApp virt-v2v "Convert virtual machines (vhd) to run on KVM"
 buildApp nbdkit "Network Block Device (NBD) server, needed by virt-v2v"
 buildApp zsh-vi-mode
 buildApp mono-basic "Visual Basic support for Mono"
+buildApp kopia-bin "Backup utility for file level backups"
+buildApp kopia-ui-bin "UI for Backup utility for file level backups"
 
 # --------------------------------------------------
 # SNAP PACKAGES
