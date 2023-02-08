@@ -17,6 +17,11 @@ local function find_closest_csproj(directory)
 			return nil
 		end
 		return find_closest_csproj(parent_directory)
+	-- elseif there are multiple csproj files, then return the first one
+	elseif string.find(csproj, "\n") ~= nil then
+		local first_csproj = string.sub(csproj, 0, string.find(csproj, "\n") - 1)
+		print("Found multiple csproj files, using: " .. first_csproj)
+		return first_csproj
 	else
 		return csproj
 	end
@@ -27,6 +32,7 @@ end
 local function getFrameworkType()
 	local currentFileDirectory = vim.fn.expand("%:p:h")
 	local csproj = find_closest_csproj(currentFileDirectory)
+	-- print("csproj: " .. csproj)
 	if csproj == nil then
 		return false
 	end
