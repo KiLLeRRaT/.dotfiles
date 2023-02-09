@@ -168,7 +168,7 @@ mode "$mode_notifications" {
 # flameshot gui --region "$REGION"
 # -------------------------
 
-bindsym Print exec --no-startup-id "eval $(xdotool getactivewindow getwindowgeometry --shell);REGION=${WIDTH}x${HEIGHT}+${X}+${Y}; flameshot full --region $REGION -p /mnt/c/Users/Albert/Desktop/Temp/ -c"
+bindsym Print exec --no-startup-id "eval $(xdotool getactivewindow getwindowgeometry --shell);REGION=${WIDTH}x${HEIGHT}+${X}+${Y}; flameshot full --region $REGION -p ~/Pictures/screenshots/ -c"
 bindsym Ctrl+Print exec --no-startup-id "flameshot gui"
 
 #bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
@@ -286,16 +286,17 @@ bindsym $mod+9 workspace $ws9
 bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Shift+Tab move container to workspace back_and_forth; workspace back_and_forth
 
-# Move focused container to workspace
-bindsym $mod+Ctrl+1 move container to workspace $ws1
-bindsym $mod+Ctrl+2 move container to workspace $ws2
-bindsym $mod+Ctrl+3 move container to workspace $ws3
-bindsym $mod+Ctrl+4 move container to workspace $ws4
-bindsym $mod+Ctrl+5 move container to workspace $ws5
-bindsym $mod+Ctrl+6 move container to workspace $ws6
-bindsym $mod+Ctrl+7 move container to workspace $ws7
-bindsym $mod+Ctrl+8 move container to workspace $ws8
-bindsym $mod+Ctrl+9 move container to workspace $ws9
+# # Messes with Ctrl + Alt + 2 in Google Docs
+# # Move focused container to workspace
+# bindsym $mod+Ctrl+1 move container to workspace $ws1
+# bindsym $mod+Ctrl+2 move container to workspace $ws2
+# bindsym $mod+Ctrl+3 move container to workspace $ws3
+# bindsym $mod+Ctrl+4 move container to workspace $ws4
+# bindsym $mod+Ctrl+5 move container to workspace $ws5
+# bindsym $mod+Ctrl+6 move container to workspace $ws6
+# bindsym $mod+Ctrl+7 move container to workspace $ws7
+# bindsym $mod+Ctrl+8 move container to workspace $ws8
+# bindsym $mod+Ctrl+9 move container to workspace $ws9
 
 # Move focused container to workspace, and focus new workspace
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
