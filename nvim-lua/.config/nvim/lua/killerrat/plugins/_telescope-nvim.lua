@@ -43,7 +43,20 @@ vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
 vim.keymap.set("n", "<leader>fG", ":execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>")
 
 -- nnoremap <leader>fR <cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>
-vim.keymap.set("n", "<leader>fr", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>")
+-- vim.keymap.set("n", "<leader>fr", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>")
+vim.keymap.set("n", "<leader>fr", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args({ default_text = '--hidden ' })<cr>")
+
+-- FROM: https://github.com/nvim-telescope/telescope-live-grep-args.nvim/issues/9
+--vim.keymap.set("n", "<leader>fr", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args({ default_text = '--hidden', prompt_title = 'Live Grep (Args)', vimgrep_arguments = { " ..
+--	"'rg', " ..
+--	--"'--hidden', " ..
+--	"'--color=never', " ..
+--	"'--no-heading', " ..
+--	"'--with-filename', " ..
+--	"'--line-number', " ..
+--	"'--column', " ..
+--	"'--smart-case', " ..
+--"} })<cr>")
 
 -- nnoremap <leader>fb <cmd>Telescope buffers<cr>
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
