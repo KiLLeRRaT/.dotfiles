@@ -31,8 +31,9 @@ end
 -- CHECK CSPROJ FILE TO SEE IF ITS .NET CORE OR .NET FRAMEWORK
 local function getFrameworkType()
 	local currentFileDirectory = vim.fn.expand("%:p:h")
+	-- print("currentFileDirectory file: " .. currentFileDirectory)
 	local csproj = find_closest_csproj(currentFileDirectory)
-	-- print("csproj: " .. csproj)
+	-- print("csproj file: " .. csproj)
 	if csproj == nil then
 		return false
 	end
