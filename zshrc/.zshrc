@@ -114,6 +114,8 @@ export SAVEHIST=100000
 # export EDITOR="/usr/local/bin/nvim"
 export EDITOR="/usr/bin/nvim"
 export VISUAL=$EDITOR
+export PATH="/home/albert/.ebcli-virtual-env/executables:$PATH"
+
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
