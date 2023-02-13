@@ -137,10 +137,10 @@ installApp xsp "Lightweight ASP.NET Server used for hosting mono on nginx, inclu
 
 
 timeshift --create --comments "install-manjaro: Before building software"
-buildApp xrdp
+# buildApp xrdp
 
 # gpg --keyserver keys.gnupg.net --recv-keys 61ECEABBF2BB40E3A35DF30A9F72CDBC01BF10EB
-buildApp xorgxrdp
+# buildApp xorgxrdp
 
 buildApp rslsync
 buildApp azuredatastudio-bin "SQL Server client"
