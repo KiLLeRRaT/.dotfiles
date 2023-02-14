@@ -142,9 +142,12 @@ vim.keymap.set("n", "<leader>=t", ":%retab!<cr>")
 -- vim.keymap.set("n", "<leader>=w", ":%s/\\s\\+$//<cr>")
 
 -- FORMAT STACK TRACE, mnemonic: stack trace
-	vim.keymap.set("n", "<leader>=s", ":%s/\\s\\+at\\s\\+/\\r\\tat /g<cr>")
-	-- THE BELOW DOESNT WORK, JUST LEAVE IT FOR NOW
-	-- vim.keymap.set("v", "<leader>=s", ":'<,'>s/\\s\\+at\\s\\+/\\r\\tat /g<cr>")
+vim.keymap.set("n", "<leader>=s", ":%s/\\s\\+at\\s\\+/\\r\\tat /g<cr>")
+-- THE BELOW DOESNT WORK, JUST LEAVE IT FOR NOW
+-- vim.keymap.set("v", "<leader>=s", ":'<,'>s/\\s\\+at\\s\\+/\\r\\tat /g<cr>")
+
+-- REMOVE ALL ^M FROM FILE
+vim.keymap.set("n", "<leader>=m", ":%s/\r//g<cr>")
 
 
 -- SUM LINES, mnemonic: Add
