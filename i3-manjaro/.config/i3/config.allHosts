@@ -456,7 +456,6 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
-exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
 exec_always --no-startup-id ff-theme-util
@@ -687,7 +686,10 @@ exec --no-startup-id "alacritty -e tmux"
 
 # <config hostname="agouws">
 # exec --no-startup-id "nmcli con down enp42s0"
-# # TURN ON NUMLOCK USING numlockx LIBRARY
+# WE ONLY WANT THIS ON AGOUWS HOST...
+exec --no-startup-id start_conky_maia
+
+# TURN ON NUMLOCK USING numlockx LIBRARY
 exec --no-startup-id numlockx
 exec --no-startup-id pipewire-pulse
 exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
