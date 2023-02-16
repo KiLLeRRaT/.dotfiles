@@ -27,6 +27,8 @@ bindsym $mod+Ctrl+n border normal
 # is used in the bar {} block below.
 font xft:URWGothic-Book 11
 
+# 󰭹 chat
+
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
@@ -261,15 +263,15 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #									set $ws2 2:
-set $ws1 1
-set $ws2 2
-set $ws3 3
-set $ws4 4
-set $ws5 5
-set $ws6 6
-set $ws7 7
-set $ws8 8
-set $ws9 9
+set $ws1 1:1:󰭹
+set $ws2 2:2:
+set $ws3 3:3:
+set $ws4 4:4:󰢁
+set $ws5 5:5:
+set $ws6 6:6:
+set $ws7 7:7:
+set $ws8 8:8:
+set $ws9 9:9:
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -328,15 +330,15 @@ assign [class="Spotify"] $ws1
 # HDMI-0 is middle screen
 # HDMI-1 is right screen
 # DP-0 is left screen
-workspace 1 output DP-0
-workspace 4 output DP-0
-workspace 7 output DP-0
-workspace 3 output HDMI-1
-workspace 6 output HDMI-1
-workspace 9 output HDMI-1
-workspace 2 output HDMI-0
-workspace 5 output HDMI-0
-workspace 8 output HDMI-0
+workspace $ws1 output DP-0
+workspace $ws4 output DP-0
+workspace $ws7 output DP-0
+workspace $ws3 output HDMI-1
+workspace $ws6 output HDMI-1
+workspace $ws9 output HDMI-1
+workspace $ws2 output HDMI-0
+workspace $ws5 output HDMI-0
+workspace $ws8 output HDMI-0
 
 
 # Open specific applications in floating mode
@@ -679,7 +681,7 @@ exec --no-startup-id pipewire-pulse
 exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 # exec --no-startup-id pa-applet
 
-exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/workspaces/ws-2.json'"
+exec --no-startup-id "i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'"
 
 exec --no-startup-id "alacritty -e tmux"
 # </config>
@@ -696,15 +698,15 @@ exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 # exec --no-startup-id pa-applet
 
 # RESTORE LAYOUTS
-exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.config/i3/workspaces/ws-1.json'"
-exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/workspaces/ws-2.json'"
-exec --no-startup-id "i3-msg 'workspace 3; append_layout ~/.config/i3/workspaces/ws-3.json'"
-exec --no-startup-id "i3-msg 'workspace 4; append_layout ~/.config/i3/workspaces/ws-4.json'"
-exec --no-startup-id "i3-msg 'workspace 5; append_layout ~/.config/i3/workspaces/ws-5.json'"
-exec --no-startup-id "i3-msg 'workspace 6; append_layout ~/.config/i3/workspaces/ws-6.json'"
-exec --no-startup-id "i3-msg 'workspace 7; append_layout ~/.config/i3/workspaces/ws-7.json'"
-exec --no-startup-id "i3-msg 'workspace 8; append_layout ~/.config/i3/workspaces/ws-8.json'"
-exec --no-startup-id "i3-msg 'workspace 9; append_layout ~/.config/i3/workspaces/ws-9.json'"
+exec --no-startup-id "i3-msg 'workspace $ws1; append_layout ~/.config/i3/workspaces/ws-1.json'"
+exec --no-startup-id "i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'"
+exec --no-startup-id "i3-msg 'workspace $ws3; append_layout ~/.config/i3/workspaces/ws-3.json'"
+exec --no-startup-id "i3-msg 'workspace $ws4; append_layout ~/.config/i3/workspaces/ws-4.json'"
+exec --no-startup-id "i3-msg 'workspace $ws5; append_layout ~/.config/i3/workspaces/ws-5.json'"
+exec --no-startup-id "i3-msg 'workspace $ws6; append_layout ~/.config/i3/workspaces/ws-6.json'"
+exec --no-startup-id "i3-msg 'workspace $ws7; append_layout ~/.config/i3/workspaces/ws-7.json'"
+exec --no-startup-id "i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/ws-8.json'"
+exec --no-startup-id "i3-msg 'workspace $ws9; append_layout ~/.config/i3/workspaces/ws-9.json'"
 
 exec --no-startup-id "brave --profile-directory=Default"
 exec --no-startup-id "brave --profile-directory=Profile\ 1"
@@ -723,8 +725,8 @@ exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 # exec --no-startup-id pa-applet
 
 # RESTORE LAYOUTS
-exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-2.json'"
-exec --no-startup-id "i3-msg 'workspace 8; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-8.json'"
+exec --no-startup-id "i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-2.json'"
+exec --no-startup-id "i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-8.json'"
 
 exec --no-startup-id "brave --profile-directory=Default"
 exec --no-startup-id "alacritty -e tmux"
@@ -739,8 +741,8 @@ exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 # exec --no-startup-id pa-applet
 
 # RESTORE LAYOUTS
-exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-2.json'"
-exec --no-startup-id "i3-msg 'workspace 8; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-8.json'"
+exec --no-startup-id "i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-2.json'"
+exec --no-startup-id "i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-8.json'"
 
 exec --no-startup-id "brave --profile-directory=Default"
 exec --no-startup-id "alacritty -e tmux"
@@ -750,7 +752,7 @@ exec --no-startup-id "alacritty -e tmux"
 exec --no-startup-id pulseaudio
 exec --no-startup-id pa-applet
 
-exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/workspaces/ws-2.json'"
+exec --no-startup-id "i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'"
 exec --no-startup-id "alacritty -e tmux"
 # </config>
 # </hostSpecificConfig>
