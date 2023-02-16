@@ -134,6 +134,10 @@ require("diffview").setup({
 			{ { "n", "x" }, "2do", actions.diffget("base") },   -- Obtain the diff hunk from the BASE version of the file
 			{ { "n", "x" }, "1do", actions.diffget("ours") },   -- Obtain the diff hunk from the OURS version of the file
 			{ { "n", "x" }, "3do", actions.diffget("theirs") }, -- Obtain the diff hunk from the THEIRS version of the file
+
+			{ { "n", "x" }, "dob", actions.diffget("base") },   -- Obtain the diff hunk from the BASE version of the file
+			{ { "n", "x" }, "doo", actions.diffget("ours") },   -- Obtain the diff hunk from the OURS version of the file
+			{ { "n", "x" }, "dot", actions.diffget("theirs") }, -- Obtain the diff hunk from the THEIRS version of the file
 		},
 
 
