@@ -31,4 +31,5 @@ require("killerrat.plugins._diffview-nvim")
 require("killerrat.plugins._neorg")
 require("killerrat.plugins._luasnip")
 require("killerrat.plugins._undotree")
+require("killerrat.plugins._nvim-colorizer")
 
