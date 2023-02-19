@@ -698,7 +698,7 @@ exec --no-startup-id pipewire-pulse
 exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 # exec --no-startup-id pa-applet
 
-exec --no-startup-id "i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'"
+exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'
 
 exec --no-startup-id "alacritty -e tmux"
 # </config>
@@ -715,15 +715,6 @@ exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 # exec --no-startup-id pa-applet
 
 # RESTORE LAYOUTS
-# exec --no-startup-id "i3-msg 'workspace $ws1; append_layout ~/.config/i3/workspaces/ws-1.json'"
-# exec --no-startup-id "i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'"
-# exec --no-startup-id "i3-msg 'workspace $ws3; append_layout ~/.config/i3/workspaces/ws-3.json'"
-# exec --no-startup-id "i3-msg 'workspace $ws4; append_layout ~/.config/i3/workspaces/ws-4.json'"
-# exec --no-startup-id "i3-msg 'workspace $ws5; append_layout ~/.config/i3/workspaces/ws-5.json'"
-# exec --no-startup-id "i3-msg 'workspace $ws6; append_layout ~/.config/i3/workspaces/ws-6.json'"
-# exec --no-startup-id "i3-msg 'workspace $ws7; append_layout ~/.config/i3/workspaces/ws-7.json'"
-# exec --no-startup-id "i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/ws-8.json'"
-# exec --no-startup-id "i3-msg 'workspace $ws9; append_layout ~/.config/i3/workspaces/ws-9.json'"
 
 exec --no-startup-id i3-msg 'workspace $ws1; append_layout ~/.config/i3/workspaces/ws-1.json'
 exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'
@@ -746,14 +737,10 @@ exec --no-startup-id "alacritty -e tmux"
 # <config hostname="albert-aspire">
 # # TURN ON NUMLOCK USING numlockx LIBRARY
 exec --no-startup-id numlockx
-
 exec --no-startup-id pipewire-pulse
 exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
-# exec --no-startup-id pa-applet
 
 # RESTORE LAYOUTS
-# exec --no-startup-id "i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-2.json'"
-# exec --no-startup-id "i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-8.json'"
 exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-2.json'
 exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-8.json'
 
@@ -767,7 +754,6 @@ exec --no-startup-id numlockx
 
 exec --no-startup-id pipewire-pulse
 exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
-# exec --no-startup-id pa-applet
 
 # RESTORE LAYOUTS
 exec --no-startup-id "i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-2.json'"
