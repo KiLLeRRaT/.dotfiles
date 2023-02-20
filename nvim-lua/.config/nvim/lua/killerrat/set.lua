@@ -154,7 +154,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 		-- "**/config"
 	},
 	callback = function()
-		vim.cmd [[!~/.config/i3/generateHostConfig.sh]]
+		vim.cmd [[!~/.config/nvim/generateHostConfig.sh]]
 		print("generateHostConfig.sh called!")
 	end,
 	group = vim.api.nvim_create_augroup("set_i3config_BufWritePost", { clear = true })
