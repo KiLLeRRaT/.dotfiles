@@ -51,6 +51,7 @@ vim.opt.wrap = false
 vim.opt.mouse = "a"
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 vim.opt.undofile = true
+vim.opt.breakindent = true
 
 -- always show this many lines from the edge of the window top and bottom
 vim.opt.scrolloff = 5
