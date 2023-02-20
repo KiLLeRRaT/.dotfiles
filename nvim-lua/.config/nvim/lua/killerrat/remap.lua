@@ -224,3 +224,11 @@ vim.keymap.set("n", "<leader>G", ":call v:lua.toggle_diagnostics()<CR>")
 -- FROM: https://www.reddit.com/r/vim/comments/91g97i/search_in_the_current_screen_only/
 -- nnoremap <silent> \ :set scrolloff=0<CR>VHoL<Esc>:set scrolloff=1<CR>``<C-y>/\%V
 vim.keymap.set("n", "<leader>/", ":set scrolloff=0<cr>VHoL<esc>:set scrolloff=1<cr>``<c-y>/\\%V")
+
+-- JUMP TO A WINDOW BY NUMBER
+-- FROM: https://youtube.com/watch?v=XyCRvk-VcXU&feature=shares
+for i = 1, 6 do
+	local lhs = "<leader>" .. i
+	local rhs = i .. "<C-W>w"
+	vim.keymap.set("n", lhs, rhs, { desc = "Switch to window " .. i })
+end
