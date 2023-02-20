@@ -165,6 +165,11 @@ font:
   # Point size
   # size: 12.0
   # size: 15.0
+# <hostSpecificConfig>
+# <config hostname="agouws">
+  size: 15.0
+# </config>
+# </hostSpecificConfig>
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter

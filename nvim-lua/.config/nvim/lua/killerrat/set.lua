@@ -149,7 +149,8 @@ vim.g.maplocalleader = "\\"
 vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = {
 		-- "**/i3*/.config/i3(status)?/config"
-		"**/i3*/.config/i3*/config.allHosts"
+		"**/i3*/.config/i3*/config.allHosts",
+		"**/.config/alacritty/alacritty.allHosts.yml"
 		-- "**/config"
 	},
 	callback = function()

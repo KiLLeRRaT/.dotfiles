@@ -16,3 +16,11 @@ sed '/# <hostSpecificConfig>/,/# <\/hostSpecificConfig>/ {/# <config hostname="'
 popd
 
 
+# RUN SED SCRIPT TO STRIP HOST SPECIFIC PARTS FROM alacritty CONFIG FILE
+pushd ~/.config/alacritty/
+# echo "host is $HOST"
+rm alacritty.yml
+sed '/# <hostSpecificConfig>/,/# <\/hostSpecificConfig>/ {/# <config hostname="'$HOST'">/,/# <\/config>/!d}' alacritty.allHosts.yml > alacritty.yml
+popd
+
+
