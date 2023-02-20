@@ -232,3 +232,6 @@ for i = 1, 6 do
 	local rhs = i .. "<C-W>w"
 	vim.keymap.set("n", lhs, rhs, { desc = "Switch to window " .. i })
 end
+
+-- CLOSE CURRENT WINDOW
+vim.keymap.set("n", "<leader>`", ":clo<cr>")
