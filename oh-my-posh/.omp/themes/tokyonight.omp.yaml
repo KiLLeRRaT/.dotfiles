@@ -35,14 +35,29 @@ blocks:
           style: powerline
           template: ' {{ if .SSHSession }}{{ .UserName }}@{{ .HostName }} {{ end }}'
 
+        # - type: path
+        #   background: '#c792ea'
+        #   foreground: '#3b4261'
+        #   powerline_symbol: 
+        #   properties:
+        #     folder_icon: 
+        #     style: full
+        #   style: powerline
+        #   template: ' {{ .Path }} '
+
         - type: path
           background: '#c792ea'
           foreground: '#3b4261'
-          # foreground: '#FFFFFF'
           powerline_symbol: 
           properties:
             folder_icon: 
             style: full
+            mapped_locations:
+              "~/source": ""
+              "~/source-aur": "a"
+              "~/source-g": "g"
+              "~/source-github": "gh"
+              "~/source-local": "l"
           style: powerline
           template: ' {{ .Path }} '
 
