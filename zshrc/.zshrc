@@ -174,10 +174,12 @@ alias gco='git checkout'
 alias gm='git merge'
 
 alias rl='source ~/.zshrc'
-alias nvim-lua='export XDG_CONFIG_HOME=${HOME}/.dotfiles/nvim-lua/.config; \
-	export XDG_DATA_HOME=${HOME}/.local-lua/share; \
-	nvim'
 
+# alias nvim-lua='export XDG_CONFIG_HOME=${HOME}/.dotfiles/nvim-lua/.config; \
+# 	export XDG_DATA_HOME=${HOME}/.local-lua/share; \
+# 	nvim'
+
+alias n='nvim'
 
 atail() { tail -f ---disable-inotify "$@"; }
 alias atail-t='tail -f -n +1 ---disable-inotify $(ls -t | head -1)'
