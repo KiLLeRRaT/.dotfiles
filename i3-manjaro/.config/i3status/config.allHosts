@@ -34,6 +34,26 @@ disk "/" {
 				format = " ⛁ %avail "
 }
 
+battery all {
+				# format = "%status %percentage %remaining %emptytime"
+				format = " %status %percentage"
+				format_down = "no "
+				last_full_capacity = true
+				integer_battery_capacity = true
+				status_chr = ""
+				# status_chr = "󱊦"
+				# status_bat = "bat"
+				# status_bat = "☉"
+				status_bat = "󱊣"
+				# status_unk = "?"
+				status_unk = ""
+				# status_full = ""
+				status_full = ""
+				low_threshold = 10
+				threshold_type = time
+}
+
+
 # <hostSpecificConfig>
 
 # <config hostname="agouws">
@@ -54,24 +74,24 @@ ethernet ens33 {
 				format_up = "  %ip "
 				format_down = " no  "
 }
-battery all {
-				# format = "%status %percentage %remaining %emptytime"
-				format = " %status %percentage"
-				format_down = "no "
-				last_full_capacity = true
-				integer_battery_capacity = true
-				# status_chr = ""
-				status_chr = "⚡"
-				# status_bat = "bat"
-				# status_bat = "☉"
-				status_bat = ""
-				# status_unk = "?"
-				status_unk = ""
-				# status_full = ""
-				status_full = "☻"
-				low_threshold = 15
-				threshold_type = time
-}
+# battery all {
+# 				# format = "%status %percentage %remaining %emptytime"
+# 				format = " %status %percentage"
+# 				format_down = "no "
+# 				last_full_capacity = true
+# 				integer_battery_capacity = true
+# 				status_chr = ""
+# 				# status_chr = "󱊦"
+# 				# status_bat = "bat"
+# 				# status_bat = "☉"
+# 				status_bat = "󱊣"
+# 				# status_unk = "?"
+# 				status_unk = ""
+# 				# status_full = ""
+# 				status_full = ""
+# 				low_threshold = 10
+# 				threshold_type = time
+# }
 # </config>
 # <config hostname="albert-aspire">
 # order += "ethernet _first_"
@@ -83,24 +103,24 @@ ethernet wlp3s0 {
 				format_up = "  %ip "
 				format_down = " no  "
 }
-battery all {
-				# format = "%status %percentage %remaining %emptytime"
-				format = " %status %percentage"
-				format_down = "no "
-				last_full_capacity = true
-				integer_battery_capacity = true
-				# status_chr = ""
-				status_chr = "⚡"
-				# status_bat = "bat"
-				# status_bat = "☉"
-				status_bat = ""
-				# status_unk = "?"
-				status_unk = ""
-				# status_full = ""
-				status_full = "☻"
-				low_threshold = 15
-				threshold_type = time
-}
+# battery all {
+# 				# format = "%status %percentage %remaining %emptytime"
+# 				format = " %status %percentage"
+# 				format_down = "no "
+# 				last_full_capacity = true
+# 				integer_battery_capacity = true
+# 				# status_chr = ""
+# 				status_chr = "⚡"
+# 				# status_bat = "bat"
+# 				# status_bat = "☉"
+# 				status_bat = ""
+# 				# status_unk = "?"
+# 				status_unk = ""
+# 				# status_full = ""
+# 				status_full = "☻"
+# 				low_threshold = 15
+# 				threshold_type = time
+# }
 # </config>
 
 # <config hostname="albert-satellitepro">
@@ -113,24 +133,24 @@ ethernet wlp2s0 {
 				format_up = "  %ip "
 				format_down = " no  "
 }
-battery all {
-				# format = "%status %percentage %remaining %emptytime"
-				format = " %status %percentage"
-				format_down = "no "
-				last_full_capacity = true
-				integer_battery_capacity = true
-				# status_chr = ""
-				status_chr = "⚡"
-				# status_bat = "bat"
-				# status_bat = "☉"
-				status_bat = ""
-				# status_unk = "?"
-				status_unk = ""
-				# status_full = ""
-				status_full = "☻"
-				low_threshold = 15
-				threshold_type = time
-}
+# battery all {
+# 				# format = "%status %percentage %remaining %emptytime"
+# 				format = " %status %percentage"
+# 				format_down = "no "
+# 				last_full_capacity = true
+# 				integer_battery_capacity = true
+# 				# status_chr = ""
+# 				status_chr = "⚡"
+# 				# status_bat = "bat"
+# 				# status_bat = "☉"
+# 				status_bat = ""
+# 				# status_unk = "?"
+# 				status_unk = ""
+# 				# status_full = ""
+# 				status_full = "☻"
+# 				low_threshold = 15
+# 				threshold_type = time
+# }
 # </config>
 
 # <config hostname="surface3">
@@ -143,24 +163,24 @@ ethernet wlp1s0 {
 				format_up = "  %ip "
 				format_down = " no  "
 }
-battery all {
-				# format = "%status %percentage %remaining %emptytime"
-				format = " %status %percentage"
-				format_down = "no "
-				last_full_capacity = true
-				integer_battery_capacity = true
-				# status_chr = ""
-				status_chr = "⚡"
-				# status_bat = "bat"
-				# status_bat = "☉"
-				status_bat = ""
-				# status_unk = "?"
-				status_unk = ""
-				# status_full = ""
-				status_full = "☻"
-				low_threshold = 15
-				threshold_type = time
-}
+# battery all {
+# 				# format = "%status %percentage %remaining %emptytime"
+# 				format = " %status %percentage"
+# 				format_down = "no "
+# 				last_full_capacity = true
+# 				integer_battery_capacity = true
+# 				# status_chr = ""
+# 				status_chr = "⚡"
+# 				# status_bat = "bat"
+# 				# status_bat = "☉"
+# 				status_bat = ""
+# 				# status_unk = "?"
+# 				status_unk = ""
+# 				# status_full = ""
+# 				status_full = "☻"
+# 				low_threshold = 15
+# 				threshold_type = time
+# }
 # </config>
 
 # <config hostname="sierra">
@@ -173,24 +193,24 @@ ethernet wlp2s0 {
 				format_up = "  %ip "
 				format_down = " no  "
 }
-battery all {
-				# format = "%status %percentage %remaining %emptytime"
-				format = " %status %percentage"
-				format_down = "no "
-				last_full_capacity = true
-				integer_battery_capacity = true
-				# status_chr = ""
-				status_chr = "⚡"
-				# status_bat = "bat"
-				# status_bat = "☉"
-				status_bat = ""
-				# status_unk = "?"
-				status_unk = ""
-				# status_full = ""
-				status_full = "☻"
-				low_threshold = 15
-				threshold_type = time
-}
+# battery all {
+# 				# format = "%status %percentage %remaining %emptytime"
+# 				format = " %status %percentage"
+# 				format_down = "no "
+# 				last_full_capacity = true
+# 				integer_battery_capacity = true
+# 				# status_chr = ""
+# 				status_chr = "⚡"
+# 				# status_bat = "bat"
+# 				# status_bat = "☉"
+# 				status_bat = ""
+# 				# status_unk = "?"
+# 				status_unk = ""
+# 				# status_full = ""
+# 				status_full = "☻"
+# 				low_threshold = 15
+# 				threshold_type = time
+# }
 # </config>
 
 # </hostSpecificConfig>
@@ -214,5 +234,5 @@ memory {
 tztime local {
 				# https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/
 				# format = "%Y-%m-%d %H:%M:%S"
-				format = " %a %-d %b %H:%M "
+				format = " %a %-d %b %H:%M:%S"
 }
