@@ -36,7 +36,9 @@ disk "/" {
 
 battery all {
 				# format = "%status %percentage %remaining %emptytime"
-				format = " %status %percentage"
+				# %remaining is time remaining
+				# %emptytime is what time on the clock this will happen
+				format = " %status %percentage %remaining"
 				format_down = "no "
 				last_full_capacity = true
 				integer_battery_capacity = true

@@ -703,7 +703,7 @@ exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 assign [class="Brave"] $ws8
 assign [class="Alacritty"] $ws2
 
-exec --no-startup-id "alacritty -e tmuxj
+exec --no-startup-id "alacritty -e tmux
 
 
 # </config>
