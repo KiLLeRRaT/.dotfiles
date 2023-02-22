@@ -65,6 +65,11 @@ tztime local {
 				# https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/
 				# format = "%Y-%m-%d %H:%M:%S"
 				format = " %a %-d %b %H:%M:%S"
+
+				# format = "<span foreground='#ff007c'>%time</span>"
+				# format_time = " %a %-d %b %H:%M:%S"
+
+
 }
 
 
@@ -73,7 +78,8 @@ tztime local {
 order += "ethernet br0"
 ethernet br0 {
 # if you use %speed, i3status requires root privileges
-				format_up = "  %ip %speed "
+				format_up = "<span color='white'>  %ip </span>"
+				# format_up = "  %ip %speed "
 				format_down = " no  "
 }
 # </config>
@@ -84,7 +90,7 @@ order += "battery all"
 # ethernet _first_ {
 ethernet ens33 {
 # if you use %speed, i3status requires root privileges
-				format_up = "  %ip "
+				format_up = "<span color='white'>  %ip </span>"
 				format_down = " no  "
 }
 # </config>
@@ -95,7 +101,7 @@ order += "battery all"
 # ethernet _first_ {
 ethernet wlp3s0 {
 # if you use %speed, i3status requires root privileges
-				format_up = "  %ip "
+				format_up = "<span color='white'>  %ip </span>"
 				format_down = " no  "
 }
 # </config>
@@ -107,7 +113,7 @@ order += "battery all"
 # ethernet _first_ {
 ethernet wlp2s0 {
 # if you use %speed, i3status requires root privileges
-				format_up = "  %ip "
+				format_up = "<span color='white'>  %ip </span>"
 				format_down = " no  "
 }
 # </config>
@@ -132,7 +138,7 @@ order += "battery all"
 # ethernet _first_ {
 ethernet wlp2s0 {
 # if you use %speed, i3status requires root privileges
-				format_up = "  %ip "
+				format_up = "<span color='white'>  %ip </span>"
 				format_down = " no  "
 }
 # </config>
