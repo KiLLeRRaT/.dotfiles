@@ -172,6 +172,9 @@ font:
 # <config hostname="Alberts-MacBook-Pro.local">
   size: 18.0
 # </config>
+# <config hostname="surface3">
+  size: 16.0
+# </config>
 
 # </hostSpecificConfig>
 
