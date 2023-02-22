@@ -234,4 +234,5 @@ for i = 1, 6 do
 end
 
 -- CLOSE CURRENT WINDOW
-vim.keymap.set("n", "<leader>;", ":clo<cr>")
+-- vim.keymap.set("n", "<leader>;", ":clo<cr>")
+vim.keymap.set("n", "<leader><cr>", ":clo<cr>")
