@@ -178,10 +178,3 @@ if vim.fn.has('win32') == 1 then
 end
 
 require'lspconfig'.tflint.setup{}
-
-
-
-
-
-
-
