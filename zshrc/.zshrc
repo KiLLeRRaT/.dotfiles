@@ -180,6 +180,7 @@ alias rl='source ~/.zshrc'
 # 	nvim'
 
 alias n='nvim'
+alias ss-tulpn='ss -tulpn'
 
 atail() { tail -f ---disable-inotify "$@"; }
 alias atail-t='tail -f -n +1 ---disable-inotify $(ls -t | head -1)'
