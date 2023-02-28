@@ -46,7 +46,7 @@ function buildApp() {
 }
 
 pamac install --no-confirm timeshift
-installApp timeshift-autosnap-manjaro
+installApp timeshift-autosnap-manjaro "BTRFS Pacman hook snapshot creation"
 
 timeshift-gtk # NEED TO CONFIGURE TIMESHIFT BEFORE WE CAN CREATE SNAPSHOTS AND THINGS DOWN IN THIS CONFIG!
 
