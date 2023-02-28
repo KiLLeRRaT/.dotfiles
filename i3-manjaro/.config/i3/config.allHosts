@@ -89,7 +89,11 @@ bindsym $mod+F11 exec --no-startup-id blueman-manager, mode "default"
 
 
 
-
+# NESTED i3
+bindsym $mod+F12 mode "passthrough"
+mode passthrough {
+    bindsym $mod+F12 mode "default"
+}
 
 
 
