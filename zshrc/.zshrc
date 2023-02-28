@@ -277,4 +277,5 @@ setopt HIST_IGNORE_ALL_DUPS
 # Zsh vi mode
 # FROM: https://github.com/jeffreytse/zsh-vi-mode
 ZVM_VI_ESCAPE_BINDKEY="jk"
+ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT # ZVM_MODE_NORMAL, ZVM_MODE_INSERT, ZVM_MODE_LAST
 source $HOME/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
