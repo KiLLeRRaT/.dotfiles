@@ -53,7 +53,7 @@ local function packer_spec()
 		}																												-- https://github.com/cbochs/grapple.nvim
 		-- use { 'max397574/better-escape.nvim' }									-- https://github.com/max397574/better-escape.nvim
 		use { 'phaazon/hop.nvim' }															-- https://github.com/phaazon/hop.nvim
-		use { 'kylechui/nvim-surround' }												-- https://github.com/kylechui/nvim-surround
+		-- use { 'kylechui/nvim-surround' }												-- https://github.com/kylechui/nvim-surround
 		use { 'tpope/vim-fugitive' }														-- https://github.com/tpope/vim-fugitive
 		use { 'tpope/vim-abolish' }															-- https://github.com/tpope/vim-abolish
 		use { 'tpope/vim-unimpaired' }													-- https://github.com/tpope/vim-unimpaired
@@ -64,9 +64,9 @@ local function packer_spec()
 		use { 'nvim-lualine/lualine.nvim' }											-- https://github.com/nvim-lualine/lualine.nvim
 		use { 'akinsho/bufferline.nvim' }												-- https://github.com/akinsho/bufferline.nvim
 		use { 'lewis6991/gitsigns.nvim' }												-- https://github.com/lewis6991/gitsigns.nvim
-		use { 'nvim-neorg/neorg',
-			requires = 'nvim-neorg/neorg-telescope'  }						-- https://github.com/nvim-neorg/neorg
-		use { 'nvim-neorg/neorg-telescope'}											-- https://github.com/nvim-neorg/neorg-telescope
+		-- use { 'nvim-neorg/neorg',
+		-- 	requires = 'nvim-neorg/neorg-telescope'  }						-- https://github.com/nvim-neorg/neorg
+		-- use { 'nvim-neorg/neorg-telescope'}											-- https://github.com/nvim-neorg/neorg-telescope
 		use { 'ryanoasis/vim-devicons' }												-- https://github.com/ryanoasis/vim-devicons
 		use { 'sindrets/diffview.nvim',
 			requires = 'nvim-lua/plenary.nvim' }									-- https://github.com/sindrets/diffview.nvim
