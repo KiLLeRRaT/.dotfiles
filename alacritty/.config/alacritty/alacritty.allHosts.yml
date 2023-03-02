@@ -167,7 +167,7 @@ font:
   # size: 15.0
 # <hostSpecificConfig>
 # <config hostname="agouws">
-  size: 15.0
+  size: 16.0
 # </config>
 # <config hostname="Alberts-MacBook-Pro.local">
   size: 18.0
@@ -175,7 +175,6 @@ font:
 # <config hostname="surface3">
   size: 16.0
 # </config>
-
 # </hostSpecificConfig>
 
   # Offset is the extra space around each character. `offset.y` can be thought
