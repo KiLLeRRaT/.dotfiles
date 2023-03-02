@@ -41,8 +41,8 @@ fi
 get_session(){
 	# PUT THIS BACK AFTER READING:
 	# https://wiki.archlinux.org/title/xrdp#Black_screen_with_a_desktop_environment
-	#local dbus_args=(--sh-syntax --exit-with-session)
-	local dbus_args=(--sh-syntax)
+	local dbus_args=(--sh-syntax --exit-with-session)
+	# local dbus_args=(--sh-syntax)
 
 	case $1 in
 		awesome) dbus_args+=(awesome) ;;
@@ -67,5 +67,6 @@ get_session(){
 	echo "dbus-launch ${dbus_args[*]}"
 }
 
-exec $(get_session "$DEFAULT_SESSION")
+# exec $(get_session "$DEFAULT_SESSION")
+exec $(get_session "$1")
 
