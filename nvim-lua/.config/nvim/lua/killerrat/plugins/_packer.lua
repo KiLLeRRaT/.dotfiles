@@ -63,7 +63,7 @@ local function packer_spec()
 		-- use { 'AndrewRadev/switch.vim' }												-- https://github.com/AndrewRadev/switch.vim
 		use { 'nvim-lualine/lualine.nvim' }											-- https://github.com/nvim-lualine/lualine.nvim
 		use { 'akinsho/bufferline.nvim' }												-- https://github.com/akinsho/bufferline.nvim
-		use { 'lewis6991/gitsigns.nvim' }												-- https://github.com/lewis6991/gitsigns.nvim
+		-- use { 'lewis6991/gitsigns.nvim' }												-- https://github.com/lewis6991/gitsigns.nvim
 		-- use { 'nvim-neorg/neorg',
 		-- 	requires = 'nvim-neorg/neorg-telescope'  }						-- https://github.com/nvim-neorg/neorg
 		-- use { 'nvim-neorg/neorg-telescope'}											-- https://github.com/nvim-neorg/neorg-telescope
