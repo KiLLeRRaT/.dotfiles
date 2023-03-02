@@ -279,7 +279,7 @@ setopt HIST_IGNORE_ALL_DUPS
 if [ ! -d "$HOME/.zsh-vi-mode" ] 
 then
 	echo "Cloning zsh-vi-mode"
-	git clone https://github.com/jeffreytse/zsh-vi-mode .zsh-vi-mode
+	git clone https://github.com/jeffreytse/zsh-vi-mode $HOME/.zsh-vi-mode
 fi
 
 ZVM_VI_ESCAPE_BINDKEY="jk"
