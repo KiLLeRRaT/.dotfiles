@@ -70,7 +70,7 @@ local function packer_spec()
 		use { 'ryanoasis/vim-devicons' }												-- https://github.com/ryanoasis/vim-devicons
 		use { 'sindrets/diffview.nvim',
 			requires = 'nvim-lua/plenary.nvim' }									-- https://github.com/sindrets/diffview.nvim
-		use { 'mbbill/undotree' }																-- https://github.com/mbbill/undotree
+		-- use { 'mbbill/undotree' }																-- https://github.com/mbbill/undotree
 		use { "hrsh7th/nvim-cmp" }																				-- https://github.com/hrsh7th/nvim-cmp
 		-- use { "hrsh7th/cmp-nvim-lsp" }																		-- https://github.com/hrsh7th/cmp-nvim-lsp
 		use { "hrsh7th/cmp-buffer" }																			-- https://github.com/hrsh7th/cmp-buffer
