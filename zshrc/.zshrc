@@ -135,7 +135,10 @@ export PATH="/home/albert/.ebcli-virtual-env/executables:$PATH"
 #   eval "$(pyenv init -)"
 # fi
 if [[ $TERM_PROGRAM != "Apple_Terminal" ]]; then
-	eval "$(oh-my-posh init zsh --config ~/.omp/themes/tokyonight.omp.yaml)"
+	if command -v oh-my-posh &> /dev/null
+	then
+		eval "$(oh-my-posh init zsh --config ~/.omp/themes/tokyonight.omp.yaml)"
+	fi
 fi
 
 export NVM_DIR="$HOME/.nvm"
