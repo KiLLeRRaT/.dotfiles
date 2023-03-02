@@ -1,5 +1,5 @@
 if not _G.plugin_loaded("switch.vim") then
-	print("Switch not found, not loading")
+	print("switch.vim not loaded")
 	do return end
 end
 
