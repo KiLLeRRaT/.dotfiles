@@ -765,6 +765,8 @@ exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspac
 
 exec --no-startup-id "brave --profile-directory=Default"
 exec --no-startup-id "alacritty -e tmux"
+exec --no-startup-id vmware-user
+
 # </config>
 
 # <config hostname="albert-satellitepro">
