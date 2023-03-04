@@ -99,19 +99,6 @@ mode passthrough {
 
 
 
-# Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
-
-# FROM: https://forum.manjaro.org/t/help-with-i3-fn-media-keys-not-working/36050/3
-# use a program called xev to find the keycodes for your keys
-bindsym XF86AudioPlay exec "playerctl play-pause; notify-send 'play/pause'"
-
-# LAUNCH DC WITH PRECISION OF 10 DP
-bindsym XF86Calculator exec alacritty --title 'calculator' --command /bin/zsh -c "dc -e '10 k' -"
-for_window [instance="Alacritty" title="calculator"] floating enable, resize set 400 600
-
-# Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 # bindsym $mod+F2 exec palemoon
 bindsym $mod+F2 exec brave
@@ -695,6 +682,19 @@ mode "$mode_gaps_outer" {
 # DELETE RANGE USING SED, FROM: https://stackoverflow.com/a/29530617/182888
 # <hostSpecificConfig>
 # <config hostname="surface3">
+
+# Screen brightness controls
+# Need xorg-xbacklight package, pamac install xorg-xbacklight
+# If you're getting the "No outputs have backlight property" error
+# try acpilight package instad, using same xbacklight commands
+# FROM:
+# https://unix.stackexchange.com/questions/667022/remap-backlight-brightness-to-other-keys-on-xfce
+# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
+# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym $mod+XF86AudioRaiseVolume exec "xbacklight -inc 10; notify-send 'brightness up'"
+bindsym $mod+XF86AudioLowerVolume exec "xbacklight -dec 10; notify-send 'brightness down'"
+# bindsym $mod+XF86PowerOff exec onboard
+
 exec --no-startup-id onboard
 exec --no-startup-id pipewire-pulse
 exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
