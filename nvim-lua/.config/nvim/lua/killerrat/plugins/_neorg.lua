@@ -10,7 +10,7 @@ require('neorg').setup {
 				["core.norg.dirman"] = {
 						config = {
 								workspaces = {
-										work = "~/GBox/Notes/neorg/work"
+										work = "~/notes/neorg/work"
 										-- home = "~/notes/home",
 								}
 						}
@@ -34,7 +34,7 @@ require('neorg').setup {
 				["core.norg.dirman"] = { -- https://github.com/nvim-neorg/neorg/wiki/Dirman
 					config = {
 						workspaces = {
-							work = "~/GBox/Notes/neorg/work", -- Format: <name_of_workspace> = <path_to_workspace_root>
+							work = "~/notes/neorg/work", -- Format: <name_of_workspace> = <path_to_workspace_root>
 							-- my_other_notes = "~/work/notes",
 						},
 						autochdir = true, -- Automatically change the directory to the current workspace's root every time

@@ -124,9 +124,9 @@ RUN echo -e "\033[32m Nuget credential provider for .NET Framework Azure DevOps\
 
 
 RUN echo -e "\033[32m Make norg dummy directories\033[0m" && \
-mkdir -p /root/GBox/Notes/neorg/work && \
-	touch /root/GBox/Notes/neorg/work/inbox.norg && \
-	touch /root/GBox/Notes/neorg/work/index.norg
+mkdir -p /root/notes/neorg/work && \
+	touch /root/notes/neorg/work/inbox.norg && \
+	touch /root/notes/neorg/work/index.norg
 
 # THIS IS WHERE WE WILL MOUNT OUR HOST PROJECT VOLUME
 RUN mkdir -p /mnt/c/Projects.Git

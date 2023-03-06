@@ -29,6 +29,7 @@
 	directory = /usr/share/zsh/plugins/zsh-vi-mode
 	directory = /home/albert/GBox/Applications/Tools/Scripts/Linux
 	directory = /mnt/hotelalphaactual.gouws.org/config
+	directory = /home/albert/GBox/Notes/.git
 [core]
 	autocrlf = input
 	excludesFile = ~/.gitignore
