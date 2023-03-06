@@ -347,8 +347,8 @@ function setupTmuxPluginManager() {
 	echo -e "\033[32m ----------------------------------------\033[0m"
 	echo -e "\033[32m Install TMUX Plugin Manager, and install plugins\033[0m"
 	echo -e "\033[32m ----------------------------------------\033[0m"
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-	~/.tmux/plugins/tpm/bin/install_plugins
+	git clone https://github.com/tmux-plugins/tpm $USER_HOME/.tmux/plugins/tpm
+	$USER_HOME/.tmux/plugins/tpm/bin/install_plugins
 }
 progress "setupTmuxPluginManager"
 
