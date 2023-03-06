@@ -12,11 +12,23 @@ USER_FULL_NAME="$(echo "$USER_GECOS_FIELD" | cut -d ',' -f 1)"
 
 pushd $USER_HOME
 
+function progress() {
+	[ -f $USER_HOME/.dotfiles/progress.txt ] || touch $USER_HOME/.dotfiles/progress.txt
+	if grep -Fxq "$1" $USER_HOME/.dotfiles/progress.txt
+	then
+		echo Skipping $1
+		return
+	fi
+	echo $1
+	eval $1
+	echo $1 >> $USER_HOME/.dotfiles/progress.txt
+}
+
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Updating Linux\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
-pamac update && \
-pamac upgrade --no-confirm
+progress "pamac update" && \
+	progress "pamac upgrade --no-confirm"
 echo -e "Done"
 
 echo -e "\033[32m ----------------------------------------\033[0m"
@@ -30,95 +42,100 @@ function installApp() {
 	if [[ $install =~ ^[Yy]$ ]]
 	then
 		echo Installing $1
-		pamac install --no-confirm $1
+		progress "pamac install --no-confirm $1"
 	fi
 }
 
 function buildApp() {
 	[ -n "$2" ] && desc=" ($2)" || desc=""
+	if grep -Fxq "$1" progress.txt
+	then
+		echo Skipping $1
+		return
+	fi
 	read -k 1 -r "build?Install $1$desc? (y/n) "
 	echo -e ""
 	if [[ $build =~ ^[Yy]$ ]]
 	then
 		echo Installing $1
-		pamac build --no-confirm $1
+		progress "pamac build --no-confirm $1"
 	fi
 }
 
-pamac install --no-confirm timeshift
-installApp timeshift-autosnap-manjaro "BTRFS Pacman hook snapshot creation"
+progress "pamac install --no-confirm timeshift"
+progress "installApp timeshift-autosnap-manjaro 'BTRFS Pacman hook snapshot creation'"
 
-timeshift-gtk # NEED TO CONFIGURE TIMESHIFT BEFORE WE CAN CREATE SNAPSHOTS AND THINGS DOWN IN THIS CONFIG!
+progress timeshift-gtk # NEED TO CONFIGURE TIMESHIFT BEFORE WE CAN CREATE SNAPSHOTS AND THINGS DOWN IN THIS CONFIG!
 
-timeshift --create --comments "install-manjaro: Before installing software"
+progress "timeshift --create --comments 'install-manjaro: Before installing software'"
 
-pamac install --no-confirm git
-pamac install --no-confirm curl
-pamac install --no-confirm stow
-pamac install --no-confirm neovim
-pamac install --no-confirm xclip
-pamac install --no-confirm ripgrep
-pamac install --no-confirm fd
-pamac install --no-confirm alacritty
-pamac install --no-confirm tmux
-pamac install --no-confirm btop
-pamac install --no-confirm unzip
-pamac install --no-confirm zip
-pamac install --no-confirm feh
-pamac install --no-confirm neofetch
-pamac install --no-confirm zoxide
-pamac install --no-confirm partitionmanager
-pamac install --no-confirm nginx
+progress "pamac install --no-confirm git"
+progress "pamac install --no-confirm curl"
+progress "pamac install --no-confirm stow"
+progress "pamac install --no-confirm neovim"
+progress "pamac install --no-confirm xclip"
+progress "pamac install --no-confirm ripgrep"
+progress "pamac install --no-confirm fd"
+progress "pamac install --no-confirm alacritty"
+progress "pamac install --no-confirm tmux"
+progress "pamac install --no-confirm btop"
+progress "pamac install --no-confirm unzip"
+progress "pamac install --no-confirm zip"
+progress "pamac install --no-confirm feh"
+progress "pamac install --no-confirm neofetch"
+progress "pamac install --no-confirm zoxide"
+progress "pamac install --no-confirm partitionmanager"
+progress "pamac install --no-confirm nginx"
 
 # FROM: https://wiki.archlinux.org/title/Activating_numlock_on_bootup
 # Turns on numlock in X11, need to add entry into .xinitrc
-pamac install --no-confirm numlockx
+progress "pamac install --no-confirm numlockx"
 
 
-timeshift --create --comments "install-manjaro: Before installing optional software"
-installApp brave-browser
-installApp noto-fonts-emoji "Emoji support (Google OpenSource)"
-installApp redshift "Nightlight, Fluxx alternative"
-installApp signal-desktop
-installApp discord
-installApp flameshot "Screenshot utility"
-installApp docker
-installApp docker-compose
-installApp docker-scan
-installApp playerctl "Control audio player using commandline/keyboard"
+progress "timeshift --create --comments 'install-manjaro: Before installing optional software'"
+progress "installApp brave-browser"
+progress "installApp noto-fonts-emoji 'Emoji support (Google OpenSource)'"
+progress "installApp redshift 'Nightlight, Fluxx alternative'"
+progress "installApp signal-desktop"
+progress "installApp discord"
+progress "installApp flameshot 'Screenshot utility'"
+progress "installApp docker"
+progress "installApp docker-compose"
+progress "installApp docker-scan"
+progress "installApp playerctl 'Control audio player using commandline/keyboard'"
 
-installApp freerdp "RDP support for Remmina"
-installApp remmina "Remote desktop client"
+progress "installApp freerdp 'RDP support for Remmina'"
+progress "installApp remmina 'Remote desktop client'"
 # https://wiki.archlinux.org/title/Remmina
 # buildApp remmina-plugin-rdesktop "Remmina plugin for RDP" DO NOT INSTALL THIS!!!!!!
 
-installApp perl-anyevent-i3 "Dependency for i3-save-tree utility"
-installApp python-pip
-installApp aws-cli
-installApp dnsutils "nsllookup"
-installApp bluez "Bluetooth protocol stack"
-installApp bluez-utils "Bluetooth utilities like bluetoothctl"
-installApp blueman "Bluetooth Manager"
-installApp pavucontrol "Pulseaudio mixer/volume control"
-installApp sshfs "Mount a remote disk over ssh"
-installApp vifm
-installApp zathura "PDF Viewer (Application)"
-installApp zathura-pdf-poppler "PDF Support for zathura"
-installApp libvirt "Virtualization framework"
-installApp qemu "QEMU emulator"
-installApp virt-manager "Virtualization manager"
-installApp virt-viewer "Virtualization viewer"
+progress "installApp perl-anyevent-i3 'Dependency for i3-save-tree utility'"
+progress "installApp python-pip"
+progress "installApp aws-cli"
+progress "installApp dnsutils 'nsllookup'"
+progress "installApp bluez 'Bluetooth protocol stack'"
+progress "installApp bluez-utils 'Bluetooth utilities like bluetoothctl'"
+progress "installApp blueman 'Bluetooth Manager'"
+progress "installApp pavucontrol 'Pulseaudio mixer/volume control'"
+progress "installApp sshfs 'Mount a remote disk over ssh'"
+# installApp vifm # USING RANGER INSTEAD FOR NOW
+progress "installApp zathura 'PDF Viewer (Application)'"
+progress "installApp zathura-pdf-poppler 'PDF Support for zathura'"
+progress "installApp libvirt 'Virtualization framework'"
+progress "installApp qemu 'QEMU emulator'"
+progress "installApp virt-manager 'Virtualization manager'"
+progress "installApp virt-viewer 'Virtualization viewer'"
 
 # DEV TOOLS
-installApp nuget
-installApp mono
-installApp mono-msbuild
-installApp kdiff3
-installApp dotnet-sdk
-installApp postgresql
-installApp jq
-installApp d2 "Diagram drawing tool"
-installApp xsp "Lightweight ASP.NET Server used for hosting mono on nginx, includes fastcgi-mono-server4"
+progress "installApp nuget"
+progress "installApp mono"
+progress "installApp mono-msbuild"
+progress "installApp kdiff3"
+progress "installApp dotnet-sdk"
+progress "installApp postgresql"
+progress "installApp jq"
+progress "installApp d2 'Diagram drawing tool'"
+progress "installApp xsp 'Lightweight ASP.NET Server used for hosting mono on nginx, includes fastcgi-mono-server4'"
 
 # timeshift --create --comments "install-manjaro: Before installing 1Password"
 # echo -e "\033[32m ----------------------------------------\033[0m"
@@ -136,33 +153,33 @@ installApp xsp "Lightweight ASP.NET Server used for hosting mono on nginx, inclu
 # fi
 
 
-timeshift --create --comments "install-manjaro: Before building software"
+progress "timeshift --create --comments 'install-manjaro: Before building software'"
 # buildApp xrdp
 
 # gpg --keyserver keys.gnupg.net --recv-keys 61ECEABBF2BB40E3A35DF30A9F72CDBC01BF10EB
 # buildApp xorgxrdp
 
-buildApp rslsync
-buildApp azuredatastudio-bin "SQL Server client"
+progress "buildApp rslsync"
+progress "buildApp azuredatastudio-bin 'SQL Server client'"
 # WHEN TRYING TO INSTALL THE postgresql EXTENSION AND YOU RUN INTO TROUBLE, YOU MAY NEED TO RUN
 # THIS: sudo pamac build libffi6
 
 # buildApp forticlient-vpn
 # buildApp openfortivpn "Fortigate VPN client"
-buildApp icaclient "Citrix workspace app/Citrix receiver"
-buildApp powershell-bin
-buildApp winbox-xdg "Winbox, xdg compliant version"
-buildApp virt-v2v "Convert virtual machines (vhd) to run on KVM"
-buildApp nbdkit "Network Block Device (NBD) server, needed by virt-v2v"
-buildApp zsh-vi-mode
-buildApp mono-basic "Visual Basic support for Mono"
-buildApp kopia-bin "Backup utility for file level backups"
-buildApp kopia-ui-bin "UI for Backup utility for file level backups"
+progress "buildApp icaclient 'Citrix workspace app/Citrix receiver'"
+progress "buildApp powershell-bin"
+progress "buildApp winbox-xdg 'Winbox, xdg compliant version'"
+progress "buildApp virt-v2v 'Convert virtual machines (vhd) to run on KVM'"
+progress "buildApp nbdkit 'Network Block Device (NBD) server, needed by virt-v2v'"
+progress "buildApp zsh-vi-mode"
+progress "buildApp mono-basic 'Visual Basic support for Mono'"
+progress "buildApp kopia-bin 'Backup utility for file level backups'"
+progress "buildApp kopia-ui-bin 'UI for Backup utility for file level backups'"
 
 # --------------------------------------------------
 # SNAP PACKAGES
 # --------------------------------------------------
-pamac install snapd --no-confirm
+progress "pamac install snapd --no-confirm"
 #systemctl enable --now snapd.socket
 #ln -s /var/lib/snapd/snap /snap
 #echo -e "Done"
@@ -187,13 +204,16 @@ pamac install snapd --no-confirm
 # echo -e "Done"
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Configure Git\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
-read  -r "git_email?Enter Git email address: "
-git config --global user.email $git_email
-git config --global user.name $USER_FULL_NAME
-echo -e "Done"
+function setupGit() {
+	echo -e "\033[32m ----------------------------------------\033[0m"
+	echo -e "\033[32m Configure Git\033[0m"
+	echo -e "\033[32m ----------------------------------------\033[0m"
+	read  -r "git_email?Enter Git email address: "
+	git config --global user.email $git_email
+	git config --global user.name $USER_FULL_NAME
+	echo -e "Done"
+}
+progress "setupGit"
 
 
 #echo -e "\033[32m ----------------------------------------\033[0m"
@@ -217,59 +237,39 @@ echo -e "Done"
 #echo -e "Done"
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Running stow\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
-STOW_FOLDERS=alacritty,bashrc,dmenurc,dosbox,fonts,gitconfig,i3-manjaro,inputrc,nvim-lua,oh-my-posh,ranger,tmux,zshrc
-pushd $USER_HOME/.dotfiles
-for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
-do
-	read -k 1 -r "stow_current_folder?Stow $folder? (y/n) "
-	echo ""
-	if [[ $stow_current_folder =~ ^[Yy]$ ]]
-	then
-		[[ -a $USER_HOME/.$folder ]] && echo "Move existing file to $USER_HOME/.$folder.stowbak" && mv $USER_HOME/.$folder $USER_HOME/.$folder.stowbak
-		echo Running stow $folder
-		stow -D $folder
-		stow $folder
-	fi
-done
-popd
-echo -e "Done"
+function setupStow() {
+	echo -e "\033[32m ----------------------------------------\033[0m"
+	echo -e "\033[32m Running stow\033[0m"
+	echo -e "\033[32m ----------------------------------------\033[0m"
+	STOW_FOLDERS=alacritty,bashrc,dmenurc,dosbox,fonts,gitconfig,i3-manjaro,inputrc,nvim-lua,oh-my-posh,ranger,tmux,zshrc
+	pushd $USER_HOME/.dotfiles
+	for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
+	do
+		read -k 1 -r "stow_current_folder?Stow $folder? (y/n) "
+		echo ""
+		if [[ $stow_current_folder =~ ^[Yy]$ ]]
+		then
+			[[ -a $USER_HOME/.$folder ]] && echo "Move existing file to $USER_HOME/.$folder.stowbak" && mv $USER_HOME/.$folder $USER_HOME/.$folder.stowbak
+			echo Running stow $folder
+			stow -D $folder
+			stow $folder
+		fi
+	done
+	popd
+	echo -e "Done"
+}
+progress "setupStow"
 
 
-# echo -e "\033[32m ----------------------------------------\033[0m"
-# echo -e "\033[32m Now install the VIM plugins\033[0m"
-# echo -e "\033[32m ----------------------------------------\033[0m"
-# echo Installing Vim Plug
-# curl -fLo $USER_HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-#       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-# chown -R $SUDO_USER $USER_HOME/.local/share/nvim
-# echo Running PlugInstall
-# source $USER_HOME/.zshrc
-# export XDG_CONFIG_HOME=$USER_HOME/.config
-# export XDG_DATA_HOME=$USER_HOME/.local/share
-# nvim -u $USER_HOME/.config/nvim/init.vim --headless +PlugInstall +qall
-# chown -R $SUDO_USER $XDG_CONFIG_HOME
-# chown -R $SUDO_USER $XDG_DATA_HOME
-# echo -e "Done"
-
-
-# echo -e "\033[32m ----------------------------------------\033[0m"
-# echo -e "\033[32m Build fzf for use in Telescope\033[0m"
-# echo -e "\033[32m ----------------------------------------\033[0m"
-# pushd $USER_HOME/.local/share/nvim/plugged/telescope-fzf-native.nvim
-# make
-# popd
-# echo -e "Done"
-
-
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Install oh-my-posh\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
-wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-chmod +x /usr/local/bin/oh-my-posh
-echo -e "Done"
+function setupOhMyPosh() {
+	echo -e "\033[32m ----------------------------------------\033[0m"
+	echo -e "\033[32m Install oh-my-posh\033[0m"
+	echo -e "\033[32m ----------------------------------------\033[0m"
+	wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+	chmod +x /usr/local/bin/oh-my-posh
+	echo -e "Done"
+}
+progress "setupOhMyPosh"
 
 
 # echo -e "\033[32m ----------------------------------------\033[0m"
@@ -282,12 +282,16 @@ echo -e "Done"
 # echo -e "Done"
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Change default shell to zsh\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
-chsh -s /bin/zsh root
-chsh -s /bin/zsh albert
-echo -e "Done"
+function setupDefaultShell() {
+	echo -e "\033[32m ----------------------------------------\033[0m"
+	echo -e "\033[32m Change default shell to zsh\033[0m"
+	echo -e "\033[32m ----------------------------------------\033[0m"
+	chsh -s /bin/zsh root
+	chsh -s /bin/zsh albert
+	echo -e "Done"
+}
+progress "setupDefaultShell"
+
 
 # echo -e "\033[32m ----------------------------------------\033[0m"
 # echo -e "\033[32m Generate a host specific config file for i3\033[0m"
@@ -296,6 +300,7 @@ echo -e "Done"
 # echo -e "Done"
 
 
+function setupMouse() {
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Configure Mouse\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
@@ -314,8 +319,11 @@ Section "InputClass"
   #Option "ScrollingPixelDistance" "30"
 EndSection
 EOF
+}
+progress "setupMouse"
 
 
+function setupCtrlAltBackspace() {
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m KILL X USING CTRL+ALT+BACKSPACE\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
@@ -331,22 +339,21 @@ Section "InputClass"
     Option          "XkbOptions" "terminate:ctrl_alt_bksp"
 EndSection
 EOF
+}
+progress "setupCtrlAltBackspace"
 
 
-# REPLACED BY PACKAGE FROM AUR
-# echo -e "\033[32m ----------------------------------------\033[0m"
-# echo -e "\033[32m Clone zsh-vi-mode\033[0m"
-# echo -e "\033[32m ----------------------------------------\033[0m"
-# git clone https://github.com/jeffreytse/zsh-vi-mode.git $HOME/.zsh-vi-mode
-
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Install TMUX Plugin Manager, and install plugins\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-~/.tmux/plugins/tpm/bin/install_plugins
+function setupTmuxPluginManager() {
+	echo -e "\033[32m ----------------------------------------\033[0m"
+	echo -e "\033[32m Install TMUX Plugin Manager, and install plugins\033[0m"
+	echo -e "\033[32m ----------------------------------------\033[0m"
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	~/.tmux/plugins/tpm/bin/install_plugins
+}
+progress "setupTmuxPluginManager"
 
 
-timeshift --create --comments "install-manjaro: After installing and config"
+progress "timeshift --create --comments 'install-manjaro: After installing and config'"
 
 
 # NOTES
