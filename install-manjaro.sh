@@ -42,7 +42,7 @@ function installApp() {
 	if [[ $install =~ ^[Yy]$ ]]
 	then
 		echo Installing $1
-		progress "pamac install --no-confirm $1"
+		pamac install --no-confirm $1
 	fi
 }
 
@@ -58,7 +58,7 @@ function buildApp() {
 	if [[ $build =~ ^[Yy]$ ]]
 	then
 		echo Installing $1
-		progress "pamac build --no-confirm $1"
+		pamac build --no-confirm $1
 	fi
 }
 
