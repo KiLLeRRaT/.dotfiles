@@ -274,8 +274,6 @@ bindkey "\E[3~" delete-char
 eval "$(zoxide init zsh)"
 
 setopt GLOB_COMPLETE
-setopt HIST_IGNORE_ALL_DUPS
-
 
 # Zsh vi mode
 # FROM: https://github.com/jeffreytse/zsh-vi-mode
@@ -289,3 +287,41 @@ ZVM_VI_ESCAPE_BINDKEY="jk"
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT # ZVM_MODE_NORMAL, ZVM_MODE_INSERT, ZVM_MODE_LAST
 source $HOME/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
+########################################
+# FROM: /usr/share/zsh/manjaro-zsh-config
+########################################
+setopt correct                                                  # Auto correct mistakes
+setopt nocaseglob                                               # Case insensitive globbing
+setopt appendhistory                                            # Immediately append history instead of overwriting
+setopt histignorealldups                                        # If a new command is a duplicate, remove the older one
+setopt autocd                                                   # if only directory path is entered, cd there.
+setopt inc_append_history                                       # save commands are added to the history immediately, otherwise only when shell exits.
+
+# Speed up completions
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+# Navigate words with ctrl+arrow keys
+bindkey '^[Oc' forward-word                                     #
+bindkey '^[Od' backward-word                                    #
+bindkey '^[[1;5D' backward-word                                 #
+bindkey '^[[1;5C' forward-word                                  #
+bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
+
+# Offer to install missing package if command is not found
+if [[ -r /usr/share/zsh/functions/command-not-found.zsh ]]; then
+		source /usr/share/zsh/functions/command-not-found.zsh
+		export PKGFILE_PROMPT_INSTALL_MISSING=1
+fi
+########################################
+
+
+########################################
+# FROM: /usr/share/zsh/manjaro-zsh-prompt
+########################################
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+########################################
+
+bindkey '^j' autosuggest-accept
