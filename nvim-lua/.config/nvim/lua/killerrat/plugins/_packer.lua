@@ -160,7 +160,8 @@ local function packer_spec()
 
 		-- neorg related
 		use { 'nvim-neorg/neorg',
-			requires = 'nvim-neorg/neorg-telescope'  }						-- https://github.com/nvim-neorg/neorg
+			requires = {'nvim-neorg/neorg-telescope', 'nvim-lua/plenary.nvim'},
+			run = ":Neorg sync-parsers" }													-- https://github.com/nvim-neorg/neorg
 		use { 'nvim-neorg/neorg-telescope'}											-- https://github.com/nvim-neorg/neorg-telescope
 
 		use { 'ryanoasis/vim-devicons' }												-- https://github.com/ryanoasis/vim-devicons

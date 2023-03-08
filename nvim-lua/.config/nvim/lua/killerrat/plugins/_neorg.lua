@@ -15,9 +15,7 @@ require('neorg').setup {
 								}
 						}
 				},
-				["core.norg.concealer"] = {
-					 config = {}
-				},
+				["core.norg.concealer"] = { config = {} },
 				-- ["core.gtd.base"] = { -- https://github.com/nvim-neorg/neorg/wiki/Getting-Things-Done
 				-- 	 config = {
 				-- 		workspace = "work"
