@@ -704,6 +704,7 @@ assign [class="Brave"] $ws8
 assign [class="Alacritty"] $ws2
 
 exec --no-startup-id "alacritty -e tmux
+exec --no-startup-id conky -c ~/.config/conky/conky-surface3.conf
 
 
 # </config>
