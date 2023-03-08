@@ -48,11 +48,6 @@ function installApp() {
 
 function buildApp() {
 	[ -n "$2" ] && desc=" ($2)" || desc=""
-	if grep -Fxq "$1" progress.txt
-	then
-		echo Skipping $1
-		return
-	fi
 	read -k 1 -r "build?Install $1$desc? (y/n) "
 	echo -e ""
 	if [[ $build =~ ^[Yy]$ ]]
@@ -134,8 +129,6 @@ progress "installApp kdiff3"
 progress "installApp dotnet-sdk"
 progress "installApp postgresql"
 progress "installApp jq"
-progress "installApp d2 'Diagram drawing tool'"
-progress "installApp xsp 'Lightweight ASP.NET Server used for hosting mono on nginx, includes fastcgi-mono-server4'"
 
 # timeshift --create --comments "install-manjaro: Before installing 1Password"
 # echo -e "\033[32m ----------------------------------------\033[0m"
@@ -175,6 +168,8 @@ progress "buildApp zsh-vi-mode"
 progress "buildApp mono-basic 'Visual Basic support for Mono'"
 progress "buildApp kopia-bin 'Backup utility for file level backups'"
 progress "buildApp kopia-ui-bin 'UI for Backup utility for file level backups'"
+progress "buildApp d2-bin 'Diagram drawing tool'"
+progress "buildApp xsp 'Lightweight ASP.NET Server used for hosting mono on nginx, includes fastcgi-mono-server4'"
 
 # --------------------------------------------------
 # SNAP PACKAGES
