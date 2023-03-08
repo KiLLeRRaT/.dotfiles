@@ -248,6 +248,8 @@ rf() {
 
 # alias hf='history 0 | cut -c 8- | fzf -e'
 
+alias df='df -h'
+
 #set -o vi
 # bind '"jk":vi-movement-mode'
 #set bell-style none
