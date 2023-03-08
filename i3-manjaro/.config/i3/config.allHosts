@@ -710,8 +710,18 @@ exec --no-startup-id "alacritty -e tmux
 
 # <config hostname="agouws">
 # exec --no-startup-id "nmcli con down enp42s0"
-# WE ONLY WANT THIS ON AGOUWS HOST...
-exec --no-startup-id start_conky_maia
+
+# WE ONLY WANT THIS ON AGOUWS HOST... MAYBE NOT ANYMORE EH, NO NEED?
+# exec --no-startup-id start_conky_maia
+# FROM: /usr/bin/start_conky_maia
+##!/bin/bash
+#conky -c /usr/share/conky/conky1.10_shortcuts_maia &&
+#conky -c /usr/share/conky/conky_maia &&
+#exit 0
+
+
+
+
 
 # TURN ON NUMLOCK USING numlockx LIBRARY
 exec --no-startup-id numlockx
