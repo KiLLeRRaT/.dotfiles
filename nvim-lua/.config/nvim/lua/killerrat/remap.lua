@@ -153,15 +153,15 @@ vim.keymap.set("n", "<leader>=s", ":%s/\\s\\+at\\s\\+/\\r\\tat /g<cr>")
 -- THE BELOW DOESNT WORK, JUST LEAVE IT FOR NOW
 -- vim.keymap.set("v", "<leader>=s", ":'<,'>s/\\s\\+at\\s\\+/\\r\\tat /g<cr>")
 
--- REMOVE ALL ^M FROM FILE
-vim.keymap.set("n", "<leader>=m", ":%s/\r//g<cr>")
+-- REMOVE ALL ^M FROM FILE (CONVERT FROM CRLF TO LF ONLY)
+vim.keymap.set("n", "<leader>=m", ":%s/\\r//g<cr>")
 
 
 -- SUM LINES, mnemonic: Add
 if vim.fn.has('unix') == 1 then
 	vim.keymap.set("n", "<leader>=a", ":%!awk '{print; total+=$1}END{print total}'<cr>")
 else
-	vim.keymap.set("n", "<leader>=s", ":%!wsl awk '{print; total+=\\$1}END{print total}'<cr>")
+	-- vim.keymap.set("n", "<leader>=s", ":%!wsl awk '{print; total+=\\$1}END{print total}'<cr>")
 	vim.keymap.set("n", "<leader>=a", ":lua vim.notify('Summing not supported in Windows, it uses awk', vim.log.levels.ERROR)<cr>")
 end
 
