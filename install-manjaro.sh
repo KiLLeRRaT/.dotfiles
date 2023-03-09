@@ -159,7 +159,7 @@ progress "buildApp azuredatastudio-bin 'SQL Server client'"
 
 # buildApp forticlient-vpn
 # buildApp openfortivpn "Fortigate VPN client"
-progress "buildApp icaclient 'Citrix workspace app/Citrix receiver'"
+progress "buildApp icaclient 'Citrix workspace app/Citrix receiver'" # COPYING AND PASTING NOT WORKING IN icaclient, DISABLE KLIPPER OR CLIPBOARD MANAGER!
 progress "buildApp powershell-bin"
 progress "buildApp winbox-xdg 'Winbox, xdg compliant version'"
 progress "buildApp virt-v2v 'Convert virtual machines (vhd) to run on KVM'"
