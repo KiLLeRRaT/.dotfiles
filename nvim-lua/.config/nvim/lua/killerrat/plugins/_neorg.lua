@@ -66,8 +66,9 @@ neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, key
 				silent = true,
 				noremap = true,
 		})
-		keybinds.remap_event("norg", "n", "]d", "core.norg.qol.todo_items.todo.task_cycle")
-		keybinds.remap_event("norg", "n", "[d", "core.norg.qol.todo_items.todo.task_cycle_reverse")
+		-- JUST USE CTRL+SPACE TO CYCLE, gtd, gtu, gtp, gtc, gti TO SET THE STATES
+		-- keybinds.remap_event("norg", "n", "]d", "core.norg.qol.todo_items.todo.task_cycle")
+		-- keybinds.remap_event("norg", "n", "[d", "core.norg.qol.todo_items.todo.task_cycle_reverse")
 end)
 
 
@@ -75,6 +76,7 @@ end)
 -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/keybinds.lua
 
 vim.keymap.set("n", "<leader>nw", "<cmd>Neorg workspace work<cr>")
+vim.keymap.set("n", "<leader>nW", "<cmd>Neorg return<cr>")
 -- vim.keymap.set("n", "<localleader>nc", "<cmd>Neorg toggle-concealer<cr>")
 
 -- TEMP MAPPING FOR GTD BEFORE THEY RELEASE IT AGAIN
