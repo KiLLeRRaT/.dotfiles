@@ -383,6 +383,21 @@ for_window [title="TimeSheetEntry - Brave$"] floating enable border normal, move
 for_window [title="^Spaces$"] floating enable border normal, move position center, resize set 760 800
 for_window [class="Blueman-manager"] floating enable border normal, resize set 760 300, move position center
 
+# for_window [title="Virtual Machine Manager"] resize set width 380
+# for_window [class="Virt-manager"] resize set width 2174
+# xprop example output:
+# WM_NORMAL_HINTS(WM_SIZE_HINTS):
+#                 program specified minimum size: 276 by 118
+#                 program specified base size: 0 by 0
+#                 window gravity: Center
+# WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, WM_TAKE_FOCUS, _NET_WM_PING, _NET_WM_SYNC_REQUEST
+# WM_CLASS(STRING) = "virt-manager", "Virt-manager"
+# WM_ICON_NAME(STRING) = "Virtual Machine Manager"
+# _NET_WM_ICON_NAME(UTF8_STRING) = "Virtual Machine Manager"
+# WM_NAME(STRING) = "Virtual Machine Manager"
+# _NET_WM_NAME(UTF8_STRING) = "Virtual Machine Manager"
+
+
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 
