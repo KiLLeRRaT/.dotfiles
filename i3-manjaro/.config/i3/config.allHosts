@@ -87,18 +87,21 @@ bindsym $mod+F11 exec --no-startup-id blueman-manager, mode "default"
 # 		bindsym Escape mode "default"
 # }
 
-
-
 # NESTED i3
 bindsym $mod+F12 mode "passthrough"
 mode passthrough {
     bindsym $mod+F12 mode "default"
 }
 
+# FROM: https://forum.manjaro.org/t/help-with-i3-fn-media-keys-not-working/36050/3
+# use a program called xev to find the keycodes for your keys
+bindsym XF86AudioPlay exec "playerctl play-pause; notify-send 'play/pause'"
 
+# LAUNCH DC WITH PRECISION OF 10 DP
+bindsym XF86Calculator exec alacritty --title 'calculator' --command /bin/zsh -c "dc -e '10 k' -"
+for_window [instance="Alacritty" title="calculator"] floating enable, resize set 400 600
 
-
-
+# Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 # bindsym $mod+F2 exec palemoon
 bindsym $mod+F2 exec brave
