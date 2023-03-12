@@ -20,19 +20,12 @@ general {
 				markup = "pango"
 }
 
-# order += "ipv6"
-order += "cpu_usage"
-order += "disk /"
-# order += "disk /home"
-order += "wireless _first_"
-
 cpu_usage {
 				format = "  %usage "
 }
 
 disk "/" {
-				# format = " hdd %avail "
-				format = " ⛁ %avail "
+				format = "⛁ %avail "
 }
 
 battery all {
@@ -55,6 +48,7 @@ battery all {
 				low_threshold = 10
 				threshold_type = time
 }
+
 memory {
 				format = " %used / %available"
 				threshold_degraded = "1G"
@@ -72,15 +66,25 @@ tztime local {
 
 }
 
+# order += "ipv6"
+order += "cpu_usage"
+order += "disk /"
+# order += "disk /home"
+order += "wireless _first_"
+
 
 # <hostSpecificConfig>
 # <config hostname="agouws">
+order += "disk /mnt/data/"
 order += "ethernet br0"
 ethernet br0 {
 # if you use %speed, i3status requires root privileges
 				format_up = "<span color='white'>  %ip </span>"
 				# format_up = "  %ip %speed "
 				format_down = " no  "
+}
+disk "/mnt/data/" {
+				format = "d⛁ %avail "
 }
 # </config>
 
