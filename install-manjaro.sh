@@ -58,12 +58,18 @@ function buildApp() {
 }
 
 progress "pamac install --no-confirm timeshift"
-progress "installApp timeshift-autosnap-manjaro 'BTRFS Pacman hook snapshot creation'"
-
 progress timeshift-gtk # NEED TO CONFIGURE TIMESHIFT BEFORE WE CAN CREATE SNAPSHOTS AND THINGS DOWN IN THIS CONFIG!
+progress snapper # NEED TO CONFIGURE TIMESHIFT BEFORE WE CAN CREATE SNAPSHOTS AND THINGS DOWN IN THIS CONFIG!
+
+progress "installApp snapper"
+progress "installApp snapper-gui"
+
+progress "installApp timeshift-autosnap-manjaro 'BTRFS Pacman hook snapshot creation for timeshift'"
+progress "installApp snap-pac 'BTRFS Pacman hook snapshot creation for snapper'"
 
 progress "timeshift --create --comments 'install-manjaro: Before installing software'"
 
+progress "installApp grub-btrfs 'Show snapshots in GRUB menu'"
 progress "pamac install --no-confirm git"
 progress "pamac install --no-confirm curl"
 progress "pamac install --no-confirm stow"
