@@ -806,8 +806,8 @@ exec --no-startup-id pipewire-pulse
 exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 
 # RESTORE LAYOUTS
-exec --no-startup-id "i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-2.json'"
-exec --no-startup-id "i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-8.json'"
+exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-2.json'
+exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-8.json'
 
 exec --no-startup-id "brave --profile-directory=Default"
 exec --no-startup-id "alacritty -e tmux"
@@ -817,7 +817,7 @@ exec --no-startup-id "alacritty -e tmux"
 exec --no-startup-id pulseaudio
 exec --no-startup-id pa-applet
 
-exec --no-startup-id "i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'"
+exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'
 exec --no-startup-id "alacritty -e tmux"
 # </config>
 # </hostSpecificConfig>
