@@ -175,6 +175,9 @@ font:
 # <config hostname="surface3">
   size: 16.0
 # </config>
+# <config hostname="albert-satellitepro">
+  size: 10.0
+# </config>
 # </hostSpecificConfig>
 
   # Offset is the extra space around each character. `offset.y` can be thought
