@@ -171,6 +171,8 @@ setopt interactive_comments
 preexec(){ _lc=$1; }
 alias gcm='git commit -m "${_lc#gcm }" #'
 alias glog='git logo'
+alias gdog='git dog'
+alias gadog='git adog'
 alias gb='git branch'
 alias gba='git branch --all'
 alias gco='git checkout'
