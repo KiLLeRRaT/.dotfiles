@@ -62,8 +62,6 @@ tztime local {
 
 				# format = "<span foreground='#ff007c'>%time</span>"
 				# format_time = " %a %-d %b %H:%M:%S"
-
-
 }
 
 # order += "ipv6"
