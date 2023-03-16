@@ -59,7 +59,6 @@ tztime local {
 				# https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/
 				# format = "%Y-%m-%d %H:%M:%S"
 				format = " %a %-d %b %H:%M:%S"
-
 				# format = "<span foreground='#ff007c'>%time</span>"
 				# format_time = " %a %-d %b %H:%M:%S"
 }

@@ -700,6 +700,10 @@ mode "$mode_gaps_outer" {
 # DELETE RANGE USING SED, FROM: https://stackoverflow.com/a/29530617/182888
 # <hostSpecificConfig>
 # <config hostname="albert-hppavilion">
+# Wallpaper / Background image
+# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*
+
 
 exec --no-startup-id onboard
 exec --no-startup-id pipewire-pulse
@@ -709,11 +713,15 @@ exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 assign [class="Brave"] $ws8
 assign [class="Alacritty"] $ws2
 
-exec --no-startup-id "alacritty -e tmux
+#exec --no-startup-id "alacritty -e tmux
 # exec --no-startup-id conky -c ~/.config/conky/conky-surface3.conf
 
 # </config>
 # <config hostname="surface3">
+# Wallpaper / Background image
+# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
+
 
 # Screen brightness controls
 # Need xorg-xbacklight package, pamac install xorg-xbacklight
@@ -742,6 +750,10 @@ exec --no-startup-id conky -c ~/.config/conky/conky-surface3.conf
 # </config>
 
 # <config hostname="agouws">
+# Wallpaper / Background image
+# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
+
 # exec --no-startup-id "nmcli con down enp42s0"
 
 # WE ONLY WANT THIS ON AGOUWS HOST... MAYBE NOT ANYMORE EH, NO NEED?
@@ -783,6 +795,10 @@ exec --no-startup-id "alacritty -e tmux"
 # </config>
 
 # <config hostname="albert-aspire">
+# Wallpaper / Background image
+# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
+
 # # TURN ON NUMLOCK USING numlockx LIBRARY
 exec --no-startup-id numlockx
 exec --no-startup-id pipewire-pulse
@@ -797,6 +813,10 @@ exec --no-startup-id "alacritty -e tmux"
 # </config>
 
 # <config hostname="albert-manjaroagouwsmacbook2">
+# Wallpaper / Background image
+# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
+
 # # TURN ON NUMLOCK USING numlockx LIBRARY
 exec --no-startup-id numlockx
 exec --no-startup-id pipewire-pulse
@@ -813,6 +833,10 @@ exec --no-startup-id vmware-user
 # </config>
 
 # <config hostname="albert-satellitepro">
+# Wallpaper / Background image
+# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
+
 # # TURN ON NUMLOCK USING numlockx LIBRARY
 exec --no-startup-id numlockx
 
@@ -828,6 +852,10 @@ exec --no-startup-id "alacritty -e tmux"
 # </config>
 
 # <config hostname="sierra"><!-- SONY VAIO LAPTOP -->
+# Wallpaper / Background image
+# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
+
 exec --no-startup-id pulseaudio
 exec --no-startup-id pa-applet
 
