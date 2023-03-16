@@ -242,4 +242,6 @@ end
 
 -- CLOSE CURRENT WINDOW
 vim.keymap.set("n", "<leader>;", ":clo<cr>")
--- vim.keymap.set("n", "<leader><cr>", ":clo<cr>")
+
+-- HIGHLIGHT WORD UNDER THE CURSOR WITHOUT SEARCHING NEXT OCCURANCE
+vim.keymap.set("n", "<leader>*", "yiw0/0<cr>")
