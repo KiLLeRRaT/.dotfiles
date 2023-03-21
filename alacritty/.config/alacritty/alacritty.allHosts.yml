@@ -804,6 +804,11 @@ alt_send_esc: true
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
 key_bindings:
+  # Find what keys are doing using showkey -a
+  # CUSTOM MAPPINGS:
+  - { key: NumpadEnter, chars: "\r" }
+
+  # DEFAULT MAPPINGS:
   - { key: A, mods: Alt, chars: "\x1ba" }
   - { key: B, mods: Alt, chars: "\x1bb" }
   - { key: C, mods: Alt, chars: "\x1bc" }
