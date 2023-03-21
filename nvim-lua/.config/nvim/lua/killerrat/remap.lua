@@ -177,6 +177,13 @@ end
 -- endfunction
 -- autocmd FileType cs nnoremap <buffer> <leader>=v :call MergeParametersAndValue()<cr>
 
+vim.cmd([[
+	function! MergeParametersAndValue()
+		exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$ddNA\<c-r>0\<esc>0"
+		silent! call repeat#set("\<space>=v", v:count)
+	endfunction
+	autocmd FileType cs nnoremap <buffer> <leader>=v :call MergeParametersAndValue()<cr>
+]])
 
 -- LSP MAPPINGS
 -- for gd, gr, see _telescope-nvim.lua
