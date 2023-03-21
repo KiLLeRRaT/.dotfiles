@@ -95,6 +95,7 @@ mode passthrough {
 
 # FROM: https://forum.manjaro.org/t/help-with-i3-fn-media-keys-not-working/36050/3
 # use a program called xev to find the keycodes for your keys
+# Also use a program called showkey -a to find keycodes
 bindsym XF86AudioPlay exec "playerctl play-pause; notify-send 'play/pause'"
 
 # LAUNCH DC WITH PRECISION OF 10 DP
