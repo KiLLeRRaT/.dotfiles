@@ -80,6 +80,8 @@ RUN echo echo -e "\033[32m Configure SSH Keys\033[0m" && \
 	# git config --global user.name Albert Gouws && \
 RUN echo -e "\033[32m Configure Git\033[0m" && \
 	git config --global alias.logo "log --pretty=tformat:'%C(auto,red)%m %C(auto,yellow)%h%C(auto,magenta) %G? %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(15,trunc)%aN%C(auto,reset)%s%C(auto,red) %gD %D' --date=short" && \
+	git config --global alias.adog "log --all --decorate --oneline --graph" && \
+	git config --global alias.dog "log --decorate --oneline --graph" && \
 	git config --global pull.rebase true && \
 	git config --global submodule.recurse true && \
 	git config --global core.editor "nvim" && \
