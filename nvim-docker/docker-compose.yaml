@@ -19,7 +19,8 @@ services:
 # sudo docker compose build && sudo docker compose up -d
 # sudo docker exec -it nvim-docker /bin/zsh
 
-# RUN FROM DOCKERHUB:
+# RUN FROM ALBERTS PRIVATE REPO:
 # sudo docker run -d --name nvim-docker -v /mnt/c/Projects.Git:/mnt/c/Projects.Git killerrat/nvim-docker:latest
+# sudo docker run -d --name nvim-docker -v /mnt/c/Projects.Git:/mnt/c/Projects.Git dockerregistry-ro.gouws.org/nvim-docker:latest
 
 # Dockerhub: https://hub.docker.com/r/killerrat/nvim-docker
