@@ -24,4 +24,6 @@ then
 		docker-compose push
 fi
 
-
+# LIST IMAGES/REPOS
+# https://dockerregistry.gouws.org/v2/_catalog
+# https://dockerregistry.gouws.org/v2/nvim-docker/tags/list
