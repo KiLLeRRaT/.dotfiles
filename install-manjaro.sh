@@ -158,6 +158,7 @@ progress "timeshift --create --comments 'install-manjaro: Before building softwa
 # gpg --keyserver keys.gnupg.net --recv-keys 61ECEABBF2BB40E3A35DF30A9F72CDBC01BF10EB
 # buildApp xorgxrdp
 
+progress "buildApp oh-my-posh"
 progress "buildApp rslsync"
 progress "buildApp azuredatastudio-bin 'SQL Server client'"
 # WHEN TRYING TO INSTALL THE postgresql EXTENSION AND YOU RUN INTO TROUBLE, YOU MAY NEED TO RUN
@@ -262,15 +263,15 @@ function setupStow() {
 progress "setupStow"
 
 
-function setupOhMyPosh() {
-	echo -e "\033[32m ----------------------------------------\033[0m"
-	echo -e "\033[32m Install oh-my-posh\033[0m"
-	echo -e "\033[32m ----------------------------------------\033[0m"
-	wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-	chmod +x /usr/local/bin/oh-my-posh
-	echo -e "Done"
-}
-progress "setupOhMyPosh"
+# function setupOhMyPosh() {
+# 	echo -e "\033[32m ----------------------------------------\033[0m"
+# 	echo -e "\033[32m Install oh-my-posh\033[0m"
+# 	echo -e "\033[32m ----------------------------------------\033[0m"
+# 	wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+# 	chmod +x /usr/local/bin/oh-my-posh
+# 	echo -e "Done"
+# }
+# progress "setupOhMyPosh"
 
 
 # echo -e "\033[32m ----------------------------------------\033[0m"
