@@ -7,7 +7,7 @@ require('neorg').setup {
 		load = {
 				["core.defaults"] = {},
 				["core.integrations.telescope"] = {},
-				["core.norg.dirman"] = {
+				["core.dirman"] = {
 						config = {
 								workspaces = {
 										work = "~/notes/neorg/work"
@@ -15,13 +15,13 @@ require('neorg').setup {
 								}
 						}
 				},
-				["core.norg.concealer"] = { config = {} },
+				["core.concealer"] = { config = {} },
 				-- ["core.gtd.base"] = { -- https://github.com/nvim-neorg/neorg/wiki/Getting-Things-Done
 				-- 	 config = {
 				-- 		workspace = "work"
 				-- 	 }
 				-- },
-				["core.norg.completion"] = { -- https://github.com/nvim-neorg/neorg/wiki/Completion
+				["core.completion"] = { -- https://github.com/nvim-neorg/neorg/wiki/Completion
 					config = {
 						engine = "nvim-cmp"
 				},
@@ -29,7 +29,7 @@ require('neorg').setup {
 				["core.integrations.nvim-cmp"] = { -- https://github.com/nvim-neorg/neorg/wiki/Nvim-Cmp
 					 config = {}
 				},
-				["core.norg.dirman"] = { -- https://github.com/nvim-neorg/neorg/wiki/Dirman
+				["core.dirman"] = { -- https://github.com/nvim-neorg/neorg/wiki/Dirman
 					config = {
 						workspaces = {
 							work = "~/notes/neorg/work", -- Format: <name_of_workspace> = <path_to_workspace_root>

@@ -177,6 +177,7 @@ alias gb='git branch'
 alias gba='git branch --all'
 alias gco='git checkout'
 alias gm='git merge'
+alias gt='git tag | sort -V | tail'
 
 alias rl='source ~/.zshrc'
 
