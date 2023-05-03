@@ -69,6 +69,23 @@ vim.api.nvim_create_autocmd("FileType",{
 			print("Found a .NET Framework project, starting .NET Framework OmniSharp")
 			require'lspconfig'.omnisharp_mono.setup {
 				organize_imports_on_format = true,
+				-- WORKAROUND INVALID CHAR GROUP ISSUE WITH OMNISHARP
+				-- FROM: https://github.com/OmniSharp/omnisharp-roslyn/issues/2483#issuecomment-1515504374
+				on_attach = function (client, bufnr)
+					-- https://github.com/OmniSharp/omnisharp-roslyn/issues/2483#issuecomment-1492605642
+					local tokenModifiers = client.server_capabilities.semanticTokensProvider.legend.tokenModifiers
+					for i, v in ipairs(tokenModifiers) do
+						local tmp = string.gsub(v, ' ', '_')
+						tokenModifiers[i] = string.gsub(tmp, '-_', '')
+					end
+					local tokenTypes = client.server_capabilities.semanticTokensProvider.legend.tokenTypes
+					for i, v in ipairs(tokenTypes) do
+						local tmp = string.gsub(v, ' ', '_')
+						tokenTypes[i] = string.gsub(tmp, '-_', '')
+					end
+					on_attach(client, bufnr)
+				end,
+				-- END WORKAROUND INVALID CHAR GROUP ISSUE WITH OMNISHARP
 			}
 			vim.g.dotnetlsp = "omnisharp_mono"
 			vim.cmd('LspStart omnisharp_mono')
@@ -76,6 +93,23 @@ vim.api.nvim_create_autocmd("FileType",{
 			print("Found a .NET Core project, starting .NET Core OmniSharp")
 			require'lspconfig'.omnisharp.setup {
 				organize_imports_on_format = true,
+				-- WORKAROUND INVALID CHAR GROUP ISSUE WITH OMNISHARP
+				-- FROM: https://github.com/OmniSharp/omnisharp-roslyn/issues/2483#issuecomment-1515504374
+				on_attach = function (client, bufnr)
+					-- https://github.com/OmniSharp/omnisharp-roslyn/issues/2483#issuecomment-1492605642
+					local tokenModifiers = client.server_capabilities.semanticTokensProvider.legend.tokenModifiers
+					for i, v in ipairs(tokenModifiers) do
+						local tmp = string.gsub(v, ' ', '_')
+						tokenModifiers[i] = string.gsub(tmp, '-_', '')
+					end
+					local tokenTypes = client.server_capabilities.semanticTokensProvider.legend.tokenTypes
+					for i, v in ipairs(tokenTypes) do
+						local tmp = string.gsub(v, ' ', '_')
+						tokenTypes[i] = string.gsub(tmp, '-_', '')
+					end
+					on_attach(client, bufnr)
+				end,
+				-- END WORKAROUND INVALID CHAR GROUP ISSUE WITH OMNISHARP
 			}
 			vim.g.dotnetlsp = "omnisharp"
 			vim.cmd('LspStart omnisharp')
@@ -86,6 +120,7 @@ vim.api.nvim_create_autocmd("FileType",{
 	end,
 	group = vim.api.nvim_create_augroup("_nvim-lspconfig.lua.filetype.csharp", { clear = true })
 })
+
 
 -- OLD MANUAL WAY TO DETECT FRAMEWORK TYPE
 -- -- print("Current working directory: " .. vim.fn.getcwd())
