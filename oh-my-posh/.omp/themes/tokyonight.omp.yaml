@@ -35,6 +35,13 @@ blocks:
           style: powerline
           template: ' {{ if .SSHSession }}{{ .UserName }}@{{ .HostName }} {{ end }}'
 
+        # - type: docker
+        #   background: "#0B59E7"
+        #   foreground: "#000000"
+        #   powerline_symbol: 
+        #   style: powerline
+        #   template: "  {{ .Context }} "
+
         # - type: path
         #   background: '#c792ea'
         #   foreground: '#3b4261'
