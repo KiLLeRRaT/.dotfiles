@@ -177,6 +177,7 @@ progress "buildApp kopia-bin 'Backup utility for file level backups'"
 progress "buildApp kopia-ui-bin 'UI for Backup utility for file level backups'"
 progress "buildApp d2-bin 'Diagram drawing tool'"
 progress "buildApp xsp 'Lightweight ASP.NET Server used for hosting mono on nginx, includes fastcgi-mono-server4'"
+progress "buildApp pup 'Tool to parse HTML at the command line, think jq tool for HTML'"
 
 # --------------------------------------------------
 # SNAP PACKAGES
