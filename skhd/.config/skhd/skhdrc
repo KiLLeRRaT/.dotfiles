@@ -1,4 +1,7 @@
-cmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
+cmd - return [
+	"vmware fusion": ~
+	*: /Applications/Alacritty.app/Contents/MacOS/alacritty
+]
 
 cmd + alt - w : skhd --reload
 # close focused window
