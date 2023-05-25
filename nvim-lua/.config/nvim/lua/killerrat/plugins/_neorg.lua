@@ -6,6 +6,8 @@ end
 require('neorg').setup {
 		load = {
 				["core.defaults"] = {},
+				["core.export"] = {},
+				["core.export.markdown"] = {},
 				["core.integrations.telescope"] = {},
 				["core.dirman"] = {
 						config = {
