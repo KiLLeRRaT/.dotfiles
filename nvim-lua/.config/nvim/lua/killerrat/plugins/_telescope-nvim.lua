@@ -3,9 +3,19 @@ if not _G.plugin_loaded("telescope.nvim") then
 end
 
 local p = require("telescope")
+local actions = require "telescope.actions"
 
 p.setup {
 	extensions = {
+	},
+	pickers = {
+		buffers = {
+			mappings = {
+				i = {
+					["<c-d>"] = actions.delete_buffer + actions.move_to_top,
+				}
+			}
+		}
 	},
 	defaults = {
 		layout_strategy = 'vertical',
@@ -25,6 +35,10 @@ p.setup {
 		},
 	},
 }
+
+
+
+
 
 p.load_extension('fzf')
 
