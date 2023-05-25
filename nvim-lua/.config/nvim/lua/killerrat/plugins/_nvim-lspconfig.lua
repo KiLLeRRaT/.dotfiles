@@ -203,7 +203,13 @@ require'lspconfig'.lemminx.setup{}
 
 -- ADD MODELINE TO FILES:
 -- # yaml-language-server: $schema=<urlToTheSchema|relativeFilePath|absoluteFilePath}>
-require'lspconfig'.yamlls.setup{}
+require'lspconfig'.yamlls.setup{
+	settings = {
+		yaml = {
+			keyOrdering = false
+		}
+	}
+}
 
 -- POWERSHELL
 -- TODO:
