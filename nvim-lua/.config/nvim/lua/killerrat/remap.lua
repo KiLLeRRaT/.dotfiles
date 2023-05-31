@@ -148,7 +148,7 @@ vim.keymap.set("n", "<leader>=t", ":%retab!<cr>")
 -- nnoremap <leader>=w :%s/\s\+$//<cr>
 -- vim.keymap.set("n", "<leader>=w", ":%s/\\s\\+$//<cr>")
 
--- FORMAT STACK TRACE, mnemonic: stack trace
+-- FORMAT STACK TRACE, mnemonic: stack
 vim.keymap.set("n", "<leader>=s", ":%s/\\s\\+at\\s\\+/\\r\\tat /g<cr>")
 -- THE BELOW DOESNT WORK, JUST LEAVE IT FOR NOW
 -- vim.keymap.set("v", "<leader>=s", ":'<,'>s/\\s\\+at\\s\\+/\\r\\tat /g<cr>")
