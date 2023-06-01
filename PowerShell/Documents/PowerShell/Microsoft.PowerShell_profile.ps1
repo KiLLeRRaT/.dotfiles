@@ -67,6 +67,32 @@ Remove-Alias -Force -Name gl
 Remove-Alias -Force -Name gp
 Remove-Alias -Force -Name gm
 
+
+Set-Alias -Name gs -Value 'git status'
+Set-Alias -Name gf -Value 'git fetch'
+Set-Alias -Name gl -Value 'git pull'
+Set-Alias -Name gp -Value 'git push'
+Set-Alias -Name gpt -Value 'git push --tags'
+Set-Alias -Name gP -Value 'git push --force-with-lease'
+Set-Alias -Name ga -Value 'git add'
+Set-Alias -Name gcam -Value 'git commit -am'
+Set-Alias -Name gd -Value 'git diff'
+Set-Alias -Name gw -Value 'git diff --word-diff'
+Set-Alias -Name gcm -Value 'git commit -m "${_lc#gcm }" #'
+Set-Alias -Name glog -Value 'git logo'
+Set-Alias -Name gdog -Value 'git dog'
+Set-Alias -Name gadog -Value 'git adog'
+Set-Alias -Name gb -Value 'git branch'
+Set-Alias -Name gba -Value 'git branch --all'
+Set-Alias -Name gco -Value 'git checkout'
+Set-Alias -Name gm -Value 'git merge'
+
+# LINUX ONLY
+# alias gt='git tag | sort -V | tail'
+
+
+
+
 # For zoxide v0.8.0+
 Invoke-Expression (& {
 		$hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
