@@ -224,6 +224,7 @@ local function packer_spec()
 		-- " Plug 'https://github.com/kristijanhusak/vim-dadbod-completion'
 
 		-- " DEBUGGERS
+		use { 'michaelb/sniprun', run = 'sh ./install.sh'}
 		-- " Plug 'https://github.com/leoluz/nvim-dap-go'
 		-- Plug 'https://github.com/rcarriga/nvim-dap-ui'
 		-- Plug 'https://github.com/theHamsta/nvim-dap-virtual-text'
