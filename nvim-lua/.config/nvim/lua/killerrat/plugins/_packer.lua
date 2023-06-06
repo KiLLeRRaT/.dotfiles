@@ -225,14 +225,13 @@ local function packer_spec()
 
 		-- " DEBUGGERS
 		use { 'michaelb/sniprun', run = 'sh ./install.sh'}
+
 		-- " Plug 'https://github.com/leoluz/nvim-dap-go'
 		-- Plug 'https://github.com/rcarriga/nvim-dap-ui'
 		-- Plug 'https://github.com/theHamsta/nvim-dap-virtual-text'
 		-- Plug 'https://github.com/nvim-telescope/telescope-dap.nvim'
 		-- Plug 'https://github.com/mfussenegger/nvim-dap'
-
-		-- " Open LSP goto defn in floating windows
-		-- call plug#end()
+		use 'mfussenegger/nvim-dap'
 end
 
 
