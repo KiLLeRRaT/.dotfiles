@@ -65,7 +65,7 @@ local function packer_spec()
 		use { 'akinsho/bufferline.nvim' }												-- https://github.com/akinsho/bufferline.nvim
 		-- use { 'lewis6991/gitsigns.nvim' }												-- https://github.com/lewis6991/gitsigns.nvim
 		-- use { 'nvim-neorg/neorg',
-		-- 	requires = 'nvim-neorg/neorg-telescope'  }						-- https://github.com/nvim-neorg/neorg
+		--	requires = 'nvim-neorg/neorg-telescope'  }						-- https://github.com/nvim-neorg/neorg
 		-- use { 'nvim-neorg/neorg-telescope'}											-- https://github.com/nvim-neorg/neorg-telescope
 		use { 'ryanoasis/vim-devicons' }												-- https://github.com/ryanoasis/vim-devicons
 		use { 'sindrets/diffview.nvim',
@@ -92,10 +92,10 @@ local function packer_spec()
 		-- Load on a combination of conditions: specific filetypes or commands
 		-- Also run code after load (see the "config" key)
 		-- use {
-		-- 	'w0rp/ale',
-		-- 	ft = {'sh', 'zsh', 'bash', 'c', 'cpp', 'cmake', 'html', 'markdown', 'racket', 'vim', 'tex'},
-		-- 	cmd = 'ALEEnable',
-		-- 	config = 'vim.cmd[[ALEEnable]]'
+		--	'w0rp/ale',
+		--	ft = {'sh', 'zsh', 'bash', 'c', 'cpp', 'cmake', 'html', 'markdown', 'racket', 'vim', 'tex'},
+		--	cmd = 'ALEEnable',
+		--	config = 'vim.cmd[[ALEEnable]]'
 		-- }
 
 
@@ -124,7 +124,7 @@ local function packer_spec()
 		-- THIS DOESNT SEEM TO WORK, SIMILAR ERROR AS:
 		-- https://github.com/wbthomason/packer.nvim/issues/316 BUT NOT SURE HOW TO SORT IT OUT!
 		-- use { 'preservim/nerdtree',
-		-- 	opt = true, cmd = { 'NERDTree',  'NERDTreeFocus', 'NERDTreeToggle', 'NERDTreeFind'}
+		--	opt = true, cmd = { 'NERDTree',  'NERDTreeFocus', 'NERDTreeToggle', 'NERDTreeFind'}
 		-- }																			-- https://github.com/preservim/nerdtree
 
 		-- use { 'ThePrimeagen/harpoon' }													-- https://github.com/ThePrimeagen/harpoon
@@ -228,8 +228,14 @@ local function packer_spec()
 
 		-- " Plug 'https://github.com/leoluz/nvim-dap-go'
 		-- Plug 'https://github.com/rcarriga/nvim-dap-ui'
+		use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
+
 		-- Plug 'https://github.com/theHamsta/nvim-dap-virtual-text'
+		use { 'theHamsta/nvim-dap-virtual-text', requires = {'mfussenegger/nvim-dap'} }
+
 		-- Plug 'https://github.com/nvim-telescope/telescope-dap.nvim'
+		use { 'nvim-telescope/telescope-dap.nvim', requires = {'mfussenegger/nvim-dap'} }
+
 		-- Plug 'https://github.com/mfussenegger/nvim-dap'
 		use 'mfussenegger/nvim-dap'
 end

@@ -34,4 +34,5 @@ require("killerrat.plugins._undotree")
 require("killerrat.plugins._nvim-colorizer")
 require("killerrat.plugins._neovim-session-manager")
 require("killerrat.plugins._sniprun")
+require("killerrat.plugins._nvim-dap")
 
