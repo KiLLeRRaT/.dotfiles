@@ -1,11 +1,26 @@
+# from 'default' mode, activate mode 'test'
+# cmd - x ; test
+#
+# from 'test' mode, activate mode 'default'
+# test < cmd - x ; default
+
+#cmd - f12 ; disabled
+#disabled < cmd - f12 ; default
+
+
 cmd - return [
 	"vmware fusion": ~
 	*: /Applications/Alacritty.app/Contents/MacOS/alacritty
 ]
 
 cmd + alt - w : skhd --reload
+
 # close focused window
-cmd + shift - q : chunkc tiling::window --close
+# cmd + shift - q : chunkc tiling::window --close
+cmd + shift - q [
+	"vmware fusion": ~
+	*: chunkc tiling::window --close
+]
 
 # focus window in bsp mode
 cmd + alt - h: yabai -m window --focus west
