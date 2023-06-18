@@ -161,7 +161,7 @@ vim.keymap.set("n", "<leader>=m", ":%s/\\r//g<cr>")
 if vim.fn.has('unix') == 1 then
 	-- vim.keymap.set("n", "<leader>=a", ":%!awk '{print; total+=$1}END{print total}'<cr>")
 	-- BELOW DOESNT WORK WELL WITH DECIMAL POINTS! ONLY WITH INTEGERS
-	vim.keymap.set("n", "<leader>=a", ":%!awk '{gsub(/[^0-9]/, \"\"); print; total+=$1}END{print total}'<cr>")
+	vim.keymap.set("n", "<leader>=a", ":%!awk '{gsub(/[^0-9\\.]/, \"\"); print; total+=$1}END{print total}'<cr>")
 else
 	-- vim.keymap.set("n", "<leader>=s", ":%!wsl awk '{print; total+=\\$1}END{print total}'<cr>")
 	vim.keymap.set("n", "<leader>=a", ":lua vim.notify('Summing not supported in Windows, it uses awk', vim.log.levels.ERROR)<cr>")
