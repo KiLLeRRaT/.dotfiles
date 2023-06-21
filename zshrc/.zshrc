@@ -148,8 +148,8 @@ export NVM_DIR="$HOME/.nvm"
 # alias ls='ls -lkh --color=auto' # THIS WAS PREVENTING ME FROM GETTING A LISTING WITH JUST THE FILENAMES!
 
 # color always so that if we pipe to grep, it will be colored
-# alias ls='ls --color=auto'
-alias ls='ls --color=always'
+alias ls='ls --color=auto' # TRY THIS AGAIN FOR NOW TO SEE IF IT WORKS, SINCE IT SHOULD SORT OUT WHEN PIPING TO ANOTHER COMMAND...
+# alias ls='ls --color=always' # THIS GIVES DRAMA SINCE THE COLOR CODES ARE PART OF THE RESULTS WHEN PIPING TO ANOTHER COMMAND...
 alias ll="ls -alkhF"
 alias l="ls -1"
 alias tmux='tmux -2'
