@@ -389,6 +389,7 @@ for_window [class="Xfburn"] floating enable
 for_window [title="TimeSheetEntry - Brave$"] floating enable border normal, move position center, resize set 700 650
 for_window [title="^Spaces$"] floating enable border normal, move position center, resize set 760 800
 for_window [class="Blueman-manager"] floating enable border normal, resize set 760 300, move position center
+for_window [class="easyeffects"] floating enable border normal, resize set 1410 764, move position center
 
 # for_window [title="Virtual Machine Manager"] resize set width 380
 # for_window [class="Virt-manager"] resize set width 2174
