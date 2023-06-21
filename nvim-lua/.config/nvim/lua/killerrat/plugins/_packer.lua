@@ -283,6 +283,7 @@ end
 -- print("Plugins:", dump(_G.packer_plugins))
 
 vim.keymap.set('n', "<F1>", function()
+	vim.api.nvim_command("enew")
 	vim.api.nvim_buf_set_lines(0, -1, -1, false, {
 		"Plugins:",
 		dump(_G.packer_plugins)
