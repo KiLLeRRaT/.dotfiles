@@ -41,11 +41,8 @@ require('neorg').setup {
 						index = "index.norg", -- The name of the main (root) .norg file
 					}
 				},
-				-- ["core.keybinds"] = { -- https://github.com/nvim-neorg/neorg/wiki/User-Keybinds
-				-- 		config = {
-				-- 				default_keybinds = false,
-				-- 		}
-				-- }
+				["core.summary"] = { config = { strategy = "default" } },
+				["core.neorgcmd"] = { config = {} },
 			}
 		}
 }
