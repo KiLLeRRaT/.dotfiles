@@ -33,6 +33,7 @@
 	directory = /mnt/hotelalphaactual.gouws.org/config
 	directory = /home/albert/GBox/Notes/.git
 	directory = /home/albert/GBox/Applications/Tools/Scripts/Azure Build Pipelines
+	directory = /mnt/data-resilio-sync/GBox/Applications/Tools/Scripts/Bash
 [core]
 	autocrlf = input
 	excludesFile = ~/.gitignore
