@@ -18,22 +18,22 @@
 	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 	; trustExitCode = true
 [safe]
-	directory = ~/GBox/Applications/Tools/Scripts/Git
-	directory = ~/GBox/Applications/Tools/Scripts/Bash
-	directory = ~/GBox/Notes
+	directory = /home/albert/GBox/Applications/Tools/Scripts/Azure Build Pipelines
+	directory = /home/albert/GBox/Applications/Tools/Scripts/AzureDevOps
+	directory = /home/albert/GBox/Applications/Tools/Scripts/Docker
+	directory = /home/albert/GBox/Applications/Tools/Scripts/Linux
+	directory = /home/albert/GBox/Applications/Tools/Scripts/Powershell
+	directory = /home/albert/GBox/Applications/Tools/Scripts/hosts
+	directory = /home/albert/GBox/Notes/.git
+	directory = /mnt/data-resilio-sync/GBox/Applications/Tools/Scripts/Bash
 	directory = /mnt/hotelalpha/config
+	directory = /mnt/hotelalphaactual.gouws.org/config
 	directory = /mnt/whiskey.agouws.gouws.org/c/Projects.Git/AA
 	directory = /mnt/whiskey.agouws.gouws.org/c/Projects.Git/TIL.Orca
-	directory = /home/gunther/GBox/Notes/Sandfield ISMS Policies
-	directory = /home/albert/GBox/Applications/Tools/Scripts/Docker
-	directory = /home/albert/GBox/Applications/Tools/Scripts/hosts
-	directory = /home/albert/GBox/Applications/Tools/Scripts/Powershell
 	directory = /usr/share/zsh/plugins/zsh-vi-mode
-	directory = /home/albert/GBox/Applications/Tools/Scripts/Linux
-	directory = /mnt/hotelalphaactual.gouws.org/config
-	directory = /home/albert/GBox/Notes/.git
-	directory = /home/albert/GBox/Applications/Tools/Scripts/Azure Build Pipelines
-	directory = /mnt/data-resilio-sync/GBox/Applications/Tools/Scripts/Bash
+	directory = ~/GBox/Applications/Tools/Scripts/Bash
+	directory = ~/GBox/Applications/Tools/Scripts/Git
+	directory = ~/GBox/Notes
 [core]
 	autocrlf = input
 	excludesFile = ~/.gitignore
