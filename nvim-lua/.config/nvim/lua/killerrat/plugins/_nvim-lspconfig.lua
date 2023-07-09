@@ -11,6 +11,9 @@ local function find_closest_csproj(directory)
 	-- print("currentFileDirectory: " .. directory)
 	local csproj = vim.fn.glob(directory .. "/*.csproj", true, false)
 	if csproj == "" then
+		csproj = vim.fn.glob(directory .. "/*.vbproj", true, false)
+	end
+	if csproj == "" then
 		-- IF NO FILE IN CURRENT DIRECTORY, LOOK IN PARENT DIRECTORY recursively
 		local parent_directory = vim.fn.fnamemodify(directory, ":h")
 		if parent_directory == directory then
@@ -57,8 +60,10 @@ end
 
 -- CREATE AUTOCMD FOR CSHARP FILES
 vim.api.nvim_create_autocmd("FileType",{
-	pattern = 'cs',
+	-- pattern = 'cs',
+	pattern = { 'cs', 'cshtml', 'vb' },
 	callback = function()
+		-- print("FileType: cs, cshtml, vb")
 		if vim.g.dotnetlsp then
 			print("dotnetlsp is already set: " .. vim.g.dotnetlsp)
 			return
