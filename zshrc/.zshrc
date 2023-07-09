@@ -178,6 +178,8 @@ alias gba='git branch --all'
 alias gco='git checkout'
 alias gm='git merge'
 alias gt='git tag | sort -V | tail'
+alias gtp='fn-gtp() { git tag $1 && git push --tags };fn-gtp'
+alias gtD='fn-gt() { git tag -d $1 && git push origin -d $1 };fn-gt'
 
 alias rl='source ~/.zshrc'
 
