@@ -58,7 +58,8 @@ ls.add_snippets("all", {
 			"\t*Notes:*",
 			"  ",
 		}),
-		ls.insert_node(3, "NOTES"),
+		-- ls.insert_node(3, "NOTES"),
+		ls.insert_node(3, "\t"),
 		-- c(3, {
 		-- 			t("public "),
 		-- 			t("private "),
