@@ -152,6 +152,7 @@ alias ls='ls --color=auto' # TRY THIS AGAIN FOR NOW TO SEE IF IT WORKS, SINCE IT
 # alias ls='ls --color=always' # THIS GIVES DRAMA SINCE THE COLOR CODES ARE PART OF THE RESULTS WHEN PIPING TO ANOTHER COMMAND...
 alias ll="ls -alkhF"
 alias l="ls -1"
+alias llt="ll -t | head -15"
 alias tmux='tmux -2'
 alias grep='grep --color=always'
 
@@ -182,6 +183,11 @@ alias gtp='fn-gtp() { git tag $1 && git push --tags };fn-gtp'
 alias gtD='fn-gt() { git tag -d $1 && git push origin -d $1 };fn-gt'
 
 alias rl='source ~/.zshrc'
+alias df='df -h'
+
+	# cmd=$(remmina -c $(ls $PWD/* | fzf -e --select-1 --no-sort --query "$1"))
+	# cmd1=$(lssh | fzf --select-1 --query "$1" --height=~50 | cut -f 2)
+
 
 # alias nvim-lua='export XDG_CONFIG_HOME=${HOME}/.dotfiles/nvim-lua/.config; \
 # 	export XDG_DATA_HOME=${HOME}/.local-lua/share; \
@@ -203,7 +209,7 @@ fd-t() {
 # 	fd -t f -g $1 --exec stat --printf='%Y\t%n\n' | sort -nr
 # }
 
-alias nvim-t="fd-t | cut -f 2 | head -1 | xargs -d '\n' nvim"
+alias n-t="fd-t | cut -f 2 | head -1 | xargs -d '\n' nvim"
 
 # LIST PATHS OF OTHER ZSH SHELLS I HAVE OPEN
 lssh() {
@@ -251,9 +257,25 @@ rf() {
 	popd
 }
 
+# START THE SELECTED VM
+vms() {
+	cmd=$(sudo virsh start $(sudo virsh list --all | tail -n +3 | fzf --select-1 --query "$1" --height=~50 | awk '{ print $2 }'))
+	# push the command into the history
+	print -S $cmd
+	eval $cmd
+}
+
+# CONNECT TO THE SELECTED VM
+vmc() {
+	cmd=$(sudo virt-manager --connect qemu:///system --show-domain-console $(sudo virsh list --all | tail -n +3 | fzf --select-1 --query "$1" --height=~50 | awk '{ print $2 }'))
+	# push the command into the history
+	print -S $cmd
+	eval $cmd
+}
+
+
 # alias hf='history 0 | cut -c 8- | fzf -e'
 
-alias df='df -h'
 
 #set -o vi
 # bind '"jk":vi-movement-mode'
