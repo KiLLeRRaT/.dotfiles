@@ -106,7 +106,8 @@ bindsym XF86Calculator exec alacritty --title 'calculator' --command /bin/zsh -c
 for_window [instance="Alacritty" title="calculator"] floating enable, resize set 400 600
 
 # Start Applications
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
+# bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
+bindsym $mod+Ctrl+b exec alacritty -e 'bmenu'
 bindsym $mod+F2 exec pcmanfm
 bindsym $mod+F3 exec brave
 # bindsym $mod+F3 exec palemoon
