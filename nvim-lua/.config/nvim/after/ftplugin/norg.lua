@@ -6,10 +6,10 @@ vim.opt.shiftwidth = 2
 vim.keymap.set("n", "<localleader>nc", "<cmd>Neorg toggle-concealer<cr>")
 
 -- SURROUND CURRENT LINE IN CODE TAGS
-vim.keymap.set("n", "<localleader>sc", "O@code<esc>jo@end<esc>")
+vim.keymap.set("n", "<localleader>sc", "O@code bash<esc>jo@end<esc>")
 
 -- SURROUND VISUAL SELECTION IN CODE TAGS
-vim.keymap.set("v", "<localleader>sc", "<esc>'<O@code<esc>'>o@end<esc>")
+vim.keymap.set("v", "<localleader>sc", "<esc>'<O@code bash<esc>'>o@end<esc>")
 
 vim.opt_local.spell = true
 
