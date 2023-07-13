@@ -355,3 +355,4 @@ source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ########################################
 
 bindkey '^j' autosuggest-accept
+source /usr/share/nvm/init-nvm.sh
