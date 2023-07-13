@@ -59,10 +59,10 @@ function buildApp() {
 
 progress "pamac install --no-confirm timeshift"
 progress timeshift-gtk # NEED TO CONFIGURE TIMESHIFT BEFORE WE CAN CREATE SNAPSHOTS AND THINGS DOWN IN THIS CONFIG!
-progress snapper # NEED TO CONFIGURE TIMESHIFT BEFORE WE CAN CREATE SNAPSHOTS AND THINGS DOWN IN THIS CONFIG!
 
 progress "installApp snapper"
 progress "installApp snapper-gui"
+#progress snapper # NEED TO CONFIGURE TIMESHIFT BEFORE WE CAN CREATE SNAPSHOTS AND THINGS DOWN IN THIS CONFIG!
 
 progress "installApp timeshift-autosnap-manjaro 'BTRFS Pacman hook snapshot creation for timeshift'"
 progress "installApp snap-pac 'BTRFS Pacman hook snapshot creation for snapper'"
@@ -158,7 +158,7 @@ progress "timeshift --create --comments 'install-manjaro: Before building softwa
 # gpg --keyserver keys.gnupg.net --recv-keys 61ECEABBF2BB40E3A35DF30A9F72CDBC01BF10EB
 # buildApp xorgxrdp
 
-progress "buildApp oh-my-posh"
+progress "buildApp oh-my-posh-bin"
 progress "buildApp rslsync"
 progress "buildApp azuredatastudio-bin 'SQL Server client'"
 # WHEN TRYING TO INSTALL THE postgresql EXTENSION AND YOU RUN INTO TROUBLE, YOU MAY NEED TO RUN
@@ -177,8 +177,8 @@ progress "buildApp kopia-bin 'Backup utility for file level backups'"
 progress "buildApp kopia-ui-bin 'UI for Backup utility for file level backups'"
 progress "buildApp d2-bin 'Diagram drawing tool'"
 progress "buildApp xsp 'Lightweight ASP.NET Server used for hosting mono on nginx, includes fastcgi-mono-server4'"
-progress "buildApp pup 'Tool to parse HTML at the command line, think jq tool for HTML'"
 progress "buildApp piknik-bin"
+progress "buildApp pup-bin 'Tool to parse HTML at the command line, think jq tool for HTML'"
 
 # --------------------------------------------------
 # SNAP PACKAGES
