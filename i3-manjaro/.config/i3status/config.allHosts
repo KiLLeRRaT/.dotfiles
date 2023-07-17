@@ -33,7 +33,7 @@ battery all {
 				# %remaining is time remaining
 				# %emptytime is what time on the clock this will happen
 				format = " %status %percentage %remaining"
-				format_down = "no "
+				format_down = "no 󰁹"
 				last_full_capacity = true
 				integer_battery_capacity = true
 				status_chr = ""
@@ -44,15 +44,15 @@ battery all {
 				# status_unk = "?"
 				status_unk = ""
 				# status_full = ""
-				status_full = ""
+				status_full = "󰁹"
 				low_threshold = 10
 				threshold_type = time
 }
 
 memory {
-				format = " %used / %available"
+				format = "󰍛 %used / %available"
 				threshold_degraded = "1G"
-				format_degraded = " %used / %available"
+				format_degraded = "󰍛 %used / %available"
 }
 
 tztime local {
@@ -76,12 +76,23 @@ order += "disk /mnt/data/"
 order += "ethernet br0"
 ethernet br0 {
 # if you use %speed, i3status requires root privileges
-				format_up = "<span color='white'>  %ip </span>"
-				# format_up = "  %ip %speed "
-				format_down = " no  "
+				format_up = "<span color='white'> 󰈀 %ip </span>"
+				# format_up = " 󰈀 %ip %speed "
+				format_down = " no 󰈀 "
 }
 disk "/mnt/data/" {
 				format = "d⛁ %avail "
+}
+# </config>
+
+# <config hostname="arch-agouwsmacbookpro">
+order += "ethernet wlp3s0"
+order += "battery all"
+# ethernet _first_ {
+ethernet wlp3s0 {
+# if you use %speed, i3status requires root privileges
+				format_up = "<span color='white'> 󰈀 %ip </span>"
+				format_down = " no 󰈀 "
 }
 # </config>
 
@@ -91,8 +102,8 @@ order += "battery all"
 # ethernet _first_ {
 ethernet ens33 {
 # if you use %speed, i3status requires root privileges
-				format_up = "<span color='white'>  %ip </span>"
-				format_down = " no  "
+				format_up = "<span color='white'> 󰈀 %ip </span>"
+				format_down = " no 󰈀 "
 }
 # </config>
 # <config hostname="albert-aspire">
@@ -102,8 +113,8 @@ order += "battery all"
 # ethernet _first_ {
 ethernet wlp3s0 {
 # if you use %speed, i3status requires root privileges
-				format_up = "<span color='white'>  %ip </span>"
-				format_down = " no  "
+				format_up = "<span color='white'> 󰈀 %ip </span>"
+				format_down = " no 󰈀 "
 }
 # </config>
 
@@ -114,8 +125,8 @@ order += "battery all"
 # ethernet _first_ {
 ethernet wlp2s0 {
 # if you use %speed, i3status requires root privileges
-				format_up = "<span color='white'>  %ip </span>"
-				format_down = " no  "
+				format_up = "<span color='white'> 󰈀 %ip </span>"
+				format_down = " no 󰈀 "
 }
 # </config>
 
@@ -126,13 +137,13 @@ order += "ethernet wlp1s0"
 battery hp {
 				path = "/sys/class/power_supply/axp288_fuel_gauge/uevent"
 				format = " %status %percentage %remaining"
-				format_down = "no "
+				format_down = "no 󰁹"
 				last_full_capacity = true
 				integer_battery_capacity = true
 				status_chr = ""
 				status_bat = "󱊣"
 				status_unk = ""
-				status_full = ""
+				status_full = "󰁹"
 				low_threshold = 10
 				threshold_type = time
 }
@@ -141,9 +152,9 @@ order += "battery hp"
 # ethernet _first_ {
 ethernet wlp1s0 {
 # if you use %speed, i3status requires root privileges
-				# format_up = "  %ip "
-				format_up = "<span color='white'>  %ip </span>"
-				format_down = " no  "
+				# format_up = " 󰈀 %ip "
+				format_up = "<span color='white'> 󰈀 %ip </span>"
+				format_down = " no 󰈀 "
 }
 # </config>
 # <config hostname="surface3">
@@ -153,9 +164,9 @@ order += "battery all"
 # ethernet _first_ {
 ethernet wlp1s0 {
 # if you use %speed, i3status requires root privileges
-				# format_up = "  %ip "
-				format_up = "<span color='white'>  %ip </span>"
-				format_down = " no  "
+				# format_up = " 󰈀 %ip "
+				format_up = "<span color='white'> 󰈀 %ip </span>"
+				format_down = " no 󰈀 "
 }
 # </config>
 
@@ -166,8 +177,8 @@ order += "battery all"
 # ethernet _first_ {
 ethernet wlp2s0 {
 # if you use %speed, i3status requires root privileges
-				format_up = "<span color='white'>  %ip </span>"
-				format_down = " no  "
+				format_up = "<span color='white'> 󰈀 %ip </span>"
+				format_down = " no 󰈀 "
 }
 # </config>
 

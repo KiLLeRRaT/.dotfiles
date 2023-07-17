@@ -837,6 +837,22 @@ exec --no-startup-id "alacritty -e tmux"
 exec --no-startup-id vmware-user
 
 # </config>
+# <config hostname="arch-agouwsmacbookpro">
+# Wallpaper / Background image
+# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
+
+# exec --no-startup-id pipewire-pulse
+# exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
+
+# RESTORE LAYOUTS
+exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/arch-agouwsmacbookpro/workspace-2.json'
+exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/arch-agouwsmacbookpro/workspace-8.json'
+
+exec --no-startup-id "brave --profile-directory=Default"
+exec --no-startup-id "alacritty -e tmux"
+
+# </config>
 
 # <config hostname="albert-satellitepro">
 # Wallpaper / Background image

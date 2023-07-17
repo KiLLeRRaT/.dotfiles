@@ -1,0 +1,26 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "pixel",
+    "current_border_width": 1,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 741,
+       "width": 1366,
+       "x": 0,
+       "y": 0
+    },
+    "marks": [],
+    "name": "How To Use bash For Loop In One Line - nixCraft - Brave",
+    "percent": 1,
+    "swallows": [
+       {
+        "class": "^Brave\\-browser$",
+       // "instance": "^brave\\-browser$",
+       // "machine": "^albert\\-satellitepro$",
+       // "title": "^How\\ To\\ Use\\ bash\\ For\\ Loop\\ In\\ One\\ Line\\ \\-\\ nixCraft\\ \\-\\ Brave$",
+       // "window_role": "^browser$"
+       }
+    ],
+    "type": "con"
+}
+
