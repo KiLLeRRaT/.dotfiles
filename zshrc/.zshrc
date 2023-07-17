@@ -141,6 +141,21 @@ if [[ $TERM_PROGRAM != "Apple_Terminal" ]]; then
 	fi
 fi
 
+# if [[ $TERM_PROGRAM != "Apple_Terminal" ]]; then
+# 	if { [ -n "$TMUX" ]; } then
+# 		echo in tmux
+# 	fi
+# 	if [[ -n $DISPLAY ]];
+# 	then
+# 		if command -v oh-my-posh &> /dev/null
+# 		then
+# 			eval "$(oh-my-posh init zsh --config ~/.omp/themes/tokyonight.omp.yaml)"
+# 		fi
+# 	else
+# 		echo "in a tty, don't init oh-my-posh"
+# 	fi
+# fi
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -308,7 +323,7 @@ setopt GLOB_COMPLETE
 
 # Zsh vi mode
 # FROM: https://github.com/jeffreytse/zsh-vi-mode
-if [ ! -d "$HOME/.zsh-vi-mode" ] 
+if [ ! -d "$HOME/.zsh-vi-mode" ]
 then
 	echo "Cloning zsh-vi-mode"
 	git clone https://github.com/jeffreytse/zsh-vi-mode $HOME/.zsh-vi-mode
