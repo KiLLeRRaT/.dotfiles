@@ -134,10 +134,20 @@ export PATH="/home/albert/.ebcli-virtual-env/executables:$PATH"
 # if command -v pyenv 1>/dev/null 2>&1; then
 #   eval "$(pyenv init -)"
 # fi
+
+oh-my-posh-agnoster() {
+	eval "$(oh-my-posh init zsh --config ~/.omp/themes/agnoster.minimal.omp.json)"
+}
+
+oh-my-posh-tokyonight() {
+	eval "$(oh-my-posh init zsh --config ~/.omp/themes/tokyonight.omp.yaml)"
+}
+
 if [[ $TERM_PROGRAM != "Apple_Terminal" ]]; then
 	if command -v oh-my-posh &> /dev/null
 	then
-		eval "$(oh-my-posh init zsh --config ~/.omp/themes/tokyonight.omp.yaml)"
+		oh-my-posh-tokyonight
+		# eval "$(oh-my-posh init zsh --config ~/.omp/themes/tokyonight.omp.yaml)"
 	fi
 fi
 
