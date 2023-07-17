@@ -838,8 +838,12 @@ exec --no-startup-id vmware-user
 
 # </config>
 # <config hostname="arch-agouwsmacbookpro">
-bindsym XF86MonBrightnessUp exec "gmux_backlight +10; notify-send 'brightness up'"
-bindsym XF86MonBrightnessDown exec "gmux_backlight -10; notify-send 'brightness down'"
+exec_always --no-startup-id dunst
+
+# bindsym XF86MonBrightnessUp exec "gmux_backlight +10; notify-send 'brightness up'"
+# bindsym XF86MonBrightnessDown exec "gmux_backlight -10; notify-send 'brightness down'"
+bindsym XF86MonBrightnessUp exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +10"
+bindsym XF86MonBrightnessDown exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh -10"
 
 # Wallpaper / Background image
 # exec --no-startup-id nitrogen --restore; sleep 1; picom -b
