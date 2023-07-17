@@ -3,10 +3,20 @@
 # Get current values
 brightness_current=$(cat /sys/class/backlight/gmux_backlight/brightness)
 brightness_max=$(cat /sys/class/backlight/gmux_backlight/max_brightness)
-brightness_percent=$((100 * $brightness_current / $brightness_max))
+brightness_new=$(($brightness_current $@))
+
+if [[ $@ == *"+"* ]]; then
+	brightness_new=$(($brightness_new > $brightness_max ? $brightness_max : $brightness_new))
+elif [[ $@ == *"-"* ]]; then
+	brightness_new=$(($brightness_new < 0 ? 0 : $brightness_new))
+fi
+
+
+brightness_percent=$((100 * $brightness_new / $brightness_max))
 
 echo "Current brightness is $brightness_current"
 echo "Max brightness is $brightness_max"
+echo "New brightness will be: " $brightness_new
 echo "Percent brightness is $brightness_percent"
 
 # Arbitrary but unique message tag
