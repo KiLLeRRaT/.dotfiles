@@ -357,4 +357,6 @@ source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ########################################
 
 bindkey '^j' autosuggest-accept
-source /usr/share/nvm/init-nvm.sh
+
+# WAS CAUSING ISSUES, LETS SEE IF THINGS WORK AFTER REMOVING THIS
+# source /usr/share/nvm/init-nvm.sh
