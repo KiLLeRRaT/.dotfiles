@@ -24,11 +24,6 @@ bindsym $mod+Ctrl+u border none
 bindsym $mod+Ctrl+y border pixel 1
 bindsym $mod+Ctrl+n border normal
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font xft:URWGothic-Book 11
-
-# 󰭹 chat
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -532,6 +527,7 @@ bar {
 	i3bar_command i3bar
 	status_command i3status
 	position bottom
+	workspace_min_width 40 # WAS ADDED FOR arch-agouwsmacbookpro, LOOKS OKAY on agouws too, so leaving it global
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 #	tray_output primary
@@ -706,6 +702,11 @@ mode "$mode_gaps_outer" {
 # DELETE RANGE USING SED, FROM: https://stackoverflow.com/a/29530617/182888
 # <hostSpecificConfig>
 # <config hostname="albert-hppavilion">
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font xft:URWGothic-Book 11
+# 󰭹 chat
+
 # Wallpaper / Background image
 # exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*
@@ -724,6 +725,11 @@ assign [class="Alacritty"] $ws2
 
 # </config>
 # <config hostname="surface3">
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font xft:URWGothic-Book 11
+# 󰭹 chat
+
 # Wallpaper / Background image
 # exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
@@ -756,6 +762,11 @@ exec --no-startup-id conky -c ~/.config/conky/conky-surface3.conf
 # </config>
 
 # <config hostname="agouws">
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font xft:URWGothic-Book 11
+# 󰭹 chat
+
 # Wallpaper / Background image
 # exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
@@ -801,6 +812,11 @@ exec --no-startup-id "alacritty -e tmux"
 # </config>
 
 # <config hostname="albert-aspire">
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font xft:URWGothic-Book 11
+# 󰭹 chat
+
 # Wallpaper / Background image
 # exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
@@ -819,6 +835,11 @@ exec --no-startup-id "alacritty -e tmux"
 # </config>
 
 # <config hostname="albert-manjaroagouwsmacbook2">
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font xft:URWGothic-Book 11
+# 󰭹 chat
+
 # Wallpaper / Background image
 # exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
@@ -838,6 +859,14 @@ exec --no-startup-id vmware-user
 
 # </config>
 # <config hostname="arch-agouwsmacbookpro">
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font xft:SF Pro Display 12
+# 󰭹 chat
+
+
+
 exec_always --no-startup-id dunst
 
 bindsym XF86MonBrightnessUp exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
@@ -860,6 +889,11 @@ exec --no-startup-id "alacritty -e tmux"
 # </config>
 
 # <config hostname="albert-satellitepro">
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font xft:URWGothic-Book 11
+# 󰭹 chat
+
 # Wallpaper / Background image
 # exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
@@ -879,6 +913,11 @@ exec --no-startup-id "alacritty -e tmux"
 # </config>
 
 # <config hostname="sierra"><!-- SONY VAIO LAPTOP -->
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font xft:URWGothic-Book 11
+# 󰭹 chat
+
 # Wallpaper / Background image
 # exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
