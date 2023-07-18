@@ -527,7 +527,8 @@ bar {
 	i3bar_command i3bar
 	status_command i3status
 	position bottom
-	workspace_min_width 40 # WAS ADDED FOR arch-agouwsmacbookpro, LOOKS OKAY on agouws too, so leaving it global
+	workspace_min_width 40
+	# WAS ADDED FOR arch-agouwsmacbookpro, LOOKS OKAY on agouws too, so leaving it global
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 #	tray_output primary
