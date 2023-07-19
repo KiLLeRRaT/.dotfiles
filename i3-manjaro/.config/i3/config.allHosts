@@ -877,7 +877,7 @@ bindsym XF86KbdBrightnessDown exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-
 # exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 
-exec_always --no-startup-id "zsh -c 'sleep 10; pa-applet'"
+exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 
 # RESTORE LAYOUTS
 exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/arch-agouwsmacbookpro/workspace-2.json'
