@@ -865,6 +865,7 @@ exec_always setxkbmap -option altwin:swap_lalt_lwin
 
 font xft:SF Pro Display 12
 
+exec --no-startup-id blueman-applet
 exec_always --no-startup-id dunst
 
 bindsym XF86MonBrightnessUp exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
