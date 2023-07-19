@@ -870,6 +870,9 @@ exec_always --no-startup-id dunst
 bindsym XF86MonBrightnessUp exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
 bindsym XF86MonBrightnessDown exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh -50"
 
+bindsym XF86KbdBrightnessUp exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-keyboard-brightness.sh +50"
+bindsym XF86KbdBrightnessDown exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-keyboard-brightness.sh -50"
+
 # Wallpaper / Background image
 # exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
