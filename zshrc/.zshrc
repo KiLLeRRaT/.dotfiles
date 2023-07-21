@@ -181,7 +181,7 @@ alias lt="l -t --color=always| head -15"
 alias lst="ls -t --color=always| head -15"
 alias llt="ll -t --color=always| head -15"
 alias tmux='tmux -2'
-alias grep='grep --color=always'
+alias grep='grep --color=auto'
 
 alias db='dotnet build'
 
