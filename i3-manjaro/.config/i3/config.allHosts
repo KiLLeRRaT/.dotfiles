@@ -107,7 +107,7 @@ bindsym $mod+F2 exec pcmanfm
 bindsym $mod+F3 exec brave
 # bindsym $mod+F3 exec palemoon
 # bindsym $mod+F4 exec ranger
-bindsym $mod+Shift+F3 exec pcmanfm_pkexec
+# bindsym $mod+Shift+F3 exec pcmanfm_pkexec
 # bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id picom -b
@@ -168,6 +168,8 @@ mode "$mode_notifications" {
 
 bindsym Print exec --no-startup-id "eval $(xdotool getactivewindow getwindowgeometry --shell);REGION=${WIDTH}x${HEIGHT}+${X}+${Y}; flameshot full --region $REGION -p ~/Pictures/screenshots/ -c"
 bindsym Ctrl+Print exec --no-startup-id "flameshot gui"
+bindsym $mod+F4 exec --no-startup-id "eval $(xdotool getactivewindow getwindowgeometry --shell);REGION=${WIDTH}x${HEIGHT}+${X}+${Y}; flameshot full --region $REGION -p ~/Pictures/screenshots/ -c"
+bindsym $mod+Ctrl+F4 exec --no-startup-id "flameshot gui"
 
 #bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
