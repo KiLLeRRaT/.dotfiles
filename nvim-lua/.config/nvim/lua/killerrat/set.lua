@@ -42,8 +42,7 @@ vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.expandtab = false
 vim.opt.tabstop = 2
--- vim.opt.shiftwidth = 2 # THIS CAUSES g== to insert two tabs instead of a single tab
-vim.opt.shiftwidth = 1
+vim.opt.shiftwidth = 2
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.listchars = "tab:| ,nbsp:_,trail:·,space:·"
