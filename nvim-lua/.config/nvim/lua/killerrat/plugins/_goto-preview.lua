@@ -22,3 +22,11 @@ require('goto-preview').setup {
 	force_close = true, -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
 	bufhidden = "wipe", -- the bufhidden option to set on the floating window. See :h bufhidden
 }
+
+
+-- DEFAULT KEYMAPPINGS:
+-- nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>
+-- nnoremap gpt <cmd>lua require('goto-preview').goto_preview_type_definition()<CR>
+-- nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>
+-- nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>
+-- nnoremap gpr <cmd>lua require('goto-preview').goto_preview_references()<CR>
