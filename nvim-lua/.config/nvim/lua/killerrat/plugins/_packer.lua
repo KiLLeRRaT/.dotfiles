@@ -216,6 +216,7 @@ local function packer_spec()
 
 		-- STICKY HEADERS/FUNCTIONS AT THE TOP OF THE WINDOW WHEN SCROLLING
 		use { 'nvim-treesitter/nvim-treesitter-context' }
+		use { 'nvim-treesitter/playground' }
 
 
 		-- " SQL
