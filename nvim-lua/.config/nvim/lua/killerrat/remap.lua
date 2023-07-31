@@ -110,11 +110,11 @@ vim.keymap.set("n", "<leader><leader>s", ":e " .. scripts_path .. "<cr>:cd " .. 
 
 -- " DIFF WITH SAVED, FROM: https://stackoverflow.com/a/749320/182888
 -- function! s:DiffWithSaved()
--- 	let filetype=&ft
--- 	diffthis
--- 	vnew | r # | normal! 1Gdd
--- 	diffthis
--- 	exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+--	let filetype=&ft
+--	diffthis
+--	vnew | r # | normal! 1Gdd
+--	diffthis
+--	exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
 -- endfunction
 -- com! DiffSaved call s:DiffWithSaved()
 
@@ -163,6 +163,25 @@ if vim.fn.has('unix') == 1 then
 	-- BELOW DOESNT WORK WELL WITH DECIMAL POINTS! ONLY WITH INTEGERS
 	-- vim.keymap.set("n", "<leader>=a", ":%!awk '{gsub(/[^0-9\\.]/, \"\"); print; total+=$1}END{print total}'<cr>")
 	vim.keymap.set("n", "<leader>=a", ":%!awk '{gsub(/[^0-9\\.\\-]/, \"\"); print; total+=$1}END{print total}'<cr>")
+
+	function CopyAndCreateVerticalSplit()
+		vim.cmd('setlocal cursorbind')
+		vim.cmd('normal! ggVGy')
+		vim.cmd('vnew')
+		local new_buffer = vim.api.nvim_get_current_buf()
+		local new_window = vim.api.nvim_get_current_win()
+
+		vim.cmd('buffer ' .. new_buffer)
+		vim.api.nvim_win_set_width(new_window, 10)
+		vim.cmd('normal! P')
+		vim.cmd('buffer ' .. new_buffer .. ' | setlocal cursorbind')
+		vim.cmd([[ silent! %s/\.\([a-zA-Z\-]\)/\1/g ]]) -- REMOVE .'s that are followed by a letter
+		vim.cmd([[ silent! %s/\-\([a-zA-Z\-]\)/\1/g ]]) -- REMOVE -'s that are followed by a letter
+		
+
+		vim.cmd('%!awk \'{gsub(/[^0-9\\.\\-]/, \"\"); print; total+=$1}END{print total}\'')
+	end
+	vim.api.nvim_set_keymap('n', '<leader>=A', ':lua CopyAndCreateVerticalSplit()<CR>', { noremap = true, silent = true })
 else
 	-- vim.keymap.set("n", "<leader>=s", ":%!wsl awk '{print; total+=\\$1}END{print total}'<cr>")
 	vim.keymap.set("n", "<leader>=a", ":lua vim.notify('Summing not supported in Windows, it uses awk', vim.log.levels.ERROR)<cr>")
@@ -170,13 +189,13 @@ end
 
 -- " cm.Parameters.Add, and cm.Parameters.Value lines can be combined into single line using this
 -- " function! MergeParametersAndValue()
--- " 	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$NNA\<c-r>0\<esc>0"
--- " 	silent! call repeat#set("\<space>=v", v:count)
+-- "	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$NNA\<c-r>0\<esc>0"
+-- "	silent! call repeat#set("\<space>=v", v:count)
 -- " endfunction
 
 -- function! MergeParametersAndValue()
--- 	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$ddNA\<c-r>0\<esc>0"
--- 	silent! call repeat#set("\<space>=v", v:count)
+--	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$ddNA\<c-r>0\<esc>0"
+--	silent! call repeat#set("\<space>=v", v:count)
 -- endfunction
 -- autocmd FileType cs nnoremap <buffer> <leader>=v :call MergeParametersAndValue()<cr>
 
@@ -214,13 +233,13 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.g.diagnostics_visible = true
 function _G.toggle_diagnostics()
-  if vim.g.diagnostics_visible then
-    vim.g.diagnostics_visible = false
-    vim.diagnostic.disable()
-  else
-    vim.g.diagnostics_visible = true
-    vim.diagnostic.enable()
-  end
+	if vim.g.diagnostics_visible then
+		vim.g.diagnostics_visible = false
+		vim.diagnostic.disable()
+	else
+		vim.g.diagnostics_visible = true
+		vim.diagnostic.enable()
+	end
 end
 vim.keymap.set("n", "<leader>G", ":call v:lua.toggle_diagnostics()<CR>")
 

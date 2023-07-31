@@ -34,6 +34,7 @@
 	directory = ~/GBox/Applications/Tools/Scripts/Bash
 	directory = ~/GBox/Applications/Tools/Scripts/Git
 	directory = ~/GBox/Notes
+	directory = /home/albert/GBox/Applications/Tools/Backup/gouws.org Mikrotik/romeohotel.gouws.orgx86 router or NUC
 [core]
 	autocrlf = input
 	excludesFile = ~/.gitignore
