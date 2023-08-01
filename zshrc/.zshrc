@@ -208,6 +208,10 @@ alias gm='git merge'
 alias gt='git tag | sort -V | tail'
 alias gtp='fn-gtp() { git tag $1 && git push --tags };fn-gtp'
 alias gtD='fn-gt() { git tag -d $1 && git push origin -d $1 };fn-gt'
+alias gbf="git branch --sort=-committerdate| fzf --height=20% |xargs git checkout "
+
+
+
 
 alias rl='source ~/.zshrc'
 alias df='df -h'
