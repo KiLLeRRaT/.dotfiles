@@ -11,27 +11,27 @@
 # ß
 # If the above line is not correctly displayed, fix your editor first!
 
-# TOKYO NIGHT LIKE THEME
-general {
-				colors = true
-				interval = 5
-				color_good = "#9d7cd8"
-				color_bad = "#9ece6a"
-				color_degraded = "#ff007c"
-				markup = "pango"
-}
-# END TOKYO NIGHT LIKE THEME
-
-# # DRACULA THEME
+# # TOKYO NIGHT LIKE THEME
 # general {
-# 	output_format = "i3bar"
-# 	colors = true
-# 	color_good = "#50FA7B"
-# 	color_degraded = "#F1FA8C"
-# 	color_bad = "#FF5555"
-# 	markup = "pango"
+# 				colors = true
+# 				interval = 5
+# 				color_good = "#9d7cd8"
+# 				color_bad = "#9ece6a"
+# 				color_degraded = "#ff007c"
+# 				markup = "pango"
 # }
-# # END DRACULA THEME
+# # END TOKYO NIGHT LIKE THEME
+
+# DRACULA THEME
+general {
+	output_format = "i3bar"
+	colors = true
+	color_good = "#50FA7B"
+	color_degraded = "#F1FA8C"
+	color_bad = "#FF5555"
+	markup = "pango"
+}
+# END DRACULA THEME
 
 cpu_usage {
 				format = "  %usage "

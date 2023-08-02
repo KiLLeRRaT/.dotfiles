@@ -545,91 +545,91 @@ bar {
 	strip_workspace_numbers yes
 
 
-# TOKYO NIGHT LIKE THEME
-# BEGIN
-# FROM: https://github.com/folke/tokyonight.nvim/blob/main/lua/tokyonight/colors.lua
-# M.default = {
-#   none = "NONE",
-#   bg_dark = "#1f2335",
-#   bg = "#24283b",
-#   bg_highlight = "#292e42",
-#   terminal_black = "#414868",
-#   fg = "#c0caf5",
-#   fg_dark = "#a9b1d6",
-#   fg_gutter = "#3b4261",
-#   dark3 = "#545c7e",
-#   comment = "#565f89",
-#   dark5 = "#737aa2",
-#   blue0 = "#3d59a1",
-#   blue = "#7aa2f7",
-#   cyan = "#7dcfff",
-#   blue1 = "#2ac3de",
-#   blue2 = "#0db9d7",
-#   blue5 = "#89ddff",
-#   blue6 = "#b4f9f8",
-#   blue7 = "#394b70",
-#   magenta = "#bb9af7",
-#   magenta2 = "#ff007c",
-#   purple = "#9d7cd8",
-#   orange = "#ff9e64",
-#   yellow = "#e0af68",
-#   green = "#9ece6a",
-#   green1 = "#73daca",
-#   green2 = "#41a6b5",
-#   teal = "#1abc9c",
-#   red = "#f7768e",
-#   red1 = "#db4b4b",
-#   git = { change = "#6183bb", add = "#449dab", delete = "#914c54" },
-#   gitSigns = {
-#     add = "#266d6a",
-#     change = "#536c9e",
-#     delete = "#b2555b",
-#   },
-# }
-		colors {
-				background #222D31
-				statusline #F9FAF9
-				separator  #454947
-#											 border  backgr. text
-				focused_workspace  #9d7cd8 #9d7cd8 #292F34
-				active_workspace	 #595B5B #394b70 #FDF6E3
-				inactive_workspace #595B5B #222D31 #EEE8D5
-				binding_mode			 #9d7cd8 #2C2C2C #9d7cd8
-				urgent_workspace	 #9d7cd8 #ff007c #292F34
-		}
+## TOKYO NIGHT LIKE THEME
+## BEGIN
+## FROM: https://github.com/folke/tokyonight.nvim/blob/main/lua/tokyonight/colors.lua
+## M.default = {
+##   none = "NONE",
+##   bg_dark = "#1f2335",
+##   bg = "#24283b",
+##   bg_highlight = "#292e42",
+##   terminal_black = "#414868",
+##   fg = "#c0caf5",
+##   fg_dark = "#a9b1d6",
+##   fg_gutter = "#3b4261",
+##   dark3 = "#545c7e",
+##   comment = "#565f89",
+##   dark5 = "#737aa2",
+##   blue0 = "#3d59a1",
+##   blue = "#7aa2f7",
+##   cyan = "#7dcfff",
+##   blue1 = "#2ac3de",
+##   blue2 = "#0db9d7",
+##   blue5 = "#89ddff",
+##   blue6 = "#b4f9f8",
+##   blue7 = "#394b70",
+##   magenta = "#bb9af7",
+##   magenta2 = "#ff007c",
+##   purple = "#9d7cd8",
+##   orange = "#ff9e64",
+##   yellow = "#e0af68",
+##   green = "#9ece6a",
+##   green1 = "#73daca",
+##   green2 = "#41a6b5",
+##   teal = "#1abc9c",
+##   red = "#f7768e",
+##   red1 = "#db4b4b",
+##   git = { change = "#6183bb", add = "#449dab", delete = "#914c54" },
+##   gitSigns = {
+##     add = "#266d6a",
+##     change = "#536c9e",
+##     delete = "#b2555b",
+##   },
+## }
+#		colors {
+#				background #222D31
+#				statusline #F9FAF9
+#				separator  #454947
+##											 border  backgr. text
+#				focused_workspace  #9d7cd8 #9d7cd8 #292F34
+#				active_workspace	 #595B5B #394b70 #FDF6E3
+#				inactive_workspace #595B5B #222D31 #EEE8D5
+#				binding_mode			 #9d7cd8 #2C2C2C #9d7cd8
+#				urgent_workspace	 #9d7cd8 #ff007c #292F34
+#		}
+#}
+## class										border	backgr. text		indic.	 child_border
+#	client.focused					#394b70 #9d7cd8 #394b70 #FDF6E3
+#	client.focused_inactive #2F3D44 #394b70 #c0caf5 #454948
+#	client.unfocused				#2F3D44 #2F3D44 #c0caf5 #454948
+#	# client.urgent						#CB4B16 #FDF6E3 #9d7cd8 #268BD2
+#	client.urgent						#9d7cd8 #ff007c #292F34 #268BD2
+#	client.placeholder			#000000 #0c0c0c #ffffff #000000 
+#	client.background				#2B2C2B
+## END TOKYO NIGHT LIKE THEME
+
+# DRACULA THEME
+	colors {
+		background #282A36
+		statusline #F8F8F2
+		separator  #44475A
+
+		focused_workspace  #44475A #44475A #F8F8F2
+		active_workspace   #282A36 #44475A #F8F8F2
+		inactive_workspace #282A36 #282A36 #BFBFBF
+		urgent_workspace   #FF5555 #FF5555 #F8F8F2
+		binding_mode       #FF5555 #FF5555 #F8F8F2
+	}
 }
-# class										border	backgr. text		indic.	 child_border
-	client.focused					#394b70 #9d7cd8 #394b70 #FDF6E3
-	client.focused_inactive #2F3D44 #394b70 #c0caf5 #454948
-	client.unfocused				#2F3D44 #2F3D44 #c0caf5 #454948
-	# client.urgent						#CB4B16 #FDF6E3 #9d7cd8 #268BD2
-	client.urgent						#9d7cd8 #ff007c #292F34 #268BD2
-	client.placeholder			#000000 #0c0c0c #ffffff #000000 
-	client.background				#2B2C2B
-# END TOKYO NIGHT LIKE THEME
-
-# # DRACULA THEME
-# 	colors {
-# 		background #282A36
-# 		statusline #F8F8F2
-# 		separator  #44475A
-
-# 		focused_workspace  #44475A #44475A #F8F8F2
-# 		active_workspace   #282A36 #44475A #F8F8F2
-# 		inactive_workspace #282A36 #282A36 #BFBFBF
-# 		urgent_workspace   #FF5555 #FF5555 #F8F8F2
-# 		binding_mode       #FF5555 #FF5555 #F8F8F2
-# 	}
-# }
-# # class                 border  bground text    indicator child_border
-# client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
-# client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
-# client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
-# client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-# client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
-# client.background       #F8F8F2
-# # bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'"
-# # END DRACULA THEME
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+client.background       #F8F8F2
+# bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'"
+# END DRACULA THEME
 
 
 
