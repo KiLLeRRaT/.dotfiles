@@ -118,6 +118,8 @@ blocks:
           style: diamond
           trailing_diamond: 
           template: ' {{ .CurrentDate | date .Format }}'
+          properties:
+            time_format: 15:04
       type: prompt
 
 
