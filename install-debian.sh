@@ -37,7 +37,8 @@ sudo apt install -y build-essential && \
 sudo apt install -y alacritty && \
 sudo apt install -y timeshift && \
 sudo apt install -y tmux && \
-sudo apt install -y btop
+sudo apt install -y btop && \
+sudo apt install -y ranger
 # sudo apt install -y ncdu # NOT SURE IF THIS COMES WITH DEBIAN BASED SYSTEMS?
 
 read -p 'Install apt-btrfs-snapshot? (y/n) ' -n 1 -r install_apt_btrfs_snapshot
@@ -106,7 +107,7 @@ fi
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Running stow\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
-STOW_FOLDERS=bashrc,fonts,i3,inputrc,nvim,oh-my-posh,tmux,dosbox,gitconfig,zshrc,alacritty
+STOW_FOLDERS=bashrc,fonts,i3,inputrc,nvim-lua,oh-my-posh,tmux,dosbox,gitconfig,zshrc,alacritty
 pushd ~/.dotfiles
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
