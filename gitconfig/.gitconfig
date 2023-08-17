@@ -35,6 +35,7 @@
 	directory = ~/GBox/Applications/Tools/Scripts/Git
 	directory = ~/GBox/Notes
 	directory = /home/albert/GBox/Applications/Tools/Backup/gouws.org Mikrotik/romeohotel.gouws.orgx86 router or NUC
+	directory = /home/albert/GBox/Notes-bak20230307/Sandfield ISMS Policies
 [core]
 	autocrlf = input
 	excludesFile = ~/.gitignore

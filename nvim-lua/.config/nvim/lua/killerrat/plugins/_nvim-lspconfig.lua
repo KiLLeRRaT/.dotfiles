@@ -65,7 +65,7 @@ vim.api.nvim_create_autocmd("FileType",{
 	callback = function()
 		-- print("FileType: cs, cshtml, vb")
 		if vim.g.dotnetlsp then
-			print("dotnetlsp is already set: " .. vim.g.dotnetlsp)
+			-- print("dotnetlsp is already set: " .. vim.g.dotnetlsp)
 			return
 		end
 		-- CHECK THE CSPROJ OR SOMETHING ELSE TO CONFIRM IT'S .NET FRAMEWORK OR .NET CORE PROJECT
