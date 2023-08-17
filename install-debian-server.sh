@@ -4,23 +4,24 @@
 # echo -e "\033[32m ----------------------------------------\033[0m"
 # echo -e "\033[32m Adding Neovim package repository\033[0m"
 # echo -e "\033[32m ----------------------------------------\033[0m"
-# sudo add-apt-repository -y ppa:neovim-ppa/unstable
+# add-apt-repository -y ppa:neovim-ppa/unstable
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Installing software\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
-sudo apt install -y git && \
-sudo apt install -y curl && \
-sudo apt install -y stow && \
-sudo apt install -y neovim && \
-sudo apt install -y xclip && \
-sudo apt install -y ripgrep && \
-sudo apt install -y fd-find && \
-sudo apt install -y build-essential && \
-sudo apt install -y tmux && \
-sudo apt install -y btop
-# sudo apt install -y ncdu # NOT SURE IF THIS COMES WITH DEBIAN BASED SYSTEMS?
+apt install -y git && \
+apt install -y curl && \
+apt install -y stow && \
+apt install -y neovim && \
+apt install -y xclip && \
+apt install -y ripgrep && \
+apt install -y fd-find && \
+apt install -y build-essential && \
+apt install -y tmux && \
+apt install -y btop && \
+apt install -y ranger
+# apt install -y ncdu # NOT SURE IF THIS COMES WITH DEBIAN BASED SYSTEMS?
 
 # config fd
 [ -d ~/.local/bin ] || mkdir -p ~/.local/bin
@@ -69,8 +70,8 @@ popd
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Install oh-my-posh\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
-sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-sudo chmod +x /usr/local/bin/oh-my-posh
+wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+chmod +x /usr/local/bin/oh-my-posh
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
@@ -83,12 +84,12 @@ nvm use --lts
 
 
 # RESILIO SYNC
-# echo "deb http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free" | sudo tee /etc/apt/sources.list.d/resilio-sync.list
-# curl -L https://linux-packages.resilio.com/resilio-sync/key.asc | sudo apt-key add
-# sudo apt update && sudo apt install resilio-sync
-# sudo usermod -aG albert rslsync && \
-# sudo usermod -aG rslsync albert && \
-# sudo chmod g+rw ~/resilio-sync
-# sudo systemctl enable resilio-sync
+# echo "deb http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free" | tee /etc/apt/sources.list.d/resilio-sync.list
+# curl -L https://linux-packages.resilio.com/resilio-sync/key.asc | apt-key add
+# apt update && apt install resilio-sync
+# usermod -aG albert rslsync && \
+# usermod -aG rslsync albert && \
+# chmod g+rw ~/resilio-sync
+# systemctl enable resilio-sync
 
 popd
