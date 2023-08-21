@@ -1,19 +1,11 @@
 #!/bin/bash
 
-# pushd ~
-# echo -e "\033[32m ----------------------------------------\033[0m"
-# echo -e "\033[32m Adding Neovim package repository\033[0m"
-# echo -e "\033[32m ----------------------------------------\033[0m"
-# add-apt-repository -y ppa:neovim-ppa/unstable
-
-
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Installing software\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 apt install -y git && \
 apt install -y curl && \
 apt install -y stow && \
-apt install -y neovim && \
 apt install -y xclip && \
 apt install -y ripgrep && \
 apt install -y fd-find && \
@@ -31,6 +23,12 @@ ln -s $(which fdfind) /usr/bin/fd
 # echo -e "\033[32m Configure SSH Keys\033[0m"
 # echo -e "\033[32m ----------------------------------------\033[0m"
 # [ ! -d "~/.ssh" ] && ssh-keygen
+
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Change Shell to Zsh\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+chsh -s $(which zsh)
+
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Configure Git\033[0m"
@@ -60,6 +58,19 @@ popd
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Build Neovim from source\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+mkdir -p ~/source-github
+pushd ~/source-github
+git clone https://github.com/neovim/neovim
+cd neovim
+git checkout stable
+make CMAKE_BUILD_TYPE=Release
+make install
+popd
+
+
+echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Build fzf for use in Telescope\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 pushd ~/.local/share/nvim/plugged/telescope-fzf-native.nvim
@@ -82,14 +93,3 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 nvm install --lts
 nvm use --lts
 
-
-# RESILIO SYNC
-# echo "deb http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free" | tee /etc/apt/sources.list.d/resilio-sync.list
-# curl -L https://linux-packages.resilio.com/resilio-sync/key.asc | apt-key add
-# apt update && apt install resilio-sync
-# usermod -aG albert rslsync && \
-# usermod -aG rslsync albert && \
-# chmod g+rw ~/resilio-sync
-# systemctl enable resilio-sync
-
-popd
