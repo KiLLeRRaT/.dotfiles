@@ -44,15 +44,15 @@ STOW_FOLDERS=nvim-lua,oh-my-posh,tmux,gitconfig,zshrc
 pushd ~/.dotfiles
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
-	read -p "Stow $folder? (y/n) " -n 1 -r stow_current_folder
-	echo ""
-	if [[ $stow_current_folder =~ ^[Yy]$ ]]
-	then
+	# read -p "Stow $folder? (y/n) " -n 1 -r stow_current_folder
+	# echo ""
+	# if [[ $stow_current_folder =~ ^[Yy]$ ]]
+	# then
 		[ -a ~/.$folder ] && echo "Move existing file to ~/.$folder.stowbak" && mv ~/.$folder ~/.$folder.stowbak
 		echo Running stow $folder
 		stow -D $folder
 		stow $folder
-	fi
+	# fi
 done
 popd
 
@@ -65,7 +65,7 @@ pushd ~/source-github
 git clone https://github.com/neovim/neovim
 cd neovim
 git checkout stable
-apt install ninja-build gettext cmake unzip curl
+apt install -y ninja-build gettext cmake unzip curl
 make CMAKE_BUILD_TYPE=Release
 make install
 popd
