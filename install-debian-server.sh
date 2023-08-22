@@ -65,6 +65,7 @@ pushd ~/source-github
 git clone https://github.com/neovim/neovim
 cd neovim
 git checkout stable
+apt install ninja-build gettext cmake unzip curl
 make CMAKE_BUILD_TYPE=Release
 make install
 popd
