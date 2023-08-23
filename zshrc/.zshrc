@@ -283,7 +283,10 @@ hf() {
 # REMMINA USING THE CONNECTION FILE SELECTED USING FZF
 rf() {
 	pushd ~/.local/share/remmina
-	cmd=$(remmina -c $(ls $PWD/* | fzf -e --select-1 --no-sort --query "$1"))
+	cmd="remmina -c $(ls $PWD/* | fzf -e --select-1 --no-sort --query $1)"
+	# escape parentheses in the cmd with a backslash
+	cmd=$(echo $cmd | sed 's/(/\\(/g' | sed 's/)/\\)/g')
+	echo $cmd
 	# push the command into the history
 	print -S $cmd
 	eval $cmd
@@ -292,7 +295,8 @@ rf() {
 
 # START THE SELECTED VM
 vms() {
-	cmd=$(sudo virsh start $(sudo virsh list --all | tail -n +3 | fzf --select-1 --query "$1" --height=~50 | awk '{ print $2 }'))
+	domain=$(sudo virsh list --all | tail -n +3 | fzf --select-1 --query "$1" --height=~50 | awk '{ print $2 }')
+	cmd="sudo virsh start $domain"
 	# push the command into the history
 	print -S $cmd
 	eval $cmd
@@ -300,7 +304,8 @@ vms() {
 
 # CONNECT TO THE SELECTED VM
 vmc() {
-	cmd=$(sudo virt-manager --connect qemu:///system --show-domain-console $(sudo virsh list --all | tail -n +3 | fzf --select-1 --query "$1" --height=~50 | awk '{ print $2 }'))
+	domain=$(sudo virsh list --all | tail -n +3 | fzf --select-1 --query "$1" --height=~50 | awk '{ print $2 }')
+	cmd="sudo virt-manager --connect qemu:///system --show-domain-console $domain"
 	# push the command into the history
 	print -S $cmd
 	eval $cmd
