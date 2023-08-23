@@ -228,6 +228,7 @@ alias n='nvim'
 alias ss-tulpn='ss -tulpn'
 alias setxkbmap-ctrl-caps='setxkbmap -option ctrl:nocaps'
 alias setxkbmap-alt-win='setxkbmap -option altwin:swap_lalt_lwin'
+alias setxkbmap-revert="setxkbmap -option ''"
 
 atail() { tail -f ---disable-inotify "$@"; }
 alias atail-t='tail -f -n +1 ---disable-inotify $(ls -t | head -1)'
