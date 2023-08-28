@@ -83,7 +83,7 @@ require'nvim-treesitter.configs'.setup {
 			--
 			-- You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
 			-- Below example nvim-treesitter's `locals.scm` and `folds.scm`. They also provide highlights.scm and indent.scm.
-			["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
+			["]S"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
 			["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
 		 },
 		 goto_next_end = {
@@ -97,6 +97,8 @@ require'nvim-treesitter.configs'.setup {
 			["[["] = "@class.outer",
 			-- ["[o"] = "@loop.*",
 			["[o"] = { query = { "@loop.inner", "@loop.outer" } },
+			["[S"] = { query = "@scope", query_group = "locals", desc = "Prev scope" },
+			["[z"] = { query = "@fold", query_group = "folds", desc = "Prev fold" },
 		 },
 		 goto_previous_end = {
 			["[M"] = "@function.outer",
