@@ -151,7 +151,11 @@ dmenu \
 redshift \
 git \
 stow \
-zoxide
+zoxide \
+zip \
+unzip \
+curl \
+wget
 
 echo "If running on the MacBook, you need to update mkinitcpio.conf. Do you want to update mkinitcpio.conf? (y/n)"
 read update_mkinitcpio
