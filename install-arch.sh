@@ -67,14 +67,19 @@ if [ "$add_swap" == "y" ]; then
 fi
 
 echo "Make sure your /mnt/etc/fstab looks something like this with crypt tab mapper"
-# # UUID=0cc4f593-dcd5-44a2-b4a4-23458b9e4fc9 LABEL=swap
-# /dev/mapper/swap        none            swap            defaults        0 0
+echo UUID=0cc4f593-dcd5-44a2-b4a4-23458b9e4fc9 LABEL=swap
+echo /dev/mapper/swap        none            swap            defaults        0 0
+echo "Current fstab:"
+cat /mnt/etc/fstab
 
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Jump into the new System\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
 echo "Copying this install file into the new system /install-arch.sh"
 cp install-arch.sh /mnt/install-arch.sh
-
-echo "Let's jump into the new system"
 arch-chroot /mnt
+echo "Continue script inside the new system"
+exit 1
 
 echo "Setting up timezone"
 ln -sf /usr/share/zoneinfo/Pacific/Auckland /etc/localtime
@@ -87,11 +92,11 @@ sed -i 's/#en_NZ.UTF-8 UTF-8/en_NZ.UTF-8 UTF-8/g' /etc/locale.gen
 locale-gen
 echo "LANG=en_NZ.UTF-8" > /etc/locale.conf
 
-
-echo "Set hostname"
-echo "arch-agouwsmacbookpro" > /etc/hostname
-echo "127.0.0.1   localhost.localdomain   localhost   arch-agouwsmacbookpro" >> /etc/hosts
-echo "::1   localhost.localdomain   localhost   arch-agouwsmacbookpro" >> /etc/hosts
+echo "What is your hostname? (e.g. arch-agouwsmacbookpro)"
+read hostname
+echo "$hostname" > /etc/hostname
+echo "127.0.0.1   localhost.localdomain   localhost   $hostname" >> /etc/hosts
+echo "::1   localhost.localdomain   localhost   $hostname" >> /etc/hosts
 
 echo "Installing more packages"
 pacman -Syu \
@@ -143,4 +148,32 @@ i3 \
 linux-headers \
 dmenu \
 redshift
+
+echo "If running on the MacBook, you need to update mkinitcpio.conf. Do you want to update mkinitcpio.conf? (y/n)"
+read update_mkinitcpio
+if [ "$update_mkinitcpio" == "y" ]; then
+	sed -i.bak 's/^HOOKS=(/c\HOOKS=(base keyboard udev autodetect modconf block lvm2 encrypt btrfs filesystems fsck)' /etc/mkinitcpio.conf
+	sed -i.bak2 's/^MODULES=(/c\MODULES=(intel_lpss_pci)' /etc/mkinitcpio.conf
+	mkinitcpio -P
+fi
+
+echo "Set password for root"
+passwd
+
+echo "Set up user"
+echo "What is your username? (e.g. albert)"
+read username
+useradd -m -G wheel,storage,power -g users -s /bin/zsh $username
+passwd $username
+
+echo "Set up sudoers"
+sed -i.bak 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
+
+echo "Set up DHCP"
+ip link
+echo "What is your network interface? (e.g. enp0s31f6)"
+read network_interface
+systemctl enable dhcpcd@$network_interface.service
+
+
 
