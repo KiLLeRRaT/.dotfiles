@@ -122,7 +122,8 @@ vim.keymap.set("n", "<leader><leader>s", ":e " .. scripts_path .. "<cr>:cd " .. 
 -- " SPELL CHECKING ]s and [s for next/prev, z= for spelling suggestion, zg to
 -- " add to dictionary
 vim.keymap.set("n", "<F6>", ":setlocal spell!<CR>:setlocal spell?<CR>")
-vim.keymap.set("n", "Z=", "1z=]s<cmd>call repeat#set(\"Z=\", v:count)<cr>")
+-- vim.keymap.set("n", "Z=", "1z=]s<cmd>call repeat#set(\"Z=\", v:count)<cr>")
+vim.keymap.set("n", "Z=", "]sz=")
 
 
 -- " RUN jq and use tab indents, then remove the ^M chars because vim is doing stupid things.
