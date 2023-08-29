@@ -155,7 +155,9 @@ zoxide \
 zip \
 unzip \
 curl \
-wget
+wget \
+tmux
+
 
 echo "If running on the MacBook, you need to update mkinitcpio.conf. Do you want to update mkinitcpio.conf? (y/n)"
 read update_mkinitcpio
@@ -182,7 +184,14 @@ ip link
 echo "What is your network interface? (e.g. enp0s31f6)"
 read network_interface
 systemctl enable dhcpcd@$network_interface.service
-
+systemctl enable NetworkManager.service
+systemctl start NetworkManager.service
+echo "If running on the MacBook, you need to set up brcmfmac43602-pcie. Do you want to set up brcmfmac43602-pcie? (y/n)"
+read setup_brcmfmac43602_pcie
+if [ "$setup_brcmfmac43602_pcie" == "y" ]; then
+	cp ~/.dotfiles/hosts/arch-agouwsmacbookpro/brcmfmac43602-pcie.txt /lib/firmware/brcm/.
+	cp ~/.dotfiles/hosts/arch-agouwsmacbookpro/brcmfmac43602-pcie.txt /lib/firmware/brcm/brcmfmac43602-pcie.Apple\ Inc.-MacBookPro13,3.txt
+fi
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Installing AUR Packages\033[0m"
