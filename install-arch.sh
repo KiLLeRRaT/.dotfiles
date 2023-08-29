@@ -53,6 +53,7 @@ if [ "$install_base" == "y" ]; then
 	pacstrap -K /mnt base linux linux-firmware neovim
 fi
 
+swapon -L swap
 
 echo "Do you want to generate an fstab? (y/n)"
 read generate_fstab
@@ -147,7 +148,10 @@ ttf-cascadia-code-nerd \
 i3 \
 linux-headers \
 dmenu \
-redshift
+redshift \
+git \
+stow \
+zoxide
 
 echo "If running on the MacBook, you need to update mkinitcpio.conf. Do you want to update mkinitcpio.conf? (y/n)"
 read update_mkinitcpio
@@ -167,13 +171,81 @@ useradd -m -G wheel,storage,power -g users -s /bin/zsh $username
 passwd $username
 
 echo "Set up sudoers"
-sed -i.bak 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
+sed -i.bak 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 
 echo "Set up DHCP"
 ip link
 echo "What is your network interface? (e.g. enp0s31f6)"
 read network_interface
 systemctl enable dhcpcd@$network_interface.service
+
+
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Installing AUR Packages\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+
+mkdir ~/source-aur
+
+installAurPackage() {
+	pushd ~/source-aur
+	echo "Installing $1"
+	git clone https://aur.archlinux.org/$1.git
+	cd $1
+	makepkg -is
+	popd
+}
+
+installAurPackage oh-my-posh
+installAurPackage brave-bin
+
+installAurPackage macbook12-spi-driver-dkms
+sed -i.bak3 's/^MODULES=(/c\MODULES=(apple_ib_tb·applespi·intel_lpss_pci·spi_pxa2xx_platform)' /etc/mkinitcpio.conf
+sudo mkinitcpio -P
+echo 'options apple_ib_tb fnmode=2' | sudo tee /etc/modprobe.d/apple_ib_tb.conf
+echo 'options apple_ib_tb idle_timeout=60' | sudo tee /etc/modprobe.d/apple_ib_tb.conf
+
+
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
+installAurPackage 1password
+echo Need to make sure gnome-keyring is correctly setup otherwise 2fa keys wont be remembered.
+
+echo << EOD
+Modify `/etc/pam.d/login`:
+#%PAM-1.0
+auth       required     pam_securetty.so
+auth       requisite    pam_nologin.so
+auth       include      system-local-login
+auth       optional     pam_gnome_keyring.so # ADD THIS LINE AT END OF AUTH
+account    include      system-local-login
+session    include      system-local-login
+session    optional     pam_gnome_keyring.so auto_start # ADD THIS LINE AT END OF SESSION
+password   include      system-local-login
+EOD
+read -p "Copy the above, then press enter to continue"
+nvim /etc/pam.d/login
+
+installAurPackage i3exit
+installAurPackage refind-btrfs
+installAurPackage gmux_backlight
+installAurPackage otf-san-francisco
+
+echo Configure dmenu
+ln -s ~/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_recency
+
+echo Configure graphics to use Intel only
+sudo echo "blacklist amdgpu" > /etc/modprobe.d/blacklist-amdgpu.conf
+
+pushd ~/source-aur
+git clone https://github.com/0xbb/gpu-switch
+cd gpu-switch
+sudo ./gpu-switch -i
+echo You need to reboot now.  Do you want to reboot? (y/n)
+read reboot
+if [ "$reboot" == "y" ]; then
+	sudo reboot now
+fi
+popd
+
 
 
 
