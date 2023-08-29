@@ -203,7 +203,7 @@ installAurPackage oh-my-posh
 installAurPackage brave-bin
 
 installAurPackage macbook12-spi-driver-dkms
-sed -i.bak3 's/^MODULES=(/c\MODULES=(apple_ib_tb·applespi·intel_lpss_pci·spi_pxa2xx_platform)' /etc/mkinitcpio.conf
+sed -i.bak3 's/^MODULES=(/c\MODULES=(apple_ib_tb applespi intel_lpss_pci spi_pxa2xx_platform)' /etc/mkinitcpio.conf
 sudo mkinitcpio -P
 echo 'options apple_ib_tb fnmode=2' | sudo tee /etc/modprobe.d/apple_ib_tb.conf
 echo 'options apple_ib_tb idle_timeout=60' | sudo tee /etc/modprobe.d/apple_ib_tb.conf
