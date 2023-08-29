@@ -228,6 +228,7 @@ installAurPackage i3exit
 installAurPackage refind-btrfs
 installAurPackage gmux_backlight
 installAurPackage otf-san-francisco
+installAurPackage nvm
 
 echo Configure dmenu
 ln -s ~/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_recency
