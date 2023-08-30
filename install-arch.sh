@@ -156,7 +156,9 @@ zip \
 unzip \
 curl \
 wget \
-tmux
+tmux \
+rsync \
+fbset
 
 
 echo "If running on the MacBook, you need to update mkinitcpio.conf. Do you want to update mkinitcpio.conf? (y/n)"
@@ -238,7 +240,7 @@ EOD
 read -p "Copy the above, then press enter to continue"
 nvim /etc/pam.d/login
 
- installAurPackage i3exit
+installAurPackage i3exit
 
 sudo pacman -S python-antlr4 python-semantic-version python-systemd python-tomlkit python-typeguard python-watchdog refind
 installAurPackage python-injector
@@ -248,12 +250,13 @@ installAurPackage refind-btrfs
 installAurPackage gmux_backlight
 installAurPackage otf-san-francisco
 
+
 echo Configure dmenu
 sudo ln -s ~/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_recency
 
+
 echo Configure graphics to use Intel only
 sudo echo "blacklist amdgpu" > /etc/modprobe.d/blacklist-amdgpu.conf
-
 pushd ~/source-aur
 git clone https://github.com/0xbb/gpu-switch
 cd gpu-switch
@@ -264,4 +267,18 @@ if [ "$reboot" == "y" ]; then
 	sudo reboot now
 fi
 popd
+
+
+echo "Sort out the terminal TTY screen buffer size"
+sudo bash -c "cat > /etc/systemd/system/fbset.service << 'EOF'
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=fbset -g 2880 1800 2880 1800 32
+
+[Install]
+WantedBy=multi-user.target
+EOF"
+sudo systemctl enable fbset.service
+sudo systemctl start fbset.service
 
