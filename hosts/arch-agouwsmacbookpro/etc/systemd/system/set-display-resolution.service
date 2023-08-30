@@ -1,0 +1,11 @@
+[Unit]
+Description=Set framebuffer resolution
+After=multi-user.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/home/albert/.dotfiles/hosts/arch-agouwsmacbookpro/set-display-resolution.sh
+
+[Install]
+WantedBy=multi-user.target

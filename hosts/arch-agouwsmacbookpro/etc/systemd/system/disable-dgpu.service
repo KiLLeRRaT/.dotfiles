@@ -1,0 +1,11 @@
+[Unit]
+Description=Disable the dGPU
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo OFF > /sys/kernel/debug/vgaswitcheroo/switch'
+ExecStop=/bin/sh -c 'echo ON > /sys/kernel/debug/vgaswitcheroo/switch'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
