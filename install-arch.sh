@@ -198,8 +198,8 @@ systemctl start NetworkManager.service
 echo "If running on the MacBook, you need to set up brcmfmac43602-pcie. Do you want to set up brcmfmac43602-pcie? (y/n)"
 read setup_brcmfmac43602_pcie
 if [ "$setup_brcmfmac43602_pcie" == "y" ]; then
-	cp ~/.dotfiles/hosts/arch-agouwsmacbookpro/brcmfmac43602-pcie.txt /lib/firmware/brcm/.
-	cp ~/.dotfiles/hosts/arch-agouwsmacbookpro/brcmfmac43602-pcie.txt /lib/firmware/brcm/brcmfmac43602-pcie.Apple\ Inc.-MacBookPro13,3.txt
+	cp /home/$username/.dotfiles/hosts/arch-agouwsmacbookpro/brcmfmac43602-pcie.txt /lib/firmware/brcm/.
+	cp /home/$username/.dotfiles/hosts/arch-agouwsmacbookpro/brcmfmac43602-pcie.txt /lib/firmware/brcm/brcmfmac43602-pcie.Apple\ Inc.-MacBookPro13,3.txt
 fi
 systemctl restart NetworkManager.service
 
