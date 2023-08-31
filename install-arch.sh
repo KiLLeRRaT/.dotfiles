@@ -259,6 +259,11 @@ installAurPackage refind-btrfs
 installAurPackage gmux_backlight
 installAurPackage otf-san-francisco
 
+installAurPackage nvm
+source /usr/share/nvm/init-nvm.sh
+nvm install --lts
+nvm use --lts
+
 
 echo Configure dmenu
 sudo ln -s ~/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_recency
