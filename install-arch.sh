@@ -181,6 +181,13 @@ passwd $username
 echo "Set up sudoers"
 sed -i.bak 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 
+
+echo "Cloning dotfiles"
+pushd /home/$username
+git clone https://github.com/killerrat/.dotfiles
+popd
+
+
 # echo "Set up DHCP"
 # ip link
 # echo "What is your network interface? (e.g. enp0s31f6)"
@@ -215,7 +222,7 @@ installAurPackage oh-my-posh
 installAurPackage brave-bin
 
 installAurPackage macbook12-spi-driver-dkms
-sed -i.bak3 's/^MODULES=(/c\MODULES=(apple_ib_tb applespi intel_lpss_pci spi_pxa2xx_platform)' /etc/mkinitcpio.conf
+sed -i.bak3 '/^MODULES=(/c\MODULES=(apple_ib_tb applespi intel_lpss_pci spi_pxa2xx_platform)' /etc/mkinitcpio.conf
 sudo mkinitcpio -P
 echo 'options apple_ib_tb fnmode=2' | sudo tee /etc/modprobe.d/apple_ib_tb.conf
 echo 'options apple_ib_tb idle_timeout=60' | sudo tee /etc/modprobe.d/apple_ib_tb.conf
