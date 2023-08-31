@@ -164,8 +164,8 @@ fbset
 echo "If running on the MacBook, you need to update mkinitcpio.conf. Do you want to update mkinitcpio.conf? (y/n)"
 read update_mkinitcpio
 if [ "$update_mkinitcpio" == "y" ]; then
-	sed -i.bak 's/^HOOKS=(/c\HOOKS=(base keyboard udev autodetect modconf block lvm2 encrypt btrfs filesystems fsck)' /etc/mkinitcpio.conf
-	sed -i.bak2 's/^MODULES=(/c\MODULES=(intel_lpss_pci)' /etc/mkinitcpio.conf
+	sed -i.bak '/^HOOKS=(/c\HOOKS=(base keyboard udev autodetect modconf block lvm2 encrypt btrfs filesystems fsck)' /etc/mkinitcpio.conf
+	sed -i.bak2 '/^MODULES=(/c\MODULES=(intel_lpss_pci)' /etc/mkinitcpio.conf
 	mkinitcpio -P
 fi
 
@@ -181,11 +181,11 @@ passwd $username
 echo "Set up sudoers"
 sed -i.bak 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 
-echo "Set up DHCP"
-ip link
-echo "What is your network interface? (e.g. enp0s31f6)"
-read network_interface
-systemctl enable dhcpcd@$network_interface.service
+# echo "Set up DHCP"
+# ip link
+# echo "What is your network interface? (e.g. enp0s31f6)"
+# read network_interface
+# systemctl enable dhcpcd@$network_interface.service
 systemctl enable NetworkManager.service
 systemctl start NetworkManager.service
 echo "If running on the MacBook, you need to set up brcmfmac43602-pcie. Do you want to set up brcmfmac43602-pcie? (y/n)"
