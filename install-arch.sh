@@ -264,14 +264,14 @@ sudo ln -s ~/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_recency
 
 
 echo "Sort out the terminal TTY screen buffer size"
-sudo cp ~/.dotfiles/hosts/arch-agouwsmacbookpro/etc/systemd/system/disable-dgpu.service /etc/systemd/system/disable-dgpu.service
-sudo systemctl enable disable-dgpu.service
-sudo systemctl start disable-dgpu.service
 
 sudo cp ~/.dotfiles/hosts/arch-agouwsmacbookpro/etc/systemd/system/set-display-resolution.service /etc/systemd/system/set-display-resolution.service
 sudo systemctl enable set-display-resolution.service
 sudo systemctl start set-display-resolution.service
 
+# sudo cp ~/.dotfiles/hosts/arch-agouwsmacbookpro/etc/systemd/system/disable-dgpu.service /etc/systemd/system/disable-dgpu.service
+# sudo systemctl enable disable-dgpu.service
+# sudo systemctl start disable-dgpu.service
 
 echo Configure graphics to use Intel only
 echo "blacklist amdgpu" | sudo tee /etc/modprobe.d/blacklist-amdgpu.conf
