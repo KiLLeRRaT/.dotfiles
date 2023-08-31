@@ -10,7 +10,7 @@ echo -e "\033[32m ----------------------------------------\033[0m"
 echo Setting root password to \"root\"
 echo "root" | passwd --stdin # SET A ROOT PASSWORD SO WE CAN SSH IN
 timedatectl set-ntp true
-pacman -Sy archlinux-keyring
+pacman --noconfirm -Sy archlinux-keyring
 
 echo "Set up partitions and figure out where you're going to install Arch"
 exit 1
@@ -100,7 +100,7 @@ echo "127.0.0.1   localhost.localdomain   localhost   $hostname" >> /etc/hosts
 echo "::1   localhost.localdomain   localhost   $hostname" >> /etc/hosts
 
 echo "Installing more packages"
-pacman -Syu \
+pacman --noconfirm -Syu \
 networkmanager \
 base-devel \
 btrfs-progs \
@@ -214,7 +214,7 @@ installAurPackage() {
 	echo "Installing $1"
 	git clone https://aur.archlinux.org/$1.git
 	cd $1
-	makepkg -is
+	makepkg --noconfirm -is
 	popd
 }
 
@@ -222,7 +222,7 @@ installAurPackage oh-my-posh
 installAurPackage brave-bin
 
 installAurPackage macbook12-spi-driver-dkms
-sed -i.bak3 '/^MODULES=(/c\MODULES=(apple_ib_tb applespi intel_lpss_pci spi_pxa2xx_platform)' /etc/mkinitcpio.conf
+sudo sed -i.bak3 '/^MODULES=(/c\MODULES=(apple_ib_tb applespi intel_lpss_pci spi_pxa2xx_platform)' /etc/mkinitcpio.conf
 sudo mkinitcpio -P
 echo 'options apple_ib_tb fnmode=2' | sudo tee /etc/modprobe.d/apple_ib_tb.conf
 echo 'options apple_ib_tb idle_timeout=60' | sudo tee /etc/modprobe.d/apple_ib_tb.conf
@@ -232,8 +232,8 @@ curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
 installAurPackage 1password
 echo Need to make sure gnome-keyring is correctly setup otherwise 2fa keys wont be remembered.
 
-echo << EOD
-Modify `/etc/pam.d/login`:
+cp /etc/pam.d/login /tmp/login.tmp
+sudo bash -c "cat > /etc/pam.d/login" << 'EOF'
 #%PAM-1.0
 auth       required     pam_securetty.so
 auth       requisite    pam_nologin.so
@@ -243,13 +243,14 @@ account    include      system-local-login
 session    include      system-local-login
 session    optional     pam_gnome_keyring.so auto_start # ADD THIS LINE AT END OF SESSION
 password   include      system-local-login
-EOD
-read -p "Copy the above, then press enter to continue"
-nvim /etc/pam.d/login
+EOF
+
+read -p "Let's verify the changes. Press enter to continue"
+nvim -d /etc/pam.d/login /tmp/login.tmp
 
 installAurPackage i3exit
 
-sudo pacman -S python-antlr4 python-semantic-version python-systemd python-tomlkit python-typeguard python-watchdog refind
+sudo pacman --noconfirm -S python-antlr4 python-semantic-version python-systemd python-tomlkit python-typeguard python-watchdog refind
 installAurPackage python-injector
 installAurPackage python-pid
 installAurPackage python-transitions
