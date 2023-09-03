@@ -175,6 +175,11 @@ mono-msbuild \
 nginx
 
 
+echo "Starting sshd"
+sudo systemctl start sshd
+sudo systemctl enable sshd
+
+
 echo "Starting Bluetooth"
 sudo systemctl start bluetooth
 sudo systemctl enable bluetooth
