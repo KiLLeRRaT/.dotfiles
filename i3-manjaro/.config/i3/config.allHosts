@@ -486,15 +486,10 @@ exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize 
 
 # NetworkManager
 exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-# exec --no-startup-id pamac-tray # I don't use it, disabled!
-# exec --no-startup-id clipit # Clipboard manager, MESSES WITH Citrix! DISABLED IT!
-# exec --no-startup-id blueman-applet
-# exec_always --no-startup-id sbxkb
-# exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
+# exec --no-startup-id xfce4-power-manager
+# exec_always --no-startup-id ff-theme-util
+# exec_always --no-startup-id fix_xcursor
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -707,6 +702,9 @@ mode "$mode_gaps_outer" {
 # DELETE RANGE USING SED, FROM: https://stackoverflow.com/a/29530617/182888
 # <hostSpecificConfig>
 # <config hostname="albert-hppavilion">
+exec --no-startup-id xfce4-power-manager
+exec_always --no-startup-id ff-theme-util
+exec_always --no-startup-id fix_xcursor
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font xft:SF Pro Display 11
@@ -714,7 +712,6 @@ font xft:SF Pro Display 11
 # 󰭹 chat
 
 # Wallpaper / Background image
-# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*
 
 
@@ -737,7 +734,6 @@ font xft:URWGothic-Book 11
 # 󰭹 chat
 
 # Wallpaper / Background image
-# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
 
 
@@ -768,6 +764,9 @@ exec --no-startup-id conky -c ~/.config/conky/conky-surface3.conf
 # </config>
 
 # <config hostname="agouws">
+exec --no-startup-id xfce4-power-manager
+exec_always --no-startup-id ff-theme-util
+exec_always --no-startup-id fix_xcursor
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # font xft:URWGothic-Book 11
@@ -775,7 +774,6 @@ font xft:SF Pro Display 11
 # 󰭹 chat
 
 # Wallpaper / Background image
-# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
 
 # exec --no-startup-id "nmcli con down enp42s0"
@@ -819,13 +817,15 @@ exec --no-startup-id "alacritty -e tmux"
 # </config>
 
 # <config hostname="albert-aspire">
+exec --no-startup-id xfce4-power-manager
+exec_always --no-startup-id ff-theme-util
+exec_always --no-startup-id fix_xcursor
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font xft:URWGothic-Book 11
 # 󰭹 chat
 
 # Wallpaper / Background image
-# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
 
 # # TURN ON NUMLOCK USING numlockx LIBRARY
@@ -842,13 +842,15 @@ exec --no-startup-id "alacritty -e tmux"
 # </config>
 
 # <config hostname="albert-manjaroagouwsmacbook2">
+exec --no-startup-id xfce4-power-manager
+exec_always --no-startup-id ff-theme-util
+exec_always --no-startup-id fix_xcursor
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font xft:URWGothic-Book 11
 # 󰭹 chat
 
 # Wallpaper / Background image
-# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
 
 # # TURN ON NUMLOCK USING numlockx LIBRARY
@@ -866,6 +868,9 @@ exec --no-startup-id vmware-user
 
 # </config>
 # <config hostname="arch-agouwsmacbookpro">
+# exec --no-startup-id xfce4-power-manager
+# exec_always --no-startup-id ff-theme-util
+# exec_always --no-startup-id fix_xcursor
 # SWAP LEFT ALT/OPTION WITH LEFT COMMAND, FROM: https://askubuntu.com/a/29609
 exec_always setxkbmap -option altwin:swap_lalt_lwin
 
@@ -876,12 +881,13 @@ exec_always --no-startup-id dunst
 
 bindsym XF86MonBrightnessUp exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
 bindsym XF86MonBrightnessDown exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh -50"
+bindsym $mod+F10 exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
+bindsym $mod+Shift+F10 exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh -50"
 
 bindsym XF86KbdBrightnessUp exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-keyboard-brightness.sh +50"
 bindsym XF86KbdBrightnessDown exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-keyboard-brightness.sh -50"
 
 # Wallpaper / Background image
-# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 
 exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
@@ -896,13 +902,15 @@ exec --no-startup-id "alacritty -e tmux"
 # </config>
 
 # <config hostname="albert-satellitepro">
+exec --no-startup-id xfce4-power-manager
+exec_always --no-startup-id ff-theme-util
+exec_always --no-startup-id fix_xcursor
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font xft:URWGothic-Book 11
 # 󰭹 chat
 
 # Wallpaper / Background image
-# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
 
 # # TURN ON NUMLOCK USING numlockx LIBRARY
@@ -920,13 +928,15 @@ exec --no-startup-id "alacritty -e tmux"
 # </config>
 
 # <config hostname="sierra"><!-- SONY VAIO LAPTOP -->
+exec --no-startup-id xfce4-power-manager
+exec_always --no-startup-id ff-theme-util
+exec_always --no-startup-id fix_xcursor
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font xft:URWGothic-Book 11
 # 󰭹 chat
 
 # Wallpaper / Background image
-# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
 
 exec --no-startup-id pulseaudio

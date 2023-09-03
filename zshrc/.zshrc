@@ -396,4 +396,6 @@ source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^j' autosuggest-accept
 
 # WAS CAUSING ISSUES, LETS SEE IF THINGS WORK AFTER REMOVING THIS
-# source /usr/share/nvm/init-nvm.sh
+# ADDED IT BACK, NOT SURE WHAT HTE ISSUE WAS, BUT I DIDNT HAVE NODE ON MY PATH WHEN I DIDNT HAVE
+# THIS
+source /usr/share/nvm/init-nvm.sh

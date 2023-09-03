@@ -159,7 +159,25 @@ wget \
 tmux \
 rsync \
 fbset \
-dunst
+dunst \
+bluez bluez-utils blueman \
+pcmanfm \
+polkit-gnome \
+gnome-keyring \
+xautolock \
+spotify-launcher \
+dotnet-sdk \
+dotnet-runtime \
+aspnet-runtime \
+nuget \
+mono \
+mono-msbuild \
+nginx
+
+
+echo "Starting Bluetooth"
+sudo systemctl start bluetooth
+sudo systemctl enable bluetooth
 
 
 echo "If running on the MacBook, you need to update mkinitcpio.conf. Do you want to update mkinitcpio.conf? (y/n)"
@@ -258,11 +276,27 @@ installAurPackage python-transitions
 installAurPackage refind-btrfs
 installAurPackage gmux_backlight
 installAurPackage otf-san-francisco
+installAurPackage pa-applet
+installAurPackage dracula-gtk-theme
 
 installAurPackage nvm
 source /usr/share/nvm/init-nvm.sh
 nvm install --lts
 nvm use --lts
+
+
+pushd ~/source-aur
+git clone https://github.com/davidjo/snd_hda_macbookpro.git
+cd snd_hda_macbookpro/
+#run the following command as root or with sudo
+sudo ./install.cirrus.driver.sh
+echo "You need to reboot after doing the Sound Install. Do you want to reboot? (y/n)"
+read reboot
+if [ "$reboot" == "y" ]; then
+	sudo reboot now
+fi
+sudo pacman -S wireplumber pipewire-pulse pulseaudio pavucontrol playerctl
+popd
 
 
 echo Configure dmenu
