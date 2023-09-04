@@ -14,6 +14,7 @@ vim.cmd[[let g:switch_custom_definitions =
     \   switch#NormalizedCaseWords(['before', 'after']),
     \   switch#NormalizedCaseWords(['to', 'from']),
     \   switch#NormalizedCaseWords(['yes', 'no']),
+    \   switch#NormalizedCaseWords(['on', 'off']),
     \   switch#NormalizedCaseWords(['==', '!=']),
     \   switch#NormalizedCaseWords(['min', 'max']),
     \   switch#NormalizedCaseWords(['UAT', 'PROD']),

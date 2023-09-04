@@ -524,6 +524,7 @@ set_from_resource $term_color15		 color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
+	font xft:SF Mono 11
 	i3bar_command i3bar
 	status_command i3status
 	position bottom
@@ -536,7 +537,6 @@ bar {
 
 	bindsym button4 nop
 	bindsym button5 nop
-#		font xft:URWGothic-Book 11
 	strip_workspace_numbers yes
 
 
@@ -816,57 +816,7 @@ exec --no-startup-id "google-chat-electron"
 exec --no-startup-id "alacritty -e tmux"
 # </config>
 
-# <config hostname="albert-aspire">
-exec --no-startup-id xfce4-power-manager
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font xft:URWGothic-Book 11
-# 󰭹 chat
 
-# Wallpaper / Background image
-exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
-
-# # TURN ON NUMLOCK USING numlockx LIBRARY
-exec --no-startup-id numlockx
-exec --no-startup-id pipewire-pulse
-exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
-
-# RESTORE LAYOUTS
-exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-2.json'
-exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-8.json'
-
-exec --no-startup-id "brave --profile-directory=Default"
-exec --no-startup-id "alacritty -e tmux"
-# </config>
-
-# <config hostname="albert-manjaroagouwsmacbook2">
-exec --no-startup-id xfce4-power-manager
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font xft:URWGothic-Book 11
-# 󰭹 chat
-
-# Wallpaper / Background image
-exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
-
-# # TURN ON NUMLOCK USING numlockx LIBRARY
-exec --no-startup-id numlockx
-exec --no-startup-id pipewire-pulse
-exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
-
-# RESTORE LAYOUTS
-exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-2.json'
-exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/albert-satellitepro/workspace-8.json'
-
-exec --no-startup-id "brave --profile-directory=Default"
-exec --no-startup-id "alacritty -e tmux"
-exec --no-startup-id vmware-user
-
-# </config>
 # <config hostname="arch-agouwsmacbookpro">
 # exec --no-startup-id xfce4-power-manager
 # exec_always --no-startup-id ff-theme-util

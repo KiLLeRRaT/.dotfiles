@@ -289,6 +289,7 @@ installAurPackage python-transitions
 installAurPackage refind-btrfs
 installAurPackage gmux_backlight
 installAurPackage otf-san-francisco
+installAurPackage otf-san-francisco-mono
 installAurPackage pa-applet
 installAurPackage dracula-gtk-theme
 

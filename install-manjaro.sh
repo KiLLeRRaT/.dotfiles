@@ -179,6 +179,8 @@ progress "buildApp d2-bin 'Diagram drawing tool'"
 progress "buildApp xsp 'Lightweight ASP.NET Server used for hosting mono on nginx, includes fastcgi-mono-server4'"
 progress "buildApp piknik-bin"
 progress "buildApp pup-bin 'Tool to parse HTML at the command line, think jq tool for HTML'"
+progress "buildApp otf-san-francisco 'Fonts from MacOS'"
+progress "buildApp otf-san-francisco-mono 'Fonts from MacOS (Mono spaced version)'"
 
 # --------------------------------------------------
 # SNAP PACKAGES
