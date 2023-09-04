@@ -189,6 +189,7 @@ sudo systemctl enable bluetooth
 
 
 echo "Set up seahorse and create a default keyring. This is needed for 1Password otherwise it keeps asking the 2FA prompt again and again."
+# FROM: https://1password.community/discussion/127523/1password-and-gnome-keyring-for-2fa-saving-on-archlinux
 seahorse
 
 
