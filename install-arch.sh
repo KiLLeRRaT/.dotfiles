@@ -162,8 +162,6 @@ fbset \
 dunst \
 bluez bluez-utils blueman \
 pcmanfm \
-polkit-gnome \
-gnome-keyring \
 xautolock \
 spotify-launcher \
 dotnet-sdk \
@@ -176,6 +174,9 @@ nginx \
 docker docker-compose docker-scan \
 remmina freerdp
 
+# Disabled:
+# polkit-gnome # For now, I think I may have installed this to get the 1Password 2FA auth working
+# but it's not really needed, I just needed to config seahorse
 
 echo "Starting sshd"
 sudo systemctl start sshd
