@@ -292,6 +292,7 @@ installAurPackage otf-san-francisco
 installAurPackage otf-san-francisco-mono
 installAurPackage pa-applet
 installAurPackage dracula-gtk-theme
+installAurPackage snapper-gui
 
 installAurPackage nvm
 source /usr/share/nvm/init-nvm.sh
