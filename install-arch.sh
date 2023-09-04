@@ -172,7 +172,9 @@ aspnet-runtime \
 nuget \
 mono \
 mono-msbuild \
-nginx
+nginx \
+docker docker-compose docker-scan \
+remmina freerdp
 
 
 echo "Starting sshd"
@@ -183,6 +185,10 @@ sudo systemctl enable sshd
 echo "Starting Bluetooth"
 sudo systemctl start bluetooth
 sudo systemctl enable bluetooth
+
+
+echo "Set up seahorse and create a default keyring. This is needed for 1Password otherwise it keeps asking the 2FA prompt again and again."
+seahorse
 
 
 echo "If running on the MacBook, you need to update mkinitcpio.conf. Do you want to update mkinitcpio.conf? (y/n)"
