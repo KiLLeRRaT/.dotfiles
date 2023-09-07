@@ -254,11 +254,16 @@ installAurPackage() {
 installAurPackage oh-my-posh
 installAurPackage brave-bin
 
-installAurPackage macbook12-spi-driver-dkms
-sudo sed -i.bak3 '/^MODULES=(/c\MODULES=(apple_ib_tb applespi intel_lpss_pci spi_pxa2xx_platform)' /etc/mkinitcpio.conf
-sudo mkinitcpio -P
-echo 'options apple_ib_tb fnmode=2' | sudo tee /etc/modprobe.d/apple_ib_tb.conf
-echo 'options apple_ib_tb idle_timeout=60' | sudo tee /etc/modprobe.d/apple_ib_tb.conf
+echo "If running on the MacBook, you probably want to install macbook12-spi-driver-dkms. Also swap fn and ctrl, and permanently make the F keys display on the touchbar. Do you want to do this? (y/n)"
+read update_mkinitcpio_fnremap
+if [ "$update_mkinitcpio_fnremap" == "y" ]; then
+	installAurPackage macbook12-spi-driver-dkms
+	sudo sed -i.bak3 '/^MODULES=(/c\MODULES=(apple_ib_tb applespi intel_lpss_pci spi_pxa2xx_platform)' /etc/mkinitcpio.conf
+	echo 'options apple_ib_tb fnmode=2' | sudo tee /etc/modprobe.d/apple_ib_tb.conf
+	echo 'options apple_ib_tb idle_timeout=60' | sudo tee /etc/modprobe.d/apple_ib_tb.conf
+	echo 'options applespi fnremap=1' | sudo tee /etc/modprobe.d/applespi.conf
+	sudo mkinitcpio -P
+fi
 
 
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
