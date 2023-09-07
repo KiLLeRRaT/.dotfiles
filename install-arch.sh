@@ -172,7 +172,8 @@ mono \
 mono-msbuild \
 nginx \
 docker docker-compose docker-scan \
-remmina freerdp
+remmina freerdp \
+dosbox
 
 # Disabled:
 # polkit-gnome # For now, I think I may have installed this to get the 1Password 2FA auth working
@@ -293,6 +294,9 @@ installAurPackage otf-san-francisco-mono
 installAurPackage pa-applet
 installAurPackage dracula-gtk-theme
 installAurPackage snapper-gui
+installAurPackage azuredatastudio-bin
+installAurPackage forticlient-vpn
+
 
 installAurPackage nvm
 source /usr/share/nvm/init-nvm.sh
