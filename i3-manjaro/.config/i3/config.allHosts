@@ -480,7 +480,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Wallpaper / Background image
 # exec --no-startup-id nitrogen --restore; sleep 1; picom -b
-exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
+# exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
 
 # exec --no-startup-id manjaro-hello
 
@@ -702,13 +702,11 @@ mode "$mode_gaps_outer" {
 # DELETE RANGE USING SED, FROM: https://stackoverflow.com/a/29530617/182888
 # <hostSpecificConfig>
 # <config hostname="albert-hppavilion">
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
 font xft:SF Pro Display 11
-# font xft:URWGothic-Book 11
 # 󰭹 chat
 
 # Wallpaper / Background image
@@ -728,8 +726,7 @@ assign [class="Alacritty"] $ws2
 
 # </config>
 # <config hostname="surface3">
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 font xft:URWGothic-Book 11
 # 󰭹 chat
 
@@ -764,12 +761,10 @@ exec --no-startup-id conky -c ~/.config/conky/conky-surface3.conf
 # </config>
 
 # <config hostname="agouws">
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-# font xft:URWGothic-Book 11
 font xft:SF Pro Display 11
 # 󰭹 chat
 
@@ -818,6 +813,7 @@ exec --no-startup-id "alacritty -e tmux"
 
 
 # <config hostname="arch-agouwsmacbookpro">
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 # exec --no-startup-id xfce4-power-manager
 # exec_always --no-startup-id ff-theme-util
 # exec_always --no-startup-id fix_xcursor
@@ -852,11 +848,10 @@ exec --no-startup-id "alacritty -e tmux"
 # </config>
 
 # <config hostname="albert-satellitepro">
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
 font xft:URWGothic-Book 11
 # 󰭹 chat
 
@@ -878,11 +873,10 @@ exec --no-startup-id "alacritty -e tmux"
 # </config>
 
 # <config hostname="sierra"><!-- SONY VAIO LAPTOP -->
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
 font xft:URWGothic-Book 11
 # 󰭹 chat
 
