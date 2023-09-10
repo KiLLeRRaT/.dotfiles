@@ -200,7 +200,8 @@ mono-msbuild \
 nginx \
 docker docker-compose docker-scan \
 remmina freerdp \
-dosbox
+dosbox \
+btop
 
 # Disabled:
 # polkit-gnome # For now, I think I may have installed this to get the 1Password 2FA auth working
@@ -261,6 +262,13 @@ popd
 
 echo "Generate host specific configs"
 ~/.dotfiles/nvim-lua/.config/nvim/generateHostConfig.sh
+
+
+echo "Let's copy our gtk configs to /root, so that root has the same theme"
+sudo cp /home/albert/.dotfiles/gtk-2.0/.gtkrc-2.0 /root
+sudo mkdir -p /root/.config
+sudo cp -r /home/albert/.dotfiles/gtk-3.0/.config/gtk-3.0 /root/.config
+sudo cp -r /home/albert/.dotfiles/gtk-4.0/.config/gtk-4.0 /root/.config
 
 
 # echo "Set up DHCP"
