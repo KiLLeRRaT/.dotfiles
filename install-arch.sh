@@ -8,7 +8,7 @@ echo -e "\033[32m Installing Arch Linux\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 
 echo Setting root password to \"root\"
-echo "root" | passwd --stdin # SET A ROOT PASSWORD SO WE CAN SSH IN
+echo "root" | passwd --stdin # SET A ROOT PASSWORD SO WE CAN SSH IN TEMPOARILY
 timedatectl set-ntp true
 pacman --noconfirm -Sy archlinux-keyring
 
@@ -73,14 +73,18 @@ echo /dev/mapper/swap        none            swap            defaults        0 0
 echo "Current fstab:"
 cat /mnt/etc/fstab
 
+
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Jump into the new System\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo "Copying this install file into the new system /install-arch.sh"
 cp install-arch.sh /mnt/install-arch.sh
 arch-chroot /mnt
+
+
 echo "Continue script inside the new system"
 exit 1
+
 
 echo "Setting up timezone"
 ln -sf /usr/share/zoneinfo/Pacific/Auckland /etc/localtime
@@ -189,11 +193,6 @@ sudo systemctl start bluetooth
 sudo systemctl enable bluetooth
 
 
-echo "Set up seahorse and create a default keyring. This is needed for 1Password otherwise it keeps asking the 2FA prompt again and again."
-# FROM: https://1password.community/discussion/127523/1password-and-gnome-keyring-for-2fa-saving-on-archlinux
-seahorse
-
-
 echo "If running on the MacBook, you need to update mkinitcpio.conf. Do you want to update mkinitcpio.conf? (y/n)"
 read update_mkinitcpio
 if [ "$update_mkinitcpio" == "y" ]; then
@@ -205,6 +204,10 @@ fi
 echo "Set password for root"
 passwd
 
+echo "Reboot now, and continue the script from the new system as root"
+exit 1
+
+
 echo "Set up user"
 echo "What is your username? (e.g. albert)"
 read username
@@ -214,11 +217,27 @@ passwd $username
 echo "Set up sudoers"
 sed -i.bak 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 
-
 echo "Cloning dotfiles"
 pushd /home/$username
 git clone https://github.com/killerrat/.dotfiles
 popd
+
+
+echo "From here, run as the user in the new system"
+exit 1
+
+echo "Running stow"
+pushd ~/.dotfiles/hosts/arch-agouwsmacbookpro
+stow -t ~ xinitrc
+popd
+
+pushd ~/.dotfiles
+stow alacritty dmenurc dosbox dunst fonts gitconfig gtk-2.0 gtk-3.0 gtk-4.0 i3-manjaro nvim-lua oh-my-posh picom ranger tmux zshrc popd
+popd
+
+
+echo "Generate host specific configs"
+~/.dotfiles/nvim-lua/.config/nvim/generateHostConfig.sh
 
 
 # echo "Set up DHCP"
@@ -226,15 +245,15 @@ popd
 # echo "What is your network interface? (e.g. enp0s31f6)"
 # read network_interface
 # systemctl enable dhcpcd@$network_interface.service
-systemctl enable NetworkManager.service
-systemctl start NetworkManager.service
+sudo systemctl enable NetworkManager.service
+sudo systemctl start NetworkManager.service
 echo "If running on the MacBook, you need to set up brcmfmac43602-pcie. Do you want to set up brcmfmac43602-pcie? (y/n)"
 read setup_brcmfmac43602_pcie
 if [ "$setup_brcmfmac43602_pcie" == "y" ]; then
-	cp /home/$username/.dotfiles/hosts/arch-agouwsmacbookpro/brcmfmac43602-pcie.txt /lib/firmware/brcm/.
-	cp /home/$username/.dotfiles/hosts/arch-agouwsmacbookpro/brcmfmac43602-pcie.txt /lib/firmware/brcm/brcmfmac43602-pcie.Apple\ Inc.-MacBookPro13,3.txt
+	sudo cp /home/$username/.dotfiles/hosts/arch-agouwsmacbookpro/brcmfmac43602-pcie.txt /lib/firmware/brcm/.
+	sudo cp /home/$username/.dotfiles/hosts/arch-agouwsmacbookpro/brcmfmac43602-pcie.txt /lib/firmware/brcm/brcmfmac43602-pcie.Apple\ Inc.-MacBookPro13,3.txt
 fi
-systemctl restart NetworkManager.service
+sudo systemctl restart NetworkManager.service
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Installing AUR Packages\033[0m"
@@ -266,6 +285,11 @@ if [ "$update_mkinitcpio_fnremap" == "y" ]; then
 fi
 
 
+echo "Set up seahorse and create a default keyring. This is needed for 1Password otherwise it keeps asking the 2FA prompt again and again."
+# FROM: https://1password.community/discussion/127523/1password-and-gnome-keyring-for-2fa-saving-on-archlinux
+seahorse
+
+
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
 installAurPackage 1password
 echo Need to make sure gnome-keyring is correctly setup otherwise 2fa keys wont be remembered.
@@ -284,7 +308,7 @@ password   include      system-local-login
 EOF
 
 read -p "Let's verify the changes. Press enter to continue"
-nvim -d /etc/pam.d/login /tmp/login.tmp
+sudo nvim -d /etc/pam.d/login /tmp/login.tmp
 
 installAurPackage i3exit
 
@@ -296,12 +320,12 @@ installAurPackage refind-btrfs
 installAurPackage gmux_backlight
 installAurPackage otf-san-francisco
 installAurPackage otf-san-francisco-mono
-installAurPackage pa-applet
+installAurPackage pa-applet-git
 installAurPackage dracula-gtk-theme
-installAurPackage snapper-gui
 installAurPackage azuredatastudio-bin
-installAurPackage forticlient-vpn
-
+installAurPackage snapper-gui-git
+# installAurPackage forticlient-vpn
+# pacman -S networkmanager-fortisslvpn
 
 installAurPackage nvm
 source /usr/share/nvm/init-nvm.sh
