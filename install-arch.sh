@@ -46,6 +46,26 @@ exit 1
 # mkdir -p /mnt/boot
 # mount /dev/nvme0n1p1 /mnt/boot
 
+# Now we need to set up the refind.conf file properly with the new partition UUID
+# THIS ENTRY WORKS WITH THE FOLLOWING BLKID
+menuentry "Arch Linux Albert" {
+    icon     /EFI/refind/icons/os_arch.png
+    volume   "Arch Linux"
+    loader   /vmlinuz-linux
+    initrd   /initramfs-linux.img
+    #options "cryptdevice=UUID=<luks-part-UUID, e.g. /dev/nvme0n1p5's UUID>:<volume-group, obtained via vgdisplay> root=/dev/mapper/<volume-group>-<logical-volume>"
+    options "cryptdevice=UUID=d3b198f7-c54d-45ac-8905-94fa12894335:vgcrypt root=/dev/mapper/vgcrypt-root rootflags=subvol=@"
+    submenuentry "Boot using fallback initramfs" {
+        initrd /boot/initramfs-linux-fallback.img
+    }
+}
+
+
+
+
+
+
+
 
 echo "Are you ready to install? Make sure that you have your new partition mounted in /mnt, AND mounted /mnt/boot"
 read install_base
