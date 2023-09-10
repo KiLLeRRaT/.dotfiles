@@ -201,7 +201,8 @@ nginx \
 docker docker-compose docker-scan \
 remmina freerdp \
 dosbox \
-btop
+btop \
+networkmanager-l2tp
 
 # Disabled:
 # polkit-gnome # For now, I think I may have installed this to get the 1Password 2FA auth working
@@ -271,11 +272,6 @@ sudo cp -r /home/albert/.dotfiles/gtk-3.0/.config/gtk-3.0 /root/.config
 sudo cp -r /home/albert/.dotfiles/gtk-4.0/.config/gtk-4.0 /root/.config
 
 
-# echo "Set up DHCP"
-# ip link
-# echo "What is your network interface? (e.g. enp0s31f6)"
-# read network_interface
-# systemctl enable dhcpcd@$network_interface.service
 sudo systemctl enable NetworkManager.service
 sudo systemctl start NetworkManager.service
 echo "If running on the MacBook, you need to set up brcmfmac43602-pcie. Do you want to set up brcmfmac43602-pcie? (y/n)"
@@ -356,7 +352,8 @@ installAurPackage dracula-gtk-theme
 installAurPackage azuredatastudio-bin
 installAurPackage snapper-gui-git
 # installAurPackage forticlient-vpn
-# pacman -S networkmanager-fortisslvpn
+# sudo pacman -S networkmanager-fortisslvpn
+installAurPackage openfortivpn
 
 installAurPackage nvm
 source /usr/share/nvm/init-nvm.sh
