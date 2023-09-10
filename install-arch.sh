@@ -383,8 +383,14 @@ echo Configure dmenu
 sudo ln -s ~/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_recency
 
 
-echo "Sort out the terminal TTY screen buffer size"
+echo "Enable and start Docker? (y/n)"
+read enable_docker
+if [ "$enable_docker" == "y" ]; then
+	sudo systemctl enable docker
+	sudo systemctl start docker
+fi
 
+echo "Sort out the terminal TTY screen buffer size"
 sudo cp ~/.dotfiles/hosts/arch-agouwsmacbookpro/etc/systemd/system/set-display-resolution.service /etc/systemd/system/set-display-resolution.service
 sudo systemctl enable set-display-resolution.service
 sudo systemctl start set-display-resolution.service
