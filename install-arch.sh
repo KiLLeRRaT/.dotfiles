@@ -333,15 +333,19 @@ nvm install --lts
 nvm use --lts
 
 
-pushd ~/source-aur
-git clone https://github.com/davidjo/snd_hda_macbookpro.git
-cd snd_hda_macbookpro/
-#run the following command as root or with sudo
-sudo ./install.cirrus.driver.sh
-echo "You need to reboot after doing the Sound Install. Do you want to reboot? (y/n)"
-read reboot
-if [ "$reboot" == "y" ]; then
-	sudo reboot now
+echo "If running on the MacBook, you need to install snd_hda_macbookpro. Do you want to do this? (y/n)"
+read snd_hda_macbookpro
+if [ "$snd_hda_macbookpro" == "y" ]; then
+	pushd ~/source-aur
+	git clone https://github.com/davidjo/snd_hda_macbookpro.git
+	cd snd_hda_macbookpro/
+	#run the following command as root or with sudo
+	sudo ./install.cirrus.driver.sh
+	echo "You need to reboot after doing the Sound Install. Do you want to reboot? (y/n)"
+	read reboot
+	if [ "$reboot" == "y" ]; then
+		sudo reboot now
+	fi
 fi
 sudo pacman -S wireplumber pipewire-pulse pulseaudio pavucontrol playerctl
 popd
