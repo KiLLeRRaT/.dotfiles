@@ -48,23 +48,26 @@ exit 1
 
 # Now we need to set up the refind.conf file properly with the new partition UUID
 # THIS ENTRY WORKS WITH THE FOLLOWING BLKID
-menuentry "Arch Linux Albert" {
-    icon     /EFI/refind/icons/os_arch.png
-    volume   "Arch Linux"
-    loader   /vmlinuz-linux
-    initrd   /initramfs-linux.img
-    #options "cryptdevice=UUID=<luks-part-UUID, e.g. /dev/nvme0n1p5's UUID>:<volume-group, obtained via vgdisplay> root=/dev/mapper/<volume-group>-<logical-volume>"
-    options "cryptdevice=UUID=d3b198f7-c54d-45ac-8905-94fa12894335:vgcrypt root=/dev/mapper/vgcrypt-root rootflags=subvol=@"
-    submenuentry "Boot using fallback initramfs" {
-        initrd /boot/initramfs-linux-fallback.img
-    }
-}
-
-
-
-
-
-
+#menuentry "Arch Linux Albert" {
+#    icon     /EFI/refind/icons/os_arch.png
+#    volume   "Arch Linux"
+#    loader   /vmlinuz-linux
+#    initrd   /initramfs-linux.img
+#    #options "cryptdevice=UUID=<luks-part-UUID, e.g. /dev/nvme0n1p5's UUID>:<volume-group, obtained via vgdisplay> root=/dev/mapper/<volume-group>-<logical-volume> rootflags=subvol=@"
+#    options "cryptdevice=UUID=d3b198f7-c54d-45ac-8905-94fa12894335:vgcrypt root=/dev/mapper/vgcrypt-root rootflags=subvol=@"
+#    submenuentry "Boot using fallback initramfs" {
+#        initrd /boot/initramfs-linux-fallback.img
+#    }
+#}
+# blkid
+# /dev/mapper/vgcrypt-swap: LABEL="swap" UUID="6b63bb6c-4afd-4591-8788-cf8d73ff1a38" TYPE="swap"
+# /dev/nvme0n1p5: UUID="d3b198f7-c54d-45ac-8905-94fa12894335" TYPE="crypto_LUKS" PARTUUID="fd095bbd-a6eb-48da-a55b-1923f7d3193f"
+# /dev/nvme0n1p3: LABEL="OSXRESERVED" UUID="64FB-89C7" BLOCK_SIZE="4096" TYPE="exfat" PARTUUID="b46a23c3-50c5-4e19-b8db-463fa216605f"
+# /dev/nvme0n1p1: LABEL_FATBOOT="EFI" LABEL="EFI" UUID="5F66-17ED" BLOCK_SIZE="4096" TYPE="vfat" PARTLABEL="EFI System Partition" PARTUUID="92727bbf-942c-400f-a9d4-583cddd43c5e"
+# /dev/nvme0n1p4: LABEL="BOOTCAMP" BLOCK_SIZE="4096" UUID="34F5EE1202469FF7" TYPE="ntfs" PARTUUID="27bbceeb-e685-49c9-bb38-18aa662e3593"
+# /dev/nvme0n1p2: UUID="40dcefc5-5c37-4bd9-950b-babddf7ba441" BLOCK_SIZE="4096" TYPE="apfs" PARTUUID="ab455abf-29b8-46e0-b56f-06e850648696"
+# /dev/mapper/vgcrypt-root: LABEL="system" UUID="6023169f-40ed-40c1-8290-4c9cd481d6d5" UUID_SUB="acdd011b-0779-44c0-b6c4-000852b90405" BLOCK_SIZE="4096" TYPE="btrfs"
+# /dev/mapper/vgcrypt: UUID="TvEh9e-pVkM-3Toi-jG9b-Z2p9-heks-Twsz9D" TYPE="LVM2_member"
 
 
 echo "Are you ready to install? Make sure that you have your new partition mounted in /mnt, AND mounted /mnt/boot"
