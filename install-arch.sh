@@ -302,7 +302,7 @@ if [ "$update_mkinitcpio_fnremap" == "y" ]; then
 	installAurPackage macbook12-spi-driver-dkms
 	sudo sed -i.bak3 '/^MODULES=(/c\MODULES=(apple_ib_tb applespi intel_lpss_pci spi_pxa2xx_platform)' /etc/mkinitcpio.conf
 	echo 'options apple_ib_tb fnmode=2' | sudo tee /etc/modprobe.d/apple_ib_tb.conf
-	echo 'options apple_ib_tb idle_timeout=60' | sudo tee /etc/modprobe.d/apple_ib_tb.conf
+	echo 'options apple_ib_tb idle_timeout=60' | sudo tee --append /etc/modprobe.d/apple_ib_tb.conf
 	echo 'options applespi fnremap=1' | sudo tee /etc/modprobe.d/applespi.conf
 	sudo mkinitcpio -P
 fi
