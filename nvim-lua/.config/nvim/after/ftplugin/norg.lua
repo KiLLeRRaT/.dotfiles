@@ -26,3 +26,4 @@ vim.api.nvim_create_autocmd({"BufEnter, BufWinEnter"}, {
 	end,
 	group = norgfiles_BufEnter_BufWinEnter
 })
+
