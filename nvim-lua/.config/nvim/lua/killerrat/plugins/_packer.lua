@@ -156,7 +156,7 @@ local function packer_spec()
 		use { 'nvim-lualine/lualine.nvim' }											-- https://github.com/nvim-lualine/lualine.nvim
 		use { 'akinsho/bufferline.nvim' }												-- https://github.com/akinsho/bufferline.nvim
 		use { 'lewis6991/gitsigns.nvim' }												-- https://github.com/lewis6991/gitsigns.nvim
-		use { 'vimwiki/vimwiki' }																-- https://github.com/vimwiki/vimwiki
+		-- use { 'vimwiki/vimwiki' }																-- https://github.com/vimwiki/vimwiki
 
 		-- neorg related
 		use { 'nvim-neorg/neorg',
@@ -198,6 +198,7 @@ local function packer_spec()
 		use { "hrsh7th/cmp-emoji" }																				-- https://github.com/hrsh7th/cmp-emoji
 		use { 'L3MON4D3/LuaSnip' }																				-- https://github.com/L3MON4D3/LuaSnip
 		use { 'saadparwaiz1/cmp_luasnip' }																-- https://github.com/saadparwaiz1/cmp_luasnip
+		use { 'Issafalcon/lsp-overloads.nvim'}														-- https://github.com/Issafalcon/lsp-overloads.nvim
 
 		----------------------------------------
 			-- LSP RELATED PLUGINS
