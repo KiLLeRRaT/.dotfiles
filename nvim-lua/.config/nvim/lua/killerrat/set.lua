@@ -38,11 +38,15 @@ vim.opt.textwidth = 100 -- command 'gw' formats text to this width
 vim.opt.colorcolumn = "100"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.expandtab = false
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
+-- vim.cmd[[filetype plugin on]]
+-- vim.cmd[[filetype indent off]]
+
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.listchars = "tab:| ,nbsp:_,trail:·,space:·"
