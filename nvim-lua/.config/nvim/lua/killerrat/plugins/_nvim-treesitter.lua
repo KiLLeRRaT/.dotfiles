@@ -43,6 +43,9 @@ require'nvim-treesitter.configs'.setup {
 		"yaml",
 		"query"
 	},
+	indent = {
+		enable = true,
+	},
 	highlight = {
 		enable = true,
 	},
