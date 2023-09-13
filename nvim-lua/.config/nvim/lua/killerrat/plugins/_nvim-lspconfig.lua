@@ -79,23 +79,29 @@ vim.api.nvim_create_autocmd("FileType",{
 					--- Guard against servers without the signatureHelper capability
 					if client.server_capabilities.signatureHelpProvider then
 						require('lsp-overloads').setup(client, { })
-						print("signatureHelpProvider")
 					end
 
 					-- WORKAROUND INVALID CHAR GROUP ISSUE WITH OMNISHARP
 					-- FROM: https://github.com/OmniSharp/omnisharp-roslyn/issues/2483#issuecomment-1515504374
 					-- https://github.com/OmniSharp/omnisharp-roslyn/issues/2483#issuecomment-1492605642
-					local tokenModifiers = client.server_capabilities.semanticTokensProvider.legend.tokenModifiers
-					for i, v in ipairs(tokenModifiers) do
-						local tmp = string.gsub(v, ' ', '_')
-						tokenModifiers[i] = string.gsub(tmp, '-_', '')
-					end
-					local tokenTypes = client.server_capabilities.semanticTokensProvider.legend.tokenTypes
-					for i, v in ipairs(tokenTypes) do
-						local tmp = string.gsub(v, ' ', '_')
-						tokenTypes[i] = string.gsub(tmp, '-_', '')
-					end
+
+					-- COMMENTED IT OUT ON 14 SEP 2023, BECAUSE IT SEEMS TO BE FIXED IN THE LATEST VERSION OF OMNISHARP
+					-- COMMENTED IT OUT ON 14 SEP 2023, BECAUSE IT SEEMS TO BE FIXED IN THE LATEST VERSION OF OMNISHARP
+					-- COMMENTED IT OUT ON 14 SEP 2023, BECAUSE IT SEEMS TO BE FIXED IN THE LATEST VERSION OF OMNISHARP
+					-- local tokenModifiers = client.server_capabilities.semanticTokensProvider.legend.tokenModifiers
+					-- for i, v in ipairs(tokenModifiers) do
+					-- 	local tmp = string.gsub(v, ' ', '_')
+					-- 	tokenModifiers[i] = string.gsub(tmp, '-_', '')
+					-- end
+					-- local tokenTypes = client.server_capabilities.semanticTokensProvider.legend.tokenTypes
+					-- for i, v in ipairs(tokenTypes) do
+					-- 	local tmp = string.gsub(v, ' ', '_')
+					-- 	tokenTypes[i] = string.gsub(tmp, '-_', '')
+					-- end
 				-- END WORKAROUND INVALID CHAR GROUP ISSUE WITH OMNISHARP
+					-- COMMENTED IT OUT ON 14 SEP 2023, BECAUSE IT SEEMS TO BE FIXED IN THE LATEST VERSION OF OMNISHARP
+					-- COMMENTED IT OUT ON 14 SEP 2023, BECAUSE IT SEEMS TO BE FIXED IN THE LATEST VERSION OF OMNISHARP
+					-- COMMENTED IT OUT ON 14 SEP 2023, BECAUSE IT SEEMS TO BE FIXED IN THE LATEST VERSION OF OMNISHARP
 
 					on_attach(client, bufnr)
 				end,
@@ -111,7 +117,6 @@ vim.api.nvim_create_autocmd("FileType",{
 					--- Guard against servers without the signatureHelper capability
 					if client.server_capabilities.signatureHelpProvider then
 						require('lsp-overloads').setup(client, { })
-						print("signatureHelpProvider")
 					end
 
 					-- WORKAROUND INVALID CHAR GROUP ISSUE WITH OMNISHARP
