@@ -202,7 +202,7 @@ docker docker-compose docker-scan \
 remmina freerdp \
 dosbox \
 btop \
-networkmanager-l2tp
+networkmanager-l2tp strongswan
 
 # Disabled:
 # polkit-gnome # For now, I think I may have installed this to get the 1Password 2FA auth working
