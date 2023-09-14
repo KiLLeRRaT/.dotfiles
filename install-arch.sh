@@ -70,7 +70,7 @@ exit 1
 # /dev/mapper/vgcrypt: UUID="TvEh9e-pVkM-3Toi-jG9b-Z2p9-heks-Twsz9D" TYPE="LVM2_member"
 
 
-echo "Are you ready to install? Make sure that you have your new partition mounted in /mnt, AND mounted /mnt/boot"
+echo "Are you ready to install? Make sure that you have your new partition mounted in /mnt, AND mounted /mnt/boot (y/n)"
 read install_base
 if [ "$install_base" == "y" ]; then
 	pacstrap -K /mnt base linux linux-firmware neovim
@@ -285,6 +285,11 @@ if [ "$setup_brcmfmac43602_pcie" == "y" ]; then
 	sudo cp /home/$username/.dotfiles/hosts/arch-agouwsmacbookpro/brcmfmac43602-pcie.txt /lib/firmware/brcm/brcmfmac43602-pcie.Apple\ Inc.-MacBookPro13,3.txt
 fi
 sudo systemctl restart NetworkManager.service
+
+
+echo "From here, run as the user in X"
+exit 1
+
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Installing AUR Packages\033[0m"
