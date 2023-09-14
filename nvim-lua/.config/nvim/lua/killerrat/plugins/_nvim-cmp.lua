@@ -75,7 +75,7 @@ cmp.setup {
 		}),
 		-- FROM: https://github.com/community/community/discussions/29817#discussioncomment-3583667
 		-- ALSO SEE the copilot lua config file!
-		['<C-J>'] = cmp.mapping(function(fallback)
+		['<C-Y>'] = cmp.mapping(function(fallback)
 			vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)), 'n', true)
 		end)
 	},
@@ -103,7 +103,7 @@ cmp.setup {
 		--				end
 		--			}
 		--		}
-		{ name = 'nvim_lsp_signature_help' },
+		-- { name = 'nvim_lsp_signature_help' }, -- DISABLED ON 14 Sep 2023 in favor of lsp-overload
 		-- { name = 'vim-dadbod-completion' },
 		{ name = 'calc' },
 		{ name = 'emoji' },
