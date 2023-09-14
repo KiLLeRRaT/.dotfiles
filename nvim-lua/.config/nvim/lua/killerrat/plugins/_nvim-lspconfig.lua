@@ -103,7 +103,7 @@ vim.api.nvim_create_autocmd("FileType",{
 					-- COMMENTED IT OUT ON 14 SEP 2023, BECAUSE IT SEEMS TO BE FIXED IN THE LATEST VERSION OF OMNISHARP
 					-- COMMENTED IT OUT ON 14 SEP 2023, BECAUSE IT SEEMS TO BE FIXED IN THE LATEST VERSION OF OMNISHARP
 
-					on_attach(client, bufnr)
+					-- on_attach(client, bufnr)
 				end,
 			}
 			vim.g.dotnetlsp = "omnisharp_mono"
@@ -134,7 +134,7 @@ vim.api.nvim_create_autocmd("FileType",{
 					-- 	end
 					-- END WORKAROUND INVALID CHAR GROUP ISSUE WITH OMNISHARP
 
-					on_attach(client, bufnr)
+					-- on_attach(client, bufnr)
 				end,
 			}
 			vim.g.dotnetlsp = "omnisharp"

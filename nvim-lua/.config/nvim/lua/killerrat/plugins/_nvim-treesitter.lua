@@ -15,7 +15,7 @@ end
 -- 		vim.opt.foldlevelstart = 99 -- START FILE WITH ALL FOLDS OPENED
 
 -- -- let javaScript_fold=1 "activate folding by JS syntax
--- -- " let cs_fold=1
+-- -- " let cs_fold=
 -- -- " let xml_syntax_folding=1
 -- -- let xml_folding=1
 -- -- let yaml_fold=1
@@ -24,6 +24,26 @@ end
 
 -- })
 --ENDWORKAROUND
+
+-- :verbose set indentexpr?
+-- Guy on the internets output: indentexpr=nvim_treesitter#indent()
+-- My output: indentexpr=
+-- :checkhealth nvim-treesitter
+-- Stock Standard:
+-- indentexpr=GetCSIndent(v:lnum)
+        -- Last set from /usr/share/nvim/runtime/indent/cs.vim line 19
+
+-- TEMP INDENT SETTINGS TO TEST THINGS
+vim.opt.autoindent = false
+vim.opt.smartindent = false
+vim.opt.expandtab = false
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+-- vim.cmd[[filetype plugin on]]
+-- vim.cmd[[filetype indent off]]
+-- vim.cmd[[set indentexpr=nvim_treesitter#indent()]]
+
+
 
 require'nvim-treesitter.configs'.setup {
 	ensure_installed = {
@@ -44,7 +64,7 @@ require'nvim-treesitter.configs'.setup {
 		"query"
 	},
 	indent = {
-		enable = true,
+		enable = false,
 	},
 	highlight = {
 		enable = true,
