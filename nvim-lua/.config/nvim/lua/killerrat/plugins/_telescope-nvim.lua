@@ -31,6 +31,10 @@ p.setup {
 						loop_callback = actions.send_selected_to_qflist,
 					}
 				end,
+				-- ["<C-x>"] = actions.select_horizontal,
+				-- ["<C-v>"] = actions.select_vertical,
+				["<C-i>"] = actions.select_horizontal,
+				["<C-s>"] = actions.select_vertical,
 			},
 		},
 	},
