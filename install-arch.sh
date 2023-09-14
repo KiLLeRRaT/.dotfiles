@@ -233,6 +233,10 @@ echo "Reboot now, and continue the script from the new system as root"
 exit 1
 
 
+echo "Starting NetworkManager"
+sudo systemctl enable NetworkManager.service
+sudo systemctl start NetworkManager.service
+
 echo "Set up user"
 echo "What is your username? (e.g. albert)"
 read username
