@@ -261,7 +261,7 @@ stow -t ~ xinitrc
 popd
 
 pushd ~/.dotfiles
-stow alacritty dmenurc dosbox dunst fonts gitconfig gtk-2.0 gtk-3.0 gtk-4.0 i3-manjaro nvim-lua oh-my-posh picom ranger tmux zshrc popd
+stow alacritty dmenurc dosbox dunst fonts gitconfig gtk-2.0 gtk-3.0 gtk-4.0 i3-manjaro nvim-lua oh-my-posh picom ranger tmux zshrc
 popd
 
 
@@ -281,8 +281,8 @@ sudo systemctl start NetworkManager.service
 echo "If running on the MacBook, you need to set up brcmfmac43602-pcie. Do you want to set up brcmfmac43602-pcie? (y/n)"
 read setup_brcmfmac43602_pcie
 if [ "$setup_brcmfmac43602_pcie" == "y" ]; then
-	sudo cp /home/$username/.dotfiles/hosts/arch-agouwsmacbookpro/brcmfmac43602-pcie.txt /lib/firmware/brcm/.
-	sudo cp /home/$username/.dotfiles/hosts/arch-agouwsmacbookpro/brcmfmac43602-pcie.txt /lib/firmware/brcm/brcmfmac43602-pcie.Apple\ Inc.-MacBookPro13,3.txt
+	sudo cp /home/$USER/.dotfiles/hosts/arch-agouwsmacbookpro/brcmfmac43602-pcie.txt /lib/firmware/brcm/.
+	sudo cp /home/$USER/.dotfiles/hosts/arch-agouwsmacbookpro/brcmfmac43602-pcie.txt /lib/firmware/brcm/brcmfmac43602-pcie.Apple\ Inc.-MacBookPro13,3.txt
 fi
 sudo systemctl restart NetworkManager.service
 
