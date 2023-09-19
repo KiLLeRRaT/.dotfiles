@@ -39,6 +39,8 @@ vim.opt.smartindent = false
 vim.opt.expandtab = false
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
+-- SEE: ftplugin/cs.lua for more lang specifics
+
 -- vim.cmd[[filetype plugin on]]
 -- vim.cmd[[filetype indent off]]
 -- vim.cmd[[set indentexpr=nvim_treesitter#indent()]]
