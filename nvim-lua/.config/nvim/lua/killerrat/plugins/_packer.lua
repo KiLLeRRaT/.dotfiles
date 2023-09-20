@@ -259,6 +259,7 @@ packer.startup {
 	config = {
 		compile_path = compile_path,
 		preview_updates = true, -- If true, always preview updates before choosing which plugins to update, same as `PackerUpdate --preview`.
+		snapshot_path = vim.fn.expand('~/.dotfiles/nvim-lua/.config/nvim/packer-snapshots/')
 	}
 }
 
