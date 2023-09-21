@@ -1,4 +1,5 @@
-FROM manjarolinux/base AS base
+# FROM manjarolinux/base AS base
+FROM archlinux AS base
 
 # YOU SERIOUSLY CAN USE PACMAN INSTEAD OF PAMAC DUDE!
 # RUN pacman -Syu pamac-cli --noconfirm
@@ -50,7 +51,8 @@ RUN echo -e "\033[32m Install oh-my-posh\033[0m" && \
 RUN echo -e "\033[32m Install NVM\033[0m" && \
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
     . /root/.nvm/nvm.sh && \
-    nvm install 16.16.0
+    nvm install --lts && \
+		nvm use --lts
 
 
 RUN echo -e "\033[32m Clone zsh-vi-mode\033[0m" && \
