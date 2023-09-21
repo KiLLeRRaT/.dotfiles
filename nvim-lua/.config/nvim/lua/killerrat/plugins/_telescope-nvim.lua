@@ -86,7 +86,7 @@ vim.keymap.set("n", "<leader>fm", "<cmd>Telescope keymaps<cr>")
 -- nnoremap <leader>fc <cmd>Telescope git_commits<cr>
 vim.keymap.set("n", "<leader>fc", "<cmd>Telescope git_commits<cr>")
 -- nnoremap <leader>fr <cmd>Telescope git_branches<cr>
-vim.keymap.set("n", "<leader>fR", "<cmd>Telescope git_branches<cr>")
+vim.keymap.set("n", "<leader>fB", "<cmd>Telescope git_branches<cr>")
 -- nnoremap <leader>fs <cmd>Telescope colorscheme<cr>
 vim.keymap.set("n", "<leader>fs", "<cmd>Telescope colorscheme<cr>")
 -- nnoremap <leader>fh <cmd>Telescope help_tags<cr>
