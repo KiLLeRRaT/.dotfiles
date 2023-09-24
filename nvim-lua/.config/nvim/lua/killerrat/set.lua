@@ -46,6 +46,14 @@ vim.opt.smartcase = true
 -- vim.opt.shiftwidth = 2
 -- -- vim.cmd[[filetype plugin on]]
 -- -- vim.cmd[[filetype indent off]]
+print("I'm here man")
+vim.opt.autoindent = false
+vim.opt.smartindent = false
+vim.opt.expandtab = false
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+
+
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true

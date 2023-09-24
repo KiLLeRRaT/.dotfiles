@@ -34,11 +34,11 @@ end
         -- Last set from /usr/share/nvim/runtime/indent/cs.vim line 19
 
 -- TEMP INDENT SETTINGS TO TEST THINGS
-vim.opt.autoindent = false
-vim.opt.smartindent = false
-vim.opt.expandtab = false
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
+-- vim.opt.autoindent = false
+-- vim.opt.smartindent = false
+-- vim.opt.expandtab = false
+-- vim.opt.tabstop = 2
+-- vim.opt.shiftwidth = 2
 -- SEE: ftplugin/cs.lua for more lang specifics
 
 -- vim.cmd[[filetype plugin on]]
