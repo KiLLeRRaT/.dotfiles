@@ -206,9 +206,14 @@ alias gba='git branch --all'
 alias gco='git checkout'
 alias gm='git merge'
 alias gt='git tag | sort -V | tail'
-alias gtp='fn-gtp() { git tag $1 && git push --tags };fn-gtp'
-alias gtD='fn-gt() { git tag -d $1 && git push origin -d $1 };fn-gt'
+# alias gtp='fn-gtp() { git tag $1 && git push --tags };fn-gtp'
+gtp() { git tag $1 && git push --tags }
+# alias gtD='fn-gt() { git tag -d $1 && git push origin -d $1 };fn-gt'
+gtD() { git tag -d $1 && git push origin -d $1 }
 alias gbf="git branch --sort=-committerdate| fzf --height=20% |xargs git checkout "
+# GIT TAG REMOVE
+# gtr(){git tag -d $1 && git push origin -d $1}
+#; fn_gtr 3.4.0
 
 
 
@@ -278,7 +283,9 @@ hf() {
 	cmd=$(history 0 | sort -nr | cut -c 8- | fzf -e --select-1 --no-sort --query "$1" )
 	# push the command into the history
 	print -S $cmd
-	eval $cmd
+	echo $cmd
+	read -q "REPLY?Run command? "
+	[[ "$REPLY" == "y" ]] && eval $cmd
 }
 
 # REMMINA USING THE CONNECTION FILE SELECTED USING FZF
@@ -287,10 +294,11 @@ rf() {
 	cmd="remmina -c $(ls $PWD/* | fzf -e --select-1 --no-sort --query $1)"
 	# escape parentheses in the cmd with a backslash
 	cmd=$(echo $cmd | sed 's/(/\\(/g' | sed 's/)/\\)/g')
-	echo $cmd
 	# push the command into the history
 	print -S $cmd
-	eval $cmd
+	echo $cmd
+	read -q "REPLY?Run command? "
+	[[ "$REPLY" == "y" ]] && eval $cmd
 	popd
 }
 
@@ -300,7 +308,9 @@ vms() {
 	cmd="sudo virsh start $domain"
 	# push the command into the history
 	print -S $cmd
-	eval $cmd
+	echo $cmd
+	read -q "REPLY?Run command? "
+	[[ "$REPLY" == "y" ]] && eval $cmd
 }
 
 # CONNECT TO THE SELECTED VM
@@ -309,8 +319,14 @@ vmc() {
 	cmd="sudo virt-manager --connect qemu:///system --show-domain-console $domain"
 	# push the command into the history
 	print -S $cmd
-	eval $cmd
+	echo $cmd
+	read -q "REPLY?Run command? "
+	[[ "$REPLY" == "y" ]] && eval $cmd
 }
+
+ssh_removeAndConnect(){sed -i.bak "/192.168.111.$2/d" ~/.ssh/known_hosts && ssh $1@192.168.111.$2}
+# ;fn_ssh albert 132
+
 
 
 # alias hf='history 0 | cut -c 8- | fzf -e'
