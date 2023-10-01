@@ -309,8 +309,9 @@ vms() {
 	# push the command into the history
 	print -S $cmd
 	echo $cmd
-	read -q "REPLY?Run command? "
-	[[ "$REPLY" == "y" ]] && eval $cmd
+	eval $cmd
+	# read -q "REPLY?Run command? "
+	# [[ "$REPLY" == "y" ]] && eval $cmd
 }
 
 # CONNECT TO THE SELECTED VM
@@ -320,8 +321,9 @@ vmc() {
 	# push the command into the history
 	print -S $cmd
 	echo $cmd
-	read -q "REPLY?Run command? "
-	[[ "$REPLY" == "y" ]] && eval $cmd
+	eval $cmd
+	# read -q "REPLY?Run command? "
+	# [[ "$REPLY" == "y" ]] && eval $cmd
 }
 
 ssh_removeAndConnect(){sed -i.bak "/192.168.111.$2/d" ~/.ssh/known_hosts && ssh $1@192.168.111.$2}
