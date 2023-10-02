@@ -353,6 +353,7 @@ installAurPackage python-injector
 installAurPackage python-pid
 installAurPackage python-transitions
 installAurPackage refind-btrfs
+installAurPackage refind-theme-dracula
 installAurPackage gmux_backlight
 installAurPackage otf-san-francisco
 installAurPackage otf-san-francisco-mono
