@@ -170,7 +170,8 @@ font:
   size: 16.0
 # </config>
 # <config hostname="arch-agouws">
-  size: 12.0
+  size: 16.0
+  # size: 12.0
 # </config>
 # <config hostname="arch-agouwsmacbookpro">
   size: 7.0

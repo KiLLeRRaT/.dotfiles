@@ -535,7 +535,8 @@ bar {
 	i3bar_command i3bar
 	status_command i3status
 	position bottom
-	workspace_min_width 40
+	# workspace_min_width 40
+	workspace_min_width 30
 	# WAS ADDED FOR arch-agouwsmacbookpro, LOOKS OKAY on agouws too, so leaving it global
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
@@ -802,7 +803,7 @@ exec --no-startup-id "brave --profile-directory=Default"
 exec --no-startup-id "brave --profile-directory=Profile\ 1"
 exec --no-startup-id "1password"
 # exec --no-startup-id "spotify"
-exec --no-startup-id "spotify-launcher"
+# exec --no-startup-id "spotify-launcher"
 # exec --no-startup-id "google-chat-electron"
 exec --no-startup-id "google-chat-linux"
 exec --no-startup-id "alacritty -e tmux"
