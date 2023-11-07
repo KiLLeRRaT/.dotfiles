@@ -2,14 +2,16 @@
 
 
 # TODO:
-# - [ ] Firewall
 # - [x] Bridge br0
 # - [x] VMs
+# - [x] forticlient-vpn
+# - [ ] Firewall
 # - [ ] Sourcecode backups
 # - [ ] Machine backups
 # - [ ] nginx
 # - [ ] unlock /mnt/data automatically
 # - [ ] ssh unlock luks
+
 
 
 # Exit when any command fails
@@ -61,6 +63,7 @@ pacman --noconfirm -Syu \
 	snapper \
 	spotify-launcher \
 	stow \
+	timeshift \
 	tmux \
 	tree \
 	ttf-cascadia-code-nerd \
@@ -85,6 +88,9 @@ echo "Starting sshd"
 sudo systemctl start sshd
 sudo systemctl enable sshd
 
+echo "Starting cronie, so that timeshift scheduled snapshots work"
+sudo systemctl enable cronie.service 
+sudo systemctl start cronie.service
 
 echo "Starting Bluetooth"
 sudo systemctl start bluetooth
@@ -217,9 +223,19 @@ installAurPackage dracula-gtk-theme
 installAurPackage dracula-icons-git
 installAurPackage azuredatastudio-bin
 installAurPackage snapper-gui-git
+
 # installAurPackage forticlient-vpn
 # sudo pacman -S networkmanager-fortisslvpn
+
 installAurPackage openfortivpn
+# ALSO NEED TO RUN THE FOLLOWING FOR THE NETWORKING TO WORK CORRECTLY FOR THE VPN:
+systemctl enable systemd-resolved.service
+systemctl start systemd-resolved.service
+
+installAurPackage icaclient #Citrix workspace app/Citrix receiver
+# COPYING AND PASTING NOT WORKING IN icaclient, DISABLE KLIPPER OR CLIPBOARD MANAGER!
+
+
 
 installAurPackage nvm
 source /usr/share/nvm/init-nvm.sh
