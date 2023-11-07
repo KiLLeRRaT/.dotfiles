@@ -339,7 +339,8 @@ bindsym $mod+Shift+0 move container to workspace $ws0; workspace $ws0
 # assign [class="Pale moon"] $ws8
 # assign [class="Brave"] $ws8
 # assign [class="Alacritty"] $ws2
-assign [class="google-chat-electron"] $ws1
+# assign [class="google-chat-electron"] $ws1
+assign [class="google-chat-linux"] $ws1
 assign [class="Spotify"] $ws1
 
 
@@ -425,7 +426,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+u mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-		bindsym l exec --no-startup-id i3exit lock, mode "default"
+		# bindsym l exec --no-startup-id i3exit lock, mode "default"
+		bindsym l exec --no-startup-id betterlockscreen -l, mode "default"
 		bindsym s exec --no-startup-id i3exit suspend, mode "default"
 		# bindsym u exec --no-startup-id i3exit switch_user, mode "default"
 		bindsym e exec --no-startup-id i3exit logout, mode "default"
@@ -487,7 +489,9 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # NetworkManager
 exec --no-startup-id nm-applet
-exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
+# exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
+
+
 # exec --no-startup-id xfce4-power-manager
 # exec_always --no-startup-id ff-theme-util
 # exec_always --no-startup-id fix_xcursor
@@ -689,20 +693,10 @@ mode "$mode_gaps_outer" {
 }
 
 
-# # RESTORE LAYOUTS
-# exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.config/i3/workspaces/ws-1.json'"
-# exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/workspaces/ws-2.json'"
-# exec --no-startup-id "i3-msg 'workspace 3; append_layout ~/.config/i3/workspaces/ws-3.json'"
-# exec --no-startup-id "i3-msg 'workspace 4; append_layout ~/.config/i3/workspaces/ws-4.json'"
-# exec --no-startup-id "i3-msg 'workspace 5; append_layout ~/.config/i3/workspaces/ws-5.json'"
-# exec --no-startup-id "i3-msg 'workspace 6; append_layout ~/.config/i3/workspaces/ws-6.json'"
-# exec --no-startup-id "i3-msg 'workspace 7; append_layout ~/.config/i3/workspaces/ws-7.json'"
-# exec --no-startup-id "i3-msg 'workspace 8; append_layout ~/.config/i3/workspaces/ws-8.json'"
-# exec --no-startup-id "i3-msg 'workspace 9; append_layout ~/.config/i3/workspaces/ws-9.json'"
-
 # DELETE RANGE USING SED, FROM: https://stackoverflow.com/a/29530617/182888
 # <hostSpecificConfig>
 # <config hostname="albert-hppavilion">
+exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
@@ -727,6 +721,7 @@ assign [class="Alacritty"] $ws2
 
 # </config>
 # <config hostname="surface3">
+exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 font xft:URWGothic-Book 11
 # 󰭹 chat
@@ -762,6 +757,7 @@ exec --no-startup-id conky -c ~/.config/conky/conky-surface3.conf
 # </config>
 
 # <config hostname="agouws">
+exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
@@ -782,10 +778,6 @@ exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize 
 #conky -c /usr/share/conky/conky_maia &&
 #exit 0
 
-
-
-
-
 # TURN ON NUMLOCK USING numlockx LIBRARY
 exec --no-startup-id numlockx
 exec --no-startup-id pipewire-pulse
@@ -807,11 +799,18 @@ exec --no-startup-id i3-msg 'workspace $ws9; append_layout ~/.config/i3/workspac
 exec --no-startup-id "brave --profile-directory=Default"
 exec --no-startup-id "brave --profile-directory=Profile\ 1"
 exec --no-startup-id "1password"
-exec --no-startup-id "spotify"
-exec --no-startup-id "google-chat-electron"
+# exec --no-startup-id "spotify"
+exec --no-startup-id "spotify-launcher"
+# exec --no-startup-id "google-chat-electron"
+exec --no-startup-id "google-chat-linux"
 exec --no-startup-id "alacritty -e tmux"
 # </config>
 # <config hostname="arch-agouws">
+
+# FROM: https://github.com/betterlockscreen/betterlockscreen
+# betterlockscreen -u ~/.dotfiles/images
+exec --no-startup-id xautolock -time 10 -locker "betterlockscreen -l" -corners 000-
+
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
@@ -827,15 +826,15 @@ exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 
 # RESTORE LAYOUTS
 
-exec --no-startup-id i3-msg 'workspace $ws1; append_layout ~/.config/i3/workspaces/ws-1.json'
-exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'
-exec --no-startup-id i3-msg 'workspace $ws3; append_layout ~/.config/i3/workspaces/ws-3.json'
-exec --no-startup-id i3-msg 'workspace $ws4; append_layout ~/.config/i3/workspaces/ws-4.json'
-exec --no-startup-id i3-msg 'workspace $ws5; append_layout ~/.config/i3/workspaces/ws-5.json'
-exec --no-startup-id i3-msg 'workspace $ws6; append_layout ~/.config/i3/workspaces/ws-6.json'
-exec --no-startup-id i3-msg 'workspace $ws7; append_layout ~/.config/i3/workspaces/ws-7.json'
-exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/ws-8.json'
-exec --no-startup-id i3-msg 'workspace $ws9; append_layout ~/.config/i3/workspaces/ws-9.json'
+exec --no-startup-id i3-msg 'workspace $ws1; append_layout ~/.config/i3/workspaces/arch-agouws/ws-1.json'
+exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/arch-agouws/ws-2.json'
+exec --no-startup-id i3-msg 'workspace $ws3; append_layout ~/.config/i3/workspaces/arch-agouws/ws-3.json'
+exec --no-startup-id i3-msg 'workspace $ws4; append_layout ~/.config/i3/workspaces/arch-agouws/ws-4.json'
+exec --no-startup-id i3-msg 'workspace $ws5; append_layout ~/.config/i3/workspaces/arch-agouws/ws-5.json'
+exec --no-startup-id i3-msg 'workspace $ws6; append_layout ~/.config/i3/workspaces/arch-agouws/ws-6.json'
+exec --no-startup-id i3-msg 'workspace $ws7; append_layout ~/.config/i3/workspaces/arch-agouws/ws-7.json'
+exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/arch-agouws/ws-8.json'
+exec --no-startup-id i3-msg 'workspace $ws9; append_layout ~/.config/i3/workspaces/arch-agouws/ws-9.json'
 
 exec --no-startup-id "brave --profile-directory=Default"
 exec --no-startup-id "brave --profile-directory=Profile\ 1"
@@ -847,6 +846,9 @@ exec --no-startup-id "alacritty -e tmux"
 
 
 # <config hostname="arch-agouwsmacbookpro">
+# exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
+exec --no-startup-id xautolock -time 10 -locker 'betterlockscreen -l' -corners 000-
+# exec --no-startup-id betterlockscreen -l
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 # exec --no-startup-id xfce4-power-manager
 # exec_always --no-startup-id ff-theme-util
@@ -882,6 +884,7 @@ exec --no-startup-id "alacritty -e tmux"
 # </config>
 
 # <config hostname="albert-satellitepro">
+exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
@@ -907,6 +910,7 @@ exec --no-startup-id "alacritty -e tmux"
 # </config>
 
 # <config hostname="sierra"><!-- SONY VAIO LAPTOP -->
+exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util

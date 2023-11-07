@@ -1,0 +1,62 @@
+// vim:ts=4:sw=4:et
+{
+    // stacked split container with 2 children
+    "border": "pixel",
+    "floating": "auto_off",
+    //"layout": "stacked",
+    "layout": "tabbed",
+    "marks": [],
+    "percent": null,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 2129,
+               "width": 1276,
+               "x": 3842,
+               "y": 2
+            },
+            "marks": [],
+            "name": "Sandfield MAIN",
+            "percent": 0.5,
+            "swallows": [
+               {
+                "class": "^Brave\\-browser$",
+               // "instance": "^brave\\-browser$",
+               // "machine": "^ganderson$",
+                "title": "^Sandfield\\ MAIN$"
+               // "window_role": "^browser$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 2129,
+               "width": 1276,
+               "x": 2562,
+               "y": 2
+            },
+            "marks": [],
+            "name": "GOUWS MAIN",
+            "percent": 0.5,
+            "swallows": [
+               {
+                "class": "^Brave\\-browser$",
+               // "instance": "^brave\\-browser$",
+               // "machine": "^ganderson$",
+                "title": "^GOUWS\\ MAIN$"
+               // "window_role": "^browser$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+

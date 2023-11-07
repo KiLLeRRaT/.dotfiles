@@ -1,5 +1,17 @@
 #!/bin/bash
 
+
+# TODO:
+# - [ ] Firewall
+# - [x] Bridge br0
+# - [x] VMs
+# - [ ] Sourcecode backups
+# - [ ] Machine backups
+# - [ ] nginx
+# - [ ] unlock /mnt/data automatically
+# - [ ] ssh unlock luks
+
+
 # Exit when any command fails
 set -e
 
@@ -17,14 +29,12 @@ pacman --noconfirm -Syu \
 	btop \
 	btrfs-progs \
 	curl \
-	dhcpcd \
 	dmenu \
 	docker docker-compose docker-scan \
 	dosbox \
 	dotnet-runtime \
 	dotnet-sdk \
 	dunst \
-	fbset \
 	fd \
 	feh \
 	flameshot \
@@ -47,7 +57,6 @@ pacman --noconfirm -Syu \
 	remmina freerdp \
 	ripgrep \
 	rsync \
-	sbctl \
 	snap-pac \
 	snapper \
 	spotify-launcher \
@@ -59,12 +68,18 @@ pacman --noconfirm -Syu \
 	wget \
 	xautolock \
 	xclip \
-	xorg \
-	xorg-xinit \
 	zip \
 	zoxide \
 	zsh \
-	networkmanager-l2tp strongswan
+	networkmanager-l2tp strongswan \
+	numlockx \
+	jq \
+	iotop \
+	xorg-xrandr \
+	virt-manager libvirt qemu virt-viewer swtpm \
+	zathura zathura-pdf-poppler \
+	sshfs \
+	signal-desktop discord
 
 echo "Starting sshd"
 sudo systemctl start sshd

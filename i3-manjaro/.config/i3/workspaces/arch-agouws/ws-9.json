@@ -1,0 +1,34 @@
+// vim:ts=4:sw=4:etnks 
+{
+	"border": "pixel",
+	"floating": "auto_off",
+	"layout": "tabbed",
+	"marks": [],
+	"percent": 1,
+	"type": "con",
+	"nodes": [
+		{
+			"border": "pixel",
+			"current_border_width": 1,
+			"floating": "auto_off",
+			"geometry": { "height": 1413, "width": 2560, "x": 6400, "y": 467 },
+			"marks": [],
+			"name": "SEARCHES",
+			"percent": 0.333333333333333,
+			"swallows": [ { "class": "^Brave\\-browser$", "title": "^SEARCHES$" } ],
+			"type": "con"
+		},
+		{
+			"border": "pixel",
+			"current_border_width": 1,
+			"floating": "auto_off",
+			"geometry": { "height": 1340, "width": 2460, "x": 0, "y": 467 },
+			"marks": [],
+			"name": "DEV",
+			"percent": 0.333333333333333,
+			"swallows": [ { "class": "^Brave\\-browser$", "title": "^DEV$" } ],
+			"type": "con"
+		}
+	]
+}
+

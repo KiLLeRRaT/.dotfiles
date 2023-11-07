@@ -1,0 +1,26 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "pixel",
+    "current_border_width": 1,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 1409,
+       "width": 849,
+       "x": 1709,
+       "y": 469
+    },
+    "marks": [],
+    "name": "All Accounts — All Items — 1Password",
+    "percent": 1,
+    "swallows": [
+       {
+        "class": "^1Password$"
+       // "instance": "^1password$",
+       // "machine": "^ganderson$",
+       // "title": "^All\\ Accounts\\ \\—\\ All\\ Items\\ \\—\\ 1Password$",
+       // "window_role": "^browser\\-window$"
+       }
+    ],
+    "type": "con"
+}
+
