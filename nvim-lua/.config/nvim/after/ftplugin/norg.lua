@@ -16,7 +16,7 @@ vim.opt_local.spell = true
 
 -- FOLDLEVEL 99 WHEN OPENING INDEX.NORG
 local norgfiles_BufEnter_BufWinEnter= vim.api.nvim_create_augroup("norgfiles_BufEnter_BufWinEnter", { clear = true })
-vim.api.nvim_create_autocmd({"BufEnter, BufWinEnter"}, {
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
 	pattern = {
 		"**/index.norg"
 	},
