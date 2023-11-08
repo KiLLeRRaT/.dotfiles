@@ -12,6 +12,10 @@
 # - [ ] unlock /mnt/data automatically
 # - [ ] ssh unlock luks
 
+# - [ ] Pacman hooks into installer script
+# - [ ] systemd services int installer script??
+# - [ ] /etc/fonts/local.conf in installer script
+# - [ ] /etc/X11/xorg.conf.d/ into installer script
 
 
 # Exit when any command fails
@@ -56,7 +60,7 @@ pacman --noconfirm -Syu \
 	polkit \
 	ranger \
 	redshift \
-	remmina freerdp \
+	remmina freerdp libvncserver \
 	ripgrep \
 	rsync \
 	snap-pac \
