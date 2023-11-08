@@ -6,8 +6,8 @@
 set $mod Mod4
 
 # MAKE CAPSLOCK A CTRL KEY, AND TERMINATE X WITH CTRL+ALT+BACKSPACE
-exec_always setxkbmap -option ctrl:nocaps -option "terminate:ctrl_alt_bksp"
-exec xinput set-prop 12 "libinput Scroll Method Enabled" 0, 0, 1
+exec_always --no-startup-id setxkbmap -option ctrl:nocaps -option "terminate:ctrl_alt_bksp"
+exec --no-startup-id xinput set-prop 12 "libinput Scroll Method Enabled" 0, 0, 1
 
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
@@ -30,7 +30,7 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec --no-startup-id alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -56,7 +56,7 @@ bindsym $mod+z exec --no-startup-id morc_menu
 # exec --no-startup-id pipewire-pulse
 # exec --no-startup-id pa-applet
 
-bindsym $mod+Ctrl+m exec pavucontrol
+bindsym $mod+Ctrl+m exec --no-startup-id pavucontrol
 
 ################################################################################################
 
@@ -98,17 +98,17 @@ mode passthrough {
 # FROM: https://forum.manjaro.org/t/help-with-i3-fn-media-keys-not-working/36050/3
 # use a program called xev to find the keycodes for your keys
 # Also use a program called showkey -a to find keycodes
-bindsym XF86AudioPlay exec "playerctl play-pause; notify-send 'play/pause'"
+bindsym XF86AudioPlay exec --no-startup-id "playerctl play-pause; notify-send 'play/pause'"
 
 # LAUNCH DC WITH PRECISION OF 10 DP
-bindsym XF86Calculator exec alacritty --title 'calculator' --command /bin/zsh -c "dc -e '10 k' -"
+bindsym XF86Calculator exec --no-startup-id alacritty --title 'calculator' --command /bin/zsh -c "dc -e '10 k' -"
 for_window [instance="Alacritty" title="calculator"] floating enable, resize set 400 600
 
 # Start Applications
 # bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+Ctrl+b exec alacritty -e 'bmenu'
-bindsym $mod+F2 exec pcmanfm
-bindsym $mod+F3 exec brave
+bindsym $mod+Ctrl+b exec --no-startup-id alacritty -e 'bmenu'
+bindsym $mod+F2 exec --no-startup-id pcmanfm
+bindsym $mod+F3 exec --no-startup-id brave
 # bindsym $mod+F3 exec palemoon
 # bindsym $mod+F4 exec ranger
 # bindsym $mod+Shift+F3 exec pcmanfm_pkexec
@@ -118,16 +118,16 @@ bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 
 
 # DESKTOP NOTIFICATIONS BY DUNST
-bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+bindsym $mod+Shift+d --release exec --no-startup-id "killall dunst; exec notify-send 'restart dunst'"
 # bindsym Mod4+space --release exec dunstctl close
 # bindsym Mod4+space --release exec dunstctl history
 bindsym Mod4+n mode "$mode_notifications"
 set $mode_notifications (c)lose, (C)lose all, (h)istory, conte(x)t
 mode "$mode_notifications" {
-		bindsym c --release exec dunstctl close, mode "default"
-		bindsym Shift+c --release exec dunstctl close-all, mode "default"
-		bindsym h --release exec dunstctl history-pop, mode "default"
-		bindsym x --release exec dunstctl context, mode "default"
+		bindsym c --release exec --no-startup-id dunstctl close, mode "default"
+		bindsym Shift+c --release exec --no-startup-id dunstctl close-all, mode "default"
+		bindsym h --release exec --no-startup-id dunstctl history-pop, mode "default"
+		bindsym x --release exec --no-startup-id dunstctl context, mode "default"
 
 		# exit system mode: "Enter" or "Escape"
 		bindsym Return mode "default"
@@ -224,11 +224,11 @@ bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
-bindsym $mod+v split h;exec notify-send 'tile horizontally'
-bindsym $mod+Shift+v split v;exec notify-send 'tile vertically'
+bindsym $mod+v split h;exec --no-startup-id notify-send 'tile horizontally'
+bindsym $mod+Shift+v split v;exec --no-startup-id notify-send 'tile vertically'
 #bindsym $mod+h split h;exec notify-send 'tile horizontally'
 #bindsym $mod+v split v;exec notify-send 'tile vertically'
-bindsym $mod+Ctrl+q split toggle;exec notify-send 'tile toggle'
+bindsym $mod+Ctrl+q split toggle;exec --no-startup-id notify-send 'tile toggle'
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+Shift+f fullscreen toggle
@@ -419,7 +419,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Set shut down, restart and locking features
 # bindsym Mod4+l exec --no-startup-id i3exit lock, mode "default"
@@ -428,7 +428,7 @@ bindsym $mod+u mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
 		# bindsym l exec --no-startup-id i3exit lock, mode "default"
-		bindsym l exec --no-startup-id betterlockscreen --lock, mode "default"
+		bindsym l exec --no-startup-id betterlockscreen --lock --blur, mode "default"
 		# bindsym s exec --no-startup-id i3exit suspend, mode "default"
 		bindsym s exec --no-startup-id systemctl suspend, mode "default"
 		# bindsym u exec --no-startup-id i3exit switch_user, mode "default"
@@ -741,8 +741,8 @@ exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize 
 # https://unix.stackexchange.com/questions/667022/remap-backlight-brightness-to-other-keys-on-xfce
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
-bindsym $mod+XF86AudioRaiseVolume exec "xbacklight -inc 10; notify-send 'brightness up'"
-bindsym $mod+XF86AudioLowerVolume exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id "xbacklight -inc 10; notify-send 'brightness up'"
+bindsym $mod+XF86AudioLowerVolume exec --no-startup-id "xbacklight -dec 10; notify-send 'brightness down'"
 # bindsym $mod+XF86PowerOff exec onboard
 
 exec --no-startup-id onboard
@@ -811,7 +811,7 @@ exec --no-startup-id "alacritty -e tmux"
 # <config hostname="arch-agouws">
 # FROM: https://github.com/betterlockscreen/betterlockscreen
 # betterlockscreen -u ~/.dotfiles/images
-exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock" -corners 000-
+exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock --blur" -corners 000-
 
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id xfce4-power-manager
@@ -849,29 +849,29 @@ exec --no-startup-id "alacritty -e tmux"
 
 # <config hostname="arch-agouwsmacbookpro">
 # exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
-exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock" -corners 000-
+exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock --blur" -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 # exec --no-startup-id xfce4-power-manager
 # exec_always --no-startup-id ff-theme-util
 # exec_always --no-startup-id fix_xcursor
 # SWAP LEFT ALT/OPTION WITH LEFT COMMAND, FROM: https://askubuntu.com/a/29609
-exec_always setxkbmap -option altwin:swap_lalt_lwin
+exec_always --no-startup-id setxkbmap -option altwin:swap_lalt_lwin
 
 font xft:SF Pro Display 12
 
 exec --no-startup-id blueman-applet
 exec_always --no-startup-id dunst
 
-bindsym XF86MonBrightnessUp exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
-bindsym XF86MonBrightnessDown exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh -50"
-bindsym $mod+F10 exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
-bindsym $mod+Shift+F10 exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh -50"
+bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
+bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh -50"
+bindsym $mod+F10 exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
+bindsym $mod+Shift+F10 exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh -50"
 
-bindsym XF86KbdBrightnessUp exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-keyboard-brightness.sh +50"
-bindsym XF86KbdBrightnessDown exec "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-keyboard-brightness.sh -50"
+bindsym XF86KbdBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-keyboard-brightness.sh +50"
+bindsym XF86KbdBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-keyboard-brightness.sh -50"
 
 # Wallpaper / Background image
-exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
+exec --no-startup-id --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 
 exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 
