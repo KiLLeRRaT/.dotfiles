@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Installing software\033[0m"
@@ -12,7 +13,8 @@ apt install -y fd-find && \
 apt install -y build-essential && \
 apt install -y tmux && \
 apt install -y btop && \
-apt install -y ranger
+apt install -y ranger && \
+apt install -y zsh
 # apt install -y ncdu # NOT SURE IF THIS COMES WITH DEBIAN BASED SYSTEMS?
 
 # config fd
