@@ -421,3 +421,9 @@ then
 	source /usr/share/nvm/init-nvm.sh
 fi
 
+if [ -d /opt/cuda/ ]
+then
+	export CUDA_HOME=/opt/cuda/
+fi
+
+
