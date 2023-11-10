@@ -36,7 +36,7 @@ pacman --noconfirm -Syu \
 	btrfs-progs \
 	curl \
 	dmenu \
-	docker docker-compose docker-scan \
+	docker docker-compose docker-scan docker-buildx \
 	dosbox \
 	dotnet-runtime \
 	dotnet-sdk \
