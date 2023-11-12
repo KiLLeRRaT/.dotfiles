@@ -190,8 +190,10 @@ installAurPackage otf-san-francisco-mono
 installAurPackage pa-applet-git
 installAurPackage dracula-gtk-theme
 installAurPackage dracula-icons-git
-installAurPackage azuredatastudio-bin
 installAurPackage snapper-gui-git
+
+installAurPackage azuredatastudio-bin
+installAurPackage powershell-bin
 
 installAurPackage i3lock-color
 installAurPackahe betterlockscreen
