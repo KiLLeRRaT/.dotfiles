@@ -151,6 +151,7 @@ if [ "$setup_brcmfmac43602_pcie" == "y" ]; then
 fi
 sudo systemctl restart NetworkManager.service
 
+chsh -s /bin/zsh albert
 
 echo "From here, run as the user in X"
 exit 1
@@ -227,6 +228,10 @@ installAurPackage dracula-gtk-theme
 installAurPackage dracula-icons-git
 installAurPackage azuredatastudio-bin
 installAurPackage snapper-gui-git
+
+installAurPackage i3lock-color
+installAurPackahe betterlockscreen
+betterlockscreen -u ~/.dotfiles/images
 
 # installAurPackage forticlient-vpn
 # sudo pacman -S networkmanager-fortisslvpn
