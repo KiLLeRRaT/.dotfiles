@@ -27,7 +27,7 @@ echo -e "\033[32m Installing Arch Linux\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 
 echo "Installing more packages"
-pacman --noconfirm -Syu \
+sudo pacman --noconfirm -Syu \
 	alacritty \
 	aspnet-runtime \
 	base-devel \
@@ -105,6 +105,12 @@ sudo systemctl enable bluetooth
 echo "Starting NetworkManager"
 sudo systemctl enable NetworkManager.service
 sudo systemctl start NetworkManager.service
+
+
+# FROM: https://wiki.archlinux.org/title/Sysctl#Configuration
+echo "Enable SysRq"
+echo "1" | sudo tee /proc/sys/kernel/sysrq
+
 
 echo "From here, run as the user in the new system"
 exit 1
