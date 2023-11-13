@@ -44,7 +44,7 @@ sudo pacman --noconfirm -Syu \
 	dunst \
 	fd \
 	feh \
-	flameshot \
+	flameshot xdotool \
 	fzf \
 	git \
 	gnome-keyring seahorse \
