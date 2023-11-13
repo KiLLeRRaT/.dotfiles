@@ -80,14 +80,11 @@ p.load_extension('fzf')
 -- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 vim.keymap.set("n", "<leader>f.", "<cmd>Telescope resume<cr>")
 
--- nnoremap <leader>ff <cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>
 vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>")
 vim.keymap.set("n", "<leader>FF", "<cmd>Telescope find_files find_command=rg,--no-ignore,--hidden,--files<cr>")
--- nnoremap <leader>fF :execute 'Telescope find_files default_text=' . "'" . expand('<cword>')<cr>
 vim.keymap.set("n", "<leader>fF", ":execute 'Telescope find_files default_text=' . '''' . expand('<cword>')<cr>")
--- nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
--- nnoremap <leader>fG :execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>
 vim.keymap.set("n", "<leader>fG", ":execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>")
 
 -- nnoremap <leader>fR <cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>
