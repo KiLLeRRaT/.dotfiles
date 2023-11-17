@@ -28,8 +28,8 @@ set -g status-style bg=$tmux_status_bg
 
 # Left side of status bar
 set -g status-left-style bg=colour233,fg=colour243
-set -g status-left-length 40
-set -g status-left ""
+set -g status-left-length 150
+set -g status-left "#{p20:session_name}"
 
 # Right side of status bar
 set -g status-right-style bg=colour233,fg=colour243
