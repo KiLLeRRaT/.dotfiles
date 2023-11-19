@@ -1,6 +1,6 @@
-if not _G.plugin_loaded("sniprun") then
-	do return end
-end
+-- if not _G.plugin_loaded("sniprun") then
+-- 	do return end
+-- end
 
 
 require('sniprun').setup({

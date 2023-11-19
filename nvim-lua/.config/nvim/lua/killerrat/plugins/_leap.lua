@@ -1,7 +1,7 @@
-if not _G.plugin_loaded("leap.nvim") then
-	print("leap.nvim not loaded")
-	do return end
-end
+-- if not _G.plugin_loaded("leap.nvim") then
+-- 	print("leap.nvim not loaded")
+-- 	do return end
+-- end
 
 local leap = require("leap")
 

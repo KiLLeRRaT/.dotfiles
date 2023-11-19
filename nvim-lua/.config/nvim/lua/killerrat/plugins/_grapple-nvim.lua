@@ -1,7 +1,7 @@
-if not _G.plugin_loaded("grapple.nvim") then
-	print("grapple not loaded")
-	do return end
-end
+-- if not _G.plugin_loaded("grapple.nvim") then
+-- 	print("grapple not loaded")
+-- 	do return end
+-- end
 
 
 vim.keymap.set("n", "<leader>a", require("grapple").tag, {})

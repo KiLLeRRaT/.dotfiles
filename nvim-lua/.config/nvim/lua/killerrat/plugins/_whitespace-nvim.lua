@@ -1,6 +1,6 @@
-if not _G.plugin_loaded("whitespace.nvim") then
-	do return end
-end
+-- if not _G.plugin_loaded("whitespace.nvim") then
+-- 	do return end
+-- end
 
 require('whitespace-nvim').setup({
 	-- configuration options and their defaults

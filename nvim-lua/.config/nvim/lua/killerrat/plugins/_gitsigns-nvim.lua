@@ -1,6 +1,6 @@
-if not _G.plugin_loaded("gitsigns.nvim") then
-	do return end
-end
+-- if not _G.plugin_loaded("gitsigns.nvim") then
+-- 	do return end
+-- end
 
 -- " GIT SIGNS: https://github.com/lewis6991/gitsigns.nvim
 require('gitsigns').setup{

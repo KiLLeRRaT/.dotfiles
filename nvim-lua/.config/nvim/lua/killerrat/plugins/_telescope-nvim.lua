@@ -1,6 +1,6 @@
-if not _G.plugin_loaded("telescope.nvim") then
-	do return end
-end
+-- if not _G.plugin_loaded("telescope.nvim") then
+-- 	do return end
+-- end
 
 local p = require("telescope")
 local actions = require "telescope.actions"

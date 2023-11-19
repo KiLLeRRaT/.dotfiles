@@ -1,6 +1,6 @@
-if not _G.plugin_loaded("vim-commentary") then
-	do return end
-end
+-- if not _G.plugin_loaded("vim-commentary") then
+-- 	do return end
+-- end
 
 -- autocmd FileType cs setlocal commentstring=\/\/\ %s
 -- autocmd FileType sql setlocal commentstring=--\ %s

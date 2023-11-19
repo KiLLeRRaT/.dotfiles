@@ -1,7 +1,7 @@
-if not _G.plugin_loaded("neorg") then
-	print("neorg not loaded")
-	do return end
-end
+-- if not _G.plugin_loaded("neorg") then
+-- 	print("neorg not loaded")
+-- 	do return end
+-- end
 
 require('neorg').setup {
 		load = {

@@ -1,6 +1,6 @@
-if not _G.plugin_loaded("substitute.nvim") then
-	do return end
-end
+-- if not _G.plugin_loaded("substitute.nvim") then
+-- 	do return end
+-- end
 
 
 require("substitute").setup {

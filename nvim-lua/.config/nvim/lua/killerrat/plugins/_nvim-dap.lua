@@ -1,7 +1,7 @@
-if not _G.plugin_loaded("nvim-dap") then
-	print("nvim-dap not loaded")
-	do return end
-end
+-- if not _G.plugin_loaded("nvim-dap") then
+-- 	print("nvim-dap not loaded")
+-- 	do return end
+-- end
 
 
 local dap, dapui = require("dap"), require("dapui")

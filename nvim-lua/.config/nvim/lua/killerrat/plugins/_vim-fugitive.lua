@@ -1,7 +1,7 @@
-if not _G.plugin_loaded("vim-fugitive") then
-	print("vim-fugitive not installed")
-	do return end
-end
+-- if not _G.plugin_loaded("vim-fugitive") then
+-- 	print("vim-fugitive not installed")
+-- 	do return end
+-- end
 
 vim.keymap.set("n", "<leader>gs", ":Git<cr>")
 vim.keymap.set("n", "<leader>gS", ":Git pull<cr>:Git push<cr>")

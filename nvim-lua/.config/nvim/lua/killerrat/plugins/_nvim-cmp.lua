@@ -1,6 +1,6 @@
-if not _G.plugin_loaded("nvim-cmp") then
-	do return end
-end
+-- if not _G.plugin_loaded("nvim-cmp") then
+-- 	do return end
+-- end
 
 local lsp_symbols = {
 	Text = " 	(Text) ",
