@@ -15,19 +15,6 @@ local plugins = {
 }
 
 require("lazy").setup({
-
-
-
-
-
-
-
-
-
-
-
-
-
 		----------------------------------------
 			-- LIBRARIES
 		----------------------------------------
@@ -38,38 +25,41 @@ require("lazy").setup({
 			-- THEMES
 		----------------------------------------
 		{ 'folke/tokyonight.nvim', branch = 'main' },								-- https://github.com/folke/tokyonight.nvim
-		-- { 'ellisonleao/gruvbox.nvim' }
+		---- { 'ellisonleao/gruvbox.nvim' }
 		----------------------------------------
 			-- TOOLS
 		----------------------------------------
 		{ 'johnfrankmorgan/whitespace.nvim'	},
 
 		{ 'nvim-telescope/telescope.nvim' },								-- https://github.com/nvim-telescope/telescope.nvim,
+
 		{ 'nvim-telescope/telescope-fzf-native.nvim',
-			run = 'make' },																				-- https://github.com/nvim-telescope/telescope-fzf-native.nvim
+			build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }, -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
 		{ 'nvim-telescope/telescope-live-grep-args.nvim' },-- https://github.com/nvim-telescope/telescope-live-grep-args.nvim
 
 		{ 'preservim/nerdtree' },													-- https://github.com/preservim/nerdtree
 
 		{
 			"cbochs/grapple.nvim",
-			requires = { "nvim-lua/plenary.nvim" },
+			dependencies = { "nvim-lua/plenary.nvim" },
 		},																											-- https://github.com/cbochs/grapple.nvim
 
 		{ 'max397574/better-escape.nvim' },								-- https://github.com/max397574/better-escape.nvim
 		{ 'phaazon/hop.nvim' },														-- https://github.com/phaazon/hop.nvim
-		{ 'ggandor/leap.nvim' },														-- https://github.com/ggandor/leap.nvim
-		{ 'dstein64/vim-startuptime' },										-- https://github.com/dstein64/vim-startuptime
+		--{ 'ggandor/leap.nvim' },														-- https://github.com/ggandor/leap.nvim
+		--{ 'dstein64/vim-startuptime' },										-- https://github.com/dstein64/vim-startuptime
 		{ 'kylechui/nvim-surround' },											-- https://github.com/kylechui/nvim-surround
 		{ 'tpope/vim-fugitive' },													-- https://github.com/tpope/vim-fugitive
 		{ 'tpope/vim-abolish' },														-- https://github.com/tpope/vim-abolish
 		{ 'tpope/vim-unimpaired' },												-- https://github.com/tpope/vim-unimpaired
 
-		{ 'Shatur/neovim-session-manager' },								-- https://github.com/Shatur/neovim-session-manager
+		{ 'Shatur/neovim-session-manager',
+			dependencies = { "nvim-lua/plenary.nvim" }
+		},																									-- https://github.com/Shatur/neovim-session-manager
 
 		{ 'simeji/winresizer' },														-- https://github.com/simeji/winresizer
-		-- DOES NOT SUPPORT A COUNT YET! ARGH
-		-- { 'b3nj5m1n/kommentary' },											-- https://github.com/b3nj5m1n/kommentary
+		---- DOES NOT SUPPORT A COUNT YET! ARGH
+		---- { 'b3nj5m1n/kommentary' },											-- https://github.com/b3nj5m1n/kommentary
 		{ 'tpope/vim-commentary' },												-- https://github.com/tpope/vim-commentary
 		{ 'gbprod/substitute.nvim' },											-- https://github.com/gbprod/substitute.nvim
 		{ 'github/copilot.vim' },													-- https://github.com/github/copilot.vim
@@ -81,8 +71,9 @@ require("lazy").setup({
 
 		-- neorg related
 		{ 'nvim-neorg/neorg',
-			requires = {'nvim-neorg/neorg-telescope', 'nvim-lua/plenary.nvim'},
-			run = ":Neorg sync-parsers" },												-- https://github.com/nvim-neorg/neorg
+			dependencies = {'nvim-neorg/neorg-telescope', 'nvim-lua/plenary.nvim'},
+			build = ":Neorg sync-parsers" },												-- https://github.com/nvim-neorg/neorg
+
 		{ 'nvim-neorg/neorg-telescope'},										-- https://github.com/nvim-neorg/neorg-telescope
 
 		{ 'ryanoasis/vim-devicons' },											-- https://github.com/ryanoasis/vim-devicons
@@ -90,7 +81,7 @@ require("lazy").setup({
 		{ 'stefandtw/quickfix-reflector.vim' },						-- https://github.com/stefandtw/quickfix-reflector.vim
 		{ 'mechatroner/rainbow_csv' },											-- https://github.com/mechatroner/rainbow_csv
 		{ 'sindrets/diffview.nvim',
-			requires = 'nvim-lua/plenary.nvim' },								-- https://github.com/sindrets/diffview.nvim
+			dependencies = 'nvim-lua/plenary.nvim' },								-- https://github.com/sindrets/diffview.nvim
 		{ 'uga-rosa/ccc.nvim' },														-- https://github.com/uga-rosa/ccc.nvim
 		{ 'lambdalisue/suda.vim' },												-- https://github.com/lambdalisue/suda.vim
 		{ 'terrastruct/d2-vim' },													-- https://github.com/terrastruct/d2-vim
@@ -99,9 +90,9 @@ require("lazy").setup({
 		{ 'norcalli/nvim-colorizer.lua' },														-- https://github.com/norcalli/nvim-colorizer.lua
 
 
-		----------------------------------------
-			-- COMPLETION AND SNIPPETS
-		----------------------------------------
+		------------------------------------------
+		--	-- COMPLETION AND SNIPPETS
+		------------------------------------------
 		{ "hrsh7th/nvim-cmp" },																			-- https://github.com/hrsh7th/nvim-cmp
 		{ "hrsh7th/cmp-nvim-lsp" },																	-- https://github.com/hrsh7th/cmp-nvim-lsp
 		{ "hrsh7th/cmp-buffer" },																		-- https://github.com/hrsh7th/cmp-buffer
@@ -122,7 +113,7 @@ require("lazy").setup({
 
 		{
 			'nvim-treesitter/nvim-treesitter',
-			run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+			build = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
 		},																																-- https://github.com/nvim-treesitter/nvim-treesitter
 
 		{ "nvim-treesitter/nvim-treesitter-textobjects" },						-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
@@ -134,20 +125,20 @@ require("lazy").setup({
 
 
 		-- " DEBUGGERS
-		{ 'michaelb/sniprun', run = 'sh ./install.sh'},
+		{ 'michaelb/sniprun', build = 'sh ./install.sh'},
 
 		-- " Plug 'https://github.com/leoluz/nvim-dap-go'
 		-- Plug 'https://github.com/rcarriga/nvim-dap-ui'
-		{ 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} },
+		{ 'rcarriga/nvim-dap-ui', dependencies = {'mfussenegger/nvim-dap'} },
 
 		-- Plug 'https://github.com/theHamsta/nvim-dap-virtual-text'
-		{ 'theHamsta/nvim-dap-virtual-text', requires = {'mfussenegger/nvim-dap'} },
+		{ 'theHamsta/nvim-dap-virtual-text', dependencies = {'mfussenegger/nvim-dap'} },
 
 		-- Plug 'https://github.com/nvim-telescope/telescope-dap.nvim'
-		{ 'nvim-telescope/telescope-dap.nvim', requires = {'mfussenegger/nvim-dap'} },
+		{ 'nvim-telescope/telescope-dap.nvim', dependencies = {'mfussenegger/nvim-dap'} },
 
-		-- Plug 'https://github.com/mfussenegger/nvim-dap'
-		-- 'mfussenegger/nvim-dap'
+		 -- Plug 'https://github.com/mfussenegger/nvim-dap'
+		 { 'mfussenegger/nvim-dap' }
 
 
 
