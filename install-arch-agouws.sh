@@ -6,9 +6,9 @@
 # - [x] VMs
 # - [x] forticlient-vpn
 # - [ ] Firewall
-# - [ ] Sourcecode backups
-# - [ ] Machine backups
-# - [ ] nginx
+# - [x] Sourcecode backups
+# - [x] Machine backups
+# - [x] nginx
 # - [ ] unlock /mnt/data automatically
 # - [ ] ssh unlock luks
 
@@ -16,6 +16,7 @@
 # - [ ] systemd services int installer script??
 # - [ ] /etc/fonts/local.conf in installer script
 # - [ ] /etc/X11/xorg.conf.d/ into installer script
+# - [ ] firewall rules into installer script
 
 
 # Exit when any command fails
