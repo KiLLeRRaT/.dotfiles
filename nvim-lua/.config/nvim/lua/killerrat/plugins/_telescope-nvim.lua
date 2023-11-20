@@ -68,7 +68,6 @@ p.setup {
 
 
 
-
 p.load_extension('fzf')
 
 
@@ -143,7 +142,7 @@ local M = {}
 M.search_scripts = function()
 	require("telescope.builtin").find_files({
 		prompt_title = "< Search Scripts >",
-		cwd = "~/GBox/Applications/Tools/Scripts",
+		cwd = "~/scripts",
 		hidden = false,
 	})
 end
@@ -151,7 +150,7 @@ end
 M.grep_scripts = function()
 	require("telescope.builtin").live_grep({
 		prompt_title = "< Grep Scripts >",
-		cwd = "~/GBox/Applications/Tools/Scripts",
+		cwd = "~/scripts",
 		hidden = false,
 	})
 end
