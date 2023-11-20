@@ -5,7 +5,7 @@
 # - [x] Bridge br0
 # - [x] VMs
 # - [x] forticlient-vpn
-# - [ ] Firewall
+# - [x] Firewall
 # - [x] Sourcecode backups
 # - [x] Machine backups
 # - [x] nginx
