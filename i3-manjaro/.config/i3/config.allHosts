@@ -428,7 +428,7 @@ bindsym $mod+u mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
 		# bindsym l exec --no-startup-id i3exit lock, mode "default"
-		bindsym l exec --no-startup-id betterlockscreen --lock --blur, mode "default"
+		bindsym l exec --no-startup-id betterlockscreen --lock blur, mode "default"
 		# bindsym s exec --no-startup-id i3exit suspend, mode "default"
 		bindsym s exec --no-startup-id systemctl suspend, mode "default"
 		# bindsym u exec --no-startup-id i3exit switch_user, mode "default"
@@ -811,7 +811,7 @@ exec --no-startup-id "alacritty -e tmux"
 # <config hostname="arch-agouws">
 # FROM: https://github.com/betterlockscreen/betterlockscreen
 # betterlockscreen -u ~/.dotfiles/images
-exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock --blur" -corners 000-
+exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
 
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id xfce4-power-manager
@@ -849,7 +849,7 @@ exec --no-startup-id "alacritty -e tmux"
 
 # <config hostname="arch-agouwsmacbookpro">
 # exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
-exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock --blur" -corners 000-
+exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 # exec --no-startup-id xfce4-power-manager
 # exec_always --no-startup-id ff-theme-util
