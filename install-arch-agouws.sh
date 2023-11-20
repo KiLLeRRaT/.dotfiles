@@ -201,6 +201,7 @@ installAurPackage snapper-gui-git
 
 installAurPackage azuredatastudio-bin
 installAurPackage powershell-bin
+installAurPackage netcoredbg
 
 installAurPackage i3lock-color
 installAurPackahe betterlockscreen
