@@ -62,7 +62,7 @@ require'nvim-treesitter.configs'.setup {
 		"query"
 	},
 	indent = {
-		enable = false,
+		enable = true,
 	},
 	highlight = {
 		enable = true,

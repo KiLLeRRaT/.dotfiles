@@ -134,8 +134,11 @@ require("lazy").setup({
 		{ 'nvim-treesitter/nvim-treesitter-context' },
 		{ 'nvim-treesitter/playground' },
 
+		-- { 'neoclide/vim-jsx-improve' },																-- https://github.com/neoclide/vim-jsx-improve
 
-		-- " DEBUGGERS
+		----------------------------------------
+		-- DEBUGGERS
+		----------------------------------------
 		{ 'michaelb/sniprun', build = 'sh ./install.sh'},
 
 		-- " Plug 'https://github.com/leoluz/nvim-dap-go'
