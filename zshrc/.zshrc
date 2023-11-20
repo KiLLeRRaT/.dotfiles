@@ -361,6 +361,10 @@ eval "$(zoxide init zsh)"
 
 setopt GLOB_COMPLETE
 
+# Matches hidden files in completion, from: https://unix.stackexchange.com/a/366137/503193
+setopt globdots
+
+
 # Zsh vi mode
 # FROM: https://github.com/jeffreytse/zsh-vi-mode
 if [ ! -d "$HOME/.zsh-vi-mode" ]
