@@ -51,7 +51,10 @@ require("lazy").setup({
 		},																											-- https://github.com/cbochs/grapple.nvim
 
 		{ 'max397574/better-escape.nvim' },								-- https://github.com/max397574/better-escape.nvim
-		{ 'phaazon/hop.nvim' },														-- https://github.com/phaazon/hop.nvim
+
+		-- { 'phaazon/hop.nvim' },														-- https://github.com/phaazon/hop.nvim
+		{ 'smoka7/hop.nvim' },														-- https://github.com/smoka7/hop.nvim
+
 		--{ 'ggandor/leap.nvim' },														-- https://github.com/ggandor/leap.nvim
 		--{ 'dstein64/vim-startuptime' },										-- https://github.com/dstein64/vim-startuptime
 		{ 'kylechui/nvim-surround' },											-- https://github.com/kylechui/nvim-surround
