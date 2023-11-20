@@ -36,9 +36,10 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = nerdtree_relativenumber
 })
 
-vim.keymap.set("n", "<leader>nn", ":NERDTreeFocus<CR>")
-vim.keymap.set("n", "<leader>nt", ":NERDTreeToggle<CR>")
-vim.keymap.set("n", "<leader>nf", ":NERDTreeFind<CR>")
+-- call webdevicons#refresh() sorts out the brackets around the icons
+vim.keymap.set("n", "<leader>nn", ":NERDTreeFocus<CR>:call webdevicons#refresh()<CR>")
+vim.keymap.set("n", "<leader>nt", ":NERDTreeToggle<CR>:call webdevicons#refresh()<CR>")
+vim.keymap.set("n", "<leader>nf", ":NERDTreeFind<CR>:call webdevicons#refresh()<CR>")
 
 -- " Start NERDTree when Vim is started without file arguments.
 -- " autocmd StdinReadPre * let s:std_in=1
