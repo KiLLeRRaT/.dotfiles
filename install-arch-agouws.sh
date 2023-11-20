@@ -186,12 +186,6 @@ sudo nvim -d /etc/pam.d/login /tmp/login.tmp
 
 installAurPackage i3exit
 
-# I THINK THIS WAS USED BY REFIND WHICH WE ONLY INSTALL ON THE MACBOOK
-# sudo pacman --noconfirm -S python-antlr4 python-semantic-version python-systemd python-tomlkit python-typeguard python-watchdog
-# installAurPackage python-injector
-# installAurPackage python-pid
-# installAurPackage python-transitions
-
 installAurPackage otf-san-francisco
 installAurPackage otf-san-francisco-mono
 installAurPackage pa-applet-git
