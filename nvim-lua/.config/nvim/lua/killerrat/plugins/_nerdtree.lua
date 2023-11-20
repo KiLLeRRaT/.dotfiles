@@ -1,20 +1,3 @@
--- WE ARE NOT CHECKING HERE, BECAUSE WE WANT TO RUN THIS ALWAYS, SINCE WE LAZYLOAD NERDTree!
--- if not _G.plugin_loaded("nerdtree") then
--- 	do return end
--- end
-
--- " NERDTree
--- "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- " " Start NERDTree when Vim starts with a directory argument.
--- " autocmd StdinReadPre * let s:std_in=1
--- " autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
--- "     \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
-
--- " " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
--- " autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
--- "     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
--- "
-
 vim.g.NERDTreeShowLineNumbers = 1
 vim.g.NERDTreeShowHidden = 1
 
@@ -36,26 +19,28 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = nerdtree_relativenumber
 })
 
+
+		-- If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+-- autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+--     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+-- -- THIS INSERTS SOME TAB CHARS IN OUR ACTIVE BUFFER WHEN WE DISPLAY NERDTREE
+-- local nerdtree_no_clobber = vim.api.nvim_create_augroup("nerdtree_no_clobber", { clear = true })
+-- vim.api.nvim_create_autocmd("BufEnter", {
+-- 	pattern = {"*"},
+-- 	callback = function()
+-- 		if vim.fn.winnr() == vim.fn.winnr('h') and vim.fn.bufname('#') ~= 'NERD_tree_\\d\\+' and vim.fn.bufname('%') ~= 'NERD_tree_\\d\\+' and vim.fn.winnr('$') > 1 then
+-- 			local buf = vim.fn.bufnr()
+-- 			vim.cmd("buffer#")
+-- 			vim.cmd("normal! <C-W>w")
+-- 			vim.cmd("buffer" .. buf)
+-- 		end
+-- 	end,
+-- 		group = nerdtree_no_clobber
+-- })
+
+
 -- call webdevicons#refresh() sorts out the brackets around the icons
 vim.keymap.set("n", "<leader>nn", ":NERDTreeFocus<CR>:call webdevicons#refresh()<CR>")
 vim.keymap.set("n", "<leader>nt", ":NERDTreeToggle<CR>:call webdevicons#refresh()<CR>")
 vim.keymap.set("n", "<leader>nf", ":NERDTreeFind<CR>:call webdevicons#refresh()<CR>")
-
--- " Start NERDTree when Vim is started without file arguments.
--- " autocmd StdinReadPre * let s:std_in=1
--- " autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-
--- " Start NERDTree when Vim starts with a directory argument.
--- " autocmd StdinReadPre * let s:std_in=1
--- " autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
--- " 		\ execute 'NERDTree' argv()[0] | wincmd p | enew | wincmd p | execute 'cd '.argv()[0] | endif
-
--- " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
--- " autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
--- " 		\ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
--- "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- " /NERDTree
-
--- if (vim.g.loaded_webdevicons) then
--- 	vim.cmd[[call webdevicons#refresh()]]
--- end
