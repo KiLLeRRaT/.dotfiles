@@ -37,7 +37,13 @@ require("lazy").setup({
 			build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }, -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
 		{ 'nvim-telescope/telescope-live-grep-args.nvim' },-- https://github.com/nvim-telescope/telescope-live-grep-args.nvim
 
-		{ 'preservim/nerdtree' },													-- https://github.com/preservim/nerdtree
+		{ 'preservim/nerdtree', dependencies = { 'ryanoasis/vim-devicons' } },													-- https://github.com/preservim/nerdtree
+
+		{ 'stevearc/oil.nvim',
+			opts = {},
+			-- Optional dependencies
+			dependencies = { "nvim-tree/nvim-web-devicons" },
+		},
 
 		{
 			"cbochs/grapple.nvim",
@@ -76,7 +82,9 @@ require("lazy").setup({
 
 		{ 'nvim-neorg/neorg-telescope'},										-- https://github.com/nvim-neorg/neorg-telescope
 
-		{ 'ryanoasis/vim-devicons' },											-- https://github.com/ryanoasis/vim-devicons
+		{ 'ryanoasis/vim-devicons', priority = 100 },											-- https://github.com/ryanoasis/vim-devicons
+		{ "nvim-tree/nvim-web-devicons" },
+
 		-- Modify files right in the quick fix list
 		{ 'stefandtw/quickfix-reflector.vim' },						-- https://github.com/stefandtw/quickfix-reflector.vim
 		{ 'mechatroner/rainbow_csv' },											-- https://github.com/mechatroner/rainbow_csv
@@ -139,25 +147,4 @@ require("lazy").setup({
 
 		 -- Plug 'https://github.com/mfussenegger/nvim-dap'
 		 { 'mfussenegger/nvim-dap' }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 })

@@ -55,3 +55,6 @@ vim.keymap.set("n", "<leader>nf", ":NERDTreeFind<CR>")
 -- "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- " /NERDTree
 
+-- if (vim.g.loaded_webdevicons) then
+-- 	vim.cmd[[call webdevicons#refresh()]]
+-- end
