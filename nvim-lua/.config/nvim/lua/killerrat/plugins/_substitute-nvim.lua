@@ -1,8 +1,3 @@
--- if not _G.plugin_loaded("substitute.nvim") then
--- 	do return end
--- end
-
-
 require("substitute").setup {
 	on_substitute = nil,
 	yank_substituted_text = false,

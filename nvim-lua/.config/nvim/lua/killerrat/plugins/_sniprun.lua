@@ -1,8 +1,3 @@
--- if not _G.plugin_loaded("sniprun") then
--- 	do return end
--- end
-
-
 require('sniprun').setup({
 	selected_interpreters={"JS_TS_deno"},
 	repl_enable={"JS_TS_deno"}

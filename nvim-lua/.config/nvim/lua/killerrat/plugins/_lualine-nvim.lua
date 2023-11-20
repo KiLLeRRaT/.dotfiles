@@ -1,7 +1,3 @@
--- if not _G.plugin_loaded("lualine.nvim") then
--- 	do return end
--- end
-
 local function window()
   return vim.api.nvim_win_get_number(0)
 end

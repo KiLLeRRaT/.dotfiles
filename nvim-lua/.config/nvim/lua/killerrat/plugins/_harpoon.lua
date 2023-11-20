@@ -1,7 +1,3 @@
--- if not _G.plugin_loaded("harpoon") then
--- 	do return end
--- end
-
 -- local ui = require("harpoon.ui")
 -- local mark = require("harpoon.mark")
 

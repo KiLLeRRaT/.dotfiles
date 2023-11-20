@@ -1,8 +1,3 @@
--- if not _G.plugin_loaded("LuaSnip") then
--- 	print("LuaSnip not loaded")
--- 	do return end
--- end
-
 local ls = require("luasnip")
 local extras = require("luasnip.extras")
 -- local s = ls.snippet

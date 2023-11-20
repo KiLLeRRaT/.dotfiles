@@ -1,8 +1,3 @@
--- if not _G.plugin_loaded("diffview.nvim") then
--- 	print("diffview.nvim not loaded")
--- 	do return end
--- end
-
 local actions = require("diffview.actions")
 
 require("diffview").setup({

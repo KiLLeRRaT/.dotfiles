@@ -1,7 +1,3 @@
--- if not _G.plugin_loaded("nvim-treesitter") then
--- 	do return end
--- end
-
 -- FROM: https://github.com/nvim-treesitter/nvim-treesitter/wiki/Installation
 -- vim.opt.foldmethod			= 'expr'
 -- vim.opt.foldexpr				= 'nvim_treesitter#foldexpr()'

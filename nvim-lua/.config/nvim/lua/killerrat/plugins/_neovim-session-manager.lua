@@ -1,8 +1,3 @@
--- if not _G.plugin_loaded("neovim-session-manager") then
--- 	print("neovim session manager not loaded")
--- 	do return end
--- end
-
 local Path = require('plenary.path')
 require('session_manager').setup({
   sessions_dir = Path:new(vim.fn.stdpath('data'), 'sessions'), -- The directory where the session files will be saved.

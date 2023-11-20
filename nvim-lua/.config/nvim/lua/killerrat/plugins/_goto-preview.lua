@@ -1,7 +1,3 @@
--- if not _G.plugin_loaded("goto-preview") then
--- 	do return end
--- end
-
 require('goto-preview').setup {
  -- SEE: https://github.com/rmagatti/goto-preview#%EF%B8%8F-configuration
 	width = 120; -- Width of the floating window

@@ -1,7 +1,3 @@
--- if not _G.plugin_loaded("mason-lspconfig.nvim") then
--- 	do return end
--- end
-
 local lsp_installer_ensure_installed = {
 	-- LSP
 	"bashls",

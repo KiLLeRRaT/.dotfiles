@@ -1,7 +1,3 @@
--- if not _G.plugin_loaded("hop.nvim") then
--- 	do return end
--- end
-
 local p = require("hop")
 
 p.setup {

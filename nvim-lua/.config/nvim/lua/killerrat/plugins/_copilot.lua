@@ -1,8 +1,3 @@
--- if not _G.plugin_loaded("copilot.vim") then
--- 	print("copilot.vim not loaded")
--- 	do return end
--- end
-
 vim.g.copilot_no_tab_map = true
 
 vim.g.copilot_filetypes = {

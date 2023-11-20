@@ -1,8 +1,3 @@
--- if not _G.plugin_loaded("tokyonight.nvim") then
--- 	print("tokyonight.nvim not loaded")
--- 	do return end
--- end
-
 require("tokyonight").setup({
 	-- your configuration comes here
 	-- or leave it empty to use the default settings

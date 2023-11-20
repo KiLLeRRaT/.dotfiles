@@ -1,7 +1,3 @@
--- if not _G.plugin_loaded("better-escape.nvim") then
--- 	do return end
--- end
-
 require("better_escape").setup {
 		mapping = {"jk"}, -- a table with mappings to use
 		timeout = vim.o.timeoutlen, -- the time in which the keys must be hit in ms. Use option timeoutlen by default

@@ -1,8 +1,3 @@
--- if not _G.plugin_loaded("nvim-lspconfig") then
--- 	print("nvim-lspconfig not loaded")
--- 	do return end
--- end
-
 require'lspconfig'.bashls.setup{}
 
 -- LOOK IN CURRENT DIRECTORY FOR csproj FILE using glob

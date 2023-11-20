@@ -1,7 +1,3 @@
--- if not _G.plugin_loaded("vim-commentary") then
--- 	do return end
--- end
-
 -- autocmd FileType cs setlocal commentstring=\/\/\ %s
 -- autocmd FileType sql setlocal commentstring=--\ %s
 local commentary = vim.api.nvim_create_augroup("commentary", { clear = true })

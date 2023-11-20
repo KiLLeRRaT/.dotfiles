@@ -1,8 +1,3 @@
--- if not _G.plugin_loaded("switch.vim") then
--- 	print("switch.vim not loaded")
--- 	do return end
--- end
-
 -- " FROM: https://github.com/AndrewRadev/switch.vim
 -- " keybinding is gs
 
