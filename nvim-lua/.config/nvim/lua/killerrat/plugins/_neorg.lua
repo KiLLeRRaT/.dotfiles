@@ -14,9 +14,9 @@ require('neorg').setup {
 				},
 				["core.concealer"] = { config = {} },
 				-- ["core.gtd.base"] = { -- https://github.com/nvim-neorg/neorg/wiki/Getting-Things-Done
-				-- 	 config = {
-				-- 		workspace = "work"
-				-- 	 }
+				--	 config = {
+				--		workspace = "work"
+				--	 }
 				-- },
 				["core.completion"] = { -- https://github.com/nvim-neorg/neorg/wiki/Completion
 					config = {
@@ -38,6 +38,11 @@ require('neorg').setup {
 				},
 				["core.summary"] = { config = { strategy = "default" } },
 				["core.neorgcmd"] = { config = {} },
+				-- ["core.integrations.treesitter"] = {},
+				-- ["core.ui"] = {},
+				-- ["core.mode"] = {},
+				-- ["core.queries.native"] = {},
+				-- ["core.presenter"] = { config = { zen_mode = "zen-mode" } },
 			}
 		}
 }

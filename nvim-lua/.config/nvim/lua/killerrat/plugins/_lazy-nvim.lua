@@ -27,45 +27,49 @@ local plugins = {
 		-- TOOLS
 	----------------------------------------
 	{ 'johnfrankmorgan/whitespace.nvim'	},
-
 	{ 'nvim-telescope/telescope.nvim' },								-- https://github.com/nvim-telescope/telescope.nvim,
-
 	{ 'nvim-telescope/telescope-fzf-native.nvim',
 		build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }, -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
 	{ 'nvim-telescope/telescope-live-grep-args.nvim' },-- https://github.com/nvim-telescope/telescope-live-grep-args.nvim
-
 	{ 'preservim/nerdtree',
 		dependencies = { 'ryanoasis/vim-devicons' },
 		cmd = {"NERDTreeFocus", "NERDTreeToggle", "NERDTreeFind" }
 	},	-- https://github.com/preservim/nerdtree
-
 	{ 'stevearc/oil.nvim',
 		opts = {},
 		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
-
 	{
 		"cbochs/grapple.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},																											-- https://github.com/cbochs/grapple.nvim
-
 	{ 'max397574/better-escape.nvim' },								-- https://github.com/max397574/better-escape.nvim
-
 	-- { 'phaazon/hop.nvim' },														-- https://github.com/phaazon/hop.nvim
 	{ 'smoka7/hop.nvim' },														-- https://github.com/smoka7/hop.nvim
-
 	--{ 'ggandor/leap.nvim' },														-- https://github.com/ggandor/leap.nvim
+
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		keys = {
+			{ "<leader>s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+			{ "<leader>S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+			{ "<leader>r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+			{ "<leader>R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+			{ "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+		},
+	},
+
+
 	--{ 'dstein64/vim-startuptime' },										-- https://github.com/dstein64/vim-startuptime
 	{ 'kylechui/nvim-surround' },											-- https://github.com/kylechui/nvim-surround
 	{ 'tpope/vim-fugitive' },													-- https://github.com/tpope/vim-fugitive
 	{ 'tpope/vim-abolish' },														-- https://github.com/tpope/vim-abolish
 	{ 'tpope/vim-unimpaired' },												-- https://github.com/tpope/vim-unimpaired
-
 	{ 'Shatur/neovim-session-manager',
 		dependencies = { "nvim-lua/plenary.nvim" }
 	},																									-- https://github.com/Shatur/neovim-session-manager
-
 	{ 'simeji/winresizer' },														-- https://github.com/simeji/winresizer
 	---- DOES NOT SUPPORT A COUNT YET! ARGH
 	---- { 'b3nj5m1n/kommentary' },											-- https://github.com/b3nj5m1n/kommentary
@@ -77,22 +81,18 @@ local plugins = {
 	{ 'nvim-lualine/lualine.nvim' },										-- https://github.com/nvim-lualine/lualine.nvim
 	{ 'akinsho/bufferline.nvim' },											-- https://github.com/akinsho/bufferline.nvim
 	{ 'lewis6991/gitsigns.nvim' },											-- https://github.com/lewis6991/gitsigns.nvim
-
 	-- neorg related
 	{ 'nvim-neorg/neorg',
 		dependencies = {'nvim-neorg/neorg-telescope', 'nvim-lua/plenary.nvim'},
 		build = ":Neorg sync-parsers",
 		ft = "norg"
 	},												-- https://github.com/nvim-neorg/neorg
-
 	{ 'nvim-neorg/neorg-telescope',
 		dependencies = {'nvim-telescope/telescope.nvim'},
 		ft = "norg"
 	},										-- https://github.com/nvim-neorg/neorg-telescope
-
 	{ 'ryanoasis/vim-devicons', priority = 100 },											-- https://github.com/ryanoasis/vim-devicons
 	{ "nvim-tree/nvim-web-devicons" },
-
 	-- Modify files right in the quick fix list
 	{ 'stefandtw/quickfix-reflector.vim' },						-- https://github.com/stefandtw/quickfix-reflector.vim
 	{ 'mechatroner/rainbow_csv' },											-- https://github.com/mechatroner/rainbow_csv
@@ -102,9 +102,8 @@ local plugins = {
 	{ 'lambdalisue/suda.vim' },												-- https://github.com/lambdalisue/suda.vim
 	{ 'terrastruct/d2-vim', ft = "d2" },	-- https://github.com/terrastruct/d2-vim
 	{ 'mbbill/undotree' },															-- https://github.com/mbbill/undotree
-
 	{ 'norcalli/nvim-colorizer.lua' },														-- https://github.com/norcalli/nvim-colorizer.lua
-
+	{ "folke/zen-mode.nvim", cmd = "ZenMode" },
 
 	------------------------------------------
 	--	-- COMPLETION AND SNIPPETS
@@ -126,7 +125,6 @@ local plugins = {
 	{ "williamboman/mason.nvim" },
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "neovim/nvim-lspconfig" },
-
 	{
 		'nvim-treesitter/nvim-treesitter',
 		build = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
@@ -145,13 +143,9 @@ local plugins = {
 	-- DEBUGGERS
 	----------------------------------------
 	{ 'michaelb/sniprun', build = 'sh ./install.sh'},
-
 	{ 'rcarriga/nvim-dap-ui', dependencies = {'mfussenegger/nvim-dap'} },
-
 	{ 'theHamsta/nvim-dap-virtual-text', dependencies = {'mfussenegger/nvim-dap'} },
-
 	{ 'nvim-telescope/telescope-dap.nvim', dependencies = {'mfussenegger/nvim-dap'} },
-
 	{ 'mfussenegger/nvim-dap' },
 
 
