@@ -9,6 +9,7 @@
 # - [x] Sourcecode backups
 # - [x] Machine backups
 # - [x] nginx
+# - [ ] @libvirt on data disk mount and move VMs
 # - [ ] unlock /mnt/data automatically
 # - [ ] ssh unlock luks
 
