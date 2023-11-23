@@ -329,7 +329,14 @@ vmc() {
 ssh_removeAndConnect(){sed -i.bak "/192.168.111.$2/d" ~/.ssh/known_hosts && ssh $1@192.168.111.$2}
 # ;fn_ssh albert 132
 
-
+installAurPackage() {
+	pushd ~/source-aur
+	echo "Installing $1"
+	git clone https://aur.archlinux.org/$1.git
+	cd $1
+	makepkg -is
+	popd
+}
 
 # alias hf='history 0 | cut -c 8- | fzf -e'
 
