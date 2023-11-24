@@ -211,6 +211,7 @@ systemctl enable systemd-resolved.service
 systemctl start systemd-resolved.service
 
 installAurPackage icaclient #Citrix workspace app/Citrix receiver
+pacman -Sy perl-file-mimeinfo # Required to interpret the *.ica files correctly
 # COPYING AND PASTING NOT WORKING IN icaclient, DISABLE KLIPPER OR CLIPBOARD MANAGER!
 
 installAurPackage nvm
