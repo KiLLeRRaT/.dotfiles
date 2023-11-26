@@ -805,8 +805,8 @@ exec --no-startup-id "1password"
 # exec --no-startup-id "spotify"
 # exec --no-startup-id "spotify-launcher"
 # exec --no-startup-id "google-chat-electron"
-exec --no-startup-id "google-chat-linux"
-exec --no-startup-id "alacritty -e tmux"
+exec_always --no-startup-id "google-chat-linux"
+exec_always --no-startup-id "alacritty -e tmux"
 # </config>
 # <config hostname="arch-agouws">
 # FROM: https://github.com/betterlockscreen/betterlockscreen
@@ -842,8 +842,8 @@ exec --no-startup-id "brave --profile-directory=Default"
 exec --no-startup-id "brave --profile-directory=Profile\ 1"
 exec --no-startup-id "1password"
 exec --no-startup-id "spotify"
-exec --no-startup-id "google-chat-electron"
-exec --no-startup-id "alacritty -e tmux"
+exec --no-startup-id "google-chat-linux"
+exec --no-startup-id "alacritty -e tmux a || tmux"
 # </config>
 
 

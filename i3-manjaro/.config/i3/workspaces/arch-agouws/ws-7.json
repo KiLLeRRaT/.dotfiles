@@ -1,1 +1,26 @@
-// vim:ts=4:sw=4:et
+{
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "tabbed",
+    "marks": [],
+    "percent": null,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "marks": [],
+            "name": "DEVHOST",
+            "percent": 0.5,
+            "swallows": [
+               {
+                "class": "^Brave\\-browser$",
+                "title": "^DEVHOST$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+
