@@ -17,25 +17,6 @@
 [mergetool "nvim"]
 	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 	; trustExitCode = true
-[safe]
-	directory = /home/albert/GBox/Applications/Tools/Scripts/Azure Build Pipelines
-	directory = /home/albert/GBox/Applications/Tools/Scripts/AzureDevOps
-	directory = /home/albert/GBox/Applications/Tools/Scripts/Docker
-	directory = /home/albert/GBox/Applications/Tools/Scripts/Linux
-	directory = /home/albert/GBox/Applications/Tools/Scripts/Powershell
-	directory = /home/albert/GBox/Applications/Tools/Scripts/hosts
-	directory = /home/albert/GBox/Notes/.git
-	directory = /mnt/data-resilio-sync/GBox/Applications/Tools/Scripts/Bash
-	directory = /mnt/hotelalpha/config
-	directory = /mnt/hotelalphaactual.gouws.org/config
-	directory = /mnt/whiskey.agouws.gouws.org/c/Projects.Git/AA
-	directory = /mnt/whiskey.agouws.gouws.org/c/Projects.Git/TIL.Orca
-	directory = /usr/share/zsh/plugins/zsh-vi-mode
-	directory = ~/GBox/Applications/Tools/Scripts/Bash
-	directory = ~/GBox/Applications/Tools/Scripts/Git
-	directory = ~/GBox/Notes
-	directory = /home/albert/GBox/Applications/Tools/Backup/gouws.org Mikrotik/romeohotel.gouws.orgx86 router or NUC
-	directory = /home/albert/GBox/Notes-bak20230307/Sandfield ISMS Policies
 [core]
 	autocrlf = input
 	excludesFile = ~/.gitignore
