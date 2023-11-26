@@ -855,7 +855,7 @@ exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; pi
 # exec_always --no-startup-id ff-theme-util
 # exec_always --no-startup-id fix_xcursor
 # SWAP LEFT ALT/OPTION WITH LEFT COMMAND, FROM: https://askubuntu.com/a/29609
-exec_always --no-startup-id setxkbmap -option altwin:swap_lalt_lwin
+exec_always --no-startup-id sleep 5;setxkbmap -option ctrl:nocaps -option "terminate:ctrl_alt_bksp" -option altwin:swap_lalt_lwin
 
 font xft:SF Pro Display 12
 
