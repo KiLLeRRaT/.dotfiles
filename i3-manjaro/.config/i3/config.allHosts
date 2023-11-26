@@ -843,7 +843,7 @@ exec --no-startup-id "brave --profile-directory=Profile\ 1"
 exec --no-startup-id "1password"
 exec --no-startup-id "spotify"
 exec --no-startup-id "google-chat-linux"
-exec --no-startup-id "alacritty -e tmux a || tmux"
+exec --no-startup-id "alacritty -e tmux"
 # </config>
 
 
