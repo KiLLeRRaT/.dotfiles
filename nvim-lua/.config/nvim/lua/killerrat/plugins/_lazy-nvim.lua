@@ -71,9 +71,14 @@ local plugins = {
 		dependencies = { "nvim-lua/plenary.nvim" }
 	},																									-- https://github.com/Shatur/neovim-session-manager
 	{ 'simeji/winresizer' },														-- https://github.com/simeji/winresizer
+
+
 	---- DOES NOT SUPPORT A COUNT YET! ARGH
 	---- { 'b3nj5m1n/kommentary' },											-- https://github.com/b3nj5m1n/kommentary
-	{ 'tpope/vim-commentary' },												-- https://github.com/tpope/vim-commentary
+	-- { 'tpope/vim-commentary' },												-- https://github.com/tpope/vim-commentary
+	{ 'echasnovski/mini.comment', version = false },			-- https://github.com/echasnovski/mini.comment
+	{ 'JoosepAlviste/nvim-ts-context-commentstring' },			-- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
+
 	{ 'gbprod/substitute.nvim' },											-- https://github.com/gbprod/substitute.nvim
 	{ 'github/copilot.vim' },													-- https://github.com/github/copilot.vim
 	-- " SWITCH TO OPPOSITE WORD, E.G. TRUE -> FALSE, etc.
