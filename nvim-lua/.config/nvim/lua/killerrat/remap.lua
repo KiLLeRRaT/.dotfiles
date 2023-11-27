@@ -126,6 +126,9 @@ vim.keymap.set("n", "<F6>", ":setlocal spell!<CR>:setlocal spell?<CR>")
 vim.keymap.set("n", "Z=", "]sz=")
 
 
+vim.keymap.set("n", "<F11>", ":ZenMode<cr>")
+
+
 -- " RUN jq and use tab indents, then remove the ^M chars because vim is doing stupid things.
 -- " vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r/e<cr>
 -- " nnoremap <leader>=j :%!jq --tab .<cr>:%s/\r/e<cr>
