@@ -278,6 +278,33 @@ cs() {
 	eval $cmd
 }
 
+# KILL USING FZF AS SELECTOR
+kff() {
+	sig=$1
+	cmd=$(ps -aux | sort -nr | fzf --multi -e --select-1 --no-sort --query "$2" )
+	echo Killing the following:
+	echo $cmd
+	for pid in $(echo $cmd | awk '{ print $2 }')
+	do
+		if [ $sig -eq 9 ]
+		then
+			# echo "Killing $pid with -9"
+			kill -9 $pid
+		else
+			# echo "Killing $pid with -15"
+			kill -15 $pid
+		fi
+	done
+}
+# KILL USING FZF AS SELECTOR
+kf9() {
+	kff 9 $1
+}
+# KILL USING FZF AS SELECTOR
+kf() {
+	kff 15 $1
+}
+
 # RUN THE COMMAND FROM HISTORY, USING FZF AS SELECTOR
 hf() {
 	cmd=$(history 0 | sort -nr | cut -c 8- | fzf -e --select-1 --no-sort --query "$1" )
