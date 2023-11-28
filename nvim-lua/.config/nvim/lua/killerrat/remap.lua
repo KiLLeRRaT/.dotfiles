@@ -47,7 +47,9 @@ vim.keymap.set("n", "gp", "`[v`]")
 
 -- " [count] yanks, comments out, and pastes a copy below, and restores the default register with
 -- what we yanked previously
-vim.cmd[[nnoremap <expr> <leader>T '<esc>' . v:count1 . '"zyy:.,+' . (v:count1 - 1) . 'Commentary<cr>' . v:count1 . 'j<esc>"zP' . '\| :let @"=@0<cr>' ]]
+-- vim.cmd[[nnoremap <expr> <leader>T '<esc>' . v:count1 . '"zyy:.,+' . (v:count1 - 1) . 'Commentary<cr>' . v:count1 . 'j<esc>"zP' . '\| :let @"=@0<cr>' ]]
+vim.cmd[[nmap <expr> <leader>T '<esc>' . v:count1 . '"zyy' . v:count1 . 'gcc' . v:count1 . 'j<esc>"zP' . '\| :let @"=@0<cr>' ]]
+
 -- vim.cmd[[nnoremap <expr> <leader>t '<esc>' . v:count1 . '"zyy' . v:count1 . 'j<esc>"zP']]
 vim.cmd[[nnoremap <expr> <leader>t '<esc>' . v:count1 . '"zyy' . v:count1 . 'j<esc>"zP' . '\| :let @"=@0<cr>' ]]
 
