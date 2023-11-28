@@ -451,7 +451,11 @@ fi
 # FROM: /usr/share/zsh/manjaro-zsh-prompt
 ########################################
 # source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# if file exists, then source it
+if [ -f ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]
+then
+	source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
 ########################################
 
