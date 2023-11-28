@@ -1,5 +1,11 @@
 #!/bin/zsh
 
+if [ "$EUID" -ne 0 ]
+	then echo "Please run using sudo"
+	exit
+fi
+
+
 # GET THE CURRENT COMMIT SHA
 export BUILD_DATE=$(git rev-parse HEAD)
 
@@ -11,9 +17,9 @@ export BUILD_DATE=$(git rev-parse HEAD)
 read -q "REPLY?Do you want build with --no-cache? [y/N] "
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-		docker-compose build --no-cache
+		docker compose build --no-cache --progress=plain
 else
-		docker-compose build
+		docker compose build --progress=plain
 fi
 
 
@@ -21,7 +27,7 @@ fi
 read -q "REPLY?Do you want to push the image? [y/N] "
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-		docker-compose push
+		docker compose push
 fi
 
 # LIST IMAGES/REPOS:

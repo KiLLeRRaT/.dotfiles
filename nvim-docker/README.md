@@ -15,6 +15,7 @@ docker exec -it nvim-docker /bin/zsh
 ```
 Then start tmux, with unicode otherwise characters display funny:
 ```
+tmux -u # THIS WAS REMOVED AT SOME POINT, NOT SURE WHY I DID THAT...
 tmux
 ```
 

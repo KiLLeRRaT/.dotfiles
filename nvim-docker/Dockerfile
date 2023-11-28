@@ -30,6 +30,7 @@ RUN pacman -S --noconfirm git \
 	mono-msbuild \
 	dotnet-sdk \
 	jq \
+	yq \
 	zsh \
 	gcc \
 	make \
@@ -37,32 +38,16 @@ RUN pacman -S --noconfirm git \
 	upterm \
 	fzf \
 	ncdu \
-	nginx
+	nginx \
+	cmake gcc
 
 # RUN pamac build xsp mono-basic --no-confirm
 
-
-WORKDIR /root
-RUN echo -e "\033[32m Install oh-my-posh\033[0m" && \
-	wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh && \
-	chmod +x /usr/local/bin/oh-my-posh
-
-
-RUN echo -e "\033[32m Install NVM\033[0m" && \
-	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
-    . /root/.nvm/nvm.sh && \
-    nvm install --lts && \
-		nvm use --lts
-
-
-RUN echo -e "\033[32m Clone zsh-vi-mode\033[0m" && \
-	git clone https://github.com/jeffreytse/zsh-vi-mode.git $HOME/.zsh-vi-mode
-
-
+WORKDIR /root/
 RUN echo -e "\033[32m Clone KiLLeRRaT dotfiles\033[0m" && \
 	git clone https://github.com/KiLLeRRaT/.dotfiles
 WORKDIR /root/.dotfiles
-# RUN ls -lkha
+RUN ls -lkha
 
 
 # SET UNICODE LOCALE
@@ -88,6 +73,7 @@ RUN echo -e "\033[32m Configure Git\033[0m" && \
 	git config --global submodule.recurse true && \
 	git config --global core.editor "nvim" && \
 	git config --global core.excludesfile ~/.gitignore && \
+	git config --global core.autocrlf input && \
 	git config --global init.defaultBranch master
 
 
@@ -108,17 +94,33 @@ RUN echo -e "\033[32m Change Default Shell\033[0m" && \
 	chsh -s /bin/zsh root
 
 
-# RUN nvim --headless +PackerSync +qall
-
-RUN echo -e "\033[32m PackerSync, to install Packer\033[0m" && \
-	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-
-
-RUN echo -e "\033[32m PackerSync, to install the plugins\033[0m" && \
-	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-
-
 # RUN cd /root/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim && make
+
+# WORKDIR /root
+# WORKDIR /root/source-aur
+
+RUN echo -e "\033[32m Install oh-my-posh\033[0m" && \
+	wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh && \
+	chmod +x /usr/local/bin/oh-my-posh
+
+# RUN echo -e "\033[32m Install oh-my-posh\033[0m" && \
+# 	git clone https://aur.archlinux.org/oh-my-posh oh-my-posh && cd $_ && \
+# 	makepkg -si --noconfirm
+
+
+RUN echo -e "\033[32m Install NVM\033[0m" && \
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
+    . /root/.nvm/nvm.sh && \
+    nvm install --lts && \
+		nvm use --lts
+
+# RUN echo -e "\033[32m Install NVM\033[0m" && \
+# 	git clone https://aur.archlinux.org/nvm nvm && cd $_ && \
+# 	makepkg -si --noconfirm
+
+
+RUN echo -e "\033[32m Clone zsh-vi-mode\033[0m" && \
+	git clone https://github.com/jeffreytse/zsh-vi-mode.git $HOME/.zsh-vi-mode
 
 
 RUN echo -e "\033[32m Nuget credential provider for .NET Core Azure DevOps\033[0m" && \
@@ -132,8 +134,10 @@ mkdir -p /root/notes/neorg/work && \
 	touch /root/notes/neorg/work/inbox.norg && \
 	touch /root/notes/neorg/work/index.norg
 
+
 # THIS IS WHERE WE WILL MOUNT OUR HOST PROJECT VOLUME
 RUN mkdir -p /mnt/c/Projects.Git
+
 
 # Avoid container exit.
 CMD ["tail", "-f", "/dev/null"]
