@@ -230,7 +230,10 @@ alias df='df -h'
 # 	nvim'
 
 alias n='nvim'
+
+# DOESNT MAKE IT EASIER, BUT IF YOU FORGET THE COMMAND, YOU TYPE ss AND PRESS TAB TO GET THE COMPLETION :)
 alias ss-tulpn='ss -tulpn'
+
 alias setxkbmap-ctrl-caps='setxkbmap -option ctrl:nocaps'
 alias setxkbmap-alt-win='setxkbmap -option altwin:swap_lalt_lwin'
 alias setxkbmap-revert="setxkbmap -option ''"
