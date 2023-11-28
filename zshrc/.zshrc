@@ -209,7 +209,7 @@ alias gt='git tag | sort -V | tail'
 # alias gtp='fn-gtp() { git tag $1 && git push --tags };fn-gtp'
 gtp() { git tag $1 && git push --tags }
 # alias gtD='fn-gt() { git tag -d $1 && git push origin -d $1 };fn-gt'
-gtD() { git tag -d $1 && git push origin -d $1 }
+gtD() { git tag -d $1;git push origin -d $1 }
 alias gbf="git branch --sort=-committerdate| fzf --height=20% |xargs git checkout "
 # GIT TAG REMOVE
 # gtr(){git tag -d $1 && git push origin -d $1}
@@ -279,7 +279,7 @@ cs() {
 }
 
 # KILL USING FZF AS SELECTOR
-kff() {
+fkk() {
 	sig=$1
 	cmd=$(ps -aux | sort -nr | fzf --multi -e --select-1 --no-sort --query "$2" )
 	echo Killing the following:
@@ -297,16 +297,16 @@ kff() {
 	done
 }
 # KILL USING FZF AS SELECTOR
-kf9() {
-	kff 9 $1
+fk9() {
+	fkk 9 $1
 }
 # KILL USING FZF AS SELECTOR
-kf() {
-	kff 15 $1
+fk() {
+	fkk 15 $1
 }
 
 # RUN THE COMMAND FROM HISTORY, USING FZF AS SELECTOR
-hf() {
+fh() {
 	cmd=$(history 0 | sort -nr | cut -c 8- | fzf -e --select-1 --no-sort --query "$1" )
 	# push the command into the history
 	print -S $cmd
@@ -316,7 +316,7 @@ hf() {
 }
 
 # REMMINA USING THE CONNECTION FILE SELECTED USING FZF
-rf() {
+fr() {
 	pushd ~/.local/share/remmina
 	cmd="remmina -c $(ls $PWD/* | fzf -e --select-1 --no-sort --query $1)"
 	# escape parentheses in the cmd with a backslash
@@ -353,7 +353,10 @@ vmc() {
 	# [[ "$REPLY" == "y" ]] && eval $cmd
 }
 
-ssh_removeAndConnect(){sed -i.bak "/192.168.111.$2/d" ~/.ssh/known_hosts && ssh $1@192.168.111.$2}
+ssh_removeAndConnect(){
+	# sed -i.bak "/192.168.111.$2/d" ~/.ssh/known_hosts && ssh $1@192.168.111.$2
+	sed -i.bak "/^$2 /d" ~/.ssh/known_hosts && ssh $1@$2
+}
 # ;fn_ssh albert 132
 
 installAurPackage() {
