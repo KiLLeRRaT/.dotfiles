@@ -173,6 +173,9 @@ font:
   size: 16.0
   # size: 12.0
 # </config>
+# <config hostname="arch-delllatitude">
+  size: 8.0
+# </config>
 # <config hostname="arch-agouwsmacbookpro">
   size: 7.0
 # </config>
