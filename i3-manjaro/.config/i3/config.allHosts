@@ -851,6 +851,10 @@ exec --no-startup-id "alacritty -e tmux"
 exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
 
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
+
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
@@ -865,15 +869,8 @@ exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 
 # RESTORE LAYOUTS
 
-# exec --no-startup-id i3-msg 'workspace $ws1; append_layout ~/.config/i3/workspaces/arch-agouws/ws-1.json'
-# exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/arch-agouws/ws-2.json'
-# exec --no-startup-id i3-msg 'workspace $ws3; append_layout ~/.config/i3/workspaces/arch-agouws/ws-3.json'
-# exec --no-startup-id i3-msg 'workspace $ws4; append_layout ~/.config/i3/workspaces/arch-agouws/ws-4.json'
-# exec --no-startup-id i3-msg 'workspace $ws5; append_layout ~/.config/i3/workspaces/arch-agouws/ws-5.json'
-# exec --no-startup-id i3-msg 'workspace $ws6; append_layout ~/.config/i3/workspaces/arch-agouws/ws-6.json'
-# exec --no-startup-id i3-msg 'workspace $ws7; append_layout ~/.config/i3/workspaces/arch-agouws/ws-7.json'
-# exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/arch-agouws/ws-8.json'
-# exec --no-startup-id i3-msg 'workspace $ws9; append_layout ~/.config/i3/workspaces/arch-agouws/ws-9.json'
+exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/arch-agouwsmacbookpro/workspace-2.json'
+exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/arch-agouwsmacbookpro/workspace-8.json'
 
 # exec --no-startup-id "brave --profile-directory=Default"
 # exec --no-startup-id "brave --profile-directory=Profile\ 1"
