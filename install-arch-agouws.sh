@@ -61,7 +61,7 @@ sudo pacman --noconfirm -Syu \
 	pcmanfm \
 	picom \
 	polkit \
-	ranger \
+	ranger ueberzug \
 	redshift \
 	remmina freerdp libvncserver \
 	ripgrep \
