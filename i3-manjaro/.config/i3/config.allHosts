@@ -344,19 +344,30 @@ assign [class="google-chat-linux"] $ws1
 assign [class="Spotify"] $ws1
 
 
+# 1050 GTX
 # HDMI-0 is middle screen
 # HDMI-1 is right screen
 # DP-0 is left screen
-workspace $ws1 output DP-0
-workspace $ws4 output DP-0
-workspace $ws7 output DP-0
-workspace $ws3 output HDMI-1
-workspace $ws6 output HDMI-1
-workspace $ws9 output HDMI-1
-workspace $ws2 output HDMI-0
-workspace $ws5 output HDMI-0
-workspace $ws8 output HDMI-0
-workspace $ws0 output HDMI-0
+
+# RTX 4060
+# DP-0 is left
+# HDMI-1 is middle
+# HDMI-0 is right
+
+set $screenleft DP-0
+set $screenmiddle HDMI-1
+set $screenright HDMI-0
+
+workspace $ws1 output $screenleft
+workspace $ws4 output $screenleft
+workspace $ws7 output $screenleft
+workspace $ws2 output $screenmiddle
+workspace $ws5 output $screenmiddle
+workspace $ws8 output $screenmiddle
+workspace $ws0 output $screenmiddle
+workspace $ws3 output $screenright
+workspace $ws6 output $screenright
+workspace $ws9 output $screenright
 
 
 # Open specific applications in floating mode
