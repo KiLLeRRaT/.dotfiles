@@ -475,3 +475,8 @@ then
 fi
 
 
+# Add dotnet tools to the path
+if [ -d ~/.dotnet/tools ]
+then
+	export PATH=$PATH:~/.dotnet/tools
+fi
