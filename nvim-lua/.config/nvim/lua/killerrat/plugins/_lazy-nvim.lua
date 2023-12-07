@@ -61,6 +61,14 @@ local plugins = {
 		},
 	},
 
+	-- gx without having netrw
+	{
+		"chrishrb/gx.nvim",
+		event = { "BufEnter" },
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = true, -- default Settings
+	}, -- https://github.com/chrishrb/gx.nvim
+
 
 	--{ 'dstein64/vim-startuptime' },										-- https://github.com/dstein64/vim-startuptime
 	{ 'kylechui/nvim-surround' },											-- https://github.com/kylechui/nvim-surround
@@ -153,6 +161,17 @@ local plugins = {
 	{ 'nvim-telescope/telescope-dap.nvim', dependencies = {'mfussenegger/nvim-dap'} },
 	{ 'mfussenegger/nvim-dap' },
 
+	{ "kndndrj/nvim-dbee",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+		},
+		build = function()
+			require("dbee").install()
+		end,
+		config = function()
+			require("dbee").setup()
+		end,
+	}, -- https://github.com/kndndrj/nvim-dbee
 
 }
 
