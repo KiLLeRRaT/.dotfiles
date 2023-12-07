@@ -849,12 +849,22 @@ exec --no-startup-id i3-msg 'workspace $ws7; append_layout ~/.config/i3/workspac
 exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/arch-agouws/ws-8.json'
 exec --no-startup-id i3-msg 'workspace $ws9; append_layout ~/.config/i3/workspaces/arch-agouws/ws-9.json'
 
-exec --no-startup-id "brave --profile-directory=Default"
-exec --no-startup-id "brave --profile-directory=Profile\ 1"
+
+# exec --no-startup-id i3-msg 'workspace $ws9; append_layout ~/.config/i3/workspaces/arch-agouws/ws-9.json'
+# assign [class="Brave"] $ws8
+exec --no-startup-id i3-msg 'workspace $ws9; exec brave --profile-directory=Default'
+exec --no-startup-id i3-msg 'workspace $ws8; exec brave --profile-directory=Profile\ 1'
+
+
+
+# exec --no-startup-id "brave --profile-directory=Default"
+# exec --no-startup-id "brave --profile-directory=Profile\ 1"
 exec --no-startup-id "1password"
 exec --no-startup-id "spotify"
 exec --no-startup-id "google-chat-linux"
-exec --no-startup-id "alacritty -e tmux"
+# exec --no-startup-id "alacritty -e tmux"
+exec --no-startup-id "alacritty -e zsh -c 'tmux a || tmux'"
+exec --no-startup-id i3-msg 'workspace $ws3; exec alacritty -e zsh -c "tmux a -t Work_Build"'
 # </config>
 # <config hostname="arch-delllatitude">
 # FROM: https://github.com/betterlockscreen/betterlockscreen
