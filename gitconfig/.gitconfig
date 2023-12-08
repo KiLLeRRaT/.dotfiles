@@ -1,8 +1,7 @@
 [user]
 	name = Albert Gouws
 	email = albert@gouws.org
-	; signingkey = DEC01321145CA0454B0552A36D3F20479EF521D7!
-	; signingkey = DEC01321145CA0454B0552A36D3F20479EF521D7
+	signingkey = /home/albert/.ssh/id_ed25519.pub
 
 [alias]
 	; logo = log --pretty=tformat:'%m %C(auto,yellow)%h%C(auto,magenta)% G? %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(15,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D' --date=short
@@ -22,7 +21,7 @@
 	excludesFile = ~/.gitignore
 	attributesFile = ~/.gitattributes
 [commit]
-	; gpgsign = true
+	gpgsign = true
 [init]
 	defaultBranch = master
 [diff]
@@ -31,3 +30,7 @@
 	recurse = true
 [pull]
 	rebase = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = ~/.ssh/allowed_signers
