@@ -873,8 +873,12 @@ exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -
 
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 
-bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+# NEED A UDEV RULE TO ALLOW NON ROOT TO ADJUST BRIGHTNESS. SEE:
+# https://wiki.archlinux.org/title/Talk:Backlight#Udev_rules_for_permissions_of_brightness_doesn't_work
+bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-delllatitude/set-brightness.sh +50"
+bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-delllatitude/set-brightness.sh -50"
+# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
+# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
@@ -895,10 +899,13 @@ exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspac
 
 # exec --no-startup-id "brave --profile-directory=Default"
 # exec --no-startup-id "brave --profile-directory=Profile\ 1"
+exec --no-startup-id i3-msg 'workspace $ws8; exec brave --profile-directory=Default'
+
 # exec --no-startup-id "1password"
 # exec --no-startup-id "spotify"
 # exec --no-startup-id "google-chat-linux"
-exec --no-startup-id "alacritty -e tmux"
+# exec --no-startup-id "alacritty -e tmux"
+exec --no-startup-id "alacritty -e zsh -c 'tmux a || tmux'"
 # </config>
 
 
