@@ -59,7 +59,8 @@ require'nvim-treesitter.configs'.setup {
 		"typescript",
 		"vim",
 		"yaml",
-		"query"
+		"query",
+		"sql"
 	},
 	indent = {
 		enable = true,

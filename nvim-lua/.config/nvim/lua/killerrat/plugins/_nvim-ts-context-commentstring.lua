@@ -3,5 +3,6 @@ require('ts_context_commentstring').setup {
 	languages = {
 		-- typescript = '// %s',
 		c_sharp = '// %s',
+		sql = '-- %s',
 	}
 }
