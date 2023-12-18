@@ -224,7 +224,7 @@ vim.keymap.set("n", "[g", ":lua vim.diagnostic.goto_prev({severity = vim.diagnos
 vim.keymap.set("n", "]G", ":lua vim.diagnostic.goto_next()<cr>")
 vim.keymap.set("n", "[G", ":lua vim.diagnostic.goto_prev()<cr>")
 vim.keymap.set("n", "<leader>rn", ":lua vim.lsp.buf.rename()<cr>")
-vim.keymap.set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<cr>")
+vim.keymap.set({"n", "v"}, "<leader>ca", ":lua vim.lsp.buf.code_action()<cr>")
 
 -- autocmd FileType cs nnoremap <buffer> K :lua vim.lsp.buf.hover()<CR>
 vim.api.nvim_create_autocmd("FileType", {
