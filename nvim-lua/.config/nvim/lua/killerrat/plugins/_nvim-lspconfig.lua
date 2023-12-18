@@ -74,6 +74,18 @@ vim.api.nvim_create_autocmd("FileType",{
 					--- Guard against servers without the signatureHelper capability
 					if client.server_capabilities.signatureHelpProvider then
 						require('lsp-overloads').setup(client, { })
+
+						-- ...
+						-- keymaps = {
+						-- 		next_signature = "<C-j>",
+						-- 		previous_signature = "<C-k>",
+						-- 		next_parameter = "<C-l>",
+						-- 		previous_parameter = "<C-h>",
+						-- 		close_signature = "<A-s>"
+						-- 	},
+						-- ...
+
+
 					end
 
 					-- WORKAROUND INVALID CHAR GROUP ISSUE WITH OMNISHARP
@@ -112,6 +124,18 @@ vim.api.nvim_create_autocmd("FileType",{
 					--- Guard against servers without the signatureHelper capability
 					if client.server_capabilities.signatureHelpProvider then
 						require('lsp-overloads').setup(client, { })
+
+			-- ...
+			-- keymaps = {
+			-- 		next_signature = "<C-j>",
+			-- 		previous_signature = "<C-k>",
+			-- 		next_parameter = "<C-l>",
+			-- 		previous_parameter = "<C-h>",
+			-- 		close_signature = "<A-s>"
+			-- 	},
+			-- ...
+
+
 					end
 
 					-- WORKAROUND INVALID CHAR GROUP ISSUE WITH OMNISHARP
