@@ -199,8 +199,11 @@ installAurPackage powershell-bin
 installAurPackage netcoredbg
 
 installAurPackage i3lock-color
+
 installAurPackahe betterlockscreen
 betterlockscreen -u ~/.dotfiles/images
+# lock on sleep/suspend
+systemctl enable betterlockscreen@$USER
 
 # installAurPackage forticlient-vpn
 # sudo pacman -S networkmanager-fortisslvpn
