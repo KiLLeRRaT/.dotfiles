@@ -18,6 +18,7 @@
   "goto-preview": { "branch": "main", "commit": "16ec236fabb40b2cebfe283b1d701338886462db" },
   "grapple.nvim": { "branch": "main", "commit": "ab274a3bfb674442d57fca05df866b71895853bc" },
   "gx.nvim": { "branch": "main", "commit": "38d776a0b35b9daee5020bf3336564571dc785af" },
+  "hawtkeys.nvim": { "branch": "main", "commit": "b6463cbf3343682fd79e6324be57b1079661806e" },
   "hop.nvim": { "branch": "master", "commit": "6d853addd6e11df8338b26e869a29b36f2c3e893" },
   "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" },
   "lsp-overloads.nvim": { "branch": "main", "commit": "5064093b8614663c2b9db1f6ce426f7c8cc89970" },

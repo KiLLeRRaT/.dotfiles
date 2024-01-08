@@ -183,7 +183,7 @@ if vim.fn.has('unix') == 1 then
 		vim.cmd('buffer ' .. new_buffer .. ' | setlocal cursorbind')
 		vim.cmd([[ silent! %s/\.\([a-zA-Z\-]\)/\1/g ]]) -- REMOVE .'s that are followed by a letter
 		vim.cmd([[ silent! %s/\-\([a-zA-Z\-]\)/\1/g ]]) -- REMOVE -'s that are followed by a letter
-		
+
 
 		vim.cmd('%!awk \'{gsub(/[^0-9\\.\\-]/, \"\"); print; total+=$1}END{print total}\'')
 	end

@@ -117,6 +117,10 @@ local plugins = {
 	{ 'mbbill/undotree' },															-- https://github.com/mbbill/undotree
 	{ 'norcalli/nvim-colorizer.lua' },														-- https://github.com/norcalli/nvim-colorizer.lua
 	{ "folke/zen-mode.nvim", cmd = "ZenMode" },
+	{ "tris203/hawtkeys.nvim",
+		dependencies = "nvim-lua/plenary.nvim", config = { } }, -- https://github.com/tris203/hawtkeys.nvim
+
+
 
 	------------------------------------------
 	--	-- COMPLETION AND SNIPPETS
