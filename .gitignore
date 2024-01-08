@@ -8,4 +8,5 @@ glazewm/.glaze-wm/errors.log
 i3-manjaro/.config/i3/config
 i3-manjaro/.config/i3status/config
 alacritty/.config/alacritty/alacritty.yml
+alacritty/.config/alacritty/alacritty.toml
 progress.txt
