@@ -161,8 +161,7 @@ end
 
 M.lsp_references = function()
 	-- get pane width from tmux and use half the width for the fname_width
-	local fname_width = math.floor(vim.fn.system("tmux display -p '#{pane_width}'") / 2)
-	-- print ("fname_width: " .. fname_width)
+	local fname_width = math.floor(vim.fn.system("tmux display -p '#{pane_width}'") / 3)
 	-- Maybe running outside of tmux
 	if fname_width == 0 then
 		fname_width = 30
