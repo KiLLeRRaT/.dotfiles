@@ -5,6 +5,7 @@ p.setup {
 	extensions = {
 	},
 	pickers = {
+		-- lsp_references = { fname_width = 30 },
 		buffers = {
 			mappings = {
 				i = {
@@ -132,6 +133,9 @@ vim.keymap.set("n", "<leader>sg", ":lua require('killerrat.plugins._telescope-nv
 -- FOR NON TELESCOPE LSP MAPPINGS, SEE: nvim-lua/.config/nvim/lua/killerrat/remap.lua
 vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>")
 vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>")
+
+-- vim.keymap.set("n", "gr", ":lua require('telescope.builtin').lsp_references({fname_width = " .. get_fname_width() .. "})<CR>")
+vim.keymap.set("n", "gr", ":lua require('killerrat.plugins._telescope-nvim').lsp_references()<CR>")
 vim.keymap.set("n", "<leader>fd", ":Telescope diagnostics<CR>")
 -- FOR NON TELESCOPE LSP MAPPINGS, SEE: nvim-lua/.config/nvim/lua/killerrat/remap.lua
 
@@ -153,6 +157,17 @@ M.grep_scripts = function()
 		cwd = "~/scripts",
 		hidden = false,
 	})
+end
+
+M.lsp_references = function()
+	-- get pane width from tmux and use half the width for the fname_width
+	local fname_width = math.floor(vim.fn.system("tmux display -p '#{pane_width}'") / 2)
+	-- print ("fname_width: " .. fname_width)
+	-- Maybe running outside of tmux
+	if fname_width == 0 then
+		fname_width = 30
+	end
+	require('telescope.builtin').lsp_references({fname_width = fname_width })
 end
 
 return M
