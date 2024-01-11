@@ -1,3 +1,10 @@
+require("grapple").setup({
+		popup_options = {
+				width = 100,
+		},
+})
+
+
 vim.keymap.set("n", "<leader>a", require("grapple").tag, {})
 vim.keymap.set("n", "<leader>A", require("grapple").popup_tags, {})
 
@@ -15,6 +22,4 @@ vim.keymap.set("n", "<leader>L", function() vim.cmd[[vsp]]; require('grapple').s
 -- vim.keymap.set("n", "<leader>J", ":vsp<cr>:lua require('harpoon.ui').nav_file(2)<cr>", { silent = true })
 -- vim.keymap.set("n", "<leader>K", ":vsp<cr>:lua require('harpoon.ui').nav_file(3)<cr>", { silent = true })
 -- vim.keymap.set("n", "<leader>L", ":vsp<cr>:lua require('harpoon.ui').nav_file(4)<cr>", { silent = true })
-
-
 
