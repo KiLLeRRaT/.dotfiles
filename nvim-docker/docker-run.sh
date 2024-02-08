@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 sudo docker run -d \
 	--name nvim-docker \
