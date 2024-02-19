@@ -242,6 +242,9 @@ alias setxkbmap-revert="setxkbmap -option ''"
 atail() { tail -f ---disable-inotify "$@"; }
 alias atail-t='tail -f -n +1 ---disable-inotify $(ls -t | head -1)'
 
+
+alias sdc='sudo docker compose'
+
 # find files matching the name, then sort them by last modified
 fd-t() {
 	fd -t f $1 --exec stat --printf='%Y\t%n\n' | sort -nr
