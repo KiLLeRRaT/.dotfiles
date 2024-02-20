@@ -6,6 +6,7 @@
 vim.cmd[[let g:switch_custom_definitions =
     \ [
     \   switch#NormalizedCaseWords(['private', 'protected', 'internal', 'public']),
+    \   switch#NormalizedCaseWords(['GRANT', 'REVOKE']),
     \   switch#NormalizedCaseWords(['before', 'after']),
     \   switch#NormalizedCaseWords(['to', 'from']),
     \   switch#NormalizedCaseWords(['yes', 'no']),
