@@ -155,6 +155,8 @@ local plugins = {
 	{ 'nvim-treesitter/playground',
 		cmd = "TSPlaygroundToggle"
 	},
+	-- goto definition on decompiled sources
+	{ 'Hoffs/omnisharp-extended-lsp.nvim' },
 
 	----------------------------------------
 	-- DEBUGGERS

@@ -131,7 +131,8 @@ vim.keymap.set("n", "<leader>sg", ":lua require('killerrat.plugins._telescope-nv
 
 
 -- FOR NON TELESCOPE LSP MAPPINGS, SEE: nvim-lua/.config/nvim/lua/killerrat/remap.lua
-vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>")
+-- vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>")
+vim.keymap.set("n", "gd", ":lua require('omnisharp_extended').telescope_lsp_definitions()<cr>")
 vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>")
 
 -- vim.keymap.set("n", "gr", ":lua require('telescope.builtin').lsp_references({fname_width = " .. get_fname_width() .. "})<CR>")

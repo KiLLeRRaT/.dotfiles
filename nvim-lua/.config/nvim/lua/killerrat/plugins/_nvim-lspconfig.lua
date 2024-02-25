@@ -68,6 +68,10 @@ vim.api.nvim_create_autocmd("FileType",{
 		if frameworkType == "netframework" then
 			print("Found a .NET Framework project, starting .NET Framework OmniSharp")
 			require'lspconfig'.omnisharp_mono.setup {
+				enable_decompilation_support = true,
+				handlers = {
+					["textDocument/definition"] = require('omnisharp_extended').handler,
+				},
 				organize_imports_on_format = true,
 				on_attach = function (client, bufnr)
 
@@ -118,6 +122,10 @@ vim.api.nvim_create_autocmd("FileType",{
 		elseif frameworkType == "netcore" then
 			print("Found a .NET Core project, starting .NET Core OmniSharp")
 			require'lspconfig'.omnisharp.setup {
+				enable_decompilation_support = true,
+				handlers = {
+					["textDocument/definition"] = require('omnisharp_extended').handler,
+				},
 				organize_imports_on_format = true,
 				on_attach = function (client, bufnr)
 
