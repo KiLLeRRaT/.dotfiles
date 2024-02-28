@@ -15,6 +15,7 @@ local lsp_installer_ensure_installed = {
 	--"sqls", -- https://github.com/lighttiger2505/sqls
 	"lemminx",
 	"yamlls",
+	"azure_pipelines_ls",
 
 	-- DAP
 	-- "netcoredbg",
