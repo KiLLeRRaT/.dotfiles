@@ -56,5 +56,6 @@ vim.keymap.set("n", "<leader>uB", ":lua require'dap'.set_breakpoint(vim.fn.input
 -- -- vim.keymap.set("n", "<leader>lp", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
 
 vim.keymap.set("n", "<leader>ur", ":lua require'dap'.repl.open()<CR>")
+vim.keymap.set("n", "<leader>uR", ":lua require'dap'.run_last()<CR>")
 
 -- -- vim.keymap.set("n", "<leader>ut", ":lua require'dap-go'.debug_test()<CR>")
