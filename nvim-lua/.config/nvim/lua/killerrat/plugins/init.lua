@@ -41,3 +41,6 @@ require("killerrat.plugins._sniprun")
 require("killerrat.plugins._nvim-dap")
 require("killerrat.plugins._oil-nvim")
 require("killerrat.plugins._zen-mode-nvim")
+require("killerrat.plugins._gx-nvim")
+
+
