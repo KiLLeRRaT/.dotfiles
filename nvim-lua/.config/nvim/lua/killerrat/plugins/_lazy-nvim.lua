@@ -135,6 +135,7 @@ local plugins = {
 	{ 'L3MON4D3/LuaSnip' },																			-- https://github.com/L3MON4D3/LuaSnip
 	{ 'saadparwaiz1/cmp_luasnip' },															-- https://github.com/saadparwaiz1/cmp_luasnip
 	{ 'Issafalcon/lsp-overloads.nvim'},													-- https://github.com/Issafalcon/lsp-overloads.nvim
+	{ 'uga-rosa/cmp-dictionary' },																-- https://github.com/uga-rosa/cmp-dictionary
 
 	----------------------------------------
 		-- LSP RELATED PLUGINS

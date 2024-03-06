@@ -80,11 +80,13 @@ cmp.setup {
 		end)
 	},
 	sources = {
-		{ name = 'nvim_lsp' },
-		{ name = 'path' },
+		-- https://www.reddit.com/r/neovim/comments/zkj1d8/comment/j011kdn
+		-- { name = 'nvim_lsp', keyword_length = 6, group_index = 1, max_item_count = 30 }
+		{ name = 'nvim_lsp', keyword_length = 3, max_item_count = 30 },
+		{ name = 'path', keyword_length = 3, max_item_count = 30 },
 		-- { name = "buffer" }, -- CURRENT BUFFER ONLY
 		{ -- ALL BUFFERS
-			name = 'buffer',
+			name = 'buffer', keyword_length = 3, max_item_count = 30,
 			option = {
 				get_bufnrs = function()
 					return vim.api.nvim_list_bufs()
@@ -106,10 +108,10 @@ cmp.setup {
 		-- { name = 'nvim_lsp_signature_help' }, -- DISABLED ON 14 Sep 2023 in favor of lsp-overload
 		-- { name = 'vim-dadbod-completion' },
 		{ name = 'calc' },
-		{ name = 'emoji' },
-		{ name = 'neorg' },
+		{ name = 'emoji', keyword_length = 2 },
+		{ name = 'neorg', keyword_length = 3, max_item_count = 30},
 		-- { name = 'spell' },
-		-- { name = 'dictionary', keyword_length = 2 },
+		{ name = 'dictionary', keyword_length = 1, max_item_count = 30 },
 		{ name = 'luasnip' },
 	},
 	snippet = {
@@ -125,7 +127,8 @@ cmp.setup {
 				nvim_lsp = "[L]",
 				path = "[P]",
 				sql = "[DB]",
-				luasnip = "[Snippet]",
+				luasnip = "[SNIP]",
+				dictionary = "[DICT]"
 				-- neorg = "[Neorg]",
 			})[entry.source.name]
 
@@ -134,3 +137,12 @@ cmp.setup {
 	},
 }
 
+require("cmp_dictionary").setup({
+	paths = { "/usr/share/dict/words" },
+	exact_length = 2,
+	first_case_insensitive = true,
+	-- document = {
+	-- 	enable = true,
+	-- 	command = { "wn", "${label}", "-over" },
+	-- },
+})
