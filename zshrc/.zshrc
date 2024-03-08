@@ -207,6 +207,11 @@ alias gba='git branch --all'
 alias gco='git checkout'
 alias gm='git merge'
 alias gt='git tag | sort -V | tail'
+
+gfd() {
+	fd -t d --max-depth=1 -x \
+		bash -c "pushd {} &> /dev/null;git fetch;git status | (echo -n ""{}: "";sed '/Your branch/!d');popd &> /dev/null"
+}
 # alias gtp='fn-gtp() { git tag $1 && git push --tags };fn-gtp'
 gtp() { git tag $1 && git push --tags }
 # alias gtD='fn-gt() { git tag -d $1 && git push origin -d $1 };fn-gt'
