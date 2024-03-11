@@ -126,13 +126,14 @@ require("diffview").setup({
 --	└──────────────┘
 		diff4 = {
 			-- Mappings in 4-way diff layouts
-			{ { "n", "x" }, "2do", actions.diffget("base") },   -- Obtain the diff hunk from the BASE version of the file
-			{ { "n", "x" }, "1do", actions.diffget("ours") },   -- Obtain the diff hunk from the OURS version of the file
-			{ { "n", "x" }, "3do", actions.diffget("theirs") }, -- Obtain the diff hunk from the THEIRS version of the file
-
-			{ { "n", "x" }, "dob", actions.diffget("base") },   -- Obtain the diff hunk from the BASE version of the file
-			{ { "n", "x" }, "doo", actions.diffget("ours") },   -- Obtain the diff hunk from the OURS version of the file
-			{ { "n", "x" }, "dot", actions.diffget("theirs") }, -- Obtain the diff hunk from the THEIRS version of the file
+			-- SEE g? for help, but <leader>co, <leader>cb, <leader>ct works well.
+			-- { { "n", "x" }, "2do", actions.diffget("base") },   -- Obtain the diff hunk from the BASE version of the file
+			-- { { "n", "x" }, "1do", actions.diffget("ours") },   -- Obtain the diff hunk from the OURS version of the file
+			-- { { "n", "x" }, "3do", actions.diffget("theirs") }, -- Obtain the diff hunk from the THEIRS version of the file
+			--
+			-- { { "n", "x" }, "dob", actions.diffget("base") },   -- Obtain the diff hunk from the BASE version of the file
+			-- { { "n", "x" }, "doo", actions.diffget("ours") },   -- Obtain the diff hunk from the OURS version of the file
+			-- { { "n", "x" }, "dot", actions.diffget("theirs") }, -- Obtain the diff hunk from the THEIRS version of the file
 		},
 
 
