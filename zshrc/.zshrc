@@ -494,3 +494,5 @@ if [ -d ~/.dotnet/tools ]
 then
 	export PATH=$PATH:~/.dotnet/tools
 fi
+
+export PATH=$PATH:~/.local/bin
