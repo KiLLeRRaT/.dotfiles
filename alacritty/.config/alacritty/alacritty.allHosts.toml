@@ -378,52 +378,52 @@ mods = "Alt"
 
 [[keyboard.bindings]]
 chars = "\u001B!"
-key = "Key0"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-chars = "\u001B@"
 key = "Key1"
 mods = "Alt|Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B#"
+chars = "\u001B@"
 key = "Key2"
 mods = "Alt|Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B$"
+chars = "\u001B#"
 key = "Key3"
 mods = "Alt|Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B%"
+chars = "\u001B$"
 key = "Key4"
 mods = "Alt|Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B^"
+chars = "\u001B%"
 key = "Key5"
 mods = "Alt|Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B&"
+chars = "\u001B^"
 key = "Key6"
 mods = "Alt|Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B*"
+chars = "\u001B&"
 key = "Key7"
 mods = "Alt|Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B("
+chars = "\u001B*"
 key = "Key8"
 mods = "Alt|Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B)"
+chars = "\u001B("
 key = "Key9"
+mods = "Alt|Shift"
+
+[[keyboard.bindings]]
+chars = "\u001B)"
+key = "Key0"
 mods = "Alt|Shift"
 
 [[keyboard.bindings]]

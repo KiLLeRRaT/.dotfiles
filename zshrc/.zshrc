@@ -473,6 +473,18 @@ then
 	# bindkey '^Y' autosuggest-accept
 	function zvm_after_init() {
 		zvm_bindkey viins '^Y' autosuggest-accept
+
+		# FROM: https://stackoverflow.com/questions/28078756/how-to-add-all-tab-completitions-to-my-current-command
+		zle -C all-matches complete-word _my_generic
+		zstyle ':completion:all-matches::::' completer _all_matches
+		zstyle ':completion:all-matches:*' old-matches only
+		_my_generic () {
+			local ZSH_TRACE_GENERIC_WIDGET=  # works with "setopt nounset"
+			_generic "$@"
+		}
+		# bindkey '^X^a' all-matches
+		zvm_bindkey viins '^[*' all-matches
+
 	}
 fi
 
