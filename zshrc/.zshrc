@@ -469,11 +469,15 @@ fi
 if [ -f ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]
 then
 	source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+	# bindkey '^Y' autosuggest-accept
+	function zvm_after_init() {
+		zvm_bindkey viins '^Y' autosuggest-accept
+	}
 fi
 
 ########################################
 
-bindkey '^y' autosuggest-accept
 
 # WAS CAUSING ISSUES, LETS SEE IF THINGS WORK AFTER REMOVING THIS
 # ADDED IT BACK, NOT SURE WHAT HTE ISSUE WAS, BUT I DIDNT HAVE NODE ON MY PATH WHEN I DIDNT HAVE
