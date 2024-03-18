@@ -46,7 +46,7 @@ size = 18.0
 # <config hostname="surface3">
 size = 16.0
 # </config>
-# <config hostname="albert-satellitepro">
+# <config hostname="toshiba">
 size = 10.0
 # </config>
 # </hostSpecificConfig>

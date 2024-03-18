@@ -163,7 +163,7 @@ ethernet wlp3s0 {
 }
 # </config>
 
-# <config hostname="albert-satellitepro">
+# <config hostname="toshiba">
 # order += "ethernet _first_"
 order += "ethernet wlp2s0"
 order += "battery all"
