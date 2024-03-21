@@ -182,6 +182,9 @@ alias lst="ls -t --color=always| head -15"
 alias llt="ll -t --color=always| head -15"
 alias tmux='tmux -2'
 alias grep='grep --color=auto'
+alias rl='source ~/.zshrc'
+alias df='df -h'
+alias xclip='xclip -selection clipboard'
 
 alias db='dotnet build'
 
@@ -222,10 +225,6 @@ gtD() { git tag -d $1;git push origin -d $1 }
 #; fn_gtr 3.4.0
 
 
-
-
-alias rl='source ~/.zshrc'
-alias df='df -h'
 
 	# cmd=$(remmina -c $(ls $PWD/* | fzf -e --select-1 --no-sort --query "$1"))
 	# cmd1=$(lssh | fzf --select-1 --query "$1" --height=~50 | cut -f 2)
