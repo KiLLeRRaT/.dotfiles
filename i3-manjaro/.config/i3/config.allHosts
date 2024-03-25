@@ -373,32 +373,20 @@ workspace $ws9 output $screenright
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="calamares"] floating enable border normal
-for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
-for_window [class="fpakman"] floating enable
-for_window [class="Galculator"] floating enable border pixel 1
 for_window [class="GParted"] floating enable border normal
-for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Manjaro-hello"] floating enable
 for_window [class="Manjaro Settings Manager"] floating enable border normal
-for_window [title="MuseScore: Play Panel"] floating enable
-for_window [class="Nitrogen"] floating enable sticky enable border normal
-for_window [class="Oblogout"] fullscreen enable
-for_window [class="octopi"] floating enable
 for_window [title="About Pale Moon"] floating enable
 for_window [class="Pamac-manager"] floating enable
 # for_window [class="Pavucontrol"] floating enable
 for_window [class="Pavucontrol"] floating enable border normal
 for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
-for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
-for_window [class="(?i)virtualbox"] floating enable border normal
-for_window [class="Xfburn"] floating enable
 
 for_window [title="TimeSheetEntry - Brave$"] floating enable border normal, move position center, resize set 700 650
 for_window [title="^Spaces$"] floating enable border normal, move position center, resize set 760 800
@@ -491,19 +479,9 @@ mode "resize" {
 # Lock screen
 # bindsym $mod+9 exec --no-startup-id blurlock
 
-# Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
-# Wallpaper / Background image
-# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
-# exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
-
-# exec --no-startup-id manjaro-hello
-
-# NetworkManager
 exec --no-startup-id nm-applet
 # exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
-
 
 # exec --no-startup-id xfce4-power-manager
 # exec_always --no-startup-id ff-theme-util
@@ -710,39 +688,42 @@ mode "$mode_gaps_outer" {
 # DELETE RANGE USING SED, FROM: https://stackoverflow.com/a/29530617/182888
 # <hostSpecificConfig>
 # <config hostname="albert-hppavilion">
+font xft:SF Pro Display 11
+# 󰭹 chat
+
+assign [class="Brave"] $ws8
+assign [class="Alacritty"] $ws2
+
 exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-font xft:SF Pro Display 11
-# 󰭹 chat
-
-# Wallpaper / Background image
-exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*
-
-
 exec --no-startup-id onboard
 exec --no-startup-id pipewire-pulse
 exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 
 # exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'
-assign [class="Brave"] $ws8
-assign [class="Alacritty"] $ws2
 
 #exec --no-startup-id "alacritty -e tmux
 # exec --no-startup-id conky -c ~/.config/conky/conky-surface3.conf
 
 # </config>
 # <config hostname="surface3">
-exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
-exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 font xft:URWGothic-Book 11
 # 󰭹 chat
 
-# Wallpaper / Background image
-exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
+assign [class="Brave"] $ws8
+assign [class="Alacritty"] $ws2
 
+exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
+exec --no-startup-id onboard
+exec --no-startup-id pipewire-pulse
+exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
+# exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'
+exec --no-startup-id "alacritty -e tmux
+# exec --no-startup-id conky -c ~/.config/conky/conky-surface3.conf
 
 # Screen brightness controls
 # Need xorg-xbacklight package, pamac install xorg-xbacklight
@@ -755,32 +736,17 @@ exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize 
 bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id "xbacklight -inc 10; notify-send 'brightness up'"
 bindsym $mod+XF86AudioLowerVolume exec --no-startup-id "xbacklight -dec 10; notify-send 'brightness down'"
 # bindsym $mod+XF86PowerOff exec onboard
-
-exec --no-startup-id onboard
-exec --no-startup-id pipewire-pulse
-exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
-
-# exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'
-assign [class="Brave"] $ws8
-assign [class="Alacritty"] $ws2
-
-exec --no-startup-id "alacritty -e tmux
-exec --no-startup-id conky -c ~/.config/conky/conky-surface3.conf
-
-
 # </config>
 
 # <config hostname="agouws">
-exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
-exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
-exec --no-startup-id xfce4-power-manager
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
 font xft:SF Pro Display 11
 # 󰭹 chat
 
-# Wallpaper / Background image
-exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
+exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
+exec --no-startup-id xfce4-power-manager
+exec_always --no-startup-id ff-theme-util
+exec_always --no-startup-id fix_xcursor
 
 # exec --no-startup-id "nmcli con down enp42s0"
 
@@ -799,7 +765,6 @@ exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 # exec --no-startup-id pa-applet
 
 # RESTORE LAYOUTS
-
 exec --no-startup-id i3-msg 'workspace $ws1; append_layout ~/.config/i3/workspaces/ws-1.json'
 exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'
 exec --no-startup-id i3-msg 'workspace $ws3; append_layout ~/.config/i3/workspaces/ws-3.json'
@@ -820,17 +785,16 @@ exec_always --no-startup-id "google-chat-linux"
 exec_always --no-startup-id "alacritty -e tmux"
 # </config>
 # <config hostname="arch-agouws">
+font xft:SF Pro Display 11
+# 󰭹 chat
+
 # FROM: https://github.com/betterlockscreen/betterlockscreen
 # betterlockscreen -u ~/.dotfiles/images
 exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-font xft:SF Pro Display 11
-# 󰭹 chat
-
 # TURN ON NUMLOCK USING numlockx LIBRARY
 exec --no-startup-id numlockx
 exec --no-startup-id pipewire-pulse
@@ -838,7 +802,6 @@ exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 # exec --no-startup-id pa-applet
 
 # RESTORE LAYOUTS
-
 exec --no-startup-id i3-msg 'workspace $ws1; append_layout ~/.config/i3/workspaces/arch-agouws/ws-1.json'
 exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/arch-agouws/ws-2.json'
 exec --no-startup-id i3-msg 'workspace $ws3; append_layout ~/.config/i3/workspaces/arch-agouws/ws-3.json'
@@ -849,13 +812,10 @@ exec --no-startup-id i3-msg 'workspace $ws7; append_layout ~/.config/i3/workspac
 exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/arch-agouws/ws-8.json'
 exec --no-startup-id i3-msg 'workspace $ws9; append_layout ~/.config/i3/workspaces/arch-agouws/ws-9.json'
 
-
 # exec --no-startup-id i3-msg 'workspace $ws9; append_layout ~/.config/i3/workspaces/arch-agouws/ws-9.json'
 # assign [class="Brave"] $ws8
 exec --no-startup-id i3-msg 'workspace $ws9; exec brave --profile-directory=Default'
 exec --no-startup-id i3-msg 'workspace $ws8; exec brave --profile-directory=Profile\ 1'
-
-
 
 # exec --no-startup-id "brave --profile-directory=Default"
 # exec --no-startup-id "brave --profile-directory=Profile\ 1"
@@ -867,29 +827,19 @@ exec --no-startup-id "alacritty -e zsh -c 'tmux a || tmux'"
 exec --no-startup-id i3-msg 'workspace $ws3; exec alacritty -e zsh -c "tmux a -t Work_Build"'
 # </config>
 # <config hostname="arch-delllatitude">
+font xft:SF Pro Display 11
+# 󰭹 chat
+
 # FROM: https://github.com/betterlockscreen/betterlockscreen
 # betterlockscreen -u ~/.dotfiles/images
 exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 
-exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
-
-# NEED A UDEV RULE TO ALLOW NON ROOT TO ADJUST BRIGHTNESS. SEE:
-# https://wiki.archlinux.org/title/Talk:Backlight#Udev_rules_for_permissions_of_brightness_doesn't_work
-bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-delllatitude/set-brightness.sh +50"
-bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-delllatitude/set-brightness.sh -50"
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
-
-bindsym $mod+XF86MonBrightnessUp exec --no-startup-id "pactl set-sink-volume 0 +5%"
-bindsym $mod+XF86MonBrightnessDown exec --no-startup-id "pactl set-sink-volume 0 -5%"
 
 
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-font xft:SF Pro Display 11
-# 󰭹 chat
-
 # TURN ON NUMLOCK USING numlockx LIBRARY
 exec --no-startup-id numlockx
 exec --no-startup-id pipewire-pulse
@@ -909,35 +859,28 @@ exec --no-startup-id i3-msg 'workspace $ws8; exec brave --profile-directory=Defa
 # exec --no-startup-id "alacritty -e tmux"
 exec --no-startup-id i3-msg "workspace $ws2; exec alacritty -e zsh -c 'tmux a || tmux'"
 # exec --no-startup-id "alacritty -e zsh -c 'tmux a || tmux'"
+
+# NEED A UDEV RULE TO ALLOW NON ROOT TO ADJUST BRIGHTNESS. SEE:
+# https://wiki.archlinux.org/title/Talk:Backlight#Udev_rules_for_permissions_of_brightness_doesn't_work
+bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-delllatitude/set-brightness.sh +50"
+bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-delllatitude/set-brightness.sh -50"
+# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
+# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+
+bindsym $mod+XF86MonBrightnessUp exec --no-startup-id "pactl set-sink-volume 0 +5%"
+bindsym $mod+XF86MonBrightnessDown exec --no-startup-id "pactl set-sink-volume 0 -5%"
 # </config>
 
-
 # <config hostname="arch-agouwsmacbookpro">
-# exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
+font xft:SF Pro Display 12
+# 󰭹 chat
+
 exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
-# exec --no-startup-id xfce4-power-manager
-# exec_always --no-startup-id ff-theme-util
-# exec_always --no-startup-id fix_xcursor
 # SWAP LEFT ALT/OPTION WITH LEFT COMMAND, FROM: https://askubuntu.com/a/29609
 exec_always --no-startup-id sleep 5;setxkbmap -option ctrl:nocaps -option "terminate:ctrl_alt_bksp" -option altwin:swap_lalt_lwin
-
-font xft:SF Pro Display 12
-
 exec --no-startup-id blueman-applet
 exec_always --no-startup-id dunst
-
-bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
-bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh -50"
-bindsym $mod+F10 exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
-bindsym $mod+Shift+F10 exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh -50"
-
-bindsym XF86KbdBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-keyboard-brightness.sh +50"
-bindsym XF86KbdBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-keyboard-brightness.sh -50"
-
-# Wallpaper / Background image
-exec --no-startup-id --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
-
 exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 
 # RESTORE LAYOUTS
@@ -947,23 +890,26 @@ exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspac
 exec --no-startup-id "brave --profile-directory=Default"
 exec --no-startup-id "alacritty -e tmux"
 
+bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
+bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh -50"
+bindsym $mod+F10 exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
+bindsym $mod+Shift+F10 exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh -50"
+bindsym XF86KbdBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-keyboard-brightness.sh +50"
+bindsym XF86KbdBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-keyboard-brightness.sh -50"
 # </config>
 
 # <config hostname="toshiba">
+font xft:URWGothic-Book 11
+# 󰭹 chat
+
 exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-font xft:URWGothic-Book 11
-# 󰭹 chat
-
-# Wallpaper / Background image
-exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
 
 # # TURN ON NUMLOCK USING numlockx LIBRARY
 exec --no-startup-id numlockx
-
 exec --no-startup-id pipewire-pulse
 exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 
@@ -976,20 +922,17 @@ exec --no-startup-id "alacritty -e tmux"
 # </config>
 
 # <config hostname="sierra"><!-- SONY VAIO LAPTOP -->
+font xft:URWGothic-Book 11
+# 󰭹 chat
+
 exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-font xft:URWGothic-Book 11
-# 󰭹 chat
-
-# Wallpaper / Background image
-exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~./dotfiles/images/*; sleep 1; picom -b
 
 exec --no-startup-id pulseaudio
 exec --no-startup-id pa-applet
-
 exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'
 exec --no-startup-id "alacritty -e tmux"
 # </config>
