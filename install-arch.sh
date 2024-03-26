@@ -136,8 +136,8 @@ sudo stow -t / lightdm
 echo "Stow images into /usr/share/pixmaps"
 sudo mkdir -p /usr/share/backgrounds/albert
 sudo chmod o+x /usr/share/backgrounds/albert
-sudo chmod o+r /usr/share/backgrounds/albert/*
 sudo stow -t /usr/share/backgrounds/albert images
+sudo chmod o+r /usr/share/backgrounds/albert/*
 
 pushd ~/.dotfiles
 stow alacritty dmenurc dosbox dunst fonts gitconfig gtk-2.0 gtk-3.0 gtk-4.0 i3-manjaro nvim-lua oh-my-posh picom ranger tmux zshrc
