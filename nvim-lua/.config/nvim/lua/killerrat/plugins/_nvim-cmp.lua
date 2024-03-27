@@ -38,6 +38,28 @@ local cmp = require 'cmp'
 cmp.setup {
 	mapping = {
 		['<Esc>'] = cmp.mapping.abort(),
+		['<C-d>'] = cmp.mapping.scroll_docs(-4),
+		['<C-u>'] = cmp.mapping.scroll_docs(4),
+		['<C-n>'] = cmp.mapping(function(_)
+			if cmp.visible() then
+				-- Do not replace word under cursor
+				cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+			elseif luasnip.expand_or_locally_jumpable() then
+				luasnip.expand_or_jump()
+			end
+		end, { 'i', 's' }),
+		['<C-p>'] = cmp.mapping(function(_)
+			if cmp.visible() then
+				-- Do not replace word under cursor
+				cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+			elseif luasnip.locally_jumpable(-1) then
+				luasnip.jump(-1)
+			end
+		end, { 'i', 's' }),
+
+
+
+
 
 		-- FROM: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
 		-- ['<Tab>'] = cmp.mapping.select_next_item(),
