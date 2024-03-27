@@ -8,6 +8,7 @@
 	logo = log --pretty=tformat:'%C(auto,red)%m %C(auto,yellow)%h%C(auto,magenta) %G? %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(15,trunc)%aN%C(auto,reset)%s%C(auto,red) %gD %D' --date=short
 	adog = log --all --decorate --oneline --graph
 	dog = log --decorate --oneline --graph
+	bb = !~/.gitscripts/better-git-branch.sh
 
 [merge]
 	tool = nvim
