@@ -10,6 +10,12 @@ require'lualine'.setup {
 			{ 'mode', upper = true }
 		}
 	},
+	winbar = {
+		lualine_z = { 'filename' }
+	},
+	inactive_winbar = {
+		lualine_z = { 'filename' }
+	},
 	inactive_sections = {
 		lualine_a = {
 			{ window }
@@ -18,7 +24,8 @@ require'lualine'.setup {
 	options = {
 		-- theme = 'gruvbox'
 		-- theme = 'palenight'
-		theme = 'tokyonight'
+		theme = 'tokyonight',
+		globalstatus = true
 	}
 }
 
