@@ -166,7 +166,7 @@ installAurPackage() {
 	popd
 }
 
-installAurPackage oh-my-posh
+installAurPackage oh-my-posh-bin
 installAurPackage brave-bin
 
 echo "Set up seahorse and create a default keyring. This is needed for 1Password otherwise it keeps asking the 2FA prompt again and again."
