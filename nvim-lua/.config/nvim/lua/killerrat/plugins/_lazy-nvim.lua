@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local plugins = {
+lazyPlugins = {
 	----------------------------------------
 		-- LIBRARIES
 	----------------------------------------
@@ -92,7 +92,7 @@ local plugins = {
 	-- " SWITCH TO OPPOSITE WORD, E.G. TRUE -> FALSE, etc.
 	{ 'AndrewRadev/switch.vim' },											-- https://github.com/AndrewRadev/switch.vim
 	{ 'nvim-lualine/lualine.nvim' },										-- https://github.com/nvim-lualine/lualine.nvim
-	{ 'akinsho/bufferline.nvim' },											-- https://github.com/akinsho/bufferline.nvim
+	-- { 'akinsho/bufferline.nvim' },											-- https://github.com/akinsho/bufferline.nvim
 	{ 'lewis6991/gitsigns.nvim' },											-- https://github.com/lewis6991/gitsigns.nvim
 	-- neorg related
 	{ 'nvim-neorg/neorg',
@@ -183,7 +183,7 @@ local plugins = {
 
 }
 
-require("lazy").setup(plugins, {
+require("lazy").setup(lazyPlugins, {
 	performance = {
 		rtp = {
 			disabled_plugins = {
