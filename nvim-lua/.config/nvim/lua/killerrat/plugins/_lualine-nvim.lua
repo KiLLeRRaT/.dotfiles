@@ -11,9 +11,11 @@ require'lualine'.setup {
 		}
 	},
 	winbar = {
+		lualine_x = {'%-10.3n'},
 		lualine_z = { 'filename' }
 	},
 	inactive_winbar = {
+		lualine_x = {'%-10.3n'},
 		lualine_z = { 'filename' }
 	},
 	inactive_sections = {
