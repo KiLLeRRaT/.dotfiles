@@ -60,12 +60,17 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 
 RUN echo echo -e "\033[32m Configure SSH Keys\033[0m" && \
-	ssh-keygen -t ed25519 -C "albert@docker" -f /root/.ssh/id_ed25519
+	ssh-keygen -t ed25519 -C "$(echo $HOST)@docker" -f /root/.ssh/id_ed25519
 
+ARG GIT_EMAIL
+ARG GIT_NAME
 
-	# git config --global user.email albert@gouws.org && \
-	# git config --global user.name Albert Gouws && \
+# RUN echo "GIT_EMAIL: $GIT_EMAIL"
+# RUN echo "GIT_NAME: $GIT_NAME"
+
 RUN echo -e "\033[32m Configure Git\033[0m" && \
+	git config --global user.email $GIT_EMAIL && \
+	git config --global user.name $GIT_NAME && \
 	git config --global alias.logo "log --pretty=tformat:'%C(auto,red)%m %C(auto,yellow)%h%C(auto,magenta) %G? %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(15,trunc)%aN%C(auto,reset)%s%C(auto,red) %gD %D' --date=short" && \
 	git config --global alias.adog "log --all --decorate --oneline --graph" && \
 	git config --global alias.dog "log --decorate --oneline --graph" && \
@@ -74,8 +79,15 @@ RUN echo -e "\033[32m Configure Git\033[0m" && \
 	git config --global core.editor "nvim" && \
 	git config --global core.excludesfile ~/.gitignore && \
 	git config --global core.autocrlf input && \
-	git config --global init.defaultBranch master
+	git config --global init.defaultBranch master && \
+	git config --global rerere.enabled true && \
+	git config --global merge.tool nvim && \
+	git config --global merge.conflictstyle diff3 && \
+	git config --global mergetool.nvim.cmd "nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'" && \
+	echo "$(git config --get user.email) namespaces=\"git\" $(cat /root/.ssh/id_ed25519.pub)" >> /root/.ssh/allowed_signers && \
+	git config --global gpg.ssh.allowedSignersFile /root/.ssh/allowed_signers
 
+# RUN cat /root/.ssh/allowed_signers && echo " XYZ"
 
 	# WE DON'T WANT TO STOW GITCONFIG IN HERE! IT'S ALBERT's OWN GITCONFIG!
 	# rm /root/.gitconfig && stow gitconfig && \

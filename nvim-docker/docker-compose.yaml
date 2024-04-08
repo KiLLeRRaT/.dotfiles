@@ -1,8 +1,9 @@
-version: "3.8"
 services:
   neovim:
-    build: .
-    container_name: neovim
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # container_name: neovim
     image: dockerregistry.gouws.org/nvim-docker
     restart: unless-stopped
     volumes:
