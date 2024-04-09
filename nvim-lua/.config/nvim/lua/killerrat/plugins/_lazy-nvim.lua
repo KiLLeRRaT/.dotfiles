@@ -97,7 +97,7 @@ lazyPlugins = {
 	-- neorg related
 	{ 'nvim-neorg/neorg',
 		dependencies = {'nvim-neorg/neorg-telescope', 'nvim-lua/plenary.nvim'},
-		build = ":Neorg sync-parsers",
+		-- build = ":Neorg sync-parsers",
 		ft = "norg"
 	},												-- https://github.com/nvim-neorg/neorg
 	{ 'nvim-neorg/neorg-telescope',
