@@ -63,111 +63,96 @@ vim.api.nvim_create_autocmd("FileType",{
 			-- print("dotnetlsp is already set: " .. vim.g.dotnetlsp)
 			return
 		end
+
+
+
+		local on_attach = function (client, bufnr)
+			--- Guard against servers without the signatureHelper capability
+			if client.server_capabilities.signatureHelpProvider then
+				require('lsp-overloads').setup(client, { })
+				-- ...
+				-- keymaps = {
+				-- 		next_signature = "<C-j>",
+				-- 		previous_signature = "<C-k>",
+				-- 		next_parameter = "<C-l>",
+				-- 		previous_parameter = "<C-h>",
+				-- 		close_signature = "<A-s>"
+				-- 	},
+				-- ...
+			end
+		end
+
+		-- SEE: https://github.com/omnisharp/omnisharp-roslyn
+		local settings = {
+			FormattingOptions = {
+				-- Enables support for reading code style, naming convention and analyzer
+				-- settings from .editorconfig.
+				EnableEditorConfigSupport = true,
+				-- Specifies whether 'using' directives should be grouped and sorted during
+				-- document formatting.
+				OrganizeImports = true,
+			},
+			MsBuild = {
+				-- If true, MSBuild project system will only load projects for files that
+				-- were opened in the editor. This setting is useful for big C# codebases
+				-- and allows for faster initialization of code navigation features only
+				-- for projects that are relevant to code that is being edited. With this
+				-- setting enabled OmniSharp may load fewer projects and may thus display
+				-- incomplete reference lists for symbols.
+				LoadProjectsOnDemand = nil,
+			},
+			RoslynExtensionsOptions = {
+				-- Enables support for roslyn analyzers, code fixes and rulesets.
+				EnableAnalyzersSupport = true,
+				-- Enables support for showing unimported types and unimported extension
+				-- methods in completion lists. When committed, the appropriate using
+				-- directive will be added at the top of the current file. This option can
+				-- have a negative impact on initial completion responsiveness,
+				-- particularly for the first few completion sessions after opening a
+				-- solution.
+				EnableImportCompletion = nil,
+				-- Only run analyzers against open files when 'enableRoslynAnalyzers' is
+				-- true
+				AnalyzeOpenDocumentsOnly = nil,
+				enableDecompilationSupport = true,
+			},
+			Sdk = {
+				-- Specifies whether to include preview versions of the .NET SDK when
+				-- determining which version to use for project loading.
+				IncludePrereleases = true,
+			},
+		}
+
+
 		-- CHECK THE CSPROJ OR SOMETHING ELSE TO CONFIRM IT'S .NET FRAMEWORK OR .NET CORE PROJECT
 		local frameworkType = getFrameworkType()
 		if frameworkType == "netframework" then
 			print("Found a .NET Framework project, starting .NET Framework OmniSharp")
 			require'lspconfig'.omnisharp_mono.setup {
-				enable_decompilation_support = true,
+				-- enable_decompilation_support = true,
 				handlers = {
 					["textDocument/definition"] = require('omnisharp_extended').handler,
 				},
-				organize_imports_on_format = true,
-				on_attach = function (client, bufnr)
-
-					--- Guard against servers without the signatureHelper capability
-					if client.server_capabilities.signatureHelpProvider then
-						require('lsp-overloads').setup(client, { })
-
-						-- ...
-						-- keymaps = {
-						-- 		next_signature = "<C-j>",
-						-- 		previous_signature = "<C-k>",
-						-- 		next_parameter = "<C-l>",
-						-- 		previous_parameter = "<C-h>",
-						-- 		close_signature = "<A-s>"
-						-- 	},
-						-- ...
-
-
-					end
-
-					-- WORKAROUND INVALID CHAR GROUP ISSUE WITH OMNISHARP
-					-- FROM: https://github.com/OmniSharp/omnisharp-roslyn/issues/2483#issuecomment-1515504374
-					-- https://github.com/OmniSharp/omnisharp-roslyn/issues/2483#issuecomment-1492605642
-
-					-- COMMENTED IT OUT ON 14 SEP 2023, BECAUSE IT SEEMS TO BE FIXED IN THE LATEST VERSION OF OMNISHARP
-					-- COMMENTED IT OUT ON 14 SEP 2023, BECAUSE IT SEEMS TO BE FIXED IN THE LATEST VERSION OF OMNISHARP
-					-- COMMENTED IT OUT ON 14 SEP 2023, BECAUSE IT SEEMS TO BE FIXED IN THE LATEST VERSION OF OMNISHARP
-					-- local tokenModifiers = client.server_capabilities.semanticTokensProvider.legend.tokenModifiers
-					-- for i, v in ipairs(tokenModifiers) do
-					-- 	local tmp = string.gsub(v, ' ', '_')
-					-- 	tokenModifiers[i] = string.gsub(tmp, '-_', '')
-					-- end
-					-- local tokenTypes = client.server_capabilities.semanticTokensProvider.legend.tokenTypes
-					-- for i, v in ipairs(tokenTypes) do
-					-- 	local tmp = string.gsub(v, ' ', '_')
-					-- 	tokenTypes[i] = string.gsub(tmp, '-_', '')
-					-- end
-				-- END WORKAROUND INVALID CHAR GROUP ISSUE WITH OMNISHARP
-					-- COMMENTED IT OUT ON 14 SEP 2023, BECAUSE IT SEEMS TO BE FIXED IN THE LATEST VERSION OF OMNISHARP
-					-- COMMENTED IT OUT ON 14 SEP 2023, BECAUSE IT SEEMS TO BE FIXED IN THE LATEST VERSION OF OMNISHARP
-					-- COMMENTED IT OUT ON 14 SEP 2023, BECAUSE IT SEEMS TO BE FIXED IN THE LATEST VERSION OF OMNISHARP
-
-					-- on_attach(client, bufnr)
-				end,
+				-- organize_imports_on_format = true,
+				settings = settings,
+				on_attach = on_attach,
 			}
 			vim.g.dotnetlsp = "omnisharp_mono"
 			vim.cmd('LspStart omnisharp_mono')
 		elseif frameworkType == "netcore" then
 			print("Found a .NET Core project, starting .NET Core OmniSharp")
 			require'lspconfig'.omnisharp.setup {
-				enable_decompilation_support = true,
+				-- enable_decompilation_support = true,
 				handlers = {
 					["textDocument/definition"] = require('omnisharp_extended').handler,
 				},
-				organize_imports_on_format = true,
-				on_attach = function (client, bufnr)
-
-					--- Guard against servers without the signatureHelper capability
-					if client.server_capabilities.signatureHelpProvider then
-						require('lsp-overloads').setup(client, { })
-
-			-- ...
-			-- keymaps = {
-			-- 		next_signature = "<C-j>",
-			-- 		previous_signature = "<C-k>",
-			-- 		next_parameter = "<C-l>",
-			-- 		previous_parameter = "<C-h>",
-			-- 		close_signature = "<A-s>"
-			-- 	},
-			-- ...
-
-
-					end
-
-					-- WORKAROUND INVALID CHAR GROUP ISSUE WITH OMNISHARP
-					-- FROM: https://github.com/OmniSharp/omnisharp-roslyn/issues/2483#issuecomment-1515504374
-					-- 	-- https://github.com/OmniSharp/omnisharp-roslyn/issues/2483#issuecomment-1492605642
-					-- 	local tokenModifiers = client.server_capabilities.semanticTokensProvider.legend.tokenModifiers
-					-- 	for i, v in ipairs(tokenModifiers) do
-					-- 		local tmp = string.gsub(v, ' ', '_')
-					-- 		tokenModifiers[i] = string.gsub(tmp, '-_', '')
-					-- 	end
-					-- 	local tokenTypes = client.server_capabilities.semanticTokensProvider.legend.tokenTypes
-					-- 	for i, v in ipairs(tokenTypes) do
-					-- 		local tmp = string.gsub(v, ' ', '_')
-					-- 		tokenTypes[i] = string.gsub(tmp, '-_', '')
-					-- 	end
-					-- END WORKAROUND INVALID CHAR GROUP ISSUE WITH OMNISHARP
-
-					-- on_attach(client, bufnr)
-				end,
+				-- organize_imports_on_format = true,
+				settings = settings,
+				on_attach = on_attach,
 			}
 			vim.g.dotnetlsp = "omnisharp"
 			vim.cmd('LspStart omnisharp')
 		else
-			-- print("No .csproj file found")
 			return
 		end
 	end,

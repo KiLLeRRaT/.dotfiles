@@ -95,8 +95,14 @@ lazyPlugins = {
 	-- { 'akinsho/bufferline.nvim' },											-- https://github.com/akinsho/bufferline.nvim
 	{ 'lewis6991/gitsigns.nvim' },											-- https://github.com/lewis6991/gitsigns.nvim
 	-- neorg related
+	{
+		"vhyrro/luarocks.nvim",
+		priority = 1000, -- We'd like this plugin to load first out of the rest
+		config = true, -- This automatically runs `require("luarocks-nvim").setup()`
+	},
 	{ 'nvim-neorg/neorg',
-		dependencies = {'nvim-neorg/neorg-telescope', 'nvim-lua/plenary.nvim'},
+		dependencies = { "luarocks.nvim" },
+		-- dependencies = {'nvim-neorg/neorg-telescope', 'nvim-lua/plenary.nvim'},
 		-- build = ":Neorg sync-parsers",
 		ft = "norg"
 	},												-- https://github.com/nvim-neorg/neorg
