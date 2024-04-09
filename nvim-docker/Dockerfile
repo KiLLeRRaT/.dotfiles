@@ -7,6 +7,8 @@ FROM archlinux AS base
 RUN pacman -Syu --noconfirm
 
 RUN pacman -S --noconfirm git \
+	bat \
+	less \
 	wget \
 	curl \
 	stow \
@@ -84,10 +86,11 @@ RUN echo -e "\033[32m Configure Git\033[0m" && \
 	git config --global merge.tool nvim && \
 	git config --global merge.conflictstyle diff3 && \
 	git config --global mergetool.nvim.cmd "nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'" && \
-	echo "$(git config --get user.email) namespaces=\"git\" $(cat /root/.ssh/id_ed25519.pub)" >> /root/.ssh/allowed_signers && \
+	echo "$(git config --get user.email) namespaces=\"git\" $(cat /root/.ssh/id_ed25519.pub)" && \
+	echo "$(git config --get user.email) namespaces=\"git\" $(cat /root/.ssh/id_ed25519.pub)" > /root/.ssh/allowed_signers && \
 	git config --global gpg.ssh.allowedSignersFile /root/.ssh/allowed_signers
 
-# RUN cat /root/.ssh/allowed_signers && echo " XYZ"
+RUN cat /root/.ssh/allowed_signers && echo " XYZ" && ls /root/.ssh/ && cat /root/.ssh/id_ed25519.pub
 
 	# WE DON'T WANT TO STOW GITCONFIG IN HERE! IT'S ALBERT's OWN GITCONFIG!
 	# rm /root/.gitconfig && stow gitconfig && \
