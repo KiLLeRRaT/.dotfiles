@@ -33,9 +33,12 @@ set -o noclobber
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 autoload -Uz compinit && compinit
 
-# FROM: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
 autoload bashcompinit && bashcompinit
-complete -C '/usr/bin/aws_completer' aws
+if [ -f /usr/bin/aws_completer ]
+then
+	# FROM: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
+	complete -C '/usr/bin/aws_completer' aws
+fi
 
 
 # Uncomment the following line to use hyphen-insensitive completion.
@@ -212,7 +215,7 @@ alias gco='git checkout'
 alias gm='git merge'
 alias gt='git tag | sort -V | tail'
 
-gfd() {
+gfr() {
 	fd -t d --max-depth=1 -x \
 		bash -c "pushd {} &> /dev/null;git fetch;git status | (echo -n ""{}: "";sed '/Your branch/!d');popd &> /dev/null"
 }
