@@ -119,6 +119,9 @@ export SAVEHIST=100000
 export EDITOR="/usr/bin/nvim"
 export VISUAL=$EDITOR
 export PATH="/home/albert/.ebcli-virtual-env/executables:$PATH"
+# export NOW=$(date +"%m-%d-%Y")
+export NOW=$(date +"%Y-%m-%d")
+export NOWT=$(date +"%Y%m%d%H%M%S")
 
 
 # Compilation flags
