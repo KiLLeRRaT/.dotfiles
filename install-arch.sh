@@ -169,7 +169,7 @@ echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Installing AUR Packages\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 
-if [ ! -d ~/source-aur ] && mkdir ~/source-aur
+[ ! -d ~/source-aur ] && mkdir ~/source-aur
 
 installAurPackage() {
 	pushd ~/source-aur
