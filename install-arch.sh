@@ -205,16 +205,16 @@ echo -e "$password" | sudo -v -S
 if [ ! -f /tmp/login.tmp ] # Don't run it again if we have the login.tmp file already
 then
 	sudo bash -c "cat > /etc/pam.d/login" << 'EOF'
-	#%PAM-1.0
-	auth       required     pam_securetty.so
-	auth       requisite    pam_nologin.so
-	auth       include      system-local-login
-	auth       optional     pam_gnome_keyring.so
-	account    include      system-local-login
-	session    include      system-local-login
-	session    optional     pam_gnome_keyring.so auto_start
-	password   include      system-local-login
-	EOF
+#%PAM-1.0
+auth       required     pam_securetty.so
+auth       requisite    pam_nologin.so
+auth       include      system-local-login
+auth       optional     pam_gnome_keyring.so
+account    include      system-local-login
+session    include      system-local-login
+session    optional     pam_gnome_keyring.so auto_start
+password   include      system-local-login
+EOF
 fi
 
 read -p "Let's verify the changes. Press enter to continue"
