@@ -8,7 +8,6 @@ password=""
 read -s -p "Enter sudo password: " password
 echo -e "$password" | sudo -k -S -p "" echo "Thanks!"
 
-exit 0
 # TODO:
 # - [ ] Bridge br0
 # - [ ] VMs
