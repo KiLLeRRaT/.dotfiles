@@ -162,7 +162,8 @@ sudo mkdir -p /root/.config
 sudo cp -r /home/albert/.dotfiles/gtk-3.0/.config/gtk-3.0 /root/.config
 sudo cp -r /home/albert/.dotfiles/gtk-4.0/.config/gtk-4.0 /root/.config
 
-chsh -s /bin/zsh albert
+echo -e "$password" | sudo -v -S
+sudo chsh -s /bin/zsh albert
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Installing AUR Packages\033[0m"
