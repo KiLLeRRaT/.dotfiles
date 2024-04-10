@@ -126,13 +126,10 @@ echo -e "$password" | sudo -v -S
 echo "1" | sudo tee /proc/sys/kernel/sysrq
 
 
-echo "From here, run as the user in the new system"
-exit 1
-
-echo "Cloning dotfiles"
-pushd /home/$username
-git clone https://github.com/killerrat/.dotfiles
-popd
+# echo "Cloning dotfiles"
+# pushd /home/$username
+# git clone https://github.com/killerrat/.dotfiles
+# popd
 
 echo "Generate host specific configs"
 ~/.dotfiles/nvim-lua/.config/nvim/generateHostConfig.sh
