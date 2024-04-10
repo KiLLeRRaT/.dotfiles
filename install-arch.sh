@@ -106,7 +106,7 @@ sudo systemctl enable sshd
 
 echo "Starting cronie, so that timeshift scheduled snapshots work"
 echo -e "$password" | sudo -v -S
-sudo systemctl enable cronie.service 
+sudo systemctl enable cronie.service
 sudo systemctl start cronie.service
 
 echo "Starting Bluetooth"
@@ -191,7 +191,29 @@ installAurPackage brave-bin
 
 echo "Set up seahorse and create a default keyring. This is needed for 1Password otherwise it keeps asking the 2FA prompt again and again."
 # FROM: https://1password.community/discussion/127523/1password-and-gnome-keyring-for-2fa-saving-on-archlinux
-seahorse
+# seahorse
+
+# FROM: https://serverfault.com/a/1128330
+[ ! -d ~/.local/share/keyrings ] && mkdir -p ~/.local/share/keyrings/
+if [ ! -f ~/.local/share/keyrings/default.keyring ]
+then
+	echo -n "Default_keyring" > ~/.local/share/keyrings/default
+	cat > ~/.local/share/keyrings/default.keyring << EOF
+[keyring]
+display-name=default
+ctime=0
+mtime=0
+lock-on-idle=false
+lock-after=false
+EOF
+	chmod og= ~/.local/share/keyrings/
+	chmod og= ~/.local/share/keyrings/default.keyring
+# chown -R $username:$username ~/.local
+fi
+
+
+
+
 
 
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
