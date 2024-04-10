@@ -194,6 +194,7 @@ seahorse
 
 
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
+echo -e "$password" | sudo -v -S
 installAurPackage 1password
 echo Need to make sure gnome-keyring is correctly setup otherwise 2fa keys wont be remembered.
 
