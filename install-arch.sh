@@ -1,7 +1,9 @@
 #!/bin/bash
 
+# Exit when any command fails
 set -e
 
+username=albert
 password=""
 read -s -p "Enter sudo password: " password
 echo -e "$password" | sudo -k -S -p "" echo "Thanks!"
@@ -25,10 +27,6 @@ exit 0
 # - [ ] /etc/X11/xorg.conf.d/ into installer script
 # - [ ] firewall rules into installer script
 
-
-# Exit when any command fails
-set -e
-username=albert
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Installing Arch Linux\033[0m"
