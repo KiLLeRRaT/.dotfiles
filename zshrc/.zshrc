@@ -385,11 +385,17 @@ ssh_removeAndConnect(){
 installAurPackage() {
 	pushd ~/source-aur
 	echo "Installing $1"
-	git clone https://aur.archlinux.org/$1.git
-	cd $1
-	makepkg -is
+	if [ ! -d $1 ]; then
+		git clone https://aur.archlinux.org/$1.git
+		cd $1
+	else
+		cd $1
+		git pull
+	fi
+	makepkg --noconfirm -is --needed
 	popd
 }
+
 
 # alias hf='history 0 | cut -c 8- | fzf -e'
 
