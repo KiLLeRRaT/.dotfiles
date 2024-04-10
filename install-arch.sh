@@ -181,13 +181,12 @@ installAurPackage() {
 		cd $1
 		git pull
 	fi
+	echo -e "$password" | sudo -v -S
 	makepkg --noconfirm -is --needed
 	popd
 }
 
-echo -e "$password" | sudo -v -S
 installAurPackage oh-my-posh-bin
-echo -e "$password" | sudo -v -S
 installAurPackage brave-bin
 
 echo "Set up seahorse and create a default keyring. This is needed for 1Password otherwise it keeps asking the 2FA prompt again and again."
@@ -196,7 +195,6 @@ seahorse
 
 
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
-echo -e "$password" | sudo -v -S
 installAurPackage 1password
 echo Need to make sure gnome-keyring is correctly setup otherwise 2fa keys wont be remembered.
 
@@ -229,11 +227,8 @@ installAurPackage dracula-gtk-theme
 installAurPackage dracula-icons-git
 installAurPackage snapper-gui-git
 
-echo -e "$password" | sudo -v -S
 installAurPackage azuredatastudio-bin
-echo -e "$password" | sudo -v -S
 installAurPackage powershell-bin
-echo -e "$password" | sudo -v -S
 installAurPackage netcoredbg
 
 installAurPackage i3lock-color
