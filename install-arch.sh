@@ -141,6 +141,7 @@ popd
 
 echo "Stow lightdm config"
 echo -e "$password" | sudo -v -S
+sudo mv /etc/lightdm/lightdm-gtk-greeter.conf{,.bak}
 sudo stow -t / lightdm
 
 echo "Stow images into /usr/share/pixmaps"
