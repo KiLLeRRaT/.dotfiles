@@ -7,6 +7,7 @@ username=albert
 password=""
 read -s -p "Enter sudo password: " password
 echo -e "$password" | sudo -k -S -p "" echo "Thanks!"
+echo -e "$password" | sudo -v -S
 
 # TODO:
 # - [ ] Bridge br0
@@ -32,7 +33,7 @@ echo -e "\033[32m Installing Arch Linux\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 
 echo "Installing more packages"
-echo -e "$password" | sudo -k -S -p "" echo ""
+echo -e "$password" | sudo -v -S
 sudo pacman --noconfirm --needed -Syu\
 	alacritty \
 	aspnet-runtime \
@@ -98,29 +99,29 @@ sudo pacman --noconfirm --needed -Syu\
 	wireplumber pipewire-pulse pulseaudio pavucontrol playerctl
 
 echo "Starting sshd"
-echo -e "$password" | sudo -k -S -p "" echo ""
+echo -e "$password" | sudo -v -S
 sudo systemctl start sshd
 sudo systemctl enable sshd
 
 echo "Starting cronie, so that timeshift scheduled snapshots work"
-echo -e "$password" | sudo -k -S -p "" echo ""
+echo -e "$password" | sudo -v -S
 sudo systemctl enable cronie.service 
 sudo systemctl start cronie.service
 
 echo "Starting Bluetooth"
-echo -e "$password" | sudo -k -S -p "" echo ""
+echo -e "$password" | sudo -v -S
 sudo systemctl start bluetooth
 sudo systemctl enable bluetooth
 
 echo "Starting NetworkManager"
-echo -e "$password" | sudo -k -S -p "" echo ""
+echo -e "$password" | sudo -v -S
 sudo systemctl enable NetworkManager.service
 sudo systemctl start NetworkManager.service
 
 
 # FROM: https://wiki.archlinux.org/title/Sysctl#Configuration
 echo "Enable SysRq"
-echo -e "$password" | sudo -k -S -p "" echo ""
+echo -e "$password" | sudo -v -S
 echo "1" | sudo tee /proc/sys/kernel/sysrq
 
 
@@ -141,11 +142,11 @@ stow -t ~ xinitrc
 popd
 
 echo "Stow lightdm config"
-echo -e "$password" | sudo -k -S -p "" echo ""
+echo -e "$password" | sudo -v -S
 sudo stow -t / lightdm
 
 echo "Stow images into /usr/share/pixmaps"
-echo -e "$password" | sudo -k -S -p "" echo ""
+echo -e "$password" | sudo -v -S
 sudo mkdir -p /usr/share/backgrounds/albert
 sudo chmod o+x /usr/share/backgrounds/albert
 sudo stow -t /usr/share/backgrounds/albert images
@@ -156,7 +157,7 @@ stow alacritty dmenurc dosbox dunst fonts gitconfig gtk-2.0 gtk-3.0 gtk-4.0 i3-m
 popd
 
 echo "Let's copy our gtk configs to /root, so that root has the same theme"
-echo -e "$password" | sudo -k -S -p "" echo ""
+echo -e "$password" | sudo -v -S
 sudo cp /home/albert/.dotfiles/gtk-2.0/.gtkrc-2.0 /root
 sudo mkdir -p /root/.config
 sudo cp -r /home/albert/.dotfiles/gtk-3.0/.config/gtk-3.0 /root/.config
@@ -197,7 +198,7 @@ installAurPackage 1password
 echo Need to make sure gnome-keyring is correctly setup otherwise 2fa keys wont be remembered.
 
 cp /etc/pam.d/login /tmp/login.tmp
-echo -e "$password" | sudo -k -S -p "" echo ""
+echo -e "$password" | sudo -v -S
 sudo bash -c "cat > /etc/pam.d/login" << 'EOF'
 #%PAM-1.0
 auth       required     pam_securetty.so
@@ -211,7 +212,7 @@ password   include      system-local-login
 EOF
 
 read -p "Let's verify the changes. Press enter to continue"
-echo -e "$password" | sudo -k -S -p "" echo ""
+echo -e "$password" | sudo -v -S
 sudo nvim -d /etc/pam.d/login /tmp/login.tmp
 
 
@@ -232,7 +233,7 @@ installAurPackage i3exit
 installAurPackage betterlockscreen
 betterlockscreen -u ~/.dotfiles/images
 # lock on sleep/suspend
-echo -e "$password" | sudo -k -S -p "" echo ""
+echo -e "$password" | sudo -v -S
 sudo systemctl enable betterlockscreen@$USER
 
 # installAurPackage forticlient-vpn
@@ -240,12 +241,12 @@ sudo systemctl enable betterlockscreen@$USER
 
 installAurPackage openfortivpn
 # ALSO NEED TO RUN THE FOLLOWING FOR THE NETWORKING TO WORK CORRECTLY FOR THE VPN:
-echo -e "$password" | sudo -k -S -p "" echo ""
+echo -e "$password" | sudo -v -S
 sudo systemctl enable systemd-resolved.service
 sudo systemctl start systemd-resolved.service
 
 installAurPackage icaclient #Citrix workspace app/Citrix receiver
-echo -e "$password" | sudo -k -S -p "" echo ""
+echo -e "$password" | sudo -v -S
 sudo pacman --noconfirm --needed -Syu perl-file-mimeinfo # Required to interpret the *.ica files correctly
 # COPYING AND PASTING NOT WORKING IN icaclient, DISABLE KLIPPER OR CLIPBOARD MANAGER!
 
@@ -255,13 +256,13 @@ nvm install --lts
 nvm use --lts
 
 echo Configure dmenu
-echo -e "$password" | sudo -k -S -p "" echo ""
+echo -e "$password" | sudo -v -S
 sudo ln -s ~/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_recency
 
 echo "Enable and start Docker? (y/n)"
 read enable_docker
 if [ "$enable_docker" == "y" ]; then
-	echo -e "$password" | sudo -k -S -p "" echo ""
+	echo -e "$password" | sudo -v -S
 	sudo systemctl enable docker
 	sudo systemctl start docker
 fi
