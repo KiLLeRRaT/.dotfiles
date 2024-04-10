@@ -1,67 +1,68 @@
 {
-    "additional-repositories": [
-        "multilib"
-    ],
-    "archinstall-language": "English",
-    "audio_config": {
-        "audio": "pipewire"
-    },
-    "bootloader": "Grub",
-    "config_version": "2.7.2",
-    "debug": false,
-    "kernels": [
-        "linux"
-    ],
-    "locale_config": {
-        "kb_layout": "us",
-        "sys_enc": "UTF-8",
-        "sys_lang": "en_US"
-    },
-    "mirror_config": {
-        "custom_mirrors": [],
-        "mirror_regions": {
-            "New Zealand": [
-                "https://mirror.fsmg.org.nz/archlinux/$repo/os/$arch",
-                "https://mirror.2degrees.nz/archlinux/$repo/os/$arch",
-                "https://archlinux.ourhome.kiwi/$repo/os/$arch",
-                "http://mirror.fsmg.org.nz/archlinux/$repo/os/$arch",
-                "http://mirror.2degrees.nz/archlinux/$repo/os/$arch"
-            ]
-        }
-    },
-    "network_config": {
-        "type": "nm"
-    },
-    "no_pkg_lookups": false,
-    "ntp": true,
-    "offline": false,
-    "packages": [
-        "git",
-        "neovim",
-        "tmux",
-        "alacritty",
-        "zsh"
-    ],
-    "parallel downloads": 5,
-    "profile_config": {
-        "gfx_driver": "All open-source",
-        "greeter": "lightdm-slick-greeter",
-        "profile": {
-            "custom_settings": {
-                "i3-wm": {}
-            },
-            "details": [
-                "i3-wm"
-            ],
-            "main": "Desktop"
-        }
-    },
-    "script": "guided",
-    "silent": false,
-    "skip_ntp": false,
-    "skip_version_check": false,
-    "swap": true,
-    "timezone": "Pacific/Auckland",
-    "uki": false,
-    "version": "2.7.2"
+		"additional-repositories": [
+				"multilib"
+		],
+		"archinstall-language": "English",
+		"audio_config": {
+				"audio": "pipewire"
+		},
+		"bootloader": "Grub",
+		"config_version": "2.7.2",
+		"debug": false,
+		"kernels": [
+				"linux"
+		],
+		"locale_config": {
+				"kb_layout": "us",
+				"sys_enc": "UTF-8",
+				"sys_lang": "en_US"
+		},
+		"mirror_config": {
+				"custom_mirrors": [],
+				"mirror_regions": {
+						"New Zealand": [
+								"https://mirror.fsmg.org.nz/archlinux/$repo/os/$arch",
+								"https://mirror.2degrees.nz/archlinux/$repo/os/$arch",
+								"https://archlinux.ourhome.kiwi/$repo/os/$arch",
+								"http://mirror.fsmg.org.nz/archlinux/$repo/os/$arch",
+								"http://mirror.2degrees.nz/archlinux/$repo/os/$arch"
+						]
+				}
+		},
+		"network_config": {
+				"type": "nm"
+		},
+		"no_pkg_lookups": false,
+		"ntp": true,
+		"offline": false,
+		"packages": [
+				"git",
+				"neovim",
+				"tmux",
+				"alacritty",
+				"zsh",
+				"less"
+		],
+		"parallel downloads": 5,
+		"profile_config": {
+				"gfx_driver": "All open-source",
+				"greeter": "lightdm-slick-greeter",
+				"profile": {
+						"custom_settings": {
+								"i3-wm": {}
+						},
+						"details": [
+								"i3-wm"
+						],
+						"main": "Desktop"
+				}
+		},
+		"script": "guided",
+		"silent": false,
+		"skip_ntp": false,
+		"skip_version_check": false,
+		"swap": true,
+		"timezone": "Pacific/Auckland",
+		"uki": false,
+		"version": "2.7.2"
 }
