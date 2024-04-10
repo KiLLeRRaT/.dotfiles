@@ -96,8 +96,8 @@ sudo pacman --noconfirm --needed -Syu\
 	zathura zathura-pdf-poppler \
 	sshfs \
 	signal-desktop discord \
-	wireplumber pipewire-pulse pulseaudio pavucontrol playerctl
-	# wireplumber pipewire-pulse pavucontrol playerctl
+	wireplumber pipewire-pulse pavucontrol playerctl
+	# wireplumber pipewire-pulse pulseaudio pavucontrol playerctl
 
 echo "Starting sshd"
 echo -e "$password" | sudo -v -S
