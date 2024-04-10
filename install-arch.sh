@@ -185,7 +185,9 @@ installAurPackage() {
 	popd
 }
 
+echo -e "$password" | sudo -v -S
 installAurPackage oh-my-posh-bin
+echo -e "$password" | sudo -v -S
 installAurPackage brave-bin
 
 echo "Set up seahorse and create a default keyring. This is needed for 1Password otherwise it keeps asking the 2FA prompt again and again."
@@ -227,8 +229,11 @@ installAurPackage dracula-gtk-theme
 installAurPackage dracula-icons-git
 installAurPackage snapper-gui-git
 
+echo -e "$password" | sudo -v -S
 installAurPackage azuredatastudio-bin
+echo -e "$password" | sudo -v -S
 installAurPackage powershell-bin
+echo -e "$password" | sudo -v -S
 installAurPackage netcoredbg
 
 installAurPackage i3lock-color
