@@ -253,6 +253,7 @@ installAurPackage azuredatastudio-bin
 installAurPackage powershell-bin
 installAurPackage netcoredbg
 
+sudo pacman -R --noconfirm i3lock
 installAurPackage i3lock-color
 installAurPackage i3exit
 
