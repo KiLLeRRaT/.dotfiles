@@ -10,17 +10,6 @@ echo -e "$password" | sudo -k -S -p "" echo "Thanks!"
 echo -e "$password" | sudo -v -S
 
 # TODO:
-# - [ ] Bridge br0
-# - [ ] VMs
-# - [ ] forticlient-vpn
-# - [ ] Firewall
-# - [ ] Sourcecode backups
-# - [ ] Machine backups
-# - [ ] nginx
-# - [ ] @libvirt on data disk mount and move VMs
-# - [ ] unlock /mnt/data automatically
-# - [ ] ssh unlock luks
-
 # - [ ] Pacman hooks into installer script
 # - [ ] systemd services int installer script??
 # - [ ] /etc/fonts/local.conf in installer script
