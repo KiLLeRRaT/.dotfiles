@@ -235,6 +235,10 @@ session    include      system-local-login
 session    optional     pam_gnome_keyring.so auto_start
 password   include      system-local-login
 EOF
+
+# # doesn't yet work
+# sudo tac /etc/pam.d/login | sed '0,/session/s/session/session    optional     pam_gnome_keyring.so auto_start\n&/' | tac >> /etc/pam.d/login
+
 fi
 
 read -p "Let's verify the changes. Press enter to continue"
