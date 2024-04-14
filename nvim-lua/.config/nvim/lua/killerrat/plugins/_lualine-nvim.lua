@@ -3,6 +3,19 @@ local function window()
 end
 
 -- LUA LINES, https://github.com/nvim-lualine/lualine.nvim#default-configuration
+local winbar = {
+	{
+		'%m%4n:%t',
+		-- show_modified_status = true,
+		-- symbols = {
+		-- 	modified = '[+]',      -- Text to show when the file is modified.
+		-- 	readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
+		-- 	unnamed = '[No Name]', -- Text to show for unnamed buffers.
+		-- 	newfile = '[New]',     -- Text to show for newly created file before first write
+		-- }
+	}
+}
+
 require'lualine'.setup {
 	sections = {
 		lualine_a = {
@@ -13,11 +26,11 @@ require'lualine'.setup {
 	winbar = {
 		-- lualine_x = {'%-10.3n'},
 		-- lualine_z = { 'filename', '%-10.3n' }
-		lualine_z = { '%4n: %t' }
+		lualine_z = winbar
 	},
 	inactive_winbar = {
 		-- lualine_x = {'%-10.3n'},
-		lualine_z = { '%4n: %t' }
+		lualine_z = winbar
 	},
 	inactive_sections = {
 		lualine_a = {

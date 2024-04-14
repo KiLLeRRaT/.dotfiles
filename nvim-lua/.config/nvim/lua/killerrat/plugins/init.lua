@@ -42,5 +42,6 @@ require("killerrat.plugins._nvim-dap")
 require("killerrat.plugins._oil-nvim")
 require("killerrat.plugins._zen-mode-nvim")
 require("killerrat.plugins._gx-nvim")
+require("killerrat.plugins._nvim-silicon")
 
 

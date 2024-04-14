@@ -125,6 +125,17 @@ lazyPlugins = {
 	{ "folke/zen-mode.nvim", cmd = "ZenMode" },
 	{ "tris203/hawtkeys.nvim",
 		dependencies = "nvim-lua/plenary.nvim", config = { } }, -- https://github.com/tris203/hawtkeys.nvim
+	{
+		"michaelrommel/nvim-silicon",
+		lazy = true,
+		cmd = "Silicon",
+		-- config = function()
+			-- require("silicon").setup({
+			-- 	-- Configuration here, or leave empty to use defaults
+			-- 	font = "VictorMono NF=34;Noto Emoji=34"
+			-- })
+		-- end
+	},
 
 
 
