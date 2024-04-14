@@ -423,6 +423,9 @@ bindkey "\E[H" beginning-of-line
 bindkey "\E[F" end-of-line
 bindkey "\E[3~" delete-char
 
+# bindkey "\E." yank-last-arg
+bindkey "\E." insert-last-word # alt + .
+
 eval "$(zoxide init zsh)"
 
 setopt GLOB_COMPLETE
