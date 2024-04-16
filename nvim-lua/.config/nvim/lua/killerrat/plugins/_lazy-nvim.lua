@@ -13,11 +13,13 @@ vim.opt.rtp:prepend(lazypath)
 
 
 local hostname = vim.loop.os_gethostname()
-local hostnamePlugins = require("killerrat.plugins.hosts." .. hostname)
+local hostnamePlugins = require("killerrat.plugins.hosts")
 local pluginCondForHost = function(plugin)
-	print ("pluginCondForHost:Plugin: " .. tostring(hostnamePlugins[plugin.name]));
-	local enabled = hostnamePlugins[plugin.name]
-	if (enabled == nil) then enabled = true end
+	local hp = hostnamePlugins[hostname]
+	if (hp == nil) then return true end
+	local enabled = hp[plugin.name]
+	print ("pluginCondForHost:Plugin: " .. tostring(enabled));
+	if (enabled == nil) then return true end
 	return enabled
 end
 
