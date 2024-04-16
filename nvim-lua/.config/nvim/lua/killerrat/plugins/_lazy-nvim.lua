@@ -11,7 +11,18 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-lazyPlugins = {
+
+local hostname = vim.loop.os_gethostname()
+local hostnamePlugins = require("killerrat.plugins.hosts." .. hostname)
+local pluginCondForHost = function(plugin)
+	print ("pluginCondForHost:Plugin: " .. tostring(hostnamePlugins[plugin.name]));
+	local enabled = hostnamePlugins[plugin.name]
+	if (enabled == nil) then enabled = true end
+	return enabled
+end
+
+
+local lazyPlugins = {
 	----------------------------------------
 		-- LIBRARIES
 	----------------------------------------
@@ -101,7 +112,7 @@ lazyPlugins = {
 		config = true, -- This automatically runs `require("luarocks-nvim").setup()`
 	},
 	{ 'nvim-neorg/neorg',
-		enabled = true,
+		cond = pluginCondForHost,
 		dependencies = { "luarocks.nvim" },
 		-- dependencies = {'nvim-neorg/neorg-telescope', 'nvim-lua/plenary.nvim'},
 		-- build = ":Neorg sync-parsers",
@@ -216,7 +227,7 @@ require("lazy").setup(lazyPlugins, {
 local M = {}
 
 -- FROM: https://www.reddit.com/r/neovim/comments/128lwld/comment/jejaoxq/
-M.have_plugin = function(name)
+M.LazyHasPlugin = function(name)
 	print("Checking for plugin: " .. name)
 	local isInstalled = require("lazy.core.config").plugins[name] ~= nil
 	if (isInstalled) then
