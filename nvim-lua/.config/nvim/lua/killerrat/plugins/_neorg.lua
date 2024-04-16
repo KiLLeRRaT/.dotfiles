@@ -1,3 +1,5 @@
+local p = "neorg"; if (not require('killerrat.plugins._lazy-nvim').have_plugin(p)) then return end
+
 require('neorg').setup {
 		load = {
 				["core.defaults"] = {},

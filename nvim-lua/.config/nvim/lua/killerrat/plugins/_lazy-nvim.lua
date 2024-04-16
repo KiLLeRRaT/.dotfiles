@@ -101,6 +101,7 @@ lazyPlugins = {
 		config = true, -- This automatically runs `require("luarocks-nvim").setup()`
 	},
 	{ 'nvim-neorg/neorg',
+		enabled = true,
 		dependencies = { "luarocks.nvim" },
 		-- dependencies = {'nvim-neorg/neorg-telescope', 'nvim-lua/plenary.nvim'},
 		-- build = ":Neorg sync-parsers",
@@ -209,3 +210,24 @@ require("lazy").setup(lazyPlugins, {
 		}
 	}
 })
+
+
+
+local M = {}
+
+-- FROM: https://www.reddit.com/r/neovim/comments/128lwld/comment/jejaoxq/
+M.have_plugin = function(name)
+	print("Checking for plugin: " .. name)
+	local isInstalled = require("lazy.core.config").plugins[name] ~= nil
+	if (isInstalled) then
+		print(name .. " is installed!")
+	else
+		print(name .. " is not installed!")
+	end
+	return isInstalled
+end
+
+return M
+
+
+
