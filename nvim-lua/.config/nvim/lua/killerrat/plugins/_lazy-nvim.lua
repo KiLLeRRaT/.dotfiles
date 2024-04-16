@@ -18,7 +18,7 @@ local pluginCondForHost = function(plugin)
 	local hp = hostnamePlugins[hostname]
 	if (hp == nil) then return true end
 	local enabled = hp[plugin.name]
-	print ("pluginCondForHost:Plugin: " .. tostring(enabled));
+	-- print ("pluginCondForHost:Plugin: " .. tostring(enabled));
 	if (enabled == nil) then return true end
 	return enabled
 end
@@ -230,13 +230,13 @@ local M = {}
 
 -- FROM: https://www.reddit.com/r/neovim/comments/128lwld/comment/jejaoxq/
 M.LazyHasPlugin = function(name)
-	print("Checking for plugin: " .. name)
+	-- print("Checking for plugin: " .. name)
 	local isInstalled = require("lazy.core.config").plugins[name] ~= nil
-	if (isInstalled) then
-		print(name .. " is installed!")
-	else
-		print(name .. " is not installed!")
-	end
+	-- if (isInstalled) then
+	-- 	print(name .. " is installed!")
+	-- else
+	-- 	print(name .. " is not installed!")
+	-- end
 	return isInstalled
 end
 
