@@ -184,9 +184,19 @@ alias ls='ls --color=auto' # TRY THIS AGAIN FOR NOW TO SEE IF IT WORKS, SINCE IT
 # alias ls='ls --color=always' # THIS GIVES DRAMA SINCE THE COLOR CODES ARE PART OF THE RESULTS WHEN PIPING TO ANOTHER COMMAND...
 alias ll="ls -alkhF"
 alias l="ls -1"
-alias lt="l -t --color=always| head -15"
-alias lst="ls -t --color=always| head -15"
-alias llt="ll -t --color=always| head -15"
+
+lst() {
+	n=$1
+	if [ -z $1 ];then n="cat"; else n="head $1";fi
+	ls -t --color=always | eval $n
+}
+
+llst() {
+	n=$1
+	if [ -z $1 ];then n="cat"; else n="head $1";fi
+	ll -t --color=always | eval $n
+}
+
 alias tmux='tmux -2'
 alias grep='grep --color=auto'
 alias rl='source ~/.zshrc'
