@@ -902,7 +902,7 @@ bindsym XF86KbdBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-agouw
 font xft:URWGothic-Book 11
 # 󰭹 chat
 
-exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
+exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
