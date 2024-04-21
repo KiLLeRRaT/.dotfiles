@@ -186,6 +186,8 @@ alias ll="ls -alkhF"
 alias l="ls -1"
 
 lst() {
+	# echo $@
+	# echo $(shift $@)
 	n=$1
 	if [ -z $1 ];then n="cat"; else n="head $1";fi
 	ls -t --color=always | eval $n
@@ -262,8 +264,6 @@ alias setxkbmap-revert="setxkbmap -option ''"
 
 atail() { tail -f ---disable-inotify "$@"; }
 alias atail-t='tail -f -n +1 ---disable-inotify $(ls -t | head -1)'
-
-
 alias sdc='sudo docker compose'
 
 # find files matching the name, then sort them by last modified
@@ -362,6 +362,17 @@ fr() {
 	popd
 }
 
+# fzf time
+alias ft='TZ=$(timedatectl list-timezones | fzf) date'
+
+fn() {
+  local results=$(fzf --multi --preview 'bat --color=always {}')
+  [ -z $results ] && return
+  echo "$results"
+  echo "$results" | xargs -d '\n' nvim
+}
+
+
 # START THE SELECTED VM
 vms() {
 	domain=$(sudo virsh list --all | tail -n +3 | fzf --select-1 --query "$1" --height=~50 | awk '{ print $2 }')
@@ -405,6 +416,8 @@ installAurPackage() {
 	makepkg --noconfirm -is --needed
 	popd
 }
+
+alias feh-screenshots='feh --scale-down -d -S mtime ~/Pictures/screenshots'
 
 
 # alias hf='history 0 | cut -c 8- | fzf -e'
