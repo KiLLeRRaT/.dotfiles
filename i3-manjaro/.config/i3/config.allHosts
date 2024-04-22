@@ -722,7 +722,35 @@ exec --no-startup-id onboard
 exec --no-startup-id pipewire-pulse
 exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 # exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'
-exec --no-startup-id "alacritty -e tmux
+exec --no-startup-id "alacritty -e tmux"
+# exec --no-startup-id conky -c ~/.config/conky/conky-surface3.conf
+
+# Screen brightness controls
+# Need xorg-xbacklight package, pamac install xorg-xbacklight
+# If you're getting the "No outputs have backlight property" error
+# try acpilight package instad, using same xbacklight commands
+# FROM:
+# https://unix.stackexchange.com/questions/667022/remap-backlight-brightness-to-other-keys-on-xfce
+# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
+# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id "xbacklight -inc 10; notify-send 'brightness up'"
+bindsym $mod+XF86AudioLowerVolume exec --no-startup-id "xbacklight -dec 10; notify-send 'brightness down'"
+# bindsym $mod+XF86PowerOff exec onboard
+# </config>
+# <config hostname="asus-tablet">
+font xft:SF Pro Display 11
+# 󰭹 chat
+
+assign [class="Brave"] $ws8
+assign [class="Alacritty"] $ws2
+
+exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
+exec --no-startup-id onboard
+exec --no-startup-id pipewire-pulse
+exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
+# exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'
+exec --no-startup-id "alacritty -e tmux"
 # exec --no-startup-id conky -c ~/.config/conky/conky-surface3.conf
 
 # Screen brightness controls
