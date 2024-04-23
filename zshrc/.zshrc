@@ -365,6 +365,9 @@ fr() {
 # fzf time
 alias ft='TZ=$(timedatectl list-timezones | fzf) date'
 
+# fzf CBM bookmarks
+alias fb='pushd ~/scripts/Sandfield > /dev/null 2>&1; ./CBM-CentralBookmarksManager-export-textfiles.sh; popd > /dev/null 2>&1'
+
 fn() {
   local results=$(fzf --multi --preview 'bat --color=always {}')
   [ -z $results ] && return
