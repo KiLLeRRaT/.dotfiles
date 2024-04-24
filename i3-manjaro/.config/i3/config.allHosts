@@ -761,8 +761,10 @@ exec --no-startup-id "alacritty -e tmux"
 # https://unix.stackexchange.com/questions/667022/remap-backlight-brightness-to-other-keys-on-xfce
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
-bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id "xbacklight -inc 10; notify-send 'brightness up'"
-bindsym $mod+XF86AudioLowerVolume exec --no-startup-id "xbacklight -dec 10; notify-send 'brightness down'"
+# bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id "xbacklight -inc 10; notify-send 'brightness up'"
+# bindsym $mod+XF86AudioLowerVolume exec --no-startup-id "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id "~/.dotfiles/hosts/asus-tablet/set-brightness.sh +5"
+bindsym $mod+XF86AudioLowerVolume exec --no-startup-id "~/.dotfiles/hosts/asus-tablet/set-brightness.sh -5"
 # bindsym $mod+XF86PowerOff exec onboard
 # </config>
 
