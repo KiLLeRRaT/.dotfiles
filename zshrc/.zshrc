@@ -452,7 +452,10 @@ bindkey "\E[3~" delete-char
 # bindkey "\E." yank-last-arg
 bindkey "\E." insert-last-word # alt + .
 
-eval "$(zoxide init zsh)"
+if [ -f /usr/bin/zoxide ]
+then
+	eval "$(zoxide init zsh)"
+fi
 
 setopt GLOB_COMPLETE
 
@@ -553,3 +556,10 @@ then
 fi
 
 export PATH=$PATH:~/.local/bin
+
+
+# Set up fzf key bindings and fuzzy completion
+if [ -f /usr/bin/fzf ]
+then
+	eval "$(fzf --zsh)"
+fi
