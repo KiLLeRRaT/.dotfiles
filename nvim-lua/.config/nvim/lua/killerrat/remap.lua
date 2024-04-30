@@ -16,8 +16,8 @@ vim.keymap.set('n', "<leader>bA", ":%bd <cr>:e#<cr>")
 -- CLOSE ALL OTHER BUFFERS EXCEPT CURRENT ONE
 -- vim.cmd[[nnoremap <leader>bA :%bd \| :e#<cr>]]
 
--- SET ' TO ALSO BE POSITIONAL JUMP TO MARK
-vim.keymap.set('n', "'", "`")
+-- SET ' TO ALSO BE POSITIONAL JUMP TO MARK, 
+-- vim.keymap.set('n', "'", "`") DISABLED 2024-05-1: MAYBE LETS TRY TO USE BOTH ` and '
 
 -- " KEEP CURSOR IN THE CENTRE OF THE SCREEN WHEN SEARCHING NEXT
 -- (zv at the end opens folds if there are any)
@@ -31,14 +31,16 @@ vim.keymap.set('n', "<c-u>", "<c-u>zzzv")
 -- " KEEP CURSOR IN A SANE PLACE WHEN USING J TO JOIN LINES
 vim.keymap.set('n', "J", "mzJ`z")
 
-vim.keymap.set("n", "<leader>y", "\"+y")
-vim.keymap.set("v", "<leader>y", "\"+y")
-vim.keymap.set("n", "<leader>Y", "gg\"+yG")
+-- vim.keymap.set("n", "<leader>y", "\"+y")
+-- vim.keymap.set("v", "<leader>y", "\"+y")
+vim.keymap.set("n", "<leader>y", ":%y<cr>") -- DOESNT MESS WITH YOUR CURSOR!
+
+-- vim.keymap.set("n", "<leader>Y", "gg\"+yG") -- MESSES WITH YOUR CURSOR
+vim.keymap.set("n", "<leader>Y", ":%y+<cr>") -- DOESNT MESS WITH YOUR CURSOR!
 
 
 -- " DELETE INTO BLACK HOLE REGISTER
-vim.keymap.set("n", "<leader>d", "\"_d")
-vim.keymap.set("v", "<leader>d", "\"_d")
+vim.keymap.set({"n", "v"}, "<leader>d", "\"_d")
 
 -- SELECT TEXT YOU JUST PASTED
 -- FROM: https://vim.fandom.com/wiki/Selecting_your_pasted_text#:~:text=For%20example%2C%20you%20may%20press,the%20pasted%20text%20character%2Dwise.
