@@ -1,6 +1,6 @@
 local p = "neorg"; if (not require('killerrat.plugins._lazy-nvim').LazyHasPlugin(p)) then return end
 
-require('neorg').setup {
+require(p).setup {
 		load = {
 				["core.defaults"] = {},
 				["core.export"] = {},

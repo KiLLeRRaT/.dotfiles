@@ -11,14 +11,16 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
-local hostname = vim.loop.os_gethostname()
-local hostnamePlugins = require("killerrat.plugins.hosts")
 local pluginCondForHost = function(plugin)
+	local hostname = vim.loop.os_gethostname()
+	local hostnamePlugins = require("killerrat.plugins.hosts")
 	local hp = hostnamePlugins[hostname]
+
 	if (hp == nil) then return true end
 	local enabled = hp[plugin.name]
-	-- print ("pluginCondForHost:Plugin: " .. tostring(enabled));
+	-- print ("hostname: " .. hostname)
+	-- print ("pluginCondForHost:Plugin: " .. plugin.name .. ": " .. tostring(enabled));
+
 	if (enabled == nil) then return true end
 	return enabled
 end
@@ -110,6 +112,7 @@ local lazyPlugins = {
 	-- neorg related
 	{
 		"vhyrro/luarocks.nvim",
+		cond = pluginCondForHost,
 		priority = 1000, -- We'd like this plugin to load first out of the rest
 		config = true, -- This automatically runs `require("luarocks-nvim").setup()`
 	},
@@ -141,6 +144,7 @@ local lazyPlugins = {
 		dependencies = "nvim-lua/plenary.nvim", config = { } }, -- https://github.com/tris203/hawtkeys.nvim
 	{
 		"michaelrommel/nvim-silicon",
+		cond = pluginCondForHost,
 		lazy = true,
 		cmd = "Silicon",
 		-- config = function()
@@ -194,22 +198,24 @@ local lazyPlugins = {
 	-- DEBUGGERS
 	----------------------------------------
 	{ 'michaelb/sniprun', build = 'sh ./install.sh'},
-	{ 'rcarriga/nvim-dap-ui', dependencies = {'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' } },
-	{ 'theHamsta/nvim-dap-virtual-text', dependencies = {'mfussenegger/nvim-dap'} },
-	{ 'nvim-telescope/telescope-dap.nvim', dependencies = {'mfussenegger/nvim-dap'} },
-	{ 'mfussenegger/nvim-dap' },
-	{ 'nvim-neotest/nvim-nio' },
+	{ 'rcarriga/nvim-dap-ui', cond = pluginCondForHost,
+		dependencies = {'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' } },
+	{ 'theHamsta/nvim-dap-virtual-text', cond = pluginCondForHost,
+		dependencies = {'mfussenegger/nvim-dap'} },
+	{ 'nvim-telescope/telescope-dap.nvim', cond = pluginCondForHost,
+		dependencies = {'mfussenegger/nvim-dap'} },
+	{ 'mfussenegger/nvim-dap', cond = pluginCondForHost },
+	{ 'nvim-neotest/nvim-nio', cond = pluginCondForHost },
 
 	{ "kndndrj/nvim-dbee",
+		cond = pluginCondForHost,
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 		},
 		build = function()
 			require("dbee").install()
 		end,
-		config = function()
-			require("dbee").setup()
-		end,
+		config = function() require("dbee").setup() end,
 	}, -- https://github.com/kndndrj/nvim-dbee
 
 }

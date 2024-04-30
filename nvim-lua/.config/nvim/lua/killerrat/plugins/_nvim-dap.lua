@@ -1,4 +1,5 @@
-local dap, dapui = require("dap"), require("dapui")
+local p = "dap"; if (not require('killerrat.plugins._lazy-nvim').LazyHasPlugin(p)) then return end
+local dap, dapui = require(p), require("dapui")
 
 dap.adapters.coreclr = {
 	type = 'executable',

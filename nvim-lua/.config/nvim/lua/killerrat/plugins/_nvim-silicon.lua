@@ -1,3 +1,5 @@
+local p = "nvim-silicon"; if (not require('killerrat.plugins._lazy-nvim').LazyHasPlugin(p)) then return end
+
 require("silicon").setup({
 	-- Configuration here, or leave empty to use defaults
 	-- font = "VictorMono NF=34;Noto Emoji=34"
