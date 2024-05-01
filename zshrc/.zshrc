@@ -306,6 +306,37 @@ cs() {
 	eval $cmd
 }
 
+# FROM: /u/xkcd__386
+# anc() {
+# 	cmd=cat
+# 	[[ $1 == -r ]] && { cmd=tac; shift; }
+# 	occ=1
+# 	[[ $2 =~ ^[0-9]+$ ]] && occ=$2
+# 	p=$PWD
+# 	cd $(
+# 		while [[ $p != $HOME ]]; do
+# 			p=${p%/*}
+# 			echo $p
+# 		done | grep -E "$1[^/]*$" | $cmd | sed -ne "${occ}p"
+# 	)
+# }
+cdu() {
+		p=$PWD
+		cd $(
+				while [[ $p != $HOME ]]; do
+						p=${p%/*}
+						echo $p
+				# done | grep -E "$1[^/]*$" | fzf -q "$1" +m -1 || echo $PWD
+				# done | grep -E "$1[^/]*$" | fzf -q "$1" +m -1 --preview 'ls -lkha --color=always {}' || echo $PWD
+				done | grep -E "$1[^/]*$" | fzf -q "$1" +m -1 \
+					--preview 'ls -lkha --color=always {}' \
+					--preview-window up,80% \
+					--bind pgup:preview-half-page-up,pgdn:preview-half-page-down \
+					|| echo $PWD
+		)
+}
+
+
 fgco() {
 	# alias fgco="git branch --sort=-committerdate| fzf --height=20% |xargs git checkout "
 	git branch --sort=-committerdate | fzf --height=~50 -e --select-1 --no-sort --query "$1" | xargs git checkout
