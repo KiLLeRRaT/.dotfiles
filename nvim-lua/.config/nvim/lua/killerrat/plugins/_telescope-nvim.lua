@@ -82,9 +82,6 @@ vim.keymap.set("n", "<leader>fF", ":execute 'Telescope find_files default_text='
 
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
 vim.keymap.set("n", "<leader>fG", ":execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>")
-
--- nnoremap <leader>fR <cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<cr>
--- vim.keymap.set("n", "<leader>fr", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>")
 vim.keymap.set("n", "<leader>fr", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args({ default_text = '--hidden ' })<cr>")
 
 
@@ -105,19 +102,13 @@ vim.keymap.set("n", "<leader>fO", ":execute 'Telescope live_grep grep_open_files
 --	"'--smart-case', " ..
 --"} })<cr>")
 
--- nnoremap <leader>fb <cmd>Telescope buffers<cr>
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
--- nnoremap <leader>fk <cmd>Telescope help_tags<cr>
 vim.keymap.set("n", "<leader>fk", "<cmd>Telescope help_tags<cr>")
--- nnoremap <leader>fm <cmd>Telescope keymaps<cr>
-vim.keymap.set("n", "<leader>fm", "<cmd>Telescope keymaps<cr>")
--- nnoremap <leader>fc <cmd>Telescope git_commits<cr>
+vim.keymap.set("n", "<leader>fm", "<cmd>Telescope marks<cr>")
+vim.keymap.set("n", "<leader>fM", "<cmd>Telescope keymaps<cr>")
 vim.keymap.set("n", "<leader>fc", "<cmd>Telescope git_commits<cr>")
--- nnoremap <leader>fr <cmd>Telescope git_branches<cr>
 vim.keymap.set("n", "<leader>fB", "<cmd>Telescope git_branches<cr>")
--- nnoremap <leader>fs <cmd>Telescope colorscheme<cr>
 vim.keymap.set("n", "<leader>fs", "<cmd>Telescope colorscheme<cr>")
--- nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
 
 -- " OVERRIDES THE STANDARD z= shortcut!
