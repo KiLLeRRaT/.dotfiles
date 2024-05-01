@@ -18,6 +18,9 @@ plugins = {
 			["neorg"] = true,
 		},
 		["pappa"] = servers,
-		["sierraecho"] = servers
+		["sierraecho"] = servers,
+		["sierradelta"] = servers,
+		["proxmox5"] = servers,
+		["proxmox-backup-server"] = servers,
 }
 return plugins
