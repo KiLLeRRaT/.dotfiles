@@ -22,5 +22,6 @@ plugins = {
 		["sierradelta"] = servers,
 		["proxmox5"] = servers,
 		["proxmox-backup-server"] = servers,
+		["kiosk-1"] = servers,
 }
 return plugins
