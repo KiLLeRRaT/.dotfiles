@@ -66,6 +66,7 @@ sudo pacman --noconfirm --needed -Syu\
 	spotify-launcher \
 	stow \
 	timeshift \
+	tokei \
 	tmux \
 	tree \
 	ttf-cascadia-code-nerd \
