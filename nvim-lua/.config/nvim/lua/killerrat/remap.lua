@@ -167,11 +167,14 @@ if vim.fn.has('unix') == 1 then
 	-- vim.keymap.set("n", "<leader>=a", ":%!awk '{print; total+=$1}END{print total}'<cr>")
 	-- BELOW DOESNT WORK WELL WITH DECIMAL POINTS! ONLY WITH INTEGERS
 	-- vim.keymap.set("n", "<leader>=a", ":%!awk '{gsub(/[^0-9\\.]/, \"\"); print; total+=$1}END{print total}'<cr>")
-	vim.keymap.set("n", "<leader>=a", ":%!awk '{gsub(/[^0-9\\.\\-]/, \"\"); print; total+=$1}END{print total}'<cr>")
+	-- vim.keymap.set("n", "<leader>=a", ":%!awk '{gsub(/[^0-9\\.\\-]/, \"\"); print; total+=$1}END{print total}'<cr>")
+	-- vim.keymap.set("n", "<leader>=a", ":%!sed -E 's/.*(-?[0-9\\.\\,]+) ?-? ?(day|hour|hr)s?$/\\1/;t;s/.*/ /'<cr>")
+	vim.keymap.set("n", "<leader>=a", ":%!sed -E 's/.*(-?[0-9\\.\\,]+) ?-? ?(day|hour|hr)s?$/\\1/;t;s/.*/ /' | awk \'{print; total+=$1}END{print total}\'<cr>")
 
 	function CopyAndCreateVerticalSplit()
 		vim.cmd('setlocal cursorbind')
-		vim.cmd('normal! ggVGy')
+		-- vim.cmd('normal! ggVGy')
+		vim.cmd('%y')
 		vim.cmd('vnew')
 		local new_buffer = vim.api.nvim_get_current_buf()
 		local new_window = vim.api.nvim_get_current_win()
@@ -180,11 +183,10 @@ if vim.fn.has('unix') == 1 then
 		vim.api.nvim_win_set_width(new_window, 10)
 		vim.cmd('normal! P')
 		vim.cmd('buffer ' .. new_buffer .. ' | setlocal cursorbind')
-		vim.cmd([[ silent! %s/\.\([a-zA-Z\-]\)/\1/g ]]) -- REMOVE .'s that are followed by a letter
-		vim.cmd([[ silent! %s/\-\([a-zA-Z\-]\)/\1/g ]]) -- REMOVE -'s that are followed by a letter
-
-
-		vim.cmd('%!awk \'{gsub(/[^0-9\\.\\-]/, \"\"); print; total+=$1}END{print total}\'')
+		-- vim.cmd([[ silent! %s/\.\([a-zA-Z\-]\)/\1/g ]]) -- REMOVE .'s that are followed by a letter
+		-- vim.cmd([[ silent! %s/\-\([a-zA-Z\-]\)/\1/g ]]) -- REMOVE -'s that are followed by a letter
+		vim.cmd("%!sed -E 's/.*(-?[0-9\\.\\,]+) ?-? ?(day|hour|hr)s?$/\\1/;t;s/.*/ /' | awk \'{print; total+=$1}END{print total}\'")
+		-- vim.cmd('%!awk \'{print; total+=$1}END{print total}\'')
 	end
 	vim.api.nvim_set_keymap('n', '<leader>=A', ':lua CopyAndCreateVerticalSplit()<CR>', { noremap = true, silent = true })
 else
