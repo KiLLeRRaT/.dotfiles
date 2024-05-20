@@ -284,6 +284,15 @@ for i = 1, 6 do
 	vim.keymap.set("n", lhs, rhs, { desc = "Switch to window " .. i })
 end
 
+-- MAPPINGS TO EASILY NAVIGATE SPLITS
+-- USE <C-h> <C-j> <C-k> <C-l> TO NAVIGATE SPLITS
+vim.keymap.set("n", "<C-h>", "<C-w>h")
+vim.keymap.set("n", "<C-j>", "<C-w>j")
+vim.keymap.set("n", "<C-k>", "<C-w>k")
+vim.keymap.set("n", "<C-S-l>", "<C-l>") -- remap the built in to ctrl + shift + l
+vim.keymap.set("n", "<C-l>", "<C-w>l")
+
+
 -- CLOSE CURRENT WINDOW
 vim.keymap.set("n", "<leader>;", ":clo<cr>")
 

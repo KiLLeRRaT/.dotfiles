@@ -556,6 +556,12 @@ chars = "\u001B|"
 key = "Backslash"
 mods = "Alt|Shift"
 
+[[keyboard.bindings]]
+# chars = "\x1b[76;5u"
+chars = "\u001B[76;5u"
+key = "L"
+mods = "Shift|Control"
+
 # [schemes.tokyo-night.bright]
 # black = "0x444b6a"
 # blue = "0x7da6ff"

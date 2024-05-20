@@ -482,6 +482,9 @@ bindkey "\E[3~" delete-char
 
 # bindkey "\E." yank-last-arg
 bindkey "\E." insert-last-word # alt + .
+bindkey "^X*" expand-word # expand glob into items
+# READ MORE HERE TOO, OTHER THINGS TO TRY:
+# https://superuser.com/questions/582097/zsh-glob-expansion-without-menu
 
 if [ -f /usr/bin/zoxide ]
 then
