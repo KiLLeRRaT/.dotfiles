@@ -558,13 +558,17 @@ mods = "Alt|Shift"
 
 # https://sw.kovidgoyal.net/kitty/keyboard-protocol/
 [[keyboard.bindings]]
-# chars = "\x1b[76;5u"
+ # chars = "\u001B[76;6u"
+# chars = "\u001B[108;5u"
+# chars = "\u001B[108;6u"
+# chars = "\u001B[1;6l"
 # chars = "\u001B[76;5u"
-chars = "\u001B[108;5u"
-# chars = "\u001B[76;6u"
+chars = "\u001B[76;6u"
+# chars = "\x1b[76;5u"
+# chars = "^[[1;6L"
 key = "L"
-mods = "Shift|Control"
-# mods = "Control|Shift"
+mods = "Control|Shift"
+
 
 # [schemes.tokyo-night.bright]
 # black = "0x444b6a"
