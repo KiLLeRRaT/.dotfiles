@@ -556,11 +556,15 @@ chars = "\u001B|"
 key = "Backslash"
 mods = "Alt|Shift"
 
+# https://sw.kovidgoyal.net/kitty/keyboard-protocol/
 [[keyboard.bindings]]
 # chars = "\x1b[76;5u"
-chars = "\u001B[76;5u"
+# chars = "\u001B[76;5u"
+chars = "\u001B[108;5u"
+# chars = "\u001B[76;6u"
 key = "L"
 mods = "Shift|Control"
+# mods = "Control|Shift"
 
 # [schemes.tokyo-night.bright]
 # black = "0x444b6a"
