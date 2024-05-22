@@ -20,9 +20,25 @@ local extras = require("luasnip.extras")
 -- local conds = require("luasnip.extras.conditions")
 -- local conds_expand = require("luasnip.extras.conditions.expand")
 
+-- FROM: https://github.com/mawkler/nvim/blob/06cde9dbaedab2bb36c06025c07589c93d2c6d6b/lua/configs/luasnip.lua#L37-L50
+local function uuid()
+	local id, _ = vim.fn.system('uuidgen'):gsub('\n', '')
+	return id
+end
+
+-- local function clipboad_oneline_node()
+-- 	local clipboard, _ = vim.fn.getreg('+'):gsub('\n', ' ')
+-- 	return clipboard
+-- end
+
+-- local luasnip_clipboard = function()
+-- 	return ls.snippet(nil, ls.insert_node(1, clipboad_oneline_node()))
+-- end
+
+
+
+
 ls.setup{}
-
-
 ls.add_snippets("all", {
 	-- today time friendly
 	ls.snippet("2dtf", { extras.partial(os.date, "%a %-d %b %Y %H:%M") }),
@@ -30,6 +46,12 @@ ls.add_snippets("all", {
 	ls.snippet("2dt", { extras.partial(os.date, "%Y%m%d%H%M") }),
 	-- today
 	ls.snippet("2d", { extras.partial(os.date, "%-d %b %Y") }),
+	ls.snippet("uuidgen", {
+		ls.dynamic_node(1, function()
+			return ls.snippet_node(nil,
+				ls.text_node(uuid()))
+		end)
+	}),
 
 	ls.snippet("meta-meet", {
 		ls.text_node("* Meeting with "),
@@ -61,6 +83,18 @@ ls.add_snippets("all", {
 		-- 		}),
 	}),
 })
+
+-- ls.add_snippets('markdown', {
+-- 	ls.snippet({
+-- 		trig = 'link',
+-- 		name = 'hyperlink',
+-- 		dscr = 'Hyperlink with the content in the clipboard'
+-- 	}, {
+-- 			ls.text_node '[', ls.insert_node(1, 'text'), ls.text_node ']',
+-- 			ls.text_node '(', ls.dynamic_node(2, luasnip_clipboard), ls.text_node ') ',
+-- 		})
+-- })
+
 
 -- FROM: https://www.reddit.com/r/neovim/comments/tbtiy9/comment/i0bje36/?utm_source=share&utm_medium=web2x&context=3
 vim.keymap.set({ "i", "s" }, "<C-l>", function()
