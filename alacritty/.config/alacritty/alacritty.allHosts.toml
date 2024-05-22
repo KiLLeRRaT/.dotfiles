@@ -556,8 +556,8 @@ chars = "\u001B|"
 key = "Backslash"
 mods = "Alt|Shift"
 
-# NOT NEEDED, I HAD A BUNG NEOVIM BINDING!
-# # https://sw.kovidgoyal.net/kitty/keyboard-protocol/
+# # NOT NEEDED, I HAD A BUNG NEOVIM BINDING!
+# # # https://sw.kovidgoyal.net/kitty/keyboard-protocol/
 # [[keyboard.bindings]]
 # # chars = "\x1b[76;5u"
 # # chars = "\u001B[108;6u"
@@ -565,6 +565,13 @@ mods = "Alt|Shift"
 # # chars = "^[[1;6L"
 # key = "L"
 # mods = "Control|Shift"
+
+
+# NEEDED ON arch-delllatitude, LETS TEST ON arch-agouws
+[[keyboard.bindings]]
+chars = "\u001B[76;6u"
+key = "L"
+mods = "Control|Shift"
 
 
 # [schemes.tokyo-night.bright]

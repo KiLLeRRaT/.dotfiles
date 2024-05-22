@@ -18,8 +18,9 @@ popd
 
 # RUN SED SCRIPT TO STRIP HOST SPECIFIC PARTS FROM alacritty CONFIG FILE
 pushd ~/.dotfiles/alacritty/.config/alacritty/
-rm alacritty.yml alacritty.toml
-sed '/# <hostSpecificConfig>/,/# <\/hostSpecificConfig>/ {/# <config hostname="'$HOST'">/,/# <\/config>/!d;}' alacritty.allHosts.yml > alacritty.yml
+# rm alacritty.yml
+#sed '/# <hostSpecificConfig>/,/# <\/hostSpecificConfig>/ {/# <config hostname="'$HOST'">/,/# <\/config>/!d;}' alacritty.allHosts.yml > alacritty.yml
+rm alacritty.toml
 sed '/# <hostSpecificConfig>/,/# <\/hostSpecificConfig>/ {/# <config hostname="'$HOST'">/,/# <\/config>/!d;}' alacritty.allHosts.toml > alacritty.toml
 popd
 
