@@ -36,6 +36,13 @@ size = 16.0
 # </config>
 # <config hostname="arch-delllatitude">
 size = 8.0
+
+# NEEDED ON arch-delllatitude, LETS TEST ON arch-agouws
+[[keyboard.bindings]]
+chars = "\u001B[76;6u"
+key = "L"
+mods = "Control|Shift"
+
 # </config>
 # <config hostname="arch-agouwsmacbookpro">
 size = 7.0
@@ -565,13 +572,6 @@ mods = "Alt|Shift"
 # # chars = "^[[1;6L"
 # key = "L"
 # mods = "Control|Shift"
-
-
-# NEEDED ON arch-delllatitude, LETS TEST ON arch-agouws
-[[keyboard.bindings]]
-chars = "\u001B[76;6u"
-key = "L"
-mods = "Control|Shift"
 
 
 # [schemes.tokyo-night.bright]
