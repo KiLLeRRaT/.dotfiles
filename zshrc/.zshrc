@@ -595,7 +595,7 @@ export PATH=$PATH:~/.local/bin
 # Set up fzf key bindings and fuzzy completion
 if [ -f /usr/bin/fzf ]
 then
-	fzfMinorVersion=$(fzf --version | cut -d. -f2)
+	fzfMinorVersion=$(fzf --version | cut -d' ' -f1 | cut -d. -f2)
 	# Shell integration was added in 0.48.0 and later
 	if [ $fzfMinorVersion -ge 47 ]
 	then
