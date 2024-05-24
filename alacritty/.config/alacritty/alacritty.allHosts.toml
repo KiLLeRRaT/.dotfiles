@@ -37,11 +37,6 @@ size = 16.0
 # <config hostname="arch-delllatitude">
 size = 8.0
 
-# NEEDED ON arch-delllatitude, LETS TEST ON arch-agouws
-[[keyboard.bindings]]
-chars = "\u001B[76;6u"
-key = "L"
-mods = "Control|Shift"
 
 # </config>
 # <config hostname="arch-agouwsmacbookpro">
@@ -562,6 +557,13 @@ mods = "Alt|Shift"
 chars = "\u001B|"
 key = "Backslash"
 mods = "Alt|Shift"
+
+# NEEDED ON arch-delllatitude, LETS TEST ON arch-agouws, 
+# APPEARS WE ALSO NEED IT ON arch-agouws
+[[keyboard.bindings]]
+chars = "\u001B[76;6u"
+key = "L"
+mods = "Control|Shift"
 
 # # NOT NEEDED, I HAD A BUNG NEOVIM BINDING!
 # # # https://sw.kovidgoyal.net/kitty/keyboard-protocol/
