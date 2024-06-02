@@ -43,7 +43,7 @@ sudo pacman --noconfirm --needed -Syu\
 	flameshot xdotool \
 	fzf \
 	git \
-	gnome-keyring seahorse \
+	gnome-keyring seahorse lxsession-gtk3 \
 	less \
 	mono \
 	mono-msbuild \

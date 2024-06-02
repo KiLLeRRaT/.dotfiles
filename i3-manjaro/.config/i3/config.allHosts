@@ -864,7 +864,8 @@ font xft:SF Pro Display 11
 # FROM: https://github.com/betterlockscreen/betterlockscreen
 exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
-exec --no-startup-id xfce4-power-manager
+# exec --no-startup-id xfce4-power-manager
+exec --no-startup-id lxpolkit
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 # TURN ON NUMLOCK USING numlockx LIBRARY
