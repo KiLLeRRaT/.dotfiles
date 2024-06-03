@@ -469,7 +469,9 @@ mode "resize" {
 # Lock screen
 # bindsym $mod+9 exec --no-startup-id blurlock
 
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# Disabled Tue 4 Jun 2024 09:07, not using it I don't think.  Now using lxpolkit...
+# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
 exec --no-startup-id nm-applet
 # exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
 
