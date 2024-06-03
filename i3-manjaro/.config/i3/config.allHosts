@@ -354,21 +354,9 @@ assign [class="Spotify"] $ws1
 # HDMI-1 is middle
 # HDMI-0 is right
 
-set $screenleft DP-0
-set $screenmiddle HDMI-1
-set $screenright HDMI-0
-
-workspace $ws1 output $screenleft
-workspace $ws4 output $screenleft
-workspace $ws7 output $screenleft
-workspace $ws2 output $screenmiddle
-workspace $ws5 output $screenmiddle
-workspace $ws8 output $screenmiddle
-workspace $ws0 output $screenmiddle
-workspace $ws3 output $screenright
-workspace $ws6 output $screenright
-workspace $ws9 output $screenright
-
+# set $screenleft DP-0
+# set $screenmiddle HDMI-1
+# set $screenright HDMI-0
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -817,6 +805,10 @@ exec_always --no-startup-id "google-chat-linux"
 exec_always --no-startup-id "alacritty -e tmux"
 # </config>
 # <config hostname="arch-agouws">
+set $screenleft DP-0
+set $screenmiddle HDMI-1
+set $screenright HDMI-0
+
 font xft:SF Pro Display 11
 # 󰭹 chat
 
@@ -889,6 +881,11 @@ bindsym $mod+XF86MonBrightnessUp exec --no-startup-id "pactl set-sink-volume 0 +
 bindsym $mod+XF86MonBrightnessDown exec --no-startup-id "pactl set-sink-volume 0 -5%"
 # </config>
 # <config hostname="arch-orico">
+exec --no-startup-id ~/.screenlayout/arch-agouws-3-displays.sh
+set $screenleft DP-1
+set $screenmiddle HDMI-2
+set $screenright HDMI-1
+
 font xft:SF Pro Display 11
 # 󰭹 chat
 # FROM: https://github.com/betterlockscreen/betterlockscreen
@@ -981,6 +978,18 @@ exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspac
 exec --no-startup-id "alacritty -e tmux"
 # </config>
 # </hostSpecificConfig>
+
+
+workspace $ws1 output $screenleft
+workspace $ws4 output $screenleft
+workspace $ws7 output $screenleft
+workspace $ws2 output $screenmiddle
+workspace $ws5 output $screenmiddle
+workspace $ws8 output $screenmiddle
+workspace $ws0 output $screenmiddle
+workspace $ws3 output $screenright
+workspace $ws6 output $screenright
+workspace $ws9 output $screenright
 
 
 
