@@ -31,6 +31,8 @@
 	recurse = true
 [pull]
 	rebase = true
+[push]
+	autoSetupRemote = true
 [gpg]
 	format = ssh
 [gpg "ssh"]
