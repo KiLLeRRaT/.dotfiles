@@ -15,6 +15,10 @@ echo -e "$password" | sudo -v -S
 # - [ ] /etc/fonts/local.conf in installer script
 # - [ ] /etc/X11/xorg.conf.d/ into installer script
 # - [ ] firewall rules into installer script
+# - [ ] Disable debug in /etc/makepkg.conf, e.g. options=('!debug')
+# - [ ] Disable compression in /etc/makepkg.conf, e.g. PKGEXT='.pkg.tar'
+# - [ ] Set parallel downloads in /etc/pacman.conf, e.g. ParallelDownloads = 5
+# - [ ] Enable color in /etc/pacman.conf, e.g. Color
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
