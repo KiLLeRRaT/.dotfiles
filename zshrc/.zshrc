@@ -188,15 +188,17 @@ alias l="ls -1"
 lst() {
 	# echo $@
 	# echo $(shift $@)
-	n=$1
-	if [ -z $1 ];then n="cat"; else n="head $1";fi
-	ls -t --color=always | eval $n
+	# n=$1
+	# if [ -z $1 ];then n="cat"; else n="head $1";fi
+	# ls -t --color=always | eval $n
+	ls -1 -t --color=always
 }
 
 llst() {
-	n=$1
-	if [ -z $1 ];then n="cat"; else n="head $1";fi
-	ll -t --color=always | eval $n
+	# n=$1
+	# if [ -z $1 ];then n="cat"; else n="head $1";fi
+	# ll -t --color=always | eval $n
+	ll -t --color=always
 }
 
 alias tmux='tmux -2'
