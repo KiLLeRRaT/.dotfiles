@@ -10,6 +10,9 @@
 	dog = log --decorate --oneline --graph
 	bb = !~/.gitscripts/better-git-branch.sh
 
+	;history across branches, origin
+	habo = for-each-ref --sort=-committerdate refs/remotes/origin/ --format='%(color:blue)%(authordate:format:%Y-%m-%d %I:%M %p) %(color:green)%(align:25,left)%(authorname)%(end) %(color:red)%(refname:strip=3)'
+
 [merge]
 	tool = nvim
 	conflictstyle = diff3
