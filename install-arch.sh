@@ -30,11 +30,6 @@ echo -e "$password" | sudo -v -S
 sudo sed -i 's/#Color/Color/g' /etc/pacman.conf
 sudo sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/g' /etc/pacman.conf
 
-echo "Configuring makepkg"
-echo -e "$password" | sudo -v -S
-sudo sed -i 's/PKGEXT=".pkg.tar.zst"/PKGEXT=".pkg.tar"/' /etc/makepkg.conf
-sudo sed -i 's/\(OPTIONS=.*\)debug/\1!debug/' /etc/makepkg.conf
-
 echo "Installing more packages"
 echo -e "$password" | sudo -v -S
 sudo pacman --noconfirm --needed -Syu\
@@ -102,6 +97,11 @@ sudo pacman --noconfirm --needed -Syu\
 	signal-desktop discord \
 	wireplumber pipewire-pulse pavucontrol playerctl
 	# wireplumber pipewire-pulse pulseaudio pavucontrol playerctl
+
+echo "Configuring makepkg"
+echo -e "$password" | sudo -v -S
+sudo sed -i 's/PKGEXT=".pkg.tar.zst"/PKGEXT=".pkg.tar"/' /etc/makepkg.conf
+sudo sed -i 's/\(OPTIONS=.*\)debug/\1!debug/' /etc/makepkg.conf
 
 echo "Starting sshd"
 echo -e "$password" | sudo -v -S
