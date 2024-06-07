@@ -25,6 +25,16 @@ echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Installing Arch Linux\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 
+echo "Configuring pacman"
+echo -e "$password" | sudo -v -S
+sudo sed -i 's/#Color/Color/g' /etc/pacman.conf
+sudo sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/g' /etc/pacman.conf
+
+echo "Configuring makepkg"
+echo -e "$password" | sudo -v -S
+sudo sed -i 's/PKGEXT=".pkg.tar.zst"/PKGEXT=".pkg.tar"/' /etc/makepkg.conf
+sudo sed -i 's/\(OPTIONS=.*\)debug/\1!debug/' /etc/makepkg.conf
+
 echo "Installing more packages"
 echo -e "$password" | sudo -v -S
 sudo pacman --noconfirm --needed -Syu\
@@ -119,11 +129,14 @@ echo "Enable SysRq"
 echo -e "$password" | sudo -v -S
 echo "1" | sudo tee /proc/sys/kernel/sysrq
 
-
-# echo "Cloning dotfiles"
-# pushd /home/$username
-# git clone https://github.com/killerrat/.dotfiles
-# popd
+echo "Clone dotfiles? (y/n)"
+read clone_dotfiles
+if [ "$clone_dotfiles" == "y" ]; then
+	echo "Cloning dotfiles"
+	pushd /home/$username
+	git clone https://github.com/killerrat/.dotfiles
+	popd
+fi
 
 echo "Generate host specific configs"
 ~/.dotfiles/nvim-lua/.config/nvim/generateHostConfig.sh
