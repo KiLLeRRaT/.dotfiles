@@ -130,20 +130,23 @@ echo -e "$password" | sudo -v -S
 echo "1" | sudo tee /proc/sys/kernel/sysrq
 
 
-
 echo "Clone dotfiles? (y/n)"
 read clone_dotfiles
 if [ "$clone_dotfiles" == "y" ]; then
 	echo -e "$password" | sudo -v -S
 	pushd /home/$username
-	git clone https://github.com/killerrat/.dotfiles
-	popd
+	if [ -d .dotfiles ]; then
+		pushd .dotfiles
+		git pull
+		popd
+	else
+		git clone https://github.com/killerrat/.dotfiles
+	fi
+		popd
 fi
 
-exit 1
 
 echo "Generate host specific configs"
-
 ~/.dotfiles/nvim-lua/.config/nvim/generateHostConfig.sh
 
 echo "Running stow"
