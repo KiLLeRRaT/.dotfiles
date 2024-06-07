@@ -100,7 +100,7 @@ sudo pacman --noconfirm --needed -Syu\
 
 echo "Configuring makepkg"
 echo -e "$password" | sudo -v -S
-sudo sed -i 's/PKGEXT=".pkg.tar.zst"/PKGEXT=".pkg.tar"/' /etc/makepkg.conf
+sudo sed -i 's/^PKGEXT.*/PKGEXT=".pkg.tar"/' /etc/makepkg.conf
 sudo sed -i 's/\(OPTIONS=.*\)debug/\1!debug/' /etc/makepkg.conf
 
 echo "Starting sshd"
