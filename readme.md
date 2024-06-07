@@ -6,11 +6,33 @@ dotfiles for Linux, MacOS, and Windows in here.
 # Installation
 
 ## Linux
- ```bash
-  curl -sL https://u.gouws.org/install-arch.sh | bash -
-  curl -sL https://u.gouws.org/install-debian.sh | bash -
-  curl -sL https://u.gouws.org/install-debian-server.sh | bash -
- ```
+### Arch
+Installing arch using archinstall:
+```bash
+archinstall --config https://u.gouws.org/archinstall
+```
+
+Then say no to entering `chroot`, reboot, and run the following:
+
+```bash
+    curl -LOJ https://u.gouws.org/install-arch.sh
+    chmod u+x install-arch.sh
+    ./install-arch.sh
+```
+
+### Debian Server
+```bash
+    curl -LOJ https://u.gouws.org/install-debian-server.sh
+    chmod u+x install-arch.sh
+    ./install-arch.sh
+```
+
+### Debian
+```bash
+    curl -LOJ https://u.gouws.org/install-debian.sh
+    chmod u+x install-arch.sh
+    ./install-arch.sh
+```
 
 # Key Bindings
 
