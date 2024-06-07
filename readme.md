@@ -7,7 +7,9 @@ dotfiles for Linux, MacOS, and Windows in here.
 
 ## Linux
  ```bash
-  curl -sL https://raw.githubusercontent.com/KiLLeRRaT/.dotfiles/install-manjaro.sh | zsh -
+  curl -sL https://u.gouws.org/install-arch.sh | bash -
+  curl -sL https://u.gouws.org/install-debian.sh | bash -
+  curl -sL https://u.gouws.org/install-debian-server.sh | bash -
  ```
 
 # Key Bindings
