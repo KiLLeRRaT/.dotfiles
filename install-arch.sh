@@ -170,6 +170,17 @@ sudo chmod o+r /usr/share/backgrounds/albert/*
 stow alacritty dmenurc dosbox dunst fonts gitconfig gtk-2.0 gtk-3.0 gtk-4.0 i3-manjaro nvim-lua oh-my-posh picom ranger tmux zshrc
 popd
 
+echo "Configure bat and silicon themes"
+mkdir -p "$(bat --config-dir)/themes"
+mkdir -p "$(bat --config-dir)/syntaxes"
+ln -s ~/.local/share/nvim/lazy/tokyonight.nvim/extras/sublime/tokyonight_day.tmTheme ~/.config/bat/themes/tokyonight_day.tmTheme
+ln -s ~/.local/share/nvim/lazy/tokyonight.nvim/extras/sublime/tokyonight_night.tmTheme ~/.config/bat/themes/tokyonight_night.tmTheme
+ln -s ~/.local/share/nvim/lazy/tokyonight.nvim/extras/sublime/tokyonight_moon.tmTheme ~/.config/bat/themes/tokyonight_moon.tmTheme
+ln -s ~/.local/share/nvim/lazy/tokyonight.nvim/extras/sublime/tokyonight_storm.tmTheme ~/.config/bat/themes/tokyonight_storm.tmTheme
+bat cache --build
+silicon --build-cache
+
+
 echo "Let's copy our gtk configs to /root, so that root has the same theme"
 echo -e "$password" | sudo -v -S
 sudo cp /home/albert/.dotfiles/gtk-2.0/.gtkrc-2.0 /root
