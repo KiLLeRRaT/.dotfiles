@@ -298,3 +298,9 @@ vim.keymap.set("n", "<leader>;", ":clo<cr>")
 
 -- HIGHLIGHT WORD UNDER THE CURSOR WITHOUT SEARCHING NEXT OCCURANCE
 vim.keymap.set("n", "<leader>*", "yiw0/0<cr>")
+
+-- HIGHLIGHT CURRENT LINE TO SHOW PEOPLE ON SCREEN
+-- FROM: https://vimtricks.com/p/highlight-specific-lines/
+vim.cmd[[highlight LineHighlight ctermbg=lightgray guibg=#914c54]]
+vim.keymap.set("n", "<leader>v", ":call matchadd('LineHighlight', '\\%'.line('.').'l')<cr>")
+vim.keymap.set("n", "<leader>V", ":call clearmatches()<cr>")
