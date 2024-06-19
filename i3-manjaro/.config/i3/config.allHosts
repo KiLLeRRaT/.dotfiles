@@ -107,8 +107,8 @@ for_window [instance="Alacritty" title="calculator"] floating enable, resize set
 # Start Applications
 # bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+Ctrl+b exec --no-startup-id alacritty -e 'bmenu'
-bindsym $mod+F2 exec --no-startup-id pcmanfm
-bindsym $mod+F3 exec --no-startup-id brave
+# bindsym $mod+F2 exec --no-startup-id pcmanfm
+# bindsym $mod+F3 exec --no-startup-id brave
 # bindsym $mod+F3 exec palemoon
 # bindsym $mod+F4 exec ranger
 # bindsym $mod+Shift+F3 exec pcmanfm_pkexec
@@ -172,8 +172,8 @@ mode "$mode_notifications" {
 
 bindsym Print exec --no-startup-id "eval $(xdotool getactivewindow getwindowgeometry --shell);REGION=${WIDTH}x${HEIGHT}+${X}+${Y}; flameshot full --region $REGION -p ~/Pictures/screenshots/ -c"
 bindsym Ctrl+Print exec --no-startup-id "flameshot gui"
-bindsym $mod+F4 exec --no-startup-id "eval $(xdotool getactivewindow getwindowgeometry --shell);REGION=${WIDTH}x${HEIGHT}+${X}+${Y}; flameshot full --region $REGION -p ~/Pictures/screenshots/ -c"
-bindsym $mod+Ctrl+F4 exec --no-startup-id "flameshot gui"
+# bindsym $mod+F4 exec --no-startup-id "eval $(xdotool getactivewindow getwindowgeometry --shell);REGION=${WIDTH}x${HEIGHT}+${X}+${Y}; flameshot full --region $REGION -p ~/Pictures/screenshots/ -c"
+# bindsym $mod+Ctrl+F4 exec --no-startup-id "flameshot gui"
 
 #bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
@@ -266,28 +266,32 @@ bindsym $mod+Ctrl+Left workspace prev
 # something like: set $ws1 1:mail
 #									set $ws2 2:
 
-# set $ws1 1:1:󰭹
-# set $ws2 2:2:
-# set $ws3 3:3:
-# set $ws4 4:4:󰢁
-# set $ws5 5:5:
-# set $ws6 6:6:
-# set $ws7 7:7:
-# set $ws8 8:8:
-# set $ws9 9:9:
+#https://www.nerdfonts.com/cheat-sheet
+# 
 
 set $ws1 "1:1 󰭹"
 set $ws2 "2:2 "
-set $ws3 "3:3 "
+set $ws3 "3:3 "
 set $ws4 "4:4 󰢁"
-set $ws5 "5:5 "
-set $ws6 "6:6 "
-set $ws7 "7:7 "
+set $ws5 "5:5 󰣆"
+set $ws6 "6:6 󰣆"
+set $ws7 "7:7 "
 set $ws8 "8:8 "
 set $ws9 "9:9 "
-set $ws0 "10:0 "
+set $ws0 "10:0 󰃭"
+
+set $ws11 "11:11 "
+set $ws12 "12:12 "
+set $ws13 "13:13 "
+set $ws14 "14:14 "
+set $ws15 "15:15 "
+set $ws16 "16:16 "
+set $ws17 "17:17 "
+set $ws18 "18:18 "
+set $ws19 "19:19 "
 
 # switch to workspace
+
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -298,6 +302,16 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws0
+
+bindsym $mod+F1 workspace $ws11
+bindsym $mod+F2 workspace $ws12
+bindsym $mod+F3 workspace $ws13
+bindsym $mod+F4 workspace $ws14
+bindsym $mod+F5 workspace $ws15
+bindsym $mod+F6 workspace $ws16
+bindsym $mod+F7 workspace $ws17
+bindsym $mod+F8 workspace $ws18
+bindsym $mod+F9 workspace $ws19
 
 # move to workspace back_and_forth
 bindsym $mod+Tab workspace back_and_forth
@@ -935,8 +949,9 @@ exec --no-startup-id "alacritty -e tmux"
 
 bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
 bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh -50"
-bindsym $mod+F10 exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
-bindsym $mod+Shift+F10 exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh -50"
+# I don't think the below is used
+# bindsym $mod+F10 exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
+# bindsym $mod+Shift+F10 exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh -50"
 bindsym XF86KbdBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-keyboard-brightness.sh +50"
 bindsym XF86KbdBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-keyboard-brightness.sh -50"
 # </config>
