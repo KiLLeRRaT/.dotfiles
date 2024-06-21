@@ -330,6 +330,7 @@ bindsym $mod+Shift+Tab move container to workspace back_and_forth; workspace bac
 # bindsym $mod+Ctrl+9 move container to workspace $ws9
 
 # Move focused container to workspace, and focus new workspace
+
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
@@ -340,6 +341,16 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws0; workspace $ws0
+
+bindsym $mod+Shift+F1 move container to workspace $ws11; workspace $ws11
+bindsym $mod+Shift+F2 move container to workspace $ws12; workspace $ws12
+bindsym $mod+Shift+F3 move container to workspace $ws13; workspace $ws13
+bindsym $mod+Shift+F4 move container to workspace $ws14; workspace $ws14
+bindsym $mod+Shift+F5 move container to workspace $ws15; workspace $ws15
+bindsym $mod+Shift+F6 move container to workspace $ws16; workspace $ws16
+bindsym $mod+Shift+F7 move container to workspace $ws17; workspace $ws17
+bindsym $mod+Shift+F8 move container to workspace $ws18; workspace $ws18
+bindsym $mod+Shift+F9 move container to workspace $ws19; workspace $ws19
 
 # Open applications on specific workspaces
 # YOU CAN FIND THE APPLICATION NAME CLASS NAME USING xprop
