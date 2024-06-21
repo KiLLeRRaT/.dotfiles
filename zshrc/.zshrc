@@ -433,6 +433,19 @@ vmc() {
 	# [[ "$REPLY" == "y" ]] && eval $cmd
 }
 
+npm-outdated-update() {
+	whatParam=$1
+	if [ -z $whatParam ]; then
+		whatParam="minor"
+	fi
+	if [ $whatParam = "major" ]; then
+		whatColumn=4
+	else
+		whatColumn=3
+	fi
+	npm --color=always outdated | fzf --header=$whatParam --multi --header-lines=1 --ansi | awk '{print $1"@"$'$whatColumn'}' | xargs --no-run-if-empty npm install
+}
+
 ssh_removeAndConnect(){
 	# sed -i.bak "/192.168.111.$2/d" ~/.ssh/known_hosts && ssh $1@192.168.111.$2
 	sed -i.bak "/^$2 /d" ~/.ssh/known_hosts && ssh $1@$2
