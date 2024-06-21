@@ -290,8 +290,10 @@ set $ws17 "17:17 "
 set $ws18 "18:18 "
 set $ws19 "19:19 "
 
-# switch to workspace
+# How to rename live workspaces
+# https://www.reddit.com/r/i3wm/comments/axjn4y/renaming_workspaces_on_the_fly_and_preserve/
 
+# switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -317,20 +319,7 @@ bindsym $mod+F9 workspace $ws19
 bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Shift+Tab move container to workspace back_and_forth; workspace back_and_forth
 
-# # Messes with Ctrl + Alt + 2 in Google Docs
-# # Move focused container to workspace
-# bindsym $mod+Ctrl+1 move container to workspace $ws1
-# bindsym $mod+Ctrl+2 move container to workspace $ws2
-# bindsym $mod+Ctrl+3 move container to workspace $ws3
-# bindsym $mod+Ctrl+4 move container to workspace $ws4
-# bindsym $mod+Ctrl+5 move container to workspace $ws5
-# bindsym $mod+Ctrl+6 move container to workspace $ws6
-# bindsym $mod+Ctrl+7 move container to workspace $ws7
-# bindsym $mod+Ctrl+8 move container to workspace $ws8
-# bindsym $mod+Ctrl+9 move container to workspace $ws9
-
 # Move focused container to workspace, and focus new workspace
-
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
@@ -341,7 +330,6 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws0; workspace $ws0
-
 bindsym $mod+Shift+F1 move container to workspace $ws11; workspace $ws11
 bindsym $mod+Shift+F2 move container to workspace $ws12; workspace $ws12
 bindsym $mod+Shift+F3 move container to workspace $ws13; workspace $ws13
@@ -1029,7 +1017,6 @@ workspace $ws18 output $screenmiddle
 workspace $ws13 output $screenright
 workspace $ws16 output $screenright
 workspace $ws19 output $screenright
-
 
 
 
