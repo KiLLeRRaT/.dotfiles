@@ -208,6 +208,7 @@ alias df='df -h'
 alias xclip='xclip -selection clipboard'
 
 alias db='dotnet build'
+alias xc='xclip -se c'
 
 alias gs='git status'
 alias gf='git fetch'
