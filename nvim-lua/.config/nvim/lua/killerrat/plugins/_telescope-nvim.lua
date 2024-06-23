@@ -84,6 +84,7 @@ vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
 vim.keymap.set("n", "<leader>fG", ":execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>")
 vim.keymap.set("n", "<leader>fr", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args({ default_text = '--hidden ' })<cr>")
 
+vim.keymap.set("n", "<leader>ft", ":execute 'Telescope live_grep default_text=TODO-?.*:'<cr>")
 
 -- Search open files only
 vim.keymap.set("n", "<leader>fo", ":execute 'Telescope live_grep grep_open_files=true'<cr>")
