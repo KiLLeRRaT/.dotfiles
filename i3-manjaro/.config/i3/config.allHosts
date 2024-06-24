@@ -730,7 +730,7 @@ mode "$mode_gaps_outer" {
 
 # DELETE RANGE USING SED, FROM: https://stackoverflow.com/a/29530617/182888
 # <hostSpecificConfig>
-# <config hostname="albert-hppavilion">
+# <config hostname="hppavilion">
 font xft:SF Pro Display 11
 # 󰭹 chat
 
