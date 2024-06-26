@@ -447,6 +447,8 @@ npm-outdated-update() {
 	npm --color=always outdated | fzf --header=$whatParam --multi --header-lines=1 --ansi | awk '{print $1"@"$'$whatColumn'}' | xargs --no-run-if-empty npm install
 }
 
+
+
 ssh_removeAndConnect(){
 	# sed -i.bak "/192.168.111.$2/d" ~/.ssh/known_hosts && ssh $1@192.168.111.$2
 	sed -i.bak "/^$2 /d" ~/.ssh/known_hosts && ssh $1@$2
@@ -465,6 +467,13 @@ installAurPackage() {
 	fi
 	makepkg --noconfirm -is --needed
 	popd
+}
+
+updateAurPackages() {
+	# gfr | grep behind | cut -d':' -f1 | sed 's|^\./||' | xargs -n 1 -I {} bash -c "pushd {} && git rebase && makepkg -is --needed --noconfirm"
+	# npm --color=always outdated | fzf --header=$whatParam --multi --header-lines=1 --ansi | awk '{print $1"@"$'$whatColumn'}' | xargs --no-run-if-empty npm install
+	echo NotImplemented
+	exit 1
 }
 
 alias feh-screenshots='feh --scale-down -d -S mtime ~/Pictures/screenshots'
