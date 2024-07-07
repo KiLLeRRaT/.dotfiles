@@ -293,6 +293,17 @@ vim.keymap.set("n", "<C-S-L>", "<Cmd>nohlsearch|diffupdate|normal! <C-L><CR>") -
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 
 
+-- FROM TJ: https://github.com/tjdevries/config.nvim/blob/master/plugin/keymaps.lua#L15-L24-- -- Toggle hlsearch if it's on, otherwise just do "enter"
+-- vim.keymap.set("n", "<CR>", function()
+--   ---@diagnostic disable-next-line: undefined-field
+--   if vim.v.hlsearch == 1 then
+--     vim.cmd.nohl()
+--     return ""
+--   else
+--     return vim.keycode "<CR>"
+--   end
+-- end, { expr = true })
+
 -- CLOSE CURRENT WINDOW
 vim.keymap.set("n", "<leader>;", ":clo<cr>")
 
