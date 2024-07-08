@@ -447,7 +447,9 @@ npm-outdated-update() {
 	npm --color=always outdated | fzf --header=$whatParam --multi --header-lines=1 --ansi | awk '{print $1"@"$'$whatColumn'}' | xargs --no-run-if-empty npm install
 }
 
-
+dotnet-outdated-update() {
+	dotnet list package --outdated | sed -n '/Top-level Package/,$p' | sed 's/^.*> //' | fzf --header=Latest --multi --header-lines=1 --ansi | cut -f1 -d' ' |xargs -n 1 --no-run-if-empty dotnet add package
+}
 
 ssh_removeAndConnect(){
 	# sed -i.bak "/192.168.111.$2/d" ~/.ssh/known_hosts && ssh $1@192.168.111.$2
