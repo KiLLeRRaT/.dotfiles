@@ -122,7 +122,8 @@ local lazyPlugins = {
 		dependencies = { "luarocks.nvim" },
 		-- dependencies = {'nvim-neorg/neorg-telescope', 'nvim-lua/plenary.nvim'},
 		-- build = ":Neorg sync-parsers",
-		ft = "norg"
+		ft = "norg",
+		version = "*"
 	},												-- https://github.com/nvim-neorg/neorg
 	{ 'nvim-neorg/neorg-telescope',
 		dependencies = {'nvim-telescope/telescope.nvim'},
