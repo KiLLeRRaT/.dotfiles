@@ -4,6 +4,11 @@ FROM archlinux AS base
 # YOU SERIOUSLY CAN USE PACMAN INSTEAD OF PAMAC DUDE!
 # RUN pacman -Syu pamac-cli --noconfirm
 
+RUN echo "Configuring pacman" \
+echo -e "$password" | sudo -v -S \
+sudo sed -i 's/#Color/Color/g' /etc/pacman.conf \
+sudo sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/g' /etc/pacman.conf
+
 RUN pacman -Syu --noconfirm
 
 RUN pacman -S --noconfirm git \
@@ -41,9 +46,24 @@ RUN pacman -S --noconfirm git \
 	fzf \
 	ncdu \
 	nginx \
-	cmake gcc
+	cmake gcc \
+	fakeroot
 
 # RUN pamac build xsp mono-basic --no-confirm
+
+RUN echo "Configuring makepkg" \
+echo -e "$password" | sudo -v -S \
+sudo sed -i 's/^PKGEXT.*/PKGEXT=".pkg.tar"/' /etc/makepkg.conf \
+sudo sed -i 's/\(OPTIONS=.*\)debug/\1!debug/' /etc/makepkg.conf
+
+
+# Setup Build user so that we can install AUR packages
+# FROM: https://bbs.archlinux.org/viewtopic.php?id=229027
+RUN useradd --no-create-home --shell=/bin/zsh build && usermod -L build
+RUN echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+RUN echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+# user su build to switch, install aur package using git clone
+
 
 WORKDIR /root/
 RUN echo -e "\033[32m Clone KiLLeRRaT dotfiles\033[0m" && \
