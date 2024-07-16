@@ -124,7 +124,7 @@ sudo systemctl start NetworkManager.service
 # FROM: https://wiki.archlinux.org/title/Sysctl#Configuration
 echo "Enable SysRq"
 echo -e "$password" | sudo -v -S
-echo "1" | sudo tee /proc/sys/kernel/sysrq
+echo "kernel.sysrq=1" | sudo tee /etc/sysctl.d/99-sysctl.conf
 
 
 echo "Clone dotfiles? (y/n)"
