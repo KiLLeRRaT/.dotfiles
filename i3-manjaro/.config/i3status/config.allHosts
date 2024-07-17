@@ -100,7 +100,7 @@ disk "/mnt/data/" {
 # </config>
 # <config hostname="arch-agouws">
 order += "disk /mnt/data/"
-order += "disk /mnt/data2-virtualmachines/"
+order += "disk /mnt/data2-temp/"
 order += "ethernet br0"
 ethernet br0 {
 # if you use %speed, i3status requires root privileges
@@ -111,7 +111,7 @@ ethernet br0 {
 disk "/mnt/data/" {
 				format = "d⛁ %avail "
 }
-disk "/mnt/data2-virtualmachines/" {
+disk "/mnt/data2-temp/" {
 				format = "d2⛁ %avail "
 }
 # </config>
