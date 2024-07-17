@@ -117,13 +117,18 @@ local lazyPlugins = {
 		priority = 1000, -- We'd like this plugin to load first out of the rest
 		config = true, -- This automatically runs `require("luarocks-nvim").setup()`
 	},
+	-- { 'nvim-neorg/neorg',
+	-- 	cond = pluginCondForHost,
+	-- 	dependencies = { "luarocks.nvim" },
+	-- 	-- dependencies = {'nvim-neorg/neorg-telescope', 'nvim-lua/plenary.nvim'},
+	-- 	-- build = ":Neorg sync-parsers",
+	-- 	ft = "norg",
+	-- 	version = "*"
+	-- },												-- https://github.com/nvim-neorg/neorg
 	{ 'nvim-neorg/neorg',
 		cond = pluginCondForHost,
-		dependencies = { "luarocks.nvim" },
-		-- dependencies = {'nvim-neorg/neorg-telescope', 'nvim-lua/plenary.nvim'},
-		-- build = ":Neorg sync-parsers",
 		ft = "norg",
-		version = "*"
+		version = "*",
 	},												-- https://github.com/nvim-neorg/neorg
 	{ 'nvim-neorg/neorg-telescope',
 		dependencies = {'nvim-telescope/telescope.nvim'},
