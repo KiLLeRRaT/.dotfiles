@@ -1,75 +1,75 @@
 local p = "neorg"; if (not require('killerrat.plugins._lazy-nvim').LazyHasPlugin(p)) then return end
 
 require(p).setup {
-		load = {
-				["core.defaults"] = {},
-				["core.export"] = {},
-				["core.export.markdown"] = {},
-				["core.integrations.telescope"] = {},
-				["core.dirman"] = {
-						config = {
-								workspaces = {
-										work = "~/notes/neorg/work"
-										-- home = "~/notes/home",
-								}
-						}
-				},
-				["core.concealer"] = { config = {} },
-				-- ["core.gtd.base"] = { -- https://github.com/nvim-neorg/neorg/wiki/Getting-Things-Done
-				--	 config = {
-				--		workspace = "work"
-				--	 }
-				-- },
-				["core.completion"] = { -- https://github.com/nvim-neorg/neorg/wiki/Completion
-					config = {
-						engine = "nvim-cmp"
-				},
-				-- NOT SURE IF I NEED THE BELOW WITH THE ABOVE CONFIGURED?
-				["core.integrations.nvim-cmp"] = { -- https://github.com/nvim-neorg/neorg/wiki/Nvim-Cmp
-					 config = {}
-				},
-				["core.dirman"] = { -- https://github.com/nvim-neorg/neorg/wiki/Dirman
-					config = {
-						workspaces = {
-							work = "~/notes/neorg/work", -- Format: <name_of_workspace> = <path_to_workspace_root>
-							-- my_other_notes = "~/work/notes",
-						},
-						autochdir = true, -- Automatically change the directory to the current workspace's root every time
-						index = "index.norg", -- The name of the main (root) .norg file
-					}
-				},
-				["core.summary"] = { config = { strategy = "default" } },
-				["core.neorgcmd"] = { config = {} },
-				-- ["core.integrations.treesitter"] = {},
-				-- ["core.ui"] = {},
-				-- ["core.mode"] = {},
-				-- ["core.queries.native"] = {},
-				-- ["core.presenter"] = { config = { zen_mode = "zen-mode" } },
+	load = {
+		["core.defaults"] = {},
+		["core.export"] = {},
+		["core.export.markdown"] = {},
+		["core.integrations.telescope"] = {},
+		["core.dirman"] = {
+			config = {
+				workspaces = {
+					work = "~/notes/neorg/work"
+					-- home = "~/notes/home",
+				}
 			}
+		},
+		["core.concealer"] = { config = {} },
+		-- ["core.gtd.base"] = { -- https://github.com/nvim-neorg/neorg/wiki/Getting-Things-Done
+		--	 config = {
+		--		workspace = "work"
+		--	 }
+		-- },
+		["core.completion"] = { -- https://github.com/nvim-neorg/neorg/wiki/Completion
+			config = {
+				engine = "nvim-cmp"
+			},
+			-- NOT SURE IF I NEED THE BELOW WITH THE ABOVE CONFIGURED?
+			["core.integrations.nvim-cmp"] = { -- https://github.com/nvim-neorg/neorg/wiki/Nvim-Cmp
+				config = {}
+			},
+			["core.dirman"] = { -- https://github.com/nvim-neorg/neorg/wiki/Dirman
+				config = {
+					workspaces = {
+						work = "~/notes/neorg/work", -- Format: <name_of_workspace> = <path_to_workspace_root>
+						-- my_other_notes = "~/work/notes",
+					},
+					autochdir = true, -- Automatically change the directory to the current workspace's root every time
+					index = "index.norg", -- The name of the main (root) .norg file
+				}
+			},
+			["core.summary"] = { config = { strategy = "default" } },
+			["core.neorgcmd"] = { config = {} },
+			-- ["core.integrations.treesitter"] = {},
+			-- ["core.ui"] = {},
+			-- ["core.mode"] = {},
+			-- ["core.queries.native"] = {},
+			-- ["core.presenter"] = { config = { zen_mode = "zen-mode" } },
 		}
+	}
 }
 
 
 -- FROM : https://github.com/nvim-neorg/neorg-telescope
 local neorg_callbacks = require("neorg.core.callbacks")
 neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, keybinds)
-		-- Map all the below keybinds only when the "norg" mode is active
-		keybinds.map_event_to_mode("norg", {
-				n = {
-					-- { "<C-s>", "core.integrations.telescope.find_linkable" },
-					{ "<localleader>ff", "core.integrations.telescope.find_linkable" },
-				},
+	-- Map all the below keybinds only when the "norg" mode is active
+	keybinds.map_event_to_mode("norg", {
+		n = {
+			-- { "<C-s>", "core.integrations.telescope.find_linkable" },
+			{ "<localleader>ff", "core.integrations.telescope.find_linkable" },
+		},
 
-				i = {
-					{ "<C-l>", "core.integrations.telescope.insert_link" },
-				},
-		}, {
-				silent = true,
-				noremap = true,
+		i = {
+			{ "<C-l>", "core.integrations.telescope.insert_link" },
+		},
+	}, {
+			silent = true,
+			noremap = true,
 		})
-		-- JUST USE CTRL+SPACE TO CYCLE, gtd, gtu, gtp, gtc, gti TO SET THE STATES
-		-- keybinds.remap_event("norg", "n", "]d", "core.norg.qol.todo_items.todo.task_cycle")
-		-- keybinds.remap_event("norg", "n", "[d", "core.norg.qol.todo_items.todo.task_cycle_reverse")
+	-- JUST USE CTRL+SPACE TO CYCLE, gtd, gtu, gtp, gtc, gti TO SET THE STATES
+	-- keybinds.remap_event("norg", "n", "]d", "core.norg.qol.todo_items.todo.task_cycle")
+	-- keybinds.remap_event("norg", "n", "[d", "core.norg.qol.todo_items.todo.task_cycle_reverse")
 end)
 
 
