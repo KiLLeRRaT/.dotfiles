@@ -257,7 +257,7 @@ gtD() { git tag -d $1;git push origin -d $1 }
 # 	nvim'
 
 alias n='nvim'
-alias nt='nvim $(mktemp)'
+alias nt='nvim $(TMPDIR=~/tmp/scratchpads mktemp -u)'
 
 # DOESNT MAKE IT EASIER, BUT IF YOU FORGET THE COMMAND, YOU TYPE ss AND PRESS TAB TO GET THE COMPLETION :)
 alias ss-tulpn='ss -tulpn'
