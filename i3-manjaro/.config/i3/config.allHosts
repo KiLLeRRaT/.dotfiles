@@ -949,6 +949,12 @@ exec --no-startup-id "alacritty -e tmux"
 
 bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
 bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh -50"
+bindsym $mod+Up  exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
+bindsym $mod+Down  exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh -50"
+
+bindsym $mod+Right exec --no-startup-id "pactl set-sink-volume 0 +5%"
+bindsym $mod+Left exec --no-startup-id "pactl set-sink-volume 0 -5%"
+
 # I don't think the below is used
 # bindsym $mod+F10 exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh +50"
 # bindsym $mod+Shift+F10 exec --no-startup-id "~/.dotfiles/hosts/arch-agouwsmacbookpro/set-brightness.sh -50"
