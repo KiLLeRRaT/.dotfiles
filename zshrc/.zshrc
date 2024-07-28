@@ -386,7 +386,8 @@ fh() {
 # REMMINA USING THE CONNECTION FILE SELECTED USING FZF
 fr() {
 	pushd ~/.local/share/remmina
-	cmd="remmina -c $(ls $PWD/* | fzf -e --select-1 --no-sort --query $1)"
+	subcmd=$(ls $PWD/* | fzf -e --select-1 --no-sort --query "$1")
+	cmd="remmina -c $subcmd"
 	# escape parentheses in the cmd with a backslash
 	cmd=$(echo $cmd | sed 's/(/\\(/g' | sed 's/)/\\)/g')
 	# push the command into the history
@@ -397,11 +398,11 @@ fr() {
 	popd
 }
 
-# fzf time
-alias ft='TZ=$(timedatectl list-timezones | fzf) date'
+# fzf time zone time
+alias ftz='TZ=$(timedatectl list-timezones | fzf) date'
 
 # fzf CBM bookmarks
-alias fb='pushd ~/scripts/Sandfield > /dev/null 2>&1; ./CBM-CentralBookmarksManager-export-textfiles.sh; popd > /dev/null 2>&1'
+alias fcbm='pushd ~/scripts/Sandfield > /dev/null 2>&1; ./CBM-CentralBookmarksManager-export-textfiles.sh; popd > /dev/null 2>&1'
 
 fn() {
   local results=$(fzf --multi --preview 'bat --color=always {}')
