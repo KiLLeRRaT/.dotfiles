@@ -23,5 +23,7 @@ plugins = {
 		["proxmox5"] = servers,
 		["proxmox-backup-server"] = servers,
 		["kiosk-1"] = servers,
+		["SALDOCPROD1"] = servers,
+		["SALDOCDEV1"] = servers,
 }
 return plugins
