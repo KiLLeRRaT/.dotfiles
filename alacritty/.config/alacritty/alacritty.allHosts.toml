@@ -39,6 +39,9 @@ size = 8.0
 
 
 # </config>
+# <config hostname="arch-samsung">
+size = 7.0
+# </config>
 # <config hostname="arch-agouwsmacbookpro">
 size = 7.0
 # </config>

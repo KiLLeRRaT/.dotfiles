@@ -1,0 +1,21 @@
+{
+    "border": "pixel",
+    "current_border_width": 1,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 600,
+       "width": 800,
+       "x": 0,
+       "y": 0
+    },
+    "marks": [],
+    "name": "Alacritty",
+    "percent": 1,
+    "swallows": [
+       {
+        "title": "^Alacritty$"
+       }
+    ],
+    "type": "con"
+}
+
