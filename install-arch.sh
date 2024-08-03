@@ -32,6 +32,7 @@ sudo pacman --noconfirm --needed -Syu\
 	alacritty \
 	aspnet-runtime \
 	base-devel \
+	bat \
 	bc \
 	bluez bluez-utils blueman \
 	btop \
@@ -66,6 +67,7 @@ sudo pacman --noconfirm --needed -Syu\
 	remmina freerdp libvncserver \
 	ripgrep \
 	rsync \
+	silicon \
 	snap-pac \
 	snapper \
 	spotify-launcher \
@@ -276,8 +278,8 @@ installAurPackage dracula-gtk-theme
 installAurPackage dracula-icons-git
 installAurPackage snapper-gui-git
 
-installAurPackage azuredatastudio-bin
-installAurPackage powershell-bin
+#installAurPackage azuredatastudio-bin
+#installAurPackage powershell-bin
 installAurPackage netcoredbg
 
 sudo pacman -R --noconfirm i3lock
@@ -293,15 +295,15 @@ sudo systemctl enable betterlockscreen@$USER
 # installAurPackage forticlient-vpn
 # sudo pacman -S networkmanager-fortisslvpn
 
-installAurPackage openfortivpn
+#installAurPackage openfortivpn
 # ALSO NEED TO RUN THE FOLLOWING FOR THE NETWORKING TO WORK CORRECTLY FOR THE VPN:
 echo -e "$password" | sudo -v -S
 sudo systemctl enable systemd-resolved.service
 sudo systemctl start systemd-resolved.service
 
-installAurPackage icaclient #Citrix workspace app/Citrix receiver
-echo -e "$password" | sudo -v -S
-sudo pacman --noconfirm --needed -Syu perl-file-mimeinfo # Required to interpret the *.ica files correctly
+#installAurPackage icaclient #Citrix workspace app/Citrix receiver
+#echo -e "$password" | sudo -v -S
+#sudo pacman --noconfirm --needed -Syu perl-file-mimeinfo # Required to interpret the *.ica files correctly
 # COPYING AND PASTING NOT WORKING IN icaclient, DISABLE KLIPPER OR CLIPBOARD MANAGER!
 
 installAurPackage nvm
