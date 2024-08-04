@@ -15,6 +15,8 @@ sudo apt install -y tmux && \
 sudo apt install -y btop && \
 sudo apt install -y ranger && \
 sudo apt install -y zsh && \
+sudo apt install -y tree && \
+sudo apt install -y bat && \
 sudo apt install -y cmake
 # apt install -y ncdu # NOT SURE IF THIS COMES WITH DEBIAN BASED SYSTEMS?
 
