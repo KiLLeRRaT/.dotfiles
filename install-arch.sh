@@ -94,7 +94,8 @@ sudo pacman --noconfirm --needed -Syu\
 	sshfs \
 	signal-desktop discord \
 	wireplumber pipewire-pulse pavucontrol playerctl \
-	ufw
+	ufw \
+	pacman-contrib
 	# wireplumber pipewire-pulse pulseaudio pavucontrol playerctl
 
 echo "Configuring makepkg"
@@ -122,6 +123,14 @@ echo -e "$password" | sudo -v -S
 sudo systemctl enable NetworkManager.service
 sudo systemctl start NetworkManager.service
 
+echo "Starting paccache timer (cleanup unused pacman packages)"
+echo -e "$password" | sudo -v -S
+sudo systemctl enable paccache.timer
+sudo systemctl start paccache.timer
+
+echo "Enable ufw"
+echo -e "$password" | sudo -v -S
+sudo ufw enable
 
 # FROM: https://wiki.archlinux.org/title/Sysctl#Configuration
 echo "Enable SysRq"
