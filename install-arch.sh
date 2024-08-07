@@ -59,6 +59,7 @@ sudo pacman --noconfirm --needed -Syu\
 	nginx \
 	nuget \
 	openssh \
+	openfortivpn \
 	pcmanfm \
 	picom \
 	polkit \
@@ -301,10 +302,10 @@ betterlockscreen -u ~/.dotfiles/images
 echo -e "$password" | sudo -v -S
 sudo systemctl enable betterlockscreen@$USER
 
-# installAurPackage forticlient-vpn
+# installAurPackage forticlient-vpn, in ~/vpn.sh we are using openfortivpn
 # sudo pacman -S networkmanager-fortisslvpn
 
-#installAurPackage openfortivpn
+#installAurPackage openfortivpn, it's now in exta, so no need for AUR package anymore
 # ALSO NEED TO RUN THE FOLLOWING FOR THE NETWORKING TO WORK CORRECTLY FOR THE VPN:
 echo -e "$password" | sudo -v -S
 sudo systemctl enable systemd-resolved.service
