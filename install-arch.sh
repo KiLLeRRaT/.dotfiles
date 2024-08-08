@@ -53,6 +53,7 @@ sudo pacman --noconfirm --needed -Syu\
 	less \
 	mono \
 	mono-msbuild \
+	ncdu \
 	neovim \
 	network-manager-applet \
 	networkmanager \
