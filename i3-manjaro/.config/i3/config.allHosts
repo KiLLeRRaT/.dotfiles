@@ -385,7 +385,7 @@ for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 
-for_window [title="TimeSheetEntry - Brave$"] floating enable border normal, move position center, resize set 700 650
+for_window [title="TimeSheetEntry - Brave$"] floating enable border normal, move position center, resize set 830 800
 for_window [title="^Spaces$"] floating enable border normal, move position center, resize set 760 800
 for_window [class="Blueman-manager"] floating enable border normal, resize set 760 450, move position center
 for_window [class="easyeffects"] floating enable border normal, resize set 1410 764, move position center
