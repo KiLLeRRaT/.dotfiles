@@ -485,7 +485,17 @@ updateAurPackages() {
 	popd
 }
 
-alias feh-screenshots='feh --scale-down -d -S mtime ~/Pictures/screenshots'
+# alias feh-screenshots='feh --scale-down -d -S mtime ~/Pictures/screenshots'
+feh-screenshots() {
+	feh \
+		--scale-down \
+		-d \
+		-S mtime \
+		--action1 ';xclip -selection clipboard -t image/png -i %F' \
+		--action2 ';echo %F | xclip -i -selection clipboard' \
+		--draw-actions \
+		~/Pictures/screenshots
+}
 
 
 # alias hf='history 0 | cut -c 8- | fzf -e'
