@@ -266,6 +266,7 @@ alias setxkbmap-ctrl-caps='setxkbmap -option ctrl:nocaps'
 alias setxkbmap-alt-win='setxkbmap -option altwin:swap_lalt_lwin'
 alias setxkbmap-revert="setxkbmap -option ''"
 
+# FROM: https://linuxreviews.org/HOWTO_use_the_numeric_keyboard_keys_as_mouse_in_XOrg
 # to use the mouse, press /*- to select which button you want to use, and press 5 or + to actually click
 # that button. 0 to hold, and . to release.
 # if you want double click you need to tap / twice, or three times for a triple click.  When you
