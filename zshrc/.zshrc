@@ -420,9 +420,13 @@ fn() {
 }
 
 
+
+vmGetDomain() {
+	sudo virsh list --all | tail -n +3 | fzf --select-1 --query "$1" --height=~50 | awk '{ print $2 }'
+}
 # START THE SELECTED VM
 vms() {
-	domain=$(sudo virsh list --all | tail -n +3 | fzf --select-1 --query "$1" --height=~50 | awk '{ print $2 }')
+	domain=$(vmGetDomain $1)
 	cmd="sudo virsh start $domain"
 	# push the command into the history
 	print -S $cmd
@@ -434,8 +438,20 @@ vms() {
 
 # CONNECT TO THE SELECTED VM
 vmc() {
-	domain=$(sudo virsh list --all | tail -n +3 | fzf --select-1 --query "$1" --height=~50 | awk '{ print $2 }')
+	domain=$(vmGetDomain $1)
 	cmd="sudo virt-manager --connect qemu:///system --show-domain-console $domain"
+	# push the command into the history
+	print -S $cmd
+	echo $cmd
+	eval $cmd
+	# read -q "REPLY?Run command? "
+	# [[ "$REPLY" == "y" ]] && eval $cmd
+}
+
+# SCREENSHOT VM
+vmscreenshot() {
+	domain=$(vmGetDomain $1)
+	cmd="sudo virsh screenshot $domain /dev/stdout | feh -"
 	# push the command into the history
 	print -S $cmd
 	echo $cmd
