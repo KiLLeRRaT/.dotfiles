@@ -265,6 +265,11 @@ alias ss-tulpn='ss -tulpn'
 alias setxkbmap-ctrl-caps='setxkbmap -option ctrl:nocaps'
 alias setxkbmap-alt-win='setxkbmap -option altwin:swap_lalt_lwin'
 alias setxkbmap-revert="setxkbmap -option ''"
+
+# to use the mouse, press /*- to select which button you want to use, and press 5 or + to actually click
+# that button. 0 to hold, and . to release.
+# if you want double click you need to tap / twice, or three times for a triple click.  When you
+# then press 5 it clicks that many times.
 alias setxkbmap-keypad-pointerkeys="echo 'Enable numlock using shift+numlock, or ctrl+shift+numlock' && \
 	setxkbmap -option keypad:pointerkeys"
 
