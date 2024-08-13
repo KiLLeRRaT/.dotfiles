@@ -121,7 +121,7 @@ for_window [instance="Alacritty" title="calculator"] floating enable, resize set
 
 # Start Applications
 # bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+Ctrl+b exec --no-startup-id alacritty -e 'bmenu'
+# bindsym $mod+Ctrl+b exec --no-startup-id alacritty -e 'bmenu'
 # bindsym $mod+F2 exec --no-startup-id pcmanfm
 # bindsym $mod+F3 exec --no-startup-id brave
 # bindsym $mod+F3 exec palemoon
