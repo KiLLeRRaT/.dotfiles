@@ -1,6 +1,6 @@
 require("better_escape").setup {
 		timeout = vim.o.timeoutlen,
-		default_mappings = true,
+		default_mappings = false,
 		mappings = {
 				i = {
 						j = {
@@ -21,11 +21,11 @@ require("better_escape").setup {
 								j = "<Esc>",
 						},
 				},
-				v = {
-						j = {
-								k = "<Esc>",
-						},
-				},
+				-- v = {
+				-- 		j = {
+				-- 				k = "<Esc>",
+				-- 		},
+				-- },
 				s = {
 						j = {
 								k = "<Esc>",
