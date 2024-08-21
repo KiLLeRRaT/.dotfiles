@@ -58,6 +58,8 @@ sudo pacman --noconfirm --needed -Syu\
 	fzf \
 	git \
 	gnome-keyring seahorse lxsession-gtk3 \
+	iotop \
+	jq \
 	less \
 	mono \
 	mono-msbuild \
@@ -65,10 +67,14 @@ sudo pacman --noconfirm --needed -Syu\
 	neovim \
 	network-manager-applet \
 	networkmanager \
+	networkmanager-l2tp strongswan \
 	nginx \
 	nuget \
-	openssh \
+	numlockx \
 	openfortivpn \
+	openssh \
+	pacman-contrib \
+	pam-u2f \
 	pcmanfm \
 	picom \
 	polkit \
@@ -77,35 +83,30 @@ sudo pacman --noconfirm --needed -Syu\
 	remmina freerdp libvncserver \
 	ripgrep \
 	rsync \
+	signal-desktop discord \
 	silicon \
 	snap-pac \
 	snapper \
 	spotify-launcher \
+	sshfs \
 	stow \
 	timeshift \
-	tokei \
 	tmux \
+	tokei \
 	tree \
 	ttf-cascadia-code-nerd \
+	ufw \
 	unzip \
+	virt-manager libvirt qemu virt-viewer swtpm \
 	wget \
+	wireplumber pipewire-pulse pavucontrol playerctl \
 	xautolock \
 	xclip \
+	xorg-xrandr \
+	zathura zathura-pdf-poppler \
 	zip \
 	zoxide \
-	zsh \
-	networkmanager-l2tp strongswan \
-	numlockx \
-	jq \
-	iotop \
-	xorg-xrandr \
-	virt-manager libvirt qemu virt-viewer swtpm \
-	zathura zathura-pdf-poppler \
-	sshfs \
-	signal-desktop discord \
-	wireplumber pipewire-pulse pavucontrol playerctl \
-	ufw \
-	pacman-contrib
+	zsh
 	# wireplumber pipewire-pulse pulseaudio pavucontrol playerctl
 
 echo "Configuring makepkg"
@@ -233,6 +234,7 @@ installAurPackage() {
 installAurPackage oh-my-posh-bin
 installAurPackage brave-bin
 
+# BEGIN 1Password config
 echo "Set up seahorse and create a default keyring. This is needed for 1Password otherwise it keeps asking the 2FA prompt again and again."
 # FROM: https://1password.community/discussion/127523/1password-and-gnome-keyring-for-2fa-saving-on-archlinux
 # seahorse
@@ -254,11 +256,6 @@ EOF
 	chmod og= ~/.local/share/keyrings/default.keyring
 # chown -R $username:$username ~/.local
 fi
-
-
-
-
-
 
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
 installAurPackage 1password
@@ -285,10 +282,14 @@ EOF
 
 fi
 
-read -p "Let's verify the changes. Press enter to continue"
-echo -e "$password" | sudo -v -S
-sudo nvim -d /etc/pam.d/login /tmp/login.tmp
+# read -p "Let's verify the changes. Press enter to continue"
+# echo -e "$password" | sudo -v -S
+# sudo nvim -d /etc/pam.d/login /tmp/login.tmp
 
+# Configure polkit-1 for 1Password (Allows using system authentication with 1Password)
+sudo cp /usr/lib/pam.d/polkit-1 /etc/pam.d/polkit-1
+# lxpolkit will be started as part of my i3 config
+# END 1Password config
 
 installAurPackage otf-san-francisco
 installAurPackage otf-san-francisco-mono
@@ -342,3 +343,21 @@ if [ "$enable_docker" == "y" ]; then
 	sudo systemctl start docker
 fi
 
+echo "Configur Yubikey? (y/n)"
+read configure_yubikey
+if [ "$configure_yubikey" == "y" ]; then
+	echo -e "$password" | sudo -v -S
+
+	# ykfde
+
+	# pam-u2f
+	mkdir ~/.config/Yubico
+	pamu2fcfg --no-user-presence --pin-verification -o pam://$HOST -i pam://$HOST > ~/.config/Yubico/u2f_keys
+
+	# pam config
+	authValue="auth sufficient pam_u2f.so cue origin=pam://$HOST appid=pam://$HOST"
+	sudo sed -i "2i$authValue" /etc/pam.d/sudo
+	sudo sed -i "2i$authValue" /etc/pam.d/system-local-login
+	sudo sed -i "2i$authValue" /etc/pam.d/lightdm
+	sudo sed -i "2i$authValue" /etc/pam.d/polkit-1
+fi
