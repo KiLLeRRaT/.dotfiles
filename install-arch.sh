@@ -15,6 +15,14 @@ echo -e "$password" | sudo -v -S
 # - [ ] /etc/fonts/local.conf in installer script
 # - [ ] /etc/X11/xorg.conf.d/ into installer script
 # - [ ] firewall rules into installer script
+# - [ ] paccache.timer start
+# - [ ] Yubikey fde, pam-u2f
+# - [ ] polkit for 1Password
+# - [ ] /boot backups hook
+# - [ ] snapper timers start (boot and cleanup)
+# - [ ] pacman hooks for snapper
+# - [ ] pacman hooks for timeshift
+# - [ ] BTRFS snapshots showing in GRUB
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
