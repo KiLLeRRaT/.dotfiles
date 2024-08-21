@@ -363,3 +363,5 @@ if [ "$configure_yubikey" == "y" ]; then
 	sudo sed -i "2i$authValue" /etc/pam.d/lightdm
 	sudo sed -i "2i$authValue" /etc/pam.d/polkit-1
 fi
+
+mkdir ~/Pictures/screenshots
