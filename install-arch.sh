@@ -349,6 +349,7 @@ if [ "$configure_yubikey" == "y" ]; then
 	echo -e "$password" | sudo -v -S
 
 	# ykfde
+	# SEE: https://wiki.archlinux.org/title/YubiKey#Challenge-response_2
 
 	# pam-u2f
 	mkdir ~/.config/Yubico
