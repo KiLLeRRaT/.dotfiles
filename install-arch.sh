@@ -69,6 +69,7 @@ sudo pacman --noconfirm --needed -Syu\
 	networkmanager \
 	networkmanager-l2tp strongswan \
 	nginx \
+	noto-fonts-emoji \
 	nuget \
 	numlockx \
 	openfortivpn \
