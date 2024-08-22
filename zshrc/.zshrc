@@ -450,8 +450,33 @@ vmc() {
 
 # SCREENSHOT VM
 vmscreenshot() {
+	tmpFile=$(mktemp)
 	domain=$(vmGetDomain $1)
-	cmd="sudo virsh screenshot $domain /dev/stdout | feh -"
+	# cmd="sudo virsh screenshot $domain /dev/stdout | feh -"
+	cmd="sudo virsh screenshot $domain $tmpFile"
+	eval $cmd
+
+	# FROM: https://www.reddit.com/r/i3wm/comments/mpehmg/comment/gu9fed3/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+	feh $tmpFile &
+	feh_pid=$!
+	echo "feh_pid: $feh_pid"
+	feh_wid=""
+	while [ -z $feh_wid ];
+	do
+		feh_wid=$(xdotool search --pid "$feh_pid")
+		echo "feh_wid: $feh_wid"
+		sleep 0.1
+	done
+	i3-msg "[id=$feh_wid] floating enable, move position center" > /dev/null
+
+	count=0
+	while [ $count -lt 60 ]
+	do
+		count=$((count+1))
+		eval $cmd
+		sleep 1
+	done
+
 	# push the command into the history
 	print -S $cmd
 	echo $cmd
