@@ -402,7 +402,11 @@ fr() {
 	print -S $cmd
 	echo $cmd
 	read -kq "REPLY?Run command? "
-	[[ "$REPLY" == "y" ]] && eval $cmd
+	if [ "$REPLY" == "y" ]
+	then
+		eval $cmd &
+		disown
+	fi
 	popd
 }
 
@@ -432,8 +436,9 @@ vms() {
 	print -S $cmd
 	echo $cmd
 	eval $cmd
-	# read -q "REPLY?Run command? "
-	# [[ "$REPLY" == "y" ]] && eval $cmd
+	# Ask if you want to do vmscreenshot
+	read -q "REPLY?Take screenshot? (y/n)"
+	[[ "$REPLY" == "y" ]] && vmscreenshot $1
 }
 
 # CONNECT TO THE SELECTED VM
@@ -470,7 +475,7 @@ vmscreenshot() {
 	i3-msg "[id=$feh_wid] floating enable, move position center" > /dev/null
 
 	count=0
-	while [ $count -lt 60 ]
+	while [ $count -lt 300 ]
 	do
 		count=$((count+1))
 		eval $cmd
