@@ -240,23 +240,25 @@ echo "Set up seahorse and create a default keyring. This is needed for 1Password
 # FROM: https://1password.community/discussion/127523/1password-and-gnome-keyring-for-2fa-saving-on-archlinux
 # seahorse
 
+# The below is disabled because it creates `default` but the appls actually now use `default
+# keyring` that's created by default so we probably don't need this anymore
 # FROM: https://serverfault.com/a/1128330
-[ ! -d ~/.local/share/keyrings ] && mkdir -p ~/.local/share/keyrings/
-if [ ! -f ~/.local/share/keyrings/default.keyring ]
-then
-	echo -n "Default_keyring" > ~/.local/share/keyrings/default
-	cat > ~/.local/share/keyrings/default.keyring << EOF
-[keyring]
-display-name=default
-ctime=0
-mtime=0
-lock-on-idle=false
-lock-after=false
-EOF
-	chmod og= ~/.local/share/keyrings/
-	chmod og= ~/.local/share/keyrings/default.keyring
-# chown -R $username:$username ~/.local
-fi
+# [ ! -d ~/.local/share/keyrings ] && mkdir -p ~/.local/share/keyrings/
+# if [ ! -f ~/.local/share/keyrings/default.keyring ]
+# then
+# 	echo -n "Default_keyring" > ~/.local/share/keyrings/default
+# 	cat > ~/.local/share/keyrings/default.keyring << EOF
+# [keyring]
+# display-name=default
+# ctime=0
+# mtime=0
+# lock-on-idle=false
+# lock-after=false
+# EOF
+# 	chmod og= ~/.local/share/keyrings/
+# 	chmod og= ~/.local/share/keyrings/default.keyring
+# # chown -R $username:$username ~/.local
+# fi
 
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
 installAurPackage 1password
