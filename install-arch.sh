@@ -61,6 +61,7 @@ sudo pacman --noconfirm --needed -Syu\
 	iotop \
 	jq \
 	less \
+	man \
 	mono \
 	mono-msbuild \
 	ncdu \

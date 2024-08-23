@@ -1,0 +1,9 @@
+[Unit]
+Description=d3cold_allowed for allowing wake from sleep on MacBooks
+
+[Service]
+Type=oneshot
+ExecStart=/home/albert/.dotfiles/hosts/arch-macbookpro13/d3cold_allowed/d3cold_allowed.sh
+
+[Install]
+WantedBy=multi-user.target
