@@ -337,6 +337,8 @@ source /usr/share/nvm/init-nvm.sh
 nvm install --lts
 nvm use --lts
 
+installAurPackage emote # Emoji picker, launch with Ctrl + Alt + E
+
 echo Configure dmenu
 echo -e "$password" | sudo -v -S
 sudo ln -s ~/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_recency
