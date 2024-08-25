@@ -143,6 +143,8 @@ sudo systemctl start paccache.timer
 
 echo "Enable ufw"
 echo -e "$password" | sudo -v -S
+sudo ufw allow from 192.168.111.0/24 to any app SSH
+sudo ufw allow from 192.168.114.0/24 to any app SSH
 sudo ufw enable
 
 # FROM: https://wiki.archlinux.org/title/Sysctl#Configuration
