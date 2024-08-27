@@ -12,6 +12,16 @@ local servers = {
 	["nvim-dbee"] = false,
 }
 
+local iphone = {
+	["nvim-silicon"] = false,
+	["nvim-dap-ui"] = false,
+	["nvim-dap-virtual-text"] = false,
+	["telescope-dap.nvim"] = false,
+	["nvim-dap"] = false,
+	["nvim-nio"] = false,
+	["nvim-dbee"] = false,
+}
+
 local plugins = {}
 plugins = {
 		["arch-agouws"] = {
@@ -25,5 +35,6 @@ plugins = {
 		["kiosk-1"] = servers,
 		["SALDOCPROD1"] = servers,
 		["SALDOCDEV1"] = servers,
+		["localhost"] = iphone,
 }
 return plugins
