@@ -1063,6 +1063,16 @@ exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspac
 
 exec --no-startup-id "brave --profile-directory=Default"
 exec --no-startup-id "alacritty -e tmux"
+
+bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id "xbacklight -inc 10; notify-send 'brightness up'"
+bindsym $mod+XF86AudioLowerVolume exec --no-startup-id "xbacklight -dec 10; notify-send 'brightness down'"
+
+bindsym $mod+Up  exec --no-startup-id "xbacklight -inc 10; notify-send 'brightness up'"
+bindsym $mod+Down  exec --no-startup-id "xbacklight -dec 10; notify-send 'brightness down'"
+
+bindsym $mod+Right exec --no-startup-id "pactl set-sink-volume 0 +5%"
+bindsym $mod+Left exec --no-startup-id "pactl set-sink-volume 0 -5%"
+
 # </config>
 
 # <config hostname="sierra"><!-- SONY VAIO LAPTOP -->
