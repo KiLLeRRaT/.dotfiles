@@ -34,7 +34,12 @@ set -g status-left "#{p20:session_name}"
 # Right side of status bar
 set -g status-right-style bg=colour233,fg=colour243
 set -g status-right-length 150
+
 set -g status-right "#[fg=$tmux_accent,bg=$tmux_status_bg_1,bold] %H:%M:%S #[fg=$tmux_status_fg_2,bg=$tmux_status_bg_2,nobold] %a %d %b %y "
+
+# https://github.com/tmux-plugins/tmux-cpu
+# set -g status-right "#{cpu_bg_color} #{cpu_percentage} #[fg=$tmux_accent,bg=$tmux_status_bg_1,bold] %H:%M:%S #[fg=$tmux_status_fg_2,bg=$tmux_status_bg_2,nobold] %a %d %b %y "
+# set -g status-right '#{cpu_bg_color} CPU: #{cpu_icon} #{cpu_percentage} | %a %h-%d %H:%M '
 
 # Window status
 set -g window-status-format "#[fg=$tmux_status_fg_1,bg=$tmux_status_bg_1] #I #[fg=default,bg=default] #W #[default]"
