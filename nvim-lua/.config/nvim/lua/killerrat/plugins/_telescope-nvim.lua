@@ -80,9 +80,16 @@ vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files find_command=rg,--i
 vim.keymap.set("n", "<leader>FF", "<cmd>Telescope find_files find_command=rg,--no-ignore,--hidden,--files<cr>")
 vim.keymap.set("n", "<leader>fF", ":execute 'Telescope find_files default_text=' . '''' . expand('<cword>')<cr>")
 
-vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
-vim.keymap.set("n", "<leader>fG", ":execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>")
-vim.keymap.set("n", "<leader>fr", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args({ default_text = '--hidden ' })<cr>")
+-- vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
+vim.keymap.set("n", "<leader>fg", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args({ default_text = '' })<cr>")
+
+-- vim.keymap.set("n", "<leader>fG", ":execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>")
+-- vim.keymap.set("n", "<leader>fG", ":execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>")
+local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
+vim.keymap.set("n", "<leader>fG", live_grep_args_shortcuts.grep_word_under_cursor)
+
+-- vim.keymap.set("n", "<leader>fr", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args({ default_text = '--hidden ' })<cr>")
+-- vim.keymap.set("n", "<leader>fr", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args({ default_text = '' })<cr>")
 
 vim.keymap.set("n", "<leader>ft", ":execute 'Telescope live_grep default_text=TODO-?.*:'<cr>")
 
