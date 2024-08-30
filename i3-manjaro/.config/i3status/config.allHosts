@@ -65,7 +65,10 @@ battery all {
 
 memory {
 				format = "󰍛 %used / %available"
-				threshold_degraded = "1G"
+				# threshold_degraded = "1G"
+				threshold_degraded = "15%"
+				threshold_critical = "10%"
+				# threshold_degraded = "80%"
 				format_degraded = "󰍛 %used / %available"
 }
 
