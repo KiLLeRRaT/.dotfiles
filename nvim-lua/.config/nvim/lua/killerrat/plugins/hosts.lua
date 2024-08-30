@@ -20,6 +20,7 @@ local iphone = {
 	["nvim-dap"] = false,
 	["nvim-nio"] = false,
 	["nvim-dbee"] = false,
+	["neorg"] = false,
 }
 
 local plugins = {}
