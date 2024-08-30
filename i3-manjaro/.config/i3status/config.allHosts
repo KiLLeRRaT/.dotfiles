@@ -39,7 +39,10 @@ cpu_usage {
 }
 
 disk "/" {
-				format = "⛁ %avail "
+	format = "⛁ %avail "
+	low_threshold = 10
+	threshold_type = percentage_avail
+	prefix_type = binary
 }
 
 battery all {
@@ -88,34 +91,29 @@ order += "wireless _first_"
 
 
 # <hostSpecificConfig>
-# <config hostname="agouws">
-order += "disk /mnt/data/"
-order += "ethernet br0"
-ethernet br0 {
-# if you use %speed, i3status requires root privileges
-				format_up = "<span color='white'> 󰈀 %ip </span>"
-				# format_up = " 󰈀 %ip %speed "
-				format_down = " no 󰈀 "
-}
-disk "/mnt/data/" {
-				format = "d⛁ %avail "
-}
-# </config>
 # <config hostname="arch-agouws">
 order += "disk /mnt/data/"
 order += "disk /mnt/data2-temp/"
 order += "ethernet br0"
 ethernet br0 {
 # if you use %speed, i3status requires root privileges
-				format_up = "<span color='white'> 󰈀 %ip </span>"
-				# format_up = " 󰈀 %ip %speed "
-				format_down = " no 󰈀 "
+	format_up = "<span color='white'> 󰈀 %ip </span>"
+# format_up = " 󰈀 %ip %speed "
+		format_down = " no 󰈀 "
 }
 disk "/mnt/data/" {
-				format = "d⛁ %avail "
+	format = "d⛁ %avail "
+	format_not_mounted = "<span color='red'> d⛁ not mounted </span>"
+	low_threshold = 10
+	threshold_type = percentage_avail
+	prefix_type = binary
 }
 disk "/mnt/data2-temp/" {
-				format = "d2⛁ %avail "
+	format = "d2⛁ %avail "
+	format_not_mounted = "<span color='red'> d⛁ not mounted </span>"
+	low_threshold = 10
+	threshold_type = percentage_avail
+	prefix_type = binary
 }
 # </config>
 # <config hostname="arch-delllatitude">
