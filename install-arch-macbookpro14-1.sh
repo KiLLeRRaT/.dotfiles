@@ -32,6 +32,15 @@ popd
 echo "Set up d3cold_allowed service"
 sudo cp ~/.dotfiles/hosts/arch-macbookpro13/d3cold_allowed /etc/systemd/system/d3cold_allowed.service
 
+echo "Install Bluetooth patches"
+pushd ~/source-aur
+git clone https://github.com/leifliddy/macbook12-bluetooth-driver.git
+cd macbook12-bluetooth-driver/
+# run the following command as root or with sudo
+sudo ./install.bluetooth.sh -i
+# to uninstall the dkms feature run:
+# ./install.bluetooth.sh -u
+popd
 
 # echo "Sort out the terminal TTY screen buffer size"
 # sudo cp ~/.dotfiles/hosts/arch-agouwsmacbookpro/etc/systemd/system/set-display-resolution.service /etc/systemd/system/set-display-resolution.service
