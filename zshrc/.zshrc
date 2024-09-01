@@ -424,10 +424,10 @@ fn() {
 }
 
 fi3() {
-	sed '/^bindsym/!d' ~/.config/i3/config | fzf --query "$1" --select-1 --height=~50 | xargs -I {} i3-msg {}
+	cmd=$(sed '/^bindsym/!d' ~/.config/i3/config | fzf --query "$1" --select-1 --height=~50)
+	cmd=$(cut -f 3- -d' ' <<< $cmd)
+	i3-msg $cmd > /dev/null
 }
-
-
 
 vmGetDomain() {
 	sudo virsh list --all | tail -n +3 | fzf --select-1 --query "$1" --height=~50 | awk '{ print $2 }'
