@@ -424,7 +424,7 @@ fn() {
 }
 
 fi3() {
-	cmd=$(sed '/^bindsym/!d' ~/.config/i3/config | fzf --query "$1" --select-1 --height=~50)
+	cmd=$(sed '/^bindsym/!d' ~/.config/i3/config | fzf --query "$1" --select-1)
 	cmd=$(cut -f 3- -d' ' <<< $cmd)
 	i3-msg $cmd > /dev/null
 }
