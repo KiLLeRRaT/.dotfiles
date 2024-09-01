@@ -423,6 +423,10 @@ fn() {
   echo "$results" | xargs -d '\n' nvim
 }
 
+fi3() {
+	sed '/^bindsym/!d' ~/.config/i3/config | fzf --query "$1" --select-1 --height=~50 | xargs -I {} i3-msg {}
+}
+
 
 
 vmGetDomain() {
