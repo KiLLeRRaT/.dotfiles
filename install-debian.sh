@@ -183,8 +183,6 @@ Section "InputClass"
 				Option "NaturalScrolling" "on"
 				Option "ScrollMethod" "twofinger"
 EndSection
-
-
 EOF
 
 # RESILIO SYNC
