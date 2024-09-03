@@ -162,7 +162,7 @@ vim.keymap.set("n", "<leader>=s", ":%s/\\s\\+at\\s\\+/\\r\\tat /g<cr>")
 vim.keymap.set("n", "<leader>=m", ":%s/\\r//g<cr>")
 
 
--- SUM LINES, mnemonic: Add
+-- SUM LINES, mnemonic: Add, or Hours
 if vim.fn.has('unix') == 1 then
 	-- vim.keymap.set("n", "<leader>=a", ":%!awk '{print; total+=$1}END{print total}'<cr>")
 	-- BELOW DOESNT WORK WELL WITH DECIMAL POINTS! ONLY WITH INTEGERS
@@ -172,14 +172,11 @@ if vim.fn.has('unix') == 1 then
 	-- vim.keymap.set("n", "<leader>=a", ":%!sed -E 's/.* (-?[0-9\\.\\,]+) ?-? ?(day|hour|hr)s?$/\\1/;t;s/.*/ /' | awk \'{print; total+=$1}END{print total}\'<cr>")
 	-- vim.keymap.set("n", "<leader>=a", ":%!sed -E 's/.* (-?[0-9\\.\\,]+) ?-? ?(day|hour|hr)s?$/\\1/;t;s/.*/ /' | awk \'{print; total+=$1}END{print total}\'<cr>")
 
-	-- local sum_command = "%!sed -E 's/.* (-?[0-9\\.\\,]+) ?-? ?(day|hour|hr)s?$/\\1/;t;s/.*/ /' | awk \'{print; total+=$1}END{print total}\'"
-	local sum_command = "%!sed -E 's/.* \\(?(-?[0-9\\.\\,]+) ?-? ?(day|hour|hr)s?\\)?.*/\\1/;t;s/.*/ /' | awk \'{print; total+=$1}END{print total}\'"
+	local sum_command_hours = "%!sed -E 's/.* \\(?(-?[0-9\\.\\,]+) ?-? ?(day|hour|hr)s?\\)?.*/\\1/;t;s/.*/ /' | awk \'{print; total+=$1}END{print total}\'"
+	local sum_command = "%!awk '{gsub(/[^0-9\\.\\-]/, \"\"); print; total+=$1}END{print total}'"
 
-	vim.keymap.set("n", "<leader>=a", ":" .. sum_command .. "<cr>")
-
-	function CopyAndCreateVerticalSplit()
+	function CopyAndCreateVerticalSplit(is_hours)
 		vim.cmd('setlocal cursorbind')
-		-- vim.cmd('normal! ggVGy')
 		vim.cmd('%y')
 		vim.cmd('vnew')
 		local new_buffer = vim.api.nvim_get_current_buf()
@@ -192,12 +189,22 @@ if vim.fn.has('unix') == 1 then
 		-- vim.cmd([[ silent! %s/\.\([a-zA-Z\-]\)/\1/g ]]) -- REMOVE .'s that are followed by a letter
 		-- vim.cmd([[ silent! %s/\-\([a-zA-Z\-]\)/\1/g ]]) -- REMOVE -'s that are followed by a letter
 		-- vim.cmd("%!sed -E 's/.* (-?[0-9\\.\\,]+) ?-? ?(day|hour|hr)s?$/\\1/;t;s/.*/ /' | awk \'{print; total+=$1}END{print total}\'")
-		vim.cmd(sum_command)
+		print("is_hours: ", is_hours)
+		if is_hours then
+			vim.cmd(sum_command_hours)
+		else
+			print("sum_command: ", sum_command)
+			vim.cmd(sum_command)
+		end
 	end
-	vim.api.nvim_set_keymap('n', '<leader>=A', ':lua CopyAndCreateVerticalSplit()<CR>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('n', '<leader>=H', ':lua CopyAndCreateVerticalSplit(true)<CR>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('n', '<leader>=A', ':lua CopyAndCreateVerticalSplit(false)<CR>', { noremap = true, silent = true })
+	vim.keymap.set("n", "<leader>=h", ":" .. sum_command_hours .. "<cr>")
+	vim.keymap.set("n", "<leader>=a", ":" .. sum_command .. "<cr>")
+
 else
 	-- vim.keymap.set("n", "<leader>=s", ":%!wsl awk '{print; total+=\\$1}END{print total}'<cr>")
-	vim.keymap.set("n", "<leader>=a", ":lua vim.notify('Summing not supported in Windows, it uses awk', vim.log.levels.ERROR)<cr>")
+	vim.keymap.set("n", "<leader>=h", ":lua vim.notify('Summing not supported in Windows, it uses awk', vim.log.levels.ERROR)<cr>")
 end
 
 -- " cm.Parameters.Add, and cm.Parameters.Value lines can be combined into single line using this
