@@ -387,7 +387,7 @@ fh() {
 	# push the command into the history
 	print -S $cmd
 	echo $cmd
-	read -kq "REPLY?Run command? "
+	read -q "REPLY?Run command? "
 	[[ "$REPLY" == "y" ]] && eval $cmd
 }
 
@@ -401,7 +401,7 @@ fr() {
 	# push the command into the history
 	print -S $cmd
 	echo $cmd
-	read -kq "REPLY?Run command? "
+	read -q "REPLY?Run command? "
 	if [ "$REPLY" == "y" ]
 	then
 		eval $cmd &
