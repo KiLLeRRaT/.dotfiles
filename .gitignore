@@ -10,3 +10,4 @@ i3-manjaro/.config/i3status/config
 alacritty/.config/alacritty/alacritty.yml
 alacritty/.config/alacritty/alacritty.toml
 progress.txt
+*.add.spl
