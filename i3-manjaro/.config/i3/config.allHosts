@@ -995,7 +995,7 @@ font xft:SF Pro Display 12
 exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 # SWAP LEFT ALT/OPTION WITH LEFT COMMAND, FROM: https://askubuntu.com/a/29609
-exec_always --no-startup-id sleep 5;setxkbmap -option ctrl:nocaps -option "terminate:ctrl_alt_bksp" -option altwin:swap_lalt_lwin
+exec_always --no-startup-id sleep 3;setxkbmap -option ctrl:nocaps -option "terminate:ctrl_alt_bksp" -option altwin:swap_lalt_lwin
 exec --no-startup-id blueman-applet
 exec_always --no-startup-id dunst
 exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
