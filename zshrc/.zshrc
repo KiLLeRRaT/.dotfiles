@@ -350,8 +350,7 @@ cdu() {
 
 
 fgco() {
-	# alias fgco="git branch --sort=-committerdate| fzf --height=20% |xargs git checkout "
-	git branch --sort=-committerdate | fzf --height=~50 -e --select-1 --no-sort --query "$1" | xargs git checkout
+	git branch --all --sort=-committerdate | fzf --height=~50 -e --select-1 --no-sort | sed 's/remotes\/origin\///' | xargs git checkout
 }
 
 # KILL USING FZF AS SELECTOR
