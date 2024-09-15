@@ -10,7 +10,6 @@ echo -e "$password" | sudo -k -S -p "" echo "Thanks!"
 echo -e "$password" | sudo -v -S
 
 # TODO:
-# - [ ] Pacman hooks into installer script
 # - [ ] systemd services int installer script??
 # - [ ] /etc/fonts/local.conf in installer script
 # - [ ] /etc/X11/xorg.conf.d/ into installer script
@@ -18,11 +17,6 @@ echo -e "$password" | sudo -v -S
 # - [ ] paccache.timer start
 # - [ ] Yubikey fde, pam-u2f
 # - [ ] polkit for 1Password
-# - [ ] /boot backups hook
-# - [ ] snapper timers start (boot and cleanup)
-# - [ ] pacman hooks for snapper
-# - [ ] pacman hooks for timeshift
-# - [ ] BTRFS snapshots showing in GRUB
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
@@ -58,6 +52,7 @@ sudo pacman --noconfirm --needed -Syu\
 	fzf \
 	git \
 	gnome-keyring seahorse lxsession-gtk3 \
+	grub-btrfs \
 	iotop \
 	jq \
 	less \
@@ -141,11 +136,25 @@ echo -e "$password" | sudo -v -S
 sudo systemctl enable paccache.timer
 sudo systemctl start paccache.timer
 
+echo "Starting snapper-timeline.timer"
+echo -e "$password" | sudo -v -S
+sudo systemctl enable snapper-timeline.timer
+sudo systemctl start snapper-timeline.timer
+
+echo "Starting snapper-cleanup.timer"
+echo -e "$password" | sudo -v -S
+sudo systemctl enable snapper-cleanup.timer
+sudo systemctl start snapper-cleanup.timer
+
 echo "Enable ufw"
 echo -e "$password" | sudo -v -S
 sudo ufw allow from 192.168.111.0/24 to any app SSH
 sudo ufw allow from 192.168.114.0/24 to any app SSH
-sudo ufw enable
+echo "Enable ufw? (y/n)"
+read enable_ufw
+if [ "$enable_ufw" == "y" ]; then
+	sudo ufw enable
+fi
 
 # FROM: https://wiki.archlinux.org/title/Sysctl#Configuration
 echo "Enable SysRq"
@@ -393,3 +402,15 @@ if [ "$configure_xorg_taptoclick" == "y" ]; then
 	EndSection
 	EOF
 fi
+
+
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Configure Pacman Hooks\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo "Configure pacman hooks? (y/n)"
+read configure_pacman_hooks
+if [ "$configure_pacman_hooks" == "y" ]; then
+	echo -e "$password" | sudo -v -S
+	sudo cp ~/.dotfiles/pacman/hooks/* /etc/pacman.d/hooks/
+fi
+
