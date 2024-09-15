@@ -428,6 +428,29 @@ fi3() {
 	i3-msg $cmd > /dev/null
 }
 
+# FZF to lsblk, then mount it to a mount point, echo the command to let the user edit it and then
+# run it
+fm() {
+	# cmd=$(history 0 | sort -nr | cut -c 8- | fzf -e --select-1 --no-sort --query "$1" )
+	device=/dev/$(lsblk --filter 'TYPE == "part"' | fzf --header-lines=1 --query "$1" --select-1 --no-sort | awk '{ print $1 }')
+	# push the command into the history
+	# print -S $cmd
+	# echo $cmd
+	# read -q "REPLY?Run command? "
+	# [[ "$REPLY" == "y" ]] && eval $cmd
+
+	default=/run/media/usb
+	echo "Please enter the mount point [$default]: "
+	read input
+	MOUNTPOINT=${input:-$default}
+
+	echo "Mounting $device to $MOUNTPOINT"
+	cmd="sudo mount $device $MOUNTPOINT"
+	print -S $cmd
+	eval $cmd
+}
+
+
 vmGetDomain() {
 	sudo virsh list --all | tail -n +3 | fzf --select-1 --query "$1" --height=~50 | awk '{ print $2 }'
 }
