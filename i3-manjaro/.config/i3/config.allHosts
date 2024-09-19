@@ -109,10 +109,11 @@ mode passthrough {
 # In goto mode, m will switch to workspace 0, and launch brave with profile 1 using the url in the
 # clipboard
 bindsym $mod+g mode "$mode_goto"
-set $mode_goto (m)eeting specific, (M)eeting Google
+set $mode_goto (m)eeting specific, (M)eeting Google, (p)aste
 mode  "$mode_goto" {
 		bindsym m exec --no-startup-id i3-msg workspace $ws0, exec brave --new-window --profile-directory=Profile\ 1 "$(xclip -o)", mode "default"
 		bindsym Shift+m exec --no-startup-id i3-msg workspace $ws0, exec brave --new-window --profile-directory=Profile\ 1 "https://meet.google.com", mode "default"
+		bindsym p exec --no-startup-id xclip -o | xclip -selection clipboard, mode "default"
 		bindsym Return mode "default"
 		bindsym Escape mode "default"
 }
