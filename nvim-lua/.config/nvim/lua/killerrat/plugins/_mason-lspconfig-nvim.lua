@@ -9,7 +9,8 @@ local lsp_installer_ensure_installed = {
 	"html",
 	"jsonls",
 	"pyright",
-	"tsserver",
+	-- "tsserver",
+	"ts_ls",
 	-- "sumneko_lua",
 	"lua_ls",
 	--"sqls", -- https://github.com/lighttiger2505/sqls
