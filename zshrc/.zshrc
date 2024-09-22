@@ -3,7 +3,7 @@ set -o noclobber
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 # if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#		source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # fi
 
 # If you come from bash you might have to change your $PATH.
@@ -36,8 +36,8 @@ autoload -Uz compinit && compinit
 # autoload bashcompinit && bashcompinit
 # if [ -f /usr/bin/aws_completer ]
 # then
-# 	# FROM: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
-# 	complete -C '/usr/bin/aws_completer' aws
+#		# FROM: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
+#		complete -C '/usr/bin/aws_completer' aws
 # fi
 
 
@@ -107,9 +107,9 @@ autoload -Uz compinit && compinit
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
+#		export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#		export EDITOR='mvim'
 # fi
 export HISTFILE=~/.zsh_history
 export HISTSIZE=100000
@@ -139,7 +139,7 @@ export NOWT=$(date +"%Y%m%d%H%M%S")
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # if command -v pyenv 1>/dev/null 2>&1; then
-#   eval "$(pyenv init -)"
+#		eval "$(pyenv init -)"
 # fi
 
 oh-my-posh-agnoster() {
@@ -159,23 +159,23 @@ if [[ $TERM_PROGRAM != "Apple_Terminal" ]]; then
 fi
 
 # if [[ $TERM_PROGRAM != "Apple_Terminal" ]]; then
-# 	if { [ -n "$TMUX" ]; } then
-# 		echo in tmux
-# 	fi
-# 	if [[ -n $DISPLAY ]];
-# 	then
-# 		if command -v oh-my-posh &> /dev/null
-# 		then
-# 			eval "$(oh-my-posh init zsh --config ~/.omp/themes/tokyonight.omp.yaml)"
-# 		fi
-# 	else
-# 		echo "in a tty, don't init oh-my-posh"
-# 	fi
+#		if { [ -n "$TMUX" ]; } then
+#			echo in tmux
+#		fi
+#		if [[ -n $DISPLAY ]];
+#		then
+#			if command -v oh-my-posh &> /dev/null
+#			then
+#				eval "$(oh-my-posh init zsh --config ~/.omp/themes/tokyonight.omp.yaml)"
+#			fi
+#		else
+#			echo "in a tty, don't init oh-my-posh"
+#		fi
 # fi
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"	# This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"	# This loads nvm bash_completion
 
 # alias ls='ls -lkh --color=auto' # THIS WAS PREVENTING ME FROM GETTING A LISTING WITH JUST THE FILENAMES!
 
@@ -184,6 +184,7 @@ alias ls='ls --color=auto' # TRY THIS AGAIN FOR NOW TO SEE IF IT WORKS, SINCE IT
 # alias ls='ls --color=always' # THIS GIVES DRAMA SINCE THE COLOR CODES ARE PART OF THE RESULTS WHEN PIPING TO ANOTHER COMMAND...
 alias ll="ls -alkhF"
 alias l="ls -1"
+alias ncdu="ncdu --color dark"
 
 lst() {
 	# echo $@
@@ -253,8 +254,8 @@ gtD() { git tag -d $1;git push origin -d $1 }
 
 
 # alias nvim-lua='export XDG_CONFIG_HOME=${HOME}/.dotfiles/nvim-lua/.config; \
-# 	export XDG_DATA_HOME=${HOME}/.local-lua/share; \
-# 	nvim'
+#		export XDG_DATA_HOME=${HOME}/.local-lua/share; \
+#		nvim'
 
 alias n='nvim'
 alias nt='nvim $(TMPDIR=~/tmp/scratchpads mktemp -u)'
@@ -269,7 +270,7 @@ alias setxkbmap-revert="setxkbmap -option ''"
 # FROM: https://linuxreviews.org/HOWTO_use_the_numeric_keyboard_keys_as_mouse_in_XOrg
 # to use the mouse, press /*- to select which button you want to use, and press 5 or + to actually click
 # that button. 0 to hold, and . to release.
-# if you want double click you need to tap / twice, or three times for a triple click.  When you
+# if you want double click you need to tap / twice, or three times for a triple click.	When you
 # then press 5 it clicks that many times.
 alias setxkbmap-keypad-pointerkeys="echo 'Enable numlock using shift+numlock, or ctrl+shift+numlock' && \
 	setxkbmap -option keypad:pointerkeys"
@@ -285,7 +286,7 @@ fd-t() {
 
 # # find files matching the glob, then sort them by last modified
 # fd-tg() {
-# 	fd -t f -g $1 --exec stat --printf='%Y\t%n\n' | sort -nr
+#		fd -t f -g $1 --exec stat --printf='%Y\t%n\n' | sort -nr
 # }
 
 alias n-t="fd-t | cut -f 2 | head -1 | xargs -d '\n' nvim"
@@ -320,17 +321,17 @@ cs() {
 
 # FROM: /u/xkcd__386
 # anc() {
-# 	cmd=cat
-# 	[[ $1 == -r ]] && { cmd=tac; shift; }
-# 	occ=1
-# 	[[ $2 =~ ^[0-9]+$ ]] && occ=$2
-# 	p=$PWD
-# 	cd $(
-# 		while [[ $p != $HOME ]]; do
-# 			p=${p%/*}
-# 			echo $p
-# 		done | grep -E "$1[^/]*$" | $cmd | sed -ne "${occ}p"
-# 	)
+#		cmd=cat
+#		[[ $1 == -r ]] && { cmd=tac; shift; }
+#		occ=1
+#		[[ $2 =~ ^[0-9]+$ ]] && occ=$2
+#		p=$PWD
+#		cd $(
+#			while [[ $p != $HOME ]]; do
+#				p=${p%/*}
+#				echo $p
+#			done | grep -E "$1[^/]*$" | $cmd | sed -ne "${occ}p"
+#		)
 # }
 cdu() {
 		p=$PWD
@@ -416,10 +417,10 @@ alias ftz='TZ=$(timedatectl list-timezones | fzf) date'
 alias fcbm='pushd ~/scripts/Sandfield > /dev/null 2>&1; ./CBM-CentralBookmarksManager-export-textfiles.sh; popd > /dev/null 2>&1'
 
 fn() {
-  local results=$(fzf --multi --preview 'bat --color=always {}')
-  [ -z $results ] && return
-  echo "$results"
-  echo "$results" | xargs -d '\n' nvim
+	local results=$(fzf --multi --preview 'bat --color=always {}')
+	[ -z $results ] && return
+	echo "$results"
+	echo "$results" | xargs -d '\n' nvim
 }
 
 fi3() {
@@ -557,11 +558,11 @@ updateAurPackages() {
 	pushd ~/source-aur
 	gfr |\
 		grep behind |\
-	 	cut -d':' -f1 |\
-	 	sed 's|^\./||' |\
-	 	sort |\
-	 	fzf --header="Select packages to upgrade" --multi |\
-	 	xargs --no-run-if-empty -I {} bash -c "pushd {} && git rebase && makepkg -is --needed --noconfirm"
+		cut -d':' -f1 |\
+		sed 's|^\./||' |\
+		sort |\
+		fzf --header="Select packages to upgrade" --multi |\
+		xargs --no-run-if-empty -I {} bash -c "pushd {} && git rebase && makepkg -is --needed --noconfirm"
 	popd
 }
 
@@ -585,13 +586,13 @@ feh-screenshots() {
 # bind '"jk":vi-movement-mode'
 #set bell-style none
 #$if mode=vi
-#    set keymap vi-command
-#    "gg": beginning-of-history
-#    "G": end-of-history
-#    set keymap vi-insert       #notice how the "jj" movement is
-#    "jk": vi-movement-mode     #after 'set keymap vi-insert'?
-#    "\C-w": backward-kill-word
-#    "\C-p": history-search-backward
+#		 set keymap vi-command
+#		 "gg": beginning-of-history
+#		 "G": end-of-history
+#		 set keymap vi-insert				#notice how the "jj" movement is
+#		 "jk": vi-movement-mode			#after 'set keymap vi-insert'?
+#		 "\C-w": backward-kill-word
+#		 "\C-p": history-search-backward
 #$endif
 #bindkey -e jk \\e
 #bindkey '"jk":vi-movement-mode'
@@ -640,12 +641,12 @@ source $HOME/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
 ########################################
 # FROM: /usr/share/zsh/manjaro-zsh-config
 ########################################
-setopt correct                                                  # Auto correct mistakes
-setopt nocaseglob                                               # Case insensitive globbing
-setopt appendhistory                                            # Immediately append history instead of overwriting
-setopt histignorealldups                                        # If a new command is a duplicate, remove the older one
-setopt autocd                                                   # if only directory path is entered, cd there.
-setopt inc_append_history                                       # save commands are added to the history immediately, otherwise only when shell exits.
+setopt correct																									# Auto correct mistakes
+setopt nocaseglob																								# Case insensitive globbing
+setopt appendhistory																						# Immediately append history instead of overwriting
+setopt histignorealldups																				# If a new command is a duplicate, remove the older one
+setopt autocd																										# if only directory path is entered, cd there.
+setopt inc_append_history																				# save commands are added to the history immediately, otherwise only when shell exits.
 
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
@@ -653,11 +654,11 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
 # Navigate words with ctrl+arrow keys
-bindkey '^[Oc' forward-word                                     #
-bindkey '^[Od' backward-word                                    #
-bindkey '^[[1;5D' backward-word                                 #
-bindkey '^[[1;5C' forward-word                                  #
-bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
+bindkey '^[Oc' forward-word																			#
+bindkey '^[Od' backward-word																		#
+bindkey '^[[1;5D' backward-word																	#
+bindkey '^[[1;5C' forward-word																	#
+bindkey '^H' backward-kill-word																	# delete previous word with ctrl+backspace
 
 # Offer to install missing package if command is not found
 if [[ -r /usr/share/zsh/functions/command-not-found.zsh ]]; then
@@ -730,3 +731,32 @@ then
 		eval "$(fzf --zsh)"
 	fi
 fi
+
+# FROM: https://wiki.archlinux.org/title/Zsh#pacman_-F_%22command_not_found%22_handler
+# Make sure to also fetch the files database: pacman -Fy
+function command_not_found_handler {
+	local purple='\e[1;35m' bright='\e[0;1m' green='\e[1;32m' reset='\e[0m'
+	printf 'zsh: command not found: %s\n' "$1"
+	local entries=(
+		${(f)"$(/usr/bin/pacman -F --machinereadable -- "/usr/bin/$1")"}
+	)
+	if (( ${#entries[@]} ))
+	then
+		printf "${bright}$1${reset} may be found in the following packages:\n"
+		local pkg
+		for entry in "${entries[@]}"
+		do
+			# (repo package version file)
+			local fields=(
+				${(0)entry}
+			)
+			if [[ "$pkg" != "${fields[2]}" ]]
+			then
+				printf "${purple}%s/${bright}%s ${green}%s${reset}\n" "${fields[1]}" "${fields[2]}" "${fields[3]}"
+			fi
+			printf '		/%s\n' "${fields[4]}"
+			pkg="${fields[2]}"
+		done
+	fi
+	return 127
+}
