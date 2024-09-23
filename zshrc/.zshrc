@@ -445,6 +445,13 @@ fm() {
 	read input
 	MOUNTPOINT=${input:-$default}
 
+	if ( ! [ -d $MOUNTPOINT ] )
+	then
+		echo "Mount point $MOUNTPOINT does not exist, create it? (y/n)"
+		read -q "REPLY? "
+		[[ "$REPLY" == "y" ]] && sudo mkdir -p $MOUNTPOINT
+	fi
+
 	echo "Mounting $device to $MOUNTPOINT"
 	cmd="sudo mount $device $MOUNTPOINT"
 	print -S $cmd
