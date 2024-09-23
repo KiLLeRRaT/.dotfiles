@@ -380,7 +380,7 @@ if [ "$configure_yubikey" == "y" ]; then
 	sudo sed -i "2i$authValue" /etc/pam.d/polkit-1
 fi
 
-mkdir ~/Pictures/screenshots
+mkdir -p ~/Pictures/screenshots
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
@@ -391,16 +391,16 @@ read configure_xorg_taptoclick
 if [ "$configure_xorg_taptoclick" == "y" ]; then
 	# FROM: https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
 	sudo mkdir -p /etc/X11/xorg.conf.d && sudo tee <<'EOF' /etc/X11/xorg.conf.d/90-touchpad.conf 1> /dev/null
-	Section "InputClass"
-					Identifier "touchpad"
-					MatchIsTouchpad "on"
-					Driver "libinput"
-					Option "Tapping" "on"
-					Option "TappingButtonMap" "lrm"
-					Option "NaturalScrolling" "on"
-					Option "ScrollMethod" "twofinger"
-	EndSection
-	EOF
+Section "InputClass"
+				Identifier "touchpad"
+				MatchIsTouchpad "on"
+				Driver "libinput"
+				Option "Tapping" "on"
+				Option "TappingButtonMap" "lrm"
+				Option "NaturalScrolling" "on"
+				Option "ScrollMethod" "twofinger"
+EndSection
+EOF
 fi
 
 
@@ -411,6 +411,7 @@ echo "Configure pacman hooks? (y/n)"
 read configure_pacman_hooks
 if [ "$configure_pacman_hooks" == "y" ]; then
 	echo -e "$password" | sudo -v -S
+	sudo mkdir -p /etc/pacman.d/hooks
 	sudo cp ~/.dotfiles/pacman/hooks/* /etc/pacman.d/hooks/
 fi
 
