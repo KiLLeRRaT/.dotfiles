@@ -753,7 +753,7 @@ function command_not_found_handler {
 			if [[ "$pkg" != "${fields[2]}" ]]
 			then
 				printf "${purple}%s/${bright}%s ${green}%s${reset}\n" "${fields[1]}" "${fields[2]}" "${fields[3]}"
-			fi
+		fi
 			printf '		/%s\n' "${fields[4]}"
 			pkg="${fields[2]}"
 		done
