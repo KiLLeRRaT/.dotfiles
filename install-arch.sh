@@ -146,6 +146,11 @@ echo -e "$password" | sudo -v -S
 sudo systemctl enable snapper-cleanup.timer
 sudo systemctl start snapper-cleanup.timer
 
+echo "Starting snapper-boot.timer"
+echo -e "$password" | sudo -v -S
+sudo systemctl enable snapper-boot.timer
+sudo systemctl start snapper-boot.timer
+
 echo "Enable ufw"
 echo -e "$password" | sudo -v -S
 sudo ufw allow from 192.168.111.0/24 to any app SSH
