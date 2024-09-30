@@ -242,7 +242,6 @@ gfr() {
 gtp() { git tag $1 && git push --tags }
 # alias gtD='fn-gt() { git tag -d $1 && git push origin -d $1 };fn-gt'
 gtD() { git tag -d $1;git push origin -d $1 }
-# alias fgco="git branch --sort=-committerdate| fzf --height=20% |xargs git checkout "
 # GIT TAG REMOVE
 # gtr(){git tag -d $1 && git push origin -d $1}
 #; fn_gtr 3.4.0
@@ -351,7 +350,7 @@ cdu() {
 
 
 fgco() {
-	git branch --all --sort=-committerdate | fzf --height=~50 -e --select-1 --no-sort | sed 's/remotes\/origin\///' | xargs git checkout
+	git branch --all --sort=-committerdate | fzf --height=~50 -e --select-1 --no-sort --query "$1" | sed 's/remotes\/origin\///' | xargs git checkout
 }
 
 # KILL USING FZF AS SELECTOR
