@@ -651,6 +651,8 @@ setopt correct																									# Auto correct mistakes
 setopt nocaseglob																								# Case insensitive globbing
 setopt appendhistory																						# Immediately append history instead of overwriting
 setopt histignorealldups																				# If a new command is a duplicate, remove the older one
+setopt hist_ignore_space																				# Ignore commands starting with a space FROM: https://github.com/jbranchaud/til/blob/master/unix/exclude-a-command-from-the-zsh-history-file.md
+setopt extendedhistory																				# Save timestamp of command FROM: https://stackoverflow.com/a/68888023/182888
 setopt autocd																										# if only directory path is entered, cd there.
 setopt inc_append_history																				# save commands are added to the history immediately, otherwise only when shell exits.
 
