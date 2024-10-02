@@ -37,6 +37,7 @@ if vim.fn.has("win32") == 1 then
 elseif vim.fn.has("unix") == 1 then 
 	table.insert(lsp_installer_ensure_installed, "omnisharp_mono" .. omnisharp_version)
 	-- table.insert(lsp_installer_ensure_installed, "omnisharp-mono")
+	-- table.insert(lsp_installer_ensure_installed, "omnisharp-mono")
 end
 
 
