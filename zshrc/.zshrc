@@ -495,6 +495,8 @@ vmscreenshot() {
 	eval $cmd
 
 	# FROM: https://www.reddit.com/r/i3wm/comments/mpehmg/comment/gu9fed3/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+	# FROM: https://stackoverflow.com/q/9560245/182888
+	trap 'echo "feh exited, now lets return";kill -INT $$' CHLD
 	feh $tmpFile &
 	feh_pid=$!
 	echo "feh_pid: $feh_pid"
@@ -511,7 +513,9 @@ vmscreenshot() {
 	while [ $count -lt 300 ]
 	do
 		count=$((count+1))
-		eval $cmd
+		# eval $cmd
+		echo -ne "\r$(eval $cmd) at $(date)"
+		# echo -ne "\rtaking screenshot at $(date)"
 		sleep 1
 	done
 
@@ -586,7 +590,6 @@ feh-screenshots() {
 
 
 # alias hf='history 0 | cut -c 8- | fzf -e'
-
 
 #set -o vi
 # bind '"jk":vi-movement-mode'
