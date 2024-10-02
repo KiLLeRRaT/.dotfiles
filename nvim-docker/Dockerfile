@@ -5,9 +5,8 @@ FROM archlinux AS base
 # RUN pacman -Syu pamac-cli --noconfirm
 
 RUN echo "Configuring pacman" \
-echo -e "$password" | sudo -v -S \
-sudo sed -i 's/#Color/Color/g' /etc/pacman.conf \
-sudo sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/g' /etc/pacman.conf
+sed -i 's/#Color/Color/g' /etc/pacman.conf \
+sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/g' /etc/pacman.conf
 
 RUN pacman -Syu --noconfirm
 
@@ -52,9 +51,8 @@ RUN pacman -S --noconfirm git \
 # RUN pamac build xsp mono-basic --no-confirm
 
 RUN echo "Configuring makepkg" \
-echo -e "$password" | sudo -v -S \
-sudo sed -i 's/^PKGEXT.*/PKGEXT=".pkg.tar"/' /etc/makepkg.conf \
-sudo sed -i 's/\(OPTIONS=.*\)debug/\1!debug/' /etc/makepkg.conf
+sed -i 's/^PKGEXT.*/PKGEXT=".pkg.tar"/' /etc/makepkg.conf \
+sed -i 's/\(OPTIONS=.*\)debug/\1!debug/' /etc/makepkg.conf
 
 
 # Setup Build user so that we can install AUR packages
