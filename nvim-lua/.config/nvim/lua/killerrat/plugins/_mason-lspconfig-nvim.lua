@@ -1,7 +1,8 @@
+local omnisharp_version = "@v1.39.11"
 local lsp_installer_ensure_installed = {
 	-- LSP
 	"bashls",
-	"omnisharp",
+	"omnisharp" .. omnisharp_version,
 	-- "omnisharp-mono",
 	"cssls",
 	"dockerls",
@@ -34,7 +35,7 @@ local lsp_installer_ensure_installed = {
 if vim.fn.has("win32") == 1 then
 	table.insert(lsp_installer_ensure_installed, "powershell_es")
 elseif vim.fn.has("unix") == 1 then 
-	table.insert(lsp_installer_ensure_installed, "omnisharp_mono")
+	table.insert(lsp_installer_ensure_installed, "omnisharp_mono" .. omnisharp_version)
 	-- table.insert(lsp_installer_ensure_installed, "omnisharp-mono")
 end
 

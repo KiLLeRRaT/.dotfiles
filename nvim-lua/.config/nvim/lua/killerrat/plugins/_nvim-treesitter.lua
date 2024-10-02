@@ -45,23 +45,23 @@
 
 require'nvim-treesitter.configs'.setup {
 	ensure_installed = {
-		"c_sharp",
 		"bash",
+		"c_sharp",
 		"css",
 		"html",
 		"javascript",
 		"json",
 		"lua",
+		"norg",
 		"python",
+		"query",
 		"regex",
 		"scss",
+		"sql",
 		"tsx",
 		"typescript",
 		"vim",
 		"yaml",
-		"query",
-		"sql",
-		"norg"
 	},
 	indent = {
 		enable = true,
