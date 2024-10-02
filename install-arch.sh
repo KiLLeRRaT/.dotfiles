@@ -94,7 +94,6 @@ sudo pacman --noconfirm --needed -Syu\
 	ttf-cascadia-code-nerd \
 	ufw \
 	unzip \
-	virt-manager libvirt qemu virt-viewer swtpm \
 	wget \
 	wireplumber pipewire-pulse pavucontrol playerctl \
 	xautolock \
@@ -406,4 +405,25 @@ if [ "$configure_pacman_hooks" == "y" ]; then
 	sudo mkdir -p /etc/pacman.d/hooks
 	sudo cp ~/.dotfiles/pacman/hooks/* /etc/pacman.d/hooks/
 fi
+
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Configure QEMU\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo "Configure QEMU and libvirt? (y/n)"
+read configure_qemu
+if [ "$configure_qemu" == "y" ]; then
+	echo -e "$password" | sudo -v -S
+	sudo pacman --noconfirm --needed -Syu\
+		virt-manager libvirt qemu virt-viewer swtpm
+
+	echo "chattr +C /var/lib/libvirt/? (y/n)"
+	read chattr_libvirt
+	if [ "$chattr_libvirt" == "y" ]; then
+		sudo chattr +C /var/lib/libvirt
+	fi
+fi
+
+
+
+
 
