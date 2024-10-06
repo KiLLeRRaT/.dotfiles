@@ -110,6 +110,15 @@ echo -e "$password" | sudo -v -S
 sudo sed -i 's/^PKGEXT.*/PKGEXT=".pkg.tar"/' /etc/makepkg.conf
 sudo sed -i 's/\(OPTIONS=.*\)debug/\1!debug/' /etc/makepkg.conf
 
+echo "Hardening /tmp and /dev/shm by setting noexec"
+echo -e "$password" | sudo -v -S
+tmp=$(findmnt /tmp --output SOURCE,FSTYPE,OPTIONS | tail -n1)
+devshm=$(findmnt /dev/shm --output SOURCE,FSTYPE,OPTIONS | tail -n1)
+sudo bash -c "cat >> /etc/fstab" << EOF
+$(echo $tmp | sed "s/^tmpfs/tmpfs    \/tmp/"),noexec 0 0
+$(echo $devshm | sed "s/^tmpfs/tmpfs    \/dev\/shm/"),noexec 0 0
+EOF
+
 echo "Starting sshd"
 echo -e "$password" | sudo -v -S
 sudo systemctl start sshd
