@@ -910,10 +910,17 @@ bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-samsu
 
 # </config>
 # <config hostname="arch-orico">
-exec --no-startup-id ~/.screenlayout/arch-agouws-3-displays.sh
-set $screenleft DP-1
-set $screenmiddle HDMI-2
-set $screenright HDMI-1
+# Home 3 displays
+# exec --no-startup-id ~/.screenlayout/arch-agouws-3-displays.sh
+# set $screenleft DP-1
+# set $screenmiddle HDMI-2
+# set $screenright HDMI-1
+
+# Sandfield dual displays JCHEN computer
+exec --no-startup-id ~/.screenlayout/arch-agouws-2-displays.sh
+set $screenleft HDMI2
+set $screenmiddle HDMI1
+set $screenright HDMI1
 
 font xft:SF Pro Display 11
 # 󰭹 chat
