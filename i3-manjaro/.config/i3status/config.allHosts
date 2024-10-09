@@ -118,7 +118,7 @@ disk "/mnt/data/" {
 # </config>
 # <config hostname="arch-delllatitude">
 # order += "disk /mnt/data/"
-order += "ethernet br0"
+order += "ethernet wlan0"
 order += "battery all"
 ethernet wlan0 {
 # if you use %speed, i3status requires root privileges
