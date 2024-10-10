@@ -45,6 +45,9 @@ require(p).setup {
 			-- ["core.mode"] = {},
 			-- ["core.queries.native"] = {},
 			-- ["core.presenter"] = { config = { zen_mode = "zen-mode" } },
+
+			-- https://github.com/nvim-neorg/neorg/wiki/Metagen
+			-- ['core.esupports.metagen'] = { config = { update_date = false } }, -- do not update date until https://github.com/nvim-neorg/neorg/issues/1579 fixed
 		}
 	}
 }
