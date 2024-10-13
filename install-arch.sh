@@ -54,6 +54,7 @@ sudo pacman --noconfirm --needed -Syu\
 	gnome-keyring seahorse lxsession-gtk3 \
 	grub-btrfs \
 	iotop \
+	inotify-tools \
 	jq \
 	less \
 	man \
