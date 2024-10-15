@@ -143,6 +143,10 @@ if vim.fn.has('unix') == 1 then
 	vim.keymap.set("v", "<leader>=j", ":'<,'>!jq --tab<cr>")
 -- " PASTE JSON FROM CLIPBOARD, AND FORMAT IT
 	vim.keymap.set("n", "<leader>=J", "ggdG\"+P:%!jq --tab<cr>:set ft=json<cr>")
+
+	vim.keymap.set("n", "<leader>=h", ":%!tidy -mi --show-body-only yes 2> /dev/null<cr>")
+	vim.keymap.set("v", "<leader>=h", ":'<,'>!tidy -mi --show-body-only yes 2> /dev/null<cr>")
+	vim.keymap.set("n", "<leader>=H", "ggdG\"+P:%!tidy -mi --show-body-only yes 2> /dev/null<cr>:set ft=html<cr>")
 end
 
 
@@ -197,14 +201,14 @@ if vim.fn.has('unix') == 1 then
 			vim.cmd(sum_command)
 		end
 	end
-	vim.api.nvim_set_keymap('n', '<leader>=H', ':lua CopyAndCreateVerticalSplit(true)<CR>', { noremap = true, silent = true })
-	vim.api.nvim_set_keymap('n', '<leader>=A', ':lua CopyAndCreateVerticalSplit(false)<CR>', { noremap = true, silent = true })
-	vim.keymap.set("n", "<leader>=h", ":" .. sum_command_hours .. "<cr>")
-	vim.keymap.set("n", "<leader>=a", ":" .. sum_command .. "<cr>")
+	vim.api.nvim_set_keymap('n', '<leader>=SH', ':lua CopyAndCreateVerticalSplit(true)<CR>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('n', '<leader>=SS', ':lua CopyAndCreateVerticalSplit(false)<CR>', { noremap = true, silent = true })
+	vim.keymap.set("n", "<leader>=sh", ":" .. sum_command_hours .. "<cr>")
+	vim.keymap.set("n", "<leader>=ss", ":" .. sum_command .. "<cr>")
 
 else
 	-- vim.keymap.set("n", "<leader>=s", ":%!wsl awk '{print; total+=\\$1}END{print total}'<cr>")
-	vim.keymap.set("n", "<leader>=h", ":lua vim.notify('Summing not supported in Windows, it uses awk', vim.log.levels.ERROR)<cr>")
+	vim.keymap.set("n", "<leader>=sh", ":lua vim.notify('Summing not supported in Windows, it uses awk', vim.log.levels.ERROR)<cr>")
 end
 
 -- " cm.Parameters.Add, and cm.Parameters.Value lines can be combined into single line using this
