@@ -117,13 +117,15 @@ require("diffview").setup({
 --		• B: LOCAL (the file as it currently exists on disk)
 --		• C: THEIRS (incoming branch)
 --		• D: BASE (common ancestor)
---	┌────┬────┬────┐
---	│ A  │ D  │ C  │
---	│ 1  │ 2  │ 3  │
---	├────┴────┴────┤
---	│			 B			 │
---	│							 │
---	└──────────────┘
+--	┌──────┬──────┬──────┐
+--	│ A    │ D    │ C    │
+--	│ OURS │ BASE │THEIRS│
+--	│ 1    │ 2    │ 3    │
+--	│ co   │ cb   │ ct   │ <leader>co, <leader>cb, <leader>ct
+--	├──────┴──────┴──────┤
+--	│        B           │
+--	│        OUTPUT      │
+--	└────────────────────┘
 		diff4 = {
 			-- Mappings in 4-way diff layouts
 			-- SEE g? for help, but <leader>co, <leader>cb, <leader>ct works well. :h diffview-merge-tool
