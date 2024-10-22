@@ -12,11 +12,8 @@ echo -e "$password" | sudo -v -S
 # TODO:
 # - [ ] systemd services int installer script??
 # - [ ] /etc/fonts/local.conf in installer script
-# - [ ] /etc/X11/xorg.conf.d/ into installer script
-# - [ ] firewall rules into installer script
-# - [ ] paccache.timer start
-# - [ ] Yubikey fde, pam-u2f
-# - [ ] polkit for 1Password
+# - [ ] btrfs subvolumes for /var/lib/libvirt, and /var/lib/docker, and /mnt/data-temp
+# - [ ] Configure /boot to be on the main btrfs / subvolume
 
 
 echo -e "\033[32m ----------------------------------------\033[0m"
@@ -160,7 +157,7 @@ echo -e "$password" | sudo -v -S
 sudo systemctl enable snapper-boot.timer
 sudo systemctl start snapper-boot.timer
 
-echo "Enable ufw"
+echo "Configuring ufw rules"
 echo -e "$password" | sudo -v -S
 sudo ufw allow from 192.168.111.0/24 to any app SSH
 sudo ufw allow from 192.168.114.0/24 to any app SSH
@@ -361,7 +358,7 @@ if [ "$enable_docker" == "y" ]; then
 	sudo systemctl start docker
 fi
 
-echo "Configur Yubikey? (y/n)"
+echo "Configure Yubikey? (y/n)"
 read configure_yubikey
 if [ "$configure_yubikey" == "y" ]; then
 	echo -e "$password" | sudo -v -S
@@ -369,11 +366,11 @@ if [ "$configure_yubikey" == "y" ]; then
 	# ykfde
 	# SEE: https://wiki.archlinux.org/title/YubiKey#Challenge-response_2
 
-	# pam-u2f
+	echo "Configuring pam-u2f"
 	mkdir ~/.config/Yubico
 	pamu2fcfg --no-user-presence --pin-verification -o pam://$HOST -i pam://$HOST > ~/.config/Yubico/u2f_keys
 
-	# pam config
+	echo "pam config"
 	authValue="auth sufficient pam_u2f.so cue origin=pam://$HOST appid=pam://$HOST"
 	sudo sed -i "2i$authValue" /etc/pam.d/sudo
 	sudo sed -i "2i$authValue" /etc/pam.d/system-local-login
