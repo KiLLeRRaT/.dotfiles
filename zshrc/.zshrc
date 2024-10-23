@@ -544,10 +544,13 @@ dotnet-outdated-update() {
 	dotnet list package --outdated | sed -n '/Top-level Package/,$p' | sed 's/^.*> //' | fzf --header=Latest --multi --header-lines=1 --ansi | cut -f1 -d' ' | xargs -n 1 --no-run-if-empty dotnet add package
 }
 
-ssh_removeAndConnect(){
-	# sed -i.bak "/192.168.111.$2/d" ~/.ssh/known_hosts && ssh $1@192.168.111.$2
-	sed -i.bak "/^$2 /d" ~/.ssh/known_hosts && ssh $1@$2
+ssh-remove-and-connect(){
+	# $1 is in the form of username@hostname
+	username=$(cut -d'@' -f1 <<< $1)
+	hostname=$(cut -d'@' -f2 <<< $1)
+	sed -i.bak "/^$hostname /d" ~/.ssh/known_hosts && ssh $username@$hostname
 }
+
 # ;fn_ssh albert 132
 
 installAurPackage() {
