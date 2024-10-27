@@ -4,39 +4,33 @@ set -e
 # Ideas from: https://github.com/Szwendacz99/Arch-install-encrypted-btrfs
 # This script is for moving the boot partition to a btrfs partition
 
+
 cryptsetup luksOpen /dev/sda2 luks
 mount -o subvol=@ /dev/mapper/luks /mnt
+mount /dev/sda1 /mnt/boot
 
-mkdir /mnt/boot-old
-mount /dev/sda1 /mnt/boot-old
-cp -a /mnt/boot-old/* /mnt/boot
-rm -rf /mnt/boot/EFI
+cp -r /mnt/boot /mnt/boot-old
+rm -rf /mnt/boot/*
+umount /mnt/boot
 
-umount /mnt/boot-old
-rmdir /mnt/boot-old
-
-
-mount /dev/sda1 /mnt/boot/EFI
-mkdir /mnt/boot/EFI/boot-bak
-mv /mnt/boot/EFI/* /mnt/boot/EFI/boot-bak
-# expect error trying to move directory to itself, that's okay
-
-cp -a /mnt/boot/EFI/boot-bak/EFI/* /mnt/boot/EFI
-
-genfstab -U /mnt
-# grab the new entry for /boot/EFI and add it to /mnt/etc/fstab
 
 
 arch-chroot /mnt
+
+vim /etc/default/grub
+# GRUB_ENABLE_CRYPTODISK=y
+grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 
 vim /etc/mkinitcpio.conf
 # add 'btrfs' to the HOOKS array
 # e.g. 
 # HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block encrypt btrfs filesystems fsck)
 
+pacman -Sy linux linux-lts intel-ucode
 mkinitcpio -P
 
-vim /etc/default/grub
-# GRUB_ENABLE_CRYPTODISK=y
+# https://wiki.archlinux.org/title/GRUB#Installation
 
-grub-mkconfig -o /boot/grub/grub.cfg
+
+# Make sure you're using PBKDF2 for LUKS2
+# https://wiki.archlinux.org/title/GRUB#LUKS2
