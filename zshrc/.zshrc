@@ -470,8 +470,9 @@ vms() {
 	echo $cmd
 	eval $cmd
 	# Ask if you want to do vmscreenshot
-	read -q "REPLY?Take screenshot? (y/n)"
-	[[ "$REPLY" == "y" ]] && vmscreenshot $1
+	# read -q "REPLY?Take screenshot? (y/n)"
+	# [[ "$REPLY" == "y" ]] && vmscreenshot $1
+	vmscreenshot $1
 }
 
 # CONNECT TO THE SELECTED VM
