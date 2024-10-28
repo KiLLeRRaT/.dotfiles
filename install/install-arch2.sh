@@ -164,7 +164,7 @@ arch-chroot /mnt pacman --noconfirm --needed -Syu \
 arch-chroot /mnt sed -i.bak '/^HOOKS=/s/block/block encrypt/' /etc/mkinitcpio.conf
 # GENERATE KEY FOR UNLOCKING ROOT
 dd bs=512 count=4 if=/dev/random iflag=fullblock | arch-chroot /mnt install -m 0600 /dev/stdin /etc/cryptsetup-keys.d/root.key
-arch-chroot /mnt cryptsetup luksAddKey $DEVICE_ROOT /etc/cryptsetup-keys.d/root.key
+arch-chroot /mnt cryptsetup luksAddKey $DEV_ROOT /etc/cryptsetup-keys.d/root.key
 arch-chroot /mnt sed -i.bak2 '/^FILES=/s|(.*)|(/etc/cryptsetup-keys.d/root.key)|' /etc/mkinitcpio.conf
 arch-chroot /mnt mkinitcpio -P
 echo "Set password for root"
