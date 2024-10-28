@@ -14,9 +14,22 @@ then
 	echo ""
 fi
 
+lsblk
+blkid
+DEVICE_UUID=$(blkid | fzf | sed -E 's/^.*UUID="(.{36})" .*$/\1/')
+
+echo "What is your hostname? (e.g. arch-agouwsmacbookpro)"
+read HOSTNAME
+
+echo "What is your username? (e.g. albert)"
+read USERNAME
+
 echo DEV_BOOT: $DEV_BOOT
 echo DEV_ROOT: $DEV_ROOT
-echo Press any key to continue...
+echo HOSTNAME: $HOSTNAME
+echo USERNAME: $USERNAME
+echo DEVICE_UUID: $DEVICE_UUID
+echo Press any key to continue installation...
 read -n 1
 
 
@@ -70,14 +83,12 @@ arch-chroot /mnt sed -i 's/#en_NZ.UTF-8 UTF-8/en_NZ.UTF-8 UTF-8/g' /etc/locale.g
 arch-chroot /mnt locale-gen
 arch-chroot /mnt echo "LANG=en_NZ.UTF-8" > /etc/locale.conf
 
-echo "What is your hostname? (e.g. arch-agouwsmacbookpro)"
-read hostname
-arch-chroot /mnt echo "$hostname" > /etc/hostname
+arch-chroot /mnt echo "$HOSTNAME" > /etc/hostname
 arch-chroot /mnt echo "127.0.0.1   localhost.localdomain   localhost   $hostname" >> /etc/hosts
 arch-chroot /mnt echo "::1   localhost.localdomain   localhost   $hostname" >> /etc/hosts
 
 arch-chroot /mnt sed -i 's/#Color/Color/g' /etc/pacman.conf
-arch-chroot /mnt sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/g' /etc/pacman.conf
+arch-chroot /mnt sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 10/g' /etc/pacman.conf
 arch-chroot /mnt pacman --noconfirm --needed -Syu \
 	alacritty \
 	aspnet-runtime \
@@ -170,18 +181,13 @@ arch-chroot /mnt mkinitcpio -P
 echo "Set password for root"
 arch-chroot /mnt passwd
 
-echo "What is your username? (e.g. albert)"
-read username
-arch-chroot /mnt useradd -m -G wheel,storage,power -g users -s /bin/zsh $username
-arch-chroot /mnt passwd $username
+arch-chroot /mnt useradd -m -G wheel,storage,power -g users -s /bin/zsh $USERNAME
+arch-chroot /mnt passwd $USERNAME
 arch-chroot /mnt sed -i.bak 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 
 arch-chroot /mnt sed -i 's/^#GRUB_ENABLE_CRYPTODISK=/GRUB_ENABLE_CRYPTODISK=/' /etc/default/grub
 arch-chroot /mnt sed -i '/^GRUB_PRELOAD_MODULES=/s/part_gpt/btrfs part_gpt/' /etc/default/grub
 
-DEVICE_UUID=$(blkid | fzf | sed -E 's/^.*UUID="(.{36})" .*$/\1/')
-echo $DEVICE_UUID correct? Press any key to continue
-read -n1
 arch-chroot /mnt sed -i.bak "/^GRUB_CMDLINE_LINUX=/s|\".*\"|\"cryptdevice=UUID=$DEVICE_UUID:root root=/dev/mapper/root cryptkey=rootfs:/etc/cryptsetup-keys.d/root.key\"|" /etc/default/grub
 arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
@@ -214,6 +220,10 @@ $(echo $tmp | sed "s/^tmpfs/tmpfs    \/tmp/"),noexec 0 0
 $(echo $devshm | sed "s/^tmpfs/tmpfs    \/dev\/shm/"),noexec 0 0
 EOF
 
+# FROM: https://wiki.archlinux.org/title/Sysctl#Configuration
+echo "Enable SysRq"
+echo "kernel.sysrq=1" | arch-chroot /mnt tee /etc/sysctl.d/99-sysctl.conf
+
 echo "Configuring ufw rules"
 arch-chroot /mnt ufw allow from 192.168.111.0/24 to any app SSH
 arch-chroot /mnt ufw allow from 192.168.114.0/24 to any app SSH
@@ -222,14 +232,6 @@ read enable_ufw
 if [ "$enable_ufw" == "y" ]; then
 	arch-chroot /mnt ufw enable
 fi
-
-# FROM: https://wiki.archlinux.org/title/Sysctl#Configuration
-echo "Enable SysRq"
-echo "kernel.sysrq=1" | arch-chroot /mnt tee /etc/sysctl.d/99-sysctl.conf
-
-
-
-
 
 # TODO: 
 # - [ ] GREETER CUSTOMISATION
