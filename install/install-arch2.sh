@@ -16,7 +16,7 @@ fi
 
 lsblk
 blkid
-DEVICE_UUID=$(blkid | fzf | sed -E 's/^.*UUID="(.{36})" .*$/\1/')
+DEVICE_UUID=$(blkid | fzf --prompt="Please select the DEV_ROOT device again so we can get the UUID" | sed -E 's/^.*UUID="(.{36})" .*$/\1/')
 
 echo "What is your hostname? (e.g. arch-agouwsmacbookpro)"
 read HOSTNAME
@@ -196,6 +196,7 @@ arch-chroot /mnt mkinitcpio -P
 # TODO: This could probably come from stow....?
 arch-chroot /mnt sed -i.bak "s|^#greeter-session=.*$|greeter-session=lightdm-slick-greeter|" /etc/lightdm/lightdm.conf
 
+echo "Enable services"
 arch-chroot /mnt systemctl enable lightdm.service
 arch-chroot /mnt systemctl enable sshd
 arch-chroot /mnt systemctl enable bluetooth
