@@ -392,7 +392,45 @@ arch-chroot /mnt systemctl enable betterlockscreen@$USERNAME
 arch-chroot /mnt ln -s /home/$USERNAME/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_recency
 
 
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Configure Xorg\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo "Configure tap to click on touchpad? (y/n)"
+read configure_xorg_taptoclick
+if [ "$configure_xorg_taptoclick" == "y" ]; then
+	# FROM: https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
+	mkdir -p /mnt/etc/X11/xorg.conf.d && tee <<'EOF' /mnt/etc/X11/xorg.conf.d/90-touchpad.conf 1> /dev/null
+Section "InputClass"
+				Identifier "touchpad"
+				MatchIsTouchpad "on"
+				Driver "libinput"
+				Option "Tapping" "on"
+				Option "TappingButtonMap" "lrm"
+				Option "NaturalScrolling" "on"
+				Option "ScrollMethod" "twofinger"
+EndSection
+EOF
+fi
+
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Configure Pacman Hooks\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo "Configure pacman hooks? (y/n)"
+read configure_pacman_hooks
+if [ "$configure_pacman_hooks" == "y" ]; then
+	mkdir -p /mnt/etc/pacman.d/hooks
+	cp /mnt/home/$USERNAME/.dotfiles/pacman/hooks/* /mnt/etc/pacman.d/hooks/
+fi
+
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Configure QEMU\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo "Configure QEMU and libvirt? (y/n)"
+read configure_qemu
+if [ "$configure_qemu" == "y" ]; then
+	arch-chroot /mnt pacman --noconfirm --needed -Syu virt-manager libvirt qemu virt-viewer swtpm
+fi
+
 # TODO: 
 # - [ ] GREETER CUSTOMISATION
-# - [ ] Continue from cloning dotfiles
 # - [ ] YubiKey
