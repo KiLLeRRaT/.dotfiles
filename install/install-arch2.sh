@@ -253,6 +253,7 @@ echo "Enable services"
 	systemctl enable snapper-cleanup.timer
 	systemctl enable snapper-boot.timer
 	systemctl enable systemd-resolved.service
+	systemctl enable docker
 } | arch-chroot /mnt
 
 echo "Configuring makepkg"
@@ -385,9 +386,13 @@ arch-chroot /mnt systemctl enable betterlockscreen@$USERNAME
 	source /usr/share/nvm/init-nvm.sh
 	nvm install --lts
 	nvm use --lts
+	mkdir -p /home/$USERNAME/Pictures/screenshots
 } | arch-chroot /mnt -u $USERNAME
+
+arch-chroot /mnt ln -s /home/$USERNAME/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_recency
 
 
 # TODO: 
 # - [ ] GREETER CUSTOMISATION
 # - [ ] Continue from cloning dotfiles
+# - [ ] YubiKey
