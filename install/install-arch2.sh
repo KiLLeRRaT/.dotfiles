@@ -45,8 +45,8 @@ fi
 
 lsblk
 blkid
-DEVICE_UUID=$(blkid | fzf --prompt="Please select the DEV_ROOT device again so we can get the UUID" | sed -E 's/^.*UUID="(.{36})" .*$/\1/')
-
+DEVICE_UUID=$(blkid | fzf --prompt="Please select the DEV_ROOT device again so we can get the UUID: " | sed -E 's/^.*UUID="(.{36})" .*$/\1/')
+echo ""
 echo "What is your hostname? (e.g. arch-agouwsmacbookpro)"
 read HOSTNAME
 
@@ -54,33 +54,30 @@ echo "What is your username? (e.g. albert)"
 read USERNAME
 
 echo "Enter LUKS password for $DEV_ROOT"
-read -s LUKS_PASSWORD
+read LUKS_PASSWORD
 
 echo "Enter root password"
-read -s ROOT_PASSWORD
+read ROOT_PASSWORD
 
 echo "Enter user password"
-read -s USER_PASSWORD
+read USER_PASSWORD
 
 echo DEV_BOOT: $DEV_BOOT
 echo DEV_ROOT: $DEV_ROOT
 echo HOSTNAME: $HOSTNAME
 echo USERNAME: $USERNAME
 echo DEVICE_UUID: $DEVICE_UUID
-echo "Show passwords? (y/n)"
-read -n 1 show_passwords
-if [ "$show_passwords" == "y" ]; then
-	echo LUKS_PASSWORD: $LUKS_PASSWORD
-	echo ROOT_PASSWORD: $ROOT_PASSWORD
-	echo USER_PASSWORD: $USER_PASSWORD
-fi
+echo LUKS_PASSWORD: $LUKS_PASSWORD
+echo ROOT_PASSWORD: $ROOT_PASSWORD
+echo USER_PASSWORD: $USER_PASSWORD
+
 echo Press any key to continue installation...
 read -n 1
 
 
 # PARTITION SETUP
-echo $LUKS_PASSWORD | cryptsetup luksFormat --pbkdf pbkdf2 $DEV_ROOT -
-cryptsetup open $DEV_ROOT root
+echo -n "$LUKS_PASSWORD" | cryptsetup luksFormat --pbkdf pbkdf2 $DEV_ROOT -
+echo -n "$LUKS_PASSWORD" | cryptsetup luksOpen $DEV_ROOT root -
 mkfs.btrfs --label system /dev/mapper/root
 mount /dev/mapper/root /mnt
 
@@ -164,6 +161,8 @@ arch-chroot /mnt pacman --noconfirm --needed -Syu \
 	iotop \
 	jq \
 	less \
+	lightdm \
+	lightdm-slick-greeter \
 	man \
 	mono \
 	mono-msbuild \
@@ -220,9 +219,8 @@ arch-chroot /mnt pacman --noconfirm --needed -Syu \
 arch-chroot /mnt sed -i.bak '/^HOOKS=/s/block/block encrypt/' /etc/mkinitcpio.conf
 # GENERATE KEY FOR UNLOCKING ROOT
 dd bs=512 count=4 if=/dev/random iflag=fullblock | arch-chroot /mnt install -m 0600 /dev/stdin /etc/cryptsetup-keys.d/root.key
-arch-chroot /mnt cryptsetup luksAddKey $DEV_ROOT /etc/cryptsetup-keys.d/root.key
+echo -n "$LUKS_PASSWORD" | cryptsetup luksAddKey --key-file - $DEV_ROOT /mnt/etc/cryptsetup-keys.d/root.key
 arch-chroot /mnt sed -i.bak2 '/^FILES=/s|(.*)|(/etc/cryptsetup-keys.d/root.key)|' /etc/mkinitcpio.conf
-arch-chroot /mnt mkinitcpio -P
 echo "Set password for root"
 echo $ROOT_PASSWORD | arch-chroot /mnt passwd --stdin
 
@@ -242,7 +240,7 @@ arch-chroot /mnt mkinitcpio -P
 arch-chroot /mnt sed -i.bak "s|^#greeter-session=.*$|greeter-session=lightdm-slick-greeter|" /etc/lightdm/lightdm.conf
 
 echo "Enable services"
-{
+arch-chroot /mnt /bin/bash -- << EOF
 	systemctl enable lightdm.service
 	systemctl enable sshd
 	systemctl enable bluetooth
@@ -254,7 +252,7 @@ echo "Enable services"
 	systemctl enable snapper-boot.timer
 	systemctl enable systemd-resolved.service
 	systemctl enable docker
-} | arch-chroot /mnt
+EOF
 
 echo "Configuring makepkg"
 # DISABLE COMPRESSION
@@ -272,44 +270,47 @@ EOF
 
 # FROM: https://wiki.archlinux.org/title/Sysctl#Configuration
 echo "Enable SysRq"
-echo "kernel.sysrq=1" | arch-chroot /mnt tee /etc/sysctl.d/99-sysctl.conf
+echo "kernel.sysrq=1" > /mnt/etc/sysctl.d/99-sysctl.conf
 
-echo "Configuring ufw rules"
-arch-chroot /mnt ufw allow from 192.168.111.0/24 to any app SSH
-arch-chroot /mnt ufw allow from 192.168.114.0/24 to any app SSH
-echo "Enable ufw? (y/n)"
-read enable_ufw
-if [ "$enable_ufw" == "y" ]; then
-	arch-chroot /mnt ufw enable
-fi
+#echo "Configuring ufw rules"
+#arch-chroot /mnt ufw allow from 192.168.111.0/24 to any app SSH
+#arch-chroot /mnt ufw allow from 192.168.114.0/24 to any app SSH
+#echo "Enable ufw? (y/n)"
+#read enable_ufw
+#if [ "$enable_ufw" == "y" ]; then
+	#arch-chroot /mnt ufw enable
+#fi
 
 
-arch-chroot /mnt -u $USERNAME git clone https://github.com/killerrat/.dotfiles /home/$USERNAME/.dotfiles
-arch-chroot /mnt -u $USERNAME /home/.dotfiles/nvim-lua/.config/nvim/generateHostConfig.sh
+arch-chroot -u $USERNAME /mnt git clone https://github.com/killerrat/.dotfiles /home/$USERNAME/.dotfiles
+# TODO: SORT OUT THE BELOW SCRIPT RUN IN CHROOT
+#arch-chroot -u $USERNAME /mnt /home/$USERNAME/.dotfiles/nvim-lua/.config/nvim/generateHostConfig.sh
 
 
 echo "Running stow"
-arch-chroot /mnt cd /home/$USERNAME/.dotfiles/hosts/arch-agouws && stow -t ~ xinitrc
-arch-chroot /mnt mv /etc/lightdm/lightdm-gtk-greeter.conf{,.bak}
-arch-chroot /mnt cd /home/$USERNAME/.dotfiles && stow -t / lightdm
+arch-chroot /mng /bin/bash -- << EOF
+	cd /home/$USERNAME/.dotfiles
+	pushd /home/$USERNAME/.dotfiles/hosts/arch-agouws 
+	stow -t /home/$USERNAME xinitrc
+	popd
+	mv /etc/lightdm/lightdm-gtk-greeter.conf{,.bak}
+	stow -t / lightdm
+	mkdir -p /usr/share/backgrounds/$USERNAME
+	stow -t /usr/share/backgrounds/$USERNAME images
+	chmod o+r /usr/share/backgrounds/$USERNAME/*
+	stow alacritty dmenurc dosbox dunst flameshot fonts gitconfig gtk-2.0 gtk-3.0 gtk-4.0 i3-manjaro nvim-lua oh-my-posh picom ranger tmux zshrc
+EOF
 
 
-arch-chroot /mnt mkdir -p /usr/share/backgrounds/albert
-# arch-chroot /mnt chmod o+x /usr/share/backgrounds/albert
-arch-chroot /mnt cd /home/$USERNAME/.dotfiles && stow -t /usr/share/backgrounds/albert images
-arch-chroot /mnt chmod o+r /usr/share/backgrounds/albert/*
-arch-chroot /mnt -u $USERNAME cd /home/$USERNAME/.dotfiles && stow alacritty dmenurc dosbox dunst flameshot fonts gitconfig gtk-2.0 gtk-3.0 gtk-4.0 i3-manjaro nvim-lua oh-my-posh picom ranger tmux zshrc
-
-
-echo "Configure bat and silicon themes"
-arch-chroot /mnt -u $USERNAME mkdir -p "$(bat --config-dir)/themes"
-arch-chroot /mnt -u $USERNAME mkdir -p "$(bat --config-dir)/syntaxes"
-arch-chroot /mnt -u $USERNAME ln -s /home/$USERNAME/.local/share/nvim/lazy/tokyonight.nvim/extras/sublime/tokyonight_day.tmTheme /home/$USERNAME/.config/bat/themes/tokyonight_day.tmTheme
-arch-chroot /mnt -u $USERNAME ln -s /home/$USERNAME/.local/share/nvim/lazy/tokyonight.nvim/extras/sublime/tokyonight_night.tmTheme /home/$USERNAME/.config/bat/themes/tokyonight_night.tmTheme
-arch-chroot /mnt -u $USERNAME ln -s /home/$USERNAME/.local/share/nvim/lazy/tokyonight.nvim/extras/sublime/tokyonight_moon.tmTheme /home/$USERNAME/.config/bat/themes/tokyonight_moon.tmTheme
-arch-chroot /mnt -u $USERNAME ln -s /home/$USERNAME/.local/share/nvim/lazy/tokyonight.nvim/extras/sublime/tokyonight_storm.tmTheme /home/$USERNAME/.config/bat/themes/tokyonight_storm.tmTheme
-arch-chroot /mnt -u $USERNAME bat cache --build
-arch-chroot /mnt -u $USERNAME silicon --build-cache
+# echo "Configure bat and silicon themes"
+# arch-chroot -u $USERNAME /mnt mkdir -p "$(bat --config-dir)/themes"
+# arch-chroot -u $USERNAME /mnt mkdir -p "$(bat --config-dir)/syntaxes"
+# arch-chroot -u $USERNAME /mnt ln -s /home/$USERNAME/.local/share/nvim/lazy/tokyonight.nvim/extras/sublime/tokyonight_day.tmTheme /home/$USERNAME/.config/bat/themes/tokyonight_day.tmTheme
+# arch-chroot -u $USERNAME /mnt ln -s /home/$USERNAME/.local/share/nvim/lazy/tokyonight.nvim/extras/sublime/tokyonight_night.tmTheme /home/$USERNAME/.config/bat/themes/tokyonight_night.tmTheme
+# arch-chroot -u $USERNAME /mnt ln -s /home/$USERNAME/.local/share/nvim/lazy/tokyonight.nvim/extras/sublime/tokyonight_moon.tmTheme /home/$USERNAME/.config/bat/themes/tokyonight_moon.tmTheme
+# arch-chroot -u $USERNAME /mnt ln -s /home/$USERNAME/.local/share/nvim/lazy/tokyonight.nvim/extras/sublime/tokyonight_storm.tmTheme /home/$USERNAME/.config/bat/themes/tokyonight_storm.tmTheme
+# arch-chroot -u $USERNAME /mnt bat cache --build
+# arch-chroot -u $USERNAME /mnt silicon --build-cache
 
 
 echo "Let's copy our gtk configs to /root, so that root has the same theme"
@@ -323,22 +324,28 @@ echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Installing AUR Packages\033[0m"
 echo -e "\033[32m ----------------------------------------\033[0m"
 
-mkdir -p /mnt/home/$USERNAME/source-aur
 
-{
-	source /home/$USERNAME/.dotfiles/scripts/functions/aur-helpers.sh
-	installAurPackage oh-my-posh-bin
-	installAurPackage brave-bin
+# arch-chroot /mnt useradd -m -G wheel,storage,power -g users -s /bin/bash builduser
+# echo "builduser ALL=(ALL) NOPASSWD: ALL" > /mnt/etc/sudoers.d/10-installer
+
+#su IDEA FROM: https://github.com/zapling/dotfiles-wayland/blob/eafeb801fa59069cb343b8a782c5f428478d4bd9/install.sh#L225
+arch-chroot /mnt su $USERNAME -c << EOF
+	mkdir -p /home/$USERNAME/source-aur
+	git clone https://aur.archlinux.org/oh-my-posh-bin.git && cd oh-my-posh-bin && makepkg --noconfirm -is
+	exit 1
+	git clone https://aur.archlinux.org/brave-bin.git && cd brave-bin && makepkg --noconfirm -is
 
 	curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
-	installAurPackage 1password
+	git clone https://aur.archlinux.org/1password.git && cd 1password && makepkg --noconfirm -is
 	echo Need to make sure gnome-keyring is correctly setup otherwise 2fa keys wont be remembered.
+EOF
 
-	cp /etc/pam.d/login /tmp/login.tmp
-	echo -e "$password" | sudo -v -S
-	if [ ! -f /tmp/login.tmp ] # Don't run it again if we have the login.tmp file already
-	then
-		sudo bash -c "cat > /etc/pam.d/login" << 'EOF'
+exit 1
+
+cp /mnt/etc/pam.d/login /mnt/tmp/login.tmp
+if [ ! -f /mnt/tmp/login.tmp ] # Don't run it again if we have the login.tmp file already
+then
+	bash -c "cat > /mnt/etc/pam.d/login" << EOF
 		#%PAM-1.0
 		auth       required     pam_securetty.so
 		auth       requisite    pam_nologin.so
@@ -348,14 +355,14 @@ mkdir -p /mnt/home/$USERNAME/source-aur
 		session    include      system-local-login
 		session    optional     pam_gnome_keyring.so auto_start
 		password   include      system-local-login
-		EOF
+EOF
 
-	fi
-} | arch-chroot /mnt -u $USERNAME
+fi
+
 
 cp /mnt/usr/lib/pam.d/polkit-1 /mnt/etc/pam.d/polkit-1
 
-{
+arch-chroot -u $USERNAME /mnt /bin/bash -- << EOF
 	source /home/$USERNAME/.dotfiles/scripts/functions/aur-helpers.sh
 	installAurPackage otf-san-francisco
 	installAurPackage otf-san-francisco-mono
@@ -366,31 +373,30 @@ cp /mnt/usr/lib/pam.d/polkit-1 /mnt/etc/pam.d/polkit-1
 	installAurPackage netcoredbg
 	installAurPackage nvm
 	installAurPackage emote # Emoji picker, launch with Ctrl + Alt + E
-} | arch-chroot /mnt -u $USERNAME
+EOF
 
 arch-chroot /mnt pacman -R --noconfirm i3lock
 
-{
+arch-chroot -u $USERNAME /mnt /bin/bash -- << EOF
 	source /home/$USERNAME/.dotfiles/scripts/functions/aur-helpers.sh
 	installAurPackage i3lock-color
 	installAurPackage i3exit
 	installAurPackage betterlockscreen
 	betterlockscreen -u ~/.dotfiles/images
-} | arch-chroot /mnt -u $USERNAME
+EOF
 
 arch-chroot /mnt systemctl enable betterlockscreen@$USERNAME
 # lock on sleep/suspend
 
 
-{
+arch-chroot -u $USERNAME /mnt /bin/bash -- << EOF
 	source /usr/share/nvm/init-nvm.sh
 	nvm install --lts
 	nvm use --lts
 	mkdir -p /home/$USERNAME/Pictures/screenshots
-} | arch-chroot /mnt -u $USERNAME
+EOF
 
 arch-chroot /mnt ln -s /home/$USERNAME/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_recency
-
 
 echo -e "\033[32m ----------------------------------------\033[0m"
 echo -e "\033[32m Configure Xorg\033[0m"
@@ -431,6 +437,10 @@ if [ "$configure_qemu" == "y" ]; then
 	arch-chroot /mnt pacman --noconfirm --needed -Syu virt-manager libvirt qemu virt-viewer swtpm
 fi
 
+rm /mnt/etc/sudoers.d/10-installer
+
 # TODO: 
 # - [ ] GREETER CUSTOMISATION
 # - [ ] YubiKey
+#  - [ ] One shot service to delete the sudoers.d/10-installer file on login
+#  - building in a clean chroot: https://wiki.archlinux.org/title/DeveloperWiki:Building_in_a_clean_chroot#Setting_up_a_chroot
