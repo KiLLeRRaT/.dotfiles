@@ -1,6 +1,35 @@
 #!/bin/bash
 set -e
 
+for i in "$@"
+do
+case $i in
+		-c=*|--continue-from-line=*)
+		CONTINUE_FROM_LINE="${i#*=}"
+		shift # past argument=value
+		;;
+		-h|--help)
+		echo "Usage: install-arch2.sh [OPTION]"
+		echo "Options:"
+		echo "  -c, --continue-from-line=NUM  Continue from line number NUM"
+		echo "  -h, --help                    Display this help message"
+		exit 0
+		;;
+		*)
+					# unknown option
+		;;
+esac
+done
+
+if [ ! -z $CONTINUE_FROM_LINE ]
+then
+	SCRIPT_CONTENTS=$(cat $0 | sed -n "1,/^echo Press any key to continue installation.../p;$CONTINUE_FROM_LINE,\$p")
+	echo "$SCRIPT_CONTENTS" > install-arch2.sh.continue
+	chmod u+x install-arch2.sh.continue
+	cat ./install-arch2.sh.continue
+	exit 0
+fi
+
 timedatectl set-ntp true
 sed -i 's/^#Color/Color/g' /etc/pacman.conf
 sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 10/g' /etc/pacman.conf
@@ -24,17 +53,33 @@ read HOSTNAME
 echo "What is your username? (e.g. albert)"
 read USERNAME
 
+echo "Enter LUKS password for $DEV_ROOT"
+read -s LUKS_PASSWORD
+
+echo "Enter root password"
+read -s ROOT_PASSWORD
+
+echo "Enter user password"
+read -s USER_PASSWORD
+
 echo DEV_BOOT: $DEV_BOOT
 echo DEV_ROOT: $DEV_ROOT
 echo HOSTNAME: $HOSTNAME
 echo USERNAME: $USERNAME
 echo DEVICE_UUID: $DEVICE_UUID
+echo "Show passwords? (y/n)"
+read -n 1 show_passwords
+if [ "$show_passwords" == "y" ]; then
+	echo LUKS_PASSWORD: $LUKS_PASSWORD
+	echo ROOT_PASSWORD: $ROOT_PASSWORD
+	echo USER_PASSWORD: $USER_PASSWORD
+fi
 echo Press any key to continue installation...
 read -n 1
 
 
 # PARTITION SETUP
-cryptsetup luksFormat --pbkdf pbkdf2 $DEV_ROOT
+echo $LUKS_PASSWORD | cryptsetup luksFormat --pbkdf pbkdf2 $DEV_ROOT -
 cryptsetup open $DEV_ROOT root
 mkfs.btrfs --label system /dev/mapper/root
 mount /dev/mapper/root /mnt
@@ -179,10 +224,10 @@ arch-chroot /mnt cryptsetup luksAddKey $DEV_ROOT /etc/cryptsetup-keys.d/root.key
 arch-chroot /mnt sed -i.bak2 '/^FILES=/s|(.*)|(/etc/cryptsetup-keys.d/root.key)|' /etc/mkinitcpio.conf
 arch-chroot /mnt mkinitcpio -P
 echo "Set password for root"
-arch-chroot /mnt passwd
+echo $ROOT_PASSWORD | arch-chroot /mnt passwd --stdin
 
 arch-chroot /mnt useradd -m -G wheel,storage,power -g users -s /bin/zsh $USERNAME
-arch-chroot /mnt passwd $USERNAME
+echo $USER_PASSWORD | arch-chroot /mnt passwd $USERNAME --stdin
 arch-chroot /mnt sed -i.bak 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 
 arch-chroot /mnt sed -i 's/^#GRUB_ENABLE_CRYPTODISK=/GRUB_ENABLE_CRYPTODISK=/' /etc/default/grub
@@ -197,15 +242,18 @@ arch-chroot /mnt mkinitcpio -P
 arch-chroot /mnt sed -i.bak "s|^#greeter-session=.*$|greeter-session=lightdm-slick-greeter|" /etc/lightdm/lightdm.conf
 
 echo "Enable services"
-arch-chroot /mnt systemctl enable lightdm.service
-arch-chroot /mnt systemctl enable sshd
-arch-chroot /mnt systemctl enable bluetooth
-arch-chroot /mnt systemctl enable NetworkManager.service
-arch-chroot /mnt systemctl enable cronie.service
-arch-chroot /mnt systemctl enable paccache.timer
-arch-chroot /mnt systemctl enable snapper-timeline.timer
-arch-chroot /mnt systemctl enable snapper-cleanup.timer
-arch-chroot /mnt systemctl enable snapper-boot.timer
+{
+	systemctl enable lightdm.service
+	systemctl enable sshd
+	systemctl enable bluetooth
+	systemctl enable NetworkManager.service
+	systemctl enable cronie.service
+	systemctl enable paccache.timer
+	systemctl enable snapper-timeline.timer
+	systemctl enable snapper-cleanup.timer
+	systemctl enable snapper-boot.timer
+	systemctl enable systemd-resolved.service
+} | arch-chroot /mnt
 
 echo "Configuring makepkg"
 # DISABLE COMPRESSION
@@ -233,6 +281,112 @@ read enable_ufw
 if [ "$enable_ufw" == "y" ]; then
 	arch-chroot /mnt ufw enable
 fi
+
+
+arch-chroot /mnt -u $USERNAME git clone https://github.com/killerrat/.dotfiles /home/$USERNAME/.dotfiles
+arch-chroot /mnt -u $USERNAME /home/.dotfiles/nvim-lua/.config/nvim/generateHostConfig.sh
+
+
+echo "Running stow"
+arch-chroot /mnt cd /home/$USERNAME/.dotfiles/hosts/arch-agouws && stow -t ~ xinitrc
+arch-chroot /mnt mv /etc/lightdm/lightdm-gtk-greeter.conf{,.bak}
+arch-chroot /mnt cd /home/$USERNAME/.dotfiles && stow -t / lightdm
+
+
+arch-chroot /mnt mkdir -p /usr/share/backgrounds/albert
+# arch-chroot /mnt chmod o+x /usr/share/backgrounds/albert
+arch-chroot /mnt cd /home/$USERNAME/.dotfiles && stow -t /usr/share/backgrounds/albert images
+arch-chroot /mnt chmod o+r /usr/share/backgrounds/albert/*
+arch-chroot /mnt -u $USERNAME cd /home/$USERNAME/.dotfiles && stow alacritty dmenurc dosbox dunst flameshot fonts gitconfig gtk-2.0 gtk-3.0 gtk-4.0 i3-manjaro nvim-lua oh-my-posh picom ranger tmux zshrc
+
+
+echo "Configure bat and silicon themes"
+arch-chroot /mnt -u $USERNAME mkdir -p "$(bat --config-dir)/themes"
+arch-chroot /mnt -u $USERNAME mkdir -p "$(bat --config-dir)/syntaxes"
+arch-chroot /mnt -u $USERNAME ln -s /home/$USERNAME/.local/share/nvim/lazy/tokyonight.nvim/extras/sublime/tokyonight_day.tmTheme /home/$USERNAME/.config/bat/themes/tokyonight_day.tmTheme
+arch-chroot /mnt -u $USERNAME ln -s /home/$USERNAME/.local/share/nvim/lazy/tokyonight.nvim/extras/sublime/tokyonight_night.tmTheme /home/$USERNAME/.config/bat/themes/tokyonight_night.tmTheme
+arch-chroot /mnt -u $USERNAME ln -s /home/$USERNAME/.local/share/nvim/lazy/tokyonight.nvim/extras/sublime/tokyonight_moon.tmTheme /home/$USERNAME/.config/bat/themes/tokyonight_moon.tmTheme
+arch-chroot /mnt -u $USERNAME ln -s /home/$USERNAME/.local/share/nvim/lazy/tokyonight.nvim/extras/sublime/tokyonight_storm.tmTheme /home/$USERNAME/.config/bat/themes/tokyonight_storm.tmTheme
+arch-chroot /mnt -u $USERNAME bat cache --build
+arch-chroot /mnt -u $USERNAME silicon --build-cache
+
+
+echo "Let's copy our gtk configs to /root, so that root has the same theme"
+cp /mnt/home/$USERNAME/.dotfiles/gtk-2.0/.gtkrc-2.0 /mnt/root
+mkdir -p /mnt/root/.config
+cp -r /mnt/home/$USERNAME/.dotfiles/gtk-3.0/.config/gtk-3.0 /mnt/root/.config
+cp -r /mnt/home/$USERNAME/.dotfiles/gtk-4.0/.config/gtk-4.0 /mnt/root/.config
+
+
+echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "\033[32m Installing AUR Packages\033[0m"
+echo -e "\033[32m ----------------------------------------\033[0m"
+
+mkdir -p /mnt/home/$USERNAME/source-aur
+
+{
+	source /home/$USERNAME/.dotfiles/scripts/functions/aur-helpers.sh
+	installAurPackage oh-my-posh-bin
+	installAurPackage brave-bin
+
+	curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
+	installAurPackage 1password
+	echo Need to make sure gnome-keyring is correctly setup otherwise 2fa keys wont be remembered.
+
+	cp /etc/pam.d/login /tmp/login.tmp
+	echo -e "$password" | sudo -v -S
+	if [ ! -f /tmp/login.tmp ] # Don't run it again if we have the login.tmp file already
+	then
+		sudo bash -c "cat > /etc/pam.d/login" << 'EOF'
+		#%PAM-1.0
+		auth       required     pam_securetty.so
+		auth       requisite    pam_nologin.so
+		auth       include      system-local-login
+		auth       optional     pam_gnome_keyring.so
+		account    include      system-local-login
+		session    include      system-local-login
+		session    optional     pam_gnome_keyring.so auto_start
+		password   include      system-local-login
+		EOF
+
+	fi
+} | arch-chroot /mnt -u $USERNAME
+
+cp /mnt/usr/lib/pam.d/polkit-1 /mnt/etc/pam.d/polkit-1
+
+{
+	source /home/$USERNAME/.dotfiles/scripts/functions/aur-helpers.sh
+	installAurPackage otf-san-francisco
+	installAurPackage otf-san-francisco-mono
+	installAurPackage pa-applet-git
+	installAurPackage dracula-gtk-theme
+	installAurPackage dracula-icons-git
+	installAurPackage snapper-gui-git
+	installAurPackage netcoredbg
+	installAurPackage nvm
+	installAurPackage emote # Emoji picker, launch with Ctrl + Alt + E
+} | arch-chroot /mnt -u $USERNAME
+
+arch-chroot /mnt pacman -R --noconfirm i3lock
+
+{
+	source /home/$USERNAME/.dotfiles/scripts/functions/aur-helpers.sh
+	installAurPackage i3lock-color
+	installAurPackage i3exit
+	installAurPackage betterlockscreen
+	betterlockscreen -u ~/.dotfiles/images
+} | arch-chroot /mnt -u $USERNAME
+
+arch-chroot /mnt systemctl enable betterlockscreen@$USERNAME
+# lock on sleep/suspend
+
+
+{
+	source /usr/share/nvm/init-nvm.sh
+	nvm install --lts
+	nvm use --lts
+} | arch-chroot /mnt -u $USERNAME
+
 
 # TODO: 
 # - [ ] GREETER CUSTOMISATION
