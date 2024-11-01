@@ -1,35 +1,6 @@
 #!/bin/bash
 set -e
 
-for i in "$@"
-do
-case $i in
-		-c=*|--continue-from-line=*)
-		CONTINUE_FROM_LINE="${i#*=}"
-		shift # past argument=value
-		;;
-		-h|--help)
-		echo "Usage: install-arch2.sh [OPTION]"
-		echo "Options:"
-		echo "  -c, --continue-from-line=NUM  Continue from line number NUM"
-		echo "  -h, --help                    Display this help message"
-		exit 0
-		;;
-		*)
-					# unknown option
-		;;
-esac
-done
-
-if [ ! -z $CONTINUE_FROM_LINE ]
-then
-	SCRIPT_CONTENTS=$(cat $0 | sed -n "1,/^echo Press any key to start installation.../p;$CONTINUE_FROM_LINE,\$p")
-	echo "$SCRIPT_CONTENTS" > install-arch2.sh.continue
-	chmod u+x install-arch2.sh.continue
-	cat ./install-arch2.sh.continue
-	exit 0
-fi
-
 timedatectl set-ntp true
 sed -i 's/^#Color/Color/g' /etc/pacman.conf
 sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 10/g' /etc/pacman.conf
@@ -77,64 +48,7 @@ fi
 echo Press any key to start installation...
 read -n 1
 
-
-# PARTITION SETUP
-echo -n "$LUKS_PASSWORD" | cryptsetup luksFormat --pbkdf pbkdf2 $DEV_ROOT -
-echo -n "$LUKS_PASSWORD" | cryptsetup luksOpen $DEV_ROOT root -
-mkfs.btrfs --label system /dev/mapper/root
-mount /dev/mapper/root /mnt
-
-btrfs subvol create /mnt/@
-btrfs subvol create /mnt/@home
-btrfs subvol create /mnt/@swap
-btrfs subvol create /mnt/@pkg
-btrfs subvol create /mnt/@log
-btrfs subvol create /mnt/@docker
-btrfs subvol create /mnt/@libvirt
-
-umount -R /mnt
-mount -o defaults,noatime,ssd,compress=zstd,subvol=@ /dev/mapper/root /mnt
-
-mkdir -p /mnt/efi
-mkdir -p /mnt/home
-mkdir -p /mnt/swap
-mkdir -p /mnt/var/cache/pacman/pkg
-mkdir -p /mnt/var/log
-mkdir -p /mnt/var/lib/docker
-mkdir -p /mnt/var/lib/libvirt
-
-mount -o defaults,noatime,ssd,compress=zstd,subvol=@home /dev/mapper/root /mnt/home
-mount -o defaults,noatime,ssd,compress=zstd,subvol=@swap /dev/mapper/root /mnt/swap
-mount -o defaults,noatime,ssd,compress=zstd,subvol=@pkg /dev/mapper/root /mnt/var/cache/pacman/pkg
-mount -o defaults,noatime,ssd,compress=zstd,subvol=@log /dev/mapper/root /mnt/var/log
-mount -o defaults,noatime,ssd,compress=zstd,subvol=@docker /dev/mapper/root /mnt/var/lib/docker
-mount -o defaults,noatime,ssd,compress=zstd,subvol=@libvirt /dev/mapper/root /mnt/var/lib/libvirt
-
-mount $DEV_BOOT /mnt/efi
-
-echo "Create and activate swapfile"
-btrfs filesystem mkswapfile --size 4g --uuid clear /mnt/swap/swapfile
-swapon /mnt/swap/swapfile
-
-pacstrap -K /mnt base linux linux-lts linux-firmware
-
-genfstab -U /mnt >> /mnt/etc/fstab
-
-echo "Executing in chroot from here"
-
-arch-chroot /mnt ln -sf /usr/share/zoneinfo/Pacific/Auckland /etc/localtime
-arch-chroot /mnt hwclock --systohc
-arch-chroot /mnt sed -i 's/#en_NZ.UTF-8 UTF-8/en_NZ.UTF-8 UTF-8/g' /etc/locale.gen
-arch-chroot /mnt locale-gen
-arch-chroot /mnt echo "LANG=en_NZ.UTF-8" > /etc/locale.conf
-
-arch-chroot /mnt echo "$HOSTNAME" > /etc/hostname
-arch-chroot /mnt echo "127.0.0.1   localhost.localdomain   localhost   $hostname" >> /etc/hosts
-arch-chroot /mnt echo "::1   localhost.localdomain   localhost   $hostname" >> /etc/hosts
-
-arch-chroot /mnt sed -i 's/#Color/Color/g' /etc/pacman.conf
-arch-chroot /mnt sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 10/g' /etc/pacman.conf
-arch-chroot /mnt pacman --noconfirm --needed -Syu \
+pacstrap -K /mnt base linux linux-lts linux-firmware \
 	alacritty \
 	aspnet-runtime \
 	base-devel \
@@ -219,12 +133,29 @@ arch-chroot /mnt pacman --noconfirm --needed -Syu \
 	zoxide \
 	zsh
 
+
+echo "Generate fstab"
+genfstab -U /mnt >> /mnt/etc/fstab
+
+echo "Executing in chroot from here"
+
+arch-chroot /mnt ln -sf /usr/share/zoneinfo/Pacific/Auckland /etc/localtime
+arch-chroot /mnt hwclock --systohc
+arch-chroot /mnt sed -i 's/#en_NZ.UTF-8 UTF-8/en_NZ.UTF-8 UTF-8/g' /etc/locale.gen
+arch-chroot /mnt locale-gen
+arch-chroot /mnt echo "LANG=en_NZ.UTF-8" > /etc/locale.conf
+
+arch-chroot /mnt echo "$HOSTNAME" > /etc/hostname
+arch-chroot /mnt echo "127.0.0.1   localhost.localdomain   localhost   $hostname" >> /etc/hosts
+arch-chroot /mnt echo "::1   localhost.localdomain   localhost   $hostname" >> /etc/hosts
+
+arch-chroot /mnt sed -i 's/#Color/Color/g' /etc/pacman.conf
+arch-chroot /mnt sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 10/g' /etc/pacman.conf
 arch-chroot /mnt sed -i.bak '/^HOOKS=/s/block/block encrypt/' /etc/mkinitcpio.conf
 # GENERATE KEY FOR UNLOCKING ROOT
 dd bs=512 count=4 if=/dev/random iflag=fullblock | arch-chroot /mnt install -m 0600 /dev/stdin /etc/cryptsetup-keys.d/root.key
 echo -n "$LUKS_PASSWORD" | cryptsetup luksAddKey --key-file - $DEV_ROOT /mnt/etc/cryptsetup-keys.d/root.key
 arch-chroot /mnt sed -i.bak2 '/^FILES=/s|(.*)|(/etc/cryptsetup-keys.d/root.key)|' /etc/mkinitcpio.conf
-arch-chroot /mnt mkinitcpio -P
 echo "Set password for root"
 echo $ROOT_PASSWORD | arch-chroot /mnt passwd --stdin
 
@@ -287,8 +218,7 @@ echo "kernel.sysrq=1" > /mnt/etc/sysctl.d/99-sysctl.conf
 
 
 arch-chroot -u $USERNAME /mnt git clone https://github.com/killerrat/.dotfiles /home/$USERNAME/.dotfiles
-arch-chroot -u $USERNAME /mnt /home/$USERNAME/.dotfiles/nvim-lua/.config/nvim/generateHostConfig.sh
-
+# arch-chroot -u $USERNAME /mnt /home/$USERNAME/.dotfiles/nvim-lua/.config/nvim/generateHostConfig.sh
 
 echo "Running stow"
 arch-chroot /mnt cd /home/$USERNAME/.dotfiles/hosts/arch-agouws && stow -t ~ xinitrc
