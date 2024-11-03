@@ -67,6 +67,16 @@ p.setup {
 }
 
 
+-- FROM: https://github.com/nvim-telescope/telescope.nvim/issues/2160#issuecomment-2452730363
+local current_prompt_text = function()
+	for _, bufnr in ipairs(vim.fn.tabpagebuflist()) do
+		if vim.bo[bufnr].filetype == 'TelescopePrompt' then
+			local action_state = require('telescope.actions.state')
+			return action_state.get_current_picker(bufnr):_get_prompt()
+		end
+	end
+	return ''
+end
 
 
 p.load_extension('fzf')
@@ -76,12 +86,15 @@ p.load_extension('fzf')
 -- " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 vim.keymap.set("n", "<leader>f.", "<cmd>Telescope resume<cr>")
 
-vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>")
+vim.keymap.set('n', '<leader>ff', function() require("telescope.builtin").find_files({ default_text = current_prompt_text(), find_command = {"rg", "--files", "--hidden", "--glob", "!**/.git/*"}, }) end)
+-- vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>")
+
 vim.keymap.set("n", "<leader>FF", "<cmd>Telescope find_files find_command=rg,--no-ignore,--hidden,--files<cr>")
 vim.keymap.set("n", "<leader>fF", ":execute 'Telescope find_files default_text=' . '''' . expand('<cword>')<cr>")
 
 -- vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
-vim.keymap.set("n", "<leader>fg", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args({ default_text = '' })<cr>")
+-- vim.keymap.set("n", "<leader>fg", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args({ default_text = '' })<cr>")
+vim.keymap.set("n", "<leader>fg", function() require('telescope').extensions.live_grep_args.live_grep_args({ default_text = current_prompt_text() }) end)
 
 -- vim.keymap.set("n", "<leader>fG", ":execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>")
 -- vim.keymap.set("n", "<leader>fG", ":execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>")
