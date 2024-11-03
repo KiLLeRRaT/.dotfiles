@@ -126,6 +126,12 @@ vim.api.nvim_create_autocmd("FileType",{
 
 		-- CHECK THE CSPROJ OR SOMETHING ELSE TO CONFIRM IT'S .NET FRAMEWORK OR .NET CORE PROJECT
 		local frameworkType = getFrameworkType()
+
+		-- NASTY HACK TO GET WIN32 WORKING
+		if vim.fn.has('win32') then
+			frameworkType = "netcore"
+		end
+
 		if frameworkType == "netframework" then
 			print("Found a .NET Framework project, starting .NET Framework OmniSharp")
 			require'lspconfig'.omnisharp_mono.setup {
