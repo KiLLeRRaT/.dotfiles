@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+GREEN=\033[32m
+RESET=${RESET}
+
 for i in "$@"
 do
 case $i in
@@ -57,13 +60,13 @@ echo USER_PASSWORD: $USER_PASSWORD
 echo Press any key to start installation...
 read -n 1
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Installing AUR Packages\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Installing AUR Packages${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 
 mkdir -p /mnt/home/$USERNAME/source-aur
 
-arch-chroot -u $USERNAME /mnt /bin/bash -- << EOF2
+arch-chroot -u $USERNAME /mnt /bin/bash -- <<- EOF
 	source /home/$USERNAME/.dotfiles/scripts/functions/aur-helpers.sh
 	installAurPackage oh-my-posh-bin
 	installAurPackage brave-bin
@@ -71,12 +74,12 @@ arch-chroot -u $USERNAME /mnt /bin/bash -- << EOF2
 	curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
 	installAurPackage 1password
 	echo Need to make sure gnome-keyring is correctly setup otherwise 2fa keys wont be remembered.
-EOF2
+EOF
 
-	cp /mnt/etc/pam.d/login /mnt/tmp/login.tmp
-	if [ ! -f /mnt/tmp/login.tmp ] # Don't run it again if we have the login.tmp file already
-	then
-bash -c "cat > /mnt/etc/pam.d/login" << 'EOF3'
+cp /mnt/etc/pam.d/login /mnt/tmp/login.tmp
+if [ ! -f /mnt/tmp/login.tmp ] # Don't run it again if we have the login.tmp file already
+then
+	cat <<- EOF > /mnt/etc/pam.d/login
 		#%PAM-1.0
 		auth       required     pam_securetty.so
 		auth       requisite    pam_nologin.so
@@ -86,14 +89,13 @@ bash -c "cat > /mnt/etc/pam.d/login" << 'EOF3'
 		session    include      system-local-login
 		session    optional     pam_gnome_keyring.so auto_start
 		password   include      system-local-login
-EOF3
-
+	EOF
 fi
 
 
 cp /mnt/usr/lib/pam.d/polkit-1 /mnt/etc/pam.d/polkit-1
 
-arch-chroot -u $USERNAME /mnt /bin/bash -- << EOF4
+arch-chroot -u $USERNAME /mnt /bin/bash -- <<- EOF
 	source /home/$USERNAME/.dotfiles/scripts/functions/aur-helpers.sh
 	installAurPackage otf-san-francisco
 	installAurPackage otf-san-francisco-mono
@@ -104,55 +106,57 @@ arch-chroot -u $USERNAME /mnt /bin/bash -- << EOF4
 	installAurPackage netcoredbg
 	installAurPackage nvm
 	installAurPackage emote # Emoji picker, launch with Ctrl + Alt + E
-EOF4
+EOF
 
 arch-chroot /mnt pacman -R --noconfirm i3lock
 
-arch-chroot -u $USERNAME /mnt /bin/bash -- << EOF5
+arch-chroot -u $USERNAME /mnt /bin/bash -- <<- EOF
 	source /home/$USERNAME/.dotfiles/scripts/functions/aur-helpers.sh
 	installAurPackage i3lock-color
 	installAurPackage i3exit
 	installAurPackage betterlockscreen
 	betterlockscreen -u ~/.dotfiles/images
-EOF5
+EOF
 
 arch-chroot /mnt systemctl enable betterlockscreen@$USERNAME
 # lock on sleep/suspend
 
 
-arch-chroot -u $USERNAME /mnt /bin/bash -- << EOF4
+arch-chroot -u $USERNAME /mnt /bin/bash -- <<- EOF
 	source /usr/share/nvm/init-nvm.sh
 	nvm install --lts
 	nvm use --lts
 	mkdir -p /home/$USERNAME/Pictures/screenshots
-EOF4
+EOF
 
-arch-chroot /mnt ln -s /home/$USERNAME/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_recency
+# arch-chroot /mnt ln -s /home/$USERNAME/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_recency
+ln -s /mnt/home/$USERNAME/.dotfiles/scripts/dmenu_recency /mnt/usr/local/bin/dmenu_recency
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Configure Xorg\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Configure Xorg${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 echo "Configure tap to click on touchpad? (y/n)"
 read configure_xorg_taptoclick
 if [ "$configure_xorg_taptoclick" == "y" ]; then
 	# FROM: https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
-	mkdir -p /mnt/etc/X11/xorg.conf.d && tee <<'EOF' /mnt/etc/X11/xorg.conf.d/90-touchpad.conf 1> /dev/null
-Section "InputClass"
-				Identifier "touchpad"
-				MatchIsTouchpad "on"
-				Driver "libinput"
-				Option "Tapping" "on"
-				Option "TappingButtonMap" "lrm"
-				Option "NaturalScrolling" "on"
-				Option "ScrollMethod" "twofinger"
-EndSection
-EOF
+	mkdir -p /mnt/etc/X11/xorg.conf.d
+	cat <<- EOF > /mnt/etc/X11/xorg.conf.d/90-touchpad.conf 1> /dev/null
+	Section "InputClass"
+		Identifier "touchpad"
+		MatchIsTouchpad "on"
+		Driver "libinput"
+		Option "Tapping" "on"
+		Option "TappingButtonMap" "lrm"
+		Option "NaturalScrolling" "on"
+		Option "ScrollMethod" "twofinger"
+	EndSection
+	EOF
 fi
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Configure Pacman Hooks\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Configure Pacman Hooks${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 echo "Configure pacman hooks? (y/n)"
 read configure_pacman_hooks
 if [ "$configure_pacman_hooks" == "y" ]; then
@@ -160,9 +164,9 @@ if [ "$configure_pacman_hooks" == "y" ]; then
 	cp /mnt/home/$USERNAME/.dotfiles/pacman/hooks/* /mnt/etc/pacman.d/hooks/
 fi
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Configure QEMU\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Configure QEMU${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 echo "Configure QEMU and libvirt? (y/n)"
 read configure_qemu
 if [ "$configure_qemu" == "y" ]; then
