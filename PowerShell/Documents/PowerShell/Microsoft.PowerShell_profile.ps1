@@ -68,6 +68,7 @@ Remove-Alias -Force -Name gp
 Remove-Alias -Force -Name gm
 
 
+function n { nvim ${Args} }
 function gs { git status ${Args} }
 function gf { git fetch ${Args} }
 function gl { git pull ${Args} }
