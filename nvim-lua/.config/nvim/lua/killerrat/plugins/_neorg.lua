@@ -24,31 +24,31 @@ require(p).setup {
 			config = {
 				engine = "nvim-cmp"
 			},
-			-- NOT SURE IF I NEED THE BELOW WITH THE ABOVE CONFIGURED?
-			["core.integrations.nvim-cmp"] = { -- https://github.com/nvim-neorg/neorg/wiki/Nvim-Cmp
-				config = {}
-			},
-			["core.dirman"] = { -- https://github.com/nvim-neorg/neorg/wiki/Dirman
-				config = {
-					workspaces = {
-						work = "~/notes/neorg/work", -- Format: <name_of_workspace> = <path_to_workspace_root>
-						-- my_other_notes = "~/work/notes",
-					},
-					autochdir = true, -- Automatically change the directory to the current workspace's root every time
-					index = "index.norg", -- The name of the main (root) .norg file
-				}
-			},
-			["core.summary"] = { config = { strategy = "default" } },
-			["core.neorgcmd"] = { config = {} },
-			-- ["core.integrations.treesitter"] = {},
-			-- ["core.ui"] = {},
-			-- ["core.mode"] = {},
-			-- ["core.queries.native"] = {},
-			-- ["core.presenter"] = { config = { zen_mode = "zen-mode" } },
+		},
+		-- NOT SURE IF I NEED THE BELOW WITH THE ABOVE CONFIGURED?
+		["core.integrations.nvim-cmp"] = { -- https://github.com/nvim-neorg/neorg/wiki/Nvim-Cmp
+			config = {}
+		},
+		-- ["core.dirman"] = { -- https://github.com/nvim-neorg/neorg/wiki/Dirman
+		-- 	config = {
+		-- 		workspaces = {
+		-- 			work = "~/notes/neorg/work", -- Format: <name_of_workspace> = <path_to_workspace_root>
+		-- 			-- my_other_notes = "~/work/notes",
+		-- 		},
+		-- 		autochdir = true, -- Automatically change the directory to the current workspace's root every time
+		-- 		index = "index.norg", -- The name of the main (root) .norg file
+		-- 	}
+		-- },
+		["core.summary"] = { config = { strategy = "default" } },
+		["core.neorgcmd"] = { config = {} },
+		-- ["core.integrations.treesitter"] = {},
+		-- ["core.ui"] = {},
+		-- ["core.mode"] = {},
+		-- ["core.queries.native"] = {},
+		-- ["core.presenter"] = { config = { zen_mode = "zen-mode" } },
 
-			-- https://github.com/nvim-neorg/neorg/wiki/Metagen
-			-- ['core.esupports.metagen'] = { config = { update_date = false } }, -- do not update date until https://github.com/nvim-neorg/neorg/issues/1579 fixed
-		}
+		-- https://github.com/nvim-neorg/neorg/wiki/Metagen
+		['core.esupports.metagen'] = { config = { update_date = false } }, -- do not update date until https://github.com/nvim-neorg/neorg/issues/1579 fixed
 	}
 }
 
