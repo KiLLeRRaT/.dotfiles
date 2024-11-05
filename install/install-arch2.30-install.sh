@@ -218,16 +218,16 @@ arch-chroot -u $USERNAME /mnt git clone https://github.com/killerrat/.dotfiles /
 # arch-chroot -u $USERNAME /mnt /home/$USERNAME/.dotfiles/nvim-lua/.config/nvim/generateHostConfig.sh
 
 echo "Running stow"
-arch-chroot /mnt cd /home/$USERNAME/.dotfiles/hosts/arch-agouws && stow -t ~ xinitrc
-arch-chroot /mnt mv /etc/lightdm/lightdm-gtk-greeter.conf{,.bak}
-arch-chroot /mnt cd /home/$USERNAME/.dotfiles && stow -t / lightdm
+arch-chroot /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles/hosts/arch-agouws && stow -t ~ xinitrc"
+# arch-chroot /mnt mv /etc/lightdm/lightdm-gtk-greeter.conf{,.bak}
+arch-chroot /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles && stow -t / lightdm"
 
 
 arch-chroot /mnt mkdir -p /usr/share/backgrounds/$USERNAME
 # arch-chroot /mnt chmod o+x /usr/share/backgrounds/$USERNAME
-arch-chroot /mnt cd /home/$USERNAME/.dotfiles && stow -t /usr/share/backgrounds/$USERNAME images
+arch-chroot /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles && stow -t /usr/share/backgrounds/$USERNAME images"
 arch-chroot /mnt chmod o+r /usr/share/backgrounds/$USERNAME/*
-arch-chroot -u $USERNAME /mnt cd /home/$USERNAME/.dotfiles && stow alacritty dmenurc dosbox dunst flameshot fonts gitconfig gtk-2.0 gtk-3.0 gtk-4.0 i3-manjaro nvim-lua oh-my-posh picom ranger tmux zshrc
+arch-chroot -u $USERNAME /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles && stow alacritty dmenurc dosbox dunst flameshot fonts gitconfig gtk-2.0 gtk-3.0 gtk-4.0 i3-manjaro nvim-lua oh-my-posh picom ranger tmux zshrc"
 
 
 echo "Let's copy our gtk configs to /root, so that root has the same theme"
