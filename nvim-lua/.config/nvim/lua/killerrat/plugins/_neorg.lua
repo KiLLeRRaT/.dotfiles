@@ -6,12 +6,22 @@ require(p).setup {
 		["core.export"] = {},
 		["core.export.markdown"] = {},
 		["core.integrations.telescope"] = {},
-		["core.dirman"] = {
+		-- ["core.dirman"] = {
+		-- 	config = {
+		-- 		workspaces = {
+		-- 			work = "~/notes/neorg/work"
+		-- 			-- home = "~/notes/home",
+		-- 		}
+		-- 	}
+		-- },
+		["core.dirman"] = { -- https://github.com/nvim-neorg/neorg/wiki/Dirman
 			config = {
 				workspaces = {
-					work = "~/notes/neorg/work"
-					-- home = "~/notes/home",
-				}
+					work = "~/notes/neorg/work", -- Format: <name_of_workspace> = <path_to_workspace_root>
+					-- my_other_notes = "~/work/notes",
+				},
+				autochdir = true, -- Automatically change the directory to the current workspace's root every time
+				index = "index.norg", -- The name of the main (root) .norg file
 			}
 		},
 		["core.concealer"] = { config = {} },
@@ -29,16 +39,6 @@ require(p).setup {
 		["core.integrations.nvim-cmp"] = { -- https://github.com/nvim-neorg/neorg/wiki/Nvim-Cmp
 			config = {}
 		},
-		-- ["core.dirman"] = { -- https://github.com/nvim-neorg/neorg/wiki/Dirman
-		-- 	config = {
-		-- 		workspaces = {
-		-- 			work = "~/notes/neorg/work", -- Format: <name_of_workspace> = <path_to_workspace_root>
-		-- 			-- my_other_notes = "~/work/notes",
-		-- 		},
-		-- 		autochdir = true, -- Automatically change the directory to the current workspace's root every time
-		-- 		index = "index.norg", -- The name of the main (root) .norg file
-		-- 	}
-		-- },
 		["core.summary"] = { config = { strategy = "default" } },
 		["core.neorgcmd"] = { config = {} },
 		-- ["core.integrations.treesitter"] = {},
