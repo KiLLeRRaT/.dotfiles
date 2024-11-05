@@ -564,7 +564,7 @@ installAurPackage() {
 		cd $1
 		git pull
 	fi
-	makepkg --noconfirm -is --needed
+	makepkg --noconfirm -is --needed --clean
 	popd
 }
 
