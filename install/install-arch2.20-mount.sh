@@ -43,3 +43,4 @@ echo "Create and activate swapfile"
 btrfs filesystem mkswapfile --size 4g --uuid clear /mnt/swap/swapfile
 swapon /mnt/swap/swapfile
 
+echo "Done"

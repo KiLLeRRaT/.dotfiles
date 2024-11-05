@@ -25,26 +25,23 @@ echo "What is your username? (e.g. albert)"
 read USERNAME
 
 echo "Enter LUKS password for $DEV_ROOT"
-read -s LUKS_PASSWORD
+read LUKS_PASSWORD
 
 echo "Enter root password"
-read -s ROOT_PASSWORD
+read ROOT_PASSWORD
 
 echo "Enter user password"
-read -s USER_PASSWORD
+read USER_PASSWORD
 
 echo DEV_BOOT: $DEV_BOOT
 echo DEV_ROOT: $DEV_ROOT
 echo HOSTNAME: $HOSTNAME
 echo USERNAME: $USERNAME
 echo DEVICE_UUID: $DEVICE_UUID
-echo "Show passwords? (y/n)"
-read -n 1 show_passwords
-if [ "$show_passwords" == "y" ]; then
-	echo LUKS_PASSWORD: $LUKS_PASSWORD
-	echo ROOT_PASSWORD: $ROOT_PASSWORD
-	echo USER_PASSWORD: $USER_PASSWORD
-fi
+echo LUKS_PASSWORD: $LUKS_PASSWORD
+echo ROOT_PASSWORD: $ROOT_PASSWORD
+echo USER_PASSWORD: $USER_PASSWORD
+
 echo Press any key to start installation...
 read -n 1
 
@@ -282,3 +279,5 @@ fi
 # TODO: 
 # - [ ] GREETER CUSTOMISATION
 # - [ ] YubiKey
+
+echo "Done"

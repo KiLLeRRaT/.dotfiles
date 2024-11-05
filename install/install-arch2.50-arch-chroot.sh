@@ -130,7 +130,7 @@ arch-chroot -u $USERNAME /mnt /bin/bash -- <<- EOF
 EOF
 
 # arch-chroot /mnt ln -s /home/$USERNAME/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_recency
-ln -s /mnt/home/$USERNAME/.dotfiles/scripts/dmenu_recency /mnt/usr/local/bin/dmenu_recency
+ln -s /mnt/home/$USERNAME/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_recency
 
 
 echo -e "${GREEN}----------------------------------------${RESET}"
@@ -176,3 +176,5 @@ fi
 # TODO: 
 # - [ ] GREETER CUSTOMISATION
 # - [ ] YubiKey
+
+echo "Done"

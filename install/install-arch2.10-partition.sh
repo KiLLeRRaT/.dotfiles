@@ -42,3 +42,5 @@ mkdir -p /mnt/var/lib/libvirt
 
 umount -R /mnt
 cryptsetup close root
+
+echo "Done"
