@@ -6,32 +6,57 @@ sed -i 's/^#Color/Color/g' /etc/pacman.conf
 sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 10/g' /etc/pacman.conf
 pacman -Sy --noconfirm --needed archlinux-keyring git fzf
 
-if [ -z $DEV_BOOT ] || [ -z $DEV_ROOT ]
+# if variables file exists, source it and do not ask for input
+VARIALBES_SET=false
+if [ -f /tmp/variables ]
 then
-	DEV_BOOT=/dev/$(lsblk --list | fzf --prompt="Please select DEV_BOOT: " | cut -d' ' -f1)
-	echo ""
-	DEV_ROOT=/dev/$(lsblk --list | fzf --prompt="Please select DEV_ROOT: " | cut -d' ' -f1)
-	echo ""
+	echo "Found variables file, source it?"
+	read source_variables
+	if [ "$source_variables" == "y" ]
+	then
+		source /tmp/variables
+		VARIABLES_SET=true
+	fi
 fi
 
-lsblk
-blkid
-DEVICE_UUID=$(blkid | fzf --prompt="Please select the DEV_ROOT device again so we can get the UUID: " | sed -E 's/^.*UUID="(.{36})" .*$/\1/')
-echo ""
-echo "What is your hostname? (e.g. arch-agouwsmacbookpro)"
-read HOSTNAME
+if [ "$VARIABLES_SET" == "false" ]
+	if [ -z $DEV_BOOT ] || [ -z $DEV_ROOT ]
+	then
+		DEV_BOOT=/dev/$(lsblk --list | fzf --prompt="Please select DEV_BOOT: " | cut -d' ' -f1)
+		echo ""
+		DEV_ROOT=/dev/$(lsblk --list | fzf --prompt="Please select DEV_ROOT: " | cut -d' ' -f1)
+		echo ""
+	fi
 
-echo "What is your username? (e.g. albert)"
-read USERNAME
+	lsblk
+	blkid
+	DEVICE_UUID=$(blkid | fzf --prompt="Please select the DEV_ROOT device again so we can get the UUID: " | sed -E 's/^.*UUID="(.{36})" .*$/\1/')
+	echo ""
+	echo "What is your hostname? (e.g. arch-agouwsmacbookpro)"
+	read HOSTNAME
 
-echo "Enter LUKS password for $DEV_ROOT"
-read LUKS_PASSWORD
+	echo "What is your username? (e.g. albert)"
+	read USERNAME
 
-echo "Enter root password"
-read ROOT_PASSWORD
+	echo "Enter LUKS password for $DEV_ROOT"
+	read LUKS_PASSWORD
 
-echo "Enter user password"
-read USER_PASSWORD
+	echo "Enter root password"
+	read ROOT_PASSWORD
+
+	echo "Enter user password"
+	read USER_PASSWORD
+
+	# Write to variables file
+	echo DEV_BOOT: $DEV_BOOT > /tmp/variables
+	echo DEV_ROOT: $DEV_ROOT >> /tmp/variables
+	echo HOSTNAME: $HOSTNAME >> /tmp/variables
+	echo USERNAME: $USERNAME >> /tmp/variables
+	echo DEVICE_UUID: $DEVICE_UUID >> /tmp/variables
+	echo LUKS_PASSWORD: $LUKS_PASSWORD >> /tmp/variables
+	echo ROOT_PASSWORD: $ROOT_PASSWORD >> /tmp/variables
+	echo USER_PASSWORD: $USER_PASSWORD >> /tmp/variables
+fi
 
 echo DEV_BOOT: $DEV_BOOT
 echo DEV_ROOT: $DEV_ROOT
@@ -226,7 +251,7 @@ arch-chroot /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles && stow -t / lightdm
 arch-chroot /mnt mkdir -p /usr/share/backgrounds/$USERNAME
 # arch-chroot /mnt chmod o+x /usr/share/backgrounds/$USERNAME
 arch-chroot /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles && stow -t /usr/share/backgrounds/$USERNAME images"
-arch-chroot /mnt chmod o+r /usr/share/backgrounds/$USERNAME/*
+# arch-chroot /mnt chmod o+r /usr/share/backgrounds/$USERNAME/*
 arch-chroot -u $USERNAME /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles && stow alacritty dmenurc dosbox dunst flameshot fonts gitconfig gtk-2.0 gtk-3.0 gtk-4.0 i3-manjaro nvim-lua oh-my-posh picom ranger tmux zshrc"
 
 
