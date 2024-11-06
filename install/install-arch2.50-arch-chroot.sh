@@ -4,35 +4,6 @@ set -e
 GREEN=\033[32m
 RESET=${RESET}
 
-for i in "$@"
-do
-case $i in
-		-c=*|--continue-from-line=*)
-		CONTINUE_FROM_LINE="${i#*=}"
-		shift # past argument=value
-		;;
-		-h|--help)
-		echo "Usage: install-arch2.sh [OPTION]"
-		echo "Options:"
-		echo "  -c, --continue-from-line=NUM  Continue from line number NUM"
-		echo "  -h, --help                    Display this help message"
-		exit 0
-		;;
-		*)
-					# unknown option
-		;;
-esac
-done
-
-if [ ! -z $CONTINUE_FROM_LINE ]
-then
-	SCRIPT_CONTENTS=$(cat $0 | sed -n "1,/^echo Press any key to start installation.../p;$CONTINUE_FROM_LINE,\$p")
-	echo "$SCRIPT_CONTENTS" > install-arch2.sh.continue
-	chmod u+x install-arch2.sh.continue
-	cat ./install-arch2.sh.continue
-	exit 0
-fi
-
 source install-arch2.variables.sh
 
 echo Press any key to start installation...
@@ -41,8 +12,35 @@ read -n 1
 echo -e "${GREEN}----------------------------------------${RESET}"
 echo -e "${GREEN}Installing AUR Packages${RESET}"
 echo -e "${GREEN}----------------------------------------${RESET}"
+installAurPackage() {
+	arch-chroot -u $USERNAME /mnt /bin/bash -- <<- EOF
+		# source /home/$USERNAME/.dotfiles/scripts/functions/aur-helpers.sh
+		# installAurPackage $1
+		pushd ~/source-aur
+		echo "Installing $1"
+		if [ ! -d $1 ]; then
+			git clone https://aur.archlinux.org/$1.git
+			cd $1
+		else
+			cd $1
+			git pull
+		fi
+		# echo -e "$password" | sudo -v -S
+		# makepkg --noconfirm -is --needed
+		makepkg
+		packageFile=\$(makepkg --packagelist)
+		su root -c "pacman -U --noconfirm --needed $packageFile"
+		popd
+	EOF
+}
+
+
 
 mkdir -p /mnt/home/$USERNAME/source-aur
+
+installAurPackage oh-my-posh-bin
+exit 
+
 
 arch-chroot -u $USERNAME /mnt /bin/bash -- <<- EOF
 	source /home/$USERNAME/.dotfiles/scripts/functions/aur-helpers.sh
