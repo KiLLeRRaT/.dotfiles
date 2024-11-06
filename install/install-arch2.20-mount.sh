@@ -19,8 +19,7 @@ mount -o defaults,noatime,ssd,compress=zstd,subvol=@docker /dev/mapper/root /mnt
 mount -o defaults,noatime,ssd,compress=zstd,subvol=@libvirt /dev/mapper/root /mnt/var/lib/libvirt
 mount $DEV_BOOT /mnt/efi
 
-echo "Create and activate swapfile"
-btrfs filesystem mkswapfile --size 4g --uuid clear /mnt/swap/swapfile
+echo "Activate swapfile"
 swapon /mnt/swap/swapfile
 
 echo "Done"

@@ -14,8 +14,6 @@ echo -e "${GREEN}Installing AUR Packages${RESET}"
 echo -e "${GREEN}----------------------------------------${RESET}"
 installAurPackage() {
 	arch-chroot -u $USERNAME /mnt /bin/bash -- <<- EOF
-		# source /home/$USERNAME/.dotfiles/scripts/functions/aur-helpers.sh
-		# installAurPackage $1
 		pushd ~/source-aur
 		echo "Installing $1"
 		if [ ! -d $1 ]; then
@@ -25,18 +23,14 @@ installAurPackage() {
 			cd $1
 			git pull
 		fi
-		# echo -e "$password" | sudo -v -S
-		# makepkg --noconfirm -is --needed
 		makepkg
-		packageFile=\$(makepkg --packagelist)
-		su root -c "pacman -U --noconfirm --needed $packageFile"
 		popd
 	EOF
+	echo "Done building $1, installing now..."
+	arch-chroot /mnt /bin/bash -c "pacman --noconfirm --needed -U /home/$USERNAME/source-aur/$1/*.pkg.*"
 }
 
-
-
-mkdir -p /mnt/home/$USERNAME/source-aur
+arch-chroot -u $USERNAME /mnt mkdir -p /home/$USERNAME/source-aur
 
 installAurPackage oh-my-posh-bin
 exit 

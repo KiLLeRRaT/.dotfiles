@@ -31,6 +31,9 @@ mkdir -p /mnt/var/log
 mkdir -p /mnt/var/lib/docker
 mkdir -p /mnt/var/lib/libvirt
 
+echo "Create swapfile"
+btrfs filesystem mkswapfile --size 4g --uuid clear /mnt/swap/swapfile
+
 umount -R /mnt
 cryptsetup close root
 
