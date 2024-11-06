@@ -47,6 +47,7 @@ pacstrap -K /mnt base linux linux-lts linux-firmware \
 	networkmanager \
 	networkmanager-l2tp strongswan \
 	nginx \
+	noto-fonts \
 	noto-fonts-emoji \
 	nuget \
 	numlockx \

@@ -14,7 +14,7 @@ echo -e "${GREEN}Installing AUR Packages${RESET}"
 echo -e "${GREEN}----------------------------------------${RESET}"
 installAurPackage() {
 	arch-chroot -u $USERNAME /mnt /bin/bash -- <<- EOF
-		pushd ~/source-aur
+		pushd /home/$USERNAME/source-aur
 		echo "Installing $1"
 		if [ ! -d $1 ]; then
 			git clone https://aur.archlinux.org/$1.git
@@ -33,18 +33,19 @@ installAurPackage() {
 arch-chroot -u $USERNAME /mnt mkdir -p /home/$USERNAME/source-aur
 
 installAurPackage oh-my-posh-bin
-exit 
 
+# missing dep, ttf-font
+installAurPackage brave-bin
 
 arch-chroot -u $USERNAME /mnt /bin/bash -- <<- EOF
-	source /home/$USERNAME/.dotfiles/scripts/functions/aur-helpers.sh
-	installAurPackage oh-my-posh-bin
-	installAurPackage brave-bin
 
 	curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
-	installAurPackage 1password
 	echo Need to make sure gnome-keyring is correctly setup otherwise 2fa keys wont be remembered.
 EOF
+
+installAurPackage 1password
+
+exit
 
 cp /mnt/etc/pam.d/login /mnt/tmp/login.tmp
 if [ ! -f /mnt/tmp/login.tmp ] # Don't run it again if we have the login.tmp file already
