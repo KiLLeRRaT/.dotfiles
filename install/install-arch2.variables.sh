@@ -10,7 +10,10 @@ pacman -Sy --noconfirm --needed archlinux-keyring git fzf
 VARIABLES_SET=false
 if [ -f ~/variables ]
 then
-	echo "Found variables file, source it?"
+	echo "Found variables file:"
+	cat ~/variables
+
+	echo "Source it?"
 	read source_variables
 	if [ "$source_variables" == "y" ]
 	then
@@ -50,14 +53,14 @@ then
 	read USER_PASSWORD
 
 	# Write to variables file
-	echo DEV_BOOT=$DEV_BOOT > ~/variables
-	echo DEV_ROOT=$DEV_ROOT >> ~/variables
-	echo HOSTNAME=$HOSTNAME >> ~/variables
-	echo USERNAME=$USERNAME >> ~/variables
-	echo DEVICE_UUID=$DEVICE_UUID >> ~/variables
-	echo LUKS_PASSWORD=$LUKS_PASSWORD >> ~/variables
-	echo ROOT_PASSWORD=$ROOT_PASSWORD >> ~/variables
-	echo USER_PASSWORD=$USER_PASSWORD >> ~/variables
+	echo DEV_BOOT="$DEV_BOOT" > ~/variables
+	echo DEV_ROOT="$DEV_ROOT" >> ~/variables
+	echo HOSTNAME="$HOSTNAME" >> ~/variables
+	echo USERNAME="$USERNAME" >> ~/variables
+	echo DEVICE_UUID="$DEVICE_UUID" >> ~/variables
+	echo LUKS_PASSWORD="$LUKS_PASSWORD" >> ~/variables
+	echo ROOT_PASSWORD="$ROOT_PASSWORD" >> ~/variables
+	echo USER_PASSWORD="$USER_PASSWORD" >> ~/variables
 fi
 
 echo DEV_BOOT: $DEV_BOOT
