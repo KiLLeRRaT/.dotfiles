@@ -7,7 +7,7 @@ sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 10/g' /etc/pacman.conf
 pacman -Sy --noconfirm --needed archlinux-keyring git fzf
 
 # if variables file exists, source it and do not ask for input
-VARIALBES_SET=false
+VARIABLES_SET=false
 if [ -f ~/variables ]
 then
 	echo "Found variables file, source it?"
@@ -21,6 +21,7 @@ fi
 
 if [ "$VARIABLES_SET" == "false" ]
 then
+	echo "Variables not set, please set them now"
 	if [ -z $DEV_BOOT ] || [ -z $DEV_ROOT ]
 	then
 		DEV_BOOT=/dev/$(lsblk --list | fzf --prompt="Please select DEV_BOOT: " | cut -d' ' -f1)
