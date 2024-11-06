@@ -1,71 +1,7 @@
 #!/bin/bash
 set -e
 
-timedatectl set-ntp true
-sed -i 's/^#Color/Color/g' /etc/pacman.conf
-sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 10/g' /etc/pacman.conf
-pacman -Sy --noconfirm --needed archlinux-keyring git fzf
-
-# if variables file exists, source it and do not ask for input
-VARIALBES_SET=false
-if [ -f /tmp/variables ]
-then
-	echo "Found variables file, source it?"
-	read source_variables
-	if [ "$source_variables" == "y" ]
-	then
-		source /tmp/variables
-		VARIABLES_SET=true
-	fi
-fi
-
-if [ "$VARIABLES_SET" == "false" ]
-	if [ -z $DEV_BOOT ] || [ -z $DEV_ROOT ]
-	then
-		DEV_BOOT=/dev/$(lsblk --list | fzf --prompt="Please select DEV_BOOT: " | cut -d' ' -f1)
-		echo ""
-		DEV_ROOT=/dev/$(lsblk --list | fzf --prompt="Please select DEV_ROOT: " | cut -d' ' -f1)
-		echo ""
-	fi
-
-	lsblk
-	blkid
-	DEVICE_UUID=$(blkid | fzf --prompt="Please select the DEV_ROOT device again so we can get the UUID: " | sed -E 's/^.*UUID="(.{36})" .*$/\1/')
-	echo ""
-	echo "What is your hostname? (e.g. arch-agouwsmacbookpro)"
-	read HOSTNAME
-
-	echo "What is your username? (e.g. albert)"
-	read USERNAME
-
-	echo "Enter LUKS password for $DEV_ROOT"
-	read LUKS_PASSWORD
-
-	echo "Enter root password"
-	read ROOT_PASSWORD
-
-	echo "Enter user password"
-	read USER_PASSWORD
-
-	# Write to variables file
-	echo DEV_BOOT: $DEV_BOOT > /tmp/variables
-	echo DEV_ROOT: $DEV_ROOT >> /tmp/variables
-	echo HOSTNAME: $HOSTNAME >> /tmp/variables
-	echo USERNAME: $USERNAME >> /tmp/variables
-	echo DEVICE_UUID: $DEVICE_UUID >> /tmp/variables
-	echo LUKS_PASSWORD: $LUKS_PASSWORD >> /tmp/variables
-	echo ROOT_PASSWORD: $ROOT_PASSWORD >> /tmp/variables
-	echo USER_PASSWORD: $USER_PASSWORD >> /tmp/variables
-fi
-
-echo DEV_BOOT: $DEV_BOOT
-echo DEV_ROOT: $DEV_ROOT
-echo HOSTNAME: $HOSTNAME
-echo USERNAME: $USERNAME
-echo DEVICE_UUID: $DEVICE_UUID
-echo LUKS_PASSWORD: $LUKS_PASSWORD
-echo ROOT_PASSWORD: $ROOT_PASSWORD
-echo USER_PASSWORD: $USER_PASSWORD
+source install-arch2.variables.sh
 
 echo Press any key to start installation...
 read -n 1

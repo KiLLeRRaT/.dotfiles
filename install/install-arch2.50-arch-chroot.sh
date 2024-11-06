@@ -33,29 +33,7 @@ then
 	exit 0
 fi
 
-echo "What is your hostname? (e.g. arch-agouwsmacbookpro)"
-read HOSTNAME
-
-echo "What is your username? (e.g. albert)"
-read USERNAME
-
-echo "Enter LUKS password for $DEV_ROOT"
-read -s LUKS_PASSWORD
-
-echo "Enter root password"
-read -s ROOT_PASSWORD
-
-echo "Enter user password"
-read -s USER_PASSWORD
-
-echo DEV_BOOT: $DEV_BOOT
-echo DEV_ROOT: $DEV_ROOT
-echo HOSTNAME: $HOSTNAME
-echo USERNAME: $USERNAME
-echo DEVICE_UUID: $DEVICE_UUID
-echo LUKS_PASSWORD: $LUKS_PASSWORD
-echo ROOT_PASSWORD: $ROOT_PASSWORD
-echo USER_PASSWORD: $USER_PASSWORD
+source install-arch2.variables.sh
 
 echo Press any key to start installation...
 read -n 1

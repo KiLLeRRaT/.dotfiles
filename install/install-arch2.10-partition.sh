@@ -1,17 +1,8 @@
 #!/bin/bash
 set -e
 
-timedatectl set-ntp true
-pacman -Sy --noconfirm --needed archlinux-keyring git fzf
 
-DEV_ROOT=/dev/$(lsblk --list | fzf --prompt="Please select DEV_ROOT: " | cut -d' ' -f1)
-echo ""
-
-echo "Enter LUKS password for $DEV_ROOT"
-read -s LUKS_PASSWORD
-
-echo DEV_ROOT: $DEV_ROOT
-echo LUKS_PASSWORD: $LUKS_PASSWORD
+source install-arch2.variables.sh
 
 echo Press any key to start installation...
 read -n 1
