@@ -20,6 +20,7 @@ then
 fi
 
 if [ "$VARIABLES_SET" == "false" ]
+then
 	if [ -z $DEV_BOOT ] || [ -z $DEV_ROOT ]
 	then
 		DEV_BOOT=/dev/$(lsblk --list | fzf --prompt="Please select DEV_BOOT: " | cut -d' ' -f1)
