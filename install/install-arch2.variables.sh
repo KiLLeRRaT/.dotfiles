@@ -53,14 +53,14 @@ then
 	read USER_PASSWORD
 
 	# Write to variables file
-	echo DEV_BOOT="$DEV_BOOT" > ~/variables
-	echo DEV_ROOT="$DEV_ROOT" >> ~/variables
-	echo HOSTNAME="$HOSTNAME" >> ~/variables
-	echo USERNAME="$USERNAME" >> ~/variables
-	echo DEVICE_UUID="$DEVICE_UUID" >> ~/variables
-	echo LUKS_PASSWORD="$LUKS_PASSWORD" >> ~/variables
-	echo ROOT_PASSWORD="$ROOT_PASSWORD" >> ~/variables
-	echo USER_PASSWORD="$USER_PASSWORD" >> ~/variables
+	echo "DEV_BOOT=\"$DEV_BOOT\"" > ~/variables
+	echo "DEV_ROOT=\"$DEV_ROOT\"" >> ~/variables
+	echo "HOSTNAME=\"$HOSTNAME\"" >> ~/variables
+	echo "USERNAME=\"$USERNAME\"" >> ~/variables
+	echo "DEVICE_UUID=\"$DEVICE_UUID\"" >> ~/variables
+	echo "LUKS_PASSWORD=\"$LUKS_PASSWORD\"" >> ~/variables
+	echo "ROOT_PASSWORD=\"$ROOT_PASSWORD\"" >> ~/variables
+	echo "USER_PASSWORD=\"$USER_PASSWORD\"" >> ~/variables
 fi
 
 echo DEV_BOOT: $DEV_BOOT
