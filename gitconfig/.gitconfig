@@ -44,3 +44,5 @@
 	program = "/opt/1Password/op-ssh-sign"
 [rerere]
 	enabled = true
+[fetch]
+	prune = true
