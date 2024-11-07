@@ -148,13 +148,12 @@ arch-chroot2 /bin/bash -l -- <<- EOF
 EOF
 
 # arch-chroot /mnt ln -s /home/$USERNAME/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_recency
-ln -s /mnt/home/$USERNAME/.dotfiles/scripts/dmenu_recency /mnt/usr/local/bin/dmenu_recency
+ln -s /mnt/home/$USERNAME/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_recency
 
 
 
 # TODO: 
 # - [ ] GREETER CUSTOMISATION
 # - [ ] YubiKey
-# - [ ] dmenu_recency is broken
 
 echo -e "${GREEN}Done${RESET}"
