@@ -1,140 +1,104 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
 
+console_title_template: "{{if .Root }}Adm:{{end}}{{ .PWD }}"
 blocks:
-    - alignment: left
-      segments:
-        - type: exit
-          # background: '#f7768e'
-          background: '#C61C6F'
-          foreground: '#ffffff'
-          style: powerline
-          template: ' {{ if gt .Code 0 }} {{ .Meaning }}{{ else }}{{ end }} '
-
-        - type: root
-          background: '#3b4261'
-          foreground: '#A57706'
-          powerline_symbol: 
-          style: powerline
-          template: '  '
-
-        - type: os
-          background: "transparent"
-          template: " {{ if .WSL }}WSL {{ end }}{{.Icon}} "
-          powerline_symbol: 
-          style: powerline
-          foreground: "#ffffff"
-
-        - type: session
-          background: '#c792ea'
-          # foreground: '#FFFFFF'
-          foreground: '#3b4261'
-          powerline_symbol: 
-          properties:
-            folder_icon: 
-            style: full
-          style: powerline
-          template: ' {{ if .SSHSession }}{{ .UserName }}@{{ .HostName }} {{ end }}'
-
-        # - type: docker
-        #   background: "#0B59E7"
-        #   foreground: "#000000"
-        #   powerline_symbol: 
-        #   style: powerline
-        #   template: "  {{ .Context }} "
-
-        # - type: path
-        #   background: '#c792ea'
-        #   foreground: '#3b4261'
-        #   powerline_symbol: 
-        #   properties:
-        #     folder_icon: 
-        #     style: full
-        #   style: powerline
-        #   template: ' {{ .Path }} '
-
-        - type: path
-          background: '#c792ea'
-          foreground: '#3b4261'
-          powerline_symbol: 
-          properties:
-            folder_icon: 
-            style: full
-            mapped_locations:
-              "~/source": ""
-              "~/source-aur": "a"
-              "~/source-g": "g"
-              "~/source-github": "gh"
-              "~/source-local": "l"
-          style: powerline
-          template: ' {{ .Path }} '
-
-        - type: git
-          foreground: '#c792ea'
-          foreground_templates:
-            - '{{ if or (.Working.Changed) (.Staging.Changed) }}#c792ea{{ end }}'
-            - '{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ffffff{{ end }}'
-            - '{{ if gt .Ahead 0 }}#ffffff{{ end }}'
-            - '{{ if gt .Behind 0 }}#ffffff{{ end }}'
-
-          background: '#3b4261'
-          background_templates:
-            - '{{ if or (.Working.Changed) (.Staging.Changed) }}#545c7e{{ end }}'
-            - '{{ if and (gt .Ahead 0) (gt .Behind 0) }}#C61C6F{{ end }}'
-            - '{{ if gt .Ahead 0 }}#C61C6F{{ end }}'
-            - '{{ if gt .Behind 0 }}#C61C6F{{ end }}'
-          powerline_symbol: 
-          properties:
-            fetch_stash_count: true
-            fetch_status: true
-            fetch_upstream_icon: false
-          style: powerline
-          template: ' {{ .HEAD }} {{ .BranchStatus }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0}}  {{ .StashCount }}{{ end }}{{ if gt .WorktreeCount 0}}  {{ .WorktreeCount }}{{ end }} '
-
-        - type: python
-          background: '#906cff'
-          foreground: '#100e23'
-          powerline_symbol: 
-          style: powerline
-          template: '  {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} '
-      type: prompt
-
-    - alignment: right
-      segments:
-
-        - type: executiontime
-          background: '#3b4261'
-          foreground: '#c792ea'
-          style: diamond
-          leading_diamond: 
-          template: ' {{ .FormattedMs }} '
-
-          properties:
-            threshold: 500
-            style: "austin"
-            always_enabled: true
-        - type: time
-          background: '#c792ea'
-          foreground: '#3b4261'
-          style: diamond
-          trailing_diamond: 
-          template: ' {{ .CurrentDate | date .Format }}'
-          properties:
-            time_format: 15:04
-      type: prompt
-
-
-    # Adds a newline character after my statuslines
-    - type: prompt
-      alignment: left
-      newline: true
-      segments:
-        - foreground: '#007ACC'
-          style: plain
-          template: '❯ '
-          type: text
-
-
-console_title_template: '{{if .Root }}Adm:{{end}}{{ .PWD }}'
-osc99: true
-version: 2
-
+- type: prompt
+  alignment: left
+  segments:
+  - template: " \ue20f{{ if gt .Code 0 }}\uf00d {{ .Meaning }}{{ else }}\uf42e{{ end }} "
+    foreground: "#ffffff"
+    background: "#C61C6F"
+    type: exit
+    style: powerline
+  - template: " \uf0e7 "
+    foreground: "#A57706"
+    powerline_symbol: 
+    background: "#3b4261"
+    type: root
+    style: powerline
+  - template: " {{ if .WSL }}WSL {{ end }}{{.Icon}} "
+    foreground: "#ffffff"
+    powerline_symbol: 
+    background: transparent
+    type: os
+    style: powerline
+  - properties:
+      folder_icon: 
+      style: full
+    template: " {{ if .SSHSession }}{{ .UserName }}@{{ .HostName }} {{ end }}"
+    foreground: "#3b4261"
+    powerline_symbol: 
+    background: "#c792ea"
+    type: session
+    style: powerline
+  - properties:
+      folder_icon: 
+      mapped_locations:
+        ~/source: 
+        ~/source-aur: a
+        ~/source-g: g
+        ~/source-github: gh
+        ~/source-local: l
+      style: full
+    template: " {{ .Path }} "
+    foreground: "#3b4261"
+    powerline_symbol: 
+    background: "#c792ea"
+    type: path
+    style: powerline
+  - properties:
+      fetch_stash_count: true
+      fetch_status: true
+      fetch_upstream_icon: false
+    template: " {{ .HEAD }} {{ .BranchStatus }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0}} \uf692 {{ .StashCount }}{{ end }}{{ if gt .WorktreeCount 0}} \uf1bb {{ .WorktreeCount }}{{ end }} "
+    foreground: "#c792ea"
+    powerline_symbol: 
+    background: "#3b4261"
+    type: git
+    style: powerline
+    foreground_templates:
+    - "{{ if or (.Working.Changed) (.Staging.Changed) }}#c792ea{{ end }}"
+    - "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ffffff{{ end }}"
+    - "{{ if gt .Ahead 0 }}#ffffff{{ end }}"
+    - "{{ if gt .Behind 0 }}#ffffff{{ end }}"
+    background_templates:
+    - "{{ if or (.Working.Changed) (.Staging.Changed) }}#545c7e{{ end }}"
+    - "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#C61C6F{{ end }}"
+    - "{{ if gt .Ahead 0 }}#C61C6F{{ end }}"
+    - "{{ if gt .Behind 0 }}#C61C6F{{ end }}"
+  - template: " \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} "
+    foreground: "#100e23"
+    powerline_symbol: 
+    background: "#906cff"
+    type: python
+    style: powerline
+- type: prompt
+  alignment: right
+  segments:
+  - properties:
+      always_enabled: true
+      style: austin
+      threshold: 500
+    leading_diamond: 
+    template: " {{ .FormattedMs }} "
+    foreground: "#c792ea"
+    background: "#3b4261"
+    type: executiontime
+    style: diamond
+  - properties:
+      time_format: "15:04"
+    trailing_diamond: 
+    template: " {{ .CurrentDate | date .Format }}"
+    foreground: "#3b4261"
+    background: "#c792ea"
+    type: time
+    style: diamond
+- type: prompt
+  alignment: left
+  segments:
+  - template: "❯ "
+    foreground: "#007ACC"
+    type: text
+    style: plain
+  newline: true
+version: 3
