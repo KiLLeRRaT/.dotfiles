@@ -12,8 +12,14 @@ read -n 1
 echo -e "${GREEN}----------------------------------------${RESET}"
 echo -e "${GREEN}Installing AUR Packages${RESET}"
 echo -e "${GREEN}----------------------------------------${RESET}"
+
+# EXEC AS THE USER WITH OWN ENV VARS
+arch-chroot2() {
+	arch-chroot -u $USERNAME /mnt /usr/bin/env -i HOME=/home/$USERNAME USER=$USERNAME $@
+}
+
 installAurPackage() {
-	arch-chroot -u $USERNAME /mnt /bin/bash -- <<- EOF
+	arch-chroot2 /bin/bash -l -- <<- EOF
 		pushd /home/$USERNAME/source-aur
 		echo "Installing $1"
 		if [ ! -d $1 ]; then
@@ -30,15 +36,14 @@ installAurPackage() {
 	arch-chroot /mnt /bin/bash -c "pacman --noconfirm --needed -U /home/$USERNAME/source-aur/$1/*.pkg.*"
 }
 
-arch-chroot -u $USERNAME /mnt mkdir -p /home/$USERNAME/source-aur
 
+arch-chroot2 mkdir -p /home/$USERNAME/source-aur
+
+exit
 installAurPackage oh-my-posh-bin
-
-# missing dep, ttf-font
 installAurPackage brave-bin
 
-arch-chroot -u $USERNAME /mnt /bin/bash -- <<- EOF
-
+arch-chroot2 /bin/bash -l -- <<- EOF
 	curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
 	echo Need to make sure gnome-keyring is correctly setup otherwise 2fa keys wont be remembered.
 EOF
@@ -47,45 +52,42 @@ installAurPackage 1password
 
 exit
 
-cp /mnt/etc/pam.d/login /mnt/tmp/login.tmp
-if [ ! -f /mnt/tmp/login.tmp ] # Don't run it again if we have the login.tmp file already
-then
-	cat <<- EOF > /mnt/etc/pam.d/login
-		#%PAM-1.0
-		auth       required     pam_securetty.so
-		auth       requisite    pam_nologin.so
-		auth       include      system-local-login
-		auth       optional     pam_gnome_keyring.so
-		account    include      system-local-login
-		session    include      system-local-login
-		session    optional     pam_gnome_keyring.so auto_start
-		password   include      system-local-login
-	EOF
-fi
+cp /mnt/etc/pam.d/login /mnt/etc/pam.d/login.bak
+cat <<- EOF > /mnt/etc/pam.d/login
+	#%PAM-1.0
+	auth       required     pam_securetty.so
+	auth       requisite    pam_nologin.so
+	auth       include      system-local-login
+	auth       optional     pam_gnome_keyring.so
+	account    include      system-local-login
+	session    include      system-local-login
+	session    optional     pam_gnome_keyring.so auto_start
+	password   include      system-local-login
+EOF
 
 
 cp /mnt/usr/lib/pam.d/polkit-1 /mnt/etc/pam.d/polkit-1
 
-arch-chroot -u $USERNAME /mnt /bin/bash -- <<- EOF
-	source /home/$USERNAME/.dotfiles/scripts/functions/aur-helpers.sh
-	installAurPackage otf-san-francisco
-	installAurPackage otf-san-francisco-mono
-	installAurPackage pa-applet-git
-	installAurPackage dracula-gtk-theme
-	installAurPackage dracula-icons-git
-	installAurPackage snapper-gui-git
-	installAurPackage netcoredbg
-	installAurPackage nvm
-	installAurPackage emote # Emoji picker, launch with Ctrl + Alt + E
-EOF
+installAurPackage otf-san-francisco
+
+arch-chroot /mnt pacman -Sy --no-confirm --needed p7zip
+installAurPackage otf-san-francisco-mono
+
+installAurPackage pa-applet-git
+installAurPackage dracula-gtk-theme
+installAurPackage dracula-icons-git
+installAurPackage snapper-gui-git
+installAurPackage netcoredbg
+installAurPackage nvm
+installAurPackage emote # Emoji picker, launch with Ctrl + Alt + E
 
 arch-chroot /mnt pacman -R --noconfirm i3lock
 
-arch-chroot -u $USERNAME /mnt /bin/bash -- <<- EOF
-	source /home/$USERNAME/.dotfiles/scripts/functions/aur-helpers.sh
-	installAurPackage i3lock-color
-	installAurPackage i3exit
-	installAurPackage betterlockscreen
+installAurPackage i3lock-color
+installAurPackage i3exit
+installAurPackage betterlockscreen
+
+arch-chroot2 /bin/bash -l -- <<- EOF
 	betterlockscreen -u ~/.dotfiles/images
 EOF
 
@@ -93,7 +95,7 @@ arch-chroot /mnt systemctl enable betterlockscreen@$USERNAME
 # lock on sleep/suspend
 
 
-arch-chroot -u $USERNAME /mnt /bin/bash -- <<- EOF
+arch-chroot2 /bin/bash -l -- <<- EOF
 	source /usr/share/nvm/init-nvm.sh
 	nvm install --lts
 	nvm use --lts
