@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-GREEN=\033[32m
-RESET=${RESET}
+GREEN="\033[32m"
+RESET="\033[0m"
 
 timedatectl set-ntp true
 sed -i 's/^#Color/Color/g' /etc/pacman.conf
@@ -57,4 +57,4 @@ GET_VAR() {
 # echo "CONFIGURE_QEMU=$(GET_VAR CONFIGURE_QEMU)"
 # echo "CONFIGURE_XORG_TAPTOCLICK=$(GET_VAR CONFIGURE_XORG_TAPTOCLICK)"
 
-echo "Done setting variables"
+echo -e "${GREEN}Done setting variables${RESET}"

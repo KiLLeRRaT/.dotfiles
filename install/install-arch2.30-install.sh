@@ -13,8 +13,9 @@ echo "USER_PASSWORD=$(GET_VAR USER_PASSWORD)"
 echo "CONFIGURE_PACMAN_HOOKS=$(GET_VAR CONFIGURE_PACMAN_HOOKS)"
 echo "CONFIGURE_QEMU=$(GET_VAR CONFIGURE_QEMU)"
 echo "CONFIGURE_XORG_TAPTOCLICK=$(GET_VAR CONFIGURE_XORG_TAPTOCLICK)"
+source ./variables
 
-echo Press any key to start installation...
+echo -e "${GREEN}Press any key to start installation...${RESET}"
 read -n 1
 
 pacstrap -K /mnt base linux linux-lts linux-firmware \
@@ -105,10 +106,10 @@ pacstrap -K /mnt base linux linux-lts linux-firmware \
 	zsh
 
 
-echo "Generate fstab"
+echo -e "${GREEN}Generate fstab${RESET}"
 genfstab -U /mnt >> /mnt/etc/fstab
 
-echo "Executing in chroot from here"
+echo -e "${GREEN}Executing in chroot from here${RESET}"
 
 arch-chroot /mnt ln -sf /usr/share/zoneinfo/Pacific/Auckland /etc/localtime
 arch-chroot /mnt hwclock --systohc
@@ -124,20 +125,22 @@ sed -i 's/^#Color/Color/g' /mnt/etc/pacman.conf
 sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 10/g' /mnt/etc/pacman.conf
 sed -i.bak '/^HOOKS=/s/block/block encrypt/' /mnt/etc/mkinitcpio.conf
 
-# GENERATE KEY FOR UNLOCKING ROOT
+echo -e "${GREEN}Generate key for unlocking root${RESET}"
 dd bs=512 count=4 if=/dev/random iflag=fullblock | arch-chroot /mnt install -m 0600 /dev/stdin /etc/cryptsetup-keys.d/root.key
 echo -n "$LUKS_PASSWORD" | cryptsetup luksAddKey --key-file - $DEV_ROOT /mnt/etc/cryptsetup-keys.d/root.key
 sed -i.bak '/^FILES=/s|(.*)|(/etc/cryptsetup-keys.d/root.key)|' /mnt/etc/mkinitcpio.conf
-echo "Set password for root"
+
+echo -e "${GREEN}Set password for root${RESET}"
 echo $ROOT_PASSWORD | arch-chroot /mnt passwd --stdin
 
+echo -e "${GREEN}Create user $USERNAME${RESET}"
 arch-chroot /mnt useradd -m -G wheel,storage,power -g users -s /bin/zsh $USERNAME
 echo $USER_PASSWORD | arch-chroot /mnt passwd $USERNAME --stdin
-sed -i.bak 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /mnt/etc/sudoers
+sed -i.bak 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /mnt/etc/sudoers
 
+echo -e "${GREEN}Configure GRUB${RESET}"
 sed -i 's/^#GRUB_ENABLE_CRYPTODISK=/GRUB_ENABLE_CRYPTODISK=/' /mnt/etc/default/grub
 sed -i '/^GRUB_PRELOAD_MODULES=/s/part_gpt/btrfs part_gpt/' /mnt/etc/default/grub
-
 sed -i.bak "/^GRUB_CMDLINE_LINUX=/s|\".*\"|\"cryptdevice=UUID=$DEVICE_UUID:root root=/dev/mapper/root cryptkey=rootfs:/etc/cryptsetup-keys.d/root.key\"|" /mnt/etc/default/grub
 arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
@@ -146,7 +149,7 @@ arch-chroot /mnt mkinitcpio -P
 # TODO: This could probably come from stow....?
 sed -i.bak 's|^#greeter-session=.*$|greeter-session=lightdm-slick-greeter|' /mnt/etc/lightdm/lightdm.conf
 
-echo "Enable services"
+echo -e "${GREEN}Enable services${RESET}"
 arch-chroot /mnt /bin/bash -- << EOF
 	systemctl enable lightdm.service
 	systemctl enable sshd
@@ -161,13 +164,13 @@ arch-chroot /mnt /bin/bash -- << EOF
 	systemctl enable docker
 EOF
 
-echo "Configuring makepkg"
+echo -e "${GREEN}Configuring makepkg${RESET}"
 # DISABLE COMPRESSION
 arch-chroot /mnt sed -i 's/^PKGEXT.*/PKGEXT=".pkg.tar"/' /etc/makepkg.conf
 # DISABLE DEBUGGING
 arch-chroot /mnt sed -i 's/\(OPTIONS=.*\)debug/\1!debug/' /etc/makepkg.conf
 
-echo "Hardening /tmp and /dev/shm by setting noexec"
+echo -e "${GREEN}Hardening /tmp and /dev/shm by setting noexec${RESET}"
 tmp=$(arch-chroot /mnt findmnt /tmp --output SOURCE,FSTYPE,OPTIONS | tail -n1)
 devshm=$(arch-chroot /mnt findmnt /dev/shm --output SOURCE,FSTYPE,OPTIONS | tail -n1)
 arch-chroot /mnt bash -c "cat >> /etc/fstab" << EOF
@@ -176,7 +179,7 @@ $(echo $devshm | sed "s/^tmpfs/tmpfs    \/dev\/shm/"),noexec 0 0
 EOF
 
 # FROM: https://wiki.archlinux.org/title/Sysctl#Configuration
-echo "Enable SysRq"
+echo -e "${GREEN}Enable SysRq${RESET}"
 echo "kernel.sysrq=1" > /mnt/etc/sysctl.d/99-sysctl.conf
 
 #echo "Configuring ufw rules"
@@ -190,9 +193,7 @@ echo "kernel.sysrq=1" > /mnt/etc/sysctl.d/99-sysctl.conf
 
 
 if [ "$CONFIGURE_XORG_TAPTOCLICK" == "y" ]; then
-	echo -e "${GREEN}----------------------------------------${RESET}"
 	echo -e "${GREEN}Configure Xorg${RESET}"
-	echo -e "${GREEN}----------------------------------------${RESET}"
 	# FROM: https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
 	mkdir -p /mnt/etc/X11/xorg.conf.d
 	cat << EOF > /mnt/etc/X11/xorg.conf.d/90-touchpad.conf
@@ -208,18 +209,8 @@ EndSection
 EOF
 fi
 
-if [ "$CONFIGURE_PACMAN_HOOKS" == "y" ]; then
-	echo -e "${GREEN}----------------------------------------${RESET}"
-	echo -e "${GREEN}Configure Pacman Hooks${RESET}"
-	echo -e "${GREEN}----------------------------------------${RESET}"
-	mkdir -p /mnt/etc/pacman.d/hooks
-	cp /mnt/home/$USERNAME/.dotfiles/pacman/hooks/* /mnt/etc/pacman.d/hooks/
-fi
-
 if [ "$CONFIGURE_QEMU" == "y" ]; then
-	echo -e "${GREEN}----------------------------------------${RESET}"
 	echo -e "${GREEN}Configure QEMU${RESET}"
-	echo -e "${GREEN}----------------------------------------${RESET}"
 	arch-chroot /mnt pacman --noconfirm --needed -Syu virt-manager libvirt qemu virt-viewer swtpm
 fi
 
@@ -227,4 +218,4 @@ fi
 # - [ ] GREETER CUSTOMISATION
 # - [ ] YubiKey
 
-echo "Done"
+echo -e "${GREEN}Done${RESET}"

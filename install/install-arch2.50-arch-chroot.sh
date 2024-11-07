@@ -5,8 +5,9 @@ source install-arch2.variables.sh
 
 echo "NEW_HOSTNAME=$(GET_VAR NEW_HOSTNAME)"
 echo "USERNAME=$(GET_VAR USERNAME)"
+source ./variables
 
-echo Press any key to start installation...
+echo -e "${GREEN}Press any key to start installation...${RESET}"
 read -n1
 
 # EXEC AS THE USER WITH OWN ENV VARS
@@ -36,13 +37,19 @@ installAurPackage() {
 	arch-chroot /mnt /bin/bash -c "pacman --noconfirm --needed -U /home/$USERNAME/source-aur/$1/*.pkg.*"
 }
 
-echo "Cloning dotfiles"
+echo -e "${GREEN}Cloning dotfiles${RESET}"
 arch-chroot -u $USERNAME /mnt git clone https://github.com/killerrat/.dotfiles /home/$USERNAME/.dotfiles
 
-echo "Generating host config"
+echo -e "${GREEN}Generating host config${RESET}"
 arch-chroot2 /home/$USERNAME/.dotfiles/nvim-lua/.config/nvim/generateHostConfig.sh
 
-echo "Running stow"
+if [ "$CONFIGURE_PACMAN_HOOKS" == "y" ]; then
+	echo -e "${GREEN}Configure Pacman Hooks${RESET}"
+	mkdir -p /mnt/etc/pacman.d/hooks
+	cp /mnt/home/$USERNAME/.dotfiles/pacman/hooks/* /mnt/etc/pacman.d/hooks/
+fi
+
+echo -e "${GREEN}Running stow${RESET}"
 arch-chroot /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles/hosts/arch-agouws && stow -t ~ xinitrc"
 # arch-chroot /mnt mv /etc/lightdm/lightdm-gtk-greeter.conf{,.bak}
 arch-chroot /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles && stow -t / lightdm"
@@ -53,7 +60,7 @@ arch-chroot /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles && stow -t /usr/shar
 arch-chroot -u $USERNAME /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles && stow alacritty dmenurc dosbox dunst flameshot fonts gitconfig gtk-2.0 gtk-3.0 gtk-4.0 i3-manjaro nvim-lua oh-my-posh picom ranger tmux zshrc"
 
 
-echo "Let's copy our gtk configs to /root, so that root has the same theme"
+echo -e "${GREEN}Let's copy our gtk configs to /root, so that root has the same theme${RESET}"
 cp /mnt/home/$USERNAME/.dotfiles/gtk-2.0/.gtkrc-2.0 /mnt/root
 mkdir -p /mnt/root/.config
 cp -r /mnt/home/$USERNAME/.dotfiles/gtk-3.0/.config/gtk-3.0 /mnt/root/.config
@@ -149,4 +156,4 @@ ln -s /mnt/home/$USERNAME/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_r
 # - [ ] GREETER CUSTOMISATION
 # - [ ] YubiKey
 
-echo "Done"
+echo -e "${GREEN}Done${RESET}"
