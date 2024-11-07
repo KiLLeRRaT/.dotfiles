@@ -27,6 +27,7 @@ pacstrap -K /mnt base linux linux-lts linux-firmware \
 	bluez bluez-utils blueman \
 	btop \
 	btrfs-progs \
+	cmake \
 	curl \
 	dhcpcd \
 	dmenu \
