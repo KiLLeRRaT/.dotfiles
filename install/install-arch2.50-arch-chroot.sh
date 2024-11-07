@@ -11,7 +11,11 @@ read -n1
 
 # EXEC AS THE USER WITH OWN ENV VARS
 arch-chroot2() {
-	arch-chroot -u $USERNAME /mnt /usr/bin/env -i HOME=/home/$USERNAME USER=$USERNAME HOST=$HOST $@
+	arch-chroot -u $USERNAME /mnt /usr/bin/env -i \
+		HOME=/home/$USERNAME \
+		USER=$USERNAME \
+		HOST=$HOSTNAME \
+		$@
 }
 
 installAurPackage() {
