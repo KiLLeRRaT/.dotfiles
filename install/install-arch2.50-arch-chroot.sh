@@ -39,7 +39,6 @@ installAurPackage() {
 
 arch-chroot2 mkdir -p /home/$USERNAME/source-aur
 
-exit
 installAurPackage oh-my-posh-bin
 installAurPackage brave-bin
 
@@ -50,7 +49,6 @@ EOF
 
 installAurPackage 1password
 
-exit
 
 cp /mnt/etc/pam.d/login /mnt/etc/pam.d/login.bak
 cat <<- EOF > /mnt/etc/pam.d/login
@@ -70,7 +68,7 @@ cp /mnt/usr/lib/pam.d/polkit-1 /mnt/etc/pam.d/polkit-1
 
 installAurPackage otf-san-francisco
 
-arch-chroot /mnt pacman -Sy --no-confirm --needed p7zip
+arch-chroot /mnt pacman -Sy --noconfirm --needed p7zip
 installAurPackage otf-san-francisco-mono
 
 installAurPackage pa-applet-git
@@ -117,45 +115,6 @@ EOF
 ln -s /mnt/home/$USERNAME/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_recency
 
 
-echo -e "${GREEN}----------------------------------------${RESET}"
-echo -e "${GREEN}Configure Xorg${RESET}"
-echo -e "${GREEN}----------------------------------------${RESET}"
-echo "Configure tap to click on touchpad? (y/n)"
-read configure_xorg_taptoclick
-if [ "$configure_xorg_taptoclick" == "y" ]; then
-	# FROM: https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
-	mkdir -p /mnt/etc/X11/xorg.conf.d
-	cat << EOF > /mnt/etc/X11/xorg.conf.d/90-touchpad.conf
-Section "InputClass"
-	Identifier "touchpad"
-	MatchIsTouchpad "on"
-	Driver "libinput"
-	Option "Tapping" "on"
-	Option "TappingButtonMap" "lrm"
-	Option "NaturalScrolling" "on"
-	Option "ScrollMethod" "twofinger"
-EndSection
-EOF
-fi
-
-echo -e "${GREEN}----------------------------------------${RESET}"
-echo -e "${GREEN}Configure Pacman Hooks${RESET}"
-echo -e "${GREEN}----------------------------------------${RESET}"
-echo "Configure pacman hooks? (y/n)"
-read configure_pacman_hooks
-if [ "$configure_pacman_hooks" == "y" ]; then
-	mkdir -p /mnt/etc/pacman.d/hooks
-	cp /mnt/home/$USERNAME/.dotfiles/pacman/hooks/* /mnt/etc/pacman.d/hooks/
-fi
-
-echo -e "${GREEN}----------------------------------------${RESET}"
-echo -e "${GREEN}Configure QEMU${RESET}"
-echo -e "${GREEN}----------------------------------------${RESET}"
-echo "Configure QEMU and libvirt? (y/n)"
-read configure_qemu
-if [ "$configure_qemu" == "y" ]; then
-	arch-chroot /mnt pacman --noconfirm --needed -Syu virt-manager libvirt qemu virt-viewer swtpm
-fi
 
 # TODO: 
 # - [ ] GREETER CUSTOMISATION

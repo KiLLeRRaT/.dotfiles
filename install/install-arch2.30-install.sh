@@ -199,30 +199,30 @@ mkdir -p /mnt/root/.config
 cp -r /mnt/home/$USERNAME/.dotfiles/gtk-3.0/.config/gtk-3.0 /mnt/root/.config
 cp -r /mnt/home/$USERNAME/.dotfiles/gtk-4.0/.config/gtk-4.0 /mnt/root/.config
 
-
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Configure Xorg\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Configure Xorg${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 echo "Configure tap to click on touchpad? (y/n)"
 read configure_xorg_taptoclick
 if [ "$configure_xorg_taptoclick" == "y" ]; then
 	# FROM: https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
-	mkdir -p /mnt/etc/X11/xorg.conf.d && tee <<'EOF' /mnt/etc/X11/xorg.conf.d/90-touchpad.conf 1> /dev/null
+	mkdir -p /mnt/etc/X11/xorg.conf.d
+	cat << EOF > /mnt/etc/X11/xorg.conf.d/90-touchpad.conf
 Section "InputClass"
-				Identifier "touchpad"
-				MatchIsTouchpad "on"
-				Driver "libinput"
-				Option "Tapping" "on"
-				Option "TappingButtonMap" "lrm"
-				Option "NaturalScrolling" "on"
-				Option "ScrollMethod" "twofinger"
+	Identifier "touchpad"
+	MatchIsTouchpad "on"
+	Driver "libinput"
+	Option "Tapping" "on"
+	Option "TappingButtonMap" "lrm"
+	Option "NaturalScrolling" "on"
+	Option "ScrollMethod" "twofinger"
 EndSection
 EOF
 fi
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Configure Pacman Hooks\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Configure Pacman Hooks${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 echo "Configure pacman hooks? (y/n)"
 read configure_pacman_hooks
 if [ "$configure_pacman_hooks" == "y" ]; then
@@ -230,9 +230,9 @@ if [ "$configure_pacman_hooks" == "y" ]; then
 	cp /mnt/home/$USERNAME/.dotfiles/pacman/hooks/* /mnt/etc/pacman.d/hooks/
 fi
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Configure QEMU\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Configure QEMU${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 echo "Configure QEMU and libvirt? (y/n)"
 read configure_qemu
 if [ "$configure_qemu" == "y" ]; then

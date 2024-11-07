@@ -33,8 +33,6 @@ then
 		echo ""
 	fi
 
-	lsblk
-	blkid
 	DEVICE_UUID=$(blkid | fzf --prompt="Please select the DEV_ROOT device again so we can get the UUID: " | sed -E 's/^.*UUID="(.{36})" .*$/\1/')
 	echo ""
 	echo "What is your hostname? (e.g. arch-agouwsmacbookpro)"

@@ -32,6 +32,12 @@ mkdir -p /mnt/var/lib/docker
 mkdir -p /mnt/var/lib/libvirt
 
 umount -R /mnt
+
+# after partitioning, we need to update the variables file with the new DEVICE_UUID
+DEVICE_UUID=$(blkid | fzf --prompt="Please select the DEV_ROOT device for cryptsetup: " | sed -E 's/^.*UUID="(.{36})" .*$/\1/')
+sed -i 'g/^DEVICE_UUID=/d' ~/variables
+echo "DEVICE_UUID=\"$DEVICE_UUID\"" >> ~/variables
+
 cryptsetup close root
 
 echo "Done"
