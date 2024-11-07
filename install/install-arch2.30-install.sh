@@ -202,12 +202,10 @@ mkdir -p /mnt/root/.config
 cp -r /mnt/home/$USERNAME/.dotfiles/gtk-3.0/.config/gtk-3.0 /mnt/root/.config
 cp -r /mnt/home/$USERNAME/.dotfiles/gtk-4.0/.config/gtk-4.0 /mnt/root/.config
 
-echo -e "${GREEN}----------------------------------------${RESET}"
-echo -e "${GREEN}Configure Xorg${RESET}"
-echo -e "${GREEN}----------------------------------------${RESET}"
-echo "Configure tap to click on touchpad? (y/n)"
-read configure_xorg_taptoclick
-if [ "$configure_xorg_taptoclick" == "y" ]; then
+if [ "$CONFIGURE_XORG_TAPTOCLICK" == "y" ]; then
+	echo -e "${GREEN}----------------------------------------${RESET}"
+	echo -e "${GREEN}Configure Xorg${RESET}"
+	echo -e "${GREEN}----------------------------------------${RESET}"
 	# FROM: https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
 	mkdir -p /mnt/etc/X11/xorg.conf.d
 	cat << EOF > /mnt/etc/X11/xorg.conf.d/90-touchpad.conf
@@ -223,22 +221,18 @@ EndSection
 EOF
 fi
 
-echo -e "${GREEN}----------------------------------------${RESET}"
-echo -e "${GREEN}Configure Pacman Hooks${RESET}"
-echo -e "${GREEN}----------------------------------------${RESET}"
-echo "Configure pacman hooks? (y/n)"
-read configure_pacman_hooks
-if [ "$configure_pacman_hooks" == "y" ]; then
+if [ "$CONFIGURE_PACMAN_HOOKS" == "y" ]; then
+	echo -e "${GREEN}----------------------------------------${RESET}"
+	echo -e "${GREEN}Configure Pacman Hooks${RESET}"
+	echo -e "${GREEN}----------------------------------------${RESET}"
 	mkdir -p /mnt/etc/pacman.d/hooks
 	cp /mnt/home/$USERNAME/.dotfiles/pacman/hooks/* /mnt/etc/pacman.d/hooks/
 fi
 
-echo -e "${GREEN}----------------------------------------${RESET}"
-echo -e "${GREEN}Configure QEMU${RESET}"
-echo -e "${GREEN}----------------------------------------${RESET}"
-echo "Configure QEMU and libvirt? (y/n)"
-read configure_qemu
-if [ "$configure_qemu" == "y" ]; then
+if [ "$CONFIGURE_QEMU" == "y" ]; then
+	echo -e "${GREEN}----------------------------------------${RESET}"
+	echo -e "${GREEN}Configure QEMU${RESET}"
+	echo -e "${GREEN}----------------------------------------${RESET}"
 	arch-chroot /mnt pacman --noconfirm --needed -Syu virt-manager libvirt qemu virt-viewer swtpm
 fi
 

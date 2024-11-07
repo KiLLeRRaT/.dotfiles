@@ -50,6 +50,15 @@ then
 	echo "Enter user password"
 	read USER_PASSWORD
 
+	echo "Configure pacman hooks? (y/n)"
+	read -n1 CONFIGURE_PACMAN_HOOKS
+
+	echo "Configure QEMU and libvirt? (y/n)"
+	read -n1 CONFIGURE_QEMU
+
+	echo "Configure tap to click on touchpad? (y/n)"
+	read -n1 CONFIGURE_XORG_TAPTOCLICK
+
 	# Write to variables file
 	echo "DEV_BOOT=\"$DEV_BOOT\"" > ~/variables
 	echo "DEV_ROOT=\"$DEV_ROOT\"" >> ~/variables
@@ -59,15 +68,21 @@ then
 	echo "LUKS_PASSWORD=\"$LUKS_PASSWORD\"" >> ~/variables
 	echo "ROOT_PASSWORD=\"$ROOT_PASSWORD\"" >> ~/variables
 	echo "USER_PASSWORD=\"$USER_PASSWORD\"" >> ~/variables
+	echo "CONFIGURE_PACMAN_HOOKS=\"$CONFIGURE_PACMAN_HOOKS\"" >> ~/variables
+	echo "CONFIGURE_QEMU=\"$CONFIGURE_QEMU\"" >> ~/variables
+	echo "CONFIGURE_XORG_TAPTOCLICK=\"$CONFIGURE_XORG_TAPTOCLICK\"" >> ~/variables
 fi
 
-echo DEV_BOOT: $DEV_BOOT
-echo DEV_ROOT: $DEV_ROOT
-echo HOSTNAME: $HOSTNAME
-echo USERNAME: $USERNAME
-echo DEVICE_UUID: $DEVICE_UUID
-echo LUKS_PASSWORD: $LUKS_PASSWORD
-echo ROOT_PASSWORD: $ROOT_PASSWORD
-echo USER_PASSWORD: $USER_PASSWORD
+echo DEV_BOOT=$DEV_BOOT
+echo DEV_ROOT=$DEV_ROOT
+echo HOSTNAME=$HOSTNAME
+echo USERNAME=$USERNAME
+echo DEVICE_UUID=$DEVICE_UUID
+echo LUKS_PASSWORD=$LUKS_PASSWORD
+echo ROOT_PASSWORD=$ROOT_PASSWORD
+echo USER_PASSWORD=$USER_PASSWORD
+echo CONFIGURE_PACMAN_HOOKS=$CONFIGURE_PACMAN_HOOKS
+echo CONFIGURE_QEMU=$CONFIGURE_QEMU
+echo CONFIGURE_XORG_TAPTOCLICK=$CONFIGURE_XORG_TAPTOCLICK
 
 echo "Done setting variables"
