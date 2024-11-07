@@ -76,14 +76,24 @@ installAurPackage otf-san-francisco-mono
 installAurPackage pa-applet-git
 installAurPackage dracula-gtk-theme
 installAurPackage dracula-icons-git
+
+arch-chroot /mnt pacman -Sy --noconfirm --needed python-dbus python-setuptools gtksourceview3
 installAurPackage snapper-gui-git
-installAurPackage netcoredbg
+
+# PROBLEMS WITH DOTNET OR SOMETHING, MAYBE JUST CHROOT RELATED??? LEAVE FOR NOW
+# arch-chroot /mnt pacman -Sy --noconfirm --needed cmake clang
+# installAurPackage netcoredbg
+
 installAurPackage nvm
+
+arch-chroot /mnt pacman -Sy --noconfirm --needed libkeybinder3 python-setproctitle python-pipenv
 installAurPackage emote # Emoji picker, launch with Ctrl + Alt + E
 
 arch-chroot /mnt pacman -R --noconfirm i3lock
 
+arch-chroot /mnt pacman -Sy --noconfirm --needed xcb-util-xrm
 installAurPackage i3lock-color
+arch-chroot /mnt pacman -Sy --noconfirm --needed imagemagick i3-wm
 installAurPackage i3exit
 installAurPackage betterlockscreen
 
@@ -91,6 +101,7 @@ arch-chroot2 /bin/bash -l -- <<- EOF
 	betterlockscreen -u ~/.dotfiles/images
 EOF
 
+# TODO: VERIFY THAT THIS WORKED, CANT IN THE CHROOT RIGHT NOW...
 arch-chroot /mnt systemctl enable betterlockscreen@$USERNAME
 # lock on sleep/suspend
 
@@ -114,17 +125,17 @@ read configure_xorg_taptoclick
 if [ "$configure_xorg_taptoclick" == "y" ]; then
 	# FROM: https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
 	mkdir -p /mnt/etc/X11/xorg.conf.d
-	cat <<- EOF > /mnt/etc/X11/xorg.conf.d/90-touchpad.conf 1> /dev/null
-	Section "InputClass"
-		Identifier "touchpad"
-		MatchIsTouchpad "on"
-		Driver "libinput"
-		Option "Tapping" "on"
-		Option "TappingButtonMap" "lrm"
-		Option "NaturalScrolling" "on"
-		Option "ScrollMethod" "twofinger"
-	EndSection
-	EOF
+	cat << EOF > /mnt/etc/X11/xorg.conf.d/90-touchpad.conf
+Section "InputClass"
+	Identifier "touchpad"
+	MatchIsTouchpad "on"
+	Driver "libinput"
+	Option "Tapping" "on"
+	Option "TappingButtonMap" "lrm"
+	Option "NaturalScrolling" "on"
+	Option "ScrollMethod" "twofinger"
+EndSection
+EOF
 fi
 
 echo -e "${GREEN}----------------------------------------${RESET}"
