@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+GREEN=\033[32m
+RESET=${RESET}
+
 source install-arch2.variables.sh
 
 echo Press any key to start installation...
