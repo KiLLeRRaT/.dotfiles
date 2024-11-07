@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
 
-GREEN=\033[32m
-RESET=${RESET}
-
 source install-arch2.variables.sh
+
+echo "NEW_HOSTNAME=$(GET_VAR NEW_HOSTNAME)"
+echo "USERNAME=$(GET_VAR USERNAME)"
 
 echo Press any key to start installation...
 read -n1
@@ -14,7 +14,7 @@ arch-chroot2() {
 	arch-chroot -u $USERNAME /mnt /usr/bin/env -i \
 		HOME=/home/$USERNAME \
 		USER=$USERNAME \
-		HOST=$HOSTNAME \
+		HOST=$NEW_HOSTNAME \
 		$@
 }
 
@@ -36,8 +36,31 @@ installAurPackage() {
 	arch-chroot /mnt /bin/bash -c "pacman --noconfirm --needed -U /home/$USERNAME/source-aur/$1/*.pkg.*"
 }
 
+echo "Cloning dotfiles"
 arch-chroot -u $USERNAME /mnt git clone https://github.com/killerrat/.dotfiles /home/$USERNAME/.dotfiles
+
+echo "Generating host config"
 arch-chroot2 /home/$USERNAME/.dotfiles/nvim-lua/.config/nvim/generateHostConfig.sh
+
+echo "Running stow"
+arch-chroot /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles/hosts/arch-agouws && stow -t ~ xinitrc"
+# arch-chroot /mnt mv /etc/lightdm/lightdm-gtk-greeter.conf{,.bak}
+arch-chroot /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles && stow -t / lightdm"
+
+
+mkdir -p /mnt/usr/share/backgrounds/$USERNAME
+arch-chroot /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles && stow -t /usr/share/backgrounds/$USERNAME images"
+arch-chroot -u $USERNAME /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles && stow alacritty dmenurc dosbox dunst flameshot fonts gitconfig gtk-2.0 gtk-3.0 gtk-4.0 i3-manjaro nvim-lua oh-my-posh picom ranger tmux zshrc"
+
+
+echo "Let's copy our gtk configs to /root, so that root has the same theme"
+cp /mnt/home/$USERNAME/.dotfiles/gtk-2.0/.gtkrc-2.0 /mnt/root
+mkdir -p /mnt/root/.config
+cp -r /mnt/home/$USERNAME/.dotfiles/gtk-3.0/.config/gtk-3.0 /mnt/root/.config
+cp -r /mnt/home/$USERNAME/.dotfiles/gtk-4.0/.config/gtk-4.0 /mnt/root/.config
+
+
+
 
 echo -e "${GREEN}----------------------------------------${RESET}"
 echo -e "${GREEN}Installing AUR Packages${RESET}"

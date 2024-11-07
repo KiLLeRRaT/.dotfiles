@@ -3,6 +3,10 @@ set -e
 
 source install-arch2.variables.sh
 
+echo "DEV_BOOT="$(GET_VAR DEV_BOOT '/dev/$(lsblk --list | fzf --header-lines=1 --prompt="Please select DEV_BOOT: " | cut -d" " -f1)')
+echo "DEV_ROOT="$(GET_VAR DEV_ROOT '/dev/$(lsblk --list | fzf --header-lines=1 --prompt="Please select DEV_ROOT: " | cut -d" " -f1)')
+echo "LUKS_PASSWORD=$(GET_VAR LUKS_PASSWORD)"
+
 echo Press any key to mount volumes...
 read -n 1
 

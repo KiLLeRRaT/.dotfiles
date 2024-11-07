@@ -1,10 +1,18 @@
 #!/bin/bash
 set -e
 
-GREEN=\033[32m
-RESET=${RESET}
-
 source install-arch2.variables.sh
+
+echo "DEV_ROOT="$(GET_VAR DEV_ROOT '/dev/$(lsblk --list | fzf --header-lines=1 --prompt="Please select DEV_ROOT: " | cut -d" " -f1)')
+echo "DEVICE_UUID="$(GET_VAR DEVICE_UUID '$(blkid | fzf --prompt="Please select the DEV_ROOT device for cryptsetup: " | sed -E "s/^.*UUID=\"(.{36})\" .*$/\1/")')
+echo "LUKS_PASSWORD=$(GET_VAR LUKS_PASSWORD)"
+echo "NEW_HOSTNAME=$(GET_VAR NEW_HOSTNAME)"
+echo "ROOT_PASSWORD=$(GET_VAR ROOT_PASSWORD)"
+echo "USERNAME=$(GET_VAR USERNAME)"
+echo "USER_PASSWORD=$(GET_VAR USER_PASSWORD)"
+echo "CONFIGURE_PACMAN_HOOKS=$(GET_VAR CONFIGURE_PACMAN_HOOKS)"
+echo "CONFIGURE_QEMU=$(GET_VAR CONFIGURE_QEMU)"
+echo "CONFIGURE_XORG_TAPTOCLICK=$(GET_VAR CONFIGURE_XORG_TAPTOCLICK)"
 
 echo Press any key to start installation...
 read -n 1
@@ -108,9 +116,9 @@ arch-chroot /mnt sed -i 's/#en_NZ.UTF-8 UTF-8/en_NZ.UTF-8 UTF-8/g' /etc/locale.g
 arch-chroot /mnt locale-gen
 arch-chroot /mnt echo "LANG=en_NZ.UTF-8" > /etc/locale.conf
 
-echo "$HOSTNAME" > /mnt/etc/hostname
-echo "127.0.0.1	 localhost.localdomain   localhost   $HOSTNAME" >> /mnt/etc/hosts
-echo "::1	 localhost.localdomain   localhost   $HOSTNAME" >> /mnt/etc/hosts
+echo "$NEW_HOSTNAME" > /mnt/etc/hostname
+echo "127.0.0.1	 localhost.localdomain   localhost   $NEW_HOSTNAME" >> /mnt/etc/hosts
+echo "::1	 localhost.localdomain   localhost   $NEW_HOSTNAME" >> /mnt/etc/hosts
 
 sed -i 's/^#Color/Color/g' /mnt/etc/pacman.conf
 sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 10/g' /mnt/etc/pacman.conf
@@ -180,24 +188,6 @@ echo "kernel.sysrq=1" > /mnt/etc/sysctl.d/99-sysctl.conf
 	#arch-chroot /mnt ufw enable
 #fi
 
-
-
-echo "Running stow"
-arch-chroot /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles/hosts/arch-agouws && stow -t ~ xinitrc"
-# arch-chroot /mnt mv /etc/lightdm/lightdm-gtk-greeter.conf{,.bak}
-arch-chroot /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles && stow -t / lightdm"
-
-
-mkdir -p /mnt/usr/share/backgrounds/$USERNAME
-arch-chroot /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles && stow -t /usr/share/backgrounds/$USERNAME images"
-arch-chroot -u $USERNAME /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles && stow alacritty dmenurc dosbox dunst flameshot fonts gitconfig gtk-2.0 gtk-3.0 gtk-4.0 i3-manjaro nvim-lua oh-my-posh picom ranger tmux zshrc"
-
-
-echo "Let's copy our gtk configs to /root, so that root has the same theme"
-cp /mnt/home/$USERNAME/.dotfiles/gtk-2.0/.gtkrc-2.0 /mnt/root
-mkdir -p /mnt/root/.config
-cp -r /mnt/home/$USERNAME/.dotfiles/gtk-3.0/.config/gtk-3.0 /mnt/root/.config
-cp -r /mnt/home/$USERNAME/.dotfiles/gtk-4.0/.config/gtk-4.0 /mnt/root/.config
 
 if [ "$CONFIGURE_XORG_TAPTOCLICK" == "y" ]; then
 	echo -e "${GREEN}----------------------------------------${RESET}"

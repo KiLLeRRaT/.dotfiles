@@ -1,10 +1,12 @@
 #!/bin/bash
 set -e
 
-
 source install-arch2.variables.sh
 
-echo Press any key to start installation...
+echo "DEV_ROOT="$(GET_VAR DEV_ROOT '/dev/$(lsblk --list | fzf --header-lines=1 --prompt="Please select DEV_ROOT: " | cut -d" " -f1)')
+echo "LUKS_PASSWORD=$(GET_VAR LUKS_PASSWORD)"
+
+echo Press any key to start partitioning...
 read -n 1
 
 echo -n "$LUKS_PASSWORD" | cryptsetup luksFormat --pbkdf pbkdf2 $DEV_ROOT -
@@ -32,11 +34,6 @@ mkdir -p /mnt/var/lib/docker
 mkdir -p /mnt/var/lib/libvirt
 
 umount -R /mnt
-
-# after partitioning, we need to update the variables file with the new DEVICE_UUID
-DEVICE_UUID=$(blkid | fzf --prompt="Please select the DEV_ROOT device for cryptsetup: " | sed -E 's/^.*UUID="(.{36})" .*$/\1/')
-sed -i '/^DEVICE_UUID=/d' ~/variables
-echo "DEVICE_UUID=\"$DEVICE_UUID\"" >> ~/variables
 
 cryptsetup close root
 
