@@ -5,6 +5,7 @@ source install-arch2.variables.sh
 
 echo "NEW_HOSTNAME=$(GET_VAR NEW_HOSTNAME)"
 echo "USERNAME=$(GET_VAR USERNAME)"
+echo "CONFIGURE_PACMAN_HOOKS=$(GET_VAR CONFIGURE_PACMAN_HOOKS)"
 source ./variables
 
 echo -e "${GREEN}Press any key to start installation...${RESET}"
