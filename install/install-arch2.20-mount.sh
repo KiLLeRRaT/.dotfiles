@@ -3,7 +3,7 @@ set -e
 
 source install-arch2.variables.sh
 
-echo Press any key to start installation...
+echo Press any key to mount volumes...
 read -n 1
 
 

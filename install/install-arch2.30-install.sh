@@ -108,34 +108,35 @@ arch-chroot /mnt sed -i 's/#en_NZ.UTF-8 UTF-8/en_NZ.UTF-8 UTF-8/g' /etc/locale.g
 arch-chroot /mnt locale-gen
 arch-chroot /mnt echo "LANG=en_NZ.UTF-8" > /etc/locale.conf
 
-arch-chroot /mnt echo "$HOSTNAME" > /etc/hostname
-arch-chroot /mnt echo "127.0.0.1   localhost.localdomain   localhost   $hostname" >> /etc/hosts
-arch-chroot /mnt echo "::1   localhost.localdomain   localhost   $hostname" >> /etc/hosts
+echo "$HOSTNAME" > /mnt/etc/hostname
+echo "127.0.0.1	 localhost.localdomain   localhost   $HOSTNAME" >> /mnt/etc/hosts
+echo "::1	 localhost.localdomain   localhost   $HOSTNAME" >> /mnt/etc/hosts
 
-arch-chroot /mnt sed -i 's/#Color/Color/g' /etc/pacman.conf
-arch-chroot /mnt sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 10/g' /etc/pacman.conf
-arch-chroot /mnt sed -i.bak '/^HOOKS=/s/block/block encrypt/' /etc/mkinitcpio.conf
+sed -i 's/^#Color/Color/g' /mnt/etc/pacman.conf
+sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 10/g' /mnt/etc/pacman.conf
+sed -i.bak '/^HOOKS=/s/block/block encrypt/' /mnt/etc/mkinitcpio.conf
+
 # GENERATE KEY FOR UNLOCKING ROOT
 dd bs=512 count=4 if=/dev/random iflag=fullblock | arch-chroot /mnt install -m 0600 /dev/stdin /etc/cryptsetup-keys.d/root.key
 echo -n "$LUKS_PASSWORD" | cryptsetup luksAddKey --key-file - $DEV_ROOT /mnt/etc/cryptsetup-keys.d/root.key
-arch-chroot /mnt sed -i.bak2 '/^FILES=/s|(.*)|(/etc/cryptsetup-keys.d/root.key)|' /etc/mkinitcpio.conf
+sed -i.bak '/^FILES=/s|(.*)|(/etc/cryptsetup-keys.d/root.key)|' /mnt/etc/mkinitcpio.conf
 echo "Set password for root"
 echo $ROOT_PASSWORD | arch-chroot /mnt passwd --stdin
 
 arch-chroot /mnt useradd -m -G wheel,storage,power -g users -s /bin/zsh $USERNAME
 echo $USER_PASSWORD | arch-chroot /mnt passwd $USERNAME --stdin
-arch-chroot /mnt sed -i.bak 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
+sed -i.bak 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /mnt/etc/sudoers
 
-arch-chroot /mnt sed -i 's/^#GRUB_ENABLE_CRYPTODISK=/GRUB_ENABLE_CRYPTODISK=/' /etc/default/grub
-arch-chroot /mnt sed -i '/^GRUB_PRELOAD_MODULES=/s/part_gpt/btrfs part_gpt/' /etc/default/grub
+sed -i 's/^#GRUB_ENABLE_CRYPTODISK=/GRUB_ENABLE_CRYPTODISK=/' /mnt/etc/default/grub
+sed -i '/^GRUB_PRELOAD_MODULES=/s/part_gpt/btrfs part_gpt/' /mnt/etc/default/grub
 
-arch-chroot /mnt sed -i.bak "/^GRUB_CMDLINE_LINUX=/s|\".*\"|\"cryptdevice=UUID=$DEVICE_UUID:root root=/dev/mapper/root cryptkey=rootfs:/etc/cryptsetup-keys.d/root.key\"|" /etc/default/grub
+sed -i.bak "/^GRUB_CMDLINE_LINUX=/s|\".*\"|\"cryptdevice=UUID=$DEVICE_UUID:root root=/dev/mapper/root cryptkey=rootfs:/etc/cryptsetup-keys.d/root.key\"|" /mnt/etc/default/grub
 arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 arch-chroot /mnt mkinitcpio -P
 
 # TODO: This could probably come from stow....?
-arch-chroot /mnt sed -i.bak "s|^#greeter-session=.*$|greeter-session=lightdm-slick-greeter|" /etc/lightdm/lightdm.conf
+sed -i.bak 's|^#greeter-session=.*$|greeter-session=lightdm-slick-greeter|' /mnt/etc/lightdm/lightdm.conf
 
 echo "Enable services"
 arch-chroot /mnt /bin/bash -- << EOF
@@ -180,8 +181,6 @@ echo "kernel.sysrq=1" > /mnt/etc/sysctl.d/99-sysctl.conf
 #fi
 
 
-arch-chroot -u $USERNAME /mnt git clone https://github.com/killerrat/.dotfiles /home/$USERNAME/.dotfiles
-# arch-chroot -u $USERNAME /mnt /home/$USERNAME/.dotfiles/nvim-lua/.config/nvim/generateHostConfig.sh
 
 echo "Running stow"
 arch-chroot /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles/hosts/arch-agouws && stow -t ~ xinitrc"
@@ -189,10 +188,8 @@ arch-chroot /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles/hosts/arch-agouws &&
 arch-chroot /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles && stow -t / lightdm"
 
 
-arch-chroot /mnt mkdir -p /usr/share/backgrounds/$USERNAME
-# arch-chroot /mnt chmod o+x /usr/share/backgrounds/$USERNAME
+mkdir -p /mnt/usr/share/backgrounds/$USERNAME
 arch-chroot /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles && stow -t /usr/share/backgrounds/$USERNAME images"
-# arch-chroot /mnt chmod o+r /usr/share/backgrounds/$USERNAME/*
 arch-chroot -u $USERNAME /mnt /bin/bash -c "cd /home/$USERNAME/.dotfiles && stow alacritty dmenurc dosbox dunst flameshot fonts gitconfig gtk-2.0 gtk-3.0 gtk-4.0 i3-manjaro nvim-lua oh-my-posh picom ranger tmux zshrc"
 
 

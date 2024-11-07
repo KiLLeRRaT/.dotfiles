@@ -7,15 +7,11 @@ RESET=${RESET}
 source install-arch2.variables.sh
 
 echo Press any key to start installation...
-read -n 1
-
-echo -e "${GREEN}----------------------------------------${RESET}"
-echo -e "${GREEN}Installing AUR Packages${RESET}"
-echo -e "${GREEN}----------------------------------------${RESET}"
+read -n1
 
 # EXEC AS THE USER WITH OWN ENV VARS
 arch-chroot2() {
-	arch-chroot -u $USERNAME /mnt /usr/bin/env -i HOME=/home/$USERNAME USER=$USERNAME $@
+	arch-chroot -u $USERNAME /mnt /usr/bin/env -i HOME=/home/$USERNAME USER=$USERNAME HOST=$HOST $@
 }
 
 installAurPackage() {
@@ -36,6 +32,12 @@ installAurPackage() {
 	arch-chroot /mnt /bin/bash -c "pacman --noconfirm --needed -U /home/$USERNAME/source-aur/$1/*.pkg.*"
 }
 
+arch-chroot -u $USERNAME /mnt git clone https://github.com/killerrat/.dotfiles /home/$USERNAME/.dotfiles
+arch-chroot2 /home/$USERNAME/.dotfiles/nvim-lua/.config/nvim/generateHostConfig.sh
+
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Installing AUR Packages${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 
 arch-chroot2 mkdir -p /home/$USERNAME/source-aur
 
