@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+# TODO:
+# - [ ] snapper config
+# - [ ] timeshift config
+
 source install-arch2.variables.sh
 
 echo "DEV_ROOT="$(GET_VAR DEV_ROOT '/dev/$(lsblk --list | fzf --header-lines=1 --prompt="Please select DEV_ROOT: " | cut -d" " -f1)')
@@ -213,9 +217,5 @@ if [ "$CONFIGURE_QEMU" == "y" ]; then
 	echo -e "${GREEN}Configure QEMU${RESET}"
 	arch-chroot /mnt pacman --noconfirm --needed -Syu virt-manager libvirt qemu virt-viewer swtpm
 fi
-
-# TODO: 
-# - [ ] GREETER CUSTOMISATION
-# - [ ] YubiKey
 
 echo -e "${GREEN}Done${RESET}"

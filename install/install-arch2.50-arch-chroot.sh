@@ -1,6 +1,13 @@
 #!/bin/bash
 set -e
 
+# TODO:
+# - [ ] GREETER CUSTOMISATION
+# - [ ] YubiKey
+# - [ ] Oneshot service to run:
+#         betterlockscreen -u ~/.dotfiles/images/
+#         ufw rules and enable
+
 source install-arch2.variables.sh
 
 echo "NEW_HOSTNAME=$(GET_VAR NEW_HOSTNAME)"
@@ -152,9 +159,5 @@ EOF
 ln -s /home/$USERNAME/.dotfiles/scripts/dmenu_recency /mnt/usr/local/bin/dmenu_recency
 
 
-
-# TODO: 
-# - [ ] GREETER CUSTOMISATION
-# - [ ] YubiKey
 
 echo -e "${GREEN}Done${RESET}"

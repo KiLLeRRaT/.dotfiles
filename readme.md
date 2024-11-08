@@ -9,15 +9,14 @@ dotfiles for Linux, MacOS, and Windows in here.
 ### Arch
 Installing arch using archinstall:
 ```bash
-archinstall --config https://u.gouws.org/archinstall
+curl -L https://u.gouws.org/install/install-arch2-bootstrap.sh | bash
 ```
-
-Then say no to entering `chroot`, reboot, and run the following:
-
+Then run the scripts in order:
 ```bash
-    curl -LOJ https://u.gouws.org/install-arch.sh
-    chmod u+x install-arch.sh
-    ./install-arch.sh
+./install-arch2.10-partition.sh
+./install-arch2.20-mount.sh
+./install-arch2.30-install.sh
+./install-arch2.50-arch-chroot.sh
 ```
 
 ### Debian Server
@@ -32,6 +31,12 @@ Then say no to entering `chroot`, reboot, and run the following:
     curl -LOJ https://u.gouws.org/install-debian.sh
     chmod u+x install-arch.sh
     ./install-arch.sh
+```
+
+# SSH Auth using Yubikey
+```
+eval $(ssh-agent -s)
+ssh-add -K
 ```
 
 # Key Bindings
