@@ -105,6 +105,7 @@ pacstrap -K /mnt base linux linux-lts linux-firmware \
 	tokei \
 	tree \
 	ttf-cascadia-code-nerd \
+	udisks2 udisks2-btrfs udiskie \
 	ufw \
 	unzip \
 	wget \
