@@ -387,7 +387,7 @@ fh() {
 	print -S $cmd
 	echo $cmd
 	read -q "REPLY?Run command? "
-	[[ "$REPLY" == "y" ]] && eval $cmd
+	[[ "$REPLY" == "y" ]] && echo "" && eval $cmd
 }
 
 # REMMINA USING THE CONNECTION FILE SELECTED USING FZF
@@ -401,6 +401,7 @@ fr() {
 	print -S $cmd
 	echo $cmd
 	read -q "REPLY?Run command? "
+	echo ""
 	if [ "$REPLY" == "y" ]
 	then
 		eval $cmd &
