@@ -2,8 +2,18 @@
 set -e
 
 # TODO:
+# - [ ] GRUB remember last picked entry
+# - [ ] GRUB Timeout
+# - [ ] GRUB order LTS after current
 # - [ ] snapper config
 # - [ ] timeshift config
+# - [ ] grub-btrfs
+# 		- [ ] sudo /etc/grub.d/41_snapshots-btrfs
+# 		- [ ] sudo grub-mkconfig -o /boot/grub/grub.cfg
+# 		- [ ] sudo nvim /etc/systemd/system/grub-btrfsd.service
+# 			 - [ ] ExecStart=/usr/bin/grub-btrfsd --syslog --timeshift-auto
+# 		- [ ] sudo systemctl enable grub-btrfsd
+# 		- [ ] sudo systemctl start grub-btrfsd
 
 source install-arch2.variables.sh
 
