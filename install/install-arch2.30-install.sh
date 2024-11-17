@@ -112,6 +112,7 @@ pacstrap -K /mnt base linux linux-lts linux-firmware \
 	wireplumber pipewire-pulse pavucontrol playerctl \
 	xautolock \
 	xclip \
+	xdg-user-dirs \
 	xorg \
 	xorg-xinit \
 	xorg-xrandr \
