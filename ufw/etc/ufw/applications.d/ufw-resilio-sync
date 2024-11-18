@@ -1,0 +1,10 @@
+[ResilioSync]
+title=Resilio Sync
+description=Sharing client
+ports=55555
+
+[ResilioSyncMultiCast]
+title=Resilio Sync Multicast
+description=Sharing client
+ports=3838/udp
+# Multicast UDP, 239.192.0.0 over port 3838
