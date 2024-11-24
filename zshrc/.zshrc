@@ -394,17 +394,15 @@ fh() {
 fr() {
 	pushd ~/.local/share/remmina
 	subcmd=$(ls $PWD/* | fzf -e --select-1 --no-sort --query "$1")
-	cmd="remmina -c $subcmd"
-	# escape parentheses in the cmd with a backslash
-	cmd=$(echo $cmd | sed 's/(/\\(/g' | sed 's/)/\\)/g')
+	cmd="remmina -c '"$subcmd"'"
 	# push the command into the history
 	print -S $cmd
 	echo $cmd
 	read -q "REPLY?Run command? "
 	echo ""
-	if [ "$REPLY" == "y" ]
+	if [[ "$REPLY" == "y" ]]
 	then
-		eval $cmd &
+		eval $cmd > /dev/null 2>&1 &
 		disown
 	fi
 	popd
@@ -414,7 +412,12 @@ fr() {
 alias ftz='TZ=$(timedatectl list-timezones | fzf) date'
 
 # fzf CBM bookmarks
-alias fcbm='pushd ~/scripts/Sandfield > /dev/null 2>&1; ./CBM-CentralBookmarksManager-export-textfiles.sh; popd > /dev/null 2>&1'
+fcbm() {
+	pushd ~/scripts/Sandfield > /dev/null 2>&1 # We want to do this because there are other files we need in this location
+	./CBM-CentralBookmarksManager-export-textfiles.sh "$1"
+	popd > /dev/null 2>&1
+}
+# alias fcbm='pushd ~/scripts/Sandfield > /dev/null 2>&1; ./CBM-CentralBookmarksManager-export-textfiles.sh; popd > /dev/null 2>&1'
 
 fn() {
 	local results=$(fzf --multi --preview 'bat --color=always {}')
@@ -555,9 +558,14 @@ ssh-remove-and-connect(){
 	ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -o PasswordAuthentication=yes $username@$hostname
 }
 
-# ;fn_ssh albert 132
+ssh-with-password(){
+	username=$(cut -d'@' -f1 <<< $1)
+	hostname=$(cut -d'@' -f2 <<< $1)
+	ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -o PasswordAuthentication=yes $username@$hostname
+}
 
-installAurPackage() {
+# ;fn_ssh albert 132
+aur-install() {
 	pushd ~/source-aur
 	echo "Installing $1"
 	if [ ! -d $1 ]; then
@@ -571,7 +579,7 @@ installAurPackage() {
 	popd
 }
 
-updateAurPackages() {
+aur-update-and-install-packages() {
 	pushd ~/source-aur
 	gfr |\
 		grep behind |\
@@ -581,6 +589,57 @@ updateAurPackages() {
 		fzf --header="Select packages to upgrade" --multi |\
 		xargs --no-run-if-empty -I {} bash -c "pushd {} && git rebase && makepkg -is --needed --noconfirm --clean"
 	popd
+}
+
+aur-update-build-outdated() {
+	pushd ~/source-aur > /dev/null
+
+	# aur-update-packages=(gfr |\
+	# 	grep behind |\
+	# 	cut -d':' -f1 |\
+	# 	sed 's|^\./||' |\
+	# 	sort |\
+	# 	fzf --header="Select packages to upgrade" --multi)
+	
+	# export AUR_UPDATE_PACKAGES=($(echo $(cat /tmp/aur.log | grep behind | cut -d':' -f1 | sed 's|^\./||' | sort)))
+	export AUR_UPDATE_PACKAGES=($(gfr |\
+	 	grep behind |\
+	 	cut -d':' -f1 |\
+	 	sed 's|^\./||' |\
+	 	sort |\
+	 	fzf --header="Select packages to upgrade" --multi)
+	)
+
+	# Build the packages using makepkg
+	for package in ${AUR_UPDATE_PACKAGES[@]}; do
+		pushd $package
+		git rebase
+		makepkg -s --clean
+		popd
+	done
+
+	popd > /dev/null
+}
+
+aur-update-install-outdated() {
+	pushd ~/source-aur > /dev/null
+	if [ -z "$AUR_UPDATE_PACKAGES" ]; then
+		echo "No packages to update"
+		exit 0
+	fi
+
+	echo "Installing the following packages:"
+	echo ${AUR_UPDATE_PACKAGES[@]}
+	for package in ${AUR_UPDATE_PACKAGES[@]}; do
+		pushd $package
+		# find the latest pkg.tar, and install
+		package=$(ls -t $package-*.pkg.tar | head -1 | sed 's|.pkg.tar||')
+		sudo pacman -U --needed --noconfirm $package-*.pkg.tar
+		# sudo pacman -U --needed --noconfirm $package-*.pkg.tar
+		popd
+	done
+	popd > /dev/null
+	unset AUR_UPDATE_PACKAGES
 }
 
 # alias feh-screenshots='feh --scale-down -d -S mtime ~/Pictures/screenshots'
