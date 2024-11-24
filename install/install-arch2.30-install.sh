@@ -18,7 +18,9 @@ set -e
 source install-arch2.variables.sh
 
 echo "DEV_ROOT="$(GET_VAR DEV_ROOT '/dev/$(lsblk --list | fzf --header-lines=1 --prompt="Please select DEV_ROOT: " | cut -d" " -f1)')
+echo ""
 echo "DEVICE_UUID="$(GET_VAR DEVICE_UUID '$(blkid | fzf --prompt="Please select the DEV_ROOT device for cryptsetup: " | sed -E "s/^.*UUID=\"(.{36})\" .*$/\1/")')
+echo ""
 echo "LUKS_PASSWORD=$(GET_VAR LUKS_PASSWORD)"
 echo "NEW_HOSTNAME=$(GET_VAR NEW_HOSTNAME)"
 echo "ROOT_PASSWORD=$(GET_VAR ROOT_PASSWORD)"

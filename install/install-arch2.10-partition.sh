@@ -4,6 +4,7 @@ set -e
 source install-arch2.variables.sh
 
 echo "DEV_ROOT="$(GET_VAR DEV_ROOT '/dev/$(lsblk --list | fzf --header-lines=1 --prompt="Please select DEV_ROOT: " | cut -d" " -f1)')
+echo ""
 echo "LUKS_PASSWORD=$(GET_VAR LUKS_PASSWORD)"
 source ./variables
 

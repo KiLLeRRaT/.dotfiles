@@ -45,7 +45,7 @@ installAurPackage() {
 	arch-chroot /mnt /bin/bash -c "pacman --noconfirm --needed -U /home/$USERNAME/source-aur/$1/*.pkg.*"
 }
 
-echo -e "${GREEN}Creating xdg-user-dirs{RESET}"
+echo -e "${GREEN}Creating xdg-user-dirs{RESET}" # FOR 1Password download dir and other apps that use XDG directories
 arch-chroot -u $USERNAME /mnt xdg-user-dirs-update
 
 echo -e "${GREEN}Cloning dotfiles${RESET}"
