@@ -393,18 +393,12 @@ fh() {
 # REMMINA USING THE CONNECTION FILE SELECTED USING FZF
 fr() {
 	pushd ~/.local/share/remmina
-	subcmd=$(ls $PWD/* | fzf -e --select-1 --no-sort --query "$1")
+	subcmd=$(ls $PWD/* | fzf --ignore-case -e --select-1 --no-sort --query "$1")
 	cmd="remmina -c '"$subcmd"'"
 	# push the command into the history
 	print -S $cmd
-	echo $cmd
-	read -q "REPLY?Run command? "
-	echo ""
-	if [[ "$REPLY" == "y" ]]
-	then
-		eval $cmd > /dev/null 2>&1 &
-		disown
-	fi
+	eval $cmd > /dev/null 2>&1 &
+	disown
 	popd
 }
 
