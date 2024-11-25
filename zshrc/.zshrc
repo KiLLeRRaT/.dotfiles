@@ -594,29 +594,22 @@ aur-update-and-install-packages() {
 aur-update-build-outdated() {
 	pushd ~/source-aur > /dev/null
 
-	# aur-update-packages=(gfr |\
-	# 	grep behind |\
-	# 	cut -d':' -f1 |\
-	# 	sed 's|^\./||' |\
-	# 	sort |\
-	# 	fzf --header="Select packages to upgrade" --multi)
-	
-	# export AUR_UPDATE_PACKAGES=($(echo $(cat /tmp/aur.log | grep behind | cut -d':' -f1 | sed 's|^\./||' | sort)))
-	export AUR_UPDATE_PACKAGES=($(gfr |\
-	 	grep behind |\
-	 	cut -d':' -f1 |\
-	 	sed 's|^\./||' |\
-	 	sort |\
-	 	fzf --header="Select packages to upgrade" --multi)
-	)
+	touch /tmp/aur-update-packages.txt
 
-	# Build the packages using makepkg
-	for package in ${AUR_UPDATE_PACKAGES[@]}; do
+	gfr |\
+		grep behind |\
+		cut -d':' -f1 |\
+		sed 's|^\./||' |\
+		sort |\
+		fzf --header="Select packages to upgrade" --multi \
+	>> /tmp/aur-update-packages.txt
+
+	while read package; do
 		pushd $package
 		git rebase
 		makepkg -s --clean
 		popd
-	done
+	done < /tmp/aur-update-packages.txt
 
 	popd > /dev/null
 }
