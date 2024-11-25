@@ -400,14 +400,14 @@ fh() {
 
 # REMMINA USING THE CONNECTION FILE SELECTED USING FZF
 fr() {
-	pushd ~/.local/share/remmina
+	pushd -q ~/.local/share/remmina
 	subcmd=$(ls $PWD/* | fzf --ignore-case -e --select-1 --no-sort --query "$1")
 	cmd="remmina -c '"$subcmd"'"
 	# push the command into the history
 	print -S $cmd
 	eval $cmd > /dev/null 2>&1 &
 	disown
-	popd
+	popd -q
 }
 
 # fzf time zone time
@@ -415,7 +415,7 @@ alias ftz='TZ=$(timedatectl list-timezones | fzf) date'
 
 # fzf CBM bookmarks
 fcbm() {
-	pushd ~/scripts/Sandfield > /dev/null 2>&1 # We want to do this because there are other files we need in this location
+	pushd -q ~/scripts/Sandfield # We want to do this because there are other files we need in this location
 	./CBM-CentralBookmarksManager-export-textfiles.sh "$1"
 	popd -q
 }
@@ -568,7 +568,7 @@ ssh-with-password(){
 
 # ;fn_ssh albert 132
 aur-install() {
-	pushd ~/source-aur
+	pushd -q ~/source-aur
 	echo "Installing $1"
 	if [ ! -d $1 ]; then
 		git clone https://aur.archlinux.org/$1.git
@@ -578,11 +578,11 @@ aur-install() {
 		git pull
 	fi
 	makepkg --noconfirm -is --needed --clean
-	popd
+	popd -q
 }
 
 aur-update-and-install-packages() {
-	pushd ~/source-aur
+	pushd -q ~/source-aur
 	gfr |\
 		grep behind |\
 		cut -d':' -f1 |\
@@ -590,21 +590,21 @@ aur-update-and-install-packages() {
 		sort |\
 		fzf --header="Select packages to upgrade" --multi |\
 		xargs --no-run-if-empty -I {} bash -c "pushd {} && git rebase && makepkg -is --needed --noconfirm --clean"
-	popd
+	popd -q
 }
 
 aur-update-build-outdated() {
-	pushd ~/source-aur > /dev/null
+	pushd -q ~/source-aur
 
 	touch /tmp/aur-update-packages.txt
 
-	# gfr |\
-	# 	grep behind |\
-	# 	cut -d':' -f1 |\
-	# 	sed 's|^\./||' |\
-	# 	sort |\
-	# 	fzf --header="Select packages to upgrade" --multi \
-	# >> /tmp/aur-update-packages.txt
+	gfr |\
+		grep behind |\
+		cut -d':' -f1 |\
+		sed 's|^\./||' |\
+		sort |\
+		fzf --header="Select packages to upgrade" --multi \
+	>> /tmp/aur-update-packages.txt
 
 	while read packageLine; do
 		package=$(echo $packageLine | cut -d':' -f1)
