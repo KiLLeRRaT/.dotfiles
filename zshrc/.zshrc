@@ -142,6 +142,14 @@ export NOWT=$(date +"%Y%m%d%H%M%S")
 #		eval "$(pyenv init -)"
 # fi
 
+# COLORS
+GREEN="\033[0;32m"
+RED="\033[0;31m"
+YELLOW="\033[0;33m"
+BLUE="\033[0;34m"
+MAGENTA="\033[0;35m"
+RESET="\033[0m"
+
 oh-my-posh-agnoster() {
 	eval "$(oh-my-posh init zsh --config ~/.omp/themes/agnoster.minimal.omp.json)"
 }
@@ -409,9 +417,9 @@ alias ftz='TZ=$(timedatectl list-timezones | fzf) date'
 fcbm() {
 	pushd ~/scripts/Sandfield > /dev/null 2>&1 # We want to do this because there are other files we need in this location
 	./CBM-CentralBookmarksManager-export-textfiles.sh "$1"
-	popd > /dev/null 2>&1
+	popd -q
 }
-# alias fcbm='pushd ~/scripts/Sandfield > /dev/null 2>&1; ./CBM-CentralBookmarksManager-export-textfiles.sh; popd > /dev/null 2>&1'
+# alias fcbm='pushd ~/scripts/Sandfield > /dev/null 2>&1; ./CBM-CentralBookmarksManager-export-textfiles.sh; popd -q
 
 fn() {
 	local results=$(fzf --multi --preview 'bat --color=always {}')
@@ -590,43 +598,66 @@ aur-update-build-outdated() {
 
 	touch /tmp/aur-update-packages.txt
 
-	gfr |\
-		grep behind |\
-		cut -d':' -f1 |\
-		sed 's|^\./||' |\
-		sort |\
-		fzf --header="Select packages to upgrade" --multi \
-	>> /tmp/aur-update-packages.txt
+	# gfr |\
+	# 	grep behind |\
+	# 	cut -d':' -f1 |\
+	# 	sed 's|^\./||' |\
+	# 	sort |\
+	# 	fzf --header="Select packages to upgrade" --multi \
+	# >> /tmp/aur-update-packages.txt
 
-	while read package; do
-		pushd $package
-		git rebase
-		makepkg -s --clean
-		popd
+	while read packageLine; do
+		package=$(echo $packageLine | cut -d':' -f1)
+		built=$(echo $packageLine | grep ":built")
+
+		echo "Checking $package"
+
+		if [ -z "$built" ]; then
+		echo "Building $package"
+			pushd -q $package
+			git rebase
+			makepkg -s --clean
+			sed -i "s/$package:/$package:built/" /tmp/aur-update-packages.txt
+			popd -q
+		fi
 	done < /tmp/aur-update-packages.txt
 
-	popd > /dev/null
+	popd -q
 }
 
 aur-update-install-outdated() {
-	pushd ~/source-aur > /dev/null
-	if [ -z "$AUR_UPDATE_PACKAGES" ]; then
-		echo "No packages to update"
-		exit 0
-	fi
+	pushd -q ~/source-aur
 
 	echo "Installing the following packages:"
-	echo ${AUR_UPDATE_PACKAGES[@]}
-	for package in ${AUR_UPDATE_PACKAGES[@]}; do
-		pushd $package
-		# find the latest pkg.tar, and install
-		package=$(ls -t $package-*.pkg.tar | head -1 | sed 's|.pkg.tar||')
-		sudo pacman -U --needed --noconfirm $package-*.pkg.tar
-		# sudo pacman -U --needed --noconfirm $package-*.pkg.tar
-		popd
-	done
-	popd > /dev/null
-	unset AUR_UPDATE_PACKAGES
+	cat /tmp/aur-update-packages.txt | grep ":built" | cut -d':' -f1
+
+	while read packageLine; do
+		package=$(echo $packageLine | cut -d':' -f1)
+		built=$(echo $packageLine | grep ":built")
+		installed=$(echo $packageLine | grep ":installed")
+
+		if [ -z "$built" ]; then
+			echo "Package not built yet, skipping"
+			continue
+		fi
+
+		if [ -z "$installed" ]; then
+			echo "Installing $package"
+			pushd -q $package
+			packageFile=$(ls -t $package-*.pkg.tar | head -1)
+			echo "Package file: $packageFile"
+			sudo pacman -U --needed --noconfirm $packageFile
+			sed -i "s/$package:built/$package:built:installed/" /tmp/aur-update-packages.txt
+			popd -q
+		else
+			echo "Package already installed, skipping"
+		fi
+	done < /tmp/aur-update-packages.txt
+
+	echo "Successfully installed all packages, do you want to clear the list of packages? [y/N]"
+	read -sq "REPLY? " && rm /tmp/aur-update-packages.txt
+
+	popd -q
 }
 
 # alias feh-screenshots='feh --scale-down -d -S mtime ~/Pictures/screenshots'
