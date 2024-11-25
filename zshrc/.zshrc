@@ -603,7 +603,8 @@ aur-update-build-outdated() {
 		cut -d':' -f1 |\
 		sed 's|^\./||' |\
 		sort |\
-		fzf --header="Select packages to upgrade" --multi \
+		fzf --header="Select packages to upgrade" --multi |\
+		sed 's/$/:/' \
 	>> /tmp/aur-update-packages.txt
 
 	while read packageLine; do
