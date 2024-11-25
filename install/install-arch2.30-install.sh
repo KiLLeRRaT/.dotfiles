@@ -67,6 +67,7 @@ pacstrap -K /mnt base linux linux-lts linux-firmware \
 	less \
 	lightdm \
 	lightdm-slick-greeter \
+	lsof \
 	man \
 	mono \
 	mono-msbuild \
