@@ -13,4 +13,5 @@ progress.txt
 *.add.spl
 ssh/.ssh/*
 !ssh/.ssh/config
+!ssh/.ssh/allowed_signers
 !ssh/.ssh/*.pub
