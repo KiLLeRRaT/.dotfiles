@@ -46,3 +46,9 @@
 	enabled = true
 [fetch]
 	prune = true
+
+; [safe]
+; 	directory = *
+
+	; tally recursive stats for all repos
+	; fd -t d --max-depth=1 -x bash -c 'pushd "{}" > /dev/null;git shortlog -sn --all --since="1 Jan 2014";popd > /dev/null' | awk '{i[$2]+=$1} END{for(x in i){print i[x]" "x}}' | sort -nr
