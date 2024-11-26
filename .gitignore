@@ -11,3 +11,6 @@ alacritty/.config/alacritty/alacritty.yml
 alacritty/.config/alacritty/alacritty.toml
 progress.txt
 *.add.spl
+ssh/.ssh/*
+!ssh/.ssh/config
+!ssh/.ssh/*.pub
