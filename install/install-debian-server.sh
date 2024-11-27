@@ -1,9 +1,12 @@
 #!/bin/bash
 set -e
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Installing software\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+GREEN='\033[32m'
+RESET='${RESET}'
+
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Installing software${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 sudo apt install -y git && \
 sudo apt install -y curl && \
 sudo apt install -y stow && \
@@ -24,27 +27,27 @@ sudo apt install -y cmake
 [ -d ~/.local/bin ] || mkdir -p ~/.local/bin
 sudo ln -s $(which fdfind) /usr/bin/fd
 
-# echo -e "\033[32m ----------------------------------------\033[0m"
-# echo -e "\033[32m Configure SSH Keys\033[0m"
-# echo -e "\033[32m ----------------------------------------\033[0m"
+# echo -e "${GREEN}----------------------------------------${RESET}"
+# echo -e "${GREEN}Configure SSH Keys${RESET}"
+# echo -e "${GREEN}----------------------------------------${RESET}"
 # [ ! -d "~/.ssh" ] && ssh-keygen
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Change Shell to Zsh\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Change Shell to Zsh${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 chsh -s $(which zsh)
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Configure Git\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Configure Git${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 git config --global user.email "albert@gouws.org"
 git config --global user.name "Albert Gouws"
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Running stow\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Running stow${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 STOW_FOLDERS=nvim-lua,oh-my-posh,tmux,gitconfig,zshrc
 pushd ~/.dotfiles
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
@@ -61,10 +64,21 @@ do
 done
 popd
 
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Install Neovim${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
+pushd /tmp
+curl -LOJ https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+tar xvf nvim-linux64.tar.gz
+sudo cp nvim-linux64/bin/nvim /usr/local/bin
+sudo cp -r nvim-linux64/share/nvim /usr/share
+sudo cp -r nvim-linux64/lib/nvim /usr/lib
+popd
 
-# echo -e "\033[32m ----------------------------------------\033[0m"
-# echo -e "\033[32m Build Neovim from source\033[0m"
-# echo -e "\033[32m ----------------------------------------\033[0m"
+
+# echo -e "${GREEN}----------------------------------------${RESET}"
+# echo -e "${GREEN}Build Neovim from source${RESET}"
+# echo -e "${GREEN}----------------------------------------${RESET}"
 # mkdir -p ~/source-github
 # pushd ~/source-github
 # git clone https://github.com/neovim/neovim
@@ -78,24 +92,24 @@ popd
 sudo snap install neovim --classic
 
 
-# echo -e "\033[32m ----------------------------------------\033[0m"
-# echo -e "\033[32m Build fzf for use in Telescope\033[0m"
-# echo -e "\033[32m ----------------------------------------\033[0m"
+# echo -e "${GREEN}----------------------------------------${RESET}"
+# echo -e "${GREEN}Build fzf for use in Telescope${RESET}"
+# echo -e "${GREEN}----------------------------------------${RESET}"
 # pushd ~/.local/share/nvim/plugged/telescope-fzf-native.nvim
 # make
 # popd
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Install oh-my-posh\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Install oh-my-posh${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 chmod +x /usr/local/bin/oh-my-posh
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Install nvm to manage NodeJS\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Install nvm to manage NodeJS${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 # exec bash
 nvm install --lts

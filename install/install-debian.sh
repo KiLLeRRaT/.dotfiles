@@ -1,34 +1,39 @@
 #!/bin/bash
+set -e
+
+GREEN='\033[32m'
+RESET='\033[0m'
 
 pushd ~
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Adding Neovim package repository\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
-sudo add-apt-repository -y ppa:neovim-ppa/unstable
+
+# echo -e "${GREEN}----------------------------------------${RESET}"
+# echo -e "${GREEN}Adding Neovim package repository${RESET}"
+# echo -e "${GREEN}----------------------------------------${RESET}"
+# sudo add-apt-repository -y ppa:neovim-ppa/unstable
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Adding Alacritty package repository\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Adding Alacritty package repository${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 sudo add-apt-repository -y ppa:aslatter/ppa
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Updating Linux\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Updating Linux${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 sudo apt update
 sudo apt -y upgrade
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Installing software\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Installing software${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 sudo apt install -y git && \
 sudo apt install -y xrdp && \
 sudo apt install -y i3 && \
 sudo apt install -y curl && \
 sudo apt install -y stow && \
-sudo apt install -y neovim && \
+# sudo apt install -y neovim && \
 sudo apt install -y xclip && \
 sudo apt install -y ripgrep && \
 sudo apt install -y fd-find && \
@@ -44,24 +49,36 @@ sudo apt install -y ranger
 read -p 'Install apt-btrfs-snapshot? (y/n) ' -n 1 -r install_apt_btrfs_snapshot
 if [[ $install_apt_btrfs_snapshot =~ ^[Yy]$ ]]
 then
-		echo -e "\033[32m ----------------------------------------\033[0m"
-		echo -e "\033[32m Installing apt-btrfs-snapshot\033[0m"
-		echo -e "\033[32m ----------------------------------------\033[0m"
+		echo -e "${GREEN}----------------------------------------${RESET}"
+		echo -e "${GREEN}Installing apt-btrfs-snapshot${RESET}"
+		echo -e "${GREEN}----------------------------------------${RESET}"
 		sudo apt install -y apt-btrfs-snapshot python3-distutils
 fi
+
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Install Neovim${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
+pushd /tmp
+curl -LOJ https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+tar xvf nvim-linux64.tar.gz
+sudo cp nvim-linux64/bin/nvim /usr/local/bin
+sudo cp -r nvim-linux64/share/nvim /usr/share
+sudo cp -r nvim-linux64/lib/nvim /usr/lib
+popd
+
 
 # config fd
 [ -d ~/.local/bin ] || mkdir -p ~/.local/bin
 ln -s $(which fdfind) ~/.local/bin/fd
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Configure SSH Keys\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Configure SSH Keys${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 [ ! -d "~/.ssh" ] && ssh-keygen
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Configure Git\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Configure Git${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 git config --global user.email "albert@gouws.org"
 git config --global user.name "Albert Gouws"
 
@@ -83,9 +100,9 @@ git config --global user.name "Albert Gouws"
 # git clone https://github.com/KiLLeRRaT/.dotfiles.git
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Config xrdp to start with i3\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Config xrdp to start with i3${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 # EDIT /etc/xrdp/startwm.sh
 # COMMENT OUT THIS LINE
 #exec /bin/sh /etc/X11/Xsession
@@ -104,9 +121,9 @@ else
 fi
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Running stow\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Running stow${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 STOW_FOLDERS=bashrc,fonts,i3,inputrc,nvim-lua,oh-my-posh,tmux,dosbox,gitconfig,zshrc,alacritty
 pushd ~/.dotfiles
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
@@ -124,43 +141,43 @@ done
 popd
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Now install the VIM plugins\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo Installing Vim Plug
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-			 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-echo Running PlugInstall
-nvim --headless +PlugInstall +qall
+# echo -e "${GREEN}----------------------------------------${RESET}"
+# echo -e "${GREEN}Now install the VIM plugins${RESET}"
+# echo -e "${GREEN}----------------------------------------${RESET}"
+# echo Installing Vim Plug
+# sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+# 			 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+# echo Running PlugInstall
+# nvim --headless +PlugInstall +qall
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Build fzf for use in Telescope\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
-pushd ~/.local/share/nvim/plugged/telescope-fzf-native.nvim
-make
-popd
+# echo -e "${GREEN}----------------------------------------${RESET}"
+# echo -e "${GREEN}Build fzf for use in Telescope${RESET}"
+# echo -e "${GREEN}----------------------------------------${RESET}"
+# pushd ~/.local/share/nvim/plugged/telescope-fzf-native.nvim
+# make
+# popd
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Install oh-my-posh\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Install oh-my-posh${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 sudo chmod +x /usr/local/bin/oh-my-posh
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Install nvm to manage NodeJS\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Install nvm to manage NodeJS${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 exec bash
 nvm install --lts
 nvm use --lts
 
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Swap Control and Capslock keys\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Swap Control and Capslock keys${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 # FROM: https://askubuntu.com/a/418773
 # sudo vim /etc/default/keyboard
 # XKBOPTIONS="ctrl:swapcaps"
@@ -169,9 +186,9 @@ echo -e "\033[32m ----------------------------------------\033[0m"
 # PROBABLY TRY THIS IN THE FUTURE, SO THAT WE CAN KEEP CONTROL AS CONTROL AND MAKE CAPSLOCK CONTROL
 # TOO, https://askubuntu.com/a/418773
 
-echo -e "\033[32m ----------------------------------------\033[0m"
-echo -e "\033[32m Configure Touchpad\033[0m"
-echo -e "\033[32m ----------------------------------------\033[0m"
+echo -e "${GREEN}----------------------------------------${RESET}"
+echo -e "${GREEN}Configure Touchpad${RESET}"
+echo -e "${GREEN}----------------------------------------${RESET}"
 # FROM: https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
 sudo mkdir -p /etc/X11/xorg.conf.d && sudo tee <<'EOF' /etc/X11/xorg.conf.d/90-touchpad.conf 1> /dev/null
 Section "InputClass"
