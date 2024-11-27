@@ -28,23 +28,27 @@ sudo apt -y upgrade
 echo -e "${GREEN}----------------------------------------${RESET}"
 echo -e "${GREEN}Installing software${RESET}"
 echo -e "${GREEN}----------------------------------------${RESET}"
-sudo apt install -y git && \
-sudo apt install -y xrdp && \
-sudo apt install -y i3 && \
-sudo apt install -y curl && \
-sudo apt install -y stow && \
-# sudo apt install -y neovim && \
-sudo apt install -y xclip && \
-sudo apt install -y ripgrep && \
-sudo apt install -y fd-find && \
-sudo apt install -y feh && \
-sudo apt install -y build-essential && \
-sudo apt install -y alacritty && \
-sudo apt install -y timeshift && \
-sudo apt install -y tmux && \
-sudo apt install -y btop && \
-sudo apt install -y ranger
-# sudo apt install -y ncdu # NOT SURE IF THIS COMES WITH DEBIAN BASED SYSTEMS?
+
+sudo apt install -y \
+	alacritty \
+	btop \
+	build-essential \
+	curl \
+	fd-find \
+	feh \
+	git \
+	i3 \
+	ncdu \
+	ranger \
+	ripgrep \
+	stow \
+	timeshift \
+	tmux \
+	unzip \
+	xclip \
+	xrdp \
+	zip
+
 
 read -p 'Install apt-btrfs-snapshot? (y/n) ' -n 1 -r install_apt_btrfs_snapshot
 if [[ $install_apt_btrfs_snapshot =~ ^[Yy]$ ]]
@@ -62,8 +66,9 @@ pushd /tmp
 curl -LOJ https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 tar xvf nvim-linux64.tar.gz
 sudo cp nvim-linux64/bin/nvim /usr/local/bin
-sudo cp -r nvim-linux64/share/nvim /usr/share
+sudo cp -r nvim-linux64/share/* /usr/local/share
 sudo cp -r nvim-linux64/lib/nvim /usr/lib
+sudo chmod +x /usr/local/bin/nvim
 popd
 
 

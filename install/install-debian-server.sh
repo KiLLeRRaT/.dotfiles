@@ -7,21 +7,30 @@ RESET='${RESET}'
 echo -e "${GREEN}----------------------------------------${RESET}"
 echo -e "${GREEN}Installing software${RESET}"
 echo -e "${GREEN}----------------------------------------${RESET}"
-apt install -y git && \
-apt install -y curl && \
-apt install -y stow && \
-apt install -y xclip && \
-apt install -y ripgrep && \
-apt install -y fd-find && \
-apt install -y build-essential && \
-apt install -y tmux && \
-apt install -y btop && \
-apt install -y ranger && \
-apt install -y zsh && \
-apt install -y tree && \
-apt install -y bat && \
-apt install -y cmake
-# apt install -y ncdu # NOT SURE IF THIS COMES WITH DEBIAN BASED SYSTEMS?
+
+apt install -y \
+	alacritty \
+	bat \
+	btop \
+	build-essential \
+	cmake \
+	curl \
+	fd-find \
+	feh \
+	git \
+	i3 \
+	ncdu \
+	ranger \
+	ripgrep \
+	stow \
+	timeshift \
+	tmux \
+	tree \
+	unzip \
+	xclip \
+	xrdp \
+	zip \
+	zsh
 
 # config fd
 [ -d ~/.local/bin ] || mkdir -p ~/.local/bin
@@ -71,8 +80,9 @@ pushd /tmp
 curl -LOJ https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 tar xvf nvim-linux64.tar.gz
 cp nvim-linux64/bin/nvim /usr/local/bin
-cp -r nvim-linux64/share/nvim /usr/share
+cp -r nvim-linux64/share/* /usr/local/share
 cp -r nvim-linux64/lib/nvim /usr/lib
+chmod +x /usr/local/bin/nvim
 popd
 
 
@@ -89,7 +99,7 @@ popd
 # make install
 # popd
 # USE SNAP TO INSTALL NEOVIM INSTEAD
-snap install neovim --classic
+# snap install neovim --classic
 
 
 # echo -e "${GREEN}----------------------------------------${RESET}"
