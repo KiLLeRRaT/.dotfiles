@@ -11,6 +11,9 @@
 	bb = !~/.gitscripts/better-git-branch.sh
 	; commit-tally = shortlog -sn --all
 
+	; tally recursive stats for all repos in a directory
+	; fd -t d --max-depth=1 -x bash -c 'pushd "{}" > /dev/null;git shortlog -sn --all --since="1 Jan 2014";popd > /dev/null' | awk '{i[$2]+=$1} END{for(x in i){print i[x]" "x}}' | sort -nr
+
 	;history across branches, origin
 	habo = for-each-ref --sort=-committerdate refs/remotes/origin/ --format='%(color:blue)%(authordate:format:%Y-%m-%d %I:%M %p) %(color:green)%(align:25,left)%(authorname)%(end) %(color:red)%(refname:strip=3)'
 
@@ -47,8 +50,4 @@
 [fetch]
 	prune = true
 
-; [safe]
-; 	directory = *
-
-	; tally recursive stats for all repos
-	; fd -t d --max-depth=1 -x bash -c 'pushd "{}" > /dev/null;git shortlog -sn --all --since="1 Jan 2014";popd > /dev/null' | awk '{i[$2]+=$1} END{for(x in i){print i[x]" "x}}' | sort -nr
+[safe]
