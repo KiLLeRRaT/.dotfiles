@@ -7,25 +7,25 @@ RESET='${RESET}'
 echo -e "${GREEN}----------------------------------------${RESET}"
 echo -e "${GREEN}Installing software${RESET}"
 echo -e "${GREEN}----------------------------------------${RESET}"
-sudo apt install -y git && \
-sudo apt install -y curl && \
-sudo apt install -y stow && \
-sudo apt install -y xclip && \
-sudo apt install -y ripgrep && \
-sudo apt install -y fd-find && \
-sudo apt install -y build-essential && \
-sudo apt install -y tmux && \
-sudo apt install -y btop && \
-sudo apt install -y ranger && \
-sudo apt install -y zsh && \
-sudo apt install -y tree && \
-sudo apt install -y bat && \
-sudo apt install -y cmake
+apt install -y git && \
+apt install -y curl && \
+apt install -y stow && \
+apt install -y xclip && \
+apt install -y ripgrep && \
+apt install -y fd-find && \
+apt install -y build-essential && \
+apt install -y tmux && \
+apt install -y btop && \
+apt install -y ranger && \
+apt install -y zsh && \
+apt install -y tree && \
+apt install -y bat && \
+apt install -y cmake
 # apt install -y ncdu # NOT SURE IF THIS COMES WITH DEBIAN BASED SYSTEMS?
 
 # config fd
 [ -d ~/.local/bin ] || mkdir -p ~/.local/bin
-sudo ln -s $(which fdfind) /usr/bin/fd
+ln -s $(which fdfind) /usr/bin/fd
 
 # echo -e "${GREEN}----------------------------------------${RESET}"
 # echo -e "${GREEN}Configure SSH Keys${RESET}"
@@ -70,9 +70,9 @@ echo -e "${GREEN}----------------------------------------${RESET}"
 pushd /tmp
 curl -LOJ https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 tar xvf nvim-linux64.tar.gz
-sudo cp nvim-linux64/bin/nvim /usr/local/bin
-sudo cp -r nvim-linux64/share/nvim /usr/share
-sudo cp -r nvim-linux64/lib/nvim /usr/lib
+cp nvim-linux64/bin/nvim /usr/local/bin
+cp -r nvim-linux64/share/nvim /usr/share
+cp -r nvim-linux64/lib/nvim /usr/lib
 popd
 
 
@@ -89,7 +89,7 @@ popd
 # make install
 # popd
 # USE SNAP TO INSTALL NEOVIM INSTEAD
-sudo snap install neovim --classic
+snap install neovim --classic
 
 
 # echo -e "${GREEN}----------------------------------------${RESET}"
