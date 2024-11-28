@@ -296,13 +296,15 @@ fd-t() {
 #		fd -t f -g $1 --exec stat --printf='%Y\t%n\n' | sort -nr
 # }
 
-alias n-t="fd-t | cut -f 2 | head -1 | xargs -d '\n' nvim"
+# find most recently modified file matching the name, then open it in nvim, 
+# mnemonically neovim-time
+alias n-t="fd-t | cut -f2 | head -1 | xargs --no-run-if-empty -d'\n' nvim"
 
 # LIST PATHS OF OTHER ZSH SHELLS I HAVE OPEN
 lssh() {
 	ps au \
 		| awk '$11 == "-zsh" || $11 == "/bin/zsh" { print $2 }' \
-		| xargs pwdx \
+		| xargs --no-run-if-empty pwdx \
 		| awk '{ print $2 }' \
 		| sed -n "\|^${2}.*|p" \
 		| sort -u \
@@ -357,8 +359,12 @@ cdu() {
 }
 
 
+# fzf git checkout
 fgco() {
-	git branch --all --sort=-committerdate | fzf --height=~50 -e --select-1 --no-sort --query "$1" | sed 's/remotes\/origin\///' | xargs git checkout
+	git branch --all --sort=-committerdate |\
+		fzf --height=~50 -e --select-1 --no-sort --query "$1" |\
+		sed 's/remotes\/origin\///' |\
+		xargs --no-run-if-empty git checkout
 }
 
 # KILL USING FZF AS SELECTOR
@@ -421,13 +427,15 @@ fcbm() {
 }
 # alias fcbm='pushd ~/scripts/Sandfield > /dev/null 2>&1; ./CBM-CentralBookmarksManager-export-textfiles.sh; popd -q
 
-fn() {
-	local results=$(fzf --multi --preview 'bat --color=always {}')
-	[ -z $results ] && return
-	echo "$results"
-	echo "$results" | xargs -d '\n' nvim
-}
+# SUPERCEDED BY USING nvim **<tab> instead
+# fn() {
+# 	local results=$(fzf --multi --preview 'bat --color=always {}')
+# 	[ -z $results ] && return
+# 	echo "$results"
+# 	echo "$results" | xargs --no-run-if-empty -d'\n' nvim
+# }
 
+# fzf i3 key binds, and run the command
 fi3() {
 	cmd=$(sed '/^bindsym/!d' ~/.config/i3/config | fzf --query "$1" --select-1)
 	cmd=$(cut -f 3- -d' ' <<< $cmd)
@@ -544,11 +552,19 @@ npm-outdated-update() {
 	else
 		whatColumn=3
 	fi
-	npm --color=always outdated | fzf --header=$whatParam --multi --header-lines=1 --ansi | awk '{print $1"@"$'$whatColumn'}' | xargs --no-run-if-empty npm install
+	npm --color=always outdated |\
+		fzf --header=$whatParam --multi --header-lines=1 --ansi |\
+		awk '{print $1"@"$'$whatColumn'}' |\
+		xargs --no-run-if-empty npm install
 }
 
 dotnet-outdated-update() {
-	dotnet list package --outdated | sed -n '/Top-level Package/,$p' | sed 's/^.*> //' | fzf --header=Latest --multi --header-lines=1 --ansi | cut -f1 -d' ' | xargs -n 1 --no-run-if-empty dotnet add package
+	dotnet list package --outdated |\
+		sed -n '/Top-level Package/,$p' |\
+		sed 's/^.*> //' |\
+		fzf --header=Latest --multi --header-lines=1 --ansi |\
+		cut -f1 -d' ' |\
+		xargs -n1 --no-run-if-empty dotnet add package
 }
 
 ssh-remove-and-connect(){
