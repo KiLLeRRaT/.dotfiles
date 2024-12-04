@@ -649,6 +649,7 @@ aur-update-install-outdated() {
 	echo "Installing the following packages:"
 	cat /tmp/aur-update-packages.txt | grep ":built" | cut -d':' -f1
 
+	PKGS=()
 	while read packageLine; do
 		package=$(echo $packageLine | cut -d':' -f1)
 		built=$(echo $packageLine | grep ":built")
@@ -664,13 +665,16 @@ aur-update-install-outdated() {
 			pushd -q $package
 			packageFile=$(ls -t $package-*.pkg.tar | head -1)
 			echo "Package file: $packageFile"
-			sudo pacman -U --needed --noconfirm $packageFile
+			# sudo pacman -U --needed --noconfirm $packageFile
+			PKGS+=("$packageFile")
 			sed -i "s/$package:built/$package:built:installed/" /tmp/aur-update-packages.txt
 			popd -q
 		else
 			echo "Package already installed, skipping"
 		fi
 	done < /tmp/aur-update-packages.txt
+
+	sudo pacman -U --needed --noconfirm "${PKGS[@]}"
 
 	echo "Successfully installed all packages, do you want to clear the list of packages? [y/N]"
 	read -sq "REPLY? " && rm /tmp/aur-update-packages.txt
