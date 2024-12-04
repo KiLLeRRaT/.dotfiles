@@ -241,7 +241,7 @@ alias gba='git branch --all'
 alias gco='git checkout'
 alias gm='git merge'
 alias gt='git tag | sort -V | tail'
-alias gcd="cd $(git rev-parse --show-toplevel)"
+alias gcd="cd \$(git rev-parse --show-toplevel)"
 
 gfr() {
 	fd -t d --max-depth=1 -x \
