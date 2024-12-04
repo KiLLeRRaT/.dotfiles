@@ -49,5 +49,3 @@
 	enabled = true
 [fetch]
 	prune = true
-
-[safe]
