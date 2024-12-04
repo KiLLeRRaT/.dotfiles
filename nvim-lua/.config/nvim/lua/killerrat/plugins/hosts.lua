@@ -25,17 +25,16 @@ local iphone = {
 
 local plugins = {}
 plugins = {
-		["arch-agouws"] = {
-			["neorg"] = true,
-		},
-		["pappa"] = servers,
-		["sierraecho"] = servers,
-		["sierradelta"] = servers,
-		["proxmox5"] = servers,
-		["proxmox-backup-server"] = servers,
-		["kiosk-1"] = servers,
-		["SALDOCPROD1"] = servers,
-		["SALDOCDEV1"] = servers,
-		["localhost"] = iphone,
+		-- if not set, defaults to enabled = true
+	["arch-agouws"] = { },
+	["pappa"] = servers,
+	["sierraecho"] = servers,
+	["sierradelta"] = servers,
+	["proxmox5"] = servers,
+	["proxmox-backup-server"] = servers,
+	["kiosk-1"] = servers,
+	["SALDOCPROD1"] = servers,
+	["SALDOCDEV1"] = servers,
+	["localhost"] = iphone,
 }
 return plugins

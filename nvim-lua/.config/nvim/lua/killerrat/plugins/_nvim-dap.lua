@@ -1,5 +1,5 @@
-local p = "dap"; if (not require('killerrat.plugins._lazy-nvim').LazyHasPlugin(p)) then return end
-local dap, dapui = require(p), require("dapui")
+local p = "nvim-dap"; if (not require('killerrat.plugins._lazy-nvim').LazyHasPlugin(p)) then return end
+local dap, dapui = require("dap"), require("dapui")
 
 dap.adapters.coreclr = {
 	type = 'executable',
@@ -20,7 +20,6 @@ dap.configurations.cs = {
 		end,
 	},
 }
-
 
 require("nvim-dap-virtual-text").setup()
 -- require('dap-go').setup()
