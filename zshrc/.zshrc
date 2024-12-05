@@ -663,7 +663,7 @@ aur-update-install-outdated() {
 		if [ -z "$installed" ]; then
 			echo "Installing $package"
 			pushd -q $package
-			packageFile=$(ls -t $package-*.pkg.tar | head -1)
+			packageFile=$(ls -dt $PWD/$package-*.pkg.tar | head -1)
 			echo "Package file: $packageFile"
 			# sudo pacman -U --needed --noconfirm $packageFile
 			PKGS+=("$packageFile")
