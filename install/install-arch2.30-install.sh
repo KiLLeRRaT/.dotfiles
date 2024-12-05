@@ -118,6 +118,7 @@ pacstrap -K /mnt base linux linux-lts linux-firmware \
 	xdg-user-dirs \
 	xorg \
 	xorg-xinit \
+	xorg-xkill \
 	xorg-xrandr \
 	zathura zathura-pdf-poppler \
 	zip \
