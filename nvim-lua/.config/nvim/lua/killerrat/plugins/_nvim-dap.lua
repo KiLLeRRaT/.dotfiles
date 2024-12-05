@@ -8,16 +8,39 @@ dap.adapters.coreclr = {
 	args = {'--interpreter=vscode'}
 }
 
+-- dap.configurations.cs = {
+-- 	{
+-- 		type = "coreclr",
+-- 		name = "launch - netcoredbg",
+-- 		request = "launch",
+-- 		console = "integratedTerminal",
+-- 		program = function()
+-- 			return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+-- 			-- return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '', 'file')
+-- 		end,
+-- 	},
+-- }
+
 dap.configurations.cs = {
 	{
 		type = "coreclr",
-		name = "launch - netcoredbg",
-		request = "launch",
-		console = "integratedTerminal",
-		program = function()
-			return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
-			-- return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '', 'file')
+		name = "attach - netcoredbg",
+		request = "attach",
+		processId = function()
+			return require('dap.utils').pick_process({
+				filter = function(proc)
+					return vim.startswith(proc.name, vim.fn.getcwd())
+				end
+			})
 		end,
+		-- processId = function()
+		-- 	return tonumber(vim.fn.input('Process ID: '))
+		-- end,
+		-- console = "integratedTerminal",
+		-- program = function()
+		-- 	return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+		-- 	-- return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '', 'file')
+		-- end,
 	},
 }
 
@@ -55,6 +78,8 @@ vim.keymap.set("n", "<leader>uB", ":lua require'dap'.set_breakpoint(vim.fn.input
 
 -- -- vim.keymap.set("n", "<leader>lp", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
 
+vim.keymap.set("n", "<leader>ut", ":lua require'dap'.terminate()<CR>")
+vim.keymap.set("n", "<leader>ud", ":lua require'dap'.disconnect()<CR>")
 vim.keymap.set("n", "<leader>ur", ":lua require'dap'.repl.open()<CR>")
 vim.keymap.set("n", "<leader>uR", ":lua require'dap'.run_last()<CR>")
 
