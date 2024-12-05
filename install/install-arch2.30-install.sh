@@ -103,6 +103,7 @@ pacstrap -K /mnt base linux linux-lts linux-firmware \
 	stow \
 	sudo \
 	systemd \
+	tesseract-data-eng \
 	timeshift \
 	tmux \
 	tokei \
