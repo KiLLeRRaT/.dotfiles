@@ -35,6 +35,7 @@ read -n 1
 
 pacstrap -K /mnt base linux linux-lts linux-firmware \
 	alacritty \
+	as-tree \
 	aspnet-runtime \
 	base-devel \
 	bat \
