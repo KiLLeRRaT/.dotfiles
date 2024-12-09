@@ -24,6 +24,14 @@
 [mergetool "nvim"]
 	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 	; trustExitCode = true
+[mergetool "kdiff3"]
+	path = "kdiff3"
+	keepBackup = false
+	trustExitCode = true
+[difftool "kdiff3"]
+	cmd = kdiff3 $BASE $REMOTE $LOCAL
+	keepbackup = false
+	trustExitCode = true
 [core]
 	autocrlf = input
 	excludesFile = ~/.gitignore
