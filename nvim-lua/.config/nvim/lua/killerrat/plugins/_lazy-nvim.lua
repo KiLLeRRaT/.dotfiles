@@ -214,6 +214,9 @@ local lazyPlugins = {
 	{ 'mfussenegger/nvim-dap', cond = pluginCondForHost },
 	{ 'nvim-neotest/nvim-nio', cond = pluginCondForHost },
 
+	----------------------------------------
+	-- SQL
+	----------------------------------------
 	{ "kndndrj/nvim-dbee",
 		cond = pluginCondForHost,
 		dependencies = {
@@ -225,6 +228,13 @@ local lazyPlugins = {
 		config = function() require("dbee").setup() end,
 	}, -- https://github.com/kndndrj/nvim-dbee
 
+	{ "kristijanhusak/vim-dadbod-ui",
+		cond = pluginCondForHost,
+		dependencies = {
+			{ 'tpope/vim-dadbod', lazy = true },
+			{ 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true }, -- Optional
+		}
+	}, -- https://github.com/kristijanhusak/vim-dadbod-ui?tab=readme-ov-file
 }
 
 require("lazy").setup(lazyPlugins, {

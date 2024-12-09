@@ -10,6 +10,7 @@ local servers = {
 	["nvim-dap"] = false,
 	["nvim-nio"] = false,
 	["nvim-dbee"] = false,
+	["vim-dadbod-ui"] = false,
 }
 
 local iphone = {
@@ -21,6 +22,7 @@ local iphone = {
 	["nvim-nio"] = false,
 	["nvim-dbee"] = false,
 	["neorg"] = false,
+	["vim-dadbod-ui"] = false,
 }
 
 local plugins = {}

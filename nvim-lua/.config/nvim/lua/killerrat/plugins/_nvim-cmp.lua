@@ -169,3 +169,11 @@ cmp.setup {
 -- 	-- 	command = { "wn", "${label}", "-over" },
 -- 	-- },
 -- })
+
+-- Setup up vim-dadbod
+cmp.setup.filetype({ "sql" }, {
+	sources = {
+		{ name = "vim-dadbod-completion" },
+		{ name = "buffer" },
+	}
+})
