@@ -24,10 +24,10 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    width = 300
+		width = 400
 
     # The maximum height of a single notification, excluding the frame.
-    height = 300
+    height = (0, 300)
 
     # Position the notification in the top right corner
     origin = top-right
@@ -68,7 +68,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.). (X11 only)
-    transparency = 15
+    transparency = 35
 
     # Draw a line of "separator_height" pixel height between two
     # notifications.
@@ -435,4 +435,10 @@
 #    appname = "some_volume_notifiers"
 #    set_stack_tag = "volume"
 #
+
+[dnd]
+	skip_display = true
+
+
+
 # vim: ft=cfg

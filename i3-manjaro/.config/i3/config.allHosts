@@ -159,7 +159,7 @@ mode "$mode_notifications" {
 		bindsym Return mode "default"
 		bindsym Escape mode "default"
 }
-
+exec --no-startup-id dunstctl rule dnd disable
 
 # --------------------------------------------------
 # SCEENSHOT SOFTWARE
