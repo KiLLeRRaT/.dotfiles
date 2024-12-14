@@ -3,3 +3,5 @@ local p = "_vim-dadbod-ui"; if (not require('killerrat.plugins._lazy-nvim').Lazy
 -- jdbc:sqlserver://sqlserver.gouws.org;user=sa;password=your_password;database=your_db
 -- sqlserver://sqlserver.gouws.org;user=sa;password=your_password;database=your_db
 -- aur go-sqlcmd package is also needed
+
+-- server=sql.orca.kr.devlocal\sql2016;uid=OrcaWebUser;pwd=fr3ufouz;database=Orca
