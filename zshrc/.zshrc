@@ -770,6 +770,15 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
+# Completion Menu
+# FROM: https://thevaluable.dev/zsh-completion-guide-examples/
+zstyle ':completion:*' menu select
+# zstyle ':completion:*' menu select search
+zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
+
+
+
+
 # Navigate words with ctrl+arrow keys
 bindkey '^[Oc' forward-word																			#
 bindkey '^[Od' backward-word																		#
