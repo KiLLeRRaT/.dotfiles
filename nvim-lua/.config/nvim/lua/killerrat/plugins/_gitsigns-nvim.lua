@@ -17,14 +17,16 @@ require('gitsigns').setup{
 		end, {expr=true})
 
 		-- Actions
-		vim.keymap.set({'n', 'v'}, '<leader>ds', ':Gitsigns stage_hunk<CR>')
-		-- vim.keymap.set({'n', 'v'}, '<leader>dr', ':Gitsigns reset_hunk<CR>:%s/\r<cr>')
-		vim.keymap.set({'n', 'v'}, '<leader>dr', ':Gitsigns reset_hunk<CR>')
+		vim.keymap.set('n', '<leader>ds', gs.stage_hunk)
+		vim.keymap.set('n', '<leader>dr', gs.reset_hunk)
+		vim.keymap.set('v', '<leader>ds', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+		vim.keymap.set('v', '<leader>dr', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+
 		vim.keymap.set('n', '<leader>dS', gs.stage_buffer)
 		vim.keymap.set('n', '<leader>du', gs.undo_stage_hunk)
 		vim.keymap.set('n', '<leader>dR', gs.reset_buffer)
 		vim.keymap.set('n', '<leader>dp', gs.preview_hunk)
-		-- vim.keymap.set('n', '<leader>db', function() gs.blame_line{full=true} end)
+		vim.keymap.set('n', '<leader>dB', function() gs.blame_line{full=true} end)
 		vim.keymap.set("n", "<leader>db", gs.toggle_current_line_blame)
 		vim.keymap.set('n', '<leader>dd', gs.diffthis)
 		vim.keymap.set('n', '<leader>dD', function() gs.diffthis('~') end)
