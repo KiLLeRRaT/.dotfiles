@@ -261,7 +261,7 @@ vim.g.diagnostics_visible = true
 function _G.toggle_diagnostics()
 	if vim.g.diagnostics_visible then
 		vim.g.diagnostics_visible = false
-		vim.diagnostic.disable()
+		vim.diagnostic.enable(false)
 	else
 		vim.g.diagnostics_visible = true
 		vim.diagnostic.enable()
@@ -332,3 +332,8 @@ vim.keymap.set("n", "<leader>/", "mq0y$/\\V<c-r>\"<cr>`q")
 vim.cmd[[highlight LineHighlight ctermbg=lightgray guibg=#914c54]]
 vim.keymap.set("n", "<leader>v", ":call matchadd('LineHighlight', '\\%'.line('.').'l')<cr>")
 vim.keymap.set("n", "<leader>V", ":call clearmatches()<cr>")
+-- RUN LUA CODE
+-- FROM TJ DEVRIES: https://youtu.be/F1CQVXA5gf0?si=VXTLi4Mo9wB8dCD7&t=84
+vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
+vim.keymap.set("n", "<space>x", ":.lua<CR>")
+vim.keymap.set("v", "<space>x", ":lua<CR>")
