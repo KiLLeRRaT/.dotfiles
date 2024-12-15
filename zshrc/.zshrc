@@ -584,6 +584,25 @@ ssh-with-password(){
 }
 
 # ;fn_ssh albert 132
+
+aur() {
+	command=$1
+	# command can be install <PACKAGE>, update build, or update install
+	if [ $command = "install" ]; then
+		aur-install $2
+	elif [ $command = "update" ]; then
+		if [ $2 = "build" ]; then
+			aur-update-build-outdated
+		elif [ $2 = "install" ]; then
+			aur-update-install-outdated
+		else
+			echo "Invalid command, commands are: build|install"
+		fi
+	else
+		echo "Invalid command, commands are: install <AUR_PACKAGE>|update (build|install)"
+	fi
+}
+
 aur-install() {
 	pushd -q ~/source-aur
 	echo "Installing $1"
@@ -595,18 +614,6 @@ aur-install() {
 		git pull
 	fi
 	makepkg --noconfirm -is --needed --clean
-	popd -q
-}
-
-aur-update-and-install-packages() {
-	pushd -q ~/source-aur
-	gfr |\
-		grep behind |\
-		cut -d':' -f1 |\
-		sed 's|^\./||' |\
-		sort |\
-		fzf --header="Select packages to upgrade" --multi |\
-		xargs --no-run-if-empty -I {} bash -c "pushd {} && git rebase && makepkg -is --needed --noconfirm --clean"
 	popd -q
 }
 
