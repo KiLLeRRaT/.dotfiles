@@ -332,6 +332,10 @@ vim.keymap.set("n", "<leader>/", "mq0y$/\\V<c-r>\"<cr>`q")
 vim.cmd[[highlight LineHighlight ctermbg=lightgray guibg=#914c54]]
 vim.keymap.set("n", "<leader>v", ":call matchadd('LineHighlight', '\\%'.line('.').'l')<cr>")
 vim.keymap.set("n", "<leader>V", ":call clearmatches()<cr>")
+
+-- treesitter-scratchpad
+vim.keymap.set("n", "<localleader>ts", ":luafile ~/.config/nvim/lua/killerrat/treesitter-scratchpad/cs-public-methods.lua<cr>")
+
 -- RUN LUA CODE
 -- FROM TJ DEVRIES: https://youtu.be/F1CQVXA5gf0?si=VXTLi4Mo9wB8dCD7&t=84
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
