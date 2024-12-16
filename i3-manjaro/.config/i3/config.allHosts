@@ -204,8 +204,9 @@ bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # mnemonic: l for language
 # bindsym $mod+l exec --no-startup-id "pgrep -f 'python3 /usr/bin/nerd-dictation begin' && notify-send 'Stopping dictation' && nerd-dictation end || notify-send 'Starting dictation' && nerd-dictation begin"
+# bindsym $mod+l exec --no-startup-id "pgrep -f 'python3 /usr/bin/nerd-dictation begin' && notify-send 'Stopping dictation' && nerd-dictation end || notify-send 'Starting dictation' && nerd-dictation begin"
 # bindsym $mod+l exec --no-startup-id "~/.dotfiles/scripts/nerd-dictation-toggle.sh"
-bindsym $mod+l exec --no-startup-id "notify-send 'Starting dictation' && nerd-dictation begin"
+bindsym $mod+l exec --no-startup-id "notify-send --urgency=critical 'Starting dictation' && nerd-dictation begin"
 bindsym $mod+Shift+l exec --no-startup-id "notify-send 'Stopping dictation' && nerd-dictation end"
 # bindsym $mod+L exec --no-startup-id "nerd-dictation end"
 # bindsym $mod+l exec "pgrep -f 'python3 /usr/bin/nerd-dictation begin' && notify-send 'Stopping dictation' && nerd-dictation end || notify-send 'Starting dictation' && nerd-dictation begin"
@@ -581,6 +582,7 @@ bar {
 ## TOKYO NIGHT LIKE THEME
 ## BEGIN
 ## FROM: https://github.com/folke/tokyonight.nvim/blob/main/lua/tokyonight/colors.lua
+## M.default = {
 ## M.default = {
 ##   none = "NONE",
 ##   bg_dark = "#1f2335",
