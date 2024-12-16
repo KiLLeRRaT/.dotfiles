@@ -783,6 +783,9 @@ zstyle ':completion:*' menu select
 # zstyle ':completion:*' menu select search
 zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
 
+# Enable Shift-Tab to go back in completion menu
+# FROM: https://unix.stackexchange.com/a/722487
+bindkey '^[[Z' reverse-menu-complete
 
 
 
