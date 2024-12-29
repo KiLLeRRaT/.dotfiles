@@ -10,6 +10,7 @@ fi
 
 sudo docker run -d \
 	--name nvim-docker \
+	-e TZ=Pacific/Auckland \
 	-v ~/source:/root/source \
 	-v ~/notes:/root/notes \
 	-v ~/.dotfiles:/root/.dotfiles-phy \
