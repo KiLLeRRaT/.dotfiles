@@ -12,5 +12,5 @@ require('whitespace-nvim').setup({
 
 -- remove trailing whitespace with a keybinding
 -- vim.keymap.set("n", "<leader>=w", [[<cmd>lua require('whitespace-nvim').trim()<CR>]], { silent = true }) -- NOT SURE HOW TO SILENCE THE ERROR IF THERE IS NO WHITESPACE IN THE FILE
-vim.keymap.set("n", "<leader>=w", ":%s/\\s\\+$//<cr>")
+vim.keymap.set("n", "<leader>=w", "mp:%s/\\s\\+$//<cr>`p")
 
