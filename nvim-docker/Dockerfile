@@ -11,42 +11,46 @@ sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/g' /etc/pacman.conf
 RUN pacman -Syu --noconfirm
 
 RUN pacman -S --noconfirm git \
-	bat \
-	less \
-	wget \
-	curl \
-	stow \
-	neovim \
-	xclip \
-	ripgrep \
-	fd \
-	tmux \
-	btop \
-	unzip \
-	zip \
-	zoxide \
-	python-pip \
 	aws-cli \
+	bat \
+	btop \
+	clang \
+	cmake \
+	curl \
 	dnsutils \
-	sshfs \
-	vifm \
-	ranger \
-	nuget \
+	dotnet-sdk \
+	fakeroot \
+	fd \
+	fzf \
+	gcc \
+	gcc \
+	jq \
+	less \
+	make \
 	mono \
 	mono-msbuild \
-	dotnet-sdk \
-	jq \
-	yq \
-	zsh \
-	gcc \
-	make \
-	openssh \
-	upterm \
-	fzf \
 	ncdu \
+	neovim \
+	netcoredbg \
 	nginx \
-	cmake gcc \
-	fakeroot
+	nuget \
+	openssh \
+	python-pip \
+	ranger \
+	ripgrep \
+	sshfs \
+	stow \
+	sudo \
+	tmux \
+	unzip \
+	upterm \
+	vifm \
+	wget \
+	xclip \
+	yq \
+	zip \
+	zoxide \
+	zsh
 
 # RUN pamac build xsp mono-basic --no-confirm
 
