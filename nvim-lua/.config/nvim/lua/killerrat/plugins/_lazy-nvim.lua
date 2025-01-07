@@ -41,6 +41,11 @@ local lazyPlugins = {
 	----------------------------------------
 		-- TOOLS
 	----------------------------------------
+	{
+		"ibhagwan/fzf-lua",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {}
+	}, 																									-- https://github.com/ibhagwan/fzf-lua
 	{ 'johnfrankmorgan/whitespace.nvim'	},
 	{ 'nvim-telescope/telescope.nvim' },								-- https://github.com/nvim-telescope/telescope.nvim,
 	{ 'nvim-telescope/telescope-fzf-native.nvim',
