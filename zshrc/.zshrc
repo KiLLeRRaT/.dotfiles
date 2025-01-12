@@ -701,6 +701,11 @@ feh-screenshots() {
 		~/Pictures/screenshots
 }
 
+feh-clipboard-base64() {
+	data=$(echo "$(xclip -o -selection clipboard)")
+	data=$(sed 's/^"\(.*\)"$/\1/' <<< $data) # delete surrounding quotes from Chrome
+	echo $data | base64 --decode | feh -Z -
+}
 
 # alias hf='history 0 | cut -c 8- | fzf -e'
 
