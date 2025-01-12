@@ -42,6 +42,10 @@ local lazyPlugins = {
 		-- TOOLS
 	----------------------------------------
 	{
+		"sphamba/smear-cursor.nvim",
+		opts = {},
+	},
+	{
 		"ibhagwan/fzf-lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {}
