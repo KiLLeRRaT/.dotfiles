@@ -60,24 +60,27 @@ cmp.setup {
 
 
 
-
-		-- FROM: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
-		-- ['<Tab>'] = cmp.mapping.select_next_item(),
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				print("nvim-cmp: cmd.visible() is true")
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				print("nvim-cmp: luasnip.expand_or_jumpable() is true")
-				luasnip.expand_or_jump()
-			elseif has_words_before() then
-				print("nvim-cmp: has_words_before() is true")
-				cmp.complete()
-			else
-				print("nvim-cmp: fallback() is true")
-				fallback()
-			end
-		end, { "i", "s" }),
+		-- THIS SEEMS TO TRIP OUT TELESCOPES TAB KEY SOMEHOW..... JUST TESTING TO SEE IF ITS TRUE, 11
+		-- Jan 2025
+		-- -- FROM: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
+		-- -- ['<Tab>'] = cmp.mapping.select_next_item(),
+		-- ["<Tab>"] = cmp.mapping(function(fallback)
+		-- 	if cmp.visible() then
+		-- 		print("nvim-cmp: cmd.visible() is true")
+		-- 		cmp.select_next_item()
+		-- 	elseif luasnip.expand_or_jumpable() then
+		-- 		print("nvim-cmp: luasnip.expand_or_jumpable() is true")
+		-- 		luasnip.expand_or_jump()
+		-- 	elseif has_words_before() then
+		-- 		print("nvim-cmp: has_words_before() is true")
+		-- 		cmp.complete()
+		-- 	else
+		-- 		print("nvim-cmp: fallback() is true")
+		-- 		fallback()
+		-- 	end
+		-- end, { "i", "s" }),
+-- THIS SEEMS TO TRIP OUT TELESCOPES TAB KEY SOMEHOW..... JUST TESTING TO SEE IF ITS TRUE, 11
+-- Jan 2025
 
 		-- FROM: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
 		-- ['<S-Tab>'] = cmp.mapping.select_prev_item(),
