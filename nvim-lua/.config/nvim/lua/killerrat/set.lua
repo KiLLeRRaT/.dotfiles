@@ -171,3 +171,15 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	group = vim.api.nvim_create_augroup("set_i3config_BufWritePost", { clear = true })
 })
 
+-- GENERATE FORTUNE FILE WHEN SAVING ~/notes/neorg/work/other/quotes.norg
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = {
+		"**/notes/neorg/work/other/quotes.norg"
+	},
+	callback = function()
+		vim.cmd [[!~/notes/neorg/work/other/quotes-generate-fortune-dat.sh]]
+		print("quotes-generate-fortune-dat.sh called!")
+	end,
+	group = vim.api.nvim_create_augroup("set_quotesGenerateFortune_BufWritePost", { clear = true })
+})
+
