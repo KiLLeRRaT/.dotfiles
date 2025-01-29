@@ -9,6 +9,7 @@
 	adog = log --all --decorate --oneline --graph
 	dog = log --decorate --oneline --graph
 	bb = !~/.gitscripts/better-git-branch.sh
+	bbr = !~/.gitscripts/better-git-branch-remote.sh
 	; commit-tally = shortlog -sn --all
 
 	; tally recursive stats for all repos in a directory
