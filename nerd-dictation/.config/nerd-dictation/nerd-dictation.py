@@ -6,6 +6,7 @@ substitutions = [
     ('period', '.'),
     ('comma', ','),
     ('new line', '\r'),
+    ('newline', '\r'),
     ('dash', '-'),
     ('back slash', '\\'),
     ('forward slash', '/'),
