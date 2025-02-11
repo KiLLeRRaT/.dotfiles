@@ -1,3 +1,4 @@
+
 local lsp_symbols = {
 	Text = " 	(Text) ",
 	Method = " 	(Method)",
@@ -101,7 +102,12 @@ cmp.setup {
 		-- FROM: https://github.com/community/community/discussions/29817#discussioncomment-3583667
 		-- ALSO SEE the copilot lua config file!
 		['<C-Y>'] = cmp.mapping(function(fallback)
-			vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)), 'n', true)
+			-- Copilot.vim
+			-- vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)), 'n', true)
+
+			-- Copilot.lua
+			-- FROM: https://github.com/zbirenbaum/copilot.lua/issues/91#issuecomment-1345190310
+			require("copilot.suggestion").accept()
 		end)
 	},
 	sources = {

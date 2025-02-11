@@ -17,7 +17,10 @@ require("killerrat.plugins._vim-fugitive")
 -- require("killerrat.plugins._mini-comment")
 require("killerrat.plugins._nvim-ts-context-commentstring")
 require("killerrat.plugins._substitute-nvim")
-require("killerrat.plugins._copilot")
+
+-- require("killerrat.plugins._copilot")
+require("killerrat.plugins._copilot-lua")
+
 require("killerrat.plugins._switch-vim")
 require("killerrat.plugins._lualine-nvim")
 -- require("killerrat.plugins._bufferline-nvim")

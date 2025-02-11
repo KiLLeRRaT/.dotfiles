@@ -113,7 +113,13 @@ local lazyPlugins = {
 	{ 'JoosepAlviste/nvim-ts-context-commentstring' },			-- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
 
 	{ 'gbprod/substitute.nvim' },											-- https://github.com/gbprod/substitute.nvim
-	{ 'github/copilot.vim' },													-- https://github.com/github/copilot.vim
+
+	-- { 'github/copilot.vim' },													-- https://github.com/github/copilot.vim
+	{ "zbirenbaum/copilot.lua",
+	  cmd = "Copilot",
+		event = "InsertEnter",
+	},													-- https://github.com/zbirenbaum/copilot.lua
+
 	-- " SWITCH TO OPPOSITE WORD, E.G. TRUE -> FALSE, etc.
 	{ 'AndrewRadev/switch.vim' },											-- https://github.com/AndrewRadev/switch.vim
 	{ 'nvim-lualine/lualine.nvim' },										-- https://github.com/nvim-lualine/lualine.nvim

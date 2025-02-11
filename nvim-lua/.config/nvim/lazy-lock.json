@@ -9,7 +9,7 @@
   "cmp-nvim-lsp-signature-help": { "branch": "main", "commit": "031e6ba70b0ad5eee49fd2120ff7a2e325b17fa7" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },
-  "copilot.vim": { "branch": "release", "commit": "87038123804796ca7af20d1b71c3428d858a9124" },
+  "copilot.lua": { "branch": "master", "commit": "30321e33b03cb924fdcd6a806a0dc6fa0b0eafb9" },
   "d2-vim": { "branch": "master", "commit": "981c87dccb63df2887cc41b96e84bf550f736c57" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "flash.nvim": { "branch": "main", "commit": "f899265876ecdcf7352dbc9f0adf87068cedefbb" },
