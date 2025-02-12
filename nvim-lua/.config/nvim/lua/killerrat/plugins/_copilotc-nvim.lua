@@ -1,0 +1,6 @@
+-- require('CopilotChat').setup({
+--   -- highlight_headers = false,
+--   -- separator = '---',
+--   -- error_header = '> [!ERROR] Error',
+--   -- -- rest of your config
+-- })

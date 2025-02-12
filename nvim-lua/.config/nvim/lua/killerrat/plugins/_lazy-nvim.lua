@@ -113,12 +113,77 @@ local lazyPlugins = {
 	{ 'JoosepAlviste/nvim-ts-context-commentstring' },			-- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
 
 	{ 'gbprod/substitute.nvim' },											-- https://github.com/gbprod/substitute.nvim
-
 	-- { 'github/copilot.vim' },													-- https://github.com/github/copilot.vim
 	{ "zbirenbaum/copilot.lua",
 	  cmd = "Copilot",
 		event = "InsertEnter",
 	},													-- https://github.com/zbirenbaum/copilot.lua
+	-- {
+	-- 	{
+	-- 		"CopilotC-Nvim/CopilotChat.nvim",
+	-- 		dependencies = {
+	-- 			{ "zbirenbaum/copilot.lua" }, -- or zbirenbaum/copilot.lua
+	-- 			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+	-- 		},
+	-- 		-- build = "make tiktoken", -- Only on MacOS or Linux
+	-- 		-- opts = {
+	-- 		-- 	-- See Configuration section for options
+	-- 		-- },
+	-- 		-- See Commands section for default commands if you want to lazy load on them
+	-- 	},
+	-- },																									-- https://github.com/CopilotC-Nvim/CopilotChat.nvim
+	{
+		"yetone/avante.nvim",
+		event = "VeryLazy",
+		lazy = false,
+		version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+		build = "make",
+		dependencies = {
+			"stevearc/dressing.nvim",
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			--- The below dependencies are optional,
+			-- "echasnovski/mini.pick", -- for file_selector provider mini.pick
+			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+			"ibhagwan/fzf-lua", -- for file_selector provider fzf
+			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+			"zbirenbaum/copilot.lua", -- for providers='copilot'
+			-- {
+			-- 	-- Make sure to set this up properly if you have lazy=true
+			-- 	'MeanderingProgrammer/render-markdown.nvim',
+			-- 	opts = {
+			-- 		file_types = { "markdown", "Avante" },
+			-- 	},
+			-- 	ft = { "markdown", "Avante" },
+			-- },
+		},
+	},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	-- " SWITCH TO OPPOSITE WORD, E.G. TRUE -> FALSE, etc.
 	{ 'AndrewRadev/switch.vim' },											-- https://github.com/AndrewRadev/switch.vim

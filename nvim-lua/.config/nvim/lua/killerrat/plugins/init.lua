@@ -20,6 +20,8 @@ require("killerrat.plugins._substitute-nvim")
 
 -- require("killerrat.plugins._copilot")
 require("killerrat.plugins._copilot-lua")
+-- require("killerrat.plugins._copilotc-nvim")
+require("killerrat.plugins._avante")
 
 require("killerrat.plugins._switch-vim")
 require("killerrat.plugins._lualine-nvim")
