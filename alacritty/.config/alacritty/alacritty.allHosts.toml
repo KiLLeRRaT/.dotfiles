@@ -207,6 +207,16 @@ key = "."
 mods = "Alt"
 
 [[keyboard.bindings]]
+chars = "\u001B`"
+key = "`"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001B-"
+key = "-"
+mods = "Alt"
+
+[[keyboard.bindings]]
 chars = "\u001BA"
 key = "A"
 mods = "Alt|Shift"
