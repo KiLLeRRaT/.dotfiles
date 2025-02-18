@@ -279,7 +279,22 @@ local lazyPlugins = {
 		cmd = "TSPlaygroundToggle"
 	},
 	-- goto definition on decompiled sources
-	{ 'Hoffs/omnisharp-extended-lsp.nvim' },
+	-- { 'Hoffs/omnisharp-extended-lsp.nvim' },
+	{
+		"seblyng/roslyn.nvim",
+		ft = { "cs", "razor", "vb" },
+		dependencies = {
+			{
+				-- By loading as a dependencies, we ensure that we are available to set
+				-- the handlers for roslyn
+				'tris203/rzls.nvim',
+				config = function()
+					---@diagnostic disable-next-line: missing-fields
+					require('rzls').setup {}
+				end,
+			},
+		}
+	},
 
 	----------------------------------------
 	-- DEBUGGERS

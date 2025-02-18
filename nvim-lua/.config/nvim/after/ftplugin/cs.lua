@@ -6,4 +6,4 @@ vim.opt_local.foldlevel = 99
 -- ALSO SEE: https://neovim.io/doc/user/indent.html
 vim.cmd[[setlocal cinoptions=(1s,J1]]
 
-vim.keymap.set("n", "gd", ":lua require('omnisharp_extended').telescope_lsp_definitions()<cr>")
+-- vim.keymap.set("n", "gd", ":lua require('omnisharp_extended').telescope_lsp_definitions()<cr>")

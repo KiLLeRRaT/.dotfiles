@@ -124,43 +124,43 @@ vim.api.nvim_create_autocmd("FileType",{
 		}
 
 
-		-- CHECK THE CSPROJ OR SOMETHING ELSE TO CONFIRM IT'S .NET FRAMEWORK OR .NET CORE PROJECT
-		local frameworkType = getFrameworkType()
-
-		-- NASTY HACK TO GET WIN32 WORKING
-		if vim.fn.has('win32') then
-			frameworkType = "netcore"
-		end
-
-		if frameworkType == "netframework" then
-			print("Found a .NET Framework project, starting .NET Framework OmniSharp")
-			require'lspconfig'.omnisharp_mono.setup {
-				-- enable_decompilation_support = true,
-				handlers = {
-					["textDocument/definition"] = require('omnisharp_extended').handler,
-				},
-				-- organize_imports_on_format = true,
-				settings = settings,
-				on_attach = on_attach,
-			}
-			vim.g.dotnetlsp = "omnisharp_mono"
-			vim.cmd('LspStart omnisharp_mono')
-		elseif frameworkType == "netcore" then
-			print("Found a .NET Core project, starting .NET Core OmniSharp")
-			require'lspconfig'.omnisharp.setup {
-				-- enable_decompilation_support = true,
-				handlers = {
-					["textDocument/definition"] = require('omnisharp_extended').handler,
-				},
-				-- organize_imports_on_format = true,
-				settings = settings,
-				on_attach = on_attach,
-			}
-			vim.g.dotnetlsp = "omnisharp"
-			vim.cmd('LspStart omnisharp')
-		else
-			return
-		end
+		-- -- CHECK THE CSPROJ OR SOMETHING ELSE TO CONFIRM IT'S .NET FRAMEWORK OR .NET CORE PROJECT
+		-- local frameworkType = getFrameworkType()
+		--
+		-- -- NASTY HACK TO GET WIN32 WORKING
+		-- if vim.fn.has('win32') then
+		-- 	frameworkType = "netcore"
+		-- end
+		--
+		-- if frameworkType == "netframework" then
+		-- 	print("Found a .NET Framework project, starting .NET Framework OmniSharp")
+		-- 	require'lspconfig'.omnisharp_mono.setup {
+		-- 		-- enable_decompilation_support = true,
+		-- 		handlers = {
+		-- 			["textDocument/definition"] = require('omnisharp_extended').handler,
+		-- 		},
+		-- 		-- organize_imports_on_format = true,
+		-- 		settings = settings,
+		-- 		on_attach = on_attach,
+		-- 	}
+		-- 	vim.g.dotnetlsp = "omnisharp_mono"
+		-- 	vim.cmd('LspStart omnisharp_mono')
+		-- elseif frameworkType == "netcore" then
+		-- 	print("Found a .NET Core project, starting .NET Core OmniSharp")
+		-- 	require'lspconfig'.omnisharp.setup {
+		-- 		-- enable_decompilation_support = true,
+		-- 		handlers = {
+		-- 			["textDocument/definition"] = require('omnisharp_extended').handler,
+		-- 		},
+		-- 		-- organize_imports_on_format = true,
+		-- 		settings = settings,
+		-- 		on_attach = on_attach,
+		-- 	}
+		-- 	vim.g.dotnetlsp = "omnisharp"
+		-- 	vim.cmd('LspStart omnisharp')
+		-- else
+		-- 	return
+		-- end
 	end,
 	group = vim.api.nvim_create_augroup("_nvim-lspconfig.lua.filetype.csharp", { clear = true })
 })
