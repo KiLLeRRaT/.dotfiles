@@ -35,7 +35,6 @@ read -n 1
 
 pacstrap -K /mnt base linux linux-lts linux-firmware \
 	alacritty \
-	as-tree \
 	aspnet-runtime \
 	base-devel \
 	bat \
@@ -47,7 +46,7 @@ pacstrap -K /mnt base linux linux-lts linux-firmware \
 	curl \
 	dhcpcd \
 	dmenu \
-	docker docker-compose docker-scan \
+	docker docker-compose \
 	dosbox \
 	dotnet-runtime \
 	dotnet-sdk \
