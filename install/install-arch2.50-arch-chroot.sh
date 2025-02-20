@@ -121,6 +121,7 @@ installAurPackage otf-san-francisco-mono
 installAurPackage pa-applet-git
 installAurPackage dracula-gtk-theme
 installAurPackage dracula-icons-git
+installAurPackage as-tree
 
 arch-chroot /mnt pacman -Sy --noconfirm --needed python-dbus python-setuptools gtksourceview3
 installAurPackage snapper-gui-git
