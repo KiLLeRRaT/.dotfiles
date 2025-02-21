@@ -10,7 +10,7 @@ dotfiles for Linux, MacOS, and Windows in here.
 Installing arch using archinstall:
 ```bash
 # Points at Github using a shortener
-curl -L https://k.gouws.org/archinstall | bash
+curl -L https://k.gouws.org/install-arch | bash
 ```
 Then run the scripts in order:
 ```bash
