@@ -811,6 +811,53 @@ bindsym $mod+XF86AudioLowerVolume exec --no-startup-id "~/.dotfiles/hosts/asus-t
 # bindsym $mod+XF86PowerOff exec onboard
 # </config>
 
+# <config hostname="arch-i5-6400">
+# set $screenleft DP-0
+# set $screenmiddle HDMI-1
+# set $screenright HDMI-0
+
+# font xft:SF Pro Display 11
+# 󰭹 chat
+
+# FROM: https://github.com/betterlockscreen/betterlockscreen
+# betterlockscreen -u ~/.dotfiles/images
+exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
+exec --no-startup-id xfce4-power-manager
+exec_always --no-startup-id ff-theme-util
+exec_always --no-startup-id fix_xcursor
+# TURN ON NUMLOCK USING numlockx LIBRARY
+exec --no-startup-id numlockx
+exec --no-startup-id pipewire-pulse
+exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
+# exec --no-startup-id pa-applet
+exec --no-startup-id emote # ctrl + alt + e
+
+# # RESTORE LAYOUTS
+# exec --no-startup-id i3-msg 'workspace $ws1; append_layout ~/.config/i3/workspaces/arch-agouws/ws-1.json'
+# exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/arch-agouws/ws-2.json'
+# exec --no-startup-id i3-msg 'workspace $ws3; append_layout ~/.config/i3/workspaces/arch-agouws/ws-3.json'
+# exec --no-startup-id i3-msg 'workspace $ws4; append_layout ~/.config/i3/workspaces/arch-agouws/ws-4.json'
+# exec --no-startup-id i3-msg 'workspace $ws5; append_layout ~/.config/i3/workspaces/arch-agouws/ws-5.json'
+# exec --no-startup-id i3-msg 'workspace $ws6; append_layout ~/.config/i3/workspaces/arch-agouws/ws-6.json'
+# exec --no-startup-id i3-msg 'workspace $ws7; append_layout ~/.config/i3/workspaces/arch-agouws/ws-7.json'
+# exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/arch-agouws/ws-8.json'
+# exec --no-startup-id i3-msg 'workspace $ws9; append_layout ~/.config/i3/workspaces/arch-agouws/ws-9.json'
+
+# exec --no-startup-id i3-msg 'workspace $ws9; append_layout ~/.config/i3/workspaces/arch-agouws/ws-9.json'
+# assign [class="Brave"] $ws8
+# exec --no-startup-id i3-msg 'workspace $ws9; exec brave --profile-directory=Default'
+# exec --no-startup-id i3-msg 'workspace $ws8; exec brave --profile-directory=Profile\ 1'
+
+# exec --no-startup-id "brave --profile-directory=Default"
+# exec --no-startup-id "brave --profile-directory=Profile\ 1"
+# exec --no-startup-id "1password"
+# exec --no-startup-id "spotify"
+# exec --no-startup-id "google-chat-linux"
+# exec --no-startup-id "alacritty -e tmux"
+# exec --no-startup-id "alacritty -e zsh -c 'tmux a || tmux'"
+# exec --no-startup-id i3-msg 'workspace $ws3; exec alacritty -e zsh -c "tmux a -t Work_Build"'
+# </config>
 # <config hostname="arch-agouws">
 set $screenleft DP-0
 set $screenmiddle HDMI-1

@@ -116,6 +116,21 @@ disk "/mnt/data/" {
 # 	prefix_type = binary
 # }
 # </config>
+# <config hostname="arch-i5-6400">
+order += "disk /mnt/data/"
+order += "ethernet enp0s31f6"
+ethernet enp0s31f6 {
+	format_up = "<span color='white'> 󰈀 %ip </span>"
+		format_down = " no 󰈀 "
+}
+disk "/mnt/data/" {
+	format = "d⛁ %avail "
+	format_not_mounted = "<span color='red'> d⛁ not mounted </span>"
+	low_threshold = 10
+	threshold_type = percentage_avail
+	prefix_type = binary
+}
+# </config>
 # <config hostname="arch-delllatitude">
 # order += "disk /mnt/data/"
 order += "ethernet wlan0"
