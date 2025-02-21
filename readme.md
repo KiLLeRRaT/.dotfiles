@@ -7,7 +7,7 @@ dotfiles for Linux, MacOS, and Windows in here.
 
 ## Linux
 ### Arch
-Installing arch using archinstall:
+Installing arch using my own home made script:
 ```bash
 # Points at Github using a shortener
 curl -L https://k.gouws.org/install-arch | bash
@@ -20,21 +20,21 @@ Then run the scripts in order:
 ./install-arch2.50-arch-chroot.sh
 ```
 
-### Debian Server
+### Debian based server
 ```bash
     curl -LOJ https://k.gouws.org/install-debian-server
     chmod u+x install-debian-server
     ./install-debian-server
 ```
 
-### Debian
+### Debian based desktop
 ```bash
     curl -LOJ https://k.gouws.org/install-debian
     chmod u+x install-debian
     ./install-debian
 ```
 
-### Neovim
+### Neovim from tar
 ```bash
     curl -L https://k.gouws.org/install-neovim | bash
 ```
