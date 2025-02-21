@@ -9,7 +9,8 @@ dotfiles for Linux, MacOS, and Windows in here.
 ### Arch
 Installing arch using archinstall:
 ```bash
-curl -L https://u.gouws.org/install/install-arch2-bootstrap.sh | bash
+# Points at Github using a shortener
+curl -L https://k.gouws.org/archinstall | bash
 ```
 Then run the scripts in order:
 ```bash
@@ -21,16 +22,21 @@ Then run the scripts in order:
 
 ### Debian Server
 ```bash
-    curl -LOJ https://u.gouws.org/install-debian-server.sh
-    chmod u+x install-arch.sh
-    ./install-arch.sh
+    curl -LOJ https://k.gouws.org/install-debian-server
+    chmod u+x install-debian-server
+    ./install-debian-server
 ```
 
 ### Debian
 ```bash
-    curl -LOJ https://u.gouws.org/install-debian.sh
-    chmod u+x install-arch.sh
-    ./install-arch.sh
+    curl -LOJ https://k.gouws.org/install-debian
+    chmod u+x install-debian
+    ./install-debian
+```
+
+### Neovim
+```bash
+    curl -L https://k.gouws.org/install-neovim | bash
 ```
 
 # SSH Auth using Yubikey
