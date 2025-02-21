@@ -70,6 +70,16 @@ vim.opt.scrolloff = 5
 -- IF after so many ms no changes made, write the swapfile to disk
 vim.opt.updatetime = 100
 
+-- FROM:
+-- https://www.reddit.com/r/neovim/comments/1ihpvaf/the_linematch_diffopt_makes_builtin_diff_so_sweat
+-- -- OLD
+-- vim.opt.diffopt = "internal,filler,closeoff"
+
+-- NEW
+vim.o.diffopt = "internal,filler,closeoff,linematch:60"
+-- vim.opt.diffopt="filler,internal,closeoff,algorithm:histogram,context:5,linematch:60"
+-- vim.opt.diffopt="internal,filler,closeoff,indent-heuristic,linematch:60,algorithm:histogram"
+
 -- " SET SHELL TO POWERSHELL
 -- print("has win32: ", vim.fn.has('win32'))
 -- print("has wsl: ", vim.fn.has('wsl'))
