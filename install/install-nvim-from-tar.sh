@@ -4,14 +4,14 @@ set -e
 pushd ~/Downloads
 
 # Download latest release of neovim
-curl -LOJ https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+curl -L -o nvim.tar.gz https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 
 # Extract the tarball
-tar -xzf nvim-linux64.tar.gz
+tar -xzf nvim.tar.gz
 
 # Move the extracted stuff to /usr/local/bin, and /usr/local/share
-rsync -auv nvim-linux64/ /usr/local/
+rsync -auv nvim/ /usr/local/
 
-rm -rf nvim-linux64 nvim-linux64.tar.gz
+rm -rf nvim nvim.tar.gz
 
 popd
