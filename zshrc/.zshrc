@@ -39,6 +39,10 @@ autoload -Uz compinit && compinit
 #		# FROM: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
 #		complete -C '/usr/bin/aws_completer' aws
 # fi
+if [ -f /usr/bin/aws_zsh_completer.sh ]
+then
+	source /usr/bin/aws_zsh_completer.sh
+fi
 
 
 # Uncomment the following line to use hyphen-insensitive completion.
@@ -553,10 +557,14 @@ npm-outdated-update() {
 	else
 		whatColumn=3
 	fi
-	npm --color=always outdated |\
-		fzf --header=$whatParam --multi --header-lines=1 --ansi |\
+	npm outdated |\
+		fzf --header=$whatParam --multi --header-lines=1 --bind ctrl-a:select-all |\
 		awk '{print $1"@"$'$whatColumn'}' |\
 		xargs --no-run-if-empty npm install
+	# npm --color=always outdated |\
+	# 	fzf --header=$whatParam --multi --header-lines=1 --ansi --bind ctrl-a:select-all |\
+	# 	awk '{print $1"@"$'$whatColumn'}' |\
+	# 	xargs --no-run-if-empty npm install
 }
 
 dotnet-outdated-update() {
