@@ -47,3 +47,5 @@ popd
 # sudo systemctl enable set-display-resolution.service
 # sudo systemctl start set-display-resolution.service
 
+# network not working after suspend, try disabling MAC address randomization
+# https://bbs.archlinux.org/viewtopic.php?id=270819
