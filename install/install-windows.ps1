@@ -21,6 +21,7 @@ Write-Host Install Applications
 Write-Host ----------------------------------------
 winget install BurntSushi.ripgrep.MSVCripgrep # https://github.com/BurntSushi/ripgrep
 winget install sharkdp.fd # https://github.com/sharkdp/fd
+winget install --id=junegunn.fzf  -e
 # choco install sudo # ALLOWS USING sudo IN POWERSHELL!
 # choco install win32yank # Neovim clipboard support in WSL, FROM: https://stackoverflow.com/a/67229362/182888
 
