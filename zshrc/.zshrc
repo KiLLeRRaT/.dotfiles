@@ -218,6 +218,7 @@ alias tmux='tmux -2'
 alias grep='grep --color=auto'
 alias rl='source ~/.zshrc'
 alias df='df -h'
+alias free='free -h'
 alias xclip='xclip -selection clipboard'
 
 alias db='dotnet build'
