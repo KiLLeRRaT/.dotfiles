@@ -7,6 +7,7 @@ vim.cmd[[let g:switch_custom_definitions =
     \ [
     \   switch#NormalizedCaseWords(['private', 'protected', 'internal', 'public']),
     \   switch#NormalizedCaseWords(['GRANT', 'REVOKE']),
+		\   switch#NormalizedCaseWords(['CREATE', 'ALTER', 'DROP']),
     \   switch#NormalizedCaseWords(['before', 'after']),
     \   switch#NormalizedCaseWords(['primary', 'secondary']),
     \   switch#NormalizedCaseWords(['outlined', 'contained']),
@@ -19,8 +20,8 @@ vim.cmd[[let g:switch_custom_definitions =
     \   switch#NormalizedCaseWords(['AND', 'OR']),
     \   switch#NormalizedCaseWords(['min', 'max']),
     \   switch#NormalizedCaseWords(['UAT', 'PROD']),
-		\   switch#NormalizedCaseWords(['starting', 'stopping']),
-    \   switch#NormalizedCaseWords(['start', 'stop']),
+		\   switch#NormalizedCaseWords(['starting', 'stopping', 'restarting']),
+    \   switch#NormalizedCaseWords(['start', 'stop', 'restart']),
     \   switch#NormalizedCase(['left', 'right']),
     \   switch#NormalizedCaseWords(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']),
     \   switch#NormalizedCaseWords(['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']),
