@@ -144,7 +144,7 @@ bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 
 
 # DESKTOP NOTIFICATIONS BY DUNST
-bindsym $mod+Shift+d --release exec --no-startup-id "killall dunst; exec notify-send 'restart dunst'"
+# bindsym $mod+Shift+d --release exec --no-startup-id "killall dunst; exec notify-send 'restart dunst'"
 # bindsym Mod4+space --release exec dunstctl close
 # bindsym Mod4+space --release exec dunstctl history
 bindsym Mod4+n mode "$mode_notifications"
