@@ -1,0 +1,32 @@
+let mapleader = " " "
+inoremap jk <esc>
+nmap <leader>b :vsc Build.BuildSolution<Enter>
+
+set number
+set relativenumber
+set hlsearch
+set cursorline
+set incsearch
+set showcmd
+set textwidth=100
+set ignorecase
+set smartcase
+set noautoindent
+set noexpandtab
+set tabstop=2
+set shiftwidth=2
+set list
+set nowrap
+set scrolloff=5
+let mapleader = " " "
+let maplocalleader = "\\"
+
+nmap <leader>uc :vsc Debug.AttachToProcess<Enter>
+nmap <leader>ui :vsc Debug.StepInto<Enter>
+nmap <leader>uo :vsc Debug.StepOver<Enter>
+nmap <leader>uO :vsc Debug.StepOut<Enter>
+nmap <leader>ub :vsc Debug.ToggleBreakpoint<Enter>
+nmap <leader>uB :vsc Debug.ToggleBreakpointCondition<Enter>
+nmap <leader>ut :vsc Debug.StopDebugging<Enter>
+nmap <leader>uR :vsc Debug.ReattachToProcess<Enter>
+
