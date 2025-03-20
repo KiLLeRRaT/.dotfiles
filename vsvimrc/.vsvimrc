@@ -22,11 +22,11 @@ let mapleader = " " "
 let maplocalleader = "\\"
 
 nmap <leader>uc :vsc Debug.AttachToProcess<Enter>
+nmap <leader>uC :vsc Debug.ReattachToProcess<Enter>
 nmap <leader>ui :vsc Debug.StepInto<Enter>
 nmap <leader>uo :vsc Debug.StepOver<Enter>
 nmap <leader>uO :vsc Debug.StepOut<Enter>
 nmap <leader>ub :vsc Debug.ToggleBreakpoint<Enter>
 nmap <leader>uB :vsc Debug.ToggleBreakpointCondition<Enter>
 nmap <leader>ut :vsc Debug.StopDebugging<Enter>
-nmap <leader>uR :vsc Debug.ReattachToProcess<Enter>
 
