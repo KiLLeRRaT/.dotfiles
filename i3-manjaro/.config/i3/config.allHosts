@@ -115,6 +115,8 @@ mode  "$mode_goto" {
 		bindsym Shift+m exec --no-startup-id i3-msg workspace $ws0, exec brave --new-window --profile-directory=Profile\ 1 "https://meet.google.com", mode "default"
 		bindsym Shift+p exec --no-startup-id xclip -o | xclip -selection clipboard, mode "default", exec xdotool key ctrl+v
 		bindsym p exec --no-startup-id xclip -o | xclip -selection clipboard, mode "default"
+		# bindsym p exec --no-startup-id xdotool key ctrl+shift+c, exec --no-startu-id xclip -o | xclip -selection clipboard, mode "default"
+		# bindsym p mode "default", exec sleep 0.2&&xdotool key ctrl+shift+c&&sleep 0.2&&xclip -o | xclip -selection clipboard
 		bindsym Return mode "default"
 		bindsym Escape mode "default"
 }
