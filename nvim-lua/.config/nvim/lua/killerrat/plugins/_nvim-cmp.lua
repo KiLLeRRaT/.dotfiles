@@ -108,6 +108,9 @@ cmp.setup {
 			-- Copilot.lua
 			-- FROM: https://github.com/zbirenbaum/copilot.lua/issues/91#issuecomment-1345190310
 			require("copilot.suggestion").accept()
+		end),
+		['<C-L>'] = cmp.mapping(function(fallback)
+			require("copilot.suggestion").accept_word()
 		end)
 	},
 	sources = {

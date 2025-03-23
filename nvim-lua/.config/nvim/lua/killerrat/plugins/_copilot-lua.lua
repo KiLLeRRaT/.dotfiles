@@ -19,11 +19,14 @@ require('copilot').setup({
     auto_trigger = true,
     hide_during_completion = true,
     debounce = 75,
+		-- IMPORTANT: THIS NEEDS TO BE SET UP IN nvim_cmp.lua!
     keymap = {
       -- accept = "<M-l>",
-			accept = "<C-Y>",
-      accept_word = false,
-      accept_line = false,
+			-- accept = "<C-Y>",
+      -- accept_word = false,
+			-- accept_word = "<C-Y>",
+      -- accept_line = false,
+		-- IMPORTANT: THIS NEEDS TO BE SET UP IN nvim_cmp.lua!
       next = "<M-]>",
       prev = "<M-[>",
       dismiss = "<C-]>",
