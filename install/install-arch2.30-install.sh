@@ -79,6 +79,7 @@ pacstrap -K /mnt base linux linux-lts linux-firmware \
 	nginx \
 	noto-fonts \
 	noto-fonts-emoji \
+	noto-fonts-extra \
 	nuget \
 	numlockx \
 	openfortivpn \
