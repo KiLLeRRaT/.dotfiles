@@ -1,77 +1,45 @@
 # FROM manjarolinux/base AS base
 FROM archlinux AS base
 
-# YOU SERIOUSLY CAN USE PACMAN INSTEAD OF PAMAC DUDE!
-# RUN pacman -Syu pamac-cli --noconfirm
-
 RUN echo "Configuring pacman" \
 sed -i 's/#Color/Color/g' /etc/pacman.conf \
 sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/g' /etc/pacman.conf
 
 RUN pacman -Syu --noconfirm
 
-RUN pacman -S --noconfirm git \
+RUN pacman -S --noconfirm \
 	aws-cli \
-	bat \
-	btop \
-	clang \
-	cmake \
-	curl \
-	dnsutils \
-	dotnet-sdk \
-	fakeroot \
-	fd \
-	fzf \
-	gcc \
-	gcc \
+	bat btop \
+	clang cmake curl \
+	dnsutils dotnet-sdk \
+	fakeroot fd fzf \
+	gcc git \
 	jq \
 	less \
-	make \
-	mono \
-	mono-msbuild \
-	ncdu \
-	neovim \
-	netcoredbg \
-	nginx \
-	nuget \
+	make mono mono-msbuild \
+	ncdu neovim nginx nuget \
 	openssh \
 	python-pip \
-	ranger \
-	ripgrep \
-	sshfs \
-	stow \
-	sudo \
+	ranger ripgrep \
+	sshfs stow sudo \
 	tmux \
-	unzip \
-	upterm \
-	vifm \
+	unzip upterm \
 	wget \
 	xclip \
 	yq \
-	zip \
-	zoxide \
-	zsh
+	zip zoxide zsh
 
-# RUN pamac build xsp mono-basic --no-confirm
 
-RUN echo "Configuring makepkg" \
-sed -i 's/^PKGEXT.*/PKGEXT=".pkg.tar"/' /etc/makepkg.conf \
+RUN echo "Configuring makepkg" && \
+sed -i 's/^PKGEXT.*/PKGEXT=".pkg.tar"/' /etc/makepkg.conf && \
 sed -i 's/\(OPTIONS=.*\)debug/\1!debug/' /etc/makepkg.conf
-
-
-# Setup Build user so that we can install AUR packages
-# FROM: https://bbs.archlinux.org/viewtopic.php?id=229027
-RUN useradd --no-create-home --shell=/bin/zsh build && usermod -L build
-RUN echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-RUN echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-# user su build to switch, install aur package using git clone
 
 
 WORKDIR /root/
 RUN echo -e "\033[32m Clone KiLLeRRaT dotfiles\033[0m" && \
 	git clone https://github.com/KiLLeRRaT/.dotfiles
 WORKDIR /root/.dotfiles
-RUN ls -lkha
+# RUN ls -lkha
 
 
 # SET UNICODE LOCALE
@@ -83,8 +51,8 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 # RUN echo 'root:Docker!' | chpasswd
 
 
-RUN echo echo -e "\033[32m Configure SSH Keys\033[0m" && \
-	ssh-keygen -t ed25519 -C "$(echo $HOST)@docker" -f /root/.ssh/id_ed25519
+# RUN echo echo -e "\034[32m Configure SSH Keys\033[0m" && \
+# 	ssh-keygen -t ed25519 -C "$(echo $HOST)@docker" -f /root/.ssh/id_ed25519
 
 ARG GIT_EMAIL
 ARG GIT_NAME
@@ -93,13 +61,13 @@ ARG GIT_NAME
 # RUN echo "GIT_NAME: $GIT_NAME"
 
 RUN echo -e "\033[32m Configure Git\033[0m" && \
-	git config --global user.email $GIT_EMAIL && \
-	git config --global user.name $GIT_NAME && \
+	git config --global user.email "$GIT_EMAIL" && \
+	git config --global user.name "$GIT_NAME" && \
 	git config --global alias.logo "log --pretty=tformat:'%C(auto,red)%m %C(auto,yellow)%h%C(auto,magenta) %G? %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(15,trunc)%aN%C(auto,reset)%s%C(auto,red) %gD %D' --date=short" && \
 	git config --global alias.adog "log --all --decorate --oneline --graph" && \
 	git config --global alias.dog "log --decorate --oneline --graph" && \
 	git config --global pull.rebase true && \
-	git config --global submodule.recurse true && \
+	git config --global submodule.recurse true  && \
 	git config --global core.editor "nvim" && \
 	git config --global core.excludesfile ~/.gitignore && \
 	git config --global core.autocrlf input && \
@@ -108,11 +76,10 @@ RUN echo -e "\033[32m Configure Git\033[0m" && \
 	git config --global merge.tool nvim && \
 	git config --global merge.conflictstyle diff3 && \
 	git config --global mergetool.nvim.cmd "nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'" && \
-	echo "$(git config --get user.email) namespaces=\"git\" $(cat /root/.ssh/id_ed25519.pub)" && \
-	echo "$(git config --get user.email) namespaces=\"git\" $(cat /root/.ssh/id_ed25519.pub)" > /root/.ssh/allowed_signers && \
+	# echo "$(git config --get user.email) namespaces=\"git\" $(cat /root/.ssh/id_ed25519.pub)" > /root/.ssh/allowed_signers && \
 	git config --global gpg.ssh.allowedSignersFile /root/.ssh/allowed_signers
 
-RUN cat /root/.ssh/allowed_signers && echo " XYZ" && ls /root/.ssh/ && cat /root/.ssh/id_ed25519.pub
+# RUN cat /root/.ssh/allowed_signers && echo " XYZ" && ls /root/.ssh/ && cat /root/.ssh/id_ed25519.pub
 
 	# WE DON'T WANT TO STOW GITCONFIG IN HERE! IT'S ALBERT's OWN GITCONFIG!
 	# rm /root/.gitconfig && stow gitconfig && \
@@ -123,6 +90,7 @@ RUN echo -e "\033[32m Run Stow\033[0m" && \
 	stow nvim-lua && \
 	stow oh-my-posh && \
 	stow ranger && \
+	stow ssh && \
 	stow tmux && \
 	stow zshrc
 
@@ -133,28 +101,15 @@ RUN echo -e "\033[32m Change Default Shell\033[0m" && \
 
 # RUN cd /root/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim && make
 
-# WORKDIR /root
-# WORKDIR /root/source-aur
+RUN useradd builduser -m # Create the builduser
+RUN passwd -d builduser # Delete the buildusers password
+RUN printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers # Allow the builduser passwordless sudo
 
 RUN echo -e "\033[32m Install oh-my-posh\033[0m" && \
-	wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh && \
-	chmod +x /usr/local/bin/oh-my-posh
-
-# RUN echo -e "\033[32m Install oh-my-posh\033[0m" && \
-# 	git clone https://aur.archlinux.org/oh-my-posh oh-my-posh && cd $_ && \
-# 	makepkg -si --noconfirm
-
+	sudo -u builduser bash -c 'cd ~ && git clone https://aur.archlinux.org/oh-my-posh oh-my-posh && cd oh-my-posh && makepkg -is --noconfirm' # Clone and build a package
 
 RUN echo -e "\033[32m Install NVM\033[0m" && \
-	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
-    . /root/.nvm/nvm.sh && \
-    nvm install --lts && \
-		nvm use --lts
-
-# RUN echo -e "\033[32m Install NVM\033[0m" && \
-# 	git clone https://aur.archlinux.org/nvm nvm && cd $_ && \
-# 	makepkg -si --noconfirm
-
+	sudo -u builduser bash -c 'cd ~ && git clone https://aur.archlinux.org/nvm nvm && cd nvm && makepkg -is --noconfirm' # Clone and build a package
 
 RUN echo -e "\033[32m Clone zsh-vi-mode\033[0m" && \
 	git clone https://github.com/jeffreytse/zsh-vi-mode.git $HOME/.zsh-vi-mode

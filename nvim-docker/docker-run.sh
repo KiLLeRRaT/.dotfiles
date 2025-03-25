@@ -1,7 +1,7 @@
 #!/bin/bash
 
-read -p "Use read-only (public) registry? [Y/n]: " useReadOnlyRegistry
-useReadOnlyRegistry=${useReadOnlyRegistry:-Y}
+read -p "Use read-only (public) registry? (n to use local built image) [y/N]: " useReadOnlyRegistry
+useReadOnlyRegistry=${useReadOnlyRegistry:-N}
 if [ "$useReadOnlyRegistry" == "Y" ] || [ "$useReadOnlyRegistry" == "y" ]; then
 	dockerRegistry="dockerregistry-ro.gouws.org"
 else
