@@ -16,3 +16,4 @@ ssh/.ssh/*
 !ssh/.ssh/allowed_signers
 !ssh/.ssh/*.pub
 nerd-dictation/.config/nerd-dictation/model/
+fonts/.fonts/.uuid
