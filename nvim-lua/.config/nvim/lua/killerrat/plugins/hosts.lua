@@ -12,6 +12,7 @@ local servers = {
 	["nvim-dbee"] = false,
 	["vim-dadbod-ui"] = false,
 	["avante"] = false,
+	["copilot"] = false
 }
 
 local iphone = {
