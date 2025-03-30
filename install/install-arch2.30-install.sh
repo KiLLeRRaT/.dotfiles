@@ -33,6 +33,16 @@ source ./variables
 echo -e "${GREEN}Press any key to start installation...${RESET}"
 read -n 1
 
+# SET MIRRORS
+sed -i 's/^/#^/' /etc/pacman.d/mirrorlist
+cat >> /etc/pacman.d/mirrorlist << EOF
+Server = https://mirror.fsmg.org.nz/archlinux/$repo/os/$arch
+Server = https://mirror.2degrees.nz/archlinux/$repo/os/$arch
+Server = https://archlinux.ourhome.kiwi/$repo/os/$arch
+Server = http://mirror.fsmg.org.nz/archlinux/$repo/os/$arch
+Server = http://mirror.2degrees.nz/archlinux/$repo/os/$arch
+EOF
+
 pacstrap -K /mnt base linux linux-lts linux-firmware \
 	alacritty \
 	aspnet-runtime \
