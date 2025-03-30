@@ -135,6 +135,7 @@ pacstrap -K /mnt base linux linux-lts linux-firmware \
 	zathura zathura-pdf-poppler \
 	zip \
 	zoxide \
+	zram-generator \
 	zsh
 
 
@@ -194,6 +195,8 @@ arch-chroot /mnt /bin/bash -- << EOF
 	systemctl enable snapper-boot.timer
 	systemctl enable systemd-resolved.service
 	systemctl enable docker
+	systemctl enable fstrim.timer
+	systemctl start systemd-zram-setup@zram0.service
 EOF
 
 echo -e "${GREEN}Configuring makepkg${RESET}"

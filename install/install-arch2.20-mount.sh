@@ -15,7 +15,7 @@ read -n 1
 
 
 # PARTITION SETUP
-echo -n "$LUKS_PASSWORD" | cryptsetup luksOpen $DEV_ROOT root -
+echo -n "$LUKS_PASSWORD" | cryptsetup --allow-discards --persistent open $DEV_ROOT root -
 
 echo -e "${GREEN}Mounting volumes${RESET}"
 mount -o defaults,noatime,ssd,compress=zstd,subvol=@ /dev/mapper/root /mnt
