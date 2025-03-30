@@ -166,6 +166,18 @@ ethernet wlan0 {
 				# format = "d⛁ %avail "
 # }
 # </config>
+# <config hostname="arch-asus">
+# order += "disk /mnt/data/"
+order += "ethernet wlp1s0"
+order += "battery all"
+ethernet wlp1s0 {
+	format_up = "<span color='white'> 󰖩 %ip </span>"
+	format_down = " no 󰈀 "
+}
+# disk "/mnt/data/" {
+				# format = "d⛁ %avail "
+# }
+# </config>
 # <config hostname="arch-orico">
 order += "ethernet wlan0"
 order += "ethernet enp42s0"
