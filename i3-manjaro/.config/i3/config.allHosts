@@ -988,6 +988,8 @@ exec "alacritty -e zsh -c 'tmux a || tmux'"
 # https://wiki.archlinux.org/title/Talk:Backlight#Udev_rules_for_permissions_of_brightness_doesn't_work
 # bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-samsung/set-brightness.sh +50"
 # bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-samsung/set-brightness.sh -50"
+bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-asus/set-brightness.sh +50"
+bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-asus/set-brightness.sh -50"
 
 # </config>
 # <config hostname="arch-orico">
