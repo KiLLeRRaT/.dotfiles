@@ -24,6 +24,22 @@ require('roslyn').setup {
 	config = {
 		--[[ the rest of your roslyn config ]]
 		handlers = require 'rzls.roslyn_handlers',
+		on_attach = function (client, bufnr)
+			--- Guard against servers without the signatureHelper capability
+			if client.server_capabilities.signatureHelpProvider then
+				require('lsp-overloads').setup(client, { })
+				vim.api.nvim_buf_set_keymap(0, "n", "<C-Space>", ":LspOverloadsSignature<CR>", { noremap = true, silent = true })
+				-- ...
+				-- keymaps = {
+				-- 		next_signature = "<C-j>",
+				-- 		previous_signature = "<C-k>",
+				-- 		next_parameter = "<C-l>",
+				-- 		previous_parameter = "<C-h>",
+				-- 		close_signature = "<A-s>"
+				-- 	},
+				-- ...
+			end
+		end
 	},
 }
 -- require("roslyn").setup({
