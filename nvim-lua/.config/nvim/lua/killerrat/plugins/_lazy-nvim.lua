@@ -117,6 +117,7 @@ local lazyPlugins = {
 	{ "zbirenbaum/copilot.lua",
 	  cmd = "Copilot",
 		event = "InsertEnter",
+		cond = pluginCondForHost,
 	},													-- https://github.com/zbirenbaum/copilot.lua
 	-- {
 	-- 	{
