@@ -3,7 +3,16 @@ local p = "avante.nvim"; if (not require('killerrat.plugins._lazy-nvim').LazyHas
 -- require('avante_lib').load()
 require('avante').setup ({
   ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-  provider = "copilot", -- Recommend using Claude
+  -- provider = "copilot", -- Recommend using Claude
+	provider = "gemini", -- Recommend using Claude
+	gemini = {
+		api_key_name = "cmd:secret-tool lookup xdg:schema com.google.gemini",
+		endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+		model = "gemini-2.0-flash",
+		timeout = 30000, -- Timeout in milliseconds
+		temperature = 0,
+		max_tokens = 8192,
+	},
   -- WARNING: Since auto-suggestions are a high-frequency operation and therefore expensive,
   -- currently designating it as `copilot` provider is dangerous because: https://github.com/yetone/avante.nvim/issues/1048
   -- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
