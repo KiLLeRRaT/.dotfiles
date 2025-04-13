@@ -196,6 +196,8 @@ alias ls='ls --color=auto' # TRY THIS AGAIN FOR NOW TO SEE IF IT WORKS, SINCE IT
 # alias ls='ls --color=always' # THIS GIVES DRAMA SINCE THE COLOR CODES ARE PART OF THE RESULTS WHEN PIPING TO ANOTHER COMMAND...
 alias ll="ls -alkhF"
 alias l="ls -1"
+alias mv="mv -v"
+alias cp="cp -v"
 alias ncdu="ncdu --color dark"
 
 lst() {
