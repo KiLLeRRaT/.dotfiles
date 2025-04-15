@@ -1,12 +1,18 @@
 local p = "avante.nvim"; if (not require('killerrat.plugins._lazy-nvim').LazyHasPlugin(p)) then return end
 
 -- require('avante_lib').load()
+local api_key_name = "cmd:secret-tool lookup xdg:schema com.google.gemini"
+if vim.fn.has('win32') == 1 then
+	--api_key_name = "cmd:$(Get-StoredCredential -Target com.google.gemini -AsCredentialObject).Password"
+	api_key_name = ""
+end
+
 require('avante').setup ({
   ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
   -- provider = "copilot", -- Recommend using Claude
 	provider = "gemini", -- Recommend using Claude
 	gemini = {
-		api_key_name = "cmd:secret-tool lookup xdg:schema com.google.gemini",
+		api_key_name = api_key_name,
 		endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
 		model = "gemini-2.0-flash",
 		timeout = 30000, -- Timeout in milliseconds
