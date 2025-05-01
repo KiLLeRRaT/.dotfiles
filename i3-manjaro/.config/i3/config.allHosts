@@ -247,6 +247,8 @@ bindsym $mod+Ctrl+Shift+l move right
 # move entire workspace to another monitor
 bindsym $mod+Shift+Left move workspace to output left
 bindsym $mod+Shift+Right move workspace to output right
+bindsym $mod+Shift+Up move workspace to output up
+bindsym $mod+Shift+Down move workspace to output down
 
 # alternatively, you can use the cursor keys:
 #bindsym $mod+Shift+Left move left
@@ -570,7 +572,6 @@ bar {
 	position bottom
 	# workspace_min_width 40
 	workspace_min_width 30
-	# WAS ADDED FOR arch-agouwsmacbookpro, LOOKS OKAY on agouws too, so leaving it global
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 #	tray_output primary
@@ -1055,6 +1056,19 @@ bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-macbook
 bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-macbookpro13/set-brightness.sh -5"
 bindsym XF86KbdBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-macbookpro13/set-keyboard-brightness.sh +5"
 bindsym XF86KbdBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-macbookpro13/set-keyboard-brightness.sh -5"
+
+# set $screenleft eDP-1
+# set $screenmiddle DP-2
+# set $screenright DP-2
+
+# set $screenleft DP-2-1
+# set $screenmiddle eDP-1
+# set $screenright DP-2-2
+
+set $screenleft DP-2-2
+set $screenmiddle DP-2-2
+set $screenright DP-2-2
+
 # </config>
 
 # <config hostname="toshiba">
