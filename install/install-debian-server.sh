@@ -9,37 +9,27 @@ echo -e "${GREEN}Installing software${RESET}"
 echo -e "${GREEN}----------------------------------------${RESET}"
 
 apt install -y \
-	alacritty \
 	bat \
 	btop \
 	build-essential \
 	cmake \
 	curl \
 	fd-find \
-	feh \
 	git \
 	i3 \
 	ncdu \
 	ranger \
 	ripgrep \
 	stow \
-	timeshift \
 	tmux \
 	tree \
 	unzip \
-	xclip \
-	xrdp \
 	zip \
 	zsh
 
 # config fd
 [ -d ~/.local/bin ] || mkdir -p ~/.local/bin
 ln -s $(which fdfind) /usr/bin/fd
-
-# echo -e "${GREEN}----------------------------------------${RESET}"
-# echo -e "${GREEN}Configure SSH Keys${RESET}"
-# echo -e "${GREEN}----------------------------------------${RESET}"
-# [ ! -d "~/.ssh" ] && ssh-keygen
 
 echo -e "${GREEN}----------------------------------------${RESET}"
 echo -e "${GREEN}Change Shell to Zsh${RESET}"
@@ -76,31 +66,7 @@ popd
 echo -e "${GREEN}----------------------------------------${RESET}"
 echo -e "${GREEN}Install Neovim${RESET}"
 echo -e "${GREEN}----------------------------------------${RESET}"
-pushd /tmp
-curl -LOJ https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-tar xvf nvim-linux64.tar.gz
-cp nvim-linux64/bin/nvim /usr/local/bin
-cp -r nvim-linux64/share/* /usr/local/share
-cp -r nvim-linux64/lib/nvim /usr/lib
-chmod +x /usr/local/bin/nvim
-popd
-
-
-# echo -e "${GREEN}----------------------------------------${RESET}"
-# echo -e "${GREEN}Build Neovim from source${RESET}"
-# echo -e "${GREEN}----------------------------------------${RESET}"
-# mkdir -p ~/source-github
-# pushd ~/source-github
-# git clone https://github.com/neovim/neovim
-# cd neovim
-# git checkout stable
-# apt install -y ninja-build gettext cmake unzip curl
-# make CMAKE_BUILD_TYPE=Release
-# make install
-# popd
-# USE SNAP TO INSTALL NEOVIM INSTEAD
-# snap install neovim --classic
-
+./install-nvim-from-tar.sh
 
 # echo -e "${GREEN}----------------------------------------${RESET}"
 # echo -e "${GREEN}Build fzf for use in Telescope${RESET}"
@@ -108,7 +74,6 @@ popd
 # pushd ~/.local/share/nvim/plugged/telescope-fzf-native.nvim
 # make
 # popd
-
 
 echo -e "${GREEN}----------------------------------------${RESET}"
 echo -e "${GREEN}Install oh-my-posh${RESET}"
@@ -122,6 +87,7 @@ echo -e "${GREEN}Install nvm to manage NodeJS${RESET}"
 echo -e "${GREEN}----------------------------------------${RESET}"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 # exec bash
+source ~/.bashrc
 nvm install --lts
 nvm use --lts
 
