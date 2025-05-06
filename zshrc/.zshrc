@@ -198,6 +198,8 @@ alias ll="ls -alkhF"
 alias l="ls -1"
 alias mv="mv -v"
 alias cp="cp -v"
+alias chown="chown -v"
+alias chmod="chmod -v"
 alias ncdu="ncdu --color dark"
 
 lst() {
@@ -787,6 +789,7 @@ setopt hist_ignore_space																				# Ignore commands starting with a sp
 setopt extendedhistory																				# Save timestamp of command FROM: https://stackoverflow.com/a/68888023/182888
 setopt autocd																										# if only directory path is entered, cd there.
 setopt inc_append_history																				# save commands are added to the history immediately, otherwise only when shell exits.
+setopt noautoremoveslash																				# https://stackoverflow.com/a/58585009
 
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
