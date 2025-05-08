@@ -2,7 +2,7 @@
 set -e
 
 GREEN='\033[32m'
-RESET='${RESET}'
+RESET="\033[0m"
 
 echo -e "${GREEN}----------------------------------------${RESET}"
 echo -e "${GREEN}Installing software${RESET}"
