@@ -35,7 +35,8 @@ then
 	DEV_BOOT_MOUNTPOINT=$(fzf --walker=dir --walker-root=/mnt --prompt="Please select DEV_BOOT_MOUNTPOINT: ")
 	echo ""
 fi
+echo "DEV_BOOT_MOUNTPOINT: $DEV_BOOT_MOUNTPOINT"
 
-mount $DEV_BOOT /mnt/efi
+mount $DEV_BOOT $DEV_BOOT_MOUNTPOINT
 
 swapon /mnt/swap/swapfile
