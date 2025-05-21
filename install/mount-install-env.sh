@@ -6,13 +6,11 @@ sed -i 's/^#Color/Color/g' /etc/pacman.conf
 sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 10/g' /etc/pacman.conf
 pacman -Sy --noconfirm --needed archlinux-keyring git fzf
 
-if [ -z $DEV_BOOT ] || [ -z $DEV_ROOT ] || [ -z $DEV_BOOT_MOUNTPOINT ]
+if [ -z $DEV_BOOT ] || [ -z $DEV_ROOT ]
 then
 	DEV_BOOT=/dev/$(lsblk --list | fzf --prompt="Please select DEV_BOOT: " | cut -d' ' -f1)
 	echo ""
 	DEV_ROOT=/dev/$(lsblk --list | fzf --prompt="Please select DEV_ROOT: " | cut -d' ' -f1)
-	echo ""
-	DEV_BOOT_MOUNTPOINT=$(fzf --walker=dir --walker-root=/mnt --prompt="Please select DEV_BOOT_MOUNTPOINT: ")
 	echo ""
 fi
 
@@ -31,6 +29,13 @@ mount -o defaults,noatime,ssd,compress=zstd,subvol=@pkg /dev/mapper/root /mnt/va
 mount -o defaults,noatime,ssd,compress=zstd,subvol=@log /dev/mapper/root /mnt/var/log
 mount -o defaults,noatime,ssd,compress=zstd,subvol=@docker /dev/mapper/root /mnt/var/lib/docker
 mount -o defaults,noatime,ssd,compress=zstd,subvol=@libvirt /dev/mapper/root /mnt/var/lib/libvirt
+
+if [ -z $DEV_BOOT_MOUNTPOINT ]
+then
+	DEV_BOOT_MOUNTPOINT=$(fzf --walker=dir --walker-root=/mnt --prompt="Please select DEV_BOOT_MOUNTPOINT: ")
+	echo ""
+fi
+
 mount $DEV_BOOT /mnt/efi
 
 swapon /mnt/swap/swapfile
