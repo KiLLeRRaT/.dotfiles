@@ -6,23 +6,21 @@ sed -i 's/^#Color/Color/g' /etc/pacman.conf
 sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 10/g' /etc/pacman.conf
 pacman -Sy --noconfirm --needed archlinux-keyring git fzf
 
-if [ -z $DEV_BOOT ] || [ -z $DEV_ROOT ]
+if [ -z $DEV_BOOT ] || [ -z $DEV_ROOT ] || [ -z $DEV_BOOT_MOUNTPOINT ]
 then
 	DEV_BOOT=/dev/$(lsblk --list | fzf --prompt="Please select DEV_BOOT: " | cut -d' ' -f1)
 	echo ""
 	DEV_ROOT=/dev/$(lsblk --list | fzf --prompt="Please select DEV_ROOT: " | cut -d' ' -f1)
 	echo ""
+	DEV_BOOT_MOUNTPOINT=$(fzf --walker=dir --walker-root=/mnt --prompt="Please select DEV_BOOT_MOUNTPOINT: ")
+	echo ""
 fi
 
-echo DEV_BOOT: $DEV_BOOT
-echo DEV_ROOT: $DEV_ROOT
+echo "DEV_BOOT: $DEV_BOOT"
+echo "DEV_ROOT: $DEV_ROOT"
+echo "DEV_BOOT_MOUNTPOINT: $DEV_BOOT_MOUNTPOINT"
 echo Press any key to continue...
 read -n 1
-
-timedatectl set-ntp true
-sed -i 's/#Color/Color/g' /etc/pacman.conf
-sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/g' /etc/pacman.conf
-pacman -Sy --noconfirm --needed archlinux-keyring git fzf
 
 cryptsetup open $DEV_ROOT root
 
