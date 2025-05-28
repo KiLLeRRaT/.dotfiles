@@ -226,11 +226,12 @@ alias free='free -h'
 alias xclip='xclip -selection clipboard'
 
 alias db='dotnet build'
+alias dr='dotnet restore'
 alias xc='xclip -se c'
 
 alias gs='git status'
 alias gf='git fetch'
-alias gl='git pull'
+alias gu='git pull'
 alias gp='git push'
 alias gpt='git push --tags'
 alias gP='git push --force-with-lease'
@@ -241,7 +242,7 @@ alias gw='git diff --word-diff'
 setopt interactive_comments
 preexec(){ _lc=$1; }
 alias gcm='git commit -m "${_lc#gcm }" #'
-alias glog='git logo'
+alias gl='git logo'
 alias gdog='git dog'
 alias gadog='git adog'
 alias gb='git branch'

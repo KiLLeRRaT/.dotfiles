@@ -25,36 +25,60 @@
 [mergetool "nvim"]
 	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 	; trustExitCode = true
+
 [mergetool "kdiff3"]
 	path = "kdiff3"
 	keepBackup = false
 	trustExitCode = true
+
 [difftool "kdiff3"]
 	cmd = kdiff3 $BASE $REMOTE $LOCAL
 	keepbackup = false
 	trustExitCode = true
+
 [core]
 	autocrlf = input
 	excludesFile = ~/.gitignore
 	attributesFile = ~/.gitattributes
+
 [commit]
 	gpgsign = true
+
 [init]
 	defaultBranch = master
+
 [diff]
 	submodule = log
+
 [submodule]
 	recurse = true
+
 [pull]
 	rebase = true
+
 [push]
 	autoSetupRemote = true
+
 [gpg]
 	format = ssh
+
 [gpg "ssh"]
 	allowedSignersFile = ~/.ssh/allowed_signers
 	program = "/opt/1Password/op-ssh-sign"
+
 [rerere]
 	enabled = true
+
 [fetch]
 	prune = true
+
+[url "https://github.com/killerrat/"]
+	insteadOf = ghk:
+
+[url "https://github.com/"]
+	insteadOf = ghh:
+
+[url "git@github.com:"]
+	insteadOf = ghs:
+
+; Also see /etc/gitconfig
