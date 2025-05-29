@@ -71,7 +71,7 @@ Remove-Alias -Force -Name gm
 function n { nvim ${Args} }
 function gs { git status ${Args} }
 function gf { git fetch ${Args} }
-function gl { git pull ${Args} }
+function gu { git pull ${Args} }
 function gp { git push ${Args} }
 function gpt { git push --tags ${Args} }
 function gP { git push --force-with-lease ${Args} }
@@ -82,13 +82,15 @@ function gw { git diff --word-diff ${Args} }
 # LINUX ONLY
 # function gcm { git commit -m "${_lc#gcm }" # }
 # function glog { git logo }
-function glog { git logo ${Args} }
+function gl { git logo ${Args} }
 function gdog { git dog ${Args} }
 function gadog { git adog ${Args} }
 function gb { git branch ${Args} }
 function gba { git branch --all ${Args} }
 function gco { git checkout ${Args} }
 function gm { git merge ${Args} }
+function gr { git rebase ${Args} }
+function gcd { Set-Location $(git rev-parse --show-toplevel) }
 
 # LINUX ONLY
 # alias gt='git tag | sort -V | tail'
