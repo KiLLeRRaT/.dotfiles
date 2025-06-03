@@ -284,6 +284,8 @@ alias ss-tulpn='ss -tulpn'
 alias setxkbmap-ctrl-caps='setxkbmap -option ctrl:nocaps'
 alias setxkbmap-alt-win='setxkbmap -option altwin:swap_lalt_lwin'
 alias setxkbmap-revert="setxkbmap -option ''"
+alias setxkbmap-altgr='setxkbmap -option altgr-intl'
+# setxkbmap us altgr-intl
 
 # FROM: https://linuxreviews.org/HOWTO_use_the_numeric_keyboard_keys_as_mouse_in_XOrg
 # to use the mouse, press /*- to select which button you want to use, and press 5 or + to actually click
