@@ -218,6 +218,20 @@ llst() {
 	ll -t --color=always
 }
 
+cdf() {
+	# cd to the directory of the full path which includes the file name
+	if [ -z "$1" ]; then
+		echo "Usage: cdf <file>"
+		return 1
+	fi
+	if [ -f "$1" ]; then
+		cd "$(dirname "$1")"
+	else
+		echo "File not found: $1"
+		return 1
+	fi
+}
+
 alias tmux='tmux -2'
 alias grep='grep --color=auto'
 alias rl='source ~/.zshrc'
@@ -252,6 +266,7 @@ alias gco='git checkout'
 alias gm='git merge'
 alias gt='git tag | sort -V | tail'
 alias gcd="cd \"\$(git rev-parse --show-toplevel)\""
+alias gi='git io'
 
 gfr() {
 	fd -t d --max-depth=1 -x \
