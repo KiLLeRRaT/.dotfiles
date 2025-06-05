@@ -4,7 +4,7 @@
 set $mod Mod4
 
 # MAKE CAPSLOCK A CTRL KEY, AND TERMINATE X WITH CTRL+ALT+BACKSPACE
-exec_always --no-startup-id setxkbmap -option ctrl:nocaps -option "terminate:ctrl_alt_bksp" -option altgr-intl
+exec_always --no-startup-id setxkbmap -option ctrl:nocaps -option "terminate:ctrl_alt_bksp" -variant altgr-intl
 exec --no-startup-id xinput set-prop 12 "libinput Scroll Method Enabled" 0, 0, 1
 
 # set default desktop layout (default is tiling)
