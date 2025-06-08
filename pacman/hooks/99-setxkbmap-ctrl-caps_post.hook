@@ -8,5 +8,5 @@ Target = *
 [Action]
 Description = Running setxkbmap to swap Ctrl and CapsLock keys after updates which could reset it.
 When = PostTransaction
-Exec = /usr/bin/bash -c 'setxkbmap -option ctrl:nocaps && xset -q | grep "Caps Lock: *on" 1>/dev/null && xdotool key Caps_Lock || true'
+Exec = /usr/bin/bash -c 'setxkbmap -option ctrl:nocaps,terminate:ctrl_alt_bksp -variant altgr-intl && xset -q | grep "Caps Lock: *on" 1>/dev/null && xdotool key Caps_Lock || true'
 
