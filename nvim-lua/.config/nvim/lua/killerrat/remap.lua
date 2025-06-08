@@ -334,7 +334,8 @@ vim.keymap.set("n", "<leader>v", ":call matchadd('LineHighlight', '\\%'.line('.'
 vim.keymap.set("n", "<leader>V", ":call clearmatches()<cr>")
 
 -- treesitter-scratchpad
-vim.keymap.set("n", "<localleader>ts", ":luafile ~/.config/nvim/lua/killerrat/treesitter-scratchpad/cs-public-methods.lua<cr>")
+-- vim.keymap.set("n", "<localleader>ts", ":luafile ~/.config/nvim/lua/killerrat/treesitter-scratchpad/cs-public-methods.lua<cr>")
+vim.keymap.set("n", "<localleader>ts", ":luafile ~/.config/nvim/lua/killerrat/treesitter-scratchpad/tsx-nztr.lua<cr>")
 
 -- RUN LUA CODE
 -- FROM TJ DEVRIES: https://youtu.be/F1CQVXA5gf0?si=VXTLi4Mo9wB8dCD7&t=84
