@@ -5,6 +5,11 @@ blocks:
 - type: prompt
   alignment: left
   segments:
+      # This was added to the prompt to show the current OSC7 value, to help PowerShell know what
+      # the PWD is and to set it correctly when creating splits
+  - type: text
+    style: plain
+    template: "{{ .Env.OSC7 }}"
   - template: " {{ if gt .Code 0 }} {{ .Meaning }}{{ else }}{{ end }} "
     foreground: "#ffffff"
     background: "#C61C6F"

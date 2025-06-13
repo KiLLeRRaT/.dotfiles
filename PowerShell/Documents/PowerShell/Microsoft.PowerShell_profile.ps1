@@ -1,43 +1,26 @@
 # THIS IS NEEDED FOR GIT TAB COMPLETION
 Import-Module posh-git
 
-#Set-PoshPrompt -Theme Paradox
-# Set-PoshPrompt -Theme ~/.mytheme.tokyonight.omp.yaml
-# Set-PoshPrompt -Theme ~/.omp/themes/tokyonight.omp.yaml
+# IDEA FROM: https://github.com/JanDeDobbeleer/oh-my-posh/issues/2515#issuecomment-1374322136
+# then remove the "pwd": "osc7" from the omp.json and add the following as the first element in the segments field.
+# {
+# 	"type": "text",
+# 	"style": "plain",
+# 	"template": "{{ .Env.OSC7 }}"
+# },
+function Set-EnvVar {
+  $loc = $executionContext.SessionState.Path.CurrentLocation;
+
+  $out = ""
+  if ($loc.Provider.Name -eq "FileSystem") {
+    $out += "$([char]27)]9;9;`"$($loc.ProviderPath)`"$([char]27)\"
+  }
+	$env:OSC7 = $out
+}
+New-Alias -Name 'Set-PoshContext' -Value 'Set-EnvVar' -Scope Global -Force
 oh-my-posh init pwsh --config ~/.omp/themes/tokyonight.omp.yaml | Invoke-Expression
 
-# Chocolatey profile
-$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path($ChocolateyProfile)) {
-  Import-Module "$ChocolateyProfile"
-}
-
-# function prompt {
-#   $p = Split-Path -leaf -path (Get-Location)
-#   "$p> "
-# }
-# Attempt to allow duplicating a tab with the same directory as original tab
-# function prompt {
-#   $loc = $($executionContext.SessionState.Path.CurrentLocation);
-#   $out = "PS $loc$('>' * ($nestedPromptLevel + 1)) ";
-#   $out += "$([char]27)]9;9;`"$loc`"$([char]27)\"
-#   return $out
-# }
-
 # $Host.UI.RawUI.WindowTitle = "$pwd"
-
-
-# IDEA FROM: https://devblogs.microsoft.com/scripting/weekend-scripter-customize-powershell-title-and-prompt/
-# Function Prompt
-# {
-# 	$PromptData="$($executionContext.SessionState.Path.CurrentLocation)"
-# 	if ($strVal -like 'C:\Projects.Git\*')
-# 	{
-# 		$PromptData = $string.replace($PromptData, 'C:\Projects.Git\', '')
-# 		$host.ui.RawUI.WindowTitle = $PromptData
-# 	}
-# }
-
 
 
 # PSReadLine extension to provide VI keybindings
