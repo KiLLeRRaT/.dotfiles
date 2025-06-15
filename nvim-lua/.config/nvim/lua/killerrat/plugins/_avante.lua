@@ -5,6 +5,14 @@ local api_key_name = "cmd:secret-tool lookup xdg:schema com.google.gemini"
 if vim.fn.has('win32') == 1 or vim.fn.executable("secret-tool") == 0 then
 	--api_key_name = "cmd:$(Get-StoredCredential -Target com.google.gemini -AsCredentialObject).Password"
 	api_key_name = ""
+else
+-- Use shell to run secret-tool lookup command, if error is returned, then set api_key_name to empty string.
+	local handle = io.popen("secret-tool lookup xdg:schema com.google.gemini 2>/dev/null")
+	local result = handle:read("*a")
+	handle:close()
+	if result == "" then
+		api_key_name = ""
+	end
 end
 
 
