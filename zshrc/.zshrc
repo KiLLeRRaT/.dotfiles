@@ -119,10 +119,13 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=100000
 
-# export EDITOR="/usr/local/bin/nvim"
 export EDITOR="/usr/bin/nvim"
 export VISUAL=$EDITOR
+
+# Could put the below into ~/.profile
+export PATH=$PATH:~/.local/bin
 export PATH="/home/albert/.ebcli-virtual-env/executables:$PATH"
+
 # export NOW=$(date +"%m-%d-%Y")
 export NOW=$(date +"%Y-%m-%d")
 export NOWT=$(date +"%Y%m%d%H%M%S")
@@ -891,7 +894,6 @@ then
 	export PATH=$PATH:~/.dotnet/tools
 fi
 
-export PATH=$PATH:~/.local/bin
 
 
 # Set up fzf key bindings and fuzzy completion
