@@ -897,7 +897,7 @@ fi
 
 
 # Set up fzf key bindings and fuzzy completion
-if [ -f /usr/bin/fzf ]
+if [ -f /usr/bin/fzf ] || [ -f /usr/local/bin/fzf ]
 then
 	fzfMinorVersion=$(fzf --version | cut -d' ' -f1 | cut -d. -f2)
 	# Shell integration was added in 0.48.0 and later
