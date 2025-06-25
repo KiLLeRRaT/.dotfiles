@@ -65,6 +65,11 @@
 
 [gpg "ssh"]
 	allowedSignersFile = ~/.ssh/allowed_signers
+
+	; Comment this out if you want to use the current workstation SSH key instead of using 1Password
+	; on the server you're connected to.  E.g. when working from a laptop and want to commit on
+	; agouws.gouws.org, you want to disable this line on agouws.gouws.org so that 1Password does'nt
+	; fire up when you only have an SSH session open.
 	program = "/opt/1Password/op-ssh-sign"
 
 [rerere]
@@ -83,3 +88,4 @@
 	insteadOf = ghs:
 
 ; Also see /etc/gitconfig
+[safe]
