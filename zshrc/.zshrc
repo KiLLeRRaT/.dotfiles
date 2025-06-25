@@ -827,7 +827,15 @@ zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
 # FROM: https://unix.stackexchange.com/a/722487
 bindkey '^[[Z' reverse-menu-complete
 
+# interactive mode in menu selection
+# bindkey -M menuselect '^xi' vi-insert
 
+# THIS DOESNT WORK, SOMEHOW IS OVERRIDING menuselect
+# use the vi navigation keys in menu completion
+# bindkey -M menuselect 'h' vi-backward-char
+# bindkey -M menuselect 'k' vi-up-line-or-history
+# bindkey -M menuselect 'l' vi-forward-char
+# bindkey -M menuselect 'j' vi-down-line-or-history
 
 # Navigate words with ctrl+arrow keys
 bindkey '^[Oc' forward-word																			#
