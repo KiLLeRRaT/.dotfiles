@@ -502,6 +502,17 @@ fm() {
 	eval $cmd
 }
 
+f-background() {
+	currentImageCmd=$(cat ~/.fehbg | grep feh)
+	image=$(ls ~/.dotfiles/images | fzf --preview="feh --bg-fill ~/.dotfiles/images/{}" --select-1)
+	if [ -n "$image" ]; then
+		echo "Setting background to $image"
+		feh --bg-scale ~/.dotfiles/images/$image
+	else
+		echo "No image selected, restoring previous background"
+		eval $currentImageCmd
+	fi
+}
 
 vmGetDomain() {
 	sudo virsh list --all | tail -n +3 | fzf --select-1 --query "$1" --height=~50 | awk '{ print $2 }'
