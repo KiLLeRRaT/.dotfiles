@@ -23,10 +23,10 @@
 			"percent": 1,
 			"swallows": [
 				{
-					"class": "^Alacritty$"
+					"class": "^Alacritty$",
 					// "instance": "^Alacritty$",
 					// "machine": "^ganderson$",
-					// "title": "^\\~$"
+					"title": "^Terminal Main$"
 				}
 			],
 			"type": "con"

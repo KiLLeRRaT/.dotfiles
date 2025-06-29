@@ -894,17 +894,14 @@ exec --no-startup-id i3-msg 'workspace $ws9; append_layout ~/.config/i3/workspac
 
 # exec --no-startup-id i3-msg 'workspace $ws9; append_layout ~/.config/i3/workspaces/arch-agouws/ws-9.json'
 # assign [class="Brave"] $ws8
-exec --no-startup-id i3-msg 'workspace $ws9; exec brave --profile-directory=Default'
+exec --no-startup-id i3-msg 'workspace $ws8; exec brave --profile-directory=Default'
 exec --no-startup-id i3-msg 'workspace $ws8; exec brave --profile-directory=Profile\ 1'
 
-# exec --no-startup-id "brave --profile-directory=Default"
-# exec --no-startup-id "brave --profile-directory=Profile\ 1"
-exec --no-startup-id "1password"
-exec --no-startup-id "spotify"
-exec --no-startup-id "google-chat-linux"
-# exec --no-startup-id "alacritty -e tmux"
-exec --no-startup-id "alacritty -e zsh -c 'tmux a || tmux'"
-exec --no-startup-id i3-msg 'workspace $ws3; exec alacritty -e zsh -c "tmux a -t Work_Build"'
+exec --no-startup-id i3-msg 'workspace $ws1; exec 1password'
+exec --no-startup-id i3-msg 'workspace $ws1; exec spotify'
+exec --no-startup-id i3-msg 'workspace $ws1; exec google-chat-linux'
+exec --no-startup-id i3-msg 'workspace $ws2; exec alacritty --title "Terminal Main" -e zsh -c "tmux a || tmux"'
+exec --no-startup-id i3-msg 'workspace $ws3; exec alacritty --title "Terminal Build" -e zsh -c "tmux a -t Work_Build"'
 # </config>
 # <config hostname="arch-delllatitude">
 font xft:SF Pro Display 11
@@ -912,7 +909,6 @@ font xft:SF Pro Display 11
 # FROM: https://github.com/betterlockscreen/betterlockscreen
 exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
-# exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 # TURN ON NUMLOCK USING numlockx LIBRARY
