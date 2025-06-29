@@ -7,5 +7,8 @@ fi
 
 xrdb -merge ~/.Xresources
 
+# keyboard repeate rate
+xset r rate 200 35
+
 exec i3
 # exec /usr/bin/i3 >~/i3log-$(date +'%F-%k-%M-%S') 2>&1
