@@ -1,6 +1,6 @@
 {
   "LuaSnip": { "branch": "master", "commit": "eda5be8f0ce9816278671f0b578cdbb8b762c701" },
-  "avante.nvim": { "branch": "main", "commit": "5b2a0e6118902c9a4494b9a13e73f412d3e75dff" },
+  "avante.nvim": { "branch": "main", "commit": "c10e383019280edf6433b422603be45294c9ccf5" },
   "better-escape.nvim": { "branch": "master", "commit": "19a38aab94961016430905ebec30d272a01e9742" },
   "ccc.nvim": { "branch": "main", "commit": "9d1a256e006decc574789dfc7d628ca11644d4c2" },
   "cmp-buffer": { "branch": "main", "commit": "b74fab3656eea9de20a9b8116afa3cfc4ec09657" },
@@ -57,7 +57,7 @@
   "rainbow_csv": { "branch": "master", "commit": "3dbbfd7d17536aebfb80f571255548495574c32b" },
   "roslyn.nvim": { "branch": "main", "commit": "6baa44274dabf237a0ebec94b4ccad0e3831ed12" },
   "rzls.nvim": { "branch": "main", "commit": "27b4c4c3bf35f3d83ccfba8c696c96f7e1d9c154" },
-  "smear-cursor.nvim": { "branch": "main", "commit": "ac5c4a8496e678ce68c1cb36df7c19e7d8c76282" },
+  "smear-cursor.nvim": { "branch": "main", "commit": "4a0f7ac265b4ed1ce4d0af2afc13072763bfa691" },
   "sniprun": { "branch": "master", "commit": "a90c65846c3c18efc3f799d8b6dc26af9d4a69ed" },
   "substitute.nvim": { "branch": "main", "commit": "9db749a880e3dd3b0eb57f698aa8f1e1630e1f25" },
   "suda.vim": { "branch": "master", "commit": "9adda7d195222d4e2854efb2a88005a120296c47" },
