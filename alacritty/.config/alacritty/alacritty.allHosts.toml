@@ -61,13 +61,12 @@ size = 10.0
 
 
 
-
-
-
-
-
 [font.normal]
-family = "CaskaydiaCove Nerd Font Mono"
+# family = "CaskaydiaCove Nerd Font Mono"
+# family = "Symbols Nerd Font Nerd Font"
+# family = "CaskaydiaCove Nerd Font"
+family = "monospace"
+
 style = "Book"
 
 [[keyboard.bindings]]
