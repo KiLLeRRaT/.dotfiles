@@ -812,6 +812,7 @@ bindsym $mod+XF86AudioLowerVolume exec --no-startup-id "~/.dotfiles/hosts/asus-t
 # bindsym $mod+XF86PowerOff exec onboard
 # </config>
 
+# Colin PC
 # <config hostname="arch-i5-6400">
 # set $screenleft DP-0
 # set $screenmiddle HDMI-1
@@ -926,8 +927,8 @@ exec --no-startup-id i3-msg "workspace $ws2; exec alacritty -e zsh -c 'tmux a ||
 
 # NEED A UDEV RULE TO ALLOW NON ROOT TO ADJUST BRIGHTNESS. SEE:
 # https://wiki.archlinux.org/title/Talk:Backlight#Udev_rules_for_permissions_of_brightness_doesn't_work
-bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-delllatitude/set-brightness.sh +50"
-bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-delllatitude/set-brightness.sh -50"
+bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-delllatitude/set-brightness-percent.sh +5"
+bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-delllatitude/set-brightness-percent.sh -5"
 bindsym $mod+XF86MonBrightnessUp exec --no-startup-id "pactl set-sink-volume 0 +5%"
 bindsym $mod+XF86MonBrightnessDown exec --no-startup-id "pactl set-sink-volume 0 -5%"
 # </config>
@@ -1023,8 +1024,8 @@ exec --no-startup-id i3-msg "workspace $ws2; exec alacritty -e zsh -c 'tmux a ||
 
 # NEED A UDEV RULE TO ALLOW NON ROOT TO ADJUST BRIGHTNESS. SEE:
 # https://wiki.archlinux.org/title/Talk:Backlight#Udev_rules_for_permissions_of_brightness_doesn't_work
-bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-delllatitude/set-brightness.sh +50"
-bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-delllatitude/set-brightness.sh -50"
+bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-delllatitude/set-brightness-percent.sh +5"
+bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-delllatitude/set-brightness-percent.sh -5"
 bindsym $mod+XF86MonBrightnessUp exec --no-startup-id "pactl set-sink-volume 0 +5%"
 bindsym $mod+XF86MonBrightnessDown exec --no-startup-id "pactl set-sink-volume 0 -5%"
 # </config>

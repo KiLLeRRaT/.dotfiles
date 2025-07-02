@@ -182,7 +182,7 @@ ethernet wlp1s0 {
 order += "ethernet wlan0"
 order += "ethernet enp42s0"
 order += "ethernet eno1"
-# order += "battery all"
+order += "battery all"
 ethernet wlan0 {
 # if you use %speed, i3status requires root privileges
 				format_up = "<span color='white'> 󰖩 %ip </span>"
