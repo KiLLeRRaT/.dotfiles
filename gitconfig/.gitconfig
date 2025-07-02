@@ -88,4 +88,5 @@
 	insteadOf = ghs:
 
 ; Also see /etc/gitconfig
-[safe]
+[interactive]
+    singleKey = true
