@@ -6,6 +6,8 @@ set $mod Mod4
 # MAKE CAPSLOCK A CTRL KEY, AND TERMINATE X WITH CTRL+ALT+BACKSPACE
 exec_always --no-startup-id setxkbmap -option ctrl:nocaps -option "terminate:ctrl_alt_bksp" -variant altgr-intl
 exec --no-startup-id xinput set-prop 12 "libinput Scroll Method Enabled" 0, 0, 1
+# TURN ON NUMLOCK USING numlockx LIBRARY
+exec --no-startup-id numlockx
 
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
@@ -40,7 +42,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id "dmenu_recency -i -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2'"
 
 # launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
+# bindsym $mod+z exec --no-startup-id morc_menu
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -457,7 +459,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Set shut down, restart and locking features
 # bindsym Mod4+l exec --no-startup-id i3exit lock, mode "default"
@@ -483,7 +485,7 @@ mode "$mode_system" {
 }
 
 # setup redshift
-# lat and long for 10 harihari
+# lat and long for whatawhata
 # exec --no-startup-id redshift -l -37.793342:175.134606 -t 6500:4000 -g 0.8 -m randr -v
 exec --no-startup-id redshift -l -37.793342:175.134606 -t 6500:4000 -m randr
 
@@ -517,19 +519,12 @@ mode "resize" {
 				bindsym Escape mode "default"
 }
 
-# Lock screen
-# bindsym $mod+9 exec --no-startup-id blurlock
-
 # Disabled Tue 4 Jun 2024 09:07, not using it I don't think.  Now using lxpolkit...
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id lxpolkit
 
 exec --no-startup-id nm-applet
-# exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
-
-# exec --no-startup-id xfce4-power-manager
-# exec_always --no-startup-id ff-theme-util
-# exec_always --no-startup-id fix_xcursor
+exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -733,39 +728,26 @@ mode "$mode_gaps_outer" {
 # <hostSpecificConfig>
 # <config hostname="hppavilion">
 font xft:SF Pro Display 11
-# 󰭹 chat
 
 assign [class="Brave"] $ws8
 assign [class="Alacritty"] $ws2
 
-exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
+exec --no-startup-id pkill xautolock; xautolock -time 10 -locker blurlock -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
-exec --no-startup-id xfce4-power-manager
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
 exec --no-startup-id onboard
 exec --no-startup-id pipewire-pulse
-exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
-
-# exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'
-
-#exec --no-startup-id "alacritty -e tmux
-# exec --no-startup-id conky -c ~/.config/conky/conky-surface3.conf
 
 # </config>
 # <config hostname="surface3">
 font xft:URWGothic-Book 11
-# 󰭹 chat
 
 assign [class="Brave"] $ws8
 assign [class="Alacritty"] $ws2
 
-exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
+exec --no-startup-id pkill xautolock; xautolock -time 10 -locker blurlock -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id onboard
 exec --no-startup-id pipewire-pulse
-exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
-# exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'
 exec --no-startup-id "alacritty -e tmux"
 # exec --no-startup-id conky -c ~/.config/conky/conky-surface3.conf
 
@@ -783,17 +765,13 @@ bindsym $mod+XF86AudioLowerVolume exec --no-startup-id "xbacklight -dec 10; noti
 # </config>
 # <config hostname="asus-tablet">
 font xft:SF Pro Display 11
-# 󰭹 chat
 
 assign [class="Brave"] $ws8
 assign [class="Alacritty"] $ws2
 
-exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id onboard
 exec --no-startup-id pipewire-pulse
-exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
-# exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'
 exec --no-startup-id "alacritty -e tmux"
 # exec --no-startup-id conky -c ~/.config/conky/conky-surface3.conf
 
@@ -819,20 +797,11 @@ bindsym $mod+XF86AudioLowerVolume exec --no-startup-id "~/.dotfiles/hosts/asus-t
 # set $screenright HDMI-0
 
 # font xft:SF Pro Display 11
-# 󰭹 chat
 
 # FROM: https://github.com/betterlockscreen/betterlockscreen
 # betterlockscreen -u ~/.dotfiles/images
-exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
-exec --no-startup-id xfce4-power-manager
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
-# TURN ON NUMLOCK USING numlockx LIBRARY
-exec --no-startup-id numlockx
 exec --no-startup-id pipewire-pulse
-exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
-# exec --no-startup-id pa-applet
 exec --no-startup-id emote # ctrl + alt + e
 
 # # RESTORE LAYOUTS
@@ -866,20 +835,11 @@ set $screenmiddle HDMI-1
 set $screenright HDMI-0
 
 font xft:SF Pro Display 11
-# 󰭹 chat
 
 # FROM: https://github.com/betterlockscreen/betterlockscreen
 # betterlockscreen -u ~/.dotfiles/images
-exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/* --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
-exec --no-startup-id xfce4-power-manager
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
-# TURN ON NUMLOCK USING numlockx LIBRARY
-exec --no-startup-id numlockx
 exec --no-startup-id pipewire-pulse
-exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
-# exec --no-startup-id pa-applet
 exec --no-startup-id emote # ctrl + alt + e
 
 # RESTORE LAYOUTS
@@ -906,22 +866,13 @@ exec --no-startup-id i3-msg 'workspace $ws3; exec alacritty --title "Terminal Bu
 # </config>
 # <config hostname="arch-delllatitude">
 font xft:SF Pro Display 11
-# 󰭹 chat
 # FROM: https://github.com/betterlockscreen/betterlockscreen
-exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
-# TURN ON NUMLOCK USING numlockx LIBRARY
-exec --no-startup-id numlockx
 exec --no-startup-id pipewire-pulse
-exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 # RESTORE LAYOUTS
 exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/arch-delllatitude/workspace-2-2.json'
 exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/arch-delllatitude/workspace-8.json'
 
-# exec --no-startup-id "brave --profile-directory=Default"
-# exec --no-startup-id "brave --profile-directory=Profile\ 1"
 exec --no-startup-id i3-msg 'workspace $ws8; exec brave --profile-directory=Default'
 exec --no-startup-id i3-msg "workspace $ws2; exec alacritty -e zsh -c 'tmux a || tmux'"
 
@@ -934,23 +885,13 @@ bindsym $mod+XF86MonBrightnessDown exec --no-startup-id "pactl set-sink-volume 0
 # </config>
 # <config hostname="arch-samsung">
 font xft:SF Pro Display 11
-# 󰭹 chat
 # FROM: https://github.com/betterlockscreen/betterlockscreen
-exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
-# exec --no-startup-id xfce4-power-manager
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
-# TURN ON NUMLOCK USING numlockx LIBRARY
-exec --no-startup-id numlockx
 exec --no-startup-id pipewire-pulse
-exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 # RESTORE LAYOUTS
 exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/arch-samsung/workspace-2.json'
 exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/arch-samsung/workspace-8.json'
 
-# exec --no-startup-id i3-msg 'workspace $ws8; exec brave --profile-directory=Default'
-# exec --no-startup-id i3-msg "workspace $ws2; exec alacritty -e zsh -c 'tmux a || tmux'"
 exec "brave --profile-directory=Default"
 exec "alacritty -e zsh -c 'tmux a || tmux'"
 
@@ -962,21 +903,13 @@ bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-samsu
 # </config>
 # <config hostname="arch-asus">
 font xft:SF Pro Display 11
-# 󰭹 chat
 # FROM: https://github.com/betterlockscreen/betterlockscreen
-exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
-exec --no-startup-id numlockx
 exec --no-startup-id pipewire-pulse
-exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 # RESTORE LAYOUTS
 exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/arch-samsung/workspace-2.json'
 exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/arch-samsung/workspace-8.json'
 
-# exec --no-startup-id i3-msg 'workspace $ws8; exec brave --profile-directory=Default'
-# exec --no-startup-id i3-msg "workspace $ws2; exec alacritty -e zsh -c 'tmux a || tmux'"
 exec "brave --profile-directory=Default"
 exec "alacritty -e zsh -c 'tmux a || tmux'"
 
@@ -996,29 +929,20 @@ bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-asus/
 # set $screenright HDMI-1
 
 # Sandfield dual displays JCHEN computer
-exec --no-startup-id ~/.screenlayout/arch-agouws-2-displays.sh
-set $screenleft HDMI2
-set $screenmiddle HDMI1
-set $screenright HDMI1
+# exec --no-startup-id ~/.screenlayout/arch-agouws-2-displays.sh
+# set $screenleft HDMI2
+# set $screenmiddle HDMI1
+# set $screenright HDMI1
+
 
 font xft:SF Pro Display 11
-# 󰭹 chat
 # FROM: https://github.com/betterlockscreen/betterlockscreen
-exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
-exec --no-startup-id xfce4-power-manager
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
-# TURN ON NUMLOCK USING numlockx LIBRARY
-exec --no-startup-id numlockx
 exec --no-startup-id pipewire-pulse
-exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 # RESTORE LAYOUTS
 exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/arch-delllatitude/workspace-2-2.json'
 exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/arch-delllatitude/workspace-8.json'
 
-# exec --no-startup-id "brave --profile-directory=Default"
-# exec --no-startup-id "brave --profile-directory=Profile\ 1"
 exec --no-startup-id i3-msg 'workspace $ws8; exec brave --profile-directory=Default'
 exec --no-startup-id i3-msg "workspace $ws2; exec alacritty -e zsh -c 'tmux a || tmux'"
 
@@ -1032,15 +956,11 @@ bindsym $mod+XF86MonBrightnessDown exec --no-startup-id "pactl set-sink-volume 0
 
 # <config hostname="arch-macbookpro13">
 font xft:SF Pro Display 12
-# 󰭹 chat
-exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
-# exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/Img-9.png; sleep 1; picom -b
 # SWAP LEFT ALT/OPTION WITH LEFT COMMAND, FROM: https://askubuntu.com/a/29609
-exec_always --no-startup-id sleep 3;setxkbmap -option ctrl:nocaps -option "terminate:ctrl_alt_bksp" -option altwin:swap_lalt_lwin
+exec_always --no-startup-id sleep 3;setxkbmap -option ctrl:nocaps -option "terminate:ctrl_alt_bksp" -option altwin:swap_lalt_lwin -variant altgr-intl
 exec --no-startup-id blueman-applet
 exec_always --no-startup-id dunst
-exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 # RESTORE LAYOUTS
 exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/arch-agouwsmacbookpro/workspace-2.json'
 exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/arch-agouwsmacbookpro/workspace-8.json'
@@ -1068,18 +988,10 @@ set $screenright DP-2-2
 
 # <config hostname="toshiba">
 font xft:URWGothic-Book 11
-# 󰭹 chat
 
-exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
-exec --no-startup-id xfce4-power-manager
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
 
-# # TURN ON NUMLOCK USING numlockx LIBRARY
-exec --no-startup-id numlockx
 exec --no-startup-id pipewire-pulse
-exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 
 # RESTORE LAYOUTS
 exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/toshiba/workspace-2.json'
@@ -1101,21 +1013,18 @@ bindsym $mod+Left exec --no-startup-id "pactl set-sink-volume 0 -5%"
 
 # <config hostname="sierra"><!-- SONY VAIO LAPTOP -->
 font xft:URWGothic-Book 11
-# 󰭹 chat
 
-exec --no-startup-id xautolock -time 10 -locker blurlock -corners 000-
+exec --no-startup-id pkill xautolock; xautolock -time 10 -locker blurlock -corners 000-
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
-exec --no-startup-id xfce4-power-manager
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
 
 exec --no-startup-id pulseaudio
-exec --no-startup-id pa-applet
 exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/ws-2.json'
 exec --no-startup-id "alacritty -e tmux"
 # </config>
 # </hostSpecificConfig>
 
+# ORDER IS IMPORTANT I THHINK, NEED TO RUN EACH HOST SPECIFIC AUDIO INIT FIRST
+exec --no-startup-id "zsh -c 'sleep 10; pa-applet'"
 
 workspace $ws1 output $screenleft
 workspace $ws4 output $screenleft
