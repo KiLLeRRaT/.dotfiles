@@ -954,3 +954,10 @@ function command_not_found_handler {
 	fi
 	return 127
 }
+
+# if gemini is installed, let's set the API key
+if command -v gemini &> /dev/null
+then
+	export GEMINI_API_KEY=$(secret-tool lookup xdg:schema com.google.gemini)
+fi
+
