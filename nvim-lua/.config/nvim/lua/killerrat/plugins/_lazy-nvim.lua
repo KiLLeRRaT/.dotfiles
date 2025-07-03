@@ -226,7 +226,10 @@ local lazyPlugins = {
 	{ 'lambdalisue/suda.vim' },												-- https://github.com/lambdalisue/suda.vim
 	{ 'terrastruct/d2-vim', ft = "d2" },	-- https://github.com/terrastruct/d2-vim
 	{ 'mbbill/undotree' },															-- https://github.com/mbbill/undotree
-	{ 'norcalli/nvim-colorizer.lua' },														-- https://github.com/norcalli/nvim-colorizer.lua
+	-- BELOW COLORIZER HAS DEPRECATED VIM API STUFF BUT THEY ARE NOT UPDATING, CHANGED TO A FORK
+	-- INSTEAD
+	-- { 'norcalli/nvim-colorizer.lua' },														-- https://github.com/norcalli/nvim-colorizer.lua
+	{ 'catgoose/nvim-colorizer.lua' },														-- https://github.com/norcalli/nvim-colorizer.lua
 	{ "folke/zen-mode.nvim", cmd = "ZenMode" },
 	{ "tris203/hawtkeys.nvim",
 		dependencies = "nvim-lua/plenary.nvim", config = { } }, -- https://github.com/tris203/hawtkeys.nvim
