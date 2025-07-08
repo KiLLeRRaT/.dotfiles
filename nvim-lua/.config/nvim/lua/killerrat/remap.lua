@@ -393,3 +393,9 @@ function format_range_operator()
 	vim.api.nvim_feedkeys('g@', 'n', false)
 end
 vim.api.nvim_set_keymap("n", "<leader>~", "<cmd>lua format_range_operator()<CR>", {noremap = true})
+
+vim.api.nvim_create_user_command("WQ", "wq", { nargs = 0, desc = "Write and Quit" })
+vim.api.nvim_create_user_command("Q", "q", { nargs = 0, desc = "Quit" })
+vim.api.nvim_create_user_command("Qa", "qa", { nargs = 0, desc = "Quit all" })
+vim.api.nvim_create_user_command("W", "w", { nargs = 0, desc = "Write" })
+vim.api.nvim_create_user_command("Wq", "wq", { nargs = 0, desc = "Write and Quit" })
