@@ -61,10 +61,11 @@ p.setup {
 		}
 	},
 	defaults = {
-		layout_strategy = 'vertical',
+		layout_strategy = 'flex',
 		layout_config = {
-			vertical = { width = 0.99, height = 0.99 },
-			horizontal = { width = 0.99, height = 0.99 }
+			vertical = { width = 0.99, height = 0.99, preview_height = 0.5 },
+			horizontal = { width = 0.99, height = 0.99, preview_width = 120 },
+			flex = { width = 0.9, flip_columns = 220 }
 		},
 		mappings = {
 			i = {
