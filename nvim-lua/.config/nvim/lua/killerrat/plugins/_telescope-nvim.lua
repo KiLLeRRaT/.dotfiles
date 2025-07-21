@@ -36,6 +36,7 @@ local findFiles = function()
 end
 local findGrep = function()
 	currentPicker = "findGrep"
+	-- require('telescope').extensions.live_grep_args.live_grep_args({ wrap_results = true, default_text = current_prompt_text() })
 	require('telescope').extensions.live_grep_args.live_grep_args({ default_text = current_prompt_text() })
 end
 
