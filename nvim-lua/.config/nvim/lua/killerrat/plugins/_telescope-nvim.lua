@@ -32,7 +32,7 @@ end
 local currentPicker = nil
 local findFiles = function()
 	currentPicker = "findFiles"
-	require("telescope.builtin").find_files({ default_text = current_prompt_text(), find_command = {"rg", "--files", "--hidden", "--glob", "!**/.git/*"}, }) 
+	require("telescope.builtin").find_files({ default_text = current_prompt_text(), find_command = {"rg", "--files", "--hidden", "--glob", "!**/.git/*"}, })
 end
 local findGrep = function()
 	currentPicker = "findGrep"
@@ -67,6 +67,12 @@ p.setup {
 			vertical = { width = 0.99, height = 0.99, preview_height = 0.5 },
 			horizontal = { width = 0.99, height = 0.99, preview_width = 120 },
 			flex = { width = 0.9, flip_columns = 220 }
+		},
+		-- path_display = { "filename_first" },
+		path_display = {
+			filename_first = {
+			  reverse_directories = true
+			}
 		},
 		mappings = {
 			i = {
