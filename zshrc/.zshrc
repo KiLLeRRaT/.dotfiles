@@ -515,6 +515,10 @@ f-background() {
 	fi
 }
 
+f-cycling() {
+  f="$(fd . '/mnt/data2-temp/tdarr/data-media/sport/Tour de France/Season 2025/' | fzf)" && (vlc "$f"&disown)
+}
+
 vmGetDomain() {
 	sudo virsh list --all | tail -n +3 | fzf --select-1 --query "$1" --height=~50 | awk '{ print $2 }'
 }
