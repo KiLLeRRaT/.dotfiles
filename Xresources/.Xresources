@@ -1,8 +1,11 @@
 Xcursor.size: 32
 
+! Used on arch-agouws!
+Xft.dpi:       96
+Xft.antialias: true
+
+
 ! COMMENTED OUT ON ~Thu 17 Jul 2025 06:39 because I don't think it's used.
-! Xft.dpi:       96
-! Xft.antialias: true
 ! Xft.hinting:   true
 ! Xft.rgba:      rgb
 ! Xft.autohint:  false
