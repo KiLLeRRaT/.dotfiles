@@ -599,10 +599,16 @@ npm-outdated-update() {
 	else
 		whatColumn=3
 	fi
-	npm outdated |\
-		fzf --header=$whatParam --multi --header-lines=1 --bind ctrl-a:select-all |\
+	packages=$(npm outdated --color=always)
+	echo $packages |\
+		fzf --ansi --header=$whatParam --multi --header-lines=1 --bind ctrl-a:select-all |\
 		awk '{print $1"@"$'$whatColumn'}' |\
 		xargs --no-run-if-empty npm install
+
+	# npm outdated |\
+	# 	fzf --header=$whatParam --multi --header-lines=1 --bind ctrl-a:select-all |\
+	# 	awk '{print $1"@"$'$whatColumn'}' |\
+	# 	xargs --no-run-if-empty npm install
 	# npm --color=always outdated |\
 	# 	fzf --header=$whatParam --multi --header-lines=1 --ansi --bind ctrl-a:select-all |\
 	# 	awk '{print $1"@"$'$whatColumn'}' |\
