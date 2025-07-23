@@ -207,7 +207,6 @@ require'lspconfig'.dockerls.setup{}
 -- npm i -g eslint
 -- local eslint_config = require("lspconfig.server_configurations.eslint")
 require'lspconfig'.eslint.setup {
-    -- opts.cmd = { "yarn", "exec", unpack(eslint_config.default_config.cmd) }
 }
 
 --Enable (broadcasting) snippet capability for completion

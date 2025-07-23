@@ -34,6 +34,7 @@ plugins = {
 	["arch-agouws"] = { },
 	["pappa"] = servers,
 	["sierraecho"] = servers,
+	["sierrafoxtrot"] = servers,
 	["sierradelta"] = servers,
 	["proxmox-i7-2600k"] = servers,
 	["proxmox-backup-server"] = servers,
