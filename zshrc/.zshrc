@@ -247,42 +247,6 @@ alias db='dotnet build'
 alias dr='dotnet restore'
 alias xc='xclip -se c'
 
-alias gs='git status'
-alias gf='git fetch'
-alias gu='git pull'
-alias gp='git push'
-alias gpt='git push --tags'
-alias gP='git push --force-with-lease'
-alias ga='git add'
-alias gcam='git commit -am'
-alias gd='git diff'
-alias gw='git diff --word-diff'
-setopt interactive_comments
-preexec(){ _lc=$1; }
-alias gcm='git commit -m "${_lc#gcm }" #'
-alias gl='git logo'
-alias gdog='git dog'
-alias gadog='git adog'
-alias gb='git branch'
-alias gr='git rebase'
-alias gba='git branch --all'
-alias gco='git checkout'
-alias gm='git merge'
-alias gt='git tag | sort -V | tail'
-alias gcd="cd \"\$(git rev-parse --show-toplevel)\""
-alias gi='git io'
-
-gfr() {
-	fd -t d --max-depth=1 -x \
-		bash -c "pushd {} &> /dev/null;git fetch;git status | (echo -n ""{}: "";sed '/Your branch/!d');popd &> /dev/null"
-}
-# alias gtp='fn-gtp() { git tag $1 && git push --tags };fn-gtp'
-gtp() { git tag $1 && git push --tags }
-# alias gtD='fn-gt() { git tag -d $1 && git push origin -d $1 };fn-gt'
-gtD() { git tag -d $1;git push origin -d $1 }
-# GIT TAG REMOVE
-# gtr(){git tag -d $1 && git push origin -d $1}
-#; fn_gtr 3.4.0
 
 
 
@@ -374,6 +338,8 @@ cs() {
 #			done | grep -E "$1[^/]*$" | $cmd | sed -ne "${occ}p"
 #		)
 # }
+
+# cd up
 cdu() {
 		p=$PWD
 		cd $(
@@ -391,394 +357,16 @@ cdu() {
 }
 
 
-# fzf git checkout
-fgco() {
-	git branch --all --sort=-committerdate |\
-		fzf --height=~50 -e --select-1 --no-sort --query "$1" |\
-		sed 's/remotes\/origin\///' |\
-		xargs --no-run-if-empty git checkout
-}
+# DISABLED IN FAVOUR OR YAY
+# if [ -f ~/.config/zsh/plugins/aur.zsh ]; then
+# 	source ~/.config/zsh/plugins/aur.zsh
+# fi
 
-# KILL USING FZF AS SELECTOR
-fkk() {
-	sig=$1
-	cmd=$(ps -aux | sort -nr | fzf --multi -e --select-1 --no-sort --query "$2" )
-	echo Killing the following:
-	echo $cmd
-	for pid in $(echo $cmd | awk '{ print $2 }')
-	do
-		if [ $sig -eq 9 ]
-		then
-			# echo "Killing $pid with -9"
-			kill -9 $pid
-		else
-			# echo "Killing $pid with -15"
-			kill -15 $pid
-		fi
-	done
-}
-# KILL USING FZF AS SELECTOR
-fk9() {
-	fkk 9 $1
-}
-# KILL USING FZF AS SELECTOR
-fk() {
-	fkk 15 $1
-}
+if [ -f ~/.config/zsh/plugins/feh.zsh ]; then
+	source ~/.config/zsh/plugins/feh.zsh
+fi
 
-# RUN THE COMMAND FROM HISTORY, USING FZF AS SELECTOR
-fh() {
-	cmd=$(history 0 | sort -nr | cut -c 8- | fzf -e --select-1 --no-sort --query "$1" )
-	# push the command into the history
-	print -S $cmd
-	echo $cmd
-	read -q "REPLY?Run command? "
-	[[ "$REPLY" == "y" ]] && echo "" && eval $cmd
-}
 
-# REMMINA USING THE CONNECTION FILE SELECTED USING FZF
-fr() {
-	pushd -q ~/.local/share/remmina
-	subcmd=$(ls $PWD/* | fzf --ignore-case -e --select-1 --no-sort --query "$1")
-	cmd="remmina -c '"$subcmd"'"
-	# push the command into the history
-	print -S $cmd
-	eval $cmd > /dev/null 2>&1 &
-	disown
-	popd -q
-}
-
-# fzf time zone time
-alias ftz='TZ=$(timedatectl list-timezones | fzf) date'
-
-# fzf CBM bookmarks
-fcbm() {
-	pushd -q ~/scripts/Sandfield # We want to do this because there are other files we need in this location
-	./CBM-CentralBookmarksManager-export-textfiles.sh "$1"
-	popd -q
-}
-# alias fcbm='pushd ~/scripts/Sandfield > /dev/null 2>&1; ./CBM-CentralBookmarksManager-export-textfiles.sh; popd -q
-
-# SUPERCEDED BY USING nvim **<tab> instead
-# fn() {
-# 	local results=$(fzf --multi --preview 'bat --color=always {}')
-# 	[ -z $results ] && return
-# 	echo "$results"
-# 	echo "$results" | xargs --no-run-if-empty -d'\n' nvim
-# }
-
-# fzf i3 key binds, and run the command
-fi3() {
-	cmd=$(sed '/^bindsym/!d' ~/.config/i3/config | fzf --query "$1" --select-1)
-	cmd=$(cut -f 3- -d' ' <<< $cmd)
-	i3-msg $cmd > /dev/null
-}
-
-# FZF to lsblk, then mount it to a mount point, echo the command to let the user edit it and then
-# run it
-fm() {
-	# cmd=$(history 0 | sort -nr | cut -c 8- | fzf -e --select-1 --no-sort --query "$1" )
-	device=/dev/$(lsblk --filter 'TYPE == "part"' | fzf --header-lines=1 --query "$1" --select-1 --no-sort | awk '{ print $1 }')
-	# push the command into the history
-	# print -S $cmd
-	# echo $cmd
-	# read -q "REPLY?Run command? "
-	# [[ "$REPLY" == "y" ]] && eval $cmd
-
-	default=/run/media/usb
-	echo "Please enter the mount point [$default]: "
-	read input
-	MOUNTPOINT=${input:-$default}
-
-	if ( ! [ -d $MOUNTPOINT ] )
-	then
-		echo "Mount point $MOUNTPOINT does not exist, create it? (y/n)"
-		read -q "REPLY? "
-		[[ "$REPLY" == "y" ]] && sudo mkdir -p $MOUNTPOINT
-	fi
-
-	echo "Mounting $device to $MOUNTPOINT"
-	cmd="sudo mount $device $MOUNTPOINT"
-	print -S $cmd
-	eval $cmd
-}
-
-f-background() {
-	currentImageCmd=$(cat ~/.fehbg | grep feh)
-	image=$(ls ~/.dotfiles/images | fzf --preview="feh --bg-fill ~/.dotfiles/images/{}" --select-1)
-	if [ -n "$image" ]; then
-		echo "Setting background to $image"
-		feh --bg-scale ~/.dotfiles/images/$image
-	else
-		echo "No image selected, restoring previous background"
-		eval $currentImageCmd
-	fi
-}
-
-f-cycling() {
-  f="$(fd . '/mnt/data2-temp/tdarr/data-media/sport/Tour de France/Season 2025/' | fzf)" && (vlc "$f"&disown)
-}
-
-vmGetDomain() {
-	sudo virsh list --all | tail -n +3 | fzf --select-1 --query "$1" --height=~50 | awk '{ print $2 }'
-}
-# START THE SELECTED VM
-vms() {
-	domain=$(vmGetDomain $1)
-	cmd="sudo virsh start $domain"
-	# push the command into the history
-	print -S $cmd
-	echo $cmd
-	eval $cmd
-	# Ask if you want to do vmscreenshot
-	# read -q "REPLY?Take screenshot? (y/n)"
-	# [[ "$REPLY" == "y" ]] && vmscreenshot $1
-	vmscreenshot $1
-}
-
-# CONNECT TO THE SELECTED VM
-vmc() {
-	domain=$(vmGetDomain $1)
-	cmd="sudo virt-manager --connect qemu:///system --show-domain-console $domain"
-	# push the command into the history
-	print -S $cmd
-	echo $cmd
-	eval $cmd
-	# read -q "REPLY?Run command? "
-	# [[ "$REPLY" == "y" ]] && eval $cmd
-}
-
-# SCREENSHOT VM
-vmscreenshot() {
-	tmpFile=$(mktemp)
-	domain=$(vmGetDomain $1)
-	# cmd="sudo virsh screenshot $domain /dev/stdout | feh -"
-	cmd="sudo virsh screenshot $domain $tmpFile"
-	eval $cmd
-
-	# FROM: https://www.reddit.com/r/i3wm/comments/mpehmg/comment/gu9fed3/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-	# FROM: https://stackoverflow.com/q/9560245/182888
-	trap 'echo "feh exited, now lets return";kill -INT $$' CHLD
-	feh $tmpFile &
-	feh_pid=$!
-	echo "feh_pid: $feh_pid"
-	feh_wid=""
-	while [ -z $feh_wid ];
-	do
-		feh_wid=$(xdotool search --pid "$feh_pid")
-		echo "feh_wid: $feh_wid"
-		sleep 0.1
-	done
-	i3-msg "[id=$feh_wid] floating enable, move position center" > /dev/null
-
-	count=0
-	while [ $count -lt 300 ]
-	do
-		count=$((count+1))
-		# eval $cmd
-		echo -ne "\r$(eval $cmd) at $(date)"
-		# echo -ne "\rtaking screenshot at $(date)"
-		sleep 1
-	done
-
-	# push the command into the history
-	print -S $cmd
-	echo $cmd
-	eval $cmd
-	# read -q "REPLY?Run command? "
-	# [[ "$REPLY" == "y" ]] && eval $cmd
-}
-
-npm-outdated-update() {
-	whatParam=$1
-	if [ -z $whatParam ]; then
-		whatParam="minor"
-	fi
-	if [ $whatParam = "major" ]; then
-		whatColumn=4
-	else
-		whatColumn=3
-	fi
-	packages=$(npm outdated --color=always)
-	echo $packages |\
-		fzf --ansi --header=$whatParam --multi --header-lines=1 --bind ctrl-a:select-all |\
-		awk '{print $1"@"$'$whatColumn'}' |\
-		xargs --no-run-if-empty npm install
-
-	# npm outdated |\
-	# 	fzf --header=$whatParam --multi --header-lines=1 --bind ctrl-a:select-all |\
-	# 	awk '{print $1"@"$'$whatColumn'}' |\
-	# 	xargs --no-run-if-empty npm install
-	# npm --color=always outdated |\
-	# 	fzf --header=$whatParam --multi --header-lines=1 --ansi --bind ctrl-a:select-all |\
-	# 	awk '{print $1"@"$'$whatColumn'}' |\
-	# 	xargs --no-run-if-empty npm install
-}
-
-dotnet-outdated-update() {
-	dotnet list package --outdated |\
-		sed -n '/Top-level Package/,$p' |\
-		sed 's/^.*> //' |\
-		fzf --header=Latest --multi --header-lines=1 --ansi |\
-		cut -f1 -d' ' |\
-		xargs -n1 --no-run-if-empty dotnet add package
-}
-
-ssh-remove-and-connect(){
-	# $1 is in the form of username@hostname
-	username=$(cut -d'@' -f1 <<< $1)
-	hostname=$(cut -d'@' -f2 <<< $1)
-	sed -i.bak "/^$hostname /d" ~/.ssh/known_hosts
-	# ssh $username@$hostname
-	ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -o PasswordAuthentication=yes $username@$hostname
-}
-
-ssh-with-password(){
-	username=$(cut -d'@' -f1 <<< $1)
-	hostname=$(cut -d'@' -f2 <<< $1)
-	ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -o PasswordAuthentication=yes $username@$hostname
-}
-
-# ;fn_ssh albert 132
-
-aur() {
-	command=$1
-	# command can be install <PACKAGE>, update build, or update install
-	if [ $command = "install" ]; then
-		aur-install $2
-	elif [ $command = "update" ]; then
-		if [ $2 = "build" ]; then
-			aur-update-build-outdated
-		elif [ $2 = "install" ]; then
-			aur-update-install-outdated
-		else
-			echo "Invalid command, commands are: build|install"
-		fi
-	else
-		echo "Invalid command, commands are: install <AUR_PACKAGE>|update (build|install)"
-	fi
-}
-
-aur-install() {
-	pushd -q ~/source-aur
-	echo "Installing $1"
-	if [ ! -d $1 ]; then
-		git clone https://aur.archlinux.org/$1.git
-		cd $1
-	else
-		cd $1
-		git pull
-	fi
-	makepkg --noconfirm -is --needed --clean
-	popd -q
-}
-
-aur-update-build-outdated() {
-	pushd -q ~/source-aur
-
-	touch /tmp/aur-update-packages.txt
-
-	gfr |\
-		grep behind |\
-		cut -d':' -f1 |\
-		sed 's|^\./||' |\
-		sort |\
-		fzf --header="Select packages to upgrade" --multi |\
-		sed 's/$/:/' \
-	>> /tmp/aur-update-packages.txt
-
-	while read packageLine; do
-		package=$(echo $packageLine | cut -d':' -f1)
-		built=$(echo $packageLine | grep ":built")
-
-		echo "Checking $package"
-
-		if [ -z "$built" ]; then
-		echo "Building $package"
-			pushd -q $package
-			git rebase
-			makepkg -s --clean
-			sed -i "s/$package:/$package:built/" /tmp/aur-update-packages.txt
-			popd -q
-		fi
-	done < /tmp/aur-update-packages.txt
-
-	popd -q
-}
-
-aur-update-install-outdated() {
-	pushd -q ~/source-aur
-
-	echo "Installing the following packages:"
-	cat /tmp/aur-update-packages.txt | grep ":built" | cut -d':' -f1
-
-	PKGS=()
-	while read packageLine; do
-		package=$(echo $packageLine | cut -d':' -f1)
-		built=$(echo $packageLine | grep ":built")
-		installed=$(echo $packageLine | grep ":installed")
-
-		if [ -z "$built" ]; then
-			echo "Package not built yet, skipping"
-			continue
-		fi
-
-		if [ -z "$installed" ]; then
-			echo "Installing $package"
-			pushd -q $package
-			packageFile=$(ls -dt $PWD/$package-*.pkg.tar | head -1)
-			echo "Package file: $packageFile"
-			# sudo pacman -U --needed --noconfirm $packageFile
-			PKGS+=("$packageFile")
-			sed -i "s/$package:built/$package:built:installed/" /tmp/aur-update-packages.txt
-			popd -q
-		else
-			echo "Package already installed, skipping"
-		fi
-	done < /tmp/aur-update-packages.txt
-
-	sudo pacman -U --needed --noconfirm "${PKGS[@]}"
-
-	echo "Successfully installed all packages, do you want to clear the list of packages? [y/N]"
-	read -sq "REPLY? " && rm /tmp/aur-update-packages.txt
-
-	popd -q
-}
-
-# alias feh-screenshots='feh --scale-down -d -S mtime ~/Pictures/screenshots'
-feh-screenshots() {
-	feh \
-		--scale-down \
-		-d \
-		-S mtime \
-		--action1 ';xclip -selection clipboard -t image/png -i %F' \
-		--action2 ';echo %F | xclip -i -selection clipboard' \
-		--draw-actions \
-		~/Pictures/screenshots
-}
-
-feh-clipboard-base64() {
-	data=$(echo "$(xclip -o -selection clipboard)")
-	data=$(sed 's/^"\(.*\)"$/\1/' <<< $data) # delete surrounding quotes from Chrome
-	echo $data | base64 --decode | feh -Z -
-}
-
-# alias hf='history 0 | cut -c 8- | fzf -e'
-
-#set -o vi
-# bind '"jk":vi-movement-mode'
-#set bell-style none
-#$if mode=vi
-#		 set keymap vi-command
-#		 "gg": beginning-of-history
-#		 "G": end-of-history
-#		 set keymap vi-insert				#notice how the "jj" movement is
-#		 "jk": vi-movement-mode			#after 'set keymap vi-insert'?
-#		 "\C-w": backward-kill-word
-#		 "\C-p": history-search-backward
-#$endif
-#bindkey -e jk \\e
-#bindkey '"jk":vi-movement-mode'
 bindkey -v
 bindkey 'jk' vi-cmd-mode
 bindkey '^R' history-incremental-search-backward
@@ -794,11 +382,10 @@ bindkey "^X*" expand-word # expand glob into items
 # READ MORE HERE TOO, OTHER THINGS TO TRY:
 # https://superuser.com/questions/582097/zsh-glob-expansion-without-menu
 
-if [ -f /usr/bin/zoxide ]
-then
-	eval "$(zoxide init zsh)"
-fi
 
+
+
+setopt interactive_comments # Allows comments in interactive mode, so you can use # to comment out a line
 setopt GLOB_COMPLETE
 
 # Matches hidden files in completion, from: https://unix.stackexchange.com/a/366137/503193
@@ -807,19 +394,6 @@ setopt globdots
 # Enable extended globs, for doing things like: mv ^Archive Archive, NOTE that it could conflict
 # with filenames with glob characters!
 setopt extendedglob
-
-
-# Zsh vi mode
-# FROM: https://github.com/jeffreytse/zsh-vi-mode
-if [ ! -d "$HOME/.zsh-vi-mode" ]
-then
-	echo "Cloning zsh-vi-mode"
-	git clone https://github.com/jeffreytse/zsh-vi-mode $HOME/.zsh-vi-mode
-fi
-
-ZVM_VI_ESCAPE_BINDKEY="jk"
-ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT # ZVM_MODE_NORMAL, ZVM_MODE_INSERT, ZVM_MODE_LAST
-source $HOME/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 ########################################
 # FROM: /usr/share/zsh/manjaro-zsh-config
@@ -866,6 +440,22 @@ bindkey '^[[1;5D' backward-word																	#
 bindkey '^[[1;5C' forward-word																	#
 bindkey '^H' backward-kill-word																	# delete previous word with ctrl+backspace
 
+if [ -f /usr/bin/zoxide ]
+then
+	eval "$(zoxide init zsh)"
+fi
+
+# Zsh vi mode
+# FROM: https://github.com/jeffreytse/zsh-vi-mode
+if [ ! -d "$HOME/.zsh-vi-mode" ]
+then
+	echo "Cloning zsh-vi-mode"
+	git clone https://github.com/jeffreytse/zsh-vi-mode $HOME/.zsh-vi-mode
+fi
+
+ZVM_VI_ESCAPE_BINDKEY="jk"
+ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT # ZVM_MODE_NORMAL, ZVM_MODE_INSERT, ZVM_MODE_LAST
+source $HOME/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
 # Offer to install missing package if command is not found
 if [[ -r /usr/share/zsh/functions/command-not-found.zsh ]]; then
 		source /usr/share/zsh/functions/command-not-found.zsh
@@ -901,29 +491,35 @@ then
 	}
 fi
 
-########################################
-# INSERT CURRENT DATE
-########################################
-insert-date() {
-	formats=(
-		"$(date +'%Y-%m-%d')\t\tDefault (YYYY-MM-DD, %Y-%m-%d)"
-		"$(date +'%Y%m%d')\t\tCompact (YYYYMMDD, %Y%m%d)"
-		"$(date +'%Y-%m-%d-%H%M')\t\tWith time (HHMM, %Y-%m-%d-%H%M)"
-		"$(date +'%Y%m%d%H%M')\t\tCompact with time (YYYYMMDDHHMM, %Y%m%d%H%M)"
-		"$(date -u +'%Y-%m-%dT%H:%M:%SZ')\tISO 8601 (UTC, -u %Y-%m-%dT%H:%M:%SZ)"
-		"$(date +'%A, %d %b')\t\tNZ full (Day, Date Mon, %A, %d %b)"
-		"$(date +'%s')\t\tEpoch seconds (%s)"
-	)
-	date=$(printf '%b\n' "${formats[@]}" | fzf --height=~50 --border --header="Select date format" --query "$1" --select-1 --no-sort | awk -F'\t' '{ print $1 }')
-	LBUFFER+=$date
-	zle redisplay
-}
-zle -N insert-date
-bindkey '\ed' insert-date
-# /INSERT CURRENT DATE
-########################################
+if [ -f ~/.config/zsh/plugins/git.zsh ]; then
+	source ~/.config/zsh/plugins/git.zsh
+fi
 
+if [ -f ~/.config/zsh/plugins/fzf.zsh ]; then
+	source ~/.config/zsh/plugins/fzf.zsh
+fi
 
+if [ -f ~/.config/zsh/plugins/vms.zsh ]; then
+	source ~/.config/zsh/plugins/vms.zsh
+fi
+
+if [ -f ~/.config/zsh/plugins/npm.zsh ]; then
+	source ~/.config/zsh/plugins/npm.zsh
+fi
+
+if [ -f ~/.config/zsh/plugins/dotnet.zsh ]; then
+	source ~/.config/zsh/plugins/dotnet.zsh
+fi
+
+if [ -f ~/.config/zsh/plugins/ssh.zsh ]; then
+	source ~/.config/zsh/plugins/ssh.zsh
+fi
+
+if [ -f ~/.config/zsh/plugins/date-insert.zsh ]; then
+	source ~/.config/zsh/plugins/date-insert.zsh
+	zle -N insert-date
+	bindkey '\ed' insert-date
+fi
 
 # WAS CAUSING ISSUES, LETS SEE IF THINGS WORK AFTER REMOVING THIS
 # ADDED IT BACK, NOT SURE WHAT THE ISSUE WAS, BUT I DIDNT HAVE NODE ON MY PATH WHEN I DIDNT HAVE
