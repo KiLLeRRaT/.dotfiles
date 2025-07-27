@@ -122,8 +122,9 @@ export SAVEHIST=100000
 export EDITOR="/usr/bin/nvim"
 export VISUAL=$EDITOR
 
-# Could put the below into ~/.profile
-export PATH=$PATH:~/.local/bin
+# Could put the below into ~/.profile.  Not sure why, moved it back to ~/.profile again to try and
+# see
+# export PATH=$PATH:~/.local/bin
 export PATH="/home/albert/.ebcli-virtual-env/executables:$PATH"
 
 # export NOW=$(date +"%m-%d-%Y")

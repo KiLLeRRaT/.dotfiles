@@ -120,6 +120,16 @@ fm() {
 }
 
 f-cycling() {
-  f="$(fd . '/mnt/data2-temp/tdarr/data-media/sport/Tour de France/Season 2025/' | fzf)" && (vlc "$f"&disown)
+  # f="$(fd . '/mnt/data2-temp/tdarr/data-media/sport/Tour de France/Season 2025/' | fzf)" && (vlc "$f"&disown)
+  f="$(fd . '/mnt/data2-temp/tdarr/data-media/sport/Tour de France/Season 2025/' | fzf)"
+  if [ -n "$f" ]; then
+	echo "Playing: $f"
+	cmd="vlc '$f' & disown"
+	# push the command into the history
+	print -S $cmd
+	eval $cmd
+  else
+	echo "No file selected."
+  fi
 }
 
