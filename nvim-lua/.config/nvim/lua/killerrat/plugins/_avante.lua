@@ -24,7 +24,8 @@ require('avante').setup ({
 		gemini = {
 			api_key_name = api_key_name,
 			endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
-			model = "gemini-2.0-flash",
+			-- model = "gemini-2.0-flash",
+			model = "gemini-2.5-pro",
 			timeout = 30000, -- Timeout in milliseconds
 			extra_request_body = {
 				temperature = 0,
