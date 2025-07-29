@@ -311,8 +311,10 @@ cs() {
 	# cmd=$(cd $(lssh | fzf --select-1 --query "$1" --height=~50 | cut -f 2))
 	cmd1=$(lssh | fzf --select-1 --query "$1" --height=~50 | cut -f 2)
 	cmd="cd $cmd1"
-	print -S $cmd
-	eval $cmd
+	# print -S will push the command into the history
+	# print -S $cmd
+	# eval $cmd
+	print -z -- "$cmd"
 }
 
 # FROM: /u/xkcd__386

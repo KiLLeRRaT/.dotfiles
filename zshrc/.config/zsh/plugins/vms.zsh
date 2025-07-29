@@ -5,26 +5,14 @@ vmGetDomain() {
 vms() {
 	domain=$(vmGetDomain $1)
 	cmd="sudo virsh start $domain"
-	# push the command into the history
-	print -S $cmd
-	echo $cmd
-	eval $cmd
-	# Ask if you want to do vmscreenshot
-	# read -q "REPLY?Take screenshot? (y/n)"
-	# [[ "$REPLY" == "y" ]] && vmscreenshot $1
-	vmscreenshot $1
+	print -z -- "$cmd; vmscreenshot $domain"
 }
 
 # CONNECT TO THE SELECTED VM
 vmc() {
 	domain=$(vmGetDomain $1)
 	cmd="sudo virt-manager --connect qemu:///system --show-domain-console $domain"
-	# push the command into the history
-	print -S $cmd
-	echo $cmd
-	eval $cmd
-	# read -q "REPLY?Run command? "
-	# [[ "$REPLY" == "y" ]] && eval $cmd
+	print -z -- "$cmd"
 }
 
 # SCREENSHOT VM

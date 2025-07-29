@@ -34,16 +34,6 @@ fk() {
 }
 
 # RUN THE COMMAND FROM HISTORY, USING FZF AS SELECTOR
-fh-old() {
-	cmd=$(history 0 | sort -nr | cut -c 8- | fzf -e --select-1 --no-sort --query "$1" )
-	# push the command into the history
-	print -S $cmd
-	echo $cmd
-	read -q "REPLY?Run command? "
-	[[ "$REPLY" == "y" ]] && echo "" && eval $cmd
-}
-
-# RUN THE COMMAND FROM HISTORY, USING FZF AS SELECTOR
 fh() {
 	cmd=$(history 0 | sort -nr | cut -c 8- | fzf -e --select-1 --no-sort --query "$1" )
 	if [ -z "$cmd" ]; then
@@ -58,9 +48,10 @@ fr() {
 	subcmd=$(ls $PWD/* | fzf --ignore-case -e --select-1 --no-sort --query "$1")
 	cmd="remmina -c '"$subcmd"'"
 	# push the command into the history
-	print -S $cmd
-	eval $cmd > /dev/null 2>&1 &
-	disown
+	# print -S $cmd
+	# eval $cmd > /dev/null 2>&1 &
+	# disown
+	print -z -- "$cmd > /dev/null 2>&1 & disown"
 	popd -q
 }
 
@@ -113,21 +104,16 @@ fm() {
 		[[ "$REPLY" == "y" ]] && sudo mkdir -p $MOUNTPOINT
 	fi
 
-	echo "Mounting $device to $MOUNTPOINT"
+	# echo "Mounting $device to $MOUNTPOINT"
 	cmd="sudo mount $device $MOUNTPOINT"
-	print -S $cmd
-	eval $cmd
+	print -z -- "$cmd"
 }
 
 f-cycling() {
-  # f="$(fd . '/mnt/data2-temp/tdarr/data-media/sport/Tour de France/Season 2025/' | fzf)" && (vlc "$f"&disown)
   f="$(fd . '/mnt/data2-temp/tdarr/data-media/sport/Tour de France/Season 2025/' | fzf)"
   if [ -n "$f" ]; then
-	echo "Playing: $f"
 	cmd="vlc '$f' & disown"
-	# push the command into the history
-	print -S $cmd
-	eval $cmd
+	print -z -- "$cmd"
   else
 	echo "No file selected."
   fi
