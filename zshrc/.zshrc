@@ -33,16 +33,6 @@ set -o noclobber
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 autoload -Uz compinit && compinit
 
-# autoload bashcompinit && bashcompinit
-# if [ -f /usr/bin/aws_completer ]
-# then
-#		# FROM: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
-#		complete -C '/usr/bin/aws_completer' aws
-# fi
-if [ -f /usr/bin/aws_zsh_completer.sh ]
-then
-	source /usr/bin/aws_zsh_completer.sh
-fi
 
 
 # Uncomment the following line to use hyphen-insensitive completion.
@@ -542,6 +532,10 @@ then
 	export PATH=$PATH:~/.dotnet/tools
 fi
 
+if [ -f /usr/bin/aws_zsh_completer.sh ]
+then
+	source /usr/bin/aws_zsh_completer.sh
+fi
 
 
 # Set up fzf key bindings and fuzzy completion
