@@ -249,7 +249,14 @@ require'lspconfig'.lemminx.setup{}
 require'lspconfig'.yamlls.setup{
 	settings = {
 		yaml = {
-			keyOrdering = false
+			keyOrdering = false,
+			schemas = {
+						["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "docker-compose*.yml",
+						-- Get the file from: https://dev.azure.com/sandfield/_apis/distributedtask/yamlschema?api-version=5.1, can't just use the URL directly because it requires auth
+						["https://raw.githubusercontent.com/KiLLeRRaT/.dotfiles/refs/heads/master/yaml-schema/yaml-schema-azure-pipelines.json"] = "azure-pipelines.yml",
+						-- You can also add other schemas here, e.g., for Kubernetes
+						-- ["kubernetes"] = "*.yaml",
+					  },
 		}
 	}
 }
