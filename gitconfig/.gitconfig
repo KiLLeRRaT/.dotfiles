@@ -90,3 +90,7 @@
 ; Also see /etc/gitconfig
 [interactive]
     singleKey = true
+
+[checkout]
+	; https://git-scm.com/docs/git-config#Documentation/git-config.txt-checkoutdefaultRemote
+	defaultRemote = origin
