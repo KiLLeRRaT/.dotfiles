@@ -508,11 +508,18 @@ if [ -f ~/.config/zsh/plugins/ssh.zsh ]; then
 	source ~/.config/zsh/plugins/ssh.zsh
 fi
 
-if [ -f ~/.config/zsh/plugins/date-insert.zsh ]; then
-	source ~/.config/zsh/plugins/date-insert.zsh
+if [ -f ~/.config/zsh/plugins/insert-date.zsh ]; then
+	source ~/.config/zsh/plugins/insert-date.zsh
 	zle -N insert-date
 	bindkey '\ed' insert-date
 fi
+
+if [ -f ~/.config/zsh/plugins/insert-word.zsh ]; then
+	source ~/.config/zsh/plugins/insert-word.zsh
+	zle -N insert-word
+	bindkey '\ew' insert-word
+fi
+
 
 # WAS CAUSING ISSUES, LETS SEE IF THINGS WORK AFTER REMOVING THIS
 # ADDED IT BACK, NOT SURE WHAT THE ISSUE WAS, BUT I DIDNT HAVE NODE ON MY PATH WHEN I DIDNT HAVE

@@ -1,9 +1,17 @@
 # fzf git checkout
 fgco() {
-	git branch --all --sort=-committerdate |\
+	# git branch --all --sort=-committerdate |\
+	# 	fzf --height=~50 -e --select-1 --no-sort --query "$1" |\
+	# 	sed 's/remotes\/origin\///' |\
+	# 	xargs --no-run-if-empty git checkout
+	
+	branch=$(git branch --all --sort=-committerdate |\
 		fzf --height=~50 -e --select-1 --no-sort --query "$1" |\
-		sed 's/remotes\/origin\///' |\
-		xargs --no-run-if-empty git checkout
+		sed 's/remotes\/origin\///')
+
+	# echo "Checking out branch: $branch"
+	cmd="git checkout $branch"
+	print -z -- "$cmd"
 }
 
 # KILL USING FZF AS SELECTOR
