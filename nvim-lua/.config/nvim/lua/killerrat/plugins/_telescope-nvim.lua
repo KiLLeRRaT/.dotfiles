@@ -135,7 +135,7 @@ vim.keymap.set("n", "<leader>f.", "<cmd>Telescope resume<cr>")
 vim.keymap.set('n', '<leader>ff', findFiles)
 -- vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>")
 
-vim.keymap.set("n", "<leader>FF", "<cmd>Telescope find_files find_command=rg,--no-ignore,--hidden,--files<cr>")
+-- vim.keymap.set("n", "<leader>FF", "<cmd>Telescope find_files find_command=rg,--no-ignore,--hidden,--files<cr>")
 vim.keymap.set("n", "<leader>fF", ":execute 'Telescope find_files default_text=' . '''' . expand('<cword>')<cr>")
 
 -- vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
