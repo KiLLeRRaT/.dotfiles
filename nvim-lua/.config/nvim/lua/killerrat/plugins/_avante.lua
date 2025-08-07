@@ -2,7 +2,7 @@ local p = "avante.nvim"; if (not require('killerrat.plugins._lazy-nvim').LazyHas
 
 -- require('avante_lib').load()
 local api_key_name = "cmd:secret-tool lookup xdg:schema com.google.gemini"
-if vim.fn.has('win32') == 1 or vim.fn.executable("secret-tool") == 0 then
+if vim.fn.has('win32') == 1 or vim.fn.has('wsl') == 1 or vim.fn.executable("secret-tool") == 0 then
 	--api_key_name = "cmd:$(Get-StoredCredential -Target com.google.gemini -AsCredentialObject).Password"
 	api_key_name = ""
 else
