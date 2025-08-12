@@ -90,6 +90,7 @@
 ; Also see /etc/gitconfig
 [interactive]
     singleKey = true
+	diffFilter = "delta --color-only"
 
 [checkout]
 	; https://git-scm.com/docs/git-config#Documentation/git-config.txt-checkoutdefaultRemote
