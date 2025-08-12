@@ -99,8 +99,8 @@ p.setup {
 
 				["<C-u>"] = actions.preview_scrolling_up,
 				["<C-d>"] = actions.preview_scrolling_down,
-				-- ["<C-f>"] = actions.preview_scrolling_left,
-				["<C-k>"] = actions.preview_scrolling_right,
+				["<C-h>"] = actions.preview_scrolling_left,
+				["<C-l>"] = actions.preview_scrolling_right,
 
 				["<PageUp>"] = actions.results_scrolling_up,
 				["<PageDown>"] = actions.results_scrolling_down,
@@ -112,7 +112,9 @@ p.setup {
 				["<C-f>"] = nextPicker,
 				["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
 				["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-				["<C-l>"] = actions.complete_tag,
+				-- NOT USING THE BELOW, MAYBE ONE DAY FIGURE IT OUT, FOR NOW STEALING THE KEY
+				-- BINDING.
+				-- ["<C-l>"] = actions.complete_tag,
 				["<C-/>"] = actions.which_key,
 				["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
 				["<C-w>"] = { "<c-s-w>", type = "command" },
