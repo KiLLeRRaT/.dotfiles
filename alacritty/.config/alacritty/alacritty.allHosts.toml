@@ -45,11 +45,8 @@ size = 7.0
 # <config hostname="arch-asus">
 size = 8.0
 # </config>
-# <config hostname="arch-agouwsmacbookpro">
-size = 7.0
-# </config>
 # <config hostname="arch-macbookpro13">
-size = 7.0
+size = 16.0
 # </config>
 # <config hostname="surface3">
 size = 16.0
