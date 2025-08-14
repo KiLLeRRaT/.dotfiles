@@ -44,6 +44,7 @@
 
 
 require'nvim-treesitter.configs'.setup {
+	sync_install = #vim.api.nvim_list_uis() == 0,
 	ensure_installed = {
 		"bash",
 		"c",

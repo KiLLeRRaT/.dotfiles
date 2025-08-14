@@ -24,6 +24,7 @@ RUN pacman -S --noconfirm \
 	sshfs stow sudo \
 	tmux \
 	unzip upterm \
+	vim \
 	wget \
 	xclip \
 	yq \
@@ -99,7 +100,9 @@ RUN echo -e "\033[32m Change Default Shell\033[0m" && \
 	chsh -s /bin/zsh root
 
 
+# This is not yet there, until we run nvim for the first time...
 # RUN cd /root/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim && make
+# RUN cd /root/.local/share/nvim/lazy/telescope-fzf-native.nvim && make
 
 RUN useradd builduser -m # Create the builduser
 RUN passwd -d builduser # Delete the buildusers password
