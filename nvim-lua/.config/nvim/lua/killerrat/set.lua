@@ -193,3 +193,5 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	group = vim.api.nvim_create_augroup("set_quotesGenerateFortune_BufWritePost", { clear = true })
 })
 
+-- vim.diagnostic.config({ virtual_text = false, virtual_lines = { current_line = true }, })
+vim.diagnostic.config({ virtual_text = true, virtual_lines = { current_line = true }, })
