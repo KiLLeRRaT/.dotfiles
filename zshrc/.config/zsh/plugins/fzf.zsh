@@ -5,9 +5,9 @@ fgco() {
 	# 	sed 's/remotes\/origin\///' |\
 	# 	xargs --no-run-if-empty git checkout
 	
-	branch=$(git branch --all --sort=-committerdate |\
+	branch=$(git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/ |\
 		fzf --height=~50 -e --select-1 --no-sort --query "$1" |\
-		sed 's/remotes\/origin\///')
+		sed 's/origin\///')
 
 	# echo "Checking out branch: $branch"
 	cmd="git checkout $branch"
