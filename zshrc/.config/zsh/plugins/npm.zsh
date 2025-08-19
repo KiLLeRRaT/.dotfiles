@@ -9,9 +9,13 @@ npm-outdated-update() {
 		whatColumn=3
 	fi
 	packages=$(npm outdated --color=always)
+
 	echo $packages |\
 		fzf --ansi --header=$whatParam --multi --header-lines=1 --bind ctrl-a:select-all |\
-		awk '{print $1"@"$'$whatColumn'}' |\
+		awk '{
+			print "Updating " $1 " from " $2 " to " $'$whatColumn' > "/dev/stderr";
+			print $1"@"$'$whatColumn';
+		}' |\
 		xargs --no-run-if-empty npm install
 }
 
