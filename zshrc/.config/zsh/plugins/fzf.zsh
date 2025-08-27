@@ -118,7 +118,11 @@ fm() {
 }
 
 f-cycling() {
-  f=$(fd . '/mnt/data2-temp/tdarr/data-media/sport/Tour de France/Season 2025/' | fzf --query "$1" --select-1 --multi)
+	event=$1
+	query=$2
+  # f=$(fd . '/mnt/data2-temp/tdarr/data-media/sport/Tour de France/Season 2025/' | fzf --query "$1" --select-1 --multi)
+  # f=$(fd . '/mnt/data2-temp/tdarr/data-media/sport/La Vuelta a Espana/Season 2025/' | fzf --query "$1" --select-1 --multi)
+  f=$(fd . "/mnt/data2-temp/tdarr/data-media/sport/$event/Season $(date +%Y)/" | fzf --query "$query" --select-1 --multi)
   if [ -n "$f" ]; then
 	cmd="vlc '$f' & disown"
 	print -z -- "$cmd"
