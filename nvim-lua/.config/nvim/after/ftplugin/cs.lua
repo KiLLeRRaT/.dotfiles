@@ -9,3 +9,7 @@ vim.opt_local.foldlevel = 99
 -- vim.cmd[[setlocal cinoptions=(1s,J1]]
 
 -- vim.keymap.set("n", "gd", ":lua require('omnisharp_extended').telescope_lsp_definitions()<cr>")
+
+vim.opt_local.cinoptions = "(1s,J0"
+
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = true })

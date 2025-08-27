@@ -211,18 +211,6 @@ else
 	vim.keymap.set("n", "<leader>=sh", ":lua vim.notify('Summing not supported in Windows, it uses awk', vim.log.levels.ERROR)<cr>")
 end
 
--- " cm.Parameters.Add, and cm.Parameters.Value lines can be combined into single line using this
--- " function! MergeParametersAndValue()
--- "	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$NNA\<c-r>0\<esc>0"
--- "	silent! call repeat#set("\<space>=v", v:count)
--- " endfunction
-
--- function! MergeParametersAndValue()
---	exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$ddNA\<c-r>0\<esc>0"
---	silent! call repeat#set("\<space>=v", v:count)
--- endfunction
--- autocmd FileType cs nnoremap <buffer> <leader>=v :call MergeParametersAndValue()<cr>
-
 vim.cmd([[
 	function! MergeParametersAndValue()
 		exec "normal ^f@ya\"$x/\<c-r>0\<cr>f.y$ddNA\<c-r>0\<esc>0"
@@ -253,19 +241,6 @@ vim.keymap.set("n", "[g", ":lua vim.diagnostic.jump({count=-1, float=false})<cr>
 
 vim.keymap.set("n", "<leader>rn", ":lua vim.lsp.buf.rename()<cr>")
 vim.keymap.set({"n", "v"}, "<leader>ca", ":lua vim.lsp.buf.code_action()<cr>")
-
--- autocmd FileType cs nnoremap <buffer> K :lua vim.lsp.buf.hover()<CR>
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "cs",
-	callback = function()
-		vim.schedule(function()
-			vim.keymap.set("n", "K", ":lua vim.lsp.buf.hover()<cr>")
-		end)
-	end,
-	group = vim.api.nvim_create_augroup("remap.lua.hover", { clear = true })
-})
--- for gd, gr, see _telescope-nvim.lua
-
 
 vim.g.diagnostics_visible = true
 function _G.toggle_diagnostics()
