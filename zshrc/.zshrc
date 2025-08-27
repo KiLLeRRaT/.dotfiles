@@ -594,3 +594,10 @@ then
 	export GEMINI_API_KEY=$(secret-tool lookup xdg:schema com.google.gemini)
 fi
 
+# load 1password CLI completion if installed
+if command -v op &> /dev/null
+then
+	eval "$(op completion zsh)"; compdef _op op
+fi
+
+
