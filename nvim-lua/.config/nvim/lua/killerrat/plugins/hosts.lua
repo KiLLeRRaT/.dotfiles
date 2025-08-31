@@ -28,6 +28,9 @@ local iphone = {
 	["vim-dadbod-ui"] = false,
 }
 
+local sierradeltaPlugins = vim.deepcopy(servers)
+sierradeltaPlugins["neorg"] = true
+
 local plugins = {}
 plugins = {
 		-- if not set, defaults to enabled = true
@@ -35,7 +38,7 @@ plugins = {
 	["pappa"] = servers,
 	["sierraecho"] = servers,
 	["sierrafoxtrot"] = servers,
-	["sierradelta"] = servers,
+	["sierradelta"] = sierradeltaPlugins,
 	["proxmox-i7-2600k"] = servers,
 	["proxmox-backup-server"] = servers,
 	["kiosk-1"] = servers,
