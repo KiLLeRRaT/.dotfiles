@@ -31,6 +31,8 @@ local iphone = {
 local sierradeltaPlugins = vim.deepcopy(servers)
 sierradeltaPlugins["neorg"] = true
 sierradeltaPlugins["luarocks.nvim"] = true
+sierradeltaPlugins["nvim-nio"] = true
+
 local plugins = {}
 plugins = {
 		-- if not set, defaults to enabled = true
