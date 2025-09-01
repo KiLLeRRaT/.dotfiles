@@ -13,3 +13,4 @@ vim.opt_local.foldlevel = 99
 vim.opt_local.cinoptions = "(1s,J0"
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = true })
+vim.keymap.set("n", "<localleader>g", vim.diagnostic.setqflist, { buffer = true })
