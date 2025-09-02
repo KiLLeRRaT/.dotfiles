@@ -318,6 +318,12 @@ vim.cmd[[highlight LineHighlight ctermbg=lightgray guibg=#914c54]]
 vim.keymap.set("n", "<leader>v", ":call matchadd('LineHighlight', '\\%'.line('.').'l')<cr>")
 vim.keymap.set("n", "<leader>V", ":call clearmatches()<cr>")
 
+
+-- FIND NEXT LONG LINE THAT SHOULD PROBABLY BE BROKEN UP
+vim.keymap.set("n", "<localleader>l", "/.\\{100,}<cr>")
+
+
+
 -- treesitter-scratchpad
 -- vim.keymap.set("n", "<localleader>ts", ":luafile ~/.config/nvim/lua/killerrat/treesitter-scratchpad/cs-public-methods.lua<cr>")
 vim.keymap.set("n", "<localleader>ts", ":luafile ~/.config/nvim/lua/killerrat/treesitter-scratchpad/tsx-nztr.lua<cr>")
