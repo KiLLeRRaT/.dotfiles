@@ -1,4 +1,4 @@
-local omnisharp_version = "@v1.39.11"
+-- local omnisharp_version = "@v1.39.11"
 local lsp_installer_ensure_installed = {
 	-- LSP
 	"bashls",
@@ -17,7 +17,8 @@ local lsp_installer_ensure_installed = {
 	--"sqls", -- https://github.com/lighttiger2505/sqls
 	"lemminx",
 	"yamlls",
-	"azure_pipelines_ls",
+	-- "azure_pipelines_ls", -- DISABLED ON Wed 3 Sep 2025 11:01 because of RPC ERROR, this is
+	-- loaded for other yaml files for some reason
 
 	-- DAP
 	-- "netcoredbg",
