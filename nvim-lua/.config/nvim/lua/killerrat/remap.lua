@@ -336,57 +336,65 @@ vim.keymap.set("v", "<leader>x", ":lua<CR>")
 
 -- vim.keymap.set("n", "<leader>~", function() end)
 
-local function randomlySwitchCase(str)
-	local newStr = ""
-	for i = 1, #str do
-		local c = str:sub(i, i)
-		if math.random(0, 1) == 0 then
-			newStr = newStr .. c:lower()
-		else
-			newStr = newStr .. c:upper()
-		end
-	end
-	return newStr
-end
-
-function format_range_operator()
-	local old_func = vim.go.operatorfunc -- backup previous reference
-	-- set a globally callable object/function
-	_G.op_func_formatting = function(type)
-		-- the content covered by the motion is between the [ and ] marks, so get those
-		local start = vim.api.nvim_buf_get_mark(0, '[')
-		local finish = vim.api.nvim_buf_get_mark(0, ']')
-
-		-- print ("start: ", vim.inspect(start))
-		-- print ("finish: ", vim.inspect(finish))
-
-		-- print ("type: ", type)
-		if type == 'line' then
-			finish = {finish[1]+1, -1}
-		end
-		-- print ("f: ", frow)
-
-		local text = vim.api.nvim_buf_get_text(0, start[1]-1, start[2], finish[1]-1, finish[2]+1, {})
-		-- print ("text: ", vim.inspect(text))
-
-		local newText = {}
-		for _, line in ipairs(text) do
-			table.insert(newText, randomlySwitchCase(line))
-		end
-		-- print ("newText: ", vim.inspect(newText))
-
-		-- now update the buffer with the new text
-		vim.api.nvim_buf_set_text(0, start[1]-1, start[2], finish[1]-1, finish[2]+1, newText)
-		vim.go.operatorfunc = old_func -- restore previous opfunc
-		_G.op_func_formatting = nil -- deletes itself from global namespace
-	end
-	vim.go.operatorfunc = 'v:lua.op_func_formatting'
-	vim.api.nvim_feedkeys('g@', 'n', false)
-end
-vim.api.nvim_set_keymap("n", "<leader>~", "<cmd>lua format_range_operator()<CR>", {noremap = true})
+-- local function randomlySwitchCase(str)
+-- 	local newStr = ""
+-- 	for i = 1, #str do
+-- 		local c = str:sub(i, i)
+-- 		if math.random(0, 1) == 0 then
+-- 			newStr = newStr .. c:lower()
+-- 		else
+-- 			newStr = newStr .. c:upper()
+-- 		end
+-- 	end
+-- 	return newStr
+-- end
+--
+-- function format_range_operator()
+-- 	local old_func = vim.go.operatorfunc -- backup previous reference
+-- 	-- set a globally callable object/function
+-- 	_G.op_func_formatting = function(type)
+-- 		-- the content covered by the motion is between the [ and ] marks, so get those
+-- 		local start = vim.api.nvim_buf_get_mark(0, '[')
+-- 		local finish = vim.api.nvim_buf_get_mark(0, ']')
+--
+-- 		-- print ("start: ", vim.inspect(start))
+-- 		-- print ("finish: ", vim.inspect(finish))
+--
+-- 		-- print ("type: ", type)
+-- 		if type == 'line' then
+-- 			finish = {finish[1]+1, -1}
+-- 		end
+-- 		-- print ("f: ", frow)
+--
+-- 		local text = vim.api.nvim_buf_get_text(0, start[1]-1, start[2], finish[1]-1, finish[2]+1, {})
+-- 		-- print ("text: ", vim.inspect(text))
+--
+-- 		local newText = {}
+-- 		for _, line in ipairs(text) do
+-- 			table.insert(newText, randomlySwitchCase(line))
+-- 		end
+-- 		-- print ("newText: ", vim.inspect(newText))
+--
+-- 		-- now update the buffer with the new text
+-- 		vim.api.nvim_buf_set_text(0, start[1]-1, start[2], finish[1]-1, finish[2]+1, newText)
+-- 		vim.go.operatorfunc = old_func -- restore previous opfunc
+-- 		_G.op_func_formatting = nil -- deletes itself from global namespace
+-- 	end
+-- 	vim.go.operatorfunc = 'v:lua.op_func_formatting'
+-- 	vim.api.nvim_feedkeys('g@', 'n', false)
+-- end
+-- vim.api.nvim_set_keymap("n", "<leader>~", "<cmd>lua format_range_operator()<CR>", {noremap = true})
 
 vim.api.nvim_create_user_command("WQ", "wq", { nargs = 0, desc = "Write and Quit" })
 vim.api.nvim_create_user_command("Q", "q", { nargs = 0, desc = "Quit" })
 vim.api.nvim_create_user_command("Qa", "qa", { nargs = 0, desc = "Quit all" })
 vim.api.nvim_create_user_command("W", "w", { nargs = 0, desc = "Write" })
 vim.api.nvim_create_user_command("Wq", "wq", { nargs = 0, desc = "Write and Quit" })
+
+-- The below will let you use <cr> to select the current item in the command line, and continue
+-- using tab to show the contents of that directory
+-- FROM: https://vi.stackexchange.com/a/39514/38923
+vim.keymap.set("c", "<cr>", function()
+	if vim.fn.pumvisible() == 1 then return '<c-y>' end
+	return '<cr>'
+end, { expr = true })
