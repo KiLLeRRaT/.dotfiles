@@ -27,11 +27,11 @@ local lsp_symbols = {
 	TypeParameter = "   (TypeParameter)",
 }
 
--- FROM: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
-local has_words_before = function()
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
+-- -- FROM: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
+-- local has_words_before = function()
+-- 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+-- 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+-- end
 
 local luasnip = require("luasnip")
 local cmp = require 'cmp'
@@ -85,15 +85,15 @@ cmp.setup {
 
 		-- FROM: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
 		-- ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
+		-- ["<S-Tab>"] = cmp.mapping(function(fallback)
+		-- 	if cmp.visible() then
+		-- 		cmp.select_prev_item()
+		-- 	elseif luasnip.jumpable(-1) then
+		-- 		luasnip.jump(-1)
+		-- 	else
+		-- 		fallback()
+		-- 	end
+		-- end, { "i", "s" }),
 
 		['<CR>'] = cmp.mapping.confirm({
 			behavior = cmp.ConfirmBehavior.Replace,
