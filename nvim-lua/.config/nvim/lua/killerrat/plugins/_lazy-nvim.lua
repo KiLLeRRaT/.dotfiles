@@ -270,6 +270,12 @@ local lazyPlugins = {
 			},
 		}
 	},
+	{
+		'stevearc/conform.nvim',
+		opts = {},
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
+	},
 
 	----------------------------------------
 	-- DEBUGGERS
