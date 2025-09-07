@@ -129,15 +129,6 @@ vim.keymap.set("n", "Z=", "]sz=")
 
 vim.keymap.set("n", "<F11>", ":ZenMode<cr>")
 
-
--- " RUN jq and use tab indents, then remove the ^M chars because vim is doing stupid things.
--- " vnoremap <leader>=j :'<,'>!jq --tab .<cr>:%s/\r/e<cr>
--- " nnoremap <leader>=j :%!jq --tab .<cr>:%s/\r/e<cr>
--- vnoremap <leader>=j :'<,'>!jq "--tab ."<cr>:%s/\r<cr>
--- nnoremap <leader>=j :%!jq "--tab ."<cr>:%s/\r<cr>
--- " PASTE JSON FROM CLIPBOARD, AND FORMAT IT
--- nnoremap <leader>=J ggdG"+P:%!jq "--tab ."<cr>:%s/\r<cr>
-
 if vim.fn.has('unix') == 1 then
 	vim.keymap.set("n", "<leader>=j", ":%!jq --tab<cr>")
 	vim.keymap.set("v", "<leader>=j", ":'<,'>!jq --tab<cr>")
@@ -390,6 +381,7 @@ vim.api.nvim_create_user_command("Q", "q", { nargs = 0, desc = "Quit" })
 vim.api.nvim_create_user_command("Qa", "qa", { nargs = 0, desc = "Quit all" })
 vim.api.nvim_create_user_command("W", "w", { nargs = 0, desc = "Write" })
 vim.api.nvim_create_user_command("Wq", "wq", { nargs = 0, desc = "Write and Quit" })
+vim.api.nvim_create_user_command("Wa", "wa", { nargs = 0, desc = "Write all" })
 
 -- The below will let you use <cr> to select the current item in the command line, and continue
 -- using tab to show the contents of that directory
