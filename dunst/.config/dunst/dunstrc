@@ -33,7 +33,8 @@
     origin = top-right
 
     # Offset from the origin
-    offset = 10x50
+    # offset = 10x50
+	offset = (10, 50)
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -197,7 +198,8 @@
     max_icon_size = 64
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    # icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+	icon_path = /usr/share/icons/Dracula/24/actions/
 
     ### History ###
 
