@@ -5,7 +5,7 @@ dap.adapters.coreclr = {
 	type = 'executable',
 	-- command = vim.fn.stdpath("data") .. '/netcoredbg/netcoredbg',
 	command = '/usr/bin/netcoredbg',
-	args = {'--interpreter=vscode'}
+	args = { '--interpreter=vscode' }
 }
 
 -- FROM: https://github.com/mfussenegger/nvim-dap/wiki/Cookbook#making-debugging-net-easier
@@ -28,19 +28,19 @@ dap.adapters.coreclr = {
 -- end
 
 vim.g.dotnet_get_dll_path = function()
-    local request = function()
-        return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/**/bin/**/*.dll', 'file')
-    end
+	local request = function()
+		return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/**/bin/**/*.dll', 'file')
+	end
 
-    if vim.g['dotnet_last_dll_path'] == nil then
-        vim.g['dotnet_last_dll_path'] = request()
-    else
-        if vim.fn.confirm('Do you want to change the path to dll?\n' .. vim.g['dotnet_last_dll_path'], '&yes\n&no', 2) == 1 then
-            vim.g['dotnet_last_dll_path'] = request()
-        end
-    end
+	if vim.g['dotnet_last_dll_path'] == nil then
+		vim.g['dotnet_last_dll_path'] = request()
+	else
+		if vim.fn.confirm('Do you want to change the path to dll?\n' .. vim.g['dotnet_last_dll_path'], '&yes\n&no', 2) == 1 then
+			vim.g['dotnet_last_dll_path'] = request()
+		end
+	end
 
-    return vim.g['dotnet_last_dll_path']
+	return vim.g['dotnet_last_dll_path']
 end
 
 local config = {
@@ -49,24 +49,32 @@ local config = {
 		name = "launch - netcoredbg",
 		request = "launch",
 		program = function()
-				-- if vim.fn.confirm('Should I recompile first?', '&yes\n&no', 2) == 1 then
-				-- 		vim.g.dotnet_build_project()
-				-- end
-				return vim.g.dotnet_get_dll_path()
+			-- if vim.fn.confirm('Should I recompile first?', '&yes\n&no', 2) == 1 then
+			-- 		vim.g.dotnet_build_project()
+			-- end
+			return vim.g.dotnet_get_dll_path()
 		end,
 	},
 	{
-			type = "coreclr",
-			name = "attach - netcoredbg",
-			request = "attach",
-			processId = function()
-				return require('dap.utils').pick_process({
-					filter = function(proc)
-						return vim.startswith(proc.name, vim.fn.getcwd())
-					end
-				})
-			end,
-		}
+		type = "coreclr",
+		name = "attach - netcoredbg (This project)",
+		request = "attach",
+		processId = function()
+			return require('dap.utils').pick_process({
+				filter = function(proc)
+					return vim.startswith(proc.name, vim.fn.getcwd())
+				end
+			})
+		end,
+	},
+	{
+		type = "coreclr",
+		name = "attach - netcoredbg (All processes)",
+		request = "attach",
+		processId = function()
+			return require('dap.utils').pick_process()
+		end,
+	}
 }
 
 dap.configurations.cs = config
