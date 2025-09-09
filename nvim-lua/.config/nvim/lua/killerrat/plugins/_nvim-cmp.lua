@@ -117,7 +117,8 @@ cmp.setup {
 		-- https://www.reddit.com/r/neovim/comments/zkj1d8/comment/j011kdn
 		-- { name = 'nvim_lsp', keyword_length = 6, group_index = 1, max_item_count = 30 }
 		-- { name = 'nvim_lsp', keyword_length = 3, max_item_count = 30 },
-		{ name = 'nvim_lsp', keyword_length = 3 },
+		-- { name = 'nvim_lsp', keyword_length = 3 },
+		{ name = 'nvim_lsp', keyword_length = 1 }, -- CHANGED FROM 3 to 1 on Mon 8 Sep 2025 16:53 to help with Intellisense in C#, let's see how it goes
 		{ name = 'path', keyword_length = 3, max_item_count = 30 },
 		-- { name = "buffer" }, -- CURRENT BUFFER ONLY
 		{ -- ALL BUFFERS
