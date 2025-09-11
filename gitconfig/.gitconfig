@@ -20,6 +20,9 @@
 	habo = for-each-ref --sort=-committerdate refs/remotes/origin/ --format='%(color:blue)%(authordate:format:%Y-%m-%d %I:%M %p) %(color:green)%(align:25,left)%(authorname)%(end) %(color:red)%(refname:strip=3)'
 	io = !echo "Incoming commits: " && git logo ..origin/$(git branch --show-current) && echo "Outgoing commits: " && git logo origin/$(git branch --show-current)..
 
+[branch]
+		sort = -committerdate
+
 [merge]
 	tool = nvim
 	conflictstyle = diff3
