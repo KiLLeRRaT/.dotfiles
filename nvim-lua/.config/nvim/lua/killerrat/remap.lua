@@ -376,12 +376,23 @@ vim.keymap.set("v", "<leader>x", ":lua<CR>")
 -- end
 -- vim.api.nvim_set_keymap("n", "<leader>~", "<cmd>lua format_range_operator()<CR>", {noremap = true})
 
-vim.api.nvim_create_user_command("WQ", "wq", { nargs = 0, desc = "Write and Quit" })
-vim.api.nvim_create_user_command("Q", "q", { nargs = 0, desc = "Quit" })
-vim.api.nvim_create_user_command("Qa", "qa", { nargs = 0, desc = "Quit all" })
+-- vim.api.nvim_create_user_command("WQ", "wq", { nargs = 0, desc = "Write and Quit" })
+-- vim.api.nvim_create_user_command("Q", "q", { nargs = 0, desc = "Quit" })
+-- vim.api.nvim_create_user_command("Qa", "qa", { nargs = 0, desc = "Quit all" })
+-- vim.api.nvim_create_user_command("W", "w", { nargs = 0, desc = "Write" })
+-- vim.api.nvim_create_user_command("Wq", "wq", { nargs = 0, desc = "Write and Quit" })
+-- vim.api.nvim_create_user_command("Wa", "wa", { nargs = 0, desc = "Write all" })
+
+-- For commands that can take a "!"
+vim.api.nvim_create_user_command("WQ", "wq<bang>", { bang = true, desc = "Write and Quit" })
+vim.api.nvim_create_user_command("Wq", "wq<bang>", { bang = true, desc = "Write and Quit" })
+vim.api.nvim_create_user_command("Q", "q<bang>", { bang = true, desc = "Quit" })
+vim.api.nvim_create_user_command("Qa", "qa<bang>", { bang = true, desc = "Quit all" })
+
+-- For commands that don't use "!" but we'll keep the structure similar
 vim.api.nvim_create_user_command("W", "w", { nargs = 0, desc = "Write" })
-vim.api.nvim_create_user_command("Wq", "wq", { nargs = 0, desc = "Write and Quit" })
 vim.api.nvim_create_user_command("Wa", "wa", { nargs = 0, desc = "Write all" })
+
 
 -- The below will let you use <cr> to select the current item in the command line, and continue
 -- using tab to show the contents of that directory
