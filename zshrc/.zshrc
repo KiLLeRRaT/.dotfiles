@@ -196,6 +196,7 @@ alias rm="rm -v"
 alias chown="chown -v"
 alias chmod="chmod -v"
 alias ncdu="ncdu --color dark"
+alias yay-syu='yay -Syu --answerdiff All --answerclean None --ignore dracula-icons-git'
 
 lst() {
 	# echo $@
