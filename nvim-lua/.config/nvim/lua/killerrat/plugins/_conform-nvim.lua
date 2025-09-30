@@ -9,6 +9,13 @@ p.setup {
 		cs = { "csharpier" },
 	},
 	format_on_save = false,
+	-- formatters = {
+	-- 		csharpier = {
+	-- 			command = "csharpier",
+	-- 			args = { "format", "--no-cache", "--write-stdout", "$FILENAME" },
+	-- 			stdin = true,
+	-- 		},
+	-- 	},
 	-- init = function()
 	-- 	-- If you want the formatexpr, here is the place to set it
 	-- 	print("Setting formatexpr for conform-nvim")
