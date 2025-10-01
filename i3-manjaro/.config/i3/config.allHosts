@@ -4,7 +4,14 @@
 set $mod Mod4
 
 # MAKE CAPSLOCK A CTRL KEY, AND TERMINATE X WITH CTRL+ALT+BACKSPACE
-exec_always --no-startup-id setxkbmap -option ctrl:nocaps -option "terminate:ctrl_alt_bksp" -variant altgr-intl
+exec_always --no-startup-id setxkbmap -option ctrl:nocaps -option terminate:ctrl_alt_bksp -option compose:rctrl-altgr -variant altgr-intl
+# grep "compose:" /usr/share/X11/xkb/rules/base.lst
+# To clear the existing options, pass an empty -options first, e.g.: setxkbmap -option -option ctrl:nocaps
+# To use the altgr characters press `altgr + e` to get é, or `altgr + shift + ", e` to get ë.
+# To use the compose key, press `altgr + rctrl, t, m` to get ™.  The nuance here is that you need to
+#   first press and hold altgr, THEN rctrl, then release both keys, then type t and m. If you press
+#   altgr and rctrl together, it just acts as the modifiers and does nothing.
+
 exec --no-startup-id xinput set-prop 12 "libinput Scroll Method Enabled" 0, 0, 1
 # TURN ON NUMLOCK USING numlockx LIBRARY
 exec --no-startup-id numlockx
