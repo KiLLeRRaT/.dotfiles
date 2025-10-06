@@ -1,73 +1,104 @@
-return
-require('roslyn').setup {
-	-- args = {
-	-- 	'--stdio',
-	-- 	'--logLevel=Information',
-	-- 	'--extensionLogDirectory=' .. vim.fs.dirname(vim.lsp.get_log_path()),
-	-- 	'--razorSourceGenerator=' .. vim.fs.joinpath(
-	-- 		vim.fn.stdpath 'data' --[[@as string]],
-	-- 		'mason',
-	-- 		'packages',
-	-- 		'roslyn',
-	-- 		'libexec',
-	-- 		'Microsoft.CodeAnalysis.Razor.Compiler.dll'
-	-- 	),
-	-- 	'--razorDesignTimePath=' .. vim.fs.joinpath(
-	-- 		vim.fn.stdpath 'data' --[[@as string]],
-	-- 		'mason',
-	-- 		'packages',
-	-- 		'rzls',
-	-- 		'libexec',
-	-- 		'Targets',
-	-- 		'Microsoft.NET.Sdk.Razor.DesignTime.targets'
-	-- 	),
-	-- },
-	config = {
-		-- FROM: https://github.com/seblyng/roslyn.nvim/issues/117#issuecomment-2828430777
-		-- cmd = {
-		-- 	"dotnet",
-		-- 	"<target>/Microsoft.CodeAnalysis.LanguageServer.dll",
-		-- 	"--stdio",
-		-- 	"--logLevel=Information",
-		-- 	"--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
-		-- 	"--razorSourceGenerator=" .. vim.fs.joinpath(
-		-- 		vim.fn.stdpath 'data' --[[@as string]],
-		-- 		'mason',
-		-- 		'packages',
-		-- 		'roslyn',
-		-- 		'libexec',
-		-- 		'Microsoft.CodeAnalysis.Razor.Compiler.dll'
-		-- 	),
-		-- 	"--razorDesignTimePath=" .. vim.fs.joinpath(
-		-- 		vim.fn.stdpath 'data' --[[@as string]],
-		-- 		"mason",
-		-- 		"packages",
-		-- 		"rzls",
-		-- 		"libexec",
-		-- 		"Targets",
-		-- 		"Microsoft.NET.Sdk.Razor.DesignTime.targets"
-		-- 	),
-		-- },
-		--[[ the rest of your roslyn config ]]
-		handlers = require 'rzls.roslyn_handlers',
-		on_attach = function (client, bufnr)
-			--- Guard against servers without the signatureHelper capability
-			if client.server_capabilities.signatureHelpProvider then
-				require('lsp-overloads').setup(client, { })
-				vim.api.nvim_buf_set_keymap(0, "n", "<C-Space>", ":LspOverloadsSignature<CR>", { noremap = true, silent = true })
-				-- ...
-				-- keymaps = {
-				-- 		next_signature = "<C-j>",
-				-- 		previous_signature = "<C-k>",
-				-- 		next_parameter = "<C-l>",
-				-- 		previous_parameter = "<C-h>",
-				-- 		close_signature = "<A-s>"
-				-- 	},
-				-- ...
-			end
+vim.lsp.config('roslyn', {
+	handlers = require 'rzls.roslyn_handlers',
+	on_attach = function (client, bufnr)
+		--- Guard against servers without the signatureHelper capability
+		if client.server_capabilities.signatureHelpProvider then
+			require('lsp-overloads').setup(client, { })
+			vim.api.nvim_buf_set_keymap(0, "n", "<C-Space>", ":LspOverloadsSignature<CR>", { noremap = true, silent = true })
+			-- ...
+			-- keymaps = {
+			-- 		next_signature = "<C-j>",
+			-- 		previous_signature = "<C-k>",
+			-- 		next_parameter = "<C-l>",
+			-- 		previous_parameter = "<C-h>",
+			-- 		close_signature = "<A-s>"
+			-- 	},
+			-- ...
 		end
-	},
-}
+	end
+})
+
+-- return
+-- require('roslyn').setup {
+-- 	-- args = {
+-- 	-- 	'--stdio',
+-- 	-- 	'--logLevel=Information',
+-- 	-- 	'--extensionLogDirectory=' .. vim.fs.dirname(vim.lsp.get_log_path()),
+-- 	-- 	'--razorSourceGenerator=' .. vim.fs.joinpath(
+-- 	-- 		vim.fn.stdpath 'data' --[[@as string]],
+-- 	-- 		'mason',
+-- 	-- 		'packages',
+-- 	-- 		'roslyn',
+-- 	-- 		'libexec',
+-- 	-- 		'Microsoft.CodeAnalysis.Razor.Compiler.dll'
+-- 	-- 	),
+-- 	-- 	'--razorDesignTimePath=' .. vim.fs.joinpath(
+-- 	-- 		vim.fn.stdpath 'data' --[[@as string]],
+-- 	-- 		'mason',
+-- 	-- 		'packages',
+-- 	-- 		'rzls',
+-- 	-- 		'libexec',
+-- 	-- 		'Targets',
+-- 	-- 		'Microsoft.NET.Sdk.Razor.DesignTime.targets'
+-- 	-- 	),
+-- 	-- },
+-- 	config = {
+-- 		-- FROM: https://github.com/seblyng/roslyn.nvim/issues/117#issuecomment-2828430777
+-- 		-- cmd = {
+-- 		-- 	"dotnet",
+-- 		-- 	"<target>/Microsoft.CodeAnalysis.LanguageServer.dll",
+-- 		-- 	"--stdio",
+-- 		-- 	"--logLevel=Information",
+-- 		-- 	"--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
+-- 		-- 	"--razorSourceGenerator=" .. vim.fs.joinpath(
+-- 		-- 		vim.fn.stdpath 'data' --[[@as string]],
+-- 		-- 		'mason',
+-- 		-- 		'packages',
+-- 		-- 		'roslyn',
+-- 		-- 		'libexec',
+-- 		-- 		'Microsoft.CodeAnalysis.Razor.Compiler.dll'
+-- 		-- 	),
+-- 		-- 	"--razorDesignTimePath=" .. vim.fs.joinpath(
+-- 		-- 		vim.fn.stdpath 'data' --[[@as string]],
+-- 		-- 		"mason",
+-- 		-- 		"packages",
+-- 		-- 		"rzls",
+-- 		-- 		"libexec",
+-- 		-- 		"Targets",
+-- 		-- 		"Microsoft.NET.Sdk.Razor.DesignTime.targets"
+-- 		-- 	),
+-- 		-- },
+-- 		--[[ the rest of your roslyn config ]]
+-- 		handlers = require 'rzls.roslyn_handlers',
+-- 		on_attach = function (client, bufnr)
+-- 			--- Guard against servers without the signatureHelper capability
+-- 			if client.server_capabilities.signatureHelpProvider then
+-- 				require('lsp-overloads').setup(client, { })
+-- 				vim.api.nvim_buf_set_keymap(0, "n", "<C-Space>", ":LspOverloadsSignature<CR>", { noremap = true, silent = true })
+-- 				-- ...
+-- 				-- keymaps = {
+-- 				-- 		next_signature = "<C-j>",
+-- 				-- 		previous_signature = "<C-k>",
+-- 				-- 		next_parameter = "<C-l>",
+-- 				-- 		previous_parameter = "<C-h>",
+-- 				-- 		close_signature = "<A-s>"
+-- 				-- 	},
+-- 				-- ...
+-- 			end
+-- 		end
+-- 	},
+-- }
+
+
+
+
+
+-- ARCHIVED
+-- ARCHIVED
+-- ARCHIVED
+-- ARCHIVED
+-- ARCHIVED
+-- ARCHIVED
 -- require("roslyn").setup({
 -- 		config = {
 -- 				-- Here you can pass in any options that that you would like to pass to `vim.lsp.start`.
@@ -138,3 +169,9 @@ require('roslyn').setup {
 -- 		-- NOTE: You can use `:Roslyn target` to change the target
 -- 		lock_target = false,
 -- })
+-- ARCHIVED
+-- ARCHIVED
+-- ARCHIVED
+-- ARCHIVED
+-- ARCHIVED
+-- ARCHIVED
