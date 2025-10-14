@@ -589,11 +589,11 @@ function command_not_found_handler {
 }
 
 # if gemini is installed, let's set the API key
-# if command -v gemini &> /dev/null
-# then
+if command -v gemini &> /dev/null
+then
 	# to add API key using secret-tool, run: `secret-tool store --label 'Gemini API key' xdg:schema com.google.gemini`
-	# export GEMINI_API_KEY=$(secret-tool lookup xdg:schema com.google.gemini)
-# fi
+	export GEMINI_API_KEY=$(secret-tool lookup xdg:schema com.google.gemini)
+fi
 
 # load 1password CLI completion if installed
 if command -v op &> /dev/null
