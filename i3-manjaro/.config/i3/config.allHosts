@@ -531,7 +531,9 @@ mode "resize" {
 exec --no-startup-id lxpolkit
 
 exec --no-startup-id nm-applet
-exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
+
+# exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
+exec --no-startup-id xautolock -time 1 -locker "$HOME/.dotfiles/xautolock/xautolock.sh && betterlockscreen --lock blur" -corners 000-
 
 # Enable MPRIS support for media keys/players, this keeps track of the last active player
 # SEE: https://wiki.archlinux.org/title/MPRIS
