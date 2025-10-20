@@ -117,11 +117,6 @@ export VISUAL=$EDITOR
 # export PATH=$PATH:~/.local/bin
 export PATH="/home/albert/.ebcli-virtual-env/executables:$PATH"
 
-# export NOW=$(date +"%m-%d-%Y")
-export NOW=$(date +"%Y-%m-%d")
-export NOWT=$(date +"%Y%m%d%H%M%S")
-
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
