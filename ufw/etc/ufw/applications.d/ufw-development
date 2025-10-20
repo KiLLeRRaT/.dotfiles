@@ -1,0 +1,10 @@
+[development-node]
+title=Node Dev Web Servers
+description=Node Dev Web Servers
+ports=3100:3110/tcp
+
+[development-dotnet]
+title=dotnet Dev Web Servers
+description=dotnet Dev Web Servers
+ports=5000:5010/tcp|80:89/tcp|8080:8089/tcp
+

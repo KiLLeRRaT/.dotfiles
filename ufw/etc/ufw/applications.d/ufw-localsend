@@ -1,0 +1,7 @@
+[LocalSend]
+title=LocalSend
+description=Cross platform alternative to AirDrop.
+# ports=64951
+# ports=55555,4000,3000,3001
+ports=53317
+
