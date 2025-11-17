@@ -9,6 +9,7 @@ curl -H 'Cache-Control: no-cache, no-store' -LOJ https://raw.githubusercontent.c
 curl -H 'Cache-Control: no-cache, no-store' -LOJ https://raw.githubusercontent.com/KiLLeRRaT/.dotfiles/refs/heads/master/install/install-arch2.variables.sh
 curl -H 'Cache-Control: no-cache, no-store' -LOJ https://raw.githubusercontent.com/KiLLeRRaT/.dotfiles/refs/heads/master/install/mount-install-env.sh
 curl -H 'Cache-Control: no-cache, no-store' -LOJ https://raw.githubusercontent.com/KiLLeRRaT/.dotfiles/refs/heads/master/install/umount-install-env.sh
+curl -H 'Cache-Control: no-cache, no-store' -LOJ https://raw.githubusercontent.com/KiLLeRRaT/.dotfiles/refs/heads/master/install/rescue-arch.sh
 
 chmod u+x *.sh
 echo "Done"
