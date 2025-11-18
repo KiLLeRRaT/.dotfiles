@@ -45,6 +45,8 @@
 	autocrlf = input
 	excludesFile = ~/.gitignore
 	attributesFile = ~/.gitattributes
+	; For Windows SSH via 1Password
+	; sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
 
 [commit]
 	gpgsign = true
