@@ -77,6 +77,8 @@
 	; agouws.gouws.org, you want to disable this line on agouws.gouws.org so that 1Password does'nt
 	; fire up when you only have an SSH session open.
 	program = "/opt/1Password/op-ssh-sign"
+	; On Windows use this path instead:
+	; program = "C:/Users/albert.gouws/AppData/Local/Microsoft/WindowsApps/op-ssh-sign.exe"
 
 [rerere]
 	enabled = true
