@@ -878,6 +878,11 @@ exec --no-startup-id i3-msg 'workspace $ws1; exec google-chat-linux'
 exec --no-startup-id i3-msg 'workspace $ws2; exec alacritty --title "Terminal Main" -e zsh -c "tmux a || tmux"'
 exec --no-startup-id i3-msg 'workspace $ws3; exec alacritty --title "Terminal Build" -e zsh -c "tmux a -t Work_Build"'
 # </config>
+
+# <config hostname="arch-crowdstrike">
+exec --no-startup-id /opt/netskope/stagent/stAgentUI
+# </config>
+
 # <config hostname="arch-delllatitude">
 font xft:SF Pro Display 11
 # FROM: https://github.com/betterlockscreen/betterlockscreen
