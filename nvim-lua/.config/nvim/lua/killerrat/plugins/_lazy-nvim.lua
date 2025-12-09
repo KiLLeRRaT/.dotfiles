@@ -255,21 +255,29 @@ local lazyPlugins = {
 	},
 	-- goto definition on decompiled sources
 	-- { 'Hoffs/omnisharp-extended-lsp.nvim' },
+
+	-- {
+	-- 	"https://github.com/seblyng/roslyn.nvim",
+	-- 	ft = { "cs", "razor", "vb" },
+	-- 	dependencies = {
+	-- 		{
+	-- 			-- By loading as a dependencies, we ensure that we are available to set
+	-- 			-- the handlers for roslyn
+	-- 			'https://github.com/tris203/rzls.nvim',
+	-- 			config = function()
+	-- 				---@diagnostic disable-next-line: missing-fields
+	-- 				require('rzls').setup {}
+	-- 			end,
+	-- 		},
+	-- 	}
+	-- },
 	{
-		"https://github.com/seblyng/roslyn.nvim",
-		ft = { "cs", "razor", "vb" },
-		dependencies = {
-			{
-				-- By loading as a dependencies, we ensure that we are available to set
-				-- the handlers for roslyn
-				'https://github.com/tris203/rzls.nvim',
-				config = function()
-					---@diagnostic disable-next-line: missing-fields
-					require('rzls').setup {}
-				end,
-			},
-		}
+		"seblyng/roslyn.nvim",
+		---@module 'roslyn.config'
+		---@type RoslynNvimConfig
+		opts = { },
 	},
+
 	{
 		'stevearc/conform.nvim',
 		opts = {},

@@ -1,5 +1,5 @@
 vim.lsp.config('roslyn', {
-	handlers = require 'rzls.roslyn_handlers',
+	-- handlers = require 'rzls.roslyn_handlers',
 	on_attach = function (client, bufnr)
 		--- Guard against servers without the signatureHelper capability
 		if client.server_capabilities.signatureHelpProvider then
