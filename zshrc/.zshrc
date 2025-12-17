@@ -235,9 +235,6 @@ alias db='dotnet build'
 alias dr='dotnet restore'
 alias xc='xclip -se c'
 
-
-
-
 	# cmd=$(remmina -c $(ls $PWD/* | fzf -e --select-1 --no-sort --query "$1"))
 	# cmd1=$(lssh | fzf --select-1 --query "$1" --height=~50 | cut -f 2)
 
@@ -266,9 +263,12 @@ alias setxkbmap-altgr='setxkbmap -variant altgr-intl'
 alias setxkbmap-keypad-pointerkeys="echo 'Enable numlock using shift+numlock, or ctrl+shift+numlock' && \
 	setxkbmap -option keypad:pointerkeys"
 
-atail() { tail -f ---disable-inotify "$@"; }
-alias atail-t='tail -f -n +1 ---disable-inotify $(ls -t | head -1)'
-alias sdc='sudo docker compose'
+# # In arch I still use as-tree python program, but thats gone so will use this in the future
+# alias as-tree='tree --fromfile'
+
+# atail() { tail -f ---disable-inotify "$@"; }
+# alias atail-t='tail -f -n +1 ---disable-inotify $(ls -t | head -1)'
+# alias sdc='sudo docker compose'
 
 # find files matching the name, then sort them by last modified
 fd-t() {
