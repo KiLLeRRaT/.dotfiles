@@ -242,6 +242,9 @@ local lazyPlugins = {
 	{ "https://github.com/neovim/nvim-lspconfig" },
 	{
 		'https://github.com/nvim-treesitter/nvim-treesitter',
+		branch = 'master', -- main has lots of breaking changes, need to upgrade later in the future, see:
+		-- https://www.reddit.com/r/neovim/comments/1pndf9e/my_new_nvimtreesitter_configuration_for_the_main/
+		-- https://github.com/nvim-treesitter/nvim-treesitter/tree/main?tab=readme-ov-file#quickstart
 		build = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
 	},
 
