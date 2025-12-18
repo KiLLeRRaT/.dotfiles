@@ -513,8 +513,10 @@ fi
 
 if [ -f ~/.config/zsh/plugins/insert-word.zsh ]; then
 	source ~/.config/zsh/plugins/insert-word.zsh
-	zle -N insert-word
-	bindkey '\ew' insert-word
+	zle -N insert-word-small
+	bindkey '\ew' insert-word-small
+	zle -N insert-word-large
+	bindkey '\eW' insert-word-large
 fi
 
 
