@@ -13,6 +13,7 @@ local lsp_installer_ensure_installed = {
 	-- "tsserver",
 	"ts_ls",
 	-- "sumneko_lua",
+	"systemd_lsp",
 	"lua_ls",
 	--"sqls", -- https://github.com/lighttiger2505/sqls
 	"lemminx",
