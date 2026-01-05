@@ -243,7 +243,8 @@ function _G.toggle_diagnostics()
 		vim.diagnostic.enable()
 	end
 end
-vim.keymap.set("n", "<leader>G", ":call v:lua.toggle_diagnostics()<CR>")
+vim.keymap.set("n", "<leader>GG", ":call v:lua.toggle_diagnostics()<CR>")
+vim.keymap.set("n", "<leader>Gd", ":lua vim.diagnostic.setqflist()<CR>")
 
 
 
