@@ -31,7 +31,12 @@ vim.lsp.config('html', { capabilities = capabilities })
 -- require'lspconfig'.jsonls.setup {
 -- 	capabilities = capabilities,
 -- }
-vim.lsp.config('jsonls', { capabilities = capabilities })
+-- Disable incremental sync for jsonls to fix assertion errors
+local jsonls_capabilities = vim.deepcopy(capabilities)
+jsonls_capabilities.textDocument.synchronization = {
+	change = vim.lsp.protocol.TextDocumentSyncKind.Full
+}
+vim.lsp.config('jsonls', { capabilities = jsonls_capabilities })
 
 -- require'lspconfig'.pyright.setup{}
 vim.lsp.config('pyright', {})
