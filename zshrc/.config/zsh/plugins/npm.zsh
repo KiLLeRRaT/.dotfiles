@@ -10,6 +10,7 @@ npm-outdated-update() {
 	fi
 	packages=$(npm outdated --color=always)
 
+	FZF_DIRECTION=up
 	echo $packages |\
 		fzf --ansi --header=$whatParam --multi --header-lines=1 --bind ctrl-a:select-all |\
 		awk '{

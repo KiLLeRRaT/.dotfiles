@@ -1,5 +1,5 @@
 dotnet-outdated-update() {
-	dotnet list package --outdated |\
+	FZF_DIRECTION=up;dotnet list package --outdated --no-restore |\
 		sed -n '/Top-level Package/,$p' |\
 		sed 's/^.*> //' |\
 		fzf --header=Latest --multi --header-lines=1 --ansi |\
