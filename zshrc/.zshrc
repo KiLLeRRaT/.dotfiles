@@ -283,6 +283,7 @@ fd-t() {
 # find most recently modified file matching the name, then open it in nvim, 
 # mnemonically neovim-time
 alias n-t="fd-t | cut -f2 | head -1 | xargs --no-run-if-empty -d'\n' nvim"
+alias exiftool-productversion='exiftool -ProductVersion -s3'
 
 # LIST PATHS OF OTHER ZSH SHELLS I HAVE OPEN
 lssh() {
