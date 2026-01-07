@@ -3,6 +3,8 @@ vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 
+vim.opt_local.spell = true
+
 vim.keymap.set("n", "<localleader>nc", "<cmd>Neorg toggle-concealer<cr>")
 
 -- SURROUND CURRENT LINE IN CODE TAGS
@@ -11,7 +13,12 @@ vim.keymap.set("n", "<localleader>sc", "O@code bash<esc>jo@end<esc>")
 -- SURROUND VISUAL SELECTION IN CODE TAGS
 vim.keymap.set("v", "<localleader>sc", "<esc>'<O@code bash<esc>'>o@end<esc>")
 
-vim.opt_local.spell = true
+-- TEXT OBJECTS, SEE: https://github.com/nvim-neorg/neorg/wiki/Norg-Text-Objects
+vim.keymap.set("n", "[E", "<Plug>(neorg.text-objects.item-up)", {})
+vim.keymap.set("n", "]E", "<Plug>(neorg.text-objects.item-down)", {})
+vim.keymap.set({ "o", "x" }, "iH", "<Plug>(neorg.text-objects.textobject.heading.inner)", {})
+vim.keymap.set({ "o", "x" }, "aH", "<Plug>(neorg.text-objects.textobject.heading.outer)", {})
+
 
 
 -- FOLDLEVEL 99 WHEN OPENING INDEX.NORG

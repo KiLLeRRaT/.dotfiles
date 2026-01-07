@@ -3,6 +3,7 @@ local p = "neorg"; if (not require('killerrat.plugins._lazy-nvim').LazyHasPlugin
 require(p).setup {
 	load = {
 		["core.defaults"] = {},
+		["core.text-objects"] = {},
 		["core.export"] = {},
 		["core.export.markdown"] = {},
 		["core.integrations.telescope"] = {},
