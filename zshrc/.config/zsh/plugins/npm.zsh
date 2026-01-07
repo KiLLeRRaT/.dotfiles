@@ -10,14 +10,22 @@ npm-outdated-update() {
 	fi
 	packages=$(npm outdated --color=always)
 
-	FZF_DIRECTION=up
-	echo $packages |\
-		fzf --ansi --header=$whatParam --multi --header-lines=1 --bind ctrl-a:select-all |\
-		awk '{
+	echo $packages \
+		| fzf \
+			--ansi \
+			--header=$whatParam \
+			--multi \
+			--header-lines=1 \
+			--bind ctrl-a:select-all \
+			--bind tab:toggle+up \
+			--bind shift-tab:toggle+down \
+		| awk '{
 			print "Updating " $1 " from " $2 " to " $'$whatColumn' > "/dev/stderr";
 			print $1"@"$'$whatColumn';
-		}' |\
-		xargs --no-run-if-empty npm install
+		}' \
+		| xargs \
+			--no-run-if-empty \
+			npm install
 }
 
 if [ -f $HOME/.config/op/npm-env ] && command -v op >/dev/null 2>&1; then

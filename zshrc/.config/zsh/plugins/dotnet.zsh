@@ -1,10 +1,22 @@
 dotnet-outdated-update() {
-	FZF_DIRECTION=up;dotnet list package --outdated --no-restore |\
-		sed -n '/Top-level Package/,$p' |\
-		sed 's/^.*> //' |\
-		fzf --header=Latest --multi --header-lines=1 --ansi |\
-		cut -f1 -d' ' |\
-		xargs -n1 --no-run-if-empty dotnet add package
+	dotnet list package \
+		--outdated \
+		--no-restore \
+	| sed -n '/Top-level Package/,$p' \
+	| sed 's/^.*> //' \
+	| fzf \
+		--header=Latest \
+		--multi \
+		--header-lines=1 \
+		--ansi \
+		--bind ctrl-a:select-all \
+		--bind tab:toggle+up \
+		--bind shift-tab:toggle+down \
+	| cut -f1 -d' ' \
+	| xargs \
+		-n1 \
+		--no-run-if-empty \
+		dotnet add package
 }
 
 # FROM: https://learn.microsoft.com/en-us/dotnet/core/tools/enable-tab-autocomplete#zsh
