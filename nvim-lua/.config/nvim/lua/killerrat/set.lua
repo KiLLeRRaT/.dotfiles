@@ -194,4 +194,40 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 })
 
 -- vim.diagnostic.config({ virtual_text = false, virtual_lines = { current_line = true }, })
-vim.diagnostic.config({ virtual_text = true, virtual_lines = { current_line = true }, })
+-- vim.diagnostic.config({ virtual_text = true, virtual_lines = { current_line = true }, })
+-- vim.diagnostic.config({ virtual_text = true, virtual_lines = { current_line = false }, })
+-- vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
+
+-- Initial config: show virtual_lines only on current line (toggle with <leader>GG in remap.lua)
+vim.diagnostic.config({ virtual_text = false, virtual_lines = { only_current_line = true } })
+
+-- -- Configure diagnostics to show virtual_lines on current line and virtual_text on other lines
+-- vim.diagnostic.config({ 
+-- 	virtual_text = true, 
+-- 	virtual_lines = { only_current_line = true }, 
+-- })
+--
+-- -- Hide virtual_text on the current line (where virtual_lines appears)
+-- local diagnostics_group = vim.api.nvim_create_augroup("diagnostics_virtual_text", { clear = true })
+-- vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "BufEnter" }, {
+-- 	callback = function()
+-- 		local current_line = vim.api.nvim_win_get_cursor(0)[1]
+-- 		local bufnr = vim.api.nvim_get_current_buf()
+-- 		local diagnostics = vim.diagnostic.get(bufnr, { lnum = current_line - 1 })
+--
+-- 		-- Show virtual_text on all lines except current
+-- 		vim.diagnostic.config({
+-- 			virtual_text = {
+-- 				format = function(diagnostic)
+-- 					local line = diagnostic.lnum + 1
+-- 					if line == current_line then
+-- 						return nil -- Hide virtual_text on current line
+-- 					end
+-- 					return diagnostic.message
+-- 				end
+-- 			},
+-- 			virtual_lines = { only_current_line = true }, -- Only show virtual_lines on current line
+-- 		})
+-- 	end,
+-- 	group = diagnostics_group
+-- })
