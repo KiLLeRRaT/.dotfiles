@@ -43,7 +43,7 @@ fgco() {
 
 # RUN THE COMMAND FROM HISTORY, USING FZF AS SELECTOR
 fh() {
-	cmd=$(history 0 | sort -nr | cut -c 8- | fzf -e --select-1 --no-sort --query "$1" )
+	cmd=$(history 0 | sort -nr | cut -c 8- | fzf --exact --select-1 --no-sort --query "$1" )
 	if [ -z "$cmd" ]; then
 		return 1
 	fi
