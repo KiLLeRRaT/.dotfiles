@@ -889,6 +889,7 @@ font xft:SF Pro Display 11
 # FROM: https://github.com/betterlockscreen/betterlockscreen
 exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
 exec --no-startup-id pipewire-pulse
+exec_always --no-startup-id dunst
 # RESTORE LAYOUTS
 exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/arch-delllatitude/workspace-2-2.json'
 exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/arch-delllatitude/workspace-8.json'
