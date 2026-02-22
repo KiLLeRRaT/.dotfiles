@@ -68,6 +68,7 @@ pacstrap -K /mnt base linux linux-lts linux-firmware \
 	gnome-keyring seahorse lxsession \
 	grub-btrfs \
 	i3 \
+	imake \
 	inotify-tools \
 	iotop \
 	jq \
