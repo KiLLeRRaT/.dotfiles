@@ -34,9 +34,9 @@ mount -o defaults,noatime,ssd,compress=zstd,subvol=@ /dev/mapper/root /mnt
 echo -e -e "${GREEN}Creating directories in ${DEV_ROOT}${RESET}"
 
 if [ "$ENCRYPTED_BOOT" == "y" ]; then
-	mkdir -p /mnt/boot
-else
 	mkdir -p /mnt/efi
+else
+	mkdir -p /mnt/boot
 fi
 
 mkdir -p /mnt/home
