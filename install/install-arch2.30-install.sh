@@ -35,7 +35,7 @@ read -n 1
 
 # SET MIRRORS
 sed -i 's/^/#^/' /etc/pacman.d/mirrorlist
-cat >> /etc/pacman.d/mirrorlist << EOF
+cat >> /etc/pacman.d/mirrorlist << 'EOF'
 Server = https://mirror.fsmg.org.nz/archlinux/$repo/os/$arch
 Server = https://mirror.2degrees.nz/archlinux/$repo/os/$arch
 Server = https://archlinux.ourhome.kiwi/$repo/os/$arch
