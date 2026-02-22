@@ -131,6 +131,26 @@ disk "/mnt/data/" {
 	prefix_type = binary
 }
 # </config>
+# <config hostname="arch-t570">
+order += "ethernet enp0s31f6"
+order += "ethernet wlp4s0"
+order += "battery all"
+ethernet enp0s31f6 {
+# if you use %speed, i3status requires root privileges
+				format_up = "<span color='white'> 󰖩 %ip </span>"
+				# format_up = " 󰈀 %ip %speed "
+				format_down = " no 󰈀 "
+}
+ethernet wlp4s0 {
+# if you use %speed, i3status requires root privileges
+				format_up = "<span color='white'> 󰖩 %ip </span>"
+				# format_up = " 󰈀 %ip %speed "
+				format_down = " no 󰈀 "
+}
+# disk "/mnt/data/" {
+				# format = "d⛁ %avail "
+# }
+# </config>
 # <config hostname="arch-delllatitude">
 # order += "disk /mnt/data/"
 order += "ethernet wlan0"

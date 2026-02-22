@@ -884,6 +884,27 @@ exec --no-startup-id /opt/netskope/stagent/stAgentUI
 exec --no-startup-id spice-vdagent
 # </config>
 
+# <config hostname="arch-t570">
+font xft:SF Pro Display 11
+# FROM: https://github.com/betterlockscreen/betterlockscreen
+exec --no-startup-id feh --randomize --bg-fill ~/.dotfiles/images/*; sleep 1; picom -b
+exec --no-startup-id pipewire-pulse
+exec_always --no-startup-id dunst
+# RESTORE LAYOUTS
+# exec --no-startup-id i3-msg 'workspace $ws2; append_layout ~/.config/i3/workspaces/arch-delllatitude/workspace-2-2.json'
+# exec --no-startup-id i3-msg 'workspace $ws8; append_layout ~/.config/i3/workspaces/arch-delllatitude/workspace-8.json'
+
+# exec --no-startup-id i3-msg 'workspace $ws8; exec brave --profile-directory=Default'
+# exec --no-startup-id i3-msg "workspace $ws2; exec alacritty -e zsh -c 'tmux a || tmux'"
+
+# NEED A UDEV RULE TO ALLOW NON ROOT TO ADJUST BRIGHTNESS. SEE:
+# https://wiki.archlinux.org/title/Talk:Backlight#Udev_rules_for_permissions_of_brightness_doesn't_work
+# bindsym XF86MonBrightnessUp exec --no-startup-id "~/.dotfiles/hosts/arch-delllatitude/set-brightness-percent.sh +5"
+# bindsym XF86MonBrightnessDown exec --no-startup-id "~/.dotfiles/hosts/arch-delllatitude/set-brightness-percent.sh -5"
+# bindsym $mod+XF86MonBrightnessUp exec --no-startup-id "pactl set-sink-volume 0 +5%"
+# bindsym $mod+XF86MonBrightnessDown exec --no-startup-id "pactl set-sink-volume 0 -5%"
+# </config>
+
 # <config hostname="arch-delllatitude">
 font xft:SF Pro Display 11
 # FROM: https://github.com/betterlockscreen/betterlockscreen
