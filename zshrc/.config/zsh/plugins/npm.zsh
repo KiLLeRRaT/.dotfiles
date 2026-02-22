@@ -10,7 +10,8 @@ npm-outdated-update() {
 	fi
 	packages=$(npm outdated --color=always)
 
-	echo $packages \
+	local selected
+	selected=$(echo $packages \
 		| fzf \
 			--ansi \
 			--header=$whatParam \
@@ -22,10 +23,14 @@ npm-outdated-update() {
 		| awk '{
 			print "Updating " $1 " from " $2 " to " $'$whatColumn' > "/dev/stderr";
 			print $1"@"$'$whatColumn';
-		}' \
-		| xargs \
-			--no-run-if-empty \
-			npm install
+		}')
+
+	if [ -n "$selected" ]; then
+		echo "" >&2
+		echo $selected | while read -r pkg; do echo "npm i $pkg" >&2; done
+		echo "" >&2
+		echo $selected | xargs --no-run-if-empty npm install
+	fi
 }
 
 if [ -f $HOME/.config/op/npm-env ] && command -v op >/dev/null 2>&1; then
