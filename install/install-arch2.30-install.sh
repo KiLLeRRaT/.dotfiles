@@ -154,7 +154,15 @@ echo "::1	 localhost.localdomain   localhost   $NEW_HOSTNAME" >> /mnt/etc/hosts
 
 sed -i 's/^#Color/Color/g' /mnt/etc/pacman.conf
 sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 10/g' /mnt/etc/pacman.conf
-sed -i.bak '/^HOOKS=/s/block/block encrypt/' /mnt/etc/mkinitcpio.conf
+# sed -i.bak '/^HOOKS=/s/block/block encrypt/' /mnt/etc/mkinitcpio.conf
+echo -e "${GREEN}Configure mkinitcpio.conf${RESET}"
+cat << EOF > /mnt/etc/mkinitcpio.conf
+MODULES=(btrfs)
+BINARIES=(/usr/bin/btrfs /usr/bin/curl)
+FILES=()
+HOOKS=(base udev autodetect keyboard keymap modconf block encrypt filesystems fsck resume)
+EOF
+
 
 echo -e "${GREEN}Generate key for unlocking root${RESET}"
 dd bs=512 count=4 if=/dev/random iflag=fullblock | arch-chroot /mnt install -m 0600 /dev/stdin /etc/cryptsetup-keys.d/root.key
