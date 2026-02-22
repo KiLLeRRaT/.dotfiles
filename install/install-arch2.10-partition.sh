@@ -6,7 +6,7 @@ source install-arch2.variables.sh
 echo "DEV_ROOT="$(GET_VAR DEV_ROOT '/dev/$(lsblk --list | fzf --header-lines=1 --prompt="Please select DEV_ROOT: " | cut -d" " -f1)')
 echo ""
 echo "LUKS_PASSWORD=$(GET_VAR LUKS_PASSWORD)"
-echo "If you want to unlock using CLEVIS, use encrypted boot, i.e.: 'y'"
+echo "If you want to unlock using CLEVIS, don't use encrypted boot, i.e.: 'n'"
 echo "ENCRYPTED_BOOT=$(GET_VAR ENCRYPTED_BOOT)"
 source ./variables
 

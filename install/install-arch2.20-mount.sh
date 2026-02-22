@@ -8,7 +8,7 @@ echo ""
 echo "DEV_ROOT="$(GET_VAR DEV_ROOT '/dev/$(lsblk --list | fzf --header-lines=1 --prompt="Please select DEV_ROOT: " | cut -d" " -f1)')
 echo ""
 echo "LUKS_PASSWORD=$(GET_VAR LUKS_PASSWORD)"
-echo "CLEVIS_UNLOCK=$(GET_VAR CLEVIS_UNLOCK)"
+echo "ENCRYPTED_BOOT=$(GET_VAR ENCRYPTED_BOOT)"
 source ./variables
 
 echo -e "${GREEN}Press any key to mount volumes...${RESET}"
@@ -27,7 +27,7 @@ mount -o defaults,noatime,ssd,compress=zstd,subvol=@log /dev/mapper/root /mnt/va
 mount -o defaults,noatime,ssd,compress=zstd,subvol=@docker /dev/mapper/root /mnt/var/lib/docker
 mount -o defaults,noatime,ssd,compress=zstd,subvol=@libvirt /dev/mapper/root /mnt/var/lib/libvirt
 
-if [ "$CLEVIS_UNLOCK" == "y" ]; then
+if [ "$ENCRYPTED_BOOT" == "y" ]; then
 	mount $DEV_BOOT /mnt/efi
 else
 	mount $DEV_BOOT /mnt/boot
