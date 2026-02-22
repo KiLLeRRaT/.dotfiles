@@ -6,6 +6,8 @@ source install-arch2.variables.sh
 echo "DEV_ROOT="$(GET_VAR DEV_ROOT '/dev/$(lsblk --list | fzf --header-lines=1 --prompt="Please select DEV_ROOT: " | cut -d" " -f1)')
 echo ""
 echo "LUKS_PASSWORD=$(GET_VAR LUKS_PASSWORD)"
+echo "If you want to unlock using CLEVIS, use encrypted boot, i.e.: 'y'"
+echo "ENCRYPTED_BOOT=$(GET_VAR ENCRYPTED_BOOT)"
 source ./variables
 
 echo -e "${GREEN}Press any key to start partitioning...${RESET}"
@@ -30,7 +32,13 @@ umount -R /mnt
 mount -o defaults,noatime,ssd,compress=zstd,subvol=@ /dev/mapper/root /mnt
 
 echo -e -e "${GREEN}Creating directories in ${DEV_ROOT}${RESET}"
-mkdir -p /mnt/efi
+
+if [ "$ENCRYPTED_BOOT" == "y" ]; then
+	mkdir -p /mnt/boot
+else
+	mkdir -p /mnt/efi
+fi
+
 mkdir -p /mnt/home
 mkdir -p /mnt/swap
 mkdir -p /mnt/var/cache/pacman/pkg

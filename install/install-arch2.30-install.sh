@@ -22,6 +22,7 @@ echo ""
 echo "DEVICE_UUID="$(GET_VAR DEVICE_UUID '$(blkid | fzf --prompt="Please select the DEV_ROOT device for cryptsetup: " | sed -E "s/^.*UUID=\"(.{36})\" .*$/\1/")')
 echo ""
 echo "LUKS_PASSWORD=$(GET_VAR LUKS_PASSWORD)"
+echo "ENCRYPTED_BOOT=$(GET_VAR ENCRYPTED_BOOT)"
 echo "NEW_HOSTNAME=$(GET_VAR NEW_HOSTNAME)"
 echo "ROOT_PASSWORD=$(GET_VAR ROOT_PASSWORD)"
 echo "USERNAME=$(GET_VAR USERNAME)"
@@ -172,7 +173,13 @@ echo -e "${GREEN}Configure GRUB${RESET}"
 sed -i 's/^#GRUB_ENABLE_CRYPTODISK=/GRUB_ENABLE_CRYPTODISK=/' /mnt/etc/default/grub
 sed -i '/^GRUB_PRELOAD_MODULES=/s/part_gpt/btrfs part_gpt/' /mnt/etc/default/grub
 sed -i.bak "/^GRUB_CMDLINE_LINUX=/s|\".*\"|\"cryptdevice=UUID=$DEVICE_UUID:root root=/dev/mapper/root cryptkey=rootfs:/etc/cryptsetup-keys.d/root.key\"|" /mnt/etc/default/grub
-arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
+
+if [ "$ENCRYPTED_BOOT" == "y" ]; then
+	arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
+else
+	arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+fi
+
 arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 arch-chroot /mnt mkinitcpio -P
 
@@ -198,17 +205,17 @@ EOF
 
 echo -e "${GREEN}Configuring makepkg${RESET}"
 # DISABLE COMPRESSION
-arch-chroot /mnt sed -i 's/^PKGEXT.*/PKGEXT=".pkg.tar"/' /etc/makepkg.conf
+# arch-chroot /mnt sed -i 's/^PKGEXT.*/PKGEXT=".pkg.tar"/' /etc/makepkg.conf
 # DISABLE DEBUGGING
 arch-chroot /mnt sed -i 's/\(OPTIONS=.*\)debug/\1!debug/' /etc/makepkg.conf
 
-echo -e "${GREEN}Hardening /tmp and /dev/shm by setting noexec${RESET}"
-tmp=$(arch-chroot /mnt findmnt /tmp --output SOURCE,FSTYPE,OPTIONS | tail -n1)
-devshm=$(arch-chroot /mnt findmnt /dev/shm --output SOURCE,FSTYPE,OPTIONS | tail -n1)
-arch-chroot /mnt bash -c "cat >> /etc/fstab" << EOF
-$(echo $tmp | sed "s/^tmpfs/tmpfs    \/tmp/"),noexec 0 0
-$(echo $devshm | sed "s/^tmpfs/tmpfs    \/dev\/shm/"),noexec 0 0
-EOF
+# echo -e "${GREEN}Hardening /tmp and /dev/shm by setting noexec${RESET}"
+# tmp=$(arch-chroot /mnt findmnt /tmp --output SOURCE,FSTYPE,OPTIONS | tail -n1)
+# devshm=$(arch-chroot /mnt findmnt /dev/shm --output SOURCE,FSTYPE,OPTIONS | tail -n1)
+# arch-chroot /mnt bash -c "cat >> /etc/fstab" << EOF
+# $(echo $tmp | sed "s/^tmpfs/tmpfs    \/tmp/"),noexec 0 0
+# $(echo $devshm | sed "s/^tmpfs/tmpfs    \/dev\/shm/"),noexec 0 0
+# EOF
 
 # FROM: https://wiki.archlinux.org/title/Sysctl#Configuration
 echo -e "${GREEN}Enable SysRq${RESET}"
