@@ -45,7 +45,6 @@ EOF
 
 pacstrap -K /mnt base linux linux-lts linux-firmware \
 	alacritty \
-	aspnet-runtime \
 	base-devel \
 	bat \
 	bc \
@@ -58,8 +57,6 @@ pacstrap -K /mnt base linux linux-lts linux-firmware \
 	dmenu \
 	docker docker-compose \
 	dosbox \
-	dotnet-runtime \
-	dotnet-sdk \
 	dunst \
 	efibootmgr \
 	fbset \
@@ -68,7 +65,7 @@ pacstrap -K /mnt base linux linux-lts linux-firmware \
 	flameshot xdotool \
 	fzf \
 	git \
-	gnome-keyring seahorse lxsession-gtk3 \
+	gnome-keyring seahorse lxsession \
 	grub-btrfs \
 	i3 \
 	inotify-tools \
@@ -125,7 +122,6 @@ pacstrap -K /mnt base linux linux-lts linux-firmware \
 	unzip \
 	wget \
 	wireplumber pipewire-pulse pavucontrol playerctl \
-	xautolock \
 	xclip \
 	xdg-user-dirs \
 	xorg \

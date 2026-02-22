@@ -86,8 +86,12 @@ echo -e "${GREEN}----------------------------------------${RESET}"
 
 arch-chroot2 mkdir -p /home/$USERNAME/source-aur
 
+installAurPackage xautolock
 installAurPackage oh-my-posh-bin
 installAurPackage brave-bin
+installAurPackage aspnet-runtime-bin
+installAurPackage dotnet-runtime-bin
+installAurPackage dotnet-sdk-bin
 
 arch-chroot2 /bin/bash -l -- <<- EOF
 	curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
