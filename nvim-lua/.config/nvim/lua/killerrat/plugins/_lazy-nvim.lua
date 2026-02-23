@@ -180,6 +180,10 @@ local lazyPlugins = {
 		cond = pluginCondForHost,
 		ft = "norg",
 		version = "*",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"vhyrro/luarocks.nvim",
+		}
 	},
 	{ 'https://github.com/nvim-neorg/neorg-telescope',
 		dependencies = {'https://github.com/nvim-telescope/telescope.nvim'},
