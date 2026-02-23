@@ -166,7 +166,16 @@ local lazyPlugins = {
 		"https://github.com/vhyrro/luarocks.nvim",
 		cond = pluginCondForHost,
 		priority = 1000, -- We'd like this plugin to load first out of the rest
-		config = true, -- This automatically runs `require("luarocks-nvim").setup()`
+		config = function()
+			-- luarocks 3.13+ changed require("luarocks.vendor.dkjson") to
+			-- require("dkjson") but the vendor path isn't in package.path
+			local rocks_dir = vim.fn.stdpath("data") .. "/lazy/luarocks.nvim/.rocks"
+			local vendor_path = rocks_dir .. "/share/lua/5.1/luarocks/vendor/?.lua"
+			if not package.path:find("luarocks/vendor", 1, true) then
+				package.path = package.path .. ";" .. vendor_path
+			end
+			require("luarocks-nvim").setup()
+		end,
 	},
 	-- { 'nvim-neorg/neorg',
 	-- 	cond = pluginCondForHost,
