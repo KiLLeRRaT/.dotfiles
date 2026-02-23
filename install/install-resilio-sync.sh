@@ -1,6 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -e
 
 dockerComposeFile="/home/albert/resilio-sync/docker-compose.yml"
+mkdir -p $(dirname $dockerComposeFile)
+
 # Make a heredoc that echos the docker-compose file
 cat <<EOF > $dockerComposeFile
 services:
