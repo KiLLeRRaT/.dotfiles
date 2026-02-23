@@ -157,14 +157,14 @@ bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 # bindsym Mod4+space --release exec dunstctl close
 # bindsym Mod4+space --release exec dunstctl history
 bindsym Mod4+n mode "$mode_notifications"
-set $mode_notifications (c)lose, (C)lose all, (h)istory, conte(x)t, dnd o(n), dnd (o)ff
+set $mode_notifications (c)lose, (C)lose all, (h)istory, conte(x)t, dnd o(n), dnd of(f)
 mode "$mode_notifications" {
 		bindsym c --release exec --no-startup-id dunstctl close, mode "default"
 		bindsym Shift+c --release exec --no-startup-id dunstctl close-all, mode "default"
 		bindsym h --release exec --no-startup-id dunstctl history-pop, mode "default"
 		bindsym x --release exec --no-startup-id dunstctl context, mode "default"
 		bindsym n --release exec --no-startup-id notify-send 'do not disturb on' && ~/.config/dunst/dnd.sh dnd_start, mode "default"
-		bindsym o --release exec --no-startup-id notify-send 'do not disturb off' && ~/.config/dunst/dnd.sh dnd_stop, mode "default"
+		bindsym f --release exec --no-startup-id notify-send 'do not disturb off' && ~/.config/dunst/dnd.sh dnd_stop, mode "default"
 
 		# exit system mode: "Enter" or "Escape"
 		bindsym Return mode "default"
