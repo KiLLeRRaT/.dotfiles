@@ -23,6 +23,8 @@ tmux_accent=colour1
 tmux_current_title_fg=colour2
 tmux_activity_color=colour3
 
+tmux_inactive_border=#414868
+
 # Basic status bar colors
 set -g status-style bg=$tmux_status_bg
 
@@ -59,7 +61,8 @@ set -g window-status-separator ""
 set -g status-justify left
 
 # Pane border
-set -g pane-border-style bg=default,fg="$tmux_status_bg"
+# set -g pane-border-style bg=default,fg="$tmux_status_bg"
+set -g pane-border-style bg=default,fg="$tmux_inactive_border"
 
 # Active pane border
 set -g pane-active-border-style bg=default,fg="$tmux_status_bg_2"
