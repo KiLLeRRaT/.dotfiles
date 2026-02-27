@@ -4,7 +4,7 @@ local p = "vim-dadbod-ui"; if (not require('killerrat.plugins._lazy-nvim').LazyH
 -- sqlserver://sqlserver.gouws.org;user=sa;password=your_password;database=your_db
 -- aur go-sqlcmd package is also needed
 
--- server=sql.orca.kr.devlocal\sql2016;uid=OrcaWebUser;pwd=fr3ufouz;database=Orca
+-- server=sql.mysite.devlocal\sql2016;uid=User;pwd=redacted;database=YourDatabaseName
 
 -- SET VIM variable using neovim lua interface
 -- g:db_ui_execute_on_save = 0
