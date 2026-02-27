@@ -112,7 +112,7 @@ export SAVEHIST=100000
 export EDITOR="/usr/bin/nvim"
 export VISUAL=$EDITOR
 
-# Could put the below into ~/.profile.  Not sure why, moved it back to ~/.profile again to try and
+# Could put the below into ~/.profile.	Not sure why, moved it back to ~/.profile again to try and
 # see
 # export PATH=$PATH:~/.local/bin
 export PATH="/home/albert/.ebcli-virtual-env/executables:$PATH"
@@ -350,7 +350,7 @@ cdu() {
 
 # DISABLED IN FAVOUR OR YAY
 # if [ -f ~/.config/zsh/plugins/aur.zsh ]; then
-# 	source ~/.config/zsh/plugins/aur.zsh
+#	source ~/.config/zsh/plugins/aur.zsh
 # fi
 
 if [ -f ~/.config/zsh/plugins/feh.zsh ]; then
@@ -598,6 +598,13 @@ fi
 if command -v op &> /dev/null
 then
 	eval "$(op completion zsh)"; compdef _op op
+fi
+
+# Sync variables from TMUX if they are missing
+if [[ -n "$TMUX" ]]; then
+	eval $(tmux show-env -s DISPLAY 2>/dev/null)
+	eval $(tmux show-env -s XAUTHORITY 2>/dev/null)
+	eval $(tmux show-env -s SSH_AUTH_SOCK 2>/dev/null)
 fi
 
 
