@@ -875,8 +875,9 @@ exec --no-startup-id i3-msg 'workspace $ws8; exec brave --profile-directory=Prof
 exec --no-startup-id i3-msg 'workspace $ws1; exec 1password'
 exec --no-startup-id i3-msg 'workspace $ws1; exec spotify-launcher'
 exec --no-startup-id i3-msg 'workspace $ws1; exec google-chat-linux'
-exec --no-startup-id i3-msg 'workspace $ws2; exec alacritty --title "Terminal Main" -e zsh -c "tmux a || tmux"'
-exec --no-startup-id i3-msg 'workspace $ws3; exec alacritty --title "Terminal Build" -e zsh -c "tmux a -t Work_Build"'
+# exec --no-startup-id i3-msg 'workspace $ws2; exec alacritty --title "Terminal Main" -e zsh -c "tmux a || tmux"'
+exec --no-startup-id i3-msg 'workspace $ws2; exec alacritty --title "Terminal Main" --command zsh -c "tmux a -t Work"'
+exec --no-startup-id i3-msg 'workspace $ws3; exec alacritty --title "Terminal Build" --command zsh -c "tmux a -t Work_Build"'
 # </config>
 
 # <config hostname="arch-crowdstrike">
