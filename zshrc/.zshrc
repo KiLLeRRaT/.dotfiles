@@ -534,6 +534,10 @@ then
 	export CUDA_HOME=/opt/cuda/
 fi
 
+if [ -d ~/.local/bin ]
+then
+	export PATH=$PATH:~/.local/bin
+fi
 
 # Add dotnet tools to the path
 if [ -d ~/.dotnet/tools ]
