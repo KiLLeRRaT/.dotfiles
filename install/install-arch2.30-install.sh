@@ -91,7 +91,6 @@ pacstrap -K /mnt base linux linux-lts linux-firmware \
 	noto-fonts-extra \
 	nuget \
 	numlockx \
-	openfortivpn \
 	openssh \
 	pacman-contrib \
 	pam-u2f \
