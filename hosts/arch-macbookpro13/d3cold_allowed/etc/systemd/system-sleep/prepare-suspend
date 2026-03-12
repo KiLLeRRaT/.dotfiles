@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+logfile="/tmp/suspend.log"
+
+log() {
+  echo "$(date '+%Y-%m-%d %H:%M:%S') $1" >> "$logfile"
+}
+
+case $1 in
+  pre)
+    log "Running prepare_suspend.sh before suspend"
+    /home/albert/.dotfiles/hosts/arch-macbookpro13/d3cold_allowed/prepare-suspend.sh >> "$logfile" 2>&1
+    ;;
+  post)
+    log "Woke up from suspend"
+    ;;
+esac
