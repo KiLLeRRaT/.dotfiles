@@ -1,0 +1,9 @@
+width=40%
+height=45%
+location=center
+show=drun
+allow_markup=true
+term=alacritty
+prompt=drun
+normal_window=false
+gtk_dark=true

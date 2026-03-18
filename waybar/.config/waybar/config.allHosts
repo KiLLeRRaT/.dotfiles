@@ -1,0 +1,85 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "height": 34,
+  "spacing": 8,
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode"
+  ],
+  "modules-center": [],
+  "modules-right": [
+    "pulseaudio",
+    "network",
+    "battery",
+    "memory",
+    "cpu",
+    "clock",
+    "tray"
+  ],
+  "sway/workspaces": {
+    "all-outputs": true,
+    "disable-scroll": true,
+    "format": "{name}"
+  },
+  "sway/mode": {
+    "format": " {}"
+  },
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-bluetooth": "  {volume}%",
+    "format-muted": "  mute",
+    "format-icons": {
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "pavucontrol"
+  },
+  "network": {
+    "format-wifi": "󰖩 {ipaddr}",
+    "format-ethernet": "󰈀 {ipaddr}",
+    "format-disconnected": "󰖪",
+    "tooltip-format": "{ifname} via {gwaddr}"
+  },
+  "battery": {
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-icons": [
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ]
+  },
+  "memory": {
+    "format": "󰍛 {used:0.1f}G/{avail:0.1f}G"
+  },
+  "cpu": {
+    "format": " {usage}%"
+  },
+  "clock": {
+    "format": "{:%a %-d %b %H:%M:%S}"
+  },
+  "tray": {
+    "spacing": 10
+  }
+  // <hostSpecificConfig>
+  // <config hostname="arch-t570">
+  // T570 currently uses the shared Waybar module set unchanged.
+  // </config>
+  // </hostSpecificConfig>
+}

@@ -1,0 +1,44 @@
+window {
+  margin: 0;
+  border: 1px solid #32344a;
+  background-color: #1a1b26;
+  color: #a9b1d6;
+  font-family: "CaskaydiaCove Nerd Font", "SF Pro Display", monospace;
+  font-size: 12px;
+}
+
+#input {
+  margin: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #24283b;
+  color: #c0caf5;
+}
+
+#inner-box {
+  margin: 0 10px 10px;
+  border: none;
+  background-color: transparent;
+}
+
+#outer-box {
+  margin: 0;
+  border: none;
+  background-color: transparent;
+}
+
+#scroll {
+  margin: 0;
+  border: none;
+}
+
+#entry {
+  padding: 10px;
+  border-radius: 8px;
+}
+
+#entry:selected {
+  background-color: #7aa2f7;
+  color: #1a1b26;
+}

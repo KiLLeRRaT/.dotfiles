@@ -1,0 +1,22 @@
+{
+  "border": "pixel",
+  "floating": "auto_off",
+  "layout": "splith",
+  "marks": [],
+  "percent": 1,
+  "type": "con",
+  "nodes": [
+    {
+      "border": "pixel",
+      "floating": "auto_off",
+      "name": "~",
+      "percent": 1,
+      "swallows": [
+        {
+          "app_id": "^Alacritty$"
+        }
+      ],
+      "type": "con"
+    }
+  ]
+}

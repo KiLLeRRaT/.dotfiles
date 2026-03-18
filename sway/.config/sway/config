@@ -1,0 +1,289 @@
+# Initial T570 Wayland config.
+# Keep the existing i3/X11 session intact while bringing up a parallel sway path.
+
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $dotfiles /home/albert/.dotfiles
+set $term alacritty
+set $menu wofi --show drun --insensitive --allow-images --prompt drun
+set $runmenu wofi --show run --insensitive --prompt run
+set $lock_cmd $dotfiles/scripts/wayland-lock.sh
+set $apply_theme $dotfiles/scripts/wayland-apply-theme.sh
+set $volume_cmd $dotfiles/scripts/wayland-volume.sh
+set $shot_focused $dotfiles/scripts/wayland-screenshot-focused.sh
+set $shot_region $dotfiles/scripts/wayland-screenshot-region.sh
+set $ocr_region $dotfiles/scripts/wayland-ocr-region.sh
+set $open_clipboard_url $dotfiles/scripts/wayland-open-clipboard-url.sh
+set $primary_to_clipboard $dotfiles/scripts/wayland-primary-to-clipboard.sh
+
+set $ws1 "1:1 󰭹"
+set $ws2 "2:2 "
+set $ws3 "3:3 "
+set $ws4 "4:4 󰢁"
+set $ws5 "5:5 󰣆"
+set $ws6 "6:6 󰣆"
+set $ws7 "7:7 "
+set $ws8 "8:8 "
+set $ws9 "9:9 "
+set $ws0 "10:0 󰃭"
+
+set $ws11 "11:11 "
+set $ws12 "12:12 "
+set $ws13 "13:13 "
+set $ws14 "14:14 "
+set $ws15 "15:15 "
+set $ws16 "16:16 "
+set $ws17 "17:17 "
+set $ws18 "18:18 "
+set $ws19 "19:19 "
+
+# <hostSpecificConfig>
+# <config hostname="arch-t570">
+font pango:SF Pro Display 11
+# </config>
+# </hostSpecificConfig>
+floating_modifier $mod normal
+default_border pixel 1
+default_floating_border normal
+hide_edge_borders none
+smart_borders on
+workspace_auto_back_and_forth yes
+
+input type:keyboard {
+    xkb_layout us
+    xkb_variant altgr-intl
+    xkb_options ctrl:nocaps,compose:rctrl-altgr
+    xkb_numlock enabled
+}
+
+input type:touchpad {
+    tap enabled
+}
+
+# The old i3 setup used an xinput property to enable middle-button scrolling on
+# a specific device. Leave that for a later device-specific sway input pass so
+# we do not accidentally change pointer behavior for every mouse on the T570.
+
+exec_always --no-startup-id dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway GTK_THEME=Dracula GTK2_RC_FILES=/home/albert/.gtkrc-2.0
+exec_always --no-startup-id $apply_theme
+exec_always --no-startup-id $dotfiles/scripts/wayland-random-wallpaper.sh
+
+exec --no-startup-id waybar
+exec --no-startup-id lxpolkit
+exec --no-startup-id nm-applet
+exec_always --no-startup-id dunst -replace
+exec --no-startup-id playerctld daemon
+exec --no-startup-id wlsunset -l -37.793342 -L 175.134606 -T 6500 -t 4000
+exec --no-startup-id swayidle -w timeout 600 '$lock_cmd' before-sleep '$lock_cmd'
+# <hostSpecificConfig>
+# <config hostname="arch-t570">
+exec --no-startup-id $dotfiles/scripts/wayland-start-t570-session.sh
+# </config>
+# </hostSpecificConfig>
+
+bindsym $mod+Return exec --no-startup-id $term
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec --no-startup-id $menu
+bindsym $mod+Shift+d exec --no-startup-id $runmenu
+bindsym $mod+Ctrl+m exec --no-startup-id pavucontrol
+
+set $mode_audioprofile (a)2dp_sink, (h)andsfree_head_unit, (c)onnect AirPods, (d)isconnect AirPods, (b)lueman-manager
+bindsym $mod+F11 mode "$mode_audioprofile"
+mode "$mode_audioprofile" {
+    bindsym a exec --no-startup-id "zsh -c 'pactl set-card-profile $(pactl list cards short | grep bluez_card.00_F3_9F_79_68_4B | cut -f 1) a2dp-sink'", mode "default"
+    bindsym h exec --no-startup-id "zsh -c 'pactl set-card-profile $(pactl list cards short | grep bluez_card.00_F3_9F_79_68_4B | cut -f 1) headset-head-unit-cvsd'", mode "default"
+    bindsym c exec --no-startup-id "notify-send 'Connecting AirPods'; bluetoothctl connect 00:F3:9F:79:68:4B && notify-send 'Connected AirPods'", mode "default"
+    bindsym d exec --no-startup-id "notify-send 'Disconnecting AirPods'; bluetoothctl disconnect 00:F3:9F:79:68:4B && notify-send 'Disconnected AirPods'", mode "default"
+    bindsym b exec --no-startup-id blueman-manager, mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_playerctl (h) prev, (j) play/stop, (k) stop, (l) next
+bindsym $mod+m mode "$mode_playerctl"
+mode "$mode_playerctl" {
+    bindsym h exec --no-startup-id playerctl previous, mode "default"
+    bindsym j exec --no-startup-id playerctl play-pause, mode "default"
+    bindsym k exec --no-startup-id playerctl stop, mode "default"
+    bindsym l exec --no-startup-id playerctl next, mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_goto (m)eeting clipboard, (M)eeting Google, (p)rimary->clipboard
+bindsym $mod+g mode "$mode_goto"
+mode "$mode_goto" {
+    bindsym m exec --no-startup-id $open_clipboard_url, mode "default"
+    bindsym Shift+m exec --no-startup-id $open_clipboard_url https://meet.google.com, mode "default"
+    bindsym p exec --no-startup-id $primary_to_clipboard, mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym --locked XF86AudioPlay exec --no-startup-id "playerctl play-pause; notify-send 'play/pause'"
+bindsym --locked XF86AudioMute exec --no-startup-id $volume_cmd mute-toggle
+bindsym --locked XF86AudioLowerVolume exec --no-startup-id $volume_cmd down
+bindsym --locked XF86AudioRaiseVolume exec --no-startup-id $volume_cmd up
+bindsym --locked XF86AudioMicMute exec --no-startup-id $volume_cmd mic-toggle
+
+bindsym XF86Calculator exec --no-startup-id alacritty --title 'calculator' --command /bin/zsh -c "dc -e '10 k' -"
+for_window [app_id="Alacritty" title="calculator"] floating enable, resize set 400 600
+
+set $mode_notifications (c)lose, (C)lose all, (h)istory, conte(x)t, dnd o(n), dnd of(f)
+bindsym $mod+n mode "$mode_notifications"
+mode "$mode_notifications" {
+    bindsym c exec --no-startup-id dunstctl close, mode "default"
+    bindsym Shift+c exec --no-startup-id dunstctl close-all, mode "default"
+    bindsym h exec --no-startup-id dunstctl history-pop, mode "default"
+    bindsym x exec --no-startup-id dunstctl context, mode "default"
+    bindsym n exec --no-startup-id "notify-send 'do not disturb on' && /home/albert/.config/dunst/dnd.sh dnd_start", mode "default"
+    bindsym f exec --no-startup-id "notify-send 'do not disturb off' && /home/albert/.config/dunst/dnd.sh dnd_stop", mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+exec --no-startup-id dunstctl rule dnd disable
+
+bindsym Print exec --no-startup-id $shot_focused
+bindsym Ctrl+Print exec --no-startup-id $shot_region
+bindsym Ctrl+Shift+Print exec --no-startup-id $ocr_region
+bindsym $mod+Ctrl+F4 exec --no-startup-id $shot_region
+
+set $mode_language (s)tart dictation, (e)nd dictation
+bindsym $mod+l mode "$mode_language"
+mode "$mode_language" {
+    bindsym s exec --no-startup-id "notify-send --urgency=critical 'Starting dictation' && nerd-dictation begin", mode "default"
+    bindsym e exec --no-startup-id "notify-send 'Stopping dictation' && nerd-dictation end", mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Ctrl+h focus left
+bindsym $mod+Ctrl+j focus down
+bindsym $mod+Ctrl+k focus up
+bindsym $mod+Ctrl+l focus right
+
+bindsym $mod+Ctrl+Shift+h move left
+bindsym $mod+Ctrl+Shift+j move down
+bindsym $mod+Ctrl+Shift+k move up
+bindsym $mod+Ctrl+Shift+l move right
+
+bindsym $mod+Shift+Left move workspace to output left
+bindsym $mod+Shift+Right move workspace to output right
+bindsym $mod+Shift+Up move workspace to output up
+bindsym $mod+Shift+Down move workspace to output down
+
+bindsym $mod+b workspace back_and_forth
+bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+
+bindsym $mod+v split h; exec --no-startup-id notify-send 'tile horizontally'
+bindsym $mod+Shift+v split v; exec --no-startup-id notify-send 'tile vertically'
+bindsym $mod+Ctrl+q split toggle; exec --no-startup-id notify-send 'tile toggle'
+
+bindsym $mod+Shift+f fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+Shift+s sticky toggle
+bindsym $mod+a focus parent
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws0
+bindsym $mod+F1 workspace $ws11
+bindsym $mod+F2 workspace $ws12
+bindsym $mod+F3 workspace $ws13
+bindsym $mod+F4 workspace $ws14
+bindsym $mod+F5 workspace $ws15
+bindsym $mod+F6 workspace $ws16
+bindsym $mod+F7 workspace $ws17
+bindsym $mod+F8 workspace $ws18
+bindsym $mod+F9 workspace $ws19
+
+bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Shift+Tab move container to workspace back_and_forth; workspace back_and_forth
+
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws0; workspace $ws0
+bindsym $mod+Shift+F1 move container to workspace $ws11; workspace $ws11
+bindsym $mod+Shift+F2 move container to workspace $ws12; workspace $ws12
+bindsym $mod+Shift+F3 move container to workspace $ws13; workspace $ws13
+bindsym $mod+Shift+F4 move container to workspace $ws14; workspace $ws14
+bindsym $mod+Shift+F5 move container to workspace $ws15; workspace $ws15
+bindsym $mod+Shift+F6 move container to workspace $ws16; workspace $ws16
+bindsym $mod+Shift+F7 move container to workspace $ws17; workspace $ws17
+bindsym $mod+Shift+F8 move container to workspace $ws18; workspace $ws18
+bindsym $mod+Shift+F9 move container to workspace $ws19; workspace $ws19
+
+assign [class="google-chat-linux"] $ws1
+assign [class="Spotify"] $ws1
+
+for_window [app_id="pavucontrol"] floating enable, resize set 1153 685, move position center
+for_window [class="Pavucontrol"] floating enable, resize set 1153 685, move position center
+for_window [class="Blueman-manager"] floating enable, resize set 760 450, move position center
+for_window [title="TimeSheetEntry - Brave$"] floating enable, move position center, resize set 830 800
+for_window [title="^Spaces$"] floating enable, move position center, resize set 760 800
+
+for_window [urgent=latest] focus
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r reload
+
+set $mode_system (l)ock, (e)xit, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+bindsym $mod+u mode "$mode_system"
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $lock_cmd, mode "default"
+    bindsym s exec --no-startup-id systemctl sleep, mode "default"
+    bindsym e exec --no-startup-id swaymsg exit, mode "default"
+    bindsym h exec --no-startup-id systemctl suspend-then-hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "resize" {
+    bindsym h resize shrink width 5px
+    bindsym j resize grow height 5px
+    bindsym k resize shrink height 5px
+    bindsym l resize grow width 5px
+    bindsym Left resize shrink width 5px
+    bindsym Down resize grow height 5px
+    bindsym Up resize shrink height 5px
+    bindsym Right resize grow width 5px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# <hostSpecificConfig>
+# <config hostname="arch-t570">
+bindsym XF86MonBrightnessUp exec --no-startup-id /home/albert/.dotfiles/hosts/arch-delllatitude/set-brightness-percent.sh +5
+bindsym XF86MonBrightnessDown exec --no-startup-id /home/albert/.dotfiles/hosts/arch-delllatitude/set-brightness-percent.sh -5
+# </config>
+# </hostSpecificConfig>
+
+include /etc/sway/config.d/*
