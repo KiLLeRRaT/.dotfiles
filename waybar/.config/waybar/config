@@ -49,9 +49,10 @@
       "warning": 20,
       "critical": 10
     },
-    "format": "{icon} {capacity}%",
-    "format-charging": " {capacity}%",
-    "format-plugged": " {capacity}%",
+    "format": "{icon} {capacity}% {time}",
+    "format-charging": " {capacity}% {time}",
+    "format-plugged": " {capacity}% {time}",
+    "format-time": "{H}:{m}",
     "format-icons": [
       "󰁺",
       "󰁻",
@@ -72,7 +73,8 @@
     "format": " {usage}%"
   },
   "clock": {
-    "format": "{:%a %-d %b %H:%M:%S}"
+    "interval": 1,
+    "format": "{:%a %d %b %H:%M:%S}"
   },
   "tray": {
     "spacing": 10

@@ -62,6 +62,7 @@ input type:keyboard {
 
 input type:touchpad {
     tap enabled
+    natural_scroll enabled
 }
 
 # The old i3 setup used an xinput property to enable middle-button scrolling on
