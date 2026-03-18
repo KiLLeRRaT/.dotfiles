@@ -73,7 +73,7 @@ then
 		cache="--no-cache"
 fi
 
-docker compose --progress=plain build $cache --build-arg GIT_EMAIL="$git_email" --build-arg GIT_NAME="$git_name"
+docker compose --progress=plain build --pull $cache --build-arg GIT_EMAIL="$git_email" --build-arg GIT_NAME="$git_name"
 
 if [[ $? -ne 0 ]]
 then
