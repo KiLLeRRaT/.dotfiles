@@ -87,6 +87,7 @@ echo -e "${GREEN}----------------------------------------${RESET}"
 arch-chroot2 mkdir -p /home/$USERNAME/source-aur
 
 installAurPackage xautolock
+arch-chroot /mnt pacman -Sy --noconfirm --needed xss-lock
 installAurPackage oh-my-posh-bin
 installAurPackage brave-bin
 # installAurPackage aspnet-runtime-bin
@@ -151,9 +152,9 @@ arch-chroot2 /bin/bash -l -- <<- EOF
 	betterlockscreen -u ~/.dotfiles/images
 EOF
 
-# TODO: VERIFY THAT THIS WORKED, CANT IN THE CHROOT RIGHT NOW...
-arch-chroot /mnt systemctl enable betterlockscreen@$USERNAME
-# lock on sleep/suspend
+# Sleep locking is handled per session (`xss-lock` in i3, `swayidle` in sway).
+# Do not enable the global betterlockscreen@ service, because it conflicts with
+# Wayland suspend/resume.
 
 
 arch-chroot2 /bin/bash -l -- <<- EOF

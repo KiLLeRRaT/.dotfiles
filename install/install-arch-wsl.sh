@@ -186,9 +186,7 @@ yay -S \
 
 betterlockscreen -u /home/$USERNAME/.dotfiles/images
 
-# TODO: VERIFY THAT THIS WORKED, CANT IN THE CHROOT RIGHT NOW...
-sudo systemctl enable betterlockscreen@$USERNAME
-# lock on sleep/suspend
+# Do not enable the global betterlockscreen@ service here.
 
 
 source /usr/share/nvm/init-nvm.sh
@@ -202,6 +200,4 @@ sudo ln -s /home/$USERNAME/.dotfiles/scripts/dmenu_recency /usr/local/bin/dmenu_
 
 
 echo -e "${GREEN}Done${RESET}"
-
-
 

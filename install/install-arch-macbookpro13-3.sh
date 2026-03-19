@@ -190,6 +190,7 @@ dunst \
 bluez bluez-utils blueman \
 pcmanfm \
 xautolock \
+xss-lock \
 spotify-launcher \
 dotnet-sdk \
 dotnet-runtime \
@@ -422,6 +423,5 @@ if [ "$reboot" == "y" ]; then
 	sudo reboot now
 fi
 popd
-
 
 

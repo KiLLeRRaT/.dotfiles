@@ -532,6 +532,10 @@ exec --no-startup-id lxpolkit
 
 exec --no-startup-id nm-applet
 
+# Handle sleep locking inside the active X11 session so it does not conflict
+# with the Wayland swayidle/swaylock path on dual-stack systems.
+exec --no-startup-id "command -v xss-lock >/dev/null 2>&1 && exec xss-lock --transfer-sleep-lock -- betterlockscreen --lock blur"
+
 # exec --no-startup-id xautolock -time 10 -locker "betterlockscreen --lock blur" -corners 000-
 # exec --no-startup-id xautolock -time 10 -locker "$HOME/.dotfiles/xautolock/xautolock.sh && betterlockscreen --lock blur" -corners 000-
 exec --no-startup-id xautolock -time 10 -locker "$HOME/.dotfiles/xautolock/xautolock.sh && betterlockscreen --lock blur"
@@ -1087,6 +1091,5 @@ workspace $ws18 output $screenmiddle
 workspace $ws13 output $screenright
 workspace $ws16 output $screenright
 workspace $ws19 output $screenright
-
 
 

@@ -95,6 +95,7 @@ sudo pacman --noconfirm --needed -Syu\
 	wget \
 	wireplumber pipewire-pulse pavucontrol playerctl \
 	xautolock \
+	xss-lock \
 	xclip \
 	xorg-xrandr \
 	zathura zathura-pdf-poppler \
@@ -321,9 +322,9 @@ installAurPackage i3exit
 
 installAurPackage betterlockscreen
 betterlockscreen -u ~/.dotfiles/images
-# lock on sleep/suspend
-echo -e "$password" | sudo -v -S
-sudo systemctl enable betterlockscreen@$USER
+# Sleep locking is handled per session (`xss-lock` in i3, `swayidle` in sway).
+# Do not enable the global betterlockscreen@ service, because it conflicts with
+# Wayland suspend/resume.
 
 # installAurPackage forticlient-vpn, in ~/vpn.sh we are using openfortivpn
 # sudo pacman -S networkmanager-fortisslvpn
@@ -429,7 +430,6 @@ if [ "$configure_qemu" == "y" ]; then
 		sudo chattr +C /var/lib/libvirt
 	fi
 fi
-
 
 
 

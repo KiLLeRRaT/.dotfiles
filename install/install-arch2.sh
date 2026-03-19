@@ -210,6 +210,7 @@ arch-chroot /mnt pacman --noconfirm --needed -Syu \
 	wget \
 	wireplumber pipewire-pulse pavucontrol playerctl \
 	xautolock \
+	xss-lock \
 	xclip \
 	xorg \
 	xorg-xinit \

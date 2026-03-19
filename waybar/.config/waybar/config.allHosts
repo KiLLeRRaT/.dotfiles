@@ -11,6 +11,7 @@
   "modules-right": [
     "pulseaudio",
     "network",
+    "disk",
     "battery",
     "memory",
     "cpu",
@@ -43,6 +44,15 @@
     "format-ethernet": "󰈀 {ipaddr}",
     "format-disconnected": "󰖪",
     "tooltip-format": "{ifname} via {gwaddr}"
+  },
+  "disk": {
+    "path": "/",
+    "format": "⛁ {free}",
+    "states": {
+      "warning": 90,
+      "critical": 95
+    },
+    "tooltip-format": "{used} used / {total} total ({percentage_used}%)"
   },
   "battery": {
     "states": {

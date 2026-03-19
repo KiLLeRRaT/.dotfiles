@@ -34,8 +34,8 @@ tooltip {
 }
 
 #workspaces button.focused {
-  color: #1a1b26;
-  background: #7aa2f7;
+  color: #c0caf5;
+  background: #414868;
 }
 
 #workspaces button.urgent {
@@ -46,6 +46,7 @@ tooltip {
 #mode,
 #pulseaudio,
 #network,
+#disk,
 #battery,
 #memory,
 #cpu,
@@ -65,8 +66,13 @@ tooltip {
   color: #e0af68;
 }
 
+#disk.warning {
+  color: #e0af68;
+}
+
 #battery.critical,
-#battery.urgent {
+#battery.urgent,
+#disk.critical {
   color: #f7768e;
 }
 
