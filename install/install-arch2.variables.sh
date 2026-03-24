@@ -8,6 +8,7 @@ timedatectl set-ntp true
 sed -i 's/^#Color/Color/g' /etc/pacman.conf
 sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 10/g' /etc/pacman.conf
 pacman -Syy
+pacman -S archlinux-keyring
 pacman -Sy --noconfirm --needed archlinux-keyring git fzf
 
 # Function to get a variable value
