@@ -92,7 +92,8 @@ order += "wireless _first_"
 
 # <hostSpecificConfig>
 # <config hostname="arch-agouws">
-order += "disk /mnt/data/"
+# order += "disk /mnt/data/"
+order += "disk /var/lib/libvirt/"
 # order += "disk /mnt/data2-temp/"
 order += "ethernet br0"
 ethernet br0 {
@@ -101,7 +102,8 @@ ethernet br0 {
 # format_up = " 󰈀 %ip %speed "
 		format_down = " 󰈀 "
 }
-disk "/mnt/data/" {
+# disk "/mnt/data/" {
+disk "/var/lib/libvirt/" {
 	format = "d⛁ %avail "
 	format_not_mounted = "<span color='red'> d⛁ not mounted </span>"
 	low_threshold = 10
