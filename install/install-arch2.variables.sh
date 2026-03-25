@@ -9,7 +9,7 @@ sed -i 's/^#Color/Color/g' /etc/pacman.conf
 sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 10/g' /etc/pacman.conf
 pacman -Syy
 pacman -S archlinux-keyring --noconfirm --needed
-pacman -Sy --noconfirm --needed archlinux-keyring git fzf
+pacman -Sy --noconfirm --needed git fzf
 
 # Function to get a variable value
 GET_VAR() {
