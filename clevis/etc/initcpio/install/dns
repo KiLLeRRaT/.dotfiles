@@ -1,0 +1,15 @@
+# vim:set filetype=sh:
+build ()
+{
+	add_runscript
+	add_binary curl
+
+	for i in /usr/lib/libnss_dns* /usr/lib/libnss_files*; do
+		add_file $i
+	done
+}
+
+help ()
+{
+	echo Example hook to configure DNS
+}

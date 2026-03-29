@@ -1,0 +1,14 @@
+# vim:set filetype=sh
+run_hook () {
+# Your code using curl here, e.g.
+# curl --insecure https://192.168.0.10/example/blahblah
+
+local conf="/tmp/net-eth0.conf"
+if [ -f "$conf" ]; then
+  source "$conf"
+  echo "nameserver $IPV4DNS0" > /etc/resolv.conf
+  # echo nameserver $IPV4DNS1 >> /etc/resolv.con
+fi
+
+}
+
