@@ -229,6 +229,7 @@ alias grep='grep --color=auto'
 alias rl='source ~/.zshrc'
 alias df='df -h'
 alias free='free -h'
+alias zramctl-etal='zramctl && echo "" && swapon --show && echo "" && free'
 alias xclip='xclip -selection clipboard'
 
 alias db='dotnet build'
@@ -534,10 +535,7 @@ then
 	export CUDA_HOME=/opt/cuda/
 fi
 
-if [ -d ~/.local/bin ]
-then
-	export PATH=$PATH:~/.local/bin
-fi
+if [ -d ~/.local
 
 # Add dotnet tools to the path
 if [ -d ~/.dotnet/tools ]
