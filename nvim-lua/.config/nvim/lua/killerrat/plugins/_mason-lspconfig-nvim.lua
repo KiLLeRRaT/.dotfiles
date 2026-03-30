@@ -46,7 +46,13 @@ elseif vim.fn.has("unix") == 1 then
 	-- table.insert(lsp_installer_ensure_installed, "omnisharp_mono" .. omnisharp_version)
 end
 
+local hostname = vim.loop.os_gethostname()
+local automatic_enable = true
+if hostname == "hppavilion" then
+	automatic_enable = false
+end
 
 require("mason-lspconfig").setup({
-	ensure_installed = lsp_installer_ensure_installed
+	ensure_installed = lsp_installer_ensure_installed,
+	automatic_enable = automatic_enable
 })
