@@ -255,20 +255,16 @@ local lazyPlugins = {
 	{ "https://github.com/neovim/nvim-lspconfig" },
 	{
 		'https://github.com/nvim-treesitter/nvim-treesitter',
-		branch = 'master', -- main has lots of breaking changes, need to upgrade later in the future, see:
-		-- https://www.reddit.com/r/neovim/comments/1pndf9e/my_new_nvimtreesitter_configuration_for_the_main/
-		-- https://github.com/nvim-treesitter/nvim-treesitter/tree/main?tab=readme-ov-file#quickstart
-		build = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+		branch = 'main',
+		build = ':TSUpdate',
 	},
 
-	{ "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },
+	{ "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
 	{ 'https://github.com/rmagatti/goto-preview' },
 
 	-- STICKY HEADERS/FUNCTIONS AT THE TOP OF THE WINDOW WHEN SCROLLING
 	{ 'https://github.com/nvim-treesitter/nvim-treesitter-context' },
-	{ 'https://github.com/nvim-treesitter/playground',
-		cmd = "TSPlaygroundToggle"
-	},
+	-- playground removed: use built-in :InspectTree instead
 	-- goto definition on decompiled sources
 	-- { 'Hoffs/omnisharp-extended-lsp.nvim' },
 

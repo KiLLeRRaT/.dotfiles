@@ -1,4 +1,8 @@
--- FROM: https://github.com/nvim-treesitter/nvim-treesitter/wiki/Installation
+-- MIGRATED TO main BRANCH (2026-04)
+-- Old wiki: https://github.com/nvim-treesitter/nvim-treesitter/wiki/Installation
+-- playground removed: use built-in :InspectTree instead
+
+-- OLD FOLDING NOTES:
 -- vim.opt.foldmethod			= 'expr'
 -- vim.opt.foldexpr				= 'nvim_treesitter#foldexpr()'
 ---WORKAROUND
@@ -42,73 +46,76 @@
 -- vim.cmd[[set indentexpr=nvim_treesitter#indent()]]
 
 
+-- PARSERS TO INSTALL
+local parsers = {
+	"bash",
+	"c",
+	"c_sharp",
+	"cmake",
+	"cpp",
+	"css",
+	"diff",
+	"dockerfile",
+	"editorconfig",
+	"git_config",
+	"go",
+	"html",
+	"javascript",
+	"json",
+	"lua",
+	"markdown",
+	-- "norg", -- neorg bundles its own parser; not in the standard treesitter registry
+	"powershell",
+	"python",
+	"query",
+	"razor",
+	"regex",
+	"scss",
+	"sql",
+	"tsx",
+	"typescript",
+	"vim",
+	"yaml",
+}
 
-require'nvim-treesitter.configs'.setup {
-	sync_install = #vim.api.nvim_list_uis() == 0,
-	ensure_installed = {
-		"bash",
-		"c",
-		"c_sharp",
-		"cmake",
-		"cpp",
-		"css",
-		"diff",
-		"dockerfile",
-		"editorconfig",
-		"git_config",
-		"go",
-		"html",
-		"javascript",
-		"json",
-		"lua",
-		"markdown",
-		"norg",
-		"powershell",
-		"python",
-		"query",
-		"razor",
-		"regex",
-		"scss",
-		"sql",
-		"tsx",
-		"typescript",
-		"vim",
-		"yaml",
-	},
-	indent = {
-		enable = true,
-	},
-	highlight = {
-		enable = true,
-	},
-	textobjects = {
-		select = {
-			enable = true,
+require('nvim-treesitter').install(parsers)
 
-			-- Automatically jump forward to textobj, similar to targets.vim
-			lookahead = true,
+-- ENABLE HIGHLIGHTING AND INDENTATION VIA AUTOCMD
+vim.api.nvim_create_autocmd('FileType', {
+	group = vim.api.nvim_create_augroup('nvim_treesitter_start', { clear = true }),
+	callback = function(args)
+		if vim.treesitter.get_parser(args.buf, nil, { error = false }) then
+			vim.treesitter.start(args.buf)
+			vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+		end
+	end,
+})
 
-			keymaps = {
-				-- You can use the capture groups defined in textobjects.scm
-				["am"] = "@function.outer",
-				["im"] = "@function.inner",
-				["ac"] = "@class.outer",
-				["ic"] = "@class.inner",
-			},
+-- TEXTOBJECTS (via nvim-treesitter-textobjects plugin on main branch)
+require('nvim-treesitter-textobjects').setup {
+	select = {
+		-- Automatically jump forward to textobj, similar to targets.vim
+		lookahead = true,
+
+		keymaps = {
+			-- You can use the capture groups defined in textobjects.scm
+			["am"] = "@function.outer",
+			["im"] = "@function.inner",
+			["ac"] = "@class.outer",
+			["ic"] = "@class.inner",
 		},
-		swap = {
-		 enable = true,
-		 swap_next = {
+	},
+	swap = {
+		swap_next = {
 			["<leader>pn"] = "@parameter.inner",
-		 },
-		 swap_previous = {
-			["<leader>pp"] = "@parameter.inner",
-		 },
 		},
-		move = {
-		 enable = true,
-		 set_jumps = true, -- whether to set jumps in the jumplist
-		 goto_next_start = {
+		swap_previous = {
+			["<leader>pp"] = "@parameter.inner",
+		},
+	},
+	move = {
+		set_jumps = true, -- whether to set jumps in the jumplist
+		goto_next_start = {
 			["]m"] = "@function.outer",
 			["]]"] = { query = "@class.outer", desc = "Next class start" },
 			--
@@ -120,57 +127,38 @@ require'nvim-treesitter.configs'.setup {
 			-- Below example nvim-treesitter's `locals.scm` and `folds.scm`. They also provide highlights.scm and indent.scm.
 			["]S"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
 			["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
-		 },
-		 goto_next_end = {
+		},
+		goto_next_end = {
 			["]M"] = "@function.outer",
 			["]["] = "@class.outer",
 			-- ["]O"] = "@loop.*",
 			["]O"] = { query = { "@loop.inner", "@loop.outer" } },
-		 },
-		 goto_previous_start = {
+		},
+		goto_previous_start = {
 			["[m"] = "@function.outer",
 			["[["] = "@class.outer",
 			-- ["[o"] = "@loop.*",
 			["[o"] = { query = { "@loop.inner", "@loop.outer" } },
 			["[S"] = { query = "@scope", query_group = "locals", desc = "Prev scope" },
 			["[z"] = { query = "@fold", query_group = "folds", desc = "Prev fold" },
-		 },
-		 goto_previous_end = {
+		},
+		goto_previous_end = {
 			["[M"] = "@function.outer",
 			["[]"] = "@class.outer",
 			-- ["[O"] = "@loop.*",
 			["[O"] = { query = { "@loop.inner", "@loop.outer" } },
-		 },
-		 -- Below will go to either the start or the end, whichever is closer.
-		 -- Use if you want more granular movements
-		 -- Make it even more gradual by adding multiple queries and regex.
-		 goto_next = {
+		},
+		-- Below will go to either the start or the end, whichever is closer.
+		-- Use if you want more granular movements
+		-- Make it even more gradual by adding multiple queries and regex.
+		goto_next = {
 			["]d"] = "@conditional.outer",
-		 },
-		 goto_previous = {
+		},
+		goto_previous = {
 			["[d"] = "@conditional.outer",
-		 }
-		},
-	 },
-	 playground = {
-		enable = true,
-		disable = {},
-		updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-		persist_queries = false, -- Whether the query persists across vim sessions
-		keybindings = {
-		 toggle_query_editor = 'o',
-		 toggle_hl_groups = 'i',
-		 toggle_injected_languages = 't',
-		 toggle_anonymous_nodes = 'a',
-		 toggle_language_display = 'I',
-		 focus_language = 'f',
-		 unfocus_language = 'F',
-		 update = 'R',
-		 goto_node = '<cr>',
-		 show_help = '?',
-		},
-	 }
-	}
+		}
+	},
+}
 
 
  -- THE BELOW IS NOT WORKING, IT BREAKS THE DOT COMMAND WHEN YOURE TRYING TO DOT REPEAT SOMETHING
