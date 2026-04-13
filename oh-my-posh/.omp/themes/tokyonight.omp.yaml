@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
 
+shell_integration: true
 console_title_template: "{{if .Root }}Adm:{{end}}{{ .PWD }}"
 blocks:
 - type: prompt
