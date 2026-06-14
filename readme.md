@@ -1,5 +1,9 @@
 # .dotfiles
 
+> [!WARNING]
+> This repo is now archived.  Please see the new .dotfiles repo at: https://forgejo.gouws.org/albert/.dotfiles.
+
+
 This is my .dotfiles.  It's as multi platform as I could make it, up to a point.  You will find
 dotfiles for Linux, MacOS, and Windows in here.
 
